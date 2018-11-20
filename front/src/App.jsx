@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+// import { createStore } from 'redux';
+// import { Provider } from 'react-redux';
 
-class App extends Component {
+import Public from './Components/Public/Public';
+import Admin from './Components/Admin/Admin';
+
+export default class App extends Component {
+  // constructor(props){
+  //   super(props);
+  // };
+
+  // const store = createStore(reducer);
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {/* <Provider store={store}> */}
+          <BrowserRouter>
+            <Switch>
+              <Route path="/admin" component={Admin} />
+              <Route path="/" component={Public} />
+              
+            </Switch>
+          </BrowserRouter>
+        {/* </Provider> */}
       </div>
     );
-  }
-}
-
-export default App;
+  };
+};
