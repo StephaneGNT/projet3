@@ -1,6 +1,6 @@
 import React from 'react';
-import './Ingredient.css';
-import carrotCakeImage from '../../Assets/CarrotCake.jpg';
+import '../../Assets/Styles/Ingredient.css';
+// import carrotCakeImage from '../../Assets/CarrotCake.jpg';
 
 export default class Ingredient extends React.Component {
   constructor(props) {
