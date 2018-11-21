@@ -26,8 +26,8 @@ class Ingredient extends React.Component {
     };
 
     return (
-      <div className="ingredient" draggable="true">
-        <div className={this.props.ingredient.type} style={divStyle} title={description} onClick={() => this.props.addToPrice(this.props.ingredient.price)} />
+      <div className="ingredient" draggable="true" id={"ingredient"+this.props.ingredient.id}>
+        <div className={this.props.ingredient.type} style={divStyle} title={description} onClick={() => this.props.addToPrice(this.props.ingredient.price)}/>
         <p className="ingredientName">{this.props.ingredient.name}</p>
         <div onClick={() => this.props.substractFromPrice(this.props.ingredient.price)}><b>Remove</b></div>
       </div>

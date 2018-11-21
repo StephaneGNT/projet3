@@ -1,19 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Ingredient from './Ingredient';
-
+import Price from './Price';
 import '../../Assets/Styles/Composition.css';
 
-const mapStateToProps = state => {
-  console.log(state)
-  return(
-  {
-    elementToDisplay: state.cakeBases,
-    cake: state.cakeCharacteristics, 
-  }
-);}
+const mapStateToProps = state => ({
+  elementToDisplay: state.cakeBases,
+  cake: state.cakeCharacteristics,
+  price: state.price,
+});
 
-const mapDispatchToProps = () => ({});
+// const mapDispatchToProps = () => ({});
 
 const renderElement = (data) => {
   const render = [];
@@ -27,18 +24,33 @@ const renderElement = (data) => {
   return render;
   // return data.map(ingredient => <Ingredient ingredient={ingredient} />);
 };
+function allowDrop(ev) {
+  ev.preventDefault();
+}
 
-const Composition = ({ elementToDisplay }) => (
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+const Composition = ({ elementToDisplay, price }) => (
   <div className="row" style={{ width: '1OO%', height: '100%' }}>
-    <div className="col-8 ingredientDisplay">
+    <div className="col-8 ingredientDisplay" draggable="true" onDragStart={(event) => drag(event)}>
+    <div>
+      <Price amount={price} />
+    </div>
       {renderElement(elementToDisplay)}
     </div>
-    <div className="col-4 cakeDisplay">
+    <div className="col-4 cakeDisplay" id="drag2" onDrop={(event) => drop(event)} onDragOver={(event) => allowDrop(event)} style={{ height: '3000px', border: '2px solid black', backgroundColor: 'black' }}   >
     </div>
   </div>
 );
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  // mapDispatchToProps,
 )(Composition);
