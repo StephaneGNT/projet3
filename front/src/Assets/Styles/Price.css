@@ -1,0 +1,16 @@
+.body {
+
+  color: red;
+  font-size: 1.5em;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid black;
+  width: 10vh; 
+  height: 4vh;
+  text-align: center;
+  position: relative;
+}
