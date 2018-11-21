@@ -27,13 +27,25 @@ const renderElement = (data) => {
   return render;
   // return data.map(ingredient => <Ingredient ingredient={ingredient} />);
 };
+function allowDrop(ev) {
+  ev.preventDefault();
+}
 
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
 const Composition = ({ elementToDisplay }) => (
   <div className="row" style={{ width: '1OO%', height: '100%' }}>
-    <div className="col-8 ingredientDisplay">
+    <div className="col-8 ingredientDisplay" draggable="true" onDragStart={(event) => drag(event) }>
       {renderElement(elementToDisplay)}
     </div>
-    <div className="col-4 cakeDisplay">
+    <div className="col-4 cakeDisplay" id="drag2" onDrop={(event) => drop(event)} onDragOver= {(event) => allowDrop(event)} style={{ height: '3000px', border: '2px solid black', backgroundColor:'black'}}   >
     </div>
   </div>
 );
