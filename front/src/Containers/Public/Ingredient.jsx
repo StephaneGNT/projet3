@@ -18,7 +18,7 @@ Allergènes: ${this.props.ingredient.allergènes}`;
     };
 
     return (
-      <div className="ingredient" draggable="true">
+      <div className="ingredient" draggable="true" id={"ingredient"+this.props.ingredient.id}>
         <div className={this.props.ingredient.type} style={divStyle} title={description} />
         <p className="ingredientName">{this.props.ingredient.name}</p>
       </div>
