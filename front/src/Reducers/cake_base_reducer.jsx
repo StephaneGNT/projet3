@@ -1,4 +1,4 @@
-export default () =>{ 
+export default () => { 
   return [
     {
       id: 1,
