@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-export default class Personalisation extends React.Component {
+export default class CompositionHomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -9,9 +8,7 @@ export default class Personalisation extends React.Component {
 
   render() {
     return (
-      <div>
-        Personnalisation
-      </div>
+      <div> Composition home page </div>
     );
   }
 }

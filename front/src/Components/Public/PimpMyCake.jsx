@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import CakeInfo from './CakeInfo';
+import CompositionHomePage from './CompositionHomePage';
 import Composition from './Composition';
 import Personalisation from './Personalisation';
 import OrderDetail from './OrderDetail';
@@ -20,7 +21,8 @@ export default class PimpMyCake extends React.Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/mycake" component={CakeInfo} />
-            <Route path="/mycake/ingredient" component={Composition} />
+            <Route path="/mycake/composition/homepage" component={CompositionHomePage} />
+            <Route path="/mycake/composition/element" component={Composition} />
             <Route path="/mycake/customCake" component={Personalisation} />
             <Route path="/mycake/orderDetail" component={OrderDetail} />
             <Route path="/mycake/userInfo" component={UserInfo} />
