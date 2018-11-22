@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../../Assets/Styles/Price.css';
 
-
-
-class Price extends React.Component {
+class Price extends Component {
   constructor(props) {
     super(props);
   }

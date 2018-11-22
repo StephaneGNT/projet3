@@ -1,13 +1,21 @@
 import { combineReducers } from 'redux';
-import cakeBaseReducer from './cake_base_reducer';
-import cakeIcingReducer from './cake_icing_reducer';
-import cakeCharacReducer from './cake_characteristics_reducer';
+import cakeBasesReducer from './cake_bases_reducer';
+import cakeIcingsReducer from './cake_icings_reducer';
+import cakeFillingsReducer from './cake_fillings_reducer';
+import cakeToppingsReducer from './cake_toppings_reducer';
+import cakeCharacsReducer from './cake_characteristics_reducer';
+import pageIndexReducer from './page_index_reducer';
+import defaultImageReducer from './default_images_reducer';
 import priceReducer from './price_reducer';
 
 const allReducers = combineReducers({
-  cakeBases: cakeBaseReducer,
-  cakeIcings: cakeIcingReducer,
-  cakeCharacteristics: cakeCharacReducer,
+  cakeBases: cakeBasesReducer,
+  cakeIcings: cakeIcingsReducer,
+  cakeFillings: cakeFillingsReducer,
+  cakeToppings: cakeToppingsReducer,
+  cakeCharacteristics: cakeCharacsReducer,
+  pageIndex: pageIndexReducer,
+  defaultImage: defaultImageReducer,
   price: priceReducer,
 });
 

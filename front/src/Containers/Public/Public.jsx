@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import HomePage from './HomePage';
 import PimpMyCake from './PimpMyCake';
 import Contact from './Contact';
 
-export default class Public extends React.Component {
+import '../../Assets/Styles/Public.css';
+
+export default class Public extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -13,16 +15,18 @@ export default class Public extends React.Component {
 
   render() {
     return (
-      <div>
-        <div> NavBar </div>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/mycake" component={PimpMyCake} />
-            <Route path="/contact/" component={Contact} />
-          </Switch>
-        </BrowserRouter>
-        <div> Footer </div>
+      <div className="bodyZone">
+        <div className="headerZone"> NavBar </div>
+        <div className="contentZone">
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route path="/mycake" component={PimpMyCake} />
+              <Route path="/contact/" component={Contact} />
+            </Switch>
+          </BrowserRouter>
+        </div>
+        <div className="footerZone"> Footer </div>
       </div>
     );
   }
