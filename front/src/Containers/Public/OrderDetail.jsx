@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class OrderDetail extends React.Component {
+class OrderDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -12,3 +12,5 @@ export default class OrderDetail extends React.Component {
     );
   }
 }
+
+export default OrderDetail;

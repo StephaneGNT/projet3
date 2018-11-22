@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../../Assets/Styles/Ingredient.css';
 // import carrotCakeImage from '../../Assets/CarrotCake.jpg';
 
-export default class Ingredient extends React.Component {
+class Ingredient extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -25,3 +25,5 @@ Allergènes: ${this.props.ingredient.allergènes}`;
     );
   }
 }
+
+export default Ingredient;
