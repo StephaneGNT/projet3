@@ -20,7 +20,7 @@ class NavArrowPrev extends Component {
     return (
       <div>
         <NavLink to={this.translateIndexToRoute(this.props.pageIndex)}>
-          <Button onClick={() => this.props.changeIndex(-1)}>Previous</Button>
+          <Button onClick={() => this.props.changeIndex(-1)} className="btn-info">Previous</Button>
         </NavLink>
       </div>
     );

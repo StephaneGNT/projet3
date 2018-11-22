@@ -21,7 +21,7 @@ class NavArrowNext extends Component {
     return (
       <div>
         <NavLink to={this.translateIndexToRoute(this.props.pageIndex)}>
-          <Button onClick={() => this.props.changeIndex(1)}>
+          <Button onClick={() => this.props.changeIndex(1)} className="btn-info">
             Next
             {this.pageIndex}
           </Button>
