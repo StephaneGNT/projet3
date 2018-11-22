@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Ingredient from './Ingredient';
 import Price from './Price';
 import '../../Assets/Styles/Composition.css';
+import NavArrowsLayout from './NavArrowsLayout';
 
 const mapStateToProps = (state) => {
   // Affichage des bases, toppings... en fonction du page index
   let elementToDisplay;
+  console.log(state.pageIndex);
   switch (state.pageIndex) {
     case 2: elementToDisplay = [state.cakeBases]; break;
     case 3: elementToDisplay = [state.cakeIcings, state.cakeFillings]; break;
@@ -83,6 +85,7 @@ const Composition = (props) => {
         </div>
         <div className="priceDisplay">
           <button type="button"> Command </button>
+          <NavArrowsLayout />
           {renderButton(elementToDisplay)}
         </div>
       </div>

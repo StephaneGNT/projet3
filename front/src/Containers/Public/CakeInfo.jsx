@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../Assets/Styles/CakeInfo.css';
 import { Form, Label, Input, Table, Button } from 'reactstrap';
 import ToggleDisplay from 'react-toggle-display';
+import NavArrowsLayout from './NavArrowsLayout';
 
 class CakeInfo extends Component {
   constructor(props) {
@@ -100,6 +101,7 @@ class CakeInfo extends Component {
             </tr>
           </tbody>
         </Table>
+        <NavArrowsLayout />
       </div>
     );
   }
