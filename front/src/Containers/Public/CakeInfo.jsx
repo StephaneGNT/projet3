@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../Assets/Styles/CakeInfo.css';
 import { Form, Label, Input, Table, Button, Container, Row, Col } from 'reactstrap';
 import ToggleDisplay from 'react-toggle-display';
-import NavArrowsLayout from './'
+import NavArrowsLayout from './NavArrowsLayout';
 
 class CakeInfo extends Component {
   constructor(props) {
@@ -101,6 +101,7 @@ class CakeInfo extends Component {
             </tr>
           </tbody>
         </Table>
+        <NavArrowsLayout />
       </div>
     );
   }
@@ -187,7 +188,7 @@ return (
     </Row>
     <Row>
       <Col s="4">
-        <Navarroe
+        <NavArrowsLayout />
       </Col>
     </Row>
   </Container>

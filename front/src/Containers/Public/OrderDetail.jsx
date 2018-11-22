@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NavArrowsLayout from './NavArrowsLayout';
 
 class OrderDetail extends Component {
   constructor(props) {
@@ -8,7 +9,10 @@ class OrderDetail extends Component {
 
   render() {
     return (
-      <div> Order detail </div>
+      <div>
+        Order detail
+        <NavArrowsLayout />
+      </div>
     );
   }
 }
