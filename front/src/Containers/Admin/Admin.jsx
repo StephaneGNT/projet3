@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import OrdersAdmin from './OrdersAdmin';
@@ -6,7 +6,7 @@ import DataBase from './DataBase';
 import CalendarAdmin from './CalendarAdmin';
 import HomePageAdmin from './HomePageAdmin';
 
-export default class Admin extends React.Component {
+export default class Admin extends Component {
   constructor(props) {
     super(props);
     this.state = {};
