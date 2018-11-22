@@ -4,11 +4,18 @@ import NavArrowNext from './NavArrowNext';
 import NavArrowPrev from './NavArrowPrev';
 
 class NavArrowsLayout extends Component {
-  render() {
-    if (this.props.pageIndex === 1) {
+  changeLayoutviaPageindex = (index) => {
+    if (index === 1) {
       return (
         <div>
           <NavArrowNext />
+        </div>
+      );
+    }
+    if (index === 7) {
+      return (
+        <div>
+          <NavArrowPrev />
         </div>
       );
     }
@@ -17,9 +24,13 @@ class NavArrowsLayout extends Component {
         <NavArrowPrev />
         <NavArrowNext />
       </div>
-    )
- }
-};
+    );
+  }
+
+  render() {
+    return this.changeLayoutviaPageindex(this.props.pageIndex);
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
