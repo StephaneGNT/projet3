@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Ingredient from './Ingredient';
-
+import Price from './Price';
 import '../../Assets/Styles/Composition.css';
 
 const mapStateToProps = (state) => {
@@ -16,11 +16,12 @@ const mapStateToProps = (state) => {
     {
       elementToDisplay,
       cake: state.cakeCharacteristics, // caractéristiques du gâteau
+      price: state.price,
     }
   );
 };
 
-const mapDispatchToProps = () => ({});
+// const mapDispatchToProps = () => ({});
 
 // Fonction de récupération de la liste des ingrédients compatibles avec ceux composants déjà le gâteau
 const getCompatibleIngredients = (cake) => {
@@ -57,27 +58,45 @@ const renderIngredients = (data, cake) => {
   return render;
 };
 
+const allowDrop = (ev) => {
+  ev.preventDefault();
+};
+
+const drag = (ev) => {
+  ev.dataTransfer.setData('text', ev.target.id);
+};
+
+const drop = (ev) => {
+  ev.preventDefault();
+  const data = ev.dataTransfer.getData('text');
+  ev.target.appendChild(document.getElementById(data));
+};
+
 const Composition = (props) => {
-  
-  const { elementToDisplay, cake } = props;
+  const { elementToDisplay, cake, price } = props;
+
   return (
     <div className="row">
       <div className="col-8" style={{margin: 0 }}>
-        <div className="addIngredient">
+        <div className="addIngredient" onDragStart={event => drag(event)}>
           {renderIngredients(elementToDisplay, cake)}
         </div>
         <div className="priceDisplay">
-          <button type="button"> Price </button>
           <button type="button"> Command </button>
           {renderButton(elementToDisplay)}
         </div>
       </div>
-      <div className="col-4 cakeDisplay">Cake display</div>
+      <div className="col-4 cakeAndPricDisplay">
+        <div className="cakeDisplay" id="drag2" onDrop={event => drop(event)} onDragOver={event => allowDrop(event)} />
+        <div>
+          <Price amount={price} />
+        </div>
+      </div>
     </div>
   );
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  // mapDispatchToProps,
 )(Composition);

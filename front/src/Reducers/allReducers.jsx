@@ -6,6 +6,7 @@ import cakeToppingsReducer from './cake_toppings_reducer';
 import cakeCharacsReducer from './cake_characteristics_reducer';
 import pageIndexReducer from './page_index_reducer';
 import defaultImageReducer from './default_images_reducer';
+import priceReducer from './price_reducer';
 
 const allReducers = combineReducers({
   cakeBases: cakeBasesReducer,
@@ -15,6 +16,7 @@ const allReducers = combineReducers({
   cakeCharacteristics: cakeCharacsReducer,
   pageIndex: pageIndexReducer,
   defaultImage: defaultImageReducer,
+  price: priceReducer,
 });
 
 export default allReducers;
