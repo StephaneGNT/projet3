@@ -18,16 +18,8 @@ class CakeInfo extends Component {
     this.setState({
       isSelected: selectedCake
     });
-    // console.log("Type select : " + this.state.isSelected);
   }
 
-  // etagesOnCakeClick = () => {
-  //   this.setState({
-  //     show: !this.state.show,
-  //     isSelected: !this.state.isSelected
-  //   });
-  //   console.log("Type select : " + this.state.isSelected);
-  // }
 
   render() {
     console.log("Type select : " + this.state.isSelected);
