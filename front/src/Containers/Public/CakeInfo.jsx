@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class CakeInfo extends React.Component {
+export default class CakeInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {};
