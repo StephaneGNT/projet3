@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../../Assets/Styles/CakeInfo.css';
-import { Form, Label, Input, Table, Button } from 'reactstrap';
+import { Form, Label, Input, Table, Button, Container, Row, Col } from 'reactstrap';
 import ToggleDisplay from 'react-toggle-display';
+import NavArrowsLayout from './'
 
 class CakeInfo extends Component {
   constructor(props) {
@@ -79,7 +80,7 @@ class CakeInfo extends Component {
                     </Input>
 
                     <ToggleDisplay show={this.state.isSelected === 'cake'}>
-                    <Label for="nbrEtages" className="labels-perso">Sélectionnez le nombre d'étages souhaité :</Label>
+                      <Label for="nbrEtages" className="labels-perso">Sélectionnez le nombre d'étages souhaité :</Label>
                       <Input type="select" name="select">
                         <option>1</option>
                         <option>2</option>
@@ -93,7 +94,7 @@ class CakeInfo extends Component {
               </td>
               <td>
                 <div className="bloc-tips">
-                <div className="text-tips">kikoo</div>
+                  <div className="text-tips">kikoo</div>
                   Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste. Ptolomaeo enim rege foederato nobis et socio ob aerarii nostri angustias iusso sine ulla culpa proscribi ideoque hausto veneno voluntaria morte deleto et tributaria facta est et velut hostiles eius exuviae classi inpositae in urbem advectae sunt per Catonem, nunc repetetur ordo gestorum.
                 </div>
               </td>
@@ -106,3 +107,88 @@ class CakeInfo extends Component {
 }
 
 export default CakeInfo;
+
+
+return (
+  <Container>
+    <Row className="justify-content-center mt-3">
+      <h2>[ici barre de prog</h2>
+      <h3>Choississez votre type de douceur :</h3>
+    </Row>
+    <Row className="mt-5">
+      <Col sm="2">
+        <Button className="btn-marg" color="info" onClick={e => this.selectedCakeType('cookie')}>
+          cookie
+        </Button>
+      </Col>
+      <Col sm="2">
+        <Button className="btn-marg" color="info" onClick={e => this.selectedCakeType('cake')}>
+          cake
+        </Button>
+      </Col>
+      <Col sm="2">
+        <Button className="btn-marg" color="info" onClick={e => this.selectedCakeType('cheesecake')}>
+          cheesecake
+        </Button>
+      </Col>
+      <Col sm="2">
+        <Button className="btn-marg" color="info" onClick={e => this.selectedCakeType('macarons')}>
+          macarons
+        </Button>
+      </Col>
+    </Row>
+    <Row className="mt-4 justify-content-around">
+      <Col s="5">
+        <Label for="choix_occasion" className="labels-perso">Pour quelle occasion voulez-vous votre gâteau ?</Label>
+        <Input type="select" name="select">
+          <option>Anniversaire d'Adulte</option>
+          <option>Anniversaire d'Enfant</option>
+          <option>Apéro</option>
+          <option>Baptême</option>
+          <option>Babyshower, naissance</option>
+          <option>Brunch</option>
+          <option>Disney</option>
+          <option>Fête des Mères</option>
+          <option>Fête des Pères</option>
+          <option>Halloween</option>
+          <option>Mariage</option>
+          <option>Sport</option>
+          <option>Pot de départ</option>
+          <option>Noel</option>
+          <option>Pâques</option>
+          <option>Remerciements</option>
+          <option>Enterrement de vie de Fille/Garçon</option>
+        </Input>
+        <Label for="taille" className="labels-perso">Sélectionnez la taille souhaitée :</Label>
+        <Input type="select" name="select">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </Input>
+
+        <ToggleDisplay show={this.state.isSelected === 'cake'}>
+          <Label for="nbrEtages" className="labels-perso">Sélectionnez le nombre d'étages souhaité :</Label>
+          <Input type="select" name="select">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </Input>
+        </ToggleDisplay>
+      </Col>
+      <Col s="5">
+        <div className="text-tips">
+          <p> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+      </Col>
+    </Row>
+    <Row>
+      <Col s="4">
+        <Navarroe
+      </Col>
+    </Row>
+  </Container>
+);
