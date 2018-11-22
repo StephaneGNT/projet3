@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-
-export default class Personalisation extends Component {
+class Personalisation extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -15,3 +14,5 @@ export default class Personalisation extends Component {
     );
   }
 }
+
+export default Personalisation;
