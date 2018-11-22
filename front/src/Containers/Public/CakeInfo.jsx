@@ -1,14 +1,13 @@
 import React from 'react';
+import NavArrowsLayout from './NavArrowsLayout';
 
 export default class CakeInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
     return (
-      <div> Cake Info </div>
+      <div>
+        <p> Cake Info </p>
+        <NavArrowsLayout />
+      </div>
     );
   }
 }

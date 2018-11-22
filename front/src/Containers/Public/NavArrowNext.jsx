@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import { connect } from 'redux';
+import { connect } from 'react-redux';
 import changeIndex from '../../Actions/changeIndex';
 
 class NavArrowNext extends Component {
