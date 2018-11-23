@@ -2,7 +2,7 @@
   display: block;
   width: 100vw;
   height: 100vh;
-  background-color: #EFEFEF;
+  background-color: rgb(233, 230, 230);
 }
 
 .headerZone {
@@ -16,7 +16,7 @@
   width: 80vw;
   height: 80vh;
   margin-left: 10vw;
-  background-color: rgba(223, 219, 18, 0.4);
+  background-color: rgb(233, 230, 230);
 }
 
 .footerZone {
