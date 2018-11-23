@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row } from 'reactstrap';
+import NavArrowsLayout from './NavArrowsLayout';
 
 class IngredientsButtons extends Component {
 
@@ -16,6 +17,7 @@ class IngredientsButtons extends Component {
       <Row>
         <button type="button"> Commander </button>
         {this.renderButton()}
+        <NavArrowsLayout />
       </Row>
     );
   }

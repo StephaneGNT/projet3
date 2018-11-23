@@ -1,8 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Col } from 'reactstrap';
-
-import { increasePrice, decreasePrice } from '../../Actions/Action';
 
 import '../../Assets/Styles/Ingredient.css';
 
@@ -18,11 +15,5 @@ Allergènes: ${props.ingredient.allerg}`;
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  addToPrice: amount => dispatch(increasePrice(amount)),
-  substractFromPrice: amount => dispatch(decreasePrice(amount)),
-});
 
-export default connect(
-  mapDispatchToProps,
-)(Ingredient);
+export default Ingredient;
