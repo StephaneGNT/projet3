@@ -1,14 +1,19 @@
 .ingredient{
-  width: 300px;
-  height: 300px;
-  margin: 5vh 5vw;
+  margin: 10px 2px;
 }
 
-.base{
+.Base{
   width: 250px;
   height: 200px;
   background-size: 100% 100%;
-  margin: auto;
+  border-radius: 30px;
+}
+
+.Glaçage, .Filling, .Toppings{
+  width: 125px;
+  height: 100px;
+  background-size: 100% 100%;
+  border-radius: 30px;
 }
 
 .ingredientName{

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import NavArrowsLayout from './NavArrowsLayout';
 
-export default class UserInfo extends React.Component {
+class UserInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -8,7 +9,12 @@ export default class UserInfo extends React.Component {
 
   render() {
     return (
-      <div> UserInfo </div>
+      <div>
+         UserInfo
+        <NavArrowsLayout />
+      </div>
     );
   }
 }
+
+export default UserInfo;

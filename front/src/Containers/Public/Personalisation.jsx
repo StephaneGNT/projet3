@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import NavArrowsLayout from './NavArrowsLayout';
 
-
-export default class Personalisation extends React.Component {
+class Personalisation extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -11,7 +11,10 @@ export default class Personalisation extends React.Component {
     return (
       <div>
         Personnalisation
+        <NavArrowsLayout />
       </div>
     );
   }
 }
+
+export default Personalisation;

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import NavArrowsLayout from './NavArrowsLayout';
 
-export default class OrderDetail extends React.Component {
+class OrderDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -8,7 +9,12 @@ export default class OrderDetail extends React.Component {
 
   render() {
     return (
-      <div> Order detail </div>
+      <div>
+        Order detail
+        <NavArrowsLayout />
+      </div>
     );
   }
 }
+
+export default OrderDetail;
