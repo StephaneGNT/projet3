@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../../Assets/Styles/Ingredient.css';
-import { increasePrice, decreasePrice } from '../../Actions/Action';
+// import { increasePrice, decreasePrice } from '../../Actions/Action';
 
 class Ingredient extends Component {
   constructor(props) {
@@ -36,9 +36,8 @@ Allergènes: ${this.props.ingredient.allerg}`;
 
     return (
       <div className="ingredient" draggable="true">
-        <div className={this.props.ingredient.type} style={divStyle} title={description} id={"ingredient"+this.props.ingredient.id} draggable="true" onClick={() => this.props.addToPrice(this.props.ingredient.price)}/>
+        <div className={this.props.ingredient.type} style={divStyle} title={description} id={"ingredient" + this.props.ingredient.id} draggable="true" />
         <p className="ingredientName">{this.props.ingredient.name}</p>
-        <div onClick={() => this.props.substractFromPrice(this.props.ingredient.price)}><b>Remove</b></div>
       </div>
     );
   }
@@ -51,12 +50,8 @@ const mapStateToProps = (state) => {
   });
 };
 
-const mapDispatchToProps = dispatch => ({
-  addToPrice: amount => dispatch(increasePrice(amount)),
-  substractFromPrice: amount => dispatch(decreasePrice(amount)),
-});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  // mapDispatchToProps,
 )(Ingredient);
