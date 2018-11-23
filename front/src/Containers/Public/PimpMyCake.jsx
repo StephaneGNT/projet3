@@ -18,7 +18,7 @@ class PimpMyCake extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/mycake" component={CakeInfo} />
-          <Route path="/mycake/composition/element" component={Composition} />
+          <Route path="/mycake/composition" component={Composition} />
           <Route path="/mycake/customCake" component={Personalisation} />
           <Route path="/mycake/orderDetail" component={OrderDetail} />
           <Route path="/mycake/userInfo" component={UserInfo} />

@@ -3,20 +3,20 @@ import { Row } from 'reactstrap';
 import NavArrowsLayout from './NavArrowsLayout';
 
 class IngredientsButtons extends Component {
-
-  renderButton = (state) => {
+  renderButton = (index) => {
     let render;
-    if (state === 2) {
+    if (index === 3) {
       render = (<button type="button"> Une garniture supplémentaire ? </button>);
     }
     return render;
   };
 
   render() {
+    console.log(this.props.index)
     return (
       <Row>
         <button type="button"> Commander </button>
-        {this.renderButton()}
+        {this.renderButton(this.props.index)}
         <NavArrowsLayout />
       </Row>
     );

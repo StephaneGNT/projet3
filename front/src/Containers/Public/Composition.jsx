@@ -21,13 +21,13 @@ const drop = (ev) => {
 };
 
 const Composition = (props) => {
-  const { price } = props;
+  const { price, index } = props;
 
   return (
     <Row>
       <Col sm="8">
         <IngredientsStrucure />
-        <IngredientsButtons />
+        <IngredientsButtons index={index} />
       </Col>
       <Col sm="4" className="cakeAndPricDisplay" style={{backgroundColor:'blue'}}>
         <div className="cakeDisplay" id="drag2" onDrop={event => drop(event)} onDragOver={event => allowDrop(event)} />
