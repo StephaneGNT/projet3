@@ -17,7 +17,7 @@ export default class Public extends Component {
     return (
       <div className="bodyZone">
         <div className="headerZone"> NavBar </div>
-        <div className="contentZone">
+        <div className="contentZone" style={{backgroundColor:'yellow',}}>
           <BrowserRouter>
             <Switch>
               <Route exact path="/" component={HomePage} />

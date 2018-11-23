@@ -8,7 +8,7 @@ export default () => {
       price: 4,
       dispo: true,
       info: 'some info',
-      img: '',
+      img: 'https://via.placeholder.com/150',
       allerg: '',
       compatible: 'tout',
     },

@@ -15,17 +15,17 @@ export default class PimpMyCake extends Component {
 
   render() {
     return (
-      <div style={{ width: '100%', height: '100%' }}>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/mycake" component={CakeInfo} />
-            <Route path="/mycake/composition/element" component={Composition} />
-            <Route path="/mycake/customCake" component={Personalisation} />
-            <Route path="/mycake/orderDetail" component={OrderDetail} />
-            <Route path="/mycake/userInfo" component={UserInfo} />
-          </Switch>
-        </BrowserRouter>
-      </div>
+      // <div style={{ width: '100%', height: '100%' }}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/mycake" component={CakeInfo} />
+          <Route path="/mycake/composition/element" component={Composition} />
+          <Route path="/mycake/customCake" component={Personalisation} />
+          <Route path="/mycake/orderDetail" component={OrderDetail} />
+          <Route path="/mycake/userInfo" component={UserInfo} />
+        </Switch>
+      </BrowserRouter>
+      // </div>
     );
   }
 }
