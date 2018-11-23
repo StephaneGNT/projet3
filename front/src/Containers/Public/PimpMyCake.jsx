@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-
 import CakeInfo from './CakeInfo';
 import Composition from './Composition';
 import Personalisation from './Personalisation';
 import OrderDetail from './OrderDetail';
 import UserInfo from './UserInfo';
 
-export default class PimpMyCake extends Component {
+class PimpMyCake extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -29,3 +28,5 @@ export default class PimpMyCake extends Component {
     );
   }
 }
+
+export default PimpMyCake;

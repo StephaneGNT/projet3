@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-
 import HomePage from './HomePage';
 import PimpMyCake from './PimpMyCake';
 import Contact from './Contact';
-
 import '../../Assets/Styles/Public.css';
 
-export default class Public extends Component {
+class Public extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -31,3 +29,5 @@ export default class Public extends Component {
     );
   }
 }
+
+export default Public;
