@@ -1,21 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../../Assets/Styles/Price.css';
+import { connect } from 'react-redux';
 
-class Price extends Component {
-  constructor(props) {
-    super(props);
-  }
+const Price = (props) => {
 
-  render() {
-    return (
-      <div className="body">
-        <div>PRICE:</div>
-        <div className="box" >
-          {this.props.amount}€
+  return (
+    <div className="body">
+      <h4>
+        PRICE:
+        {props.price}
+        €
+      </h4>
     </div>
-      </div>
-    );
-  }
-}
+  );
+};
 
-export default Price;
+const mapStatetoProps = (state) => {
+  return {
+    price: state.cakeCharacteristics.ingredients
+      .map(p => p.price).reduce((a, v) => a + v, 0),
+  };
+};
+
+export default connect(mapStatetoProps)(Price);

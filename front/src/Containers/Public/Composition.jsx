@@ -16,7 +16,6 @@ const mapStateToProps = (state) => {
     {
       elementToDisplay,
       cake: state.cakeCharacteristics, // caractéristiques du gâteau
-      price: state.price,
     }
   );
 };
@@ -89,7 +88,7 @@ const Composition = (props) => {
       <div className="col-4 cakeAndPricDisplay">
         <div className="cakeDisplay" id="drag2" onDrop={event => drop(event)} onDragOver={event => allowDrop(event)} />
         <div>
-          <Price amount={price} />
+          <Price />
         </div>
       </div>
     </div>
