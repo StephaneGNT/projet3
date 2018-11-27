@@ -7,7 +7,7 @@ import changeIndex from '../../Actions/changeIndex';
 
 class NavArrowNext extends Component {
   translateIndexToRoute = (index) => {
-    const routes = ['/mycake', '/mycake/composition/element', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'];
+    const routes = ['/mycake', '/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'];
     switch (index) {
       case 1: return routes[1];
       case 4: return routes[2];
