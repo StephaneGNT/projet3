@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 
-import CakeIngredientsStructure from './CakeIngredientsStructure';
-import MacaronsIngredientsStructure from './MacaronsIngredientsStructure';
+import IngredientsCakeStructure from './IngredientsCakeStructure';
+import IngredientsMacaronStructure from './IngredientsMacaronStructure';
+import IngredientsCookieStructure from './IngredientsCookieStructure';
 import IngredientsButtons from './IngredientsButtons';
 import Price from './Price';
 
@@ -15,26 +16,28 @@ const Composition = (props) => {
     let render;
     if (cakeType === 'cake' || cakeType === 'cheesecake') {
       render = (
-        <Row style={{ height: '80vh' }}>
+        <Row style={{ height: '70vh' }}>
           <Col sm="8">
-            <CakeIngredientsStructure />
-            <IngredientsButtons index={index} />
+            <IngredientsCakeStructure />
           </Col>
-          <Col sm="4" className="cakeAndPricDisplay" style={{backgroundColor:'blue'}}>
+          <Col sm="4" className="cakeAndPriceDisplay" style={{backgroundColor:'blue'}}>
             <div className="cakeDisplay" />
-            <Price amount={price} />
+          </Col>
+        </Row>
+      );
+    } else if (cakeType === 'macaron') {
+      render = (
+        <Row style={{ height: '70vh' }}>
+          <Col sm="12">
+            <IngredientsMacaronStructure />
           </Col>
         </Row>
       );
     } else {
       render = (
-        <Row style={{ height: '80vh' }}>
-          <Col sm="12" style={{ height: '70vh' }}>
-            <MacaronsIngredientsStructure />
-          </Col>
-          <Col sm="12" style={{ height: '10vh' }}>
-            <Price amount={price} style={{ height: '5vh' }} />
-            <IngredientsButtons index={index} />
+        <Row style={{ height: '70vh' }}>
+          <Col sm="12">
+            <IngredientsCookieStructure />
           </Col>
         </Row>
       );
@@ -42,8 +45,15 @@ const Composition = (props) => {
     return render;
   };
   
-  return (  
-    renderComposition(props.cake.type)
+  return (
+    <Row>
+      {renderComposition(props.cake.type)}
+      <Col style={{ height: '10vh' }}>
+        <Price amount={price} />
+        <IngredientsButtons index={index} />
+      </Col>
+    </Row>
+    
   );
 };
 
@@ -57,7 +67,4 @@ const mapStateToProps = (state) => {
   );
 };
 
-export default connect(
-  mapStateToProps,
-  // mapDispatchToProps,
-)(Composition);
+export default connect(mapStateToProps)(Composition);

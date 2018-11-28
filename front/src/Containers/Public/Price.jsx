@@ -1,9 +1,10 @@
 import React from 'react';
 import '../../Assets/Styles/Price.css';
 import { connect } from 'react-redux';
+import { changePrice } from '../../Actions/Action';
 
 const Price = (props) => {
-
+  props.sendToPrice(props.price);
   return (
     <div className="body">
       <h4>
@@ -20,4 +21,8 @@ const mapStatetoProps = (state) => {
   };
 };
 
-export default connect(mapStatetoProps)(Price);
+const mapDispatchToProps = dispatch => ({
+  sendToPrice: amount => dispatch(changePrice(amount)),
+});
+
+export default connect(mapStatetoProps, mapDispatchToProps)(Price);

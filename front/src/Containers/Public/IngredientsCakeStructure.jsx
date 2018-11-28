@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import IngredientsDisplay from './IngredientsDisplay';
 
-class CakeIngredientsStructure extends Component {
+class IngredientsCakeStructure extends Component {
 
   // Choix des ingrédients des cakes et cheesecakes
   renderStructure = (cake, bases, icings, fillings, toppings, perfumes, index) => {
@@ -50,7 +50,7 @@ class CakeIngredientsStructure extends Component {
           </Row>
         );
       }
-      // Troisième écran : Choix des toppings
+      
       else {
         render = (
           <Row className="displayIngredient" style={{ height: '80vh', overflowY: 'scroll', backgroundColor: 'red' }}>
@@ -63,6 +63,7 @@ class CakeIngredientsStructure extends Component {
           </Row>
         );
       }
+    // Troisième écran : Choix des toppings
     } else if (index === 4) {
       render = (
         <Row className="displayIngredient" style={{ height: '80vh', overflowY: 'scroll', backgroundColor: 'red' }}>
@@ -97,4 +98,4 @@ const mapStateToProps = (state) => {
   });
 };
 
-export default connect(mapStateToProps)(CakeIngredientsStructure);
+export default connect(mapStateToProps)(IngredientsCakeStructure);
