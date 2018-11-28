@@ -5,9 +5,9 @@ import IngredientsDisplay from './IngredientsDisplay';
 
 const IngredientsCookieStructure = (props) => {
   return (
-    <Row className="displayIngredient" style={{ overflowY: 'scroll', backgroundColor: 'red' }}>
+    <Row style={{ height: '70vh', overflowY: 'scroll' }}>
       <Col sm="12">
-        <h1>{props.bases[0].type}</h1>
+        <h1 style={{ textAlign: 'center' }}>{props.bases[0].type}</h1>
       </Col>
       <Col sm="12" style={{ display: 'flex', flexDirection: 'row'}}>
         <IngredientsDisplay elementToDisplay={props.bases} />

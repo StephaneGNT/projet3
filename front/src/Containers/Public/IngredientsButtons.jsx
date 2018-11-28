@@ -6,7 +6,7 @@ class IngredientsButtons extends Component {
   renderButton = (index) => {
     let render;
     if (index === 3) {
-      render = (<button type="button"> Une garniture supplémentaire ? </button>);
+      render = (<Button> Une garniture supplémentaire ? </Button>);
     }
     return render;
   };

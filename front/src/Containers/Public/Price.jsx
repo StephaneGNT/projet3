@@ -5,6 +5,7 @@ import { changePrice } from '../../Actions/Action';
 
 const Price = (props) => {
   props.sendToPrice(props.price);
+  
   return (
     <div className="body">
       <h4>
@@ -20,7 +21,6 @@ const mapStatetoProps = (state) => {
       .map(p => p.price).reduce((a, v) => a + v, 0),
   };
 };
-
 const mapDispatchToProps = dispatch => ({
   sendToPrice: amount => dispatch(changePrice(amount)),
 });

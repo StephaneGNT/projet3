@@ -5,8 +5,8 @@ import IngredientsDisplay from './IngredientsDisplay';
 
 const IngredientsMacaronStructure = (props) => {
   return (
-    <Row className="displayIngredient" style={{ overflowY: 'scroll' }}>
-      <Col sm="6" style={{ overflowY: 'scroll', backgroundColor: 'red' }}>
+    <Row style={{ height: '70vh' }}>
+      <Col sm="6" style={{ overflowY: 'scroll', height: '100%' }}>
         <Row>
           <h1>{props.perfumes[0].type}</h1>
         </Row>
@@ -14,7 +14,7 @@ const IngredientsMacaronStructure = (props) => {
           <IngredientsDisplay elementToDisplay={props.perfumes} />
         </Row>
       </Col>
-      <Col sm="6" style={{ overflowY: 'scroll' }}>
+      <Col sm="6" style={{ overflowY: 'scroll', height: '100%' }}>
         <Row>
           <h1>{props.coquilles[0].type}</h1>
         </Row>
