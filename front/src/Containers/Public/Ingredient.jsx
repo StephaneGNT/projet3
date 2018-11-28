@@ -1,57 +1,33 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { Col } from 'reactstrap';
+
 import '../../Assets/Styles/Ingredient.css';
-// import { increasePrice, decreasePrice } from '../../Actions/Action';
 
-class Ingredient extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    // console.log(this.props);
-  }
-
-  selectDefaultImage = (defaultImage) => {
-    // console.log("defaultImage ", defaultImage);
-    let urlImage = '';
-    switch (this.props.ingredient.type) {
-      case 'Base': urlImage = defaultImage.cakeBases; break;
-      case 'Glacage': urlImage = defaultImage.cakeIcings; break;
-      case 'Filling': urlImage = defaultImage.cakeFillings; break;
-      default: urlImage = defaultImage.cakeToppings; break;
+const Ingredient = (props) => {
+  const getDescription = () => {
+    let description;
+    if (props.ingredient.portion) {
+      description = `${props.ingredient.info} 
+Allergènes: ${props.ingredient.allerg}
+Giluna recommande une portion de ${props.ingredient.portion}`;
+    } else {
+      description = `${props.ingredient.info} 
+Allergènes: ${props.ingredient.allerg}`;
     }
-    return urlImage;
-  }
+    return description;
+  };
 
-  render() {
-    // const imageClass = `${this.props.ingredient.type}image`;
-    const description = `${this.props.ingredient.info}
-Allergènes: ${this.props.ingredient.allerg}`;
+  const drag = (ev) => {
+    ev.dataTransfer.setData('text', ev.target.id);
+  };
 
-    const defaultImage = this.selectDefaultImage(this.props.defaultImage);
-
-    const divStyle = {
-      // backgroundImage: `url(${carrotCakeImage})`,
-      backgroundImage: this.props.ingredient.img === '' ? `url(${defaultImage})` : `url(${this.props.ingredient.img})`,
-    };
-
-    return (
-      <div className="ingredient" draggable="true">
-        <div className={this.props.ingredient.type} style={divStyle} title={description} id={"ingredient" + this.props.ingredient.id} draggable="true" />
-        <p className="ingredientName">{this.props.ingredient.name}</p>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  // console.log("state in ingredient", state);
-  return ({
-    defaultImage: state.defaultImage,
-  });
+  return (
+    <Col className="ingredient">
+      <img src={props.ingredient.img} title={getDescription()} draggable="true" onDragStart={ev => drag(ev)} alt="" />
+      <p>{props.ingredient.name}</p>
+    </Col>
+  );
 };
 
 
-export default connect(
-  mapStateToProps,
-  // mapDispatchToProps,
-)(Ingredient);
+export default Ingredient;
