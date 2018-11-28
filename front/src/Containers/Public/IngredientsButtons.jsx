@@ -12,7 +12,6 @@ class IngredientsButtons extends Component {
   };
 
   render() {
-    console.log(this.props.index)
     return (
       <Row>
         <button type="button"> Commander </button>

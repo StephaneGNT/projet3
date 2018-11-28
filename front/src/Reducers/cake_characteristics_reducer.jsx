@@ -1,9 +1,9 @@
 export default (state = {
-  type: '', // cake, cheesecake, cookie ou macaron
+  type: 'cookie', // cake, cheesecake, cookie ou macaron
   size: 'S',
   occasion: '', // mariage, anniversaire...
   ingredients: [
-    {
+   /* {
       id: 1,
       name: 'base banane',
       type: 'base',
@@ -26,7 +26,7 @@ export default (state = {
       img: 'https://via.placeholder.com/150',
       allerg: '',
       compatible: ['Glaçage framboise', 'Glaçage orange'],
-    },
+    },*/
   ],
   customization: '', // aucune, message, photo 2D, photo 3D
   comments: '',

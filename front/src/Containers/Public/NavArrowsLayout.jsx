@@ -4,7 +4,7 @@ import NavArrowNext from './NavArrowNext';
 import NavArrowPrev from './NavArrowPrev';
 
 class NavArrowsLayout extends Component {
-  changeLayoutviaPageindex = (index) => {
+  changeLayoutviaPageindex = (index, type) => {
     if (index === 1) {
       return (
         <div>
@@ -12,7 +12,7 @@ class NavArrowsLayout extends Component {
         </div>
       );
     }
-    if (index === 7) {
+    if ((index === 7) || (index === 5 && type === 'cookie') || (index === 5 && type === 'macaron')) {
       return (
         <div>
           <NavArrowPrev />
@@ -28,13 +28,14 @@ class NavArrowsLayout extends Component {
   }
 
   render() {
-    return this.changeLayoutviaPageindex(this.props.pageIndex);
+    return this.changeLayoutviaPageindex(this.props.pageIndex, this.props.type);
   }
 }
 
 const mapStateToProps = (state) => {
   return {
     pageIndex: state.pageIndex,
+    type: state.cakeCharacteristics.type,
   };
 };
 
