@@ -1,7 +1,7 @@
 export default (state = {
-  type: 'cookie', // cake, cheesecake, cookie ou macaron
+  type: ' ', 
   size: 'S',
-  occasion: '', // mariage, anniversaire...
+  occasion: '',
   ingredients: [
    /* {
       id: 1,
@@ -28,12 +28,14 @@ export default (state = {
       compatible: ['Glaçage framboise', 'Glaçage orange'],
     },*/
   ],
-  customization: '', // aucune, message, photo 2D, photo 3D
+  customization: '', 
   comments: '',
   price: 0,
 },
 action) => {
   switch (action.type) {
+    case 'CHANGE_CAKE_TYPE':
+      return { ...state, type: action.payload };
     case 'CHANGE_PRICE':
       return { ...state, price: action.price };
     default:
