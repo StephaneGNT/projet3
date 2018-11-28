@@ -1,13 +1,7 @@
 export default (state = {
-<<<<<<< HEAD
   type: ' ', 
   size: 'S',
   occasion: '',
-=======
-  type: '', // cake, cheesecake, cookie ou macaron
-  size: 'S',
-  occasion: '', // mariage, anniversaire...
->>>>>>> dev
   ingredients: [
     {
       id: 1,
