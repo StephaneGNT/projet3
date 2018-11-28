@@ -1,29 +1,32 @@
-import React, { Component } from 'react';
+
 import '../../Assets/Styles/CakeInfo.css';
-import {
-  Label, Input, Button, Container, Row, Col,
-} from 'reactstrap';
+import { Label, Input, Button, Container, Row, Col } from 'reactstrap';
+import { connect } from 'react-redux';
+import React, { Component } from 'react';
 import ToggleDisplay from 'react-toggle-display';
 import NavArrowsLayout from './NavArrowsLayout';
+import changeCakeType from '../../Actions/changeCakeType';
 
 class CakeInfo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isSelected: '',
-    };
-    this.selectedCakeType = this.selectedCakeType.bind(this);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     isSelected: '',
+  //   };
+  //   this.selectedCakeType = this.selectedCakeType.bind(this);
+  // }
+
+
 
   selectedCakeType = (selectedCake) => {
     this.setState({
-      isSelected: selectedCake,
+      selectedCakeType: selectedCake,
     });
   }
 
 
   render() {
-    console.log('Type select : ', this.state.isSelected);
+    console.log('Type select : ', this.props.selectedCakeType);
     return (
       <Container className="h-100">
         <Row className="justify-content-around">
@@ -33,22 +36,22 @@ class CakeInfo extends Component {
         </Row>
         <Row className="mt-3 justify-content-around">
           <Col sm="2" className="text-center">
-            <Button className="btn" color="info" onClick={() => this.selectedCakeType('cookie')}>
+            <Button className="btn" color="info" onClick={() => this.props.changeCakeType('cookie')}>
               cookie
             </Button>
           </Col>
           <Col sm="2" className="text-center">
-            <Button className="btn-marg" color="info" onClick={() => this.selectedCakeType('cake')}>
+            <Button className="btn-marg" color="info" onClick={() => this.props.changeCakeType('cake')}>
               cake
             </Button>
           </Col>
           <Col sm="2" className="text-center">
-            <Button className="btn-marg" color="info" onClick={() => this.selectedCakeType('cheesecake')}>
+            <Button className="btn-marg" color="info" onClick={() => this.props.changeCakeType('cheesecake')}>
               cheesecake
             </Button>
           </Col>
           <Col sm="2" className="text-center">
-            <Button className="btn-marg" color="info" onClick={() => this.selectedCakeType('macarons')}>
+            <Button className="btn-marg" color="info" onClick={() => this.props.changeCakeType('macarons')}>
               macarons
             </Button>
           </Col>
@@ -84,7 +87,7 @@ class CakeInfo extends Component {
               <option>5</option>
             </Input>
     
-            <ToggleDisplay show={this.state.isSelected === 'cake'}>
+            <ToggleDisplay show={this.props.selectedCakeType.type === 'cake'}>
               <Label for="nbrEtages" className="labels-perso mt-3">Sélectionnez le nombre d'étages souhaité :</Label>
               <Input type="select" name="select">
                 <option>1</option>
@@ -96,8 +99,8 @@ class CakeInfo extends Component {
             </ToggleDisplay>
           </Col>
           <Col sm="5">
-            <div className="bg-light p-5">
-              <h4>Tips:</h4>
+            <div className="bg-light p-2">
+              <h5>Tips:</h5>
               <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             </div>
           </Col>
@@ -110,4 +113,17 @@ class CakeInfo extends Component {
   }
 }
 
-export default CakeInfo;
+const mapStateToProps = (state) => { 
+  return {
+    dispatch: state.dispatch,
+    selectedCakeType: state.cakeCharacteristics,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeCakeType: cakeType => dispatch(changeCakeType(cakeType)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CakeInfo);;

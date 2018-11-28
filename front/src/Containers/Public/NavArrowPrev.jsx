@@ -34,10 +34,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const matchDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     changeIndex: num => dispatch(changeIndex(num)),
   };
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(NavArrowPrev);
+export default connect(mapStateToProps, mapDispatchToProps)(NavArrowPrev);
