@@ -5,19 +5,11 @@ import { Row, Col } from 'reactstrap';
 import IngredientsStrucure from './IngredientsStructure';
 import IngredientsButtons from './IngredientsButtons';
 import Price from './Price';
+import CakeInProgress from './CakeInProgress'
 
-const allowDrop = (ev) => {
-  ev.preventDefault();
-};
-
-const drop = (ev) => {
-  ev.preventDefault();
-  const data = ev.dataTransfer.getData('text');
-  ev.target.appendChild(document.getElementById(data));
-};
 
 const Composition = (props) => {
-  const { price, index } = props;
+  const { price, index, cake } = props;
 
   return (
     <Row>
@@ -25,8 +17,8 @@ const Composition = (props) => {
         <IngredientsStrucure />
         <IngredientsButtons index={index} />
       </Col>
-      <Col sm="4" className="cakeAndPricDisplay" style={{backgroundColor:'blue'}}>
-        <div className="cakeDisplay" id="drag2" onDrop={event => drop(event)} onDragOver={event => allowDrop(event)} />
+      <Col sm="4" className="cakeAndPricDisplay" style={{ backgroundColor: 'blue' }}>
+        <CakeInProgress />
         <Price amount={price} />
       </Col>
     </Row>
