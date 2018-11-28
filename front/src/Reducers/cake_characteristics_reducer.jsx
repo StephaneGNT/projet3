@@ -1,7 +1,13 @@
 export default (state = {
+<<<<<<< HEAD
   type: ' ', 
   size: 'S',
   occasion: '',
+=======
+  type: '', // cake, cheesecake, cookie ou macaron
+  size: 'S',
+  occasion: '', // mariage, anniversaire...
+>>>>>>> dev
   ingredients: [
     {
       id: 1,
@@ -36,6 +42,8 @@ action) => {
   switch (action.type) {
     case 'CHANGE_CAKE_TYPE':
       return { ...state, type: action.payload };
+    case 'CHANGE_PRICE':
+      return { ...state, price: action.price };
     default:
       return state;
   }

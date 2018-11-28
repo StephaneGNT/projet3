@@ -18,7 +18,6 @@ const drop = (ev) => {
 
 const Composition = (props) => {
   const { price, index } = props;
-
   return (
     <Row>
       <Col sm="8">
