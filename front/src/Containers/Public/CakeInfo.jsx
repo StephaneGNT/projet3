@@ -23,7 +23,6 @@ class CakeInfo extends Component {
 
 
   render() {
-    console.log('Type select : ', this.state.isSelected);
     return (
       <Container className="h-100">
         <Row className="justify-content-around">

@@ -43,7 +43,4 @@ const mapStateToProps = (state) => {
   );
 };
 
-export default connect(
-  mapStateToProps,
-  // mapDispatchToProps,
-)(Composition);
+export default connect(mapStateToProps)(Composition);
