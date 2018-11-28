@@ -5,12 +5,11 @@ import { changePrice } from '../../Actions/Action';
 
 const Price = (props) => {
   props.sendToPrice(props.price);
+  
   return (
     <div className="body">
       <h4>
-        PRICE:
-        {' ' + props.price}
-        €
+        {`PRICE: ${props.price} €`}
       </h4>
     </div>
   );

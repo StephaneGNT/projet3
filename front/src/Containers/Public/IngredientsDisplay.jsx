@@ -19,7 +19,7 @@ const IngredientsDisplay = (props) => {
     const compatibleIngredients = getCompatibleIngredients(props.cake); 
     return (
       elementToDisplay.map(
-        ingredient => {
+        (ingredient) => {
           if (ingredient.dispo && (compatibleIngredients.indexOf(ingredient.name) >= 0 || compatibleIngredients.length === 0)) return <Ingredient ingredient={ingredient} />;
         },
       )

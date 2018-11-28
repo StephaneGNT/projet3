@@ -17,7 +17,7 @@ class CakeInfo extends Component {
 
   render() {
     return (
-      <Container className="h-100">
+      <Container style={{ height: '80vh' }}>
         <Row className="justify-content-around">
           <Col sm="5">
             <h3 className="mt-3">Choississez votre type de douceur :</h3>
@@ -40,7 +40,7 @@ class CakeInfo extends Component {
             </Button>
           </Col>
           <Col sm="2" className="text-center">
-            <Button className="btn-marg" color="info" onClick={() => this.props.changeCakeType('macarons')}>
+            <Button className="btn-marg" color="info" onClick={() => this.props.changeCakeType('macaron')}>
               macarons
             </Button>
           </Col>
