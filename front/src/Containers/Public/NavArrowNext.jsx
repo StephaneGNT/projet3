@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import changeIndex from '../../Actions/changeIndex';
+import { changeIndex } from '../../Actions/Action';
 
 
 class NavArrowNext extends Component {
