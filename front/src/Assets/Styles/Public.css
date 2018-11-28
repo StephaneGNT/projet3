@@ -1,5 +1,8 @@
 .bodyZone {
   display: block;
+  /* background-color: #EFEFEF; */
+  margin: 0;
+  padding: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgb(233, 230, 230);
@@ -23,4 +26,9 @@
   background-color: #9C0045;
   width: 100vw;
   height: 10vh;
+}
+
+.row{
+  margin: 0 !important;
+  justify-content: center;
 }

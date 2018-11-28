@@ -8,9 +8,10 @@ export default () => {
       price: 4,
       dispo: true,
       info: 'some info',
-      img: '',
+      img: 'https://via.placeholder.com/150',
       allerg: '',
       compatible: 'tout',
+      portion: '250g',
     },
     {
       id: 2,
@@ -23,6 +24,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: '',
       compatible: 'tout',
+      portion: '350g',
     },
     {
       id: 3,
@@ -35,6 +37,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: '',
       compatible: 'tout',
+      portion: '400g',
     },
     {
       id: 4,
@@ -47,6 +50,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
       compatible: 'tout',
+      portion: '100g',
     },
     {
       id: 4,
@@ -59,6 +63,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
       compatible: 'tout',
+      portion: '200g',
     },
     {
       id: 6,
@@ -71,6 +76,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
       compatible: 'tout',
+      portion: '300g',
     },
     {
       id: 7,
@@ -83,6 +89,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
       compatible: 'tout',
+      portion: '250g',
     },
     {
       id: 8,
@@ -95,6 +102,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
       compatible: 'tout',
+      portion: '250g',
     },
     {
       id: 9,
@@ -107,6 +115,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
       compatible: 'tout',
+      portion: '250g',
     },
   ];
 };
