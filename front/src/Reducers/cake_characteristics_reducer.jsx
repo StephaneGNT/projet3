@@ -1,6 +1,6 @@
 export default () => {
   return {
-    type: '', // cake, cheesecake, cookie ou macaron
+    type: 'macaron', // cake, cheesecake, cookie ou macaron
     size: 'S',
     occasion: '', // mariage, anniversaire...
     ingredients: [

@@ -17,13 +17,9 @@ Allergènes: ${props.ingredient.allerg}`;
     return description;
   };
 
-  const drag = (ev) => {
-    ev.dataTransfer.setData('text', ev.target.id);
-  };
-
   return (
     <Col className="ingredient">
-      <img src={props.ingredient.img} title={getDescription()} draggable="true" onDragStart={ev => drag(ev)} alt="" />
+      <img src={props.ingredient.img} title={getDescription()} alt="" />
       <p>{props.ingredient.name}</p>
     </Col>
   );

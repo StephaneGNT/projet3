@@ -23,9 +23,8 @@ class CakeInfo extends Component {
 
 
   render() {
-    console.log('Type select : ', this.state.isSelected);
     return (
-      <Container className="h-100">
+      <Container style={{ height: '80vh' }}>
         <Row className="justify-content-around">
           <Col sm="5">
             <h3 className="mt-3">Choississez votre type de douceur :</h3>

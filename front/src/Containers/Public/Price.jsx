@@ -7,9 +7,7 @@ const Price = (props) => {
   return (
     <div className="body">
       <h4>
-        PRICE:
-        {' '+ props.price}
-        €
+        {`PRICE: ${props.price} €`}
       </h4>
     </div>
   );

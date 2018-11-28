@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row } from 'reactstrap';
+import { Row, Button } from 'reactstrap';
 import NavArrowsLayout from './NavArrowsLayout';
 
 class IngredientsButtons extends Component {
@@ -12,10 +12,9 @@ class IngredientsButtons extends Component {
   };
 
   render() {
-    console.log(this.props.index)
     return (
       <Row>
-        <button type="button"> Commander </button>
+        <Button> Commander </Button>
         {this.renderButton(this.props.index)}
         <NavArrowsLayout />
       </Row>
