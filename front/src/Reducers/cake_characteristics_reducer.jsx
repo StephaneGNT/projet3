@@ -3,7 +3,7 @@ export default (state = {
   size: 'S',
   occasion: '',
   ingredients: [
-    {
+   /* {
       id: 1,
       name: 'base banane',
       type: 'base',
@@ -26,7 +26,7 @@ export default (state = {
       img: 'https://via.placeholder.com/150',
       allerg: '',
       compatible: ['Glaçage framboise', 'Glaçage orange'],
-    },
+    },*/
   ],
   customization: '', 
   comments: '',

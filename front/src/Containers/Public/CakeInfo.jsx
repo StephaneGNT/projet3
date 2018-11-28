@@ -8,15 +8,6 @@ import NavArrowsLayout from './NavArrowsLayout';
 import changeCakeType from '../../Actions/changeCakeType';
 
 class CakeInfo extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     isSelected: '',
-  //   };
-  //   this.selectedCakeType = this.selectedCakeType.bind(this);
-  // }
-
-
 
   selectedCakeType = (selectedCake) => {
     this.setState({
@@ -24,9 +15,7 @@ class CakeInfo extends Component {
     });
   }
 
-
   render() {
-    console.log('Type select : ', this.props.selectedCakeType);
     return (
       <Container className="h-100">
         <Row className="justify-content-around">
