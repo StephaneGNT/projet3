@@ -9,8 +9,7 @@ import CakeInProgress from './CakeInProgress'
 
 
 const Composition = (props) => {
-  const { price, index, cake } = props;
-
+  const { price, index } = props;
   return (
     <Row>
       <Col sm="8">
