@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Row } from 'reactstrap';
 import NavArrowsLayout from './NavArrowsLayout';
+import Progressbar from './Progressbar';
 
 class Personalisation extends Component {
   constructor(props) {
@@ -10,6 +12,9 @@ class Personalisation extends Component {
   render() {
     return (
       <div>
+        <Row>
+          <Progressbar />
+        </Row>
         Personnalisation
         <NavArrowsLayout />
       </div>

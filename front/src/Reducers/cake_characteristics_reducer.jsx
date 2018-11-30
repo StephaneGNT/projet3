@@ -1,5 +1,5 @@
 export default (state = {
-  type: ' ', 
+  type: 'cake', 
   size: 'S',
   occasion: '',
   ingredients: [

@@ -1,0 +1,13 @@
+.progressBar {
+  list-style-type: none;
+}
+
+.progressBar li {
+  border: 1px solid #000;
+  display: inline-block;
+  width: 10%;
+}
+
+.activeProgress {
+  background-color: rgb(28, 151, 12);
+}
