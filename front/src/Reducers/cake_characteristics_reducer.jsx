@@ -30,7 +30,7 @@ export default (state = {
     //    compatible: ['Glaçage framboise', 'Glaçage orange'],
     //  }, 
   ],
-  customization: '', // aucune, 2D, 3D
+  customization: '', // aucune, 2D, 3D, message
   comments: '',
   price: 0,
 },
