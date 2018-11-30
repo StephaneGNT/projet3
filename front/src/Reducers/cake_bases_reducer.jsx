@@ -10,7 +10,7 @@ export default () => {
       info: 'some info',
       img: '',
       allerg: 'gluten',
-      compatible: ['garniture citron', 'glacage citron'],
+      compatible: ['remplissage citron', 'Glaçage citron'],
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ export default () => {
       info: 'some info',
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
-      compatible: ['garniture citron', 'glacage citron'],
+      compatible: ['remplissage citron', 'Glaçage citron'],
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ export default () => {
       info: 'some info',
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
-      compatible: ['garniture citron', 'glacage citron'],
+      compatible: ['remplissage citron', 'Glaçage citron'],
     },
     {
       id: 4,
@@ -46,7 +46,7 @@ export default () => {
       info: 'some info',
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
-      compatible: ['garniture framboise', 'glacage framboise'],
+      compatible: ['remplissage framboise', 'Glaçage framboise'],
     },
     {
       id: 4,
@@ -58,7 +58,7 @@ export default () => {
       info: 'some info',
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
-      compatible: ['garniture framboise', 'glacage framboise'],
+      compatible: ['remplissage framboise', 'Glaçage framboise'],
     },
     {
       id: 6,
@@ -70,7 +70,7 @@ export default () => {
       info: 'some info',
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
-      compatible: ['garniture framboise', 'glacage framboise'],
+      compatible: ['remplissage framboise', 'Glaçage framboise'],
     },
     {
       id: 7,
@@ -82,7 +82,7 @@ export default () => {
       info: 'some info',
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
-      compatible: ['garniture fraise', 'glacage fraise'],
+      compatible: ['remplissage fraise', 'Glaçage fraise'],
     },
     {
       id: 8,
@@ -94,7 +94,7 @@ export default () => {
       info: 'some info',
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
-      compatible: ['garniture fraise', 'glacage fraise'],
+      compatible: ['remplissage fraise', 'Glaçage fraise'],
     },
     {
       id: 9,
@@ -106,7 +106,7 @@ export default () => {
       info: 'some info',
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
-      compatible: ['garniture fraise', 'glacage fraise'],
+      compatible: ['remplissage fraise', 'Glaçage fraise'],
     },
   ];
 };

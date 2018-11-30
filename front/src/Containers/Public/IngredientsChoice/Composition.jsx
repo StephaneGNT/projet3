@@ -7,6 +7,7 @@ import IngredientsMacaronStructure from './IngredientsMacaronStructure';
 import IngredientsCookieStructure from './IngredientsCookieStructure';
 import IngredientsButtons from './IngredientsButtons';
 import Price from '../Price';
+import CakeInProgress from '../CakeInProgress';
 
 const Composition = (props) => {
   const { index } = props;
@@ -23,6 +24,7 @@ const Composition = (props) => {
           </Col>
           <Col sm="4" className="cakeAndPriceDisplay">
             <div className="cakeDisplay" />
+            <CakeInProgress />
           </Col>
         </Row>
       );
