@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { changePrice } from '../../Actions/cakeActions/changeCakePrice';
 
 const Price = (props) => {
-  props.sendToPrice(props.price);
-  
+  const { price, sendToPrice } = props;
+  sendToPrice(price);
   return (
     <div className="body">
       <h4>
-        {`PRICE: ${props.price} €`}
+        {`PRIX TTC: ${price} €`}
       </h4>
     </div>
   );

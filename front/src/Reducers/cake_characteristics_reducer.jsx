@@ -5,36 +5,36 @@ export default (state = {
   quantity: '1',
   occasion: '',
   ingredients: [
-   /* {
-      id: 1,
-      name: 'base banane',
-      type: 'base',
-      size: 'S',
-      price: 10,
-      dispo: true,
-      info: 'some info',
-      img: '',
-      allerg: 'gluten',
-      compatible: ['Glaçage citron', 'Glaçage framboise'],
-    },
-    {
-      id: 2,
-      name: 'Glaçage framboise',
-      type: 'Glaçage',
-      size: 'M',
-      price: 5,
-      dispo: true,
-      info: 'some info',
-      img: 'https://via.placeholder.com/150',
-      allerg: '',
-      compatible: ['Glaçage framboise', 'Glaçage orange'],
-    },*/
+    // {
+    //   id: 1,
+    //   name: 'base banane',
+    //   type: 'base',
+    //   size: 'S',
+    //   price: 10,
+    //   dispo: true,
+    //   info: 'some info',
+    //   img: '',
+    //   allerg: 'gluten',
+    //   compatible: ['Glaçage citron', 'Glaçage framboise'],
+    // },
+    // {
+    //   id: 2,
+    //   name: 'Glaçage framboise',
+    //   type: 'Glaçage',
+    //   size: 'M',
+    //   price: 5,
+    //   dispo: true,
+    //   info: 'some info',
+    //   img: 'https://via.placeholder.com/150',
+    //   allerg: '',
+    //   compatible: ['Glaçage framboise', 'Glaçage orange'],
+    // },
   ],
-  customization: '', // aucune, 2D, 3D
+  customization: '', // aucune, 2D, 3D, message
   comments: '',
   price: 0,
 },
-action) => {
+  action) => {
   switch (action.type) {
     case 'CHANGE_CAKE_SIZE': return { ...state, size: action.payload };
     case 'CHANGE_CAKE_AMOUNT': return { ...state, quantity: action.payload };
