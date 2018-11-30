@@ -6,3 +6,4 @@ const changeIndex = (num) => {
 };
 
 export default changeIndex;
+
