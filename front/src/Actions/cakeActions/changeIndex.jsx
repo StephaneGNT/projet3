@@ -1,5 +1,4 @@
 const changeIndex = (num) => {
-console.log('launched changeIndex', num);
   return {
     type: 'CHANGE_INDEX',
     payload: num,
@@ -7,3 +6,4 @@ console.log('launched changeIndex', num);
 };
 
 export default changeIndex;
+

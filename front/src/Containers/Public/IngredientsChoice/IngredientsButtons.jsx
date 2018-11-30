@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import { Row } from 'reactstrap';
-import NavArrowsLayout from './NavArrowsLayout';
+import { Row, Button } from 'reactstrap';
+import NavArrowsLayout from '../Navigation/NavArrowsLayout';
 
 class IngredientsButtons extends Component {
   renderButton = (index) => {
     let render;
     if (index === 3) {
-      render = (<button type="button"> Une garniture supplémentaire ? </button>);
+      render = (<Button> Une garniture supplémentaire ? </Button>);
     }
     return render;
   };
 
   render() {
-    console.log(this.props.index)
     return (
       <Row>
-        <button type="button"> Commander </button>
+        <Button> Commander </Button>
         {this.renderButton(this.props.index)}
         <NavArrowsLayout />
       </Row>

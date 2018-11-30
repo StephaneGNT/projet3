@@ -1,0 +1,17 @@
+.story{
+  background-color: yellow;
+  border: 1px solid black;
+  margin: auto;
+  text-align: center;
+}
+
+.buttonDisplay{
+  display: flex;
+  flex-direction: row;
+}
+
+.buttonDisplay Button{
+  height: 25px;
+  width: 25px;
+  padding: 0;
+}

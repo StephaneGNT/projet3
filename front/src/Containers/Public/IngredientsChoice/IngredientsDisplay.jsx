@@ -17,7 +17,7 @@ const IngredientsDisplay = (props) => {
   };
 
   const renderIngredients = (elementToDisplay) => {
-    const compatibleIngredients = getCompatibleIngredients(props.cake); 
+    //const compatibleIngredients = getCompatibleIngredients(props.cake); 
     return (
       elementToDisplay.map(
         

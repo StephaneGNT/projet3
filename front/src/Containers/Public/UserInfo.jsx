@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavArrowsLayout from './NavArrowsLayout';
+import NavArrowsLayout from './Navigation/NavArrowsLayout';
 
 class UserInfo extends Component {
   constructor(props) {

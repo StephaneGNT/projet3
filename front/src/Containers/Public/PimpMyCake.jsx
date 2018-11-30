@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import CakeInfo from './CakeInfo';
-import Composition from './Composition';
+import Composition from './IngredientsChoice/Composition';
 import Personalisation from './Personalisation';
 import OrderDetail from './OrderDetail';
 import UserInfo from './UserInfo';

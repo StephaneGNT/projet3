@@ -1,3 +1,5 @@
+// import getDescription from '../Actions/getDescription';
+
 export default () => {
   return [
     {
@@ -11,6 +13,7 @@ export default () => {
       img: '',
       allerg: '',
       compatible: 'tout',
+      // fullDescription: getDescription(this),
     },
     {
       id: 2,
@@ -23,6 +26,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: '',
       compatible: 'tout',
+      // fullDescription: getDescription(this),
     },
     {
       id: 3,
@@ -35,6 +39,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: '',
       compatible: 'tout',
+      // fullDescription: getDescription(this),
     },
     {
       id: 4,
@@ -47,6 +52,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
       compatible: 'tout',
+      // fullDescription: getDescription(this),
     },
     {
       id: 4,
@@ -59,6 +65,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
       compatible: 'tout',
+      // fullDescription: getDescription(this),
     },
     {
       id: 6,
@@ -71,6 +78,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
       compatible: 'tout',
+      // fullDescription: getDescription(this),
     },
     {
       id: 7,
@@ -83,6 +91,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
       compatible: 'tout',
+      // fullDescription: getDescription(this),
     },
     {
       id: 8,
@@ -95,6 +104,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
       compatible: 'tout',
+      // fullDescription: getDescription(this),
     },
     {
       id: 9,
@@ -107,6 +117,7 @@ export default () => {
       img: 'https://via.placeholder.com/150',
       allerg: 'gluten',
       compatible: 'tout',
+      // fullDescription: getDescription(this),
     },
   ];
 };
