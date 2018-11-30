@@ -80,8 +80,19 @@ class IngredientsCakeStructure extends Component {
   }
 
   render() {
+    const
+      {
+        cake,
+        bases,
+        icings,
+        fillings,
+        toppings,
+        perfumes,
+        index,
+      } = this.props;
+
     return (
-      this.renderStructure(this.props.cake, this.props.bases, this.props.icings, this.props.fillings, this.props.toppings, this.props.perfumes, this.props.index)
+      this.renderStructure(cake, bases, icings, fillings, toppings, perfumes, index)
     );
   }
 }

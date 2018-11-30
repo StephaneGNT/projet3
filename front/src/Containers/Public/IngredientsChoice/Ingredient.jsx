@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col } from 'reactstrap';
 
-import '../../Assets/Styles/Ingredient.css';
+import '../../../Assets/Styles/Ingredient.css';
 
 const Ingredient = (props) => {
 
