@@ -74,7 +74,7 @@ export default () => {
     },
     {
       id: 7,
-      name: 'remplissage chocolat',
+      name: 'remplissage citron',
       type: 'Filling',
       size: 'S',
       price: 2,
@@ -86,7 +86,7 @@ export default () => {
     },
     {
       id: 8,
-      name: 'remplissage chocolat',
+      name: 'remplissage citron',
       type: 'Filling',
       size: 'M',
       price: 3,
@@ -98,7 +98,7 @@ export default () => {
     },
     {
       id: 9,
-      name: 'remplissage chocolat',
+      name: 'remplissage citron',
       type: 'Filling',
       size: 'XL',
       price: 5,

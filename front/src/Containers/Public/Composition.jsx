@@ -5,18 +5,18 @@ import { Row, Col } from 'reactstrap';
 import IngredientsStrucure from './IngredientsStructure';
 import IngredientsButtons from './IngredientsButtons';
 import Price from './Price';
-import CakeInProgress from './CakeInProgress'
+import CakeInProgress from './CakeInProgress';
 
 
 const Composition = (props) => {
-  const { price, index } = props;
+  const { price, index, cake } = props;
   return (
     <Row>
       <Col sm="8">
         <IngredientsStrucure />
         <IngredientsButtons index={index} />
       </Col>
-      <Col sm="4" className="cakeAndPricDisplay" style={{ backgroundColor: 'blue' }}>
+      <Col sm="4">
         <CakeInProgress />
         <Price amount={price} />
       </Col>

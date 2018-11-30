@@ -1,9 +1,11 @@
 import React from 'react';
 import { Col } from 'reactstrap';
-
+import { connect } from 'react-redux';
+import { addIngredient } from '../../Actions/Action';
 import '../../Assets/Styles/Ingredient.css';
 
 const Ingredient = (props) => {
+
   const getDescription = () => {
     let description;
     if (props.ingredient.portion) {
@@ -18,14 +20,20 @@ Allergènes: ${props.ingredient.allerg}`;
   };
 
 
-
   return (
     <Col className="ingredient">
-      <img src={props.ingredient.img} title={getDescription()} alt="" />
+      <img src={props.ingredient.img} title={getDescription()} onClick={() => props.addIngredient(props.ingredient)} alt="" />
       <p>{props.ingredient.name}</p>
     </Col>
   );
 };
 
+const mapStateToProps = state => ({
+  cake: state.cakeCharacteristics,
+});
 
-export default Ingredient;
+const mapDispatchToProps = dispatch => ({
+  addIngredient: ingredient => dispatch(addIngredient(ingredient)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Ingredient);
