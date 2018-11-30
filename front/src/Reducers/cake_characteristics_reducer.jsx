@@ -1,6 +1,8 @@
 export default (state = {
-  type: ' ', 
-  size: 'S',
+  type: ' ',
+  size: '',
+  story: '',
+  quantity: '1',
   occasion: '',
   ingredients: [
    /* {
@@ -34,11 +36,11 @@ export default (state = {
 },
 action) => {
   switch (action.type) {
-    case 'CHANGE_CAKE_TYPE':
-      return { ...state, type: action.payload };
-    case 'CHANGE_PRICE':
-      return { ...state, price: action.price };
-    default:
-      return state;
+    case 'CHANGE_CAKE_SIZE': return { ...state, size: action.payload };
+    case 'CHANGE_CAKE_AMOUNT': return { ...state, quantity: action.payload };
+    case 'CHANGE_CAKE_TYPE': return { ...state, type: action.payload };
+    case 'CHANGE_CAKE_ETAGE': return { ...state, story: action.payload };
+    case 'CHANGE_PRICE': return { ...state, price: action.price };
+    default: return state;
   }
 };

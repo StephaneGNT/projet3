@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Button } from 'reactstrap';
-import NavArrowsLayout from './NavArrowsLayout';
+import NavArrowsLayout from '../Navigation/NavArrowsLayout';
 
 class IngredientsButtons extends Component {
   renderButton = (index) => {

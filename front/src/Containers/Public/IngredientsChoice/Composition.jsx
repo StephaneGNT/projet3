@@ -6,7 +6,7 @@ import IngredientsCakeStructure from './IngredientsCakeStructure';
 import IngredientsMacaronStructure from './IngredientsMacaronStructure';
 import IngredientsCookieStructure from './IngredientsCookieStructure';
 import IngredientsButtons from './IngredientsButtons';
-import Price from './Price';
+import Price from '../Price';
 
 const Composition = (props) => {
   const { index } = props;
