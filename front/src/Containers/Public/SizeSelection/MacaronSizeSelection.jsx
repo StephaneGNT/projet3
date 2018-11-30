@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Row, Col, Container, Label } from 'reactstrap';
+import {
+  Button,
+  Row,
+  Container,
+  Label,
+} from 'reactstrap';
 import changeCakeSize from '../../../Actions/cakeActions/changeCakeSize';
 import changeCakeAmount from '../../../Actions/cakeActions/changeCakeAmount';
 
