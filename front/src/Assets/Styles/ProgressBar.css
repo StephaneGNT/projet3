@@ -3,11 +3,23 @@
 }
 
 .progressBar li {
-  border: 1px solid #000;
   display: inline-block;
-  width: 10%;
+  padding: 7px;
+  text-align: center;
+  border: 1px solid black;
+  width:16%;
+}
+
+.progressBar li:first-child {
+  border-top-left-radius: 12px;;
+  border-bottom-left-radius: 12px;;
+}
+
+.progressBar li:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .activeProgress {
-  background-color: rgb(28, 151, 12);
+  background-color: rgb(4, 201, 142);
 }

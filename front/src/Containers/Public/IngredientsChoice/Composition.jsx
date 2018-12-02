@@ -6,6 +6,7 @@ import IngredientsCakeStructure from './IngredientsCakeStructure';
 import IngredientsMacaronStructure from './IngredientsMacaronStructure';
 import IngredientsCookieStructure from './IngredientsCookieStructure';
 import IngredientsButtons from './IngredientsButtons';
+import Progressbar from '../Progressbar';
 import Price from '../Price';
 import CakeInProgress from '../CakeInProgress';
 
@@ -34,6 +35,9 @@ const Composition = (props) => {
 
   return (
     <Container style={{ height: '80vh' }}>
+      <Row className="text-center">
+        <Progressbar />
+      </Row>
       {renderComposition(props.cake.type)}
       <Row sm="12" style={{ height: '10vh' }}>
         <Price />

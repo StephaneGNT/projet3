@@ -81,11 +81,11 @@ class Personalisation extends Component {
             </div>))
         }
         <Container className="container">
+          <Row className="text-center">
+            <Progressbar />
+          </Row>
           <Row className="title">
             <h1>Personnalisation</h1>
-          </Row>
-          <Row>
-            <Progressbar />
           </Row>
           <Row>
             <Col sm="6" lg="6" className="column">

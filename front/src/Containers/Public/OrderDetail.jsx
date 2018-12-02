@@ -13,10 +13,10 @@ class OrderDetail extends Component {
   render() {
     return (
       <div>
-        Order detail
-        <Row>
+        <Row className="text-center">
           <Progressbar />
         </Row>
+        Order detail
         <NavArrowsLayout />
       </div>
     );

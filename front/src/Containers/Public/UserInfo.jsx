@@ -12,7 +12,7 @@ class UserInfo extends Component {
   render() {
     return (
       <div>
-        <Row>
+        <Row className="text-center">
           <Progressbar />
         </Row>
         UserInfo

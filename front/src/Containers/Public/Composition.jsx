@@ -4,7 +4,6 @@ import { Row, Col } from 'reactstrap';
 
 import IngredientsCakeStrucure from './IngredientsChoice/IngredientsCakeStructure';
 import IngredientsButtons from './IngredientsChoice/IngredientsButtons';
-import Progressbar from './Progressbar';
 import Price from './Price';
 import CakeInProgress from './CakeInProgress';
 
@@ -13,9 +12,6 @@ const Composition = (props) => {
   const { price, index, cake } = props;
   return (
     <div>
-      <Row>
-        <Progressbar />
-      </Row>
       <Row>
         <Col sm="8">
           <IngredientsCakeStrucure />
@@ -40,7 +36,4 @@ const mapStateToProps = (state) => {
   );
 };
 
-export default connect(
-  mapStateToProps,
-  // mapDispatchToProps,
-)(Composition);
+export default connect(mapStateToProps)(Composition);

@@ -9,16 +9,16 @@ class CakeInProgress extends Component {
   }
 
   render() {
-    console.log('in CakeInProgress' , this.props.ingredients)
+    console.log('in CakeInProgress', this.props.ingredients);
     return (
       <div className="cakeLayout">
         <p>
           {this.props.cake.ingredients.map((item) => {
-
-            return <div>
-              <img src={item.img} alt='ingredient' />
+            return (<div>
+              <img src={item.img} alt="ingredient" />
               <p>{item.name}</p>
             </div>
+            );
           })}
         </p>
       </div>
