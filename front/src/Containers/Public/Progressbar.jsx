@@ -9,7 +9,8 @@ class Progressbar extends Component {
   createProgressElements = (type, nbActive) => {
     console.log('create progress Elements');
     const routes = (type === 'cake' || type === 'cheesecake') ? ['/mycake/composition', '/mycake/composition', '/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'] : ['/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'];
-    let countActive = nbActive;
+    const stepNames = (type === 'cake' || type === 'cheesecake') ? ['Base', 'Glacage & Garniture', 'Toppings', 'Personalisation', 'Order Details', 'Client Information'] : ['Base', 'Personalisation', 'Order Details', 'Client Information'];
+    let countActive = nbActive; 
     return routes.map((route, index) => {
       countActive -= 1;
       console.log(index);
@@ -18,8 +19,7 @@ class Progressbar extends Component {
         return (
           <li className="text-center" key={index}>
             <NavLink to={route} onClick={() => this.props.indexUpdate(index + 2)}>
-              Step
-              {index}
+              {stepNames[index]}
             </NavLink>
           </li>
         );
@@ -28,8 +28,7 @@ class Progressbar extends Component {
       return (
         <li className="activeProgress text-center" key={index}>
           <NavLink to={route} onClick={() => this.props.indexUpdate(index + 2)}>
-            Step
-            {index}
+            {stepNames[index]}
           </NavLink>
         </li>
       );
