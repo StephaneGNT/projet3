@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row } from 'reactstrap';
-import NavArrowsLayout from './NavArrowsLayout';
+import NavArrowsLayout from './Navigation/NavArrowsLayout';
 import Progressbar from './Progressbar';
 
 

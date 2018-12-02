@@ -1,47 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, Container } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
-import IngredientsCakeStructure from './IngredientsCakeStructure';
-import IngredientsMacaronStructure from './IngredientsMacaronStructure';
-import IngredientsCookieStructure from './IngredientsCookieStructure';
-import IngredientsButtons from './IngredientsButtons';
+import IngredientsCakeStrucure from './IngredientsChoice/IngredientsCakeStructure';
+import IngredientsButtons from './IngredientsChoice/IngredientsButtons';
 import Progressbar from './Progressbar';
 import Price from './Price';
+import CakeInProgress from './CakeInProgress';
+
 
 const Composition = (props) => {
-  const { index } = props;
-
-  const renderComposition = (cakeType) => {
-    let render;
-    switch (cakeType) {
-      case 'macaron': render = (<IngredientsMacaronStructure />); break;
-      case 'cookie': render = (<IngredientsCookieStructure />); break;
-      default: render = (
-        <Row sm="12" style={{ height: '70vh' }}>
-          <Col sm="8">
-            <IngredientsCakeStructure />
-          </Col>
-          <Col sm="4" className="cakeAndPriceDisplay">
-            <div className="cakeDisplay" />
-          </Col>
-        </Row>
-      );
-    }
-    return render;
-  };
-
+  const { price, index, cake } = props;
   return (
-    <Container style={{ height: '80vh' }}>
+    <div>
       <Row>
         <Progressbar />
       </Row>
-      {renderComposition(props.cake.type)}
-      <Row sm="12" style={{ height: '10vh' }}>
-        <Price />
-        <IngredientsButtons index={index} />
+      <Row>
+        <Col sm="8">
+          <IngredientsCakeStrucure />
+          <IngredientsButtons index={index} />
+        </Col>
+        <Col sm="4">
+          <CakeInProgress />
+          <Price amount={price} />
+        </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 
@@ -55,4 +40,7 @@ const mapStateToProps = (state) => {
   );
 };
 
-export default connect(mapStateToProps)(Composition);
+export default connect(
+  mapStateToProps,
+  // mapDispatchToProps,
+)(Composition);

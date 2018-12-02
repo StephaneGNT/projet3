@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { updateIndex } from '../../Actions/changeIndex';
+import { updateIndex } from '../../Actions/cakeActions/changeIndex';
 import '../../Assets/Styles/ProgressBar.css';
 
 

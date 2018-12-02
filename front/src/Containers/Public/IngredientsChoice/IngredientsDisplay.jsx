@@ -12,15 +12,18 @@ const IngredientsDisplay = (props) => {
         newCompatibleIngredient = tempCompatibleIngredients[0].filter((ingredient) => { return tempCompatibleIngredients[1].indexOf(ingredient) === -1; });
       }
     }
+    else newCompatibleIngredient = tempCompatibleIngredients;
     return newCompatibleIngredient;
   };
 
   const renderIngredients = (elementToDisplay) => {
-    const compatibleIngredients = getCompatibleIngredients(props.cake); 
+    //const compatibleIngredients = getCompatibleIngredients(props.cake); 
     return (
       elementToDisplay.map(
-        (ingredient) => {
-          if (ingredient.dispo && (compatibleIngredients.indexOf(ingredient.name) >= 0 || compatibleIngredients.length === 0)) return <Ingredient ingredient={ingredient} />;
+        
+        ingredient => {
+          //if (ingredient.dispo && (compatibleIngredients[0].indexOf(ingredient.name) >= 0 || compatibleIngredients.length === 0)) 
+          return <Ingredient ingredient={ingredient} />;
         },
       )
     );

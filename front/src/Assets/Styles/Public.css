@@ -16,9 +16,9 @@
 
 .contentZone {
   display: block;
-  width: 80vw;
+  width: 90vw;
   height: 80vh;
-  margin-left: 10vw;
+  margin-left: 5vw;
   background-color: rgb(233, 230, 230);
 }
 
