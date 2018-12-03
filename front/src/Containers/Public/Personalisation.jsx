@@ -15,6 +15,7 @@ import {
 } from 'reactstrap';
 import Price from './Price';
 import NavArrowsLayout from './Navigation/NavArrowsLayout';
+import Progressbar from './Progressbar';
 import '../../Assets/Styles/Personalisation.css';
 
 class Personalisation extends Component {
@@ -80,6 +81,9 @@ class Personalisation extends Component {
             </div>))
         }
         <Container className="container">
+          <Row className="text-center">
+            <Progressbar />
+          </Row>
           <Row className="title">
             <h1>Personnalisation</h1>
           </Row>

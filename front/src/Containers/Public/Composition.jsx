@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 
-import IngredientsStrucure from './IngredientsStructure';
-import IngredientsButtons from './IngredientsButtons';
+import IngredientsCakeStrucure from './IngredientsChoice/IngredientsCakeStructure';
+import IngredientsButtons from './IngredientsChoice/IngredientsButtons';
 import Price from './Price';
 import CakeInProgress from './CakeInProgress';
 
@@ -11,16 +11,18 @@ import CakeInProgress from './CakeInProgress';
 const Composition = (props) => {
   const { price, index, cake } = props;
   return (
-    <Row>
-      <Col sm="8">
-        <IngredientsStrucure />
-        <IngredientsButtons index={index} />
-      </Col>
-      <Col sm="4">
-        <CakeInProgress />
-        <Price amount={price} />
-      </Col>
-    </Row>
+    <div>
+      <Row>
+        <Col sm="8">
+          <IngredientsCakeStrucure />
+          <IngredientsButtons index={index} />
+        </Col>
+        <Col sm="4">
+          <CakeInProgress />
+          <Price amount={price} />
+        </Col>
+      </Row>
+    </div>
   );
 };
 
@@ -34,7 +36,4 @@ const mapStateToProps = (state) => {
   );
 };
 
-export default connect(
-  mapStateToProps,
-  // mapDispatchToProps,
-)(Composition);
+export default connect(mapStateToProps)(Composition);

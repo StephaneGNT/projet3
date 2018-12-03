@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { Row } from 'reactstrap';
 import NavArrowsLayout from './Navigation/NavArrowsLayout';
+import Progressbar from './Progressbar';
+
 
 class OrderDetail extends Component {
   constructor(props) {
@@ -10,6 +13,9 @@ class OrderDetail extends Component {
   render() {
     return (
       <div>
+        <Row className="text-center">
+          <Progressbar />
+        </Row>
         Order detail
         <NavArrowsLayout />
       </div>
