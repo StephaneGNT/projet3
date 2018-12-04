@@ -12,10 +12,11 @@ class IngredientsButtons extends Component {
   };
 
   render() {
+    const { index } = this.props;
     return (
       <Row>
         <Button> Commander </Button>
-        {this.renderButton(this.props.index)}
+        {this.renderButton(index)}
         <NavArrowsLayout />
       </Row>
     );

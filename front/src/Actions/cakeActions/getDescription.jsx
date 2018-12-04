@@ -1,5 +1,4 @@
 const getDescription = (ingredient) => {
-  console.log(ingredient);
   const info = `${ingredient.info}`;
   const allerg = ingredient.allerg.lenght > 0 ? `Allergènes : ${ingredient.allerg}` : '';
   const portion = ingredient.portion ? `Giluna recommande une portion de ${ingredient.portion}` : '';

@@ -11,7 +11,7 @@ import Price from '../Price';
 import CakeInProgress from '../CakeInProgress';
 
 const Composition = (props) => {
-  const { index } = props;
+  const { index, cake } = props;
 
   const renderComposition = (cakeType) => {
     let render;

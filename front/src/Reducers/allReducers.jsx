@@ -10,6 +10,7 @@ import pageIndexReducer from './page_index_reducer';
 import defaultImageReducer from './default_images_reducer';
 import macaronsCoquillesReducer from './macaron_coquilles_reducer';
 import cookiesBasesReducer from './cookie_bases_reducer';
+import chosenStoriesReducer from './chosen_story_reducer';
 
 const allReducers = combineReducers({
   cakeBases: cakeBasesReducer,
@@ -23,6 +24,7 @@ const allReducers = combineReducers({
   defaultImage: defaultImageReducer,
   macaronsCoquilles: macaronsCoquillesReducer,
   cookiesBases: cookiesBasesReducer,
+  chosenStories: chosenStoriesReducer,
 });
 
 export default allReducers;

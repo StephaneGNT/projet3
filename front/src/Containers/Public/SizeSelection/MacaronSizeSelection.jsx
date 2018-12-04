@@ -34,12 +34,14 @@ class CakeSizeSelection extends Component {
   }
 
   sendCakeInfos = (size, amount) => {
-    this.props.selectCakeSize(size);
-    this.props.selectQuantity(amount);
+    const { selectCakeSize, selectQuantity } = this.props;
+    selectCakeSize(size);
+    selectQuantity(amount);
   }
 
   renderConfirmation = () => {
-    if (this.state.size !== 0) return (<Button onClick={e => this.sendCakeInfos(this.state.size, this.state.amount)}> Confirmer </Button>);
+    const { size, amount } = this.state;
+    if (size !== 0) return (<Button onClick={() => this.sendCakeInfos(size, amount)}> Confirmer </Button>);
     return <div />;
   }
 
@@ -60,7 +62,7 @@ class CakeSizeSelection extends Component {
           {this.renderConfirmation()}
         </Row>
       </Container>
-    )
+    );
   }
 }
 

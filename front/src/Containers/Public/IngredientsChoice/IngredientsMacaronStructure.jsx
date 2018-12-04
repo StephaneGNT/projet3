@@ -4,22 +4,24 @@ import { Col, Row } from 'reactstrap';
 import IngredientsDisplay from './IngredientsDisplay';
 
 const IngredientsMacaronStructure = (props) => {
+  const { perfumes, coquilles } = props;
+
   return (
     <Row style={{ height: '70vh' }}>
       <Col sm="6" style={{ overflowY: 'scroll', height: '100%' }}>
         <Row>
-          <h1>{props.perfumes[0].type}</h1>
+          <h1>{perfumes[0].type}</h1>
         </Row>
         <Row>
-          <IngredientsDisplay elementToDisplay={props.perfumes} />
+          <IngredientsDisplay elementToDisplay={perfumes} />
         </Row>
       </Col>
       <Col sm="6" style={{ overflowY: 'scroll', height: '100%' }}>
         <Row>
-          <h1>{props.coquilles[0].type}</h1>
+          <h1>{coquilles[0].type}</h1>
         </Row>
         <Row>
-          <IngredientsDisplay elementToDisplay={props.coquilles} />
+          <IngredientsDisplay elementToDisplay={coquilles} />
         </Row>
       </Col>
     </Row>
