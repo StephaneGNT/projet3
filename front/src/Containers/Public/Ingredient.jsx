@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col } from 'reactstrap';
 import { connect } from 'react-redux';
-import { addIngredient } from '../../Actions/Action';
+import addIngredient from '../../Actions/cakeActions/addIngredient';
 import '../../Assets/Styles/Ingredient.css';
 
 const Ingredient = (props) => {
