@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Row, Col, Container, Label } from 'reactstrap';
+import { Button, Row, Container, Label } from 'reactstrap';
 import changeCakeSize from '../../../Actions/cakeActions/changeCakeSize';
 import changeCakeAmount from '../../../Actions/cakeActions/changeCakeAmount';
 
@@ -9,7 +9,7 @@ import '../../../Assets/Styles/CakeSizeSelection.css';
 class CakeSizeSelection extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       size: 0,
       amount: 0,
     };
@@ -26,19 +26,20 @@ class CakeSizeSelection extends Component {
     this.setState({
       ...this.state,
       amount: event.target.value,
-    })
+    });
   }
 
   sendCakeInfos = (size, amount) => {
-    this.props.selectCakeSize(size);
-    this.props.selectQuantity(amount);
+    const { selectCakeSize, selectQuantity } = this.props;
+    selectCakeSize(size);
+    selectQuantity(amount);
   }
 
   renderConfirmation = () => {
-    if (this.state.size !== 0) return (<Button onClick={e => this.sendCakeInfos(this.state.size, this.state.amount)}> Confirmer </Button>);
+    const { size, amount } = this.state;
+    if (size !== 0) return (<Button onClick={() => this.sendCakeInfos(size, amount)}> Confirmer </Button>);
     return <div />;
   }
-
 
   render() {
     return (
@@ -51,13 +52,13 @@ class CakeSizeSelection extends Component {
         </Row>
         <Row>
           <Label className="labels-perso mt-3">Choisissez le nombre de cookies que vous voulez </Label>
-          <input placeholder="Quantité de cookies" onChange={(event)=>this.changeAmount(event)} />
+          <input placeholder="Quantité de cookies" onChange={event => this.changeAmount(event)} />
         </Row>
         <Row>
           {this.renderConfirmation()}
         </Row>
       </Container>
-    )
+    );
   }
 }
 

@@ -26,7 +26,7 @@ class IngredientsCakeStructure extends Component {
         </Row>
       );
     }
-    // Deuxième écran : Choix du glaçage et filling du cake, choix du glaçage du cheesecake
+    // Deuxième écran : Choix du glaçage et filling du cake,
     else if (index === 3) {
       if (cake.type === 'cake') {
         render = (
@@ -50,7 +50,7 @@ class IngredientsCakeStructure extends Component {
           </Row>
         );
       }
-      
+      // ou choix du glaçage du cheesecake
       else {
         render = (
           <Row className="displayIngredient" style={{ overflowY: 'scroll', height: '100%' }}>

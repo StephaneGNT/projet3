@@ -1,12 +1,10 @@
 import React from 'react';
 
-const TipsCheesecake = () => {
-  return (
-    <p>
-      {`Choisissez le nombre de personnes en cliquant sur le bloc voulu.
+const TipsCheesecake = () => (
+  <p>
+    {`Les cheesecakes font 35 cm de diamètre, et 7 à 8 cm de hauteur.
 Les gâteaux font 7 à 8 cm de hauteur.`}
-    </p>
-  );
-};
+  </p>
+);
 
 export default TipsCheesecake;

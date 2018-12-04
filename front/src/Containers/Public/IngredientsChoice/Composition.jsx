@@ -10,7 +10,7 @@ import Price from '../Price';
 import CakeInProgress from '../CakeInProgress';
 
 const Composition = (props) => {
-  const { index } = props;
+  const { index, cake } = props;
 
   const renderComposition = (cakeType) => {
     let render;
@@ -34,7 +34,7 @@ const Composition = (props) => {
 
   return (
     <Container style={{ height: '80vh' }}>
-      {renderComposition(props.cake.type)}
+      {renderComposition(cake.type)}
       <Row sm="12" style={{ height: '10vh' }}>
         <Price />
         <IngredientsButtons index={index} />
