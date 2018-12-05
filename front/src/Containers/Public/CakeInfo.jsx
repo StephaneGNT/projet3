@@ -38,6 +38,11 @@ const CakeInfo = (props) => {
             Macaron
           </Button>
         </Col>
+        <Col sm="2" className="text-center">
+          <Button className="btn-marg" color="info" onClick={() => props.changeCakeType('brownie')}>
+            Brownie
+          </Button>
+        </Col>
       </Row>
       <Row className="mt-5 justify-content-around">
         <Col sm="6">
