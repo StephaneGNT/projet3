@@ -30,18 +30,14 @@ class NavArrowPrev extends Component {
   }
 }
 
-const mapStateToProps = (state) => { 
-  return {
-    dispatch: state.dispatch,
-    pageIndex: state.pageIndex,
-    type: state.cakeCharacteristics.type,
-  };
-};
+const mapStateToProps = state => ({
+  dispatch: state.dispatch,
+  pageIndex: state.pageIndex,
+  type: state.cakeCharacteristics.type,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeIndex: num => dispatch(changeIndex(num)),
-  };
-};
+
+const mapDispatchToProps = dispatch => ({ changeIndex: num => dispatch(changeIndex(num)) });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavArrowPrev);

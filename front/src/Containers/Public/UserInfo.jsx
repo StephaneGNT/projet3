@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Container, Row, Col, FormGroup, Label, Input, Button, FormFeedback,
 } from 'reactstrap';
@@ -97,4 +98,6 @@ class UserInfo extends Component {
   }
 }
 
-export default UserInfo;
+const mapStateToProps = state => ({ cake: state.cakeCharacteristics });
+
+export default connect(mapStateToProps)(UserInfo);

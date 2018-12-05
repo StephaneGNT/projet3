@@ -31,18 +31,13 @@ class NavArrowNext extends Component {
   }
 }
 
-const mapStateToProps = (state) => { 
-  return {
-    dispatch: state.dispatch,
-    pageIndex: state.pageIndex,
-    type: state.cakeCharacteristics.type,
-  };
-};
+const mapStateToProps = state => ({
+  dispatch: state.dispatch,
+  pageIndex: state.pageIndex,
+  type: state.cakeCharacteristics.type,
+});
 
-const matchDispatchToProps = (dispatch) => {
-  return {
-    changeIndex: num => dispatch(changeIndex(num)),
-  };
-};
+const matchDispatchToProps = dispatch => ({ changeIndex: num => dispatch(changeIndex(num)) });
+
 
 export default connect(mapStateToProps, matchDispatchToProps)(NavArrowNext);
