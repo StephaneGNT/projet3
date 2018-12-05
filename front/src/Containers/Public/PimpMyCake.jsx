@@ -3,7 +3,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import CakeInfo from './CakeInfo';
 import Composition from './IngredientsChoice/Composition';
 import Personalisation from './Personalisation';
-import OrderDetail from './OrderDetail';
+import OrderDetail from './OrderConfirmation/OrderDetail';
 import UserInfo from './UserInfo';
 
 class PimpMyCake extends Component {

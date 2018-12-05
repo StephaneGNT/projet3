@@ -8,7 +8,7 @@ import { changeIndex } from '../../../Actions/cakeActions/changeIndex';
 class NavArrowNext extends Component {
   translateIndexToRoute = (index) => {
     const routes = ['/mycake', '/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'];
-    if (this.props.type === 'cookie' || this.props.type === 'macaron') {
+    if (this.props.type === 'cookie' || this.props.type === 'macaron' || this.props.type === 'brownie') {
       return routes[index];
     }
     switch (index) {
@@ -21,10 +21,11 @@ class NavArrowNext extends Component {
   }
 
   render() {
+    const { disabled } = this.props;
     return (
       <div>
         <NavLink to={this.translateIndexToRoute(this.props.pageIndex)}>
-          <Button onClick={() => this.props.changeIndex(1)} className="btn-info">
+          <Button disabled={disabled} onClick={() => this.props.changeIndex(1)} className="btn-info">
             Next
             {this.pageIndex}
           </Button>

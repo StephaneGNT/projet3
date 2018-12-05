@@ -4,6 +4,7 @@ import TipsCake from './TipsCake';
 import TipsCheesecake from './TipsCheesecake';
 import TipsCookie from './TipsCookie';
 import TipsMacaron from './TipsMacaron';
+import TipsBrownie from './TipsBrownie';
 
 const Tips = (props) => {
   const renderTips = (cakeType) => {
@@ -12,6 +13,7 @@ const Tips = (props) => {
       case 'cheesecake': return <TipsCheesecake />;
       case 'cookie': return <TipsCookie />;
       case 'macaron': return <TipsMacaron />;
+      case 'brownie': return <TipsBrownie />;
       default: return <p> Choisissez votre type de pâtisserie </p>;
     }
   };

@@ -9,7 +9,6 @@ class CakeInProgress extends Component {
   }
 
   render() {
-    console.log('in CakeInProgress', this.props.ingredients);
     return (
       <div className="cakeLayout">
         <p>

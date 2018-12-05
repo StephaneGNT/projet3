@@ -4,11 +4,13 @@ import NavArrowNext from './NavArrowNext';
 import NavArrowPrev from './NavArrowPrev';
 
 class NavArrowsLayout extends Component {
-  changeLayoutviaPageindex = (index, type) => {
+  changeLayoutviaPageindex = (index, type, cake) => {
+    let disabled = true;
     if (index === 1) {
+      if ((cake.type === 'cake' && cake.size > 0) || (cake.type === 'cheesecake') || ((cake.type === 'cookie' || cake.type === 'macaron' || cake.type === 'brownie') && cake.size !== 0 && cake.quantity > 1)) disabled = false;
       return (
         <div>
-          <NavArrowNext />
+          <NavArrowNext disabled={disabled} />
         </div>
       );
     }
@@ -22,13 +24,14 @@ class NavArrowsLayout extends Component {
     return (
       <div>
         <NavArrowPrev />
-        <NavArrowNext />
+        <NavArrowNext disabled={false} />
       </div>
     );
   }
 
   render() {
-    return this.changeLayoutviaPageindex(this.props.pageIndex, this.props.type);
+    const { pageIndex, type, cake } = this.props;
+    return this.changeLayoutviaPageindex(pageIndex, type, cake);
   }
 }
 
@@ -36,6 +39,7 @@ const mapStateToProps = (state) => {
   return {
     pageIndex: state.pageIndex,
     type: state.cakeCharacteristics.type,
+    cake: state.cakeCharacteristics,
   };
 };
 
