@@ -6,7 +6,6 @@ import IngredientsButtons from './IngredientsChoice/IngredientsButtons';
 import Price from './Price';
 import CakeInProgress from './CakeInProgress';
 
-
 const Composition = (props) => {
   const { price, index } = props;
   return (
