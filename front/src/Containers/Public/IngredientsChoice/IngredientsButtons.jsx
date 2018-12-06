@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Button } from 'reactstrap';
+import PropTypes from 'prop-types';
 import NavArrowsLayout from '../Navigation/NavArrowsLayout';
 
 class IngredientsButtons extends Component {
@@ -22,5 +23,9 @@ class IngredientsButtons extends Component {
     );
   }
 }
+
+IngredientsButtons.propTypes = {
+  index: PropTypes.number.isRequired,
+};
 
 export default IngredientsButtons;

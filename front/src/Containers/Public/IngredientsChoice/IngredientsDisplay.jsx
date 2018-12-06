@@ -9,7 +9,9 @@ const IngredientsDisplay = (props) => {
     let newCompatibleIngredient = [];
     if (tempCompatibleIngredients.length > 1) {
       for (let i = 1; i < tempCompatibleIngredients.length; i += 1) {
-        newCompatibleIngredient = tempCompatibleIngredients[0].filter(ingredient => tempCompatibleIngredients[1].indexOf(ingredient) === -1);
+        newCompatibleIngredient = tempCompatibleIngredients[0].filter(
+          ingredient => tempCompatibleIngredients[1].indexOf(ingredient) === -1,
+        );
       }
     } else newCompatibleIngredient = tempCompatibleIngredients;
     return newCompatibleIngredient;

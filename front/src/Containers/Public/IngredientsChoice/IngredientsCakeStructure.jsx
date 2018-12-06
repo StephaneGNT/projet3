@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
+import PropTypes from 'prop-types';
 import IngredientsDisplay from './IngredientsDisplay';
 
 class IngredientsCakeStructure extends Component {
-
   // Choix des ingrédients des cakes et cheesecakes
-  renderStructure = (cake, bases, icings, fillings, toppings, perfumes, index) => {
+  renderStructure = (cake, bases, icings, fillings, toppings, flavor, index) => {
     let render;
     let elementToDisplay;
 
     // Premier écran : Choix de la base du cake, ou du parfum du cheesecake
     if (index === 2) {
-      if (cake.type === 'cheesecake') elementToDisplay = perfumes;
+      if (cake.type === 'cheesecake') elementToDisplay = flavor;
       else elementToDisplay = bases;
 
       render = (
@@ -25,9 +25,8 @@ class IngredientsCakeStructure extends Component {
           </Row>
         </Row>
       );
-    }
+    } else if (index === 3) {
     // Deuxième écran : Choix du glaçage et filling du cake,
-    else if (index === 3) {
       if (cake.type === 'cake') {
         render = (
           <Row className="displayIngredient" style={{ height: '100%' }}>
@@ -49,9 +48,8 @@ class IngredientsCakeStructure extends Component {
             </Col>
           </Row>
         );
-      }
+      } else {
       // ou choix du glaçage du cheesecake
-      else {
         render = (
           <Row className="displayIngredient" style={{ overflowY: 'scroll', height: '100%' }}>
             <Row>
@@ -87,26 +85,34 @@ class IngredientsCakeStructure extends Component {
         icings,
         fillings,
         toppings,
-        perfumes,
+        flavor,
         index,
       } = this.props;
 
     return (
-      this.renderStructure(cake, bases, icings, fillings, toppings, perfumes, index)
+      this.renderStructure(cake, bases, icings, fillings, toppings, flavor, index)
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    cake: state.cakeCharacteristics,
-    bases: state.cakeBases,
-    fillings: state.cakeFillings,
-    icings: state.cakeIcings,
-    perfumes: state.cheesecakePerfumes,
-    toppings: state.cakeToppings,
-    index: state.pageIndex,
-  });
+IngredientsCakeStructure.propTypes = {
+  cake: PropTypes.string.isRequired,
+  bases: PropTypes.string.isRequired,
+  icings: PropTypes.string.isRequired,
+  fillings: PropTypes.string.isRequired,
+  toppings: PropTypes.string.isRequired,
+  flavor: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
 };
+
+const mapStateToProps = state => ({
+  cake: state.cakeCharacteristics,
+  bases: state.cakeBases,
+  fillings: state.cakeFillings,
+  icings: state.cakeIcings,
+  flavor: state.cheesecakePerfumes,
+  toppings: state.cakeToppings,
+  index: state.pageIndex,
+});
 
 export default connect(mapStateToProps)(IngredientsCakeStructure);
