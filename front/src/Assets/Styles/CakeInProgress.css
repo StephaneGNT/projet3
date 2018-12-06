@@ -28,3 +28,17 @@
     padding:3px;
 }
 
+.cakeLayout {
+    margin:auto;
+    text-align:center;
+    height: 60vh;
+    background-color:rgb(190, 190, 190);
+    border-radius:20px;
+    overflow: auto;
+}
+
+.cakeLayout img{
+    width:70%;
+    margin:auto;
+}
+

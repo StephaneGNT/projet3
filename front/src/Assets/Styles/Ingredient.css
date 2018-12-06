@@ -4,13 +4,13 @@
 
 .ingredient img{
   width:150px !important;
-  height:100px !important;
   object-fit:cover;
 }
 
 /* ingredient structure */
 .displayIngredient{
+  background-color: rgb(219, 219, 219);
   height: 60vh;
-  overflow: hidden;
-  border:1px solid gray;
+  overflow: auto;
+  border-radius:20px;
 }
