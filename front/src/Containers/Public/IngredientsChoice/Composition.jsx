@@ -1,11 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Container } from 'reactstrap';
-<<<<<<< HEAD
-=======
 import PropTypes from 'prop-types';
-
->>>>>>> dev
 import IngredientsCakeStructure from './IngredientsCakeStructure';
 import IngredientsMacaronStructure from './IngredientsMacaronStructure';
 import IngredientsCookieStructure from './IngredientsCookieStructure';

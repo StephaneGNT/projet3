@@ -22,12 +22,12 @@ const IngredientsDisplay = (props) => {
     const render = [];
     elementToDisplay.map(
       (ingredient) => {
-        if (compatibleIngredients.length === 0 && ingredient.dispo) {
+        // if (compatibleIngredients.length === 0 && ingredient.dispo) {
+        //   render.push(<Ingredient ingredient={ingredient} />);
+        // }
+        // if (compatibleIngredients.indexOf(ingredient.name) >= 0 && ingredient.dispo) {
           render.push(<Ingredient ingredient={ingredient} />);
-        }
-        if (compatibleIngredients.indexOf(ingredient.name) >= 0 && ingredient.dispo) {
-          render.push(<Ingredient ingredient={ingredient} />);
-        }
+        // }
         return render;
       },
     );
