@@ -15,12 +15,11 @@ const Price = (props) => {
   );
 };
 
-const mapStatetoProps = (state) => {
-  return {
-    price: state.cakeCharacteristics.ingredients
-      .map(p => p.price).reduce((a, v) => a + v, 0),
-  };
-};
+const mapStatetoProps = state => ({
+  price: state.cakeCharacteristics.ingredients
+    .map(p => p.price).reduce((a, v) => a + v, 0),
+});
+
 const mapDispatchToProps = dispatch => ({
   sendToPrice: amount => dispatch(changePrice(amount)),
 });

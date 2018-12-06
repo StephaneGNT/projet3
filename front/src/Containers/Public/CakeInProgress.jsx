@@ -11,26 +11,19 @@ class CakeInProgress extends Component {
   render() {
     return (
       <div className="cakeLayout">
-        <p>
-          {this.props.cake.ingredients.map((item) => {
-            return (<div>
-              <img src={item.img} alt="ingredient" />
-              <p>{item.name}</p>
-            </div>
-            );
-          })}
-        </p>
+        {this.props.cake.ingredients.map(item => (
+          <div>
+            <img src={item.img} alt="ingredient" />
+            <p>{item.name}</p>
+          </div>
+        ))}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return (
-    {
-      cake: state.cakeCharacteristics,
-    }
-  );
-};
+const mapStateToProps = state => ({
+  cake: state.cakeCharacteristics,
+});
 
 export default connect(mapStateToProps)(CakeInProgress);
