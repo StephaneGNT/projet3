@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
+import removeIngredient from '../../Actions/cakeActions/removeIngredient';
 import '../../Assets/Styles/CakeInProgress.css';
 
 class CakeInProgress extends Component {
@@ -9,13 +11,14 @@ class CakeInProgress extends Component {
   }
 
   render() {
-    console.log('in CakeInProgress', this.props.ingredients);
+    const { cake, removeIngredient } = this.props;
     return (
       <div className="cakeLayout">
         <p>
-          {this.props.cake.ingredients.map((item) => {
+          {cake.ingredients.map((item) => {
             return (<div>
               <img src={item.img} alt="ingredient" />
+              <Button onClick={() => removeIngredient(item.id)}>remove</Button>
               <p>{item.name}</p>
             </div>
             );
@@ -26,12 +29,13 @@ class CakeInProgress extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return (
-    {
-      cake: state.cakeCharacteristics,
-    }
-  );
-};
+const mapStateToProps = state => ({
+  cake: state.cakeCharacteristics,
+});
 
-export default connect(mapStateToProps)(CakeInProgress);
+const mapDispatchToProps = dispatch => ({
+  removeIngredient: item => dispatch(removeIngredient(item)),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CakeInProgress);

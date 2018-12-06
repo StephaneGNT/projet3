@@ -5,30 +5,30 @@ export default (state = {
   quantity: '1',
   occasion: '',
   ingredients: [
-    {
-      id: 1,
-      name: 'base banane',
-      type: 'base',
-      size: 'S',
-      price: 10,
-      dispo: true,
-      info: 'some info',
-      img: '',
-      allerg: 'gluten',
-      compatible: ['base banane', 'Glaçage citron', 'Glaçage framboise'],
-    },
-    {
-      id: 2,
-      name: '',
-      type: 'Glaçage',
-      size: 'M',
-      price: 5,
-      dispo: true,
-      info: 'some info',
-      img: '',
-      allerg: '',
-      compatible: ['Glaçage framboise', 'Glaçage orange'],
-    },
+    // {
+    //   id: 1,
+    //   name: 'base banane',
+    //   type: 'base',
+    //   size: 'S',
+    //   price: 10,
+    //   dispo: true,
+    //   info: 'some info',
+    //   img: '',
+    //   allerg: 'gluten',
+    //   compatible: ['base banane', 'Glaçage citron', 'Glaçage framboise'],
+    // },
+    // {
+    //   id: 2,
+    //   name: '',
+    //   type: 'Glaçage',
+    //   size: 'M',
+    //   price: 5,
+    //   dispo: true,
+    //   info: 'some info',
+    //   img: '',
+    //   allerg: '',
+    //   compatible: ['Glaçage framboise', 'Glaçage orange'],
+    // },
   ],
   customization: '', // aucune, 2D, 3D, message
   comments: '',
@@ -38,6 +38,8 @@ action) => {
   const listIngredients = state.ingredients;
   switch (action.type) {
     case 'ADD_INGREDIENT': listIngredients.push(action.item);
+      return { ...state, ingredients: listIngredients };
+    case 'REMOVE_INGREDIENT': delete listIngredients[action.item];
       return { ...state, ingredients: listIngredients };
     case 'CHANGE_CAKE_SIZE': return { ...state, size: action.payload };
     case 'ADD_PIECES': return { ...state, size: state.size + action.payload, story: state.story + 1 };
