@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import CakeSizeSelection from './CakeSizeSelection';
 import MacaronSizeSelection from './MacaronSizeSelection';
 import CookieSizeSelection from './CookieSizeSelection';
+import BrownieSizeSelection from './BrownieSizeSelection';
 
 class SizeSelection extends Component {
   renderSizeSelection = (cakeType) => {
@@ -10,6 +11,7 @@ class SizeSelection extends Component {
       case 'cake': return (<CakeSizeSelection />);
       case 'macaron': return (<MacaronSizeSelection />);
       case 'cookie': return (<CookieSizeSelection />);
+      case 'brownie': return (<BrownieSizeSelection />);
       default: return (<div />);
     }
   }

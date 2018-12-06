@@ -4,7 +4,7 @@ import { Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import IngredientsDisplay from './IngredientsDisplay';
 
-const IngredientsCookieStructure = (props) => {
+const IngredientsBrownieStructure = (props) => {
   const { bases } = props;
   return (
     <Row style={{ height: '70vh', overflowY: 'scroll' }}>
@@ -18,12 +18,12 @@ const IngredientsCookieStructure = (props) => {
   );
 };
 
-IngredientsCookieStructure.propTypes = {
-  bases: PropTypes.number.isRequired,
+IngredientsBrownieStructure.propTypes = {
+  bases: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  bases: state.cookiesBases,
+  bases: state.browniesBases,
 });
 
-export default connect(mapStateToProps)(IngredientsCookieStructure);
+export default connect(mapStateToProps)(IngredientsBrownieStructure);

@@ -21,27 +21,23 @@ class NavArrowPrev extends Component {
 
   render() {
     return (
-      <div>
-        <NavLink to={this.translateIndexToRoute(this.props.pageIndex, this.props.type)}>
-          <Button onClick={() => this.props.changeIndex(-1)} className="btn-info">Previous</Button>
-        </NavLink>
-      </div>
+      <NavLink to={this.translateIndexToRoute(this.props.pageIndex, this.props.type)}>
+        <Button onClick={() => this.props.changeIndex(-1)} className="btn-info mx-3">
+          étape précédente
+        </Button>
+      </NavLink>
     );
   }
 }
 
-const mapStateToProps = (state) => { 
-  return {
-    dispatch: state.dispatch,
-    pageIndex: state.pageIndex,
-    type: state.cakeCharacteristics.type,
-  };
-};
+const mapStateToProps = state => ({
+  dispatch: state.dispatch,
+  pageIndex: state.pageIndex,
+  type: state.cakeCharacteristics.type,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeIndex: num => dispatch(changeIndex(num)),
-  };
-};
+
+const mapDispatchToProps = dispatch => ({ changeIndex: num => dispatch(changeIndex(num)) });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavArrowPrev);

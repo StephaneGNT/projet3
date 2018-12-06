@@ -1,8 +1,8 @@
 export default (state = {
-  type: ' ',
+  type: '',
   size: 0, // size doit impérativement être définie comme un entier !!
   story: 0, // story doit impérativement être définie comme un entier !!
-  quantity: '1',
+  quantity: 1, // par défaut (cake, cheesecake), valeur de 1 ; sinon (cookie, macaron), valeur de l'input
   occasion: '',
   ingredients: [
     // {
@@ -33,6 +33,7 @@ export default (state = {
   customization: '', // aucune, 2D, 3D, message
   comments: '',
   price: 0,
+  time: 2,
 },
 action) => {
   const listIngredients = state.ingredients;
