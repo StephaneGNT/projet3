@@ -2,6 +2,12 @@ CREATE DATABASE pimp_my_cake_admin;
 
 USE pimp_my_cake_admin;
 
+CREATE TABLE images 
+( 
+    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
+    name VARCHAR(90)
+);
+
 CREATE TABLE cake_bases 
 ( 
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
@@ -11,7 +17,8 @@ CREATE TABLE cake_bases
     price DECIMAL,
     availability BOOLEAN,
     info VARCHAR(150),
-    image VARCHAR(150)
+    image_id INTEGER,
+    FOREIGN KEY(image_id) REFERENCES images(id)
 );
 
 CREATE TABLE cookie_bases
@@ -22,7 +29,8 @@ CREATE TABLE cookie_bases
     price DECIMAL,
     availability BOOLEAN,
     info VARCHAR(150),
-    image VARCHAR(150)
+    image_id INTEGER,
+    FOREIGN KEY(image_id) REFERENCES images(id)
 );
 
 CREATE TABLE toppings
@@ -33,7 +41,8 @@ CREATE TABLE toppings
     price DECIMAL,
     availability BOOLEAN,
     info VARCHAR(150),
-    image VARCHAR(150)
+    image_id INTEGER,
+    FOREIGN KEY(image_id) REFERENCES images(id)
 );
 
 CREATE TABLE fillings
@@ -44,7 +53,8 @@ CREATE TABLE fillings
     price DECIMAL,
     availability BOOLEAN,
     info VARCHAR(150),
-    image VARCHAR(150)
+    image_id INTEGER,
+    FOREIGN KEY(image_id) REFERENCES images(id)
 );
 
 CREATE TABLE icings LIKE fillings;
@@ -93,7 +103,7 @@ CREATE TABLE customers
     birthday DATE
 );
 
-CREATE TABLE final_cake
+CREATE TABLE final_cakes
 ( 
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
     type VARCHAR(15),
@@ -119,7 +129,7 @@ CREATE TABLE final_cake
     FOREIGN KEY(cheesecake_flavor_id) REFERENCES cheesecake_flavors(id)
 );
 
-CREATE TABLE final_order
+CREATE TABLE final_orders
 ( 
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     customer_id INTEGER,
@@ -130,5 +140,5 @@ CREATE TABLE final_order
     admin_status VARCHAR(50),
     customer_comment VARCHAR(300),
     FOREIGN KEY(customer_id) REFERENCES customers(id),
-    FOREIGN KEY(cake_id) REFERENCES final_cake(id)
+    FOREIGN KEY(cake_id) REFERENCES final_cakes(id)
 );
