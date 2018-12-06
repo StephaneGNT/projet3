@@ -36,10 +36,11 @@ export default (state = {
 },
 action) => {
   const listIngredients = state.ingredients;
+  const indexItem = listIngredients.indexOf(action.item);
   switch (action.type) {
     case 'ADD_INGREDIENT': listIngredients.push(action.item);
       return { ...state, ingredients: listIngredients };
-    case 'REMOVE_INGREDIENT': delete listIngredients[action.item];
+    case 'REMOVE_INGREDIENT': listIngredients.splice(indexItem, 1);
       return { ...state, ingredients: listIngredients };
     case 'CHANGE_CAKE_SIZE': return { ...state, size: action.payload };
     case 'ADD_PIECES': return { ...state, size: state.size + action.payload, story: state.story + 1 };
