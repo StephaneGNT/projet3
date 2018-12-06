@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Row } from 'reactstrap';
-import removeIngredient from '../../Actions/cakeActions/removeIngredient';
-import '../../Assets/Styles/CakeInProgress.css';
+import removeIngredient from '../../../Actions/cakeActions/removeIngredient';
+import '../../../Assets/Styles/CakeInProgress.css';
 
 class CakeInProgress extends Component {
   constructor(props) {
@@ -30,6 +30,7 @@ class CakeInProgress extends Component {
 
 CakeInProgress.propTypes = {
   cake: PropTypes.string.isRequired,
+  // removeIngredient: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
