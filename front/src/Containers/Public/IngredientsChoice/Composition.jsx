@@ -5,19 +5,21 @@ import { Row, Col, Container } from 'reactstrap';
 import IngredientsCakeStructure from './IngredientsCakeStructure';
 import IngredientsMacaronStructure from './IngredientsMacaronStructure';
 import IngredientsCookieStructure from './IngredientsCookieStructure';
+import IngredientsBrownieStructure from './IngredientsBrownieStructure';
 import IngredientsButtons from './IngredientsButtons';
 import Progressbar from '../Progressbar';
 import Price from '../Price';
 import CakeInProgress from '../CakeInProgress';
 
 const Composition = (props) => {
-  const { index } = props;
+  const { index, cake } = props;
 
   const renderComposition = (cakeType) => {
     let render;
     switch (cakeType) {
       case 'macaron': render = (<IngredientsMacaronStructure />); break;
       case 'cookie': render = (<IngredientsCookieStructure />); break;
+      case 'brownie': render = (<IngredientsBrownieStructure />); break;
       default: render = (
         <Row sm="12" style={{ height: '70vh' }}>
           <Col sm="8">

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import IngredientsDisplay from './IngredientsDisplay';
 
-const IngredientsCookieStructure = (props) => {
+const IngredientsBrownieStructure = (props) => {
   const { bases } = props;
   return (
     <Row style={{ height: '70vh', overflowY: 'scroll' }}>
@@ -18,7 +18,7 @@ const IngredientsCookieStructure = (props) => {
 };
 
 const mapStateToProps = state => ({
-  bases: state.cookiesBases,
+  bases: state.browniesBases,
 });
 
-export default connect(mapStateToProps)(IngredientsCookieStructure);
+export default connect(mapStateToProps)(IngredientsBrownieStructure);
