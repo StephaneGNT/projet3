@@ -14,7 +14,7 @@ import '../../../Assets/Styles/CakeSizeSelection.css';
 class CakeSizeSelection extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       size: 0,
       amount: 0,
     };

@@ -6,7 +6,6 @@ import MacaronSizeSelection from './MacaronSizeSelection';
 import CookieSizeSelection from './CookieSizeSelection';
 
 class SizeSelection extends Component {
-  
   renderSizeSelection = (cakeType) => {
     switch (cakeType) {
       case 'cake': return (<CakeSizeSelection />);
@@ -18,7 +17,6 @@ class SizeSelection extends Component {
   }
 
   render() {
-    console.log(this.props.cake);
     return (
       this.renderSizeSelection(this.props.cake.type)
     );

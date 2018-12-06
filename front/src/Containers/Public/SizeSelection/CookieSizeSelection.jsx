@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Row, Col, Container, Label } from 'reactstrap';
+import {
+  Button, Row, Container, Label,
+} from 'reactstrap';
 import changeCakeSize from '../../../Actions/cakeActions/changeCakeSize';
 import changeCakeAmount from '../../../Actions/cakeActions/changeCakeAmount';
 
@@ -9,7 +11,7 @@ import '../../../Assets/Styles/CakeSizeSelection.css';
 class CakeSizeSelection extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       size: 0,
       amount: 0,
     };
@@ -51,7 +53,7 @@ class CakeSizeSelection extends Component {
         </Row>
         <Row>
           <Label className="labels-perso mt-3">Choisissez le nombre de cookies que vous voulez </Label>
-          <input placeholder="Quantité de cookies" onChange={(event)=>this.changeAmount(event)} />
+          <input placeholder="Quantité de cookies" onChange={event => this.changeAmount(event)} />
         </Row>
         <Row>
           {this.renderConfirmation()}
