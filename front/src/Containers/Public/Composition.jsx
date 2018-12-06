@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
-
 import IngredientsCakeStrucure from './IngredientsChoice/IngredientsCakeStructure';
 import IngredientsButtons from './IngredientsChoice/IngredientsButtons';
 import Price from './Price';

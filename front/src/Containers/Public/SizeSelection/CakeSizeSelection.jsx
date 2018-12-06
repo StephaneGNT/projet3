@@ -62,9 +62,7 @@ class CakeSizeSelection extends Component {
         <Row>
           {this.renderNombreDeStories()}
         </Row>
-        <Row>
-          {this.renderConfirmation()}
-        </Row>
+       
       </Container>
     );
   }

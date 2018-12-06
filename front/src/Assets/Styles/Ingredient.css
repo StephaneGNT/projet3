@@ -1,3 +1,16 @@
-.ingredient{
-  margin: 1vh 1vw;
+.ingredient {
+  margin:1px;
+}
+
+.ingredient img{
+  width:150px !important;
+  height:100px !important;
+  object-fit:cover;
+}
+
+/* ingredient structure */
+.displayIngredient{
+  height: 60vh;
+  overflow: hidden;
+  border:1px solid gray;
 }
