@@ -66,7 +66,7 @@ class Personalisation extends Component {
     }
 
     return (
-      <div>
+      <div class="bloc-personnalisation">
         <link
           rel="stylesheet"
           href={`https://fonts.googleapis.com/css?family=${font}`}
@@ -185,9 +185,11 @@ class Personalisation extends Component {
               </div>
             </Col>
           </Row>
-          <Price />
         </Container>
-        <NavArrowsLayout />
+        <div className="btn-group2">
+          <Price />
+          <NavArrowsLayout />
+        </div>
       </div>
     );
   }

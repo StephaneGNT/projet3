@@ -21,9 +21,9 @@ class NavArrowPrev extends Component {
 
   render() {
     return (
-      <div>
+      <div class="btn-group">
         <NavLink to={this.translateIndexToRoute(this.props.pageIndex, this.props.type)}>
-          <Button onClick={() => this.props.changeIndex(-1)} className="btn-info">Previous</Button>
+          <button onClick={() => this.props.changeIndex(-1)} className="btn-prev-next">Previous</button>
         </NavLink>
       </div>
     );

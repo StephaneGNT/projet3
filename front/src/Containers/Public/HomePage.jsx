@@ -8,7 +8,10 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div> HomePage </div>
+      <div> 
+        <h1>Bienvenue sur Pimp My Cake !</h1>
+        <button>Commencez votre gâteau</button>
+      </div>
     );
   }
 }

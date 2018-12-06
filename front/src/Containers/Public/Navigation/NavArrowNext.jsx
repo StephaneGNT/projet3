@@ -22,12 +22,12 @@ class NavArrowNext extends Component {
 
   render() {
     return (
-      <div>
+      <div class="btn-group">
         <NavLink to={this.translateIndexToRoute(this.props.pageIndex)}>
-          <Button onClick={() => this.props.changeIndex(1)} className="btn-info">
+          <button onClick={() => this.props.changeIndex(1)} className="btn-prev-next">
             Next
             {this.pageIndex}
-          </Button>
+          </button>
         </NavLink>
       </div>
     );

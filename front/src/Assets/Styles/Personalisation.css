@@ -1,42 +1,30 @@
-.container {
-  /* max-width: 2500px !important; */
+.bloc-personnalisation {
+  margin:1%;
+  width:90%;
+  background-color: rgb(207, 207, 207);
+  border-radius:50px 100px;
+  box-shadow: 2px 2px 0px rgb(177, 177, 177);
 }
 
-.title {
-  margin-bottom: 4vh;
+.btn-group2 {
+  display:block;
+  margin:auto;
+  text-align:center;
+  padding:5px;
 }
 
 h1 {
   text-align: center;
 }
 
-hr {
-  background-color: black;
-  height: 10px;
-  width: 100%;
-}
-
-.column {
-  font-family: "roboto";
-  font-size: 2vmin;
-}
-
-.emtpyDiv {
-  height: 12vmin;
-  width: 100%;
-}
-
 .uploadImage {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center !important;
   text-align: center !important;
-  background-color: rgb(152, 152, 240);
+  background-color:lightgrey;
   height: 12vmin;
-}
-
-.form-control-file {
-  font-size: 2vmin;
 }
 
 input {
@@ -47,7 +35,7 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  height:30vh;
+  height:20vh;
 }
 
 .examplePics {
