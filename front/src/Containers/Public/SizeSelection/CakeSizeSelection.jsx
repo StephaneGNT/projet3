@@ -40,11 +40,11 @@ class CakeSizeSelection extends Component {
     return <div />;
   }
 
-  renderConfirmation = () => {
-    const { size, story } = this.props;
-    if (size > 0) return (<Button onClick={() => this.sendCakeInfos(size, story)}> Confirmer </Button>);
-    return <div />;
-  }
+  // renderConfirmation = () => {
+  //   const { size, story } = this.props;
+  //   if (size > 0) return (<Button onClick={() => this.sendCakeInfos(size, story)}> Confirmer </Button>);
+  //   return <div />;
+  // }
 
   render() {
     return (
@@ -62,7 +62,6 @@ class CakeSizeSelection extends Component {
         <Row>
           {this.renderNombreDeStories()}
         </Row>
-       
       </Container>
     );
   }

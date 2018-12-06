@@ -1,38 +1,39 @@
 export default (state = {
-  type: ' ',
+  type: '',
   size: 0, // size doit impérativement être définie comme un entier !!
   story: 0, // story doit impérativement être définie comme un entier !!
-  quantity: '1',
+  quantity: 1, // par défaut (cake, cheesecake), valeur de 1 ; sinon (cookie, macaron), valeur de l'input
   occasion: '',
   ingredients: [
-    {
-      id: 1,
-      name: 'base banane',
-      type: 'base',
-      size: 'S',
-      price: 10,
-      dispo: true,
-      info: 'some info',
-      img: '',
-      allerg: 'gluten',
-      compatible: ['base banane', 'Glaçage citron', 'Glaçage framboise'],
-    },
-    {
-      id: 2,
-      name: '',
-      type: 'Glaçage',
-      size: 'M',
-      price: 5,
-      dispo: true,
-      info: 'some info',
-      img: '',
-      allerg: '',
-      compatible: ['Glaçage framboise', 'Glaçage orange'],
-    },
+    // {
+    //   id: 1,
+    //   name: 'base banane',
+    //   type: 'base',
+    //   size: 'S',
+    //   price: 10,
+    //   dispo: true,
+    //   info: 'some info',
+    //   img: '',
+    //   allerg: 'gluten',
+    //   compatible: ['base banane', 'Glaçage citron', 'Glaçage framboise'],
+    // },
+    // {
+    //   id: 2,
+    //   name: '',
+    //   type: 'Glaçage',
+    //   size: 'M',
+    //   price: 5,
+    //   dispo: true,
+    //   info: 'some info',
+    //   img: '',
+    //   allerg: '',
+    //   compatible: ['Glaçage framboise', 'Glaçage orange'],
+    // },
   ],
   customization: '', // aucune, 2D, 3D, message
   comments: '',
   price: 0,
+  time: 2,
 },
 action) => {
   const listIngredients = state.ingredients;

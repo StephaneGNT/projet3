@@ -58,7 +58,7 @@ class Personalisation extends Component {
       selectedFonts,
       googleFonts,
       dropdownOpen,
-      decorationChoice
+      decorationChoice,
     } = this.state;
 
     if (googleFonts[0] === undefined) {

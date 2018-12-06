@@ -40,17 +40,15 @@ class Progressbar extends Component {
     );
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    indexUpdate: num => dispatch(updateIndex(num)),
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  indexUpdate: num => dispatch(updateIndex(num)),
+});
 
-const mapStateToProps = state => {
-  return {
-    index: state.pageIndex,
-    type: state.cakeCharacteristics.type,
-  }
-}
+
+const mapStateToProps = state => ({
+  index: state.pageIndex,
+  type: state.cakeCharacteristics.type,
+});
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Progressbar);

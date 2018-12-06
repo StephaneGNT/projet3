@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { changeIndex } from '../../../Actions/cakeActions/changeIndex';
 
-
 class NavArrowNext extends Component {
   translateIndexToRoute = (index) => {
     const routes = ['/mycake', '/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'];
-    if (this.props.type === 'cookie' || this.props.type === 'macaron') {
+    if (this.props.type === 'cookie' || this.props.type === 'macaron' || this.props.type === 'brownie') {
       return routes[index];
     }
     switch (index) {
@@ -21,6 +20,7 @@ class NavArrowNext extends Component {
   }
 
   render() {
+    const { disabled } = this.props;
     return (
       <div class="btn-group">
         <NavLink to={this.translateIndexToRoute(this.props.pageIndex)}>
@@ -34,18 +34,13 @@ class NavArrowNext extends Component {
   }
 }
 
-const mapStateToProps = (state) => { 
-  return {
-    dispatch: state.dispatch,
-    pageIndex: state.pageIndex,
-    type: state.cakeCharacteristics.type,
-  };
-};
+const mapStateToProps = state => ({
+  dispatch: state.dispatch,
+  pageIndex: state.pageIndex,
+  type: state.cakeCharacteristics.type,
+});
 
-const matchDispatchToProps = (dispatch) => {
-  return {
-    changeIndex: num => dispatch(changeIndex(num)),
-  };
-};
+const matchDispatchToProps = dispatch => ({ changeIndex: num => dispatch(changeIndex(num)) });
+
 
 export default connect(mapStateToProps, matchDispatchToProps)(NavArrowNext);
