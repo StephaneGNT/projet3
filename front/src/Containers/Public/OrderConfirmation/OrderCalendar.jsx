@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
 import Calendar from 'react-calendar';
 import { connect } from 'react-redux';
-import selectDeliveryDate from '../../../Actions/orderActions/setDeliveryDate';
+import PropTypes from 'prop-types';
+import setDeliveryDate from '../../../Actions/orderActions/setDeliveryDate';
 
 class OrderCalendar extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.blockedDate = [new Date(2018, 12, 15)];
     this.blockedDate[0] = this.blockedDate[0].getTime();
   }
 
   getTileClassName = (date) => {
+    const { cake } = this.props;
     const today = new Date();
     const minDate = new Date();
-    minDate.setDate(today.getDate()+this.props.cake.time);
+    minDate.setDate(today.getDate() + cake.time);
 
-    if (date.date <= minDate) return 'possibleDate';
-    if (this.blockedDate.indexOf(date.date.getTime()) >= 0) return 'forbiddenDate';
+    let className = '';
+    if (date.date <= minDate) className = 'possibleDate';
+    if (this.blockedDate.indexOf(date.date.getTime()) >= 0) className = 'forbiddenDate';
+    return className;
   }
 
   getTileDisable = (date) => {
@@ -26,16 +30,22 @@ class OrderCalendar extends Component {
   }
 
   render() {
+    const { selectDeliveryDate } = this.props;
     return (
       <Calendar
-        onClickDay={date => this.props.selectDeliveryDate(date)}
+        onClickDay={date => selectDeliveryDate(date)}
         tileClassName={date => this.getTileClassName(date)}
         tileDisabled={date => this.getTileDisable(date)}
         minDate={new Date()}
       />
-    )
+    );
   }
 }
+
+OrderCalendar.propTypes = {
+  selectDeliveryDate: PropTypes.string.isRequired,
+  cake: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = state => ({
   cake: state.cakeCharacteristics,
@@ -43,7 +53,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  selectDeliveryDate: date => dispatch(selectDeliveryDate(date)),
+  selectDeliveryDate: date => dispatch(setDeliveryDate(date)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderCalendar);

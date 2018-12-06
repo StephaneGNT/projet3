@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { changeIndex } from '../../../Actions/cakeActions/changeIndex';
 
-
 class NavArrowNext extends Component {
   translateIndexToRoute = (index) => {
     const routes = ['/mycake', '/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'];

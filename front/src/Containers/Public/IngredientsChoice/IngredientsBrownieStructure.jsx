@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
+import PropTypes from 'prop-types';
 import IngredientsDisplay from './IngredientsDisplay';
 
 const IngredientsBrownieStructure = (props) => {
@@ -15,6 +16,10 @@ const IngredientsBrownieStructure = (props) => {
       </Col>
     </Row>
   );
+};
+
+IngredientsBrownieStructure.propTypes = {
+  bases: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

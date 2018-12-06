@@ -1,5 +1,4 @@
-const setDeliveryDate = (date) => {
-  console.log(date);  
+const setDeliveryDate = (date) => { 
   return {
     type: 'SET_DELIVERY_DATE',
     date,
