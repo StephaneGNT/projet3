@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import CakeSizeSelection from './CakeSizeSelection';
 import MacaronSizeSelection from './MacaronSizeSelection';
 import CookieSizeSelection from './CookieSizeSelection';
@@ -17,12 +18,16 @@ class SizeSelection extends Component {
   }
 
   render() {
-    let { cake } = this.props;
+    const { cake } = this.props;
     return (
       this.renderSizeSelection(cake.type)
     );
   }
 }
+
+SizeSelection.propTypes = {
+  cake: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = state => ({
   cake: state.cakeCharacteristics,

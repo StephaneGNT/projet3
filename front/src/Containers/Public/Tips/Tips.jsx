@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import TipsCake from './TipsCake';
 import TipsCheesecake from './TipsCheesecake';
 import TipsCookie from './TipsCookie';
@@ -18,12 +19,18 @@ const Tips = (props) => {
     }
   };
 
+  const { cake } = props;
+
   return (
     <div className="bg-light p-2">
       <h5>Tips:</h5>
-      {renderTips(props.cake.type)}
+      {renderTips(cake.type)}
     </div>
   );
+};
+
+Tips.propTypes = {
+  cake: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

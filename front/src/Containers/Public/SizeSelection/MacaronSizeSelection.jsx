@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Button,
   Row,
@@ -11,7 +12,7 @@ import changeCakeAmount from '../../../Actions/cakeActions/changeCakeAmount';
 
 import '../../../Assets/Styles/CakeSizeSelection.css';
 
-const CakeSizeSelection = (props) => {
+const MacaronSizeSelection = (props) => {
   const { selectCakeSize, selectQuantity } = props;
   return (
     <Container style={{ minWidth: '100%' }}>
@@ -28,9 +29,14 @@ const CakeSizeSelection = (props) => {
   );
 };
 
+MacaronSizeSelection.propTypes = {
+  selectCakeSize: PropTypes.string.isRequired,
+  selectQuantity: PropTypes.string.isRequired,
+};
+
 const mapDispatchToProps = dispatch => ({
   selectCakeSize: size => dispatch(changeCakeSize(size)),
   selectQuantity: amount => dispatch(changeCakeAmount(amount)),
 });
 
-export default connect(null, mapDispatchToProps)(CakeSizeSelection);
+export default connect(null, mapDispatchToProps)(MacaronSizeSelection);

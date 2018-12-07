@@ -7,7 +7,7 @@ class IngredientsButtons extends Component {
   renderButton = (index) => {
     let render;
     if (index === 3) {
-      render = (<Button> Une garniture supplémentaire ? </Button>);
+      render = (<Button className="order-btn"> Une garniture supplémentaire ? </Button>);
     }
     return render;
   };
@@ -16,7 +16,7 @@ class IngredientsButtons extends Component {
     const { index } = this.props;
     return (
       <Row>
-        <Button> Commander </Button>
+        <Button className="order-btn"> Commander </Button>
         {this.renderButton(index)}
         <NavArrowsLayout />
       </Row>

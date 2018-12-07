@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-
 import Public from './Containers/Public/Public';
 import Admin from './Containers/Admin/Admin';
 

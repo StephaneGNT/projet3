@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Button, Row, Container, Label,
 } from 'reactstrap';
@@ -24,6 +25,11 @@ const CakeSizeSelection = (props) => {
       </Row>
     </Container>
   );
+};
+
+CakeSizeSelection.propTypes = {
+  selectCakeSize: PropTypes.string.isRequired,
+  selectQuantity: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({

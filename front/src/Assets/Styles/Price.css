@@ -1,20 +1,11 @@
-.body {
-  color: red;
-  font-size: 1.5em;
+.bloc-price {
+  color: black;
+  font-size: 1.2em;
   text-align: center;
-}
-
-.body div{
-  display: inline-block;
-}
-
-.box {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  /* border: 1px solid black; */
-  width: 10vh; 
-  height: 4vh;
-  text-align: center;
-  position: relative;
+  background-color:white;
+  padding:5px;
+  margin:auto;
+  display:inline-block;
+  font-weight:700;
+  margin:auto;
 }

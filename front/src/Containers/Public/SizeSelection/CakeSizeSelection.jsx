@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
-  Button,
   Row,
   Col,
   Container,
@@ -40,12 +40,6 @@ class CakeSizeSelection extends Component {
     return <div />;
   }
 
-  // renderConfirmation = () => {
-  //   const { size, story } = this.props;
-  //   if (size > 0) return (<Button onClick={() => this.sendCakeInfos(size, story)}> Confirmer </Button>);
-  //   return <div />;
-  // }
-
   render() {
     return (
       <Container style={{ minWidth: '100%' }}>
@@ -62,13 +56,15 @@ class CakeSizeSelection extends Component {
         <Row>
           {this.renderNombreDeStories()}
         </Row>
-        {/* <Row>
-          {this.renderConfirmation()}
-        </Row> */}
       </Container>
     );
   }
 }
+
+CakeSizeSelection.propTypes = {
+  size: PropTypes.string.isRequired,
+  story: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = state => ({
   size: state.cakeCharacteristics.size,

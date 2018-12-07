@@ -1,61 +1,62 @@
 .bloc-etape-1 {
-    background-color:lightgrey;
-    border:1px solid black;
-    padding:5px;
-    margin:5%;
-    color:black;
+    background-color: lightgrey;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5%;
+    color: black;
 }
 
 
 /* Bloc des boutons cake, cookies, macarons et cheesescake */
 .bloc-cake-type {
-    width:80%;
-    border:1px solid rgb(187, 164, 164);
-    background-color:rgb(228, 228, 228);
+    width: 80%;
+    border: 1px solid rgb(187, 164, 164);
+    background-color: rgb(228, 228, 228);
     box-shadow: 3px 3px 0px rgb(92, 92, 92);
-    margin:5px auto 5px;
-    padding:5px;
-    display:flex;
+    margin: 5px auto 5px;
+    padding: 5px;
+    display: flex;
     justify-content: center;
 }
+
 /* Apparence des questions */
 .labels-perso {
-    font-weight:900;
-    color:black;
-    margin:5px;
-    display:block;
-    font-size:12px;
+    font-weight: 900;
+    color: black;
+    margin: 5px;
+    display: block;
+    font-size: 12px;
 }
 
 /* Bloc description input */
 .bloc-tips {
-    min-width:200px;
-    height:150px;
-    background-color:white;
-    padding:5px;
-    margin:5px auto;
-    overflow:auto;
-    border-radius:5px;
-    font-size:12px;
-    line-height:1.1em;
-    text-align:justify;
+    min-width: 200px;
+    height: 150px;
+    background-color: white;
+    padding: 5px;
+    margin: 5px auto;
+    overflow: auto;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 1.1em;
+    text-align: justify;
 }
 
 .text-tips {
-    font-weight:900;
-    display:block;
+    font-weight: 900;
+    display: block;
 
 }
 
 /* Bloc inputs */
 .col-form-mycake {
-    min-width:400px;
-    margin:10px !important;
-    padding:5px;
+    min-width: 400px;
+    margin: 10px !important;
+    padding: 5px;
     background-color: rgb(194, 194, 194);
-    border-radius:5px;
+    border-radius: 5px;
 }
 
 .btn-marg {
-    margin:5px;
+    margin: 5px;
 }

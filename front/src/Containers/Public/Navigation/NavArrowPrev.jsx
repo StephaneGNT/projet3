@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { changeIndex } from '../../../Actions/cakeActions/changeIndex';
 
 class NavArrowPrev extends Component {
-  translateIndexToRoute = (index, type) => {
+  translateIndexToRoute = (index, cakeType) => {
     const routes = ['/mycake', '/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'];
-    if (type === 'cookie' || type === 'macaron') {
+    if (cakeType === 'cookie' || cakeType === 'macaron' || cakeType === 'brownie') {
       return routes[index - 2];
     }
     switch (index) {
@@ -20,15 +20,22 @@ class NavArrowPrev extends Component {
   }
 
   render() {
+    const { pageIndex, type, changePageIndex } = this.props;
     return (
-      <NavLink to={this.translateIndexToRoute(this.props.pageIndex, this.props.type)}>
-        <Button onClick={() => this.props.changeIndex(-1)} className="btn-info mx-3">
-          étape précédente
-        </Button>
-      </NavLink>
+      <div className="btn-group">
+        <NavLink to={this.translateIndexToRoute(pageIndex, type)}>
+          <button type="button" onClick={() => changePageIndex(-1)} className="btn-prev-next">Précédent</button>
+        </NavLink>
+      </div>
     );
   }
 }
+
+NavArrowPrev.propTypes = {
+  pageIndex: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  changePageIndex: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = state => ({
   dispatch: state.dispatch,
@@ -37,7 +44,7 @@ const mapStateToProps = state => ({
 });
 
 
-const mapDispatchToProps = dispatch => ({ changeIndex: num => dispatch(changeIndex(num)) });
+const mapDispatchToProps = dispatch => ({ changePageIndex: num => dispatch(changeIndex(num)) });
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavArrowPrev);
