@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
+import PropTypes from 'prop-types';
 import IngredientsDisplay from './IngredientsDisplay';
 
 const IngredientsCookieStructure = (props) => {
@@ -15,6 +16,10 @@ const IngredientsCookieStructure = (props) => {
       </Col>
     </Row>
   );
+};
+
+IngredientsCookieStructure.propTypes = {
+  bases: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({

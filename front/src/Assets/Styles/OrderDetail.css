@@ -1,5 +1,7 @@
-.command{
-    width:400px;
-	height:200px;
-	background-color:blue;
+.possibleDate{
+  background-color: gold;
+}
+
+.forbiddenDate{
+  background-color: red;
 }

@@ -2,12 +2,25 @@
   list-style-type: none;
 }
 
+.progressBar a {
+  color:rgb(0, 0, 0);
+  font-weight:700;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size:0.8em;
+}
+
+.progressBar a:hover {
+  text-decoration: none;
+  color:white;
+}
+
 .progressBar li {
   display: inline-block;
   padding: 7px;
   text-align: center;
-  border: 1px solid black;
   width:16%;
+  margin:1px;
 }
 
 .progressBar li:first-child {
@@ -21,5 +34,5 @@
 }
 
 .activeProgress {
-  background-color: rgb(4, 201, 142);
+  background-color: rgba(160, 17, 60, 0.911);
 }

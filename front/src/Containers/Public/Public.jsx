@@ -13,9 +13,9 @@ class Public extends Component {
 
   render() {
     return (
-      <div className="bodyZone">
-        <div className="headerZone"> NavBar </div>
-        <div className="contentZone">
+      <div className="body-zone">
+        <div className="header-zone"> Pimp My Cake </div>
+        <div className="content-zone">
           <BrowserRouter>
             <Switch>
               <Route exact path="/" component={HomePage} />
@@ -24,7 +24,7 @@ class Public extends Component {
             </Switch>
           </BrowserRouter>
         </div>
-        <div className="footerZone"> Footer </div>
+        <div className="footer-zone"> Footer </div>
       </div>
     );
   }
