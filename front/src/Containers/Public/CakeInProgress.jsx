@@ -11,22 +11,35 @@ class CakeInProgress extends Component {
     this.state = {};
   }
 
+  compareIndexToLength = (item, index, arr) => {
+    if (index < arr.length) {
+      return (
+        <div>
+          <img src={item.img} alt="ingredient" />
+          <p>{item.name}</p>
+        </div>
+      );
+    }
+    return (
+      <div>
+        <img src={item.img} alt="ingredient" />
+        <Button close onClick={() => removeIngredient(item)} />
+        <p>{item.name}</p>
+      </div>
+      );
+    }
+  }
+
   render() {
     const { cake, removeIngredient } = this.props;
     return (
       <Row className="cakeLayout">
-        {
-          cake.ingredients.map(item => (
-            <div>
-              <div><img src={item.img} alt="ingredient" /></div>
-              <Button close onClick={() => removeIngredient(item)} />
-              <p>{item.name}</p>
-            </div>
-          ))}
+        {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index,arr))}
       </Row>
     );
   }
 }
+
 
 CakeInProgress.propTypes = {
   cake: PropTypes.string.isRequired,
