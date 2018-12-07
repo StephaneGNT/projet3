@@ -1,13 +1,13 @@
 
-import '../../Assets/Styles/CakeInfo.css';
+import '../../../Assets/Styles/CakeInfo.css';
 import {
   Label, Input, Container, Row, Col, Button,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import NavArrowsLayout from './Navigation/NavArrowsLayout';
-import changeCakeType from '../../Actions/cakeActions/changeCakeType';
+import NavArrowsLayout from '../Navigation/NavArrowsLayout';
+import changeCakeType from '../../../Actions/cakeActions/changeCakeType';
 import SizeSelection from './SizeSelection/SizeSelection';
 import Tips from './Tips/Tips';
 

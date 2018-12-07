@@ -7,9 +7,9 @@ import {
   Button,
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import changeCakeSize from '../../../Actions/cakeActions/changeCakeSize';
-import changeCakeStory from '../../../Actions/cakeActions/changeCakeStory';
-import { addCakePieces, removeCakePieces } from '../../../Actions/cakeActions/changeCakePiecesAndStories';
+import changeCakeSize from '../../../../Actions/cakeActions/changeCakeSize';
+import changeCakeStory from '../../../../Actions/cakeActions/changeCakeStory';
+import { addCakePieces, removeCakePieces } from '../../../../Actions/cakeActions/changeCakePiecesAndStories';
 
 class CakeStoryDisplay extends Component {
   constructor(props) {

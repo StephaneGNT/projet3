@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 import CakeSizeDisplay from './CakeSizeDisplay';
 
-import '../../../Assets/Styles/CakeSizeSelection.css';
+import '../../../../Assets/Styles/CakeSizeSelection.css';
 
 class CakeSizeSelection extends Component {
 

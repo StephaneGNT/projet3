@@ -7,10 +7,10 @@ import {
   Container,
   Label,
 } from 'reactstrap';
-import changeCakeSize from '../../../Actions/cakeActions/changeCakeSize';
-import changeCakeAmount from '../../../Actions/cakeActions/changeCakeAmount';
+import changeCakeSize from '../../../../Actions/cakeActions/changeCakeSize';
+import changeCakeAmount from '../../../../Actions/cakeActions/changeCakeAmount';
 
-import '../../../Assets/Styles/CakeSizeSelection.css';
+import '../../../../Assets/Styles/CakeSizeSelection.css';
 
 const MacaronSizeSelection = (props) => {
   const { selectCakeSize, selectQuantity } = props;
