@@ -8,7 +8,7 @@ import '../../Assets/Styles/ProgressBar.css';
 class Progressbar extends Component {
   createProgressElements = (type, nbActive) => {
     const routes = (type === 'cake' || type === 'cheesecake') ? ['/mycake/composition', '/mycake/composition', '/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'] : ['/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'];
-    const stepNames = (type === 'cake' || type === 'cheesecake') ? ['Base', 'Glacage & Garniture', 'Toppings', 'Personalisation', 'Order Details', 'Client Information'] : ['Base', 'Personalisation', 'Order Details', 'Client Information'];
+    const stepNames = (type === 'cake' || type === 'cheesecake') ? ['Base', 'Glacage & Garniture', 'Toppings', 'Personnalisation', 'Order Details', 'Client Information'] : ['Base', 'Personnalisation', 'Order Details', 'Client Information'];
     let countActive = nbActive;
     return routes.map((route, index) => {
       countActive -= 1;

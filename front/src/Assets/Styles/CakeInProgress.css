@@ -28,6 +28,18 @@
     padding:3px;
 }
 
+/* bouton conirmation de commande */
+.btn-confirmation {
+    background-color:chocolate;
+    color:black;
+    display:inline-block;
+    margin:auto;
+    border-radius:15px 5px;
+    font-weight:700;
+    padding:5px;
+    font-size:0.9em;
+}
+
 .cakeLayout {
     margin:auto;
     text-align:center;

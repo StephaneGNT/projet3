@@ -64,7 +64,7 @@ class IngredientsCakeStructure extends Component {
     // Troisième écran : Choix des toppings
     } else if (index === 4) {
       render = (
-        <Row className="displayIngredient" style={{ overflowY: 'scroll', height: '100%' }}>
+        <Row className="displayIngredient">
           <Row>
             <h1>{toppings[0].type}</h1>
           </Row>
