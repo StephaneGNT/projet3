@@ -9,7 +9,7 @@ import IngredientsBrownieStructure from './IngredientsBrownieStructure';
 import IngredientsButtons from './IngredientsButtons';
 import Progressbar from '../Progressbar';
 import Price from '../Price';
-import CakeInProgress from '../CakeInProgress';
+import CakeInProgress from './CakeInProgress';
 
 const Composition = (props) => {
   const { index, cake } = props;
