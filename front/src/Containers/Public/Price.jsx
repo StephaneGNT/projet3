@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../../Assets/Styles/Price.css';
 import { connect } from 'react-redux';
 import { changePrice } from '../../Actions/cakeActions/changeCakePrice';
@@ -7,12 +8,15 @@ const Price = (props) => {
   const { price, sendToPrice } = props;
   sendToPrice(price);
   return (
-    <div className="body">
-      <h4>
-        {`PRIX TTC: ${price} €`}
-      </h4>
+    <div className="bloc-price">
+      {`PRIX TTC: ${price} €`}
     </div>
   );
+};
+
+Price.propTypes = {
+  price: PropTypes.string.isRequired,
+  sendToPrice: PropTypes.string.isRequired,
 };
 
 const mapStatetoProps = state => ({

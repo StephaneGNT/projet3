@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  Container, Row, Col, FormGroup, Label, Input, Button, FormFeedback,
+  Container, Row, Col, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
 import NavArrowsLayout from './Navigation/NavArrowsLayout';
 import Progressbar from './Progressbar';
@@ -48,14 +48,20 @@ class UserInfo extends Component {
   }
 
   activateButton = () => {
-    if (this.state.firstname.length > 1
-        && this.state.lastname.length > 1
-        && this.state.telephone.length >= 10
-        && this.validEmail(this.state.email) === false) return false;
+    const {
+      email, firstname, lastname, telephone,
+    } = this.state;
+    if (firstname.length > 1
+        && lastname.length > 1
+        && telephone.length >= 10
+        && this.validEmail(email) === false) return false;
     return true;
   }
 
   render() {
+    const {
+      firstname, lastname, birthdate, telephone, email,
+    } = this.state;
     return (
       <Container>
         <Row className="text-center">
@@ -68,7 +74,7 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 Prénom
               </Label>
-              <Input type="text" name="firstname" id="firstname" placeholder="votre prénom" value={this.state.firstname} onChange={e => this.updateState(e)} />
+              <Input type="text" name="firstname" id="firstname" placeholder="votre prénom" value={firstname} onChange={e => this.updateState(e)} />
             </FormGroup>
           </Col>
           <Col sm="10" md="4">
@@ -77,7 +83,7 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 Nom
               </Label>
-              <Input type="text" name="lastname" id="lastname" placeholder="votre nom de famille" value={this.state.lastname} onChange={e => this.updateState(e)} />
+              <Input type="text" name="lastname" id="lastname" placeholder="votre nom de famille" value={lastname} onChange={e => this.updateState(e)} />
             </FormGroup>
           </Col>
           <Col sm="10" md="3">
@@ -85,7 +91,7 @@ class UserInfo extends Component {
               <Label for="birthdate">
                 Date de naissance
               </Label>
-              <Input type="text" name="birthdate" id="birthdate" placeholder="votre date de naissance" value={this.state.birthdate} onChange={e => this.updateState(e)} />
+              <Input type="text" name="birthdate" id="birthdate" placeholder="votre date de naissance" value={birthdate} onChange={e => this.updateState(e)} />
             </FormGroup>
           </Col>
         </Row>
@@ -96,7 +102,7 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 E-mail
               </Label>
-              <Input invalid={this.validEmail(this.state.email)} type="email" name="email" id="email" placeholder="votre adresse mail" value={this.state.email} onChange={e => this.updateState(e)} />
+              <Input invalid={this.validEmail(email)} type="email" name="email" id="email" placeholder="votre adresse mail" value={email} onChange={e => this.updateState(e)} />
               <FormFeedback>adresse mail non valide</FormFeedback>
             </FormGroup>
           </Col>
@@ -106,13 +112,13 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 Téléphone
               </Label>
-              <Input type="text" name="telephone" id="telephone" placeholder="votre numéro de téléphone" value={this.state.telephone} onChange={e => this.updateState(e)} />
+              <Input type="text" name="telephone" id="telephone" placeholder="votre numéro de téléphone" value={telephone} onChange={e => this.updateState(e)} />
             </FormGroup>
           </Col>
         </Row>
         <Row className="text-center">
           <NavArrowsLayout />
-          <Button className="btn btn-info btn-lg ml-3" disabled={this.activateButton()}>envoyer la Commande</Button>
+          <button type="button" className="btn-confirmation" disabled={this.activateButton()}>envoyer la Commande</button>
         </Row>
       </Container>
     );

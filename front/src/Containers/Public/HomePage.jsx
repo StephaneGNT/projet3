@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class HomePage extends Component {
   constructor(props) {
@@ -8,7 +9,10 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div> HomePage </div>
+      <div> 
+        <h1>Bienvenue sur Pimp My Cake !</h1>
+        <Link to="/mycake"><button type="button">Commencez votre gâteau</button></Link>
+      </div>
     );
   }
 }

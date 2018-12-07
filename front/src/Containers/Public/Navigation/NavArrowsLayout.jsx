@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import NavArrowNext from './NavArrowNext';
 import NavArrowPrev from './NavArrowPrev';
 
@@ -34,6 +35,12 @@ class NavArrowsLayout extends Component {
     return this.changeLayoutviaPageindex(pageIndex, type, cake);
   }
 }
+
+NavArrowsLayout.propTypes = {
+  pageIndex: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  cake: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = (state) => {
   return {

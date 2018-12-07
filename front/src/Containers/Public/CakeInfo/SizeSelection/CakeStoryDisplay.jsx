@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Container,
   Row,
@@ -6,9 +7,9 @@ import {
   Button,
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import changeCakeSize from '../../../Actions/cakeActions/changeCakeSize';
-import changeCakeStory from '../../../Actions/cakeActions/changeCakeStory';
-import { addCakePieces, removeCakePieces } from '../../../Actions/cakeActions/changeCakePiecesAndStories';
+import changeCakeSize from '../../../../Actions/cakeActions/changeCakeSize';
+import changeCakeStory from '../../../../Actions/cakeActions/changeCakeStory';
+import { addCakePieces, removeCakePieces } from '../../../../Actions/cakeActions/changeCakePiecesAndStories';
 
 class CakeStoryDisplay extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class CakeStoryDisplay extends Component {
       story,
       taille,
       addPieces,
-      removePieces
+      removePieces,
     } = this.props;
 
     return (
@@ -48,6 +49,15 @@ class CakeStoryDisplay extends Component {
     );
   }
 }
+
+CakeStoryDisplay.propTypes = {
+  width: PropTypes.string.isRequired,
+  taille: PropTypes.string.isRequired,
+  addPieces: PropTypes.string.isRequired,
+  removePieces: PropTypes.string.isRequired,
+  chosenStories: PropTypes.string.isRequired,
+  story: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = state => ({
   cake: state.cakeCharacteristics,

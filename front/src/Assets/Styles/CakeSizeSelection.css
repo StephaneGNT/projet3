@@ -1,8 +1,9 @@
 .story{
-  background-color: yellow;
+  background-color: rgba(165, 5, 58, 0.747);
   border: 1px solid black;
-  margin: auto;
+  margin: 2px auto;
   text-align: center;
+  color:white;
 }
 
 .buttonDisplay{

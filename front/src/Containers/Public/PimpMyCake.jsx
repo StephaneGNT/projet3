@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import CakeInfo from './CakeInfo';
+import CakeInfo from './CakeInfo/CakeInfo';
 import Composition from './IngredientsChoice/Composition';
 import Personalisation from './Customization/Personalisation';
 import OrderDetail from './OrderConfirmation/OrderDetail';
