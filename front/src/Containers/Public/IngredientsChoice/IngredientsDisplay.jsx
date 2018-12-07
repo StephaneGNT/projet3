@@ -26,7 +26,7 @@ const IngredientsDisplay = (props) => {
         //   render.push(<Ingredient ingredient={ingredient} />);
         // }
         // if (compatibleIngredients.indexOf(ingredient.name) >= 0 && ingredient.dispo) {
-          render.push(<Ingredient ingredient={ingredient} />);
+        render.push(<Ingredient ingredient={ingredient} />);
         // }
         return render;
       },
