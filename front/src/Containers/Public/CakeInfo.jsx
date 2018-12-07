@@ -1,6 +1,6 @@
 
 import '../../Assets/Styles/CakeInfo.css';
-import { Label, Input, Button, Container, Row, Col } from 'reactstrap';
+import { Label, Input, Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import React from 'react';
 import NavArrowsLayout from './Navigation/NavArrowsLayout';
@@ -13,34 +13,34 @@ const CakeInfo = props => (
   <Container style={{ height: '80vh' }}>
     <Row className="justify-content-around">
       <Col sm="5">
-        <h3 className="mt-3">Choississez votre type de douceur :</h3>
+        <h3>Choississez votre type de douceur</h3>
       </Col>
     </Row>
     <Row className="mt-3 justify-content-around">
       <Col sm="2" className="text-center">
-        <Button className="btn" color="info" onClick={() => props.changeCakeType('cookie')}>
+        <button className="btn-choix-type" color="info" onClick={() => props.changeCakeType('cookie')}>
           Cookie
-        </Button>
+        </button>
       </Col>
       <Col sm="2" className="text-center">
-        <Button className="btn-marg" color="info" onClick={() => props.changeCakeType('cake')}>
+        <button className="btn-choix-type" color="info" onClick={() => props.changeCakeType('cake')}>
           Cake
-        </Button>
+        </button>
       </Col>
       <Col sm="2" className="text-center">
-        <Button className="btn-marg" color="info" onClick={() => props.changeCakeType('cheesecake')}>
+        <button className="btn-choix-type" color="info" onClick={() => props.changeCakeType('cheesecake')}>
           Cheesecake
-        </Button>
+        </button>
       </Col>
       <Col sm="2" className="text-center">
-        <Button className="btn-marg" color="info" onClick={() => props.changeCakeType('macaron')}>
+        <button className="btn-choix-type" color="info" onClick={() => props.changeCakeType('macaron')}>
           Macaron
-        </Button>
+        </button>
       </Col>
       <Col sm="2" className="text-center">
-        <Button className="btn-marg" color="info" onClick={() => props.changeCakeType('brownie')}>
+        <button className="btn-choix-type" color="info" onClick={() => props.changeCakeType('brownie')}>
           Brownie
-        </Button>
+        </button>
       </Col>
     </Row>
     <Row className="mt-5 justify-content-around">
