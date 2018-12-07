@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import {
   Container, Row, Col, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
@@ -49,8 +48,9 @@ class UserInfo extends Component {
   }
 
   activateButton = () => {
-    const { firstname, lastname, telephone } = this.props;
-    const { email } = this.state;
+    const {
+      email, firstname, lastname, telephone,
+    } = this.state;
     if (firstname.length > 1
         && lastname.length > 1
         && telephone.length >= 10
@@ -59,7 +59,9 @@ class UserInfo extends Component {
   }
 
   render() {
-    const { firstname, lastname, birthdate, telephone, email } = this.state;
+    const {
+      firstname, lastname, birthdate, telephone, email,
+    } = this.state;
     return (
       <Container>
         <Row className="text-center">
@@ -122,12 +124,6 @@ class UserInfo extends Component {
     );
   }
 }
-
-UserInfo.propTypes = {
-  firstname: PropTypes.string.isRequired,
-  lastname: PropTypes.string.isRequired,
-  telephone: PropTypes.string.isRequired,
-};
 
 const mapStateToProps = state => ({ cake: state.cakeCharacteristics });
 
