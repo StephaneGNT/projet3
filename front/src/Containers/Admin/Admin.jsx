@@ -5,6 +5,7 @@ import OrdersAdmin from './OrdersAdmin';
 import DataBase from './DataBase';
 import CalendarAdmin from './CalendarAdmin';
 import HomePageAdmin from './HomePageAdmin';
+import CustomizationAdmin from './CustomizationAdmin';
 
 export default class Admin extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ export default class Admin extends Component {
           <Route path="/admin/db" component={DataBase} />
           <Route path="/admin/calendar" component={CalendarAdmin} />
           <Route path="/admin/edit" component={HomePageAdmin} />
+          <Route path="/admin/customization" component={CustomizationAdmin} />
         </Switch>
       </BrowserRouter>
     );

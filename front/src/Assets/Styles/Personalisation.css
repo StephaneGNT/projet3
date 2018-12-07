@@ -1,6 +1,6 @@
-.container {
-  /* max-width: 2500px !important; */
-}
+/* .content {
+  position: absolute;
+} */
 
 .title {
   margin-bottom: 4vh;
@@ -18,7 +18,7 @@ hr {
 
 .column {
   font-family: "roboto";
-  font-size: 2vmin;
+  font-size: 1em;
 }
 
 .emtpyDiv {
@@ -35,8 +35,12 @@ hr {
   height: 12vmin;
 }
 
+.textdecocheckbox {
+  text-align: center;
+}
+
 .form-control-file {
-  font-size: 2vmin;
+  font-size: 1.2em;
 }
 
 input {
@@ -47,10 +51,64 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  height:30vh;
+  height: 20vh;
 }
 
 .examplePics {
   max-width:100%;
   max-height:100%;
 }
+
+.fontdropdown {
+  font-size: 1em;
+}
+
+.messageYes {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 3vh;
+}
+
+/* .messageYes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  background-color: rgb(138, 138, 238);
+  border-radius: 25px;
+  height: 3.7vh;
+  color: white;
+}
+
+.messageYes:hover {
+  background-color: rgb(218, 6, 6);
+  cursor: pointer;
+} */
+
+.greyScale
+{
+  display: inline-block;
+    background-color: white;
+    filter:alpha(opacity=50); 
+    opacity: 0.5;
+    -moz-opacity:0.50;
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+    top: 0px;
+    left: 0px;
+}
+
+.fontList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.fontList:hover {
+  cursor: help;
+}
+
