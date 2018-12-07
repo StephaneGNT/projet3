@@ -54,14 +54,10 @@ Composition.propTypes = {
   cake: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return (
-    {
-      cake: state.cakeCharacteristics,
-      price: state.price,
-      index: state.pageIndex,
-    }
-  );
-};
+const mapStateToProps = state => ({
+  cake: state.cakeCharacteristics,
+  price: state.price,
+  index: state.pageIndex,
+});
 
 export default connect(mapStateToProps)(Composition);

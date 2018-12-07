@@ -41,10 +41,9 @@ class CakeInProgress extends Component {
   }
 }
 
-
 CakeInProgress.propTypes = {
   cake: PropTypes.string.isRequired,
-  // removeIngredient: PropTypes.string.isRequired,
+  remove: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

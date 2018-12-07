@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { changeIndex } from '../../../Actions/cakeActions/changeIndex';
 
 class NavArrowNext extends Component {
-  translateIndexToRoute = (index) => {
+  translateIndexToRoute = (index, cakeType) => {
     const routes = ['/mycake', '/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'];
-    if (this.props.type === 'cookie' || this.props.type === 'macaron' || this.props.type === 'brownie') {
+    if (cakeType === 'cookie' || cakeType === 'macaron' || cakeType === 'brownie') {
       return routes[index];
     }
     switch (index) {
@@ -20,13 +20,19 @@ class NavArrowNext extends Component {
   }
 
   render() {
-    const { disabled } = this.props;
+    const {
+      pageIndex,
+      type,
+      disabled,
+      changePageIndex,
+    } = this.props;
+
     return (
-      <div class="btn-group">
-        <NavLink to={this.translateIndexToRoute(this.props.pageIndex)}>
-          <button onClick={() => this.props.changeIndex(1)} className="btn-prev-next">
-            Next
-            {this.pageIndex}
+      <div className="btn-group">
+        <NavLink to={this.translateIndexToRoute(pageIndex, type)}>
+          <button disabled={disabled} type="button" onClick={() => changePageIndex(1)} className="btn-prev-next">
+            Suivant
+            {/* {this.pageIndex} */}
           </button>
         </NavLink>
       </div>
@@ -34,13 +40,20 @@ class NavArrowNext extends Component {
   }
 }
 
+NavArrowNext.propTypes = {
+  pageIndex: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  disabled: PropTypes.string.isRequired,
+  changePageIndex: PropTypes.string.isRequired,
+};
+
 const mapStateToProps = state => ({
   dispatch: state.dispatch,
   pageIndex: state.pageIndex,
   type: state.cakeCharacteristics.type,
 });
 
-const matchDispatchToProps = dispatch => ({ changeIndex: num => dispatch(changeIndex(num)) });
+const matchDispatchToProps = dispatch => ({ changePageIndex: num => dispatch(changeIndex(num)) });
 
 
 export default connect(mapStateToProps, matchDispatchToProps)(NavArrowNext);

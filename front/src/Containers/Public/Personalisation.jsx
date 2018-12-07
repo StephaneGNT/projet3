@@ -66,7 +66,7 @@ class Personalisation extends Component {
     }
 
     return (
-      <div class="bloc-personnalisation">
+      <div className="bloc-personnalisation">
         <link
           rel="stylesheet"
           href={`https://fonts.googleapis.com/css?family=${font}`}
