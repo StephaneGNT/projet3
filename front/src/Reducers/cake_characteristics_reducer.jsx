@@ -1,9 +1,9 @@
 export default (state = {
-  type: ' ',
-  size: 0, // size doit impérativement être définie comme un entier !!
-  story: 0, // story doit impérativement être définie comme un entier !!
-  quantity: '1',
-  occasion: '',
+  type: 'cake',
+  size: 20, // size doit impérativement être définie comme un entier !!
+  story: 2, // story doit impérativement être définie comme un entier !!
+  quantity: 1,
+  occasion: 'Mariage',
   ingredients: [
     {
       id: 1,
@@ -30,9 +30,9 @@ export default (state = {
       compatible: ['Glaçage framboise', 'Glaçage orange'],
     },
   ],
-  customization: '', // aucune, 2D, 3D, message
+  customization: 'aucune', // aucune, 2D, 3D, message
   comments: '',
-  price: 0,
+  price: 40,
 },
 action) => {
   const listIngredients = state.ingredients;

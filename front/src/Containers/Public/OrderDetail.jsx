@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { Row } from 'reactstrap';
+import { connect } from 'react-redux';
 import NavArrowsLayout from './Navigation/NavArrowsLayout';
 import Progressbar from './Progressbar';
+import Confirmation from './confirmation'
+import Composition from './Composition';
+import Price from './Price';
+import CakeInProgress from './CakeInProgress';
+import '../../Assets/Styles/OrderDetail.css';
+
 
 
 class OrderDetail extends Component {
@@ -16,11 +23,14 @@ class OrderDetail extends Component {
         <Row className="text-center">
           <Progressbar />
         </Row>
-        Order detail
+        <Row>
+          <Confirmation />
+        </Row>
         <NavArrowsLayout />
+       
       </div>
     );
   }
 }
 
-export default OrderDetail;
+export default (OrderDetail);
