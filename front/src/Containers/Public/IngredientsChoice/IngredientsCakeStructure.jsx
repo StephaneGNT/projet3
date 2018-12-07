@@ -16,11 +16,11 @@ class IngredientsCakeStructure extends Component {
       else elementToDisplay = bases;
 
       render = (
-        <Row className="displayIngredient" style={{ overflowY: 'scroll', height: '100%' }}>
-          <Row style={{ width: '100%' }}>
+        <Row className="displayIngredient">
+          <Row>
             <h1>{elementToDisplay[0].type}</h1>
           </Row>
-          <Row style={{ width: '100%' }}>
+          <Row>
             <IngredientsDisplay elementToDisplay={elementToDisplay} />
           </Row>
         </Row>
@@ -29,7 +29,7 @@ class IngredientsCakeStructure extends Component {
     // Deuxième écran : Choix du glaçage et filling du cake,
       if (cake.type === 'cake') {
         render = (
-          <Row className="displayIngredient" style={{ height: '100%' }}>
+          <Row className="displayIngredient">
             <Col sm="6" style={{ overflowY: 'scroll' }}>
               <Row>
                 <h1>{icings[0].type}</h1>
@@ -51,7 +51,7 @@ class IngredientsCakeStructure extends Component {
       } else {
       // ou choix du glaçage du cheesecake
         render = (
-          <Row className="displayIngredient" style={{ overflowY: 'scroll', height: '100%' }}>
+          <Row className="displayIngredient">
             <Row>
               <h1>{icings[0].type}</h1>
             </Row>
@@ -64,7 +64,7 @@ class IngredientsCakeStructure extends Component {
     // Troisième écran : Choix des toppings
     } else if (index === 4) {
       render = (
-        <Row className="displayIngredient" style={{ overflowY: 'scroll', height: '100%' }}>
+        <Row className="displayIngredient">
           <Row>
             <h1>{toppings[0].type}</h1>
           </Row>

@@ -112,7 +112,7 @@ class UserInfo extends Component {
         </Row>
         <Row className="text-center">
           <NavArrowsLayout />
-          <Button className="btn btn-info btn-lg ml-3" disabled={this.activateButton()}>envoyer la Commande</Button>
+          <button className="btn-confirmation" disabled={this.activateButton()}>envoyer la Commande</button>
         </Row>
       </Container>
     );

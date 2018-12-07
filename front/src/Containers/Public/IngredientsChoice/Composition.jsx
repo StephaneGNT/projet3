@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Container } from 'reactstrap';
 import PropTypes from 'prop-types';
-
 import IngredientsCakeStructure from './IngredientsCakeStructure';
 import IngredientsMacaronStructure from './IngredientsMacaronStructure';
 import IngredientsCookieStructure from './IngredientsCookieStructure';
@@ -37,12 +36,12 @@ const Composition = (props) => {
   };
 
   return (
-    <Container style={{ height: '80vh' }}>
+    <Container>
       <Row className="text-center">
         <Progressbar />
       </Row>
-      {renderComposition(cake.type)}
-      <Row sm="12" style={{ height: '10vh' }}>
+      {renderComposition(props.cake.type)}
+      <Row sm="12">
         <Price />
         <IngredientsButtons index={index} />
       </Row>
