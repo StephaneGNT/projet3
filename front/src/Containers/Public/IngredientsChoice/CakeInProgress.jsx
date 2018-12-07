@@ -12,14 +12,14 @@ class CakeInProgress extends Component {
   }
 
   render() {
-    const { cake, removeIngredient } = this.props;
+    const { cake, removeIngredientFromCake } = this.props;
     return (
       <Row className="cakeLayout">
         {
           cake.ingredients.map(item => (
             <div>
               <div><img src={item.img} alt="ingredient" /></div>
-              <Button close onClick={() => removeIngredient(item)} />
+              <Button close onClick={() => removeIngredientFromCake(item)} />
               <p>{item.name}</p>
             </div>
           ))}
@@ -30,7 +30,7 @@ class CakeInProgress extends Component {
 
 CakeInProgress.propTypes = {
   cake: PropTypes.string.isRequired,
-  // removeIngredient: PropTypes.string.isRequired,
+  removeIngredientFromCake: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -38,7 +38,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  removeIngredient: item => dispatch(removeIngredient(item)),
+  removeIngredientFromCake: item => dispatch(removeIngredient(item)),
 });
 
 
