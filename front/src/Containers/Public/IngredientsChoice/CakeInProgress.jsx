@@ -12,10 +12,12 @@ class CakeInProgress extends Component {
   }
 
   compareIndexToLength = (item, index, arr) => {
-    if (index < arr.length) {
+    const { remove } = this.props;
+    if (index + 1 === arr.length) {
       return (
         <div>
           <img src={item.img} alt="ingredient" />
+          <Button close onClick={() => remove(item)} />
           <p>{item.name}</p>
         </div>
       );
@@ -23,18 +25,17 @@ class CakeInProgress extends Component {
     return (
       <div>
         <img src={item.img} alt="ingredient" />
-        <Button close onClick={() => removeIngredient(item)} />
         <p>{item.name}</p>
       </div>
-      );
-    }
+    );
   }
 
+
   render() {
-    const { cake, removeIngredient } = this.props;
+    const { cake } = this.props;
     return (
       <Row className="cakeLayout">
-        {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index,arr))}
+        {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index, arr))}
       </Row>
     );
   }
@@ -51,7 +52,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  removeIngredient: item => dispatch(removeIngredient(item)),
+  remove: item => dispatch(removeIngredient(item)),
 });
 
 
