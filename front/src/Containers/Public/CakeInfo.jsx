@@ -1,12 +1,7 @@
 
 import '../../Assets/Styles/CakeInfo.css';
 import {
-  Label,
-  Input,
-  Button,
-  Container,
-  Row,
-  Col,
+  Label, Input, Container, Row, Col, Button,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
