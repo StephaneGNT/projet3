@@ -30,8 +30,8 @@ const IngredientsMacaronStructure = (props) => {
 };
 
 IngredientsMacaronStructure.propTypes = {
-  flavor: PropTypes.number.isRequired,
-  shell: PropTypes.number.isRequired,
+  flavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  shell: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 const mapStateToProps = state => ({

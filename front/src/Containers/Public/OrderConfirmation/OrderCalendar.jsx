@@ -44,7 +44,7 @@ class OrderCalendar extends Component {
 
 OrderCalendar.propTypes = {
   selectDeliveryDate: PropTypes.string.isRequired,
-  cake: PropTypes.string.isRequired,
+  cake: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({

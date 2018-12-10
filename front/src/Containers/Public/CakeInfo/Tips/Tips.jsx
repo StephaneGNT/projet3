@@ -30,7 +30,7 @@ const Tips = (props) => {
 };
 
 Tips.propTypes = {
-  cake: PropTypes.string.isRequired,
+  cake: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({

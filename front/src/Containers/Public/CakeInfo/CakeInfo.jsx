@@ -85,7 +85,7 @@ const CakeInfo = (props) => {
 };
 
 CakeInfo.propTypes = {
-  localChangeCakeType: PropTypes.string.isRequired,
+  localChangeCakeType: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

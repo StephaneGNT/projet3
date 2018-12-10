@@ -14,7 +14,8 @@ export default () => {
       info: 'some info',
       img: base_banane,
       allerg: 'gluten',
-      compatible: ['remplissage citron', 'Glaçage citron'],
+      compatible: ['fourrage citron', 'Glaçage citron'],
+      isCompatibe: true,
     },
     {
       id: 2,
@@ -26,7 +27,8 @@ export default () => {
       info: 'some info',
       img: base_banane,
       allerg: 'gluten',
-      compatible: ['remplissage citron', 'Glaçage citron'],
+      compatible: ['fourrage citron', 'Glaçage citron'],
+      isCompatibe: true,
     },
     {
       id: 3,
@@ -38,7 +40,8 @@ export default () => {
       info: 'some info',
       img: base_banane,
       allerg: 'gluten',
-      compatible: ['remplissage citron', 'Glaçage citron'],
+      compatible: ['fourrage citron', 'Glaçage citron'],
+      isCompatibe: true,
     },
     {
       id: 4,
@@ -50,7 +53,8 @@ export default () => {
       info: 'some info',
       img: base_chocolat,
       allerg: 'gluten',
-      compatible: ['remplissage framboise', 'Glaçage framboise'],
+      compatible: ['fourrage framboise', 'Glaçage framboise'],
+      isCompatibe: true,
     },
     {
       id: 4,
@@ -62,7 +66,8 @@ export default () => {
       info: 'some info',
       img: base_chocolat,
       allerg: 'gluten',
-      compatible: ['remplissage framboise', 'Glaçage framboise'],
+      compatible: ['fourrage framboise', 'Glaçage framboise'],
+      isCompatibe: true,
     },
     {
       id: 6,
@@ -74,7 +79,8 @@ export default () => {
       info: 'some info',
       img: base_chocolat,
       allerg: 'gluten',
-      compatible: ['remplissage framboise', 'Glaçage framboise'],
+      compatible: ['fourrage framboise', 'Glaçage framboise'],
+      isCompatibe: true,
     },
     {
       id: 7,
@@ -86,7 +92,8 @@ export default () => {
       info: 'some info',
       img: base_vanille,
       allerg: 'gluten',
-      compatible: ['remplissage fraise', 'Glaçage fraise'],
+      compatible: ['fourrage fraise', 'Glaçage fraise'],
+      isCompatibe: true,
     },
     {
       id: 8,
@@ -98,7 +105,8 @@ export default () => {
       info: 'some info',
       img: base_vanille,
       allerg: 'gluten',
-      compatible: ['remplissage fraise', 'Glaçage fraise'],
+      compatible: ['fourrage fraise', 'Glaçage fraise'],
+      isCompatibe: true,
     },
     {
       id: 9,
@@ -110,7 +118,8 @@ export default () => {
       info: 'some info',
       img: base_vanille,
       allerg: 'gluten',
-      compatible: ['remplissage fraise', 'Glaçage fraise'],
+      compatible: ['fourrage fraise', 'Glaçage fraise'],
+      isCompatibe: true,
     },
   ];
 };

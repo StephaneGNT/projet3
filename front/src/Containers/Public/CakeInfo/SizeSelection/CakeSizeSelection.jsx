@@ -62,8 +62,8 @@ class CakeSizeSelection extends Component {
 }
 
 CakeSizeSelection.propTypes = {
-  size: PropTypes.string.isRequired,
-  story: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+  story: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({

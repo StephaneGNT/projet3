@@ -53,10 +53,10 @@ class CakeStoryDisplay extends Component {
 CakeStoryDisplay.propTypes = {
   width: PropTypes.string.isRequired,
   taille: PropTypes.string.isRequired,
-  addPieces: PropTypes.string.isRequired,
-  removePieces: PropTypes.string.isRequired,
-  chosenStories: PropTypes.string.isRequired,
-  story: PropTypes.string.isRequired,
+  addPieces: PropTypes.func.isRequired,
+  removePieces: PropTypes.func.isRequired,
+  chosenStories: PropTypes.arrayOf(PropTypes.number).isRequired,
+  story: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
