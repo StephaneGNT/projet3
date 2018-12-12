@@ -37,9 +37,9 @@ class NavArrowsLayout extends Component {
 }
 
 NavArrowsLayout.propTypes = {
-  pageIndex: PropTypes.string.isRequired,
+  pageIndex: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
-  cake: PropTypes.string.isRequired,
+  cake: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = (state) => {

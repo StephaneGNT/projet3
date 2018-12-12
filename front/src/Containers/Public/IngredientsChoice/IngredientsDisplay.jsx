@@ -3,31 +3,36 @@ import { connect } from 'react-redux';
 import Ingredient from './Ingredient';
 
 const IngredientsDisplay = (props) => {
-  // Fonction de récupération de la liste des ingrédients compatibles avec ceux du gâteau
-  // const getCompatibleIngredients = (cake) => {
-  //   // const tempCompatibleIngredients = (cake.ingredients.map(ingredient => ingredient.compatible));
-  //   let newCompatibleIngredient = [];
-  //   // if (tempCompatibleIngredients.length > 1) {
-  //   //   for (let i = 1; i < tempCompatibleIngredients.length; i += 1) {
-  //   //     newCompatibleIngredient = tempCompatibleIngredients[0].filter(
-  //   //       ingredient => tempCompatibleIngredients[1].indexOf(ingredient) === -1,
-  //   //     );
-  //   //   }
-  //   // } else newCompatibleIngredient = tempCompatibleIngredients;
-  //   return newCompatibleIngredient;
-  // };
+  const orderElement = (elementToDisplay, elementCompatible) => {
+    if (elementCompatible.length > 0) {
+      for (let i = 0; i < elementToDisplay.length; i += 1) {
+        elementToDisplay[i].isCompatible = (elementCompatible.indexOf(elementToDisplay[i].name) !== -1);
+      }
+    }
+    elementToDisplay.sort((a, b) => {
+      if (a.isCompatible) return -1;
+      if (!a.isCompatible && b.isCompatible) return 1;
+      return 1;
+    });
+    return elementToDisplay;
+  };
 
   const renderIngredients = (elementToDisplay, cake) => {
-    // const compatibleIngredients = getCompatibleIngredients(cake);
+    // Récupération des ingrédients compatibles
+    const compatibleIngredients = cake.ingredients[0] ? cake.ingredients[0].compatible : [];
+    // Tri des éléments avant affichage
+    const orderedElement = orderElement(elementToDisplay, compatibleIngredients);
     const render = [];
-    elementToDisplay.map(
+    orderedElement.map(
       (ingredient) => {
-        //  if (compatibleIngredients.length === 0 && ingredient.dispo) {
-        //    render.push(<Ingredient ingredient={ingredient} />);
-        //  }
-        //  if (compatibleIngredients.indexOf(ingredient.name) >= 0 && ingredient.dispo) {
-        render.push(<Ingredient ingredient={ingredient} />);
-        //  }
+        const disabled = !(ingredient.dispo && (compatibleIngredients.length === 0
+          || compatibleIngredients.indexOf(ingredient.name) >= 0))
+        render.push(
+          <Ingredient
+            ingredient={ingredient}
+            disabled={disabled}
+          />,
+        );
         return render;
       },
     );

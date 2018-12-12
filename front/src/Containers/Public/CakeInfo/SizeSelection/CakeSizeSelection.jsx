@@ -45,8 +45,8 @@ class CakeSizeSelection extends Component {
       <Container style={{ minWidth: '100%' }}>
         <Label className="labels-perso mt-3">Choisissez la taille de votre gâteau</Label>
         <Row>
-          <Col sm="6"> Nombre de personnes </Col>
-          <Col sm="3"> Diamètre </Col>
+          <Col sm="6" className="text-center"> Nombre de personnes </Col>
+          <Col sm="3" className="text-center"> Diamètre </Col>
           <Col sm="3" />
         </Row>
         <CakeSizeDisplay />
@@ -62,8 +62,8 @@ class CakeSizeSelection extends Component {
 }
 
 CakeSizeSelection.propTypes = {
-  size: PropTypes.string.isRequired,
-  story: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+  story: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
