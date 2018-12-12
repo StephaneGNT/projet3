@@ -35,8 +35,8 @@ IngredientsMacaronStructure.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  flavor: state.macaronsPerfumes,
-  shell: state.macaronsCoquilles,
+  flavor: state.macaronsFlavors,
+  shell: state.macaronsShells,
 });
 
 export default connect(mapStateToProps)(IngredientsMacaronStructure);

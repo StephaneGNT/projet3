@@ -6,7 +6,7 @@ export default () => {
   return [
     {
       id: 1,
-      name: 'noisettes',
+      name: 'Noisettes',
       type: 'Toppings',
       size: 'S',
       price: 4,
@@ -19,7 +19,7 @@ export default () => {
     },
     {
       id: 2,
-      name: 'noisettes',
+      name: 'Dentelles chocolat',
       type: 'Toppings',
       size: 'M',
       price: 5,
@@ -32,7 +32,7 @@ export default () => {
     },
     {
       id: 3,
-      name: 'noisettes',
+      name: 'Noix',
       type: 'Toppings',
       size: 'XL',
       price: 6,
@@ -45,7 +45,7 @@ export default () => {
     },
     {
       id: 4,
-      name: 'cerise',
+      name: 'Crumble',
       type: 'Toppings',
       size: 'S',
       price: 2,
@@ -58,7 +58,7 @@ export default () => {
     },
     {
       id: 4,
-      name: 'cerise',
+      name: 'Fraise',
       type: 'Toppings',
       size: 'M',
       price: 3,
@@ -71,7 +71,7 @@ export default () => {
     },
     {
       id: 6,
-      name: 'cerise',
+      name: 'Amandes',
       type: 'Toppings',
       size: 'XL',
       price: 4,
