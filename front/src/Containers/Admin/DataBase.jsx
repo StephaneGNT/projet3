@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BasesDB from './Incredients-Components/Bases/BasesDB';
 
 export default class DataBase extends Component {
   constructor(props) {
@@ -8,7 +9,9 @@ export default class DataBase extends Component {
 
   render() {
     return (
-      <div> DataBase </div>
+      <div>
+        <BasesDB />
+      </div>
     );
   }
 }
