@@ -20,7 +20,7 @@ class Public extends Component {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/mycake" component={PimpMyCake} />
-              <Route path="/contact/" component={Contact} />
+              <Route path="/contact" component={Contact} />
             </Switch>
           </BrowserRouter>
         </div>

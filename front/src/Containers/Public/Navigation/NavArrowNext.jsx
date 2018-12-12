@@ -41,10 +41,10 @@ class NavArrowNext extends Component {
 }
 
 NavArrowNext.propTypes = {
-  pageIndex: PropTypes.string.isRequired,
+  pageIndex: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
-  disabled: PropTypes.string.isRequired,
-  changePageIndex: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  changePageIndex: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -17,6 +17,7 @@ export default () => {
       allerg: '',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 2,
@@ -30,6 +31,7 @@ export default () => {
       allerg: '',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 3,
@@ -43,6 +45,7 @@ export default () => {
       allerg: '',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 4,
@@ -56,6 +59,7 @@ export default () => {
       allerg: 'gluten',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 4,
@@ -69,6 +73,7 @@ export default () => {
       allerg: 'gluten',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 6,
@@ -82,6 +87,7 @@ export default () => {
       allerg: 'gluten',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 7,
@@ -95,6 +101,7 @@ export default () => {
       allerg: 'gluten',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 8,
@@ -108,6 +115,7 @@ export default () => {
       allerg: 'gluten',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 9,
@@ -121,6 +129,7 @@ export default () => {
       allerg: 'gluten',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
   ];
 };

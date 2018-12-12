@@ -11,6 +11,8 @@ import Progressbar from '../Progressbar';
 import Price from '../Price';
 import CakeInProgress from './CakeInProgress';
 
+import '../../../Assets/Styles/Composition.css';
+
 const Composition = (props) => {
   const { index, cake } = props;
 
@@ -40,7 +42,7 @@ const Composition = (props) => {
       <Row className="text-center">
         <Progressbar />
       </Row>
-      {renderComposition(props.cake.type)}
+      {renderComposition(cake.type)}
       <Row sm="12">
         <Price />
         <IngredientsButtons index={index} />
@@ -51,7 +53,7 @@ const Composition = (props) => {
 
 Composition.propTypes = {
   index: PropTypes.number.isRequired,
-  cake: PropTypes.string.isRequired,
+  cake: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({

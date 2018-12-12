@@ -21,7 +21,7 @@ class CakeStoryDisplay extends Component {
 
   getDisabledMinus = () => {
     const { chosenStories, story } = this.props;
-    return (chosenStories.indexOf(story) === -1);
+    return (chosenStories.indexOf(story) === -1) ? 'hidden' : 'visible';
   };
 
   render() {
@@ -36,13 +36,17 @@ class CakeStoryDisplay extends Component {
     return (
       <Container className="cakeSize">
         <Row>
-          <Col sm="6">
-            <div className="story" style={{ width }}>{story}</div>
+          <Col sm="6" className="text-center">
+            <Button onClick={() => addPieces(story)} style={{ width }} className="story text-center">{story}</Button>
           </Col>
-          <Col sm="3"><div>{taille}</div></Col>
+          <Col sm="3" className="text-center"><div>{taille}</div></Col>
           <Col sm="3" className="buttonDisplay">
-            <Button onClick={() => addPieces(story)}>+</Button>
-            <Button disabled={this.getDisabledMinus()} onClick={() => removePieces(story)}>-</Button>
+            <Button
+              style={{ visibility: this.getDisabledMinus() }}
+              onClick={() => removePieces(story)}
+            >
+            -
+            </Button>
           </Col>
         </Row>
       </Container>
@@ -53,10 +57,10 @@ class CakeStoryDisplay extends Component {
 CakeStoryDisplay.propTypes = {
   width: PropTypes.string.isRequired,
   taille: PropTypes.string.isRequired,
-  addPieces: PropTypes.string.isRequired,
-  removePieces: PropTypes.string.isRequired,
-  chosenStories: PropTypes.string.isRequired,
-  story: PropTypes.string.isRequired,
+  addPieces: PropTypes.func.isRequired,
+  removePieces: PropTypes.func.isRequired,
+  chosenStories: PropTypes.arrayOf(PropTypes.number).isRequired,
+  story: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
