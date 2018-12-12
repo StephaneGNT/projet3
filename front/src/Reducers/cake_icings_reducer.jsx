@@ -7,7 +7,7 @@ export default () => {
   return [
     {
       id: 1,
-      name: 'Glaçage fraise',
+      name: 'Cream cheese',
       type: 'Glaçage',
       size: 'S',
       price: 4,
@@ -15,11 +15,11 @@ export default () => {
       info: 'some info',
       img: glacage_fraise,
       allerg: '',
-      compatible: 'remplissage framboise',
+      compatible: ['Noisettes'],
     },
     {
       id: 2,
-      name: 'Glaçage fraise',
+      name: 'Ganache chocolat',
       type: 'Glaçage',
       size: 'M',
       price: 5,
@@ -27,11 +27,11 @@ export default () => {
       info: 'some info',
       img: glacage_fraise,
       allerg: '',
-      compatible: 'remplissage framboise',
+      compatible: ['Dentelles chocolat', 'Noix', 'Crumble', 'Fraise'],
     },
     {
       id: 3,
-      name: 'Glaçage fraise',
+      name: 'Ganache caramel',
       type: 'Glaçage',
       size: 'XL',
       price: 6,
@@ -39,7 +39,7 @@ export default () => {
       info: 'some info',
       img: glacage_fraise,
       allerg: '',
-      compatible: 'remplissage framboise',
+      compatible: ['Dentelles chocolat', 'Crumble'],
     },
     {
       id: 4,

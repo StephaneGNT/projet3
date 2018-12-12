@@ -1,33 +1,62 @@
 import React, { Component } from 'react';
-import { Nav, NavItem, Button } from 'reactstrap';
+import {
+  Nav, NavItem, Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
+} from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import setCategory from '../../../Actions/databaseActions/setCategory';
 
+import '../../../Assets/Styles/HorizontalNavBar.css';
+
 class HorizontalNavBar extends Component {
   constructor(props) {
     super(props);
-    this.ingredients = ['Bases cake', 'Bases cookie', 'Toppings', 'Remplissage', 'Glaçage', 'Parfums macarons', 'Couleur macarons', 'Parfum cheesecake', 'Allergènes'];
+    this.ingredients = ['Cake', 'Cookie', 'Toppings', 'Remplissage', 'Glaçage', 'Macarons', 'Cheesecake', 'Allergènes'];
+    this.state = {
+      dropdownOpen: false,
+    };
+  }
+
+  toggle = () => {
+    const { dropdownOpen } = this.state;
+    this.setState({
+      dropdownOpen: !dropdownOpen,
+    });
   }
 
   renderNavBar = () => {
     const { changeCategory } = this.props;
+    const { dropdownOpen } = this.state;
     const render = [];
     for (let i = 0; i < this.ingredients.length; i += 1) {
-      render.push(
-        <NavItem>
-          <Button onClick={() => changeCategory(this.ingredients[i])}>
-            {this.ingredients[i]}
-          </Button>
-        </NavItem>,
-      );
+      if (this.ingredients[i] === 'Macarons') {
+        render.push(
+          <NavItem>
+            <ButtonDropdown className="dropdown" isOpen={dropdownOpen} toggle={this.toggle}>
+              <DropdownToggle caret> Macarons </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={() => changeCategory('Parfum macaron')}>Parfum</DropdownItem>
+                <DropdownItem onClick={() => changeCategory('Couleur macaron')}>Couleur</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+          </NavItem>,
+        );
+      } else {
+        render.push(
+          <NavItem>
+            <Button onClick={() => changeCategory(this.ingredients[i])}>
+              {this.ingredients[i]}
+            </Button>
+          </NavItem>,
+        );
+      }
     }
     return render;
   }
 
   render() {
     return (
-      <Nav>
+      <Nav className="navBar">
         {this.renderNavBar()}
       </Nav>
     );
