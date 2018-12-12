@@ -31,8 +31,8 @@ const CakeSizeSelection = (props) => {
 };
 
 CakeSizeSelection.propTypes = {
-  selectCakeSize: PropTypes.string.isRequired,
-  selectQuantity: PropTypes.string.isRequired,
+  selectCakeSize: PropTypes.func.isRequired,
+  selectQuantity: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({

@@ -8,7 +8,7 @@ const CakeSizeDisplay = () => {
   const renderDisplay = () => {
     const render = [];
     for (let i = 0; i < storys.length; i += 1) {
-      const width = `${storys[i] / storys[storys.length - 1] * 100}%`;
+      const width = storys[i] / storys[storys.length - 1] * 110 > 100 ? '100%' : `${storys[i] / storys[storys.length - 1] * 110}%`;
       render.push(
         <CakeStoryDisplay
           width={width}

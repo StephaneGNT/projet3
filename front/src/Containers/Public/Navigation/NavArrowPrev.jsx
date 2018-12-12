@@ -32,9 +32,9 @@ class NavArrowPrev extends Component {
 }
 
 NavArrowPrev.propTypes = {
-  pageIndex: PropTypes.string.isRequired,
+  pageIndex: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
-  changePageIndex: PropTypes.string.isRequired,
+  changePageIndex: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

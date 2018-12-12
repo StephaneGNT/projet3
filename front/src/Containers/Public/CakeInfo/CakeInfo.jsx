@@ -8,7 +8,7 @@ import NavArrowsLayout from '../Navigation/NavArrowsLayout';
 import changeCakeType from '../../../Actions/cakeActions/changeCakeType';
 import SizeSelection from './SizeSelection/SizeSelection';
 import Tips from './Tips/Tips';
-
+import '../../../Assets/Styles/CakeInfo.css';
 
 const CakeInfo = (props) => {
   const { localChangeCakeType } = props;
@@ -71,19 +71,24 @@ const CakeInfo = (props) => {
           </Input>
           <SizeSelection />
         </Col>
-        <Col sm="5">
-          <Tips />
+        <Col sm="5" className="tipsColumn">
+          <Row>
+            <Tips />
+          </Row>
+          <Row className="text-right">
+            <NavArrowsLayout />
+          </Row>
         </Col>
       </Row>
-      <Row className="justify-content-center mt-3">
-        <NavArrowsLayout />
-      </Row>
+      {/* <Row className="justify-content-center mt-3">
+        
+      </Row> */}
     </Container>
   );
 };
 
 CakeInfo.propTypes = {
-  localChangeCakeType: PropTypes.string.isRequired,
+  localChangeCakeType: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

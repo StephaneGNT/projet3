@@ -96,12 +96,12 @@ class IngredientsCakeStructure extends Component {
 }
 
 IngredientsCakeStructure.propTypes = {
-  cake: PropTypes.string.isRequired,
-  bases: PropTypes.string.isRequired,
-  icings: PropTypes.string.isRequired,
-  fillings: PropTypes.string.isRequired,
-  toppings: PropTypes.string.isRequired,
-  flavor: PropTypes.string.isRequired,
+  cake: PropTypes.shape({}).isRequired,
+  bases: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  icings: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  fillings: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  toppings: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  flavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   index: PropTypes.number.isRequired,
 };
 
