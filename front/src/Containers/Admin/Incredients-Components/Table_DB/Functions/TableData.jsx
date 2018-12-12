@@ -1,15 +1,16 @@
 import React from 'react';
+import keyIndex from 'react-key-index';
 import { Button } from 'reactstrap';
 
 const createTableDataFields = (element) => {
-  const objValues = Object.values(element);
+  const objValues = keyIndex(Object.values(element), 2);
   return objValues.map(value => (
-    <td>{value}</td>
+    <td key={value.id}>{value.value}</td>
   ));
 };
 
 const TableData = incredients => incredients.map(incredient => (
-  <tr>
+  <tr key={incredient.id}>
     {createTableDataFields(incredient)}
     <td>
       <Button>
