@@ -16,7 +16,7 @@ class CakeInProgress extends Component {
     if (index + 1 === arr.length) {
       return (
         <div>
-          <img src={item.img} alt="ingredient" />
+          <img src={item.img} alt="ingredient" className={item.type} />
           <Button close onClick={() => remove(item)} />
           <p>{item.name}</p>
         </div>
@@ -42,8 +42,8 @@ class CakeInProgress extends Component {
 }
 
 CakeInProgress.propTypes = {
-  cake: PropTypes.string.isRequired,
-  remove: PropTypes.string.isRequired,
+  cake: PropTypes.shape({}).isRequired,
+  remove: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

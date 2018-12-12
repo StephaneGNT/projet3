@@ -6,19 +6,22 @@ import addIngredient from '../../../Actions/cakeActions/addIngredient';
 import '../../../Assets/Styles/Ingredient.css';
 
 const Ingredient = (props) => {
-  const { ingredient, addNewIngredient } = props;
+  const { ingredient, addNewIngredient, disabled } = props;
+
+  const filter = disabled ? 'grayscale(80%)' : '';
 
   return (
     <Col className="ingredient" style={{ textAlign: 'center' }}>
-      <Button onClick={() => addNewIngredient(ingredient)}><img src={ingredient.img} title={ingredient.fullDescripion} alt="" /></Button>
+      <Button disabled={disabled} style={{ filter }} onClick={() => addNewIngredient(ingredient)}><img src={ingredient.img} title={ingredient.fullDescripion} alt="" /></Button>
       <p>{ingredient.name}</p>
     </Col>
   );
 };
 
 Ingredient.propTypes = {
-  ingredient: PropTypes.string.isRequired,
-  addNewIngredient: PropTypes.string.isRequired,
+  ingredient: PropTypes.shape({}).isRequired,
+  addNewIngredient: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -32,18 +32,18 @@ class IngredientsCakeStructure extends Component {
           <Row className="displayIngredient">
             <Col sm="6" style={{ overflowY: 'scroll' }}>
               <Row>
-                <h1>{icings[0].type}</h1>
-              </Row>
-              <Row>
-                <IngredientsDisplay elementToDisplay={icings} />
-              </Row>
-            </Col>
-            <Col sm="6" style={{ overflowY: 'scroll' }}>
-              <Row>
                 <h1>{fillings[0].type}</h1>
               </Row>
               <Row>
                 <IngredientsDisplay elementToDisplay={fillings} />
+              </Row>
+            </Col>
+            <Col sm="6" style={{ overflowY: 'scroll' }}>
+              <Row>
+                <h1>{icings[0].type}</h1>
+              </Row>
+              <Row>
+                <IngredientsDisplay elementToDisplay={icings} />
               </Row>
             </Col>
           </Row>
@@ -96,12 +96,12 @@ class IngredientsCakeStructure extends Component {
 }
 
 IngredientsCakeStructure.propTypes = {
-  cake: PropTypes.string.isRequired,
-  bases: PropTypes.string.isRequired,
-  icings: PropTypes.string.isRequired,
-  fillings: PropTypes.string.isRequired,
-  toppings: PropTypes.string.isRequired,
-  flavor: PropTypes.string.isRequired,
+  cake: PropTypes.shape({}).isRequired,
+  bases: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  icings: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  fillings: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  toppings: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  flavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   index: PropTypes.number.isRequired,
 };
 
@@ -110,7 +110,7 @@ const mapStateToProps = state => ({
   bases: state.cakeBases,
   fillings: state.cakeFillings,
   icings: state.cakeIcings,
-  flavor: state.cheesecakePerfumes,
+  flavor: state.cheesecakeFlavors,
   toppings: state.cakeToppings,
   index: state.pageIndex,
 });

@@ -1,5 +1,3 @@
-
-import '../../../Assets/Styles/CakeInfo.css';
 import {
   Label, Input, Container, Row, Col, Button,
 } from 'reactstrap';
@@ -11,6 +9,7 @@ import changeCakeType from '../../../Actions/cakeActions/changeCakeType';
 import SizeSelection from './SizeSelection/SizeSelection';
 import Tips from './Tips/Tips';
 
+import '../../../Assets/Styles/CakeInfo.css';
 
 const CakeInfo = (props) => {
   const { localChangeCakeType } = props;
@@ -73,26 +72,27 @@ const CakeInfo = (props) => {
           </Input>
           <SizeSelection />
         </Col>
-        <Col sm="5">
-          <Tips />
+        <Col sm="5" className="tipsColumn">
+          <Row>
+            <Tips />
+          </Row>
+          <Row className="text-right">
+            <NavArrowsLayout />
+          </Row>
         </Col>
-      </Row>
-      <Row className="justify-content-center mt-3">
-        <NavArrowsLayout />
       </Row>
     </Container>
   );
 };
 
 CakeInfo.propTypes = {
-  localChangeCakeType: PropTypes.string.isRequired,
+  localChangeCakeType: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   dispatch: state.dispatch,
   selectedCakeType: state.cakeCharacteristics,
 });
-
 
 const mapDispatchToProps = dispatch => ({
   localChangeCakeType: cakeType => dispatch(changeCakeType(cakeType)),

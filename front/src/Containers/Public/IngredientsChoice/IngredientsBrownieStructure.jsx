@@ -19,7 +19,7 @@ const IngredientsBrownieStructure = (props) => {
 };
 
 IngredientsBrownieStructure.propTypes = {
-  bases: PropTypes.string.isRequired,
+  bases: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 const mapStateToProps = state => ({

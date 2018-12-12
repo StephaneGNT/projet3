@@ -22,6 +22,14 @@ class NavArrowsLayout extends Component {
         </div>
       );
     }
+    if (index === 2 && cake.ingredients.length === 0) {
+      return (
+        <div>
+          <NavArrowPrev />
+          <NavArrowNext disabled={true} />
+        </div>
+      );
+    }
     return (
       <div>
         <NavArrowPrev />
@@ -37,9 +45,9 @@ class NavArrowsLayout extends Component {
 }
 
 NavArrowsLayout.propTypes = {
-  pageIndex: PropTypes.string.isRequired,
+  pageIndex: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
-  cake: PropTypes.string.isRequired,
+  cake: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = (state) => {

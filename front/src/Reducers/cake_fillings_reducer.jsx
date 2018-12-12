@@ -7,7 +7,7 @@ export default () => {
   return [
     {
       id: 1,
-      name: 'fourrage vanille',
+      name: 'Cream cheese',
       type: 'Filling',
       size: 'S',
       price: 4,
@@ -15,12 +15,13 @@ export default () => {
       info: 'some info',
       img: filling_vanille,
       allerg: '',
-      compatible: 'tout',
+      compatible: ['Cream cheese'],
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 2,
-      name: 'fourrage vanille',
+      name: 'Crème chocolat',
       type: 'Filling',
       size: 'M',
       price: 5,
@@ -28,12 +29,13 @@ export default () => {
       info: 'some info',
       img: filling_vanille,
       allerg: '',
-      compatible: 'tout',
+      compatible: ['Ganache chocolat', 'Ganache caramel'],
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 3,
-      name: 'fourrage vanille',
+      name: 'Ganache caramel',
       type: 'Filling',
       size: 'XL',
       price: 6,
@@ -41,8 +43,9 @@ export default () => {
       info: 'some info',
       img: filling_vanille,
       allerg: '',
-      compatible: 'tout',
+      compatible: ['Ganache chocolat', 'Ganache caramel'],
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 4,
@@ -56,6 +59,7 @@ export default () => {
       allerg: 'gluten',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 4,
@@ -69,6 +73,7 @@ export default () => {
       allerg: 'gluten',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 6,
@@ -82,6 +87,7 @@ export default () => {
       allerg: 'gluten',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 7,
@@ -95,6 +101,7 @@ export default () => {
       allerg: 'gluten',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 8,
@@ -108,6 +115,7 @@ export default () => {
       allerg: 'gluten',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
     {
       id: 9,
@@ -121,6 +129,7 @@ export default () => {
       allerg: 'gluten',
       compatible: 'tout',
       // fullDescription: getDescription(this),
+      isCompatibe: false,
     },
   ];
 };
