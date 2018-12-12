@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import BasesDB from './Incredients-Components/Bases/BasesDB';
 
 export default class Clients extends Component {
   constructor(props) {

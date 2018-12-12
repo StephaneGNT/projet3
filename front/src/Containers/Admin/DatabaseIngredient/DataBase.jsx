@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import HorizontalNavBar from './HorizontalNavBar';
 import Toolbar from './Toolbar';
 import AddIngredients from './AddIngredients';
-// import TableBD from '../Incredients-Components/Bases/TableBD';
+import TableDB from '../Incredients-Components/Table_DB/TableDB';
 
 class DataBase extends Component {
   constructor(props) {
@@ -15,21 +15,20 @@ class DataBase extends Component {
 
   displayIngredients = () => {
     const {
-      display, cake, cookie, toppings, fillings, icings, macaronFlavor, macaronShell, chessecakeFlavor,
+      display, cake, cookie, topping, filling, icing, macaronFlavor, macaronShell, chessecakeFlavor,
     } = this.props;
     let elementToDisplay;
     switch (display) {
-      case ('Cake'): elementToDisplay = cake; break;
       case ('Cookie'): elementToDisplay = cookie; break;
-      case ('Toppings'): elementToDisplay = toppings; break;
-      case ('Remplissage'): elementToDisplay = fillings; break;
-      case ('Glaçage'): elementToDisplay = icings; break;
+      case ('Toppings'): elementToDisplay = topping; break;
+      case ('Remplissage'): elementToDisplay = filling; break;
+      case ('Glaçage'): elementToDisplay = icing; break;
       case ('Parfum macaron'): elementToDisplay = macaronFlavor; break;
       case ('Couleur macaron'): elementToDisplay = macaronShell; break;
       case ('Cheesecake'): elementToDisplay = chessecakeFlavor; break;
-      default: return <div />;
+      default: elementToDisplay = cake;
     }
-    // return <TableBD type={elementToDisplay} />
+    return TableDB(elementToDisplay);
   }
 
   renderFormAddIngredient = () => {
@@ -54,25 +53,25 @@ class DataBase extends Component {
 DataBase.propTypes = {
   display: PropTypes.string.isRequired,
   formVisible: PropTypes.bool.isRequired,
-  cake: PropTypes.shape({}).isRequired,
-  cookie: PropTypes.shape({}).isRequired,
-  toppings: PropTypes.shape({}).isRequired,
-  fillings: PropTypes.shape({}).isRequired,
-  icings: PropTypes.shape({}).isRequired,
-  macaronFlavor: PropTypes.shape({}).isRequired,
-  macaronShell: PropTypes.shape({}).isRequired,
-  chessecakeFlavor: PropTypes.shape({}).isRequired,
+  cake: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  cookie: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  topping: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  filling: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  icing: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  macaronFlavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  macaronShell: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  chessecakeFlavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 const mapStateToProps = state => ({
   display: state.databaseDisplay,
   formVisible: state.databaseNewIngredientDisplay,
-  cakes: state.cakeBases,
-  fillings: state.cakeFillings,
-  icings: state.cakeIcings,
+  cake: state.cakeBases,
+  filling: state.cakeFillings,
+  icing: state.cakeIcings,
   chessecakeFlavor: state.cheesecakeFlavors,
   macaronFlavor: state.macaronsFlavors,
-  toppings: state.cakeToppings,
+  topping: state.cakeToppings,
   macaronShell: state.macaronsShells,
   cookie: state.cookiesBases,
   brownie: state.browniesBases,
