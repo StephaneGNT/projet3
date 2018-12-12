@@ -15,8 +15,8 @@ const Price = (props) => {
 };
 
 Price.propTypes = {
-  price: PropTypes.string.isRequired,
-  sendToPrice: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  sendToPrice: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({

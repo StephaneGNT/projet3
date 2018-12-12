@@ -7,13 +7,11 @@ export default function (state = [], action) {
   switch (action.type) {
     case 'ADD_PIECES': {
       newStories.push(action.payload);
-      console.log(newStories);
       return newStories;
     }
     case 'REMOVE_PIECES': {
       if (newStories.indexOf(action.payload) === -1) return state;
       newStories.splice(newStories.indexOf(action.payload), 1);
-      console.log(newStories);
       return newStories;
     }
     default:

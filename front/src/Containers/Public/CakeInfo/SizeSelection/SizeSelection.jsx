@@ -26,7 +26,7 @@ class SizeSelection extends Component {
 }
 
 SizeSelection.propTypes = {
-  cake: PropTypes.string.isRequired,
+  cake: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
