@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import HorizontalNavBar from './HorizontalNavBar';
 import Toolbar from './Toolbar';
 import AddIngredients from './AddIngredients';
+import BasesDB from '../Incredients-Components/Bases/BasesDB';
 
 class DataBase extends Component {
   constructor(props) {
@@ -15,15 +16,15 @@ class DataBase extends Component {
   displayIngredients = () => {
     const { display } = this.props;
     switch (display) {
-      case ('Bases cake'): return <div>Cake base</div>;
-      // case ('Bases cake'): return <BasesDB />;
-      // case ('Bases cookie'): return <CookieDB />;
+      // case ('Bases cake'): return <div>Cake base</div>;
+      case ('Cake'): return <BasesDB />;
+      // case ('Cookie'): return <CookieDB />;
       // case ('Toppings'): return <ToppingDB />;
       // case ('Remplissage'): return <FillingDB />;
       // case ('Glaçage'): return <IcingDB />;
-      // case ('Parfums macarons'): return <MacaronsFlavorDB />;
-      // case ('Couleur macarons'): return <MacaronsColorDB />;
-      // case ('Parfum cheesecake'): return <CheesecakeFlavorDB />;
+      // case ('Parfum macaron'): return <MacaronsFlavorDB />;
+      // case ('Couleur macaron'): return <MacaronsColorDB />;
+      // case ('Cheesecake'): return <CheesecakeFlavorDB />;
       default: return <div />;
     }
   }
