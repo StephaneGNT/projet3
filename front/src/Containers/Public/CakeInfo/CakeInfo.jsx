@@ -1,8 +1,6 @@
 
 import '../../../Assets/Styles/CakeInfo.css';
-import {
-  Label, Input, Container, Row, Col, Button,
-} from 'reactstrap';
+import { Label, Input, Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -24,29 +22,29 @@ const CakeInfo = (props) => {
       </Row>
       <Row className="mt-3 justify-content-around">
         <Col sm="2" className="text-center">
-          <Button className="btn" color="info" onClick={() => localChangeCakeType('cookie')}>
+          <button className="btn-marg" color="info" onClick={() => localChangeCakeType('cookie')}>
             Cookie
-          </Button>
+          </button>
         </Col>
         <Col sm="2" className="text-center">
-          <Button className="btn-marg" color="info" onClick={() => localChangeCakeType('cake')}>
+          <button className="btn-marg" color="info" onClick={() => localChangeCakeType('cake')}>
             Cake
-          </Button>
+          </button>
         </Col>
         <Col sm="2" className="text-center">
-          <Button className="btn-marg" color="info" onClick={() => localChangeCakeType('cheesecake')}>
+          <button className="btn-marg" color="info" onClick={() => localChangeCakeType('cheesecake')}>
             Cheesecake
-          </Button>
+          </button>
         </Col>
         <Col sm="2" className="text-center">
-          <Button className="btn-marg" color="info" onClick={() => localChangeCakeType('macaron')}>
+          <button className="btn-marg" color="info" onClick={() => localChangeCakeType('macaron')}>
             Macaron
-          </Button>
+          </button>
         </Col>
         <Col sm="2" className="text-center">
-          <Button className="btn-marg" color="info" onClick={() => localChangeCakeType('brownie')}>
+          <button className="btn-marg" color="info" onClick={() => localChangeCakeType('brownie')}>
             Brownie
-          </Button>
+          </button>
         </Col>
       </Row>
       <Row className="mt-5 justify-content-around">
