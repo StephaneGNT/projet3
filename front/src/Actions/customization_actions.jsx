@@ -1,7 +1,13 @@
 import axios from 'axios';
 
-export const allowMessage = () => ({
+
+export const allowMessage = item => ({
   type: 'ALLOW_MESSAGE',
+  item,
+});
+
+export const removeCakeMessage = () => ({
+  type: 'REMOVE_CUSTOM_MESSAGE',
 });
 
 export const updateCustomMessage = e => ({

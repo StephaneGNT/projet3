@@ -17,7 +17,7 @@ const CustomMessageInput = (props) => {
     textDisabled,
     selectedFonts,
     toggle,
-    chooseFontType
+    chooseFontType,
   } = props;
 
   return (

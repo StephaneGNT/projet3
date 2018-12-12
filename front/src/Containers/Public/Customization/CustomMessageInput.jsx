@@ -43,7 +43,7 @@ const mapStatetoProps = state => ({
   font: state.customization.font,
   selectedFonts: state.customization.selectedFonts,
   textDisabled: state.customization.textDisabled,
-  customMessage: state.customization.customMessage,
+  customMessage: state.customization.customMessage.message,
   bgColor: state.customization.bgColor,
   fontColor: state.customization.fontColor,
 });

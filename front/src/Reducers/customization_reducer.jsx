@@ -5,7 +5,17 @@ export default (state = {
   googleFonts: [],
   decorationChoice: null,
   wantsCustomMessage: false,
-  customMessage: '♥ Joyeux anniversaire chéri! ♥',
+  customMessage: {
+    name: 'Custom Message',
+    message: '♥ Joyeux anniversaire chéri! ♥',
+    price: 3,
+  },
+  print2D: {
+    name: '2 Dimension',
+    image: '',
+    price: 4,
+  },
+  print3Dimage: '',
   textDisabled: true,
   bgColor: '',
   fontColor: 'black',
@@ -21,13 +31,28 @@ export default (state = {
       ...state,
       wantsCustomMessage: !customMessageYes,
       textDisabled: !state.textDisabled,
-      customMessage: !customMessageYes ? '' : '♥ Joyeux anniversaire chéri! ♥',
+      customMessage: {
+        ...state.customMessage,
+        message: '',
+      },
+    };
+    case 'REMOVE_CUSTOM_MESSAGE': return {
+      ...state,
+      wantsCustomMessage: !customMessageYes,
+      textDisabled: !state.textDisabled,
+      customMessage: {
+        ...state.customMessage,
+        message: '♥ Joyeux anniversaire chéri! ♥',
+      },
       fontColor: 'black',
       bgColor: '',
     };
     case 'UPDATE_CUSTOM_MESSAGE': return {
       ...state,
-      customMessage: action.customMessage,
+      customMessage: {
+        ...state.customMessage,
+        message: action.customMessage,
+      },
     };
     case 'TOGGLE_FONTS': if (customMessageYes) {
       return {
@@ -45,7 +70,6 @@ export default (state = {
       font: action.font,
     };
     case 'ADD_FONT':
-      console.log("hello")
       customFonts.push(action.font);
       return {
         ...state,
