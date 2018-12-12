@@ -15,6 +15,7 @@ import chosenStoriesReducer from './chosen_story_reducer';
 import orderReducer from './order_reducer';
 import customizationReducer from './customization_reducer';
 import databaseDisplayReducer from './database_display_reducer';
+import databaseNewIngredientDisplayReducer from './database_new_ingredient_reducer';
 
 const allReducers = combineReducers({
   cakeBases: cakeBasesReducer,
@@ -33,6 +34,7 @@ const allReducers = combineReducers({
   orderCharacteristics: orderReducer,
   customization: customizationReducer,
   databaseDisplay: databaseDisplayReducer,
+  databaseNewIngredientDisplay: databaseNewIngredientDisplayReducer,
 });
 
 export default allReducers;

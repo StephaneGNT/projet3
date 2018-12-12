@@ -3,6 +3,8 @@ import { Container, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import HorizontalNavBar from './HorizontalNavBar';
+import Toolbar from './Toolbar';
+import AddIngredients from './AddIngredients';
 
 class DataBase extends Component {
   constructor(props) {
@@ -26,12 +28,19 @@ class DataBase extends Component {
     }
   }
 
+  renderFormAddIngredient = () => {
+    const { formVisible } = this.props;
+    return formVisible ? <AddIngredients /> : <div />;
+  }
+
   render() {
     return (
       <Container>
         <Row>
           <HorizontalNavBar />
         </Row>
+        <Toolbar />
+        {this.renderFormAddIngredient()}
         {this.displayIngredients()}
       </Container>
     );
@@ -40,10 +49,12 @@ class DataBase extends Component {
 
 DataBase.propTypes = {
   display: PropTypes.string.isRequired,
+  formVisible: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
   display: state.databaseDisplay,
+  formVisible: state.databaseNewIngredientDisplay,
 });
 
 export default connect(mapStateToProps, null)(DataBase);
