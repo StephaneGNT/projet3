@@ -14,7 +14,7 @@ export default () => {
       info: 'some info',
       img: base_banane,
       allerg: 'gluten',
-      compatible: ['fourrage citron', 'Glaçage citron'],
+      compatible: ['fourrage citron', 'Glaçage citron', 'noisettes', 'cerise'],
       isCompatibe: true,
     },
     {
@@ -27,7 +27,7 @@ export default () => {
       info: 'some info',
       img: base_banane,
       allerg: 'gluten',
-      compatible: ['fourrage citron', 'Glaçage citron'],
+      compatible: ['fourrage citron', 'Glaçage citron', 'noisettes', 'cerise'],
       isCompatibe: true,
     },
     {
@@ -40,7 +40,7 @@ export default () => {
       info: 'some info',
       img: base_banane,
       allerg: 'gluten',
-      compatible: ['fourrage citron', 'Glaçage citron'],
+      compatible: ['fourrage citron', 'Glaçage citron', 'noisettes', 'cerise'],
       isCompatibe: true,
     },
     {

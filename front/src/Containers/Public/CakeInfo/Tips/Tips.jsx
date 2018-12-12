@@ -15,15 +15,15 @@ const Tips = (props) => {
       case 'cookie': return <TipsCookie />;
       case 'macaron': return <TipsMacaron />;
       case 'brownie': return <TipsBrownie />;
-      default: return <p> Choisissez votre type de pâtisserie </p>;
+      default: return <p className="mt-3"> Choisissez votre type de pâtisserie </p>;
     }
   };
 
   const { cake } = props;
 
   return (
-    <div className="bg-light p-2">
-      <h5>Tips:</h5>
+    <div className="bg-light p-2" style={{ width: '100%' }}>
+      <h5 className="mt-3 text-center">Tips</h5>
       {renderTips(cake.type)}
     </div>
   );

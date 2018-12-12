@@ -14,6 +14,7 @@ import browniesBasesReducer from './brownie_bases_reducer';
 import chosenStoriesReducer from './chosen_story_reducer';
 import orderReducer from './order_reducer';
 import customizationReducer from './customization_reducer';
+import databaseDisplayReducer from './database_display_reducer';
 
 const allReducers = combineReducers({
   cakeBases: cakeBasesReducer,
@@ -31,6 +32,7 @@ const allReducers = combineReducers({
   chosenStories: chosenStoriesReducer,
   orderCharacteristics: orderReducer,
   customization: customizationReducer,
+  databaseDisplay: databaseDisplayReducer,
 });
 
 export default allReducers;

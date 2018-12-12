@@ -18,14 +18,13 @@ class OrderCalendar extends Component {
     minDate.setDate(today.getDate() + cake.time);
 
     let className = '';
-    if (date.date <= minDate) className = 'possibleDate';
-    if (this.blockedDate.indexOf(date.date.getTime()) >= 0) className = 'forbiddenDate';
+    if (date.date <= minDate || date.date.getDay() === 6) className = 'possibleDate';
     return className;
   }
 
   getTileDisable = (date) => {
     if (this.blockedDate.indexOf(date.date.getTime()) >= 0) return true;
-    if (date.date.getDay() === 0 || date.date.getDay() === 6) return true;
+    if (date.date.getDay() === 0) return true;
     return false;
   }
 

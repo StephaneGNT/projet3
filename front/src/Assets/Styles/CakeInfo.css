@@ -81,3 +81,10 @@ h3 {
     color:rgb(141, 29, 44) !important;
     text-shadow:1px 1px 0px rgb(255, 255, 255);
 }
+
+.tipsColumn{
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
