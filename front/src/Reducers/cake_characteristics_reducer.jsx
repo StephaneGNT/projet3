@@ -1,55 +1,20 @@
 export default (state = {
-<<<<<<< HEAD
-  type: 'cake',
-  size: 20, // size doit impérativement être définie comme un entier !!
-  story: 2, // story doit impérativement être définie comme un entier !!
-  quantity: 1,
-  occasion: 'Mariage',
-=======
   type: '',
   size: 0, // size doit impérativement être définie comme un entier !!
   story: 0, // story doit impérativement être définie comme un entier !!
   quantity: 1, // par défaut (cake, cheesecake), valeur de 1 ; sinon (cookie, macaron), valeur de l'input
   occasion: '',
->>>>>>> dev
   ingredients: [
-    // {
-    //   id: 1,
-    //   name: 'base banane',
-    //   type: 'base',
-    //   size: 'S',
-    //   price: 10,
-    //   dispo: true,
-    //   info: 'some info',
-    //   img: '',
-    //   allerg: 'gluten',
-    //   compatible: ['base banane', 'Glaçage citron', 'Glaçage framboise'],
-    // },
-    // {
-    //   id: 2,
-    //   name: '',
-    //   type: 'Glaçage',
-    //   size: 'M',
-    //   price: 5,
-    //   dispo: true,
-    //   info: 'some info',
-    //   img: '',
-    //   allerg: '',
-    //   compatible: ['Glaçage framboise', 'Glaçage orange'],
-    // },
   ],
   customization: 'aucune', // aucune, 2D, 3D, message
   comments: '',
-<<<<<<< HEAD
-  price: 40,
-=======
   price: 0,
   time: 2,
->>>>>>> dev
 },
 action) => {
   const listIngredients = state.ingredients;
   const indexItem = listIngredients.indexOf(action.item);
+  console.log(state,action)
   switch (action.type) {
     case 'ADD_INGREDIENT': listIngredients.push(action.item);
       return { ...state, ingredients: listIngredients };
