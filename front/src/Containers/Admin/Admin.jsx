@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { Container, Col, Row } from 'reactstrap';
-
 import VerticalNavBar from './Navigation/VerticalNavBar';
 import OrdersAdmin from './OrdersAdmin';
 import DataBase from './DatabaseIngredient/DataBase';
@@ -33,6 +32,7 @@ export default class Admin extends Component {
                 <Route path="/admin/calendar" component={CalendarAdmin} />
                 <Route path="/admin/edit" component={HomePageAdmin} />
                 <Route path="/admin/customization" component={CustomizationAdmin} />
+                <Route path="/admin/newingredient" component={AddIngredients} />
               </Switch>
             </Col>
           </Row>
