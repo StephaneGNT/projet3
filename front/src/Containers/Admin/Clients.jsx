@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class DataBase extends Component {
+export default class Clients extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -8,7 +8,7 @@ export default class DataBase extends Component {
 
   render() {
     return (
-      <div> DataBase </div>
+      <div> Clients </div>
     );
   }
 }

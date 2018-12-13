@@ -15,6 +15,7 @@ class UserInfo extends Component {
       email: '',
       telephone: '',
       birthdate: '',
+      feedback: 'd-none',
     };
   }
 
@@ -118,7 +119,10 @@ class UserInfo extends Component {
         </Row>
         <Row className="text-center">
           <NavArrowsLayout />
-          <button type="button" className="btn-confirmation" disabled={this.activateButton()}>envoyer la Commande</button>
+          <button type="button" className="btn-confirmation" disabled={this.activateButton()} onClick={() => this.setState({ feedback: 'd-block' })}>envoyer la Commande</button>
+        </Row>
+        <Row className="mt-3 text-center">
+          <h4 className={this.state.feedback}>Merci pour votre commande!</h4>
         </Row>
       </Container>
     );

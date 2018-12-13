@@ -50,19 +50,31 @@
     background-color:rgb(190, 190, 190);
     border-radius:20px;
     overflow: auto;
+    /* display: flex;
+    flex-direction: column-reverse; */
 }
 
 .cakeLayout img{
     width:70%;
-    margin:auto;
+    margin: 0 auto;
 }
 
-h1 {
-    margin:auto;
-    padding:10px;
-    font-size:1.8em !important;
-    font-weight:700 !important;
-    font-family: 'Lobster Two', cursive !important;
-    color:rgb(141, 29, 44) !important;
-    text-shadow:1px 1px 0px rgb(255, 255, 255);
+/* .cakeLayout *{
+    margin: 0;
 }
+
+.Base{
+    height: 20vh;
+}
+
+.Filling{
+    height: 10vh;
+}
+
+.Glaçage{
+    height: 10vh;
+}
+
+.Toppings{
+    height: 10vh;
+} */

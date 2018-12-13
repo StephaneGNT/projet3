@@ -46,8 +46,8 @@ class Progressbar extends Component {
 
 Progressbar.propTypes = {
   type: PropTypes.string.isRequired,
-  index: PropTypes.string.isRequired,
-  indexUpdate: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  indexUpdate: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
