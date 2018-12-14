@@ -20,16 +20,50 @@ class Confirmation extends Component {
   changeConfirmation = () => {
     const { cake, type, size, occasion, quantity, ingredients, customization, price, story } = this.props;
     if (type === 'brownie' || type === 'cookie') {
-      return <p>A l'occasion d'un(e) {occasion}, vous avez commandé {quantity} {type} de taille {size} <br></br>Personnalisation: {customization}<br></br>La composition de votre {type}:  {(ingredients.map(item =>  <div>{item.name}</div>))} <br></br> Montant de votre commande : {price}€</p>
+      return (
+      <p>
+        A l'occasion d'un(e) 
+          {occasion}, vous avez commandé 
+          {quantity} {type} de taille {size} 
+          <br></br>
+        Personnalisation: 
+      {customization}<br></br>La composition de votre {type}:  {(ingredients.map(item =>  <div>{item.name}</div>))} 
+        <br></br> 
+      Montant de votre commande : {price}€</p>
+      )
     }
     if (type === 'cheesecake') {
-      return <p>A l'occasion d'un(e) {occasion} vous avez commandé un {type} <br></br>Personnalisation: {customization}<br></br><br></br>La composition de votre cheesecake: {(ingredients.map(item =>  <div>{item.name}</div>))}<br></br><br></br>Montant de votre commande : {price}€</p>
+      return ( <p>
+      A l'occasion d'un(e) {occasion} vous avez commandé un {type} <br></br>Personnalisation: {customization}<br></br><br></br>
+      La composition de votre cheesecake: {(ingredients.map(item =>  <div>{item.name}</div>))}
+      <br></br>
+      <br></br>
+      Montant de votre commande : 
+        {price}€</p>
+      )
     }
     if (type === 'macaron') {
-      return <p>A l'occasion d'un(e) {occasion} vous avez commandé {quantity} {type} de taille {size}<br></br>Personnalisation:{customization}<br></br>La composition de vos macarrons:{(ingredients.map(item =>  <div>{item.name}</div>))} <br></br>Montant de votre commande : {price}€</p>
+      return (
+       <p>
+      A l'occasion d'un(e) 
+      {occasion}
+       vous avez commandé
+       {quantity} {type} de taille {size}
+         <br/>
+       Personnalisation:{customization}
+         <br/>
+      La composition de vos macarrons:
+         {(ingredients.map(item =>  <div>{item.name}</div>))} 
+         <br/>
+      Montant de votre commande : {price}€
+      </p>
+      )
     }
     else {
-      return <p>A l'occasion d'un(e) {occasion},<br></br>votre commande est un {type} de {story} étage(s) pour {size} personnes qui a une décoration {customization}<br></br>La composition de votre gateau:<br></br>{(ingredients.map(item =>  <div>{item.name}</div>))}<br></br>
+      return <p>A l'occasion d'un(e) {occasion},<br></br>votre commande est un {type} de {story} étage(s) pour {size} personnes qui a une décoration {customization}<br></br>La composition de votre gateau:
+        <br></br>
+      {(ingredients.map(item =>  <div>{item.name}</div>))}
+          <br></br>
       Montant de votre commande : {price}€</p>
     }
   }
