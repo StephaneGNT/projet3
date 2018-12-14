@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   Container,
@@ -18,9 +19,8 @@ import NavArrowsLayout from '../Navigation/NavArrowsLayout';
 import Progressbar from '../Progressbar';
 import '../../../Assets/Styles/Personalisation.css';
 
-const Personalisation = (props) => {
-  const { textDisabled } = props;
-
+const Customization = (props) => {
+  const { wantsCustomMessage } = props;
   return (
     <div>
       <Container className="container">
@@ -34,7 +34,7 @@ const Personalisation = (props) => {
           <Col sm="6" lg="6" className="column">
             <FormGroup>
               <CustomMessage />
-              <div className={textDisabled ? 'greyScale' : null}>
+              <div className={!wantsCustomMessage ? 'greyScale' : null}>
                 <CustomMessageInput />
                 <ColorPicker />
                 <FontPicker />
@@ -54,8 +54,12 @@ const Personalisation = (props) => {
   );
 };
 
+Customization.propTypes = {
+  wantsCustomMessage: PropTypes.bool.isRequired,
+};
+
 const mapStatetoProps = state => ({
-  textDisabled: state.customization.textDisabled,
+  wantsCustomMessage: state.customization.wantsCustomMessage,
 });
 
-export default connect(mapStatetoProps, null)(Personalisation);
+export default connect(mapStatetoProps, null)(Customization);

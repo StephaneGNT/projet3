@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-
 export const allowMessage = item => ({
   type: 'ALLOW_MESSAGE',
   item,
 });
 
-export const removeCakeMessage = () => ({
+export const removeCakeMessage = blank => ({
   type: 'REMOVE_CUSTOM_MESSAGE',
+  blank,
 });
 
 export const updateCustomMessage = e => ({
@@ -19,10 +19,9 @@ export const toggle = () => ({
   type: 'TOGGLE_FONTS',
 });
 
-
-export const chooseDecorationType = dimension => ({
-  type: 'CHOOSE_DECORATION_TYPE',
-  decorationChoice: dimension,
+export const submitDecorationChoice = choice => ({
+  type: 'SUBMIT_DECORATION_CHOICE',
+  choice,
 });
 
 export const chooseFont = choice => ({

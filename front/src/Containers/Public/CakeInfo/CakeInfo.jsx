@@ -81,9 +81,6 @@ const CakeInfo = (props) => {
           </Row>
         </Col>
       </Row>
-      {/* <Row className="justify-content-center mt-3">
-        
-      </Row> */}
     </Container>
   );
 };
@@ -96,7 +93,6 @@ const mapStateToProps = state => ({
   dispatch: state.dispatch,
   selectedCakeType: state.cakeCharacteristics,
 });
-
 
 const mapDispatchToProps = dispatch => ({
   localChangeCakeType: cakeType => dispatch(changeCakeType(cakeType)),
