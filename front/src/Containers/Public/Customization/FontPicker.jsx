@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   Row,
@@ -14,10 +15,10 @@ import '../../../Assets/Styles/Personalisation.css';
 const CustomMessageInput = (props) => {
   const {
     dropdownOpen,
-    textDisabled,
     selectedFonts,
-    toggle,
-    chooseFontType
+    toggleFunction,
+    chooseFontTypeFunction,
+    wantsCustomMessage,
   } = props;
 
   return (
@@ -33,7 +34,7 @@ const CustomMessageInput = (props) => {
       }
       <Row>
         <Col sm="6" lg="6">
-          <Dropdown isOpen={dropdownOpen} className={textDisabled ? 'disableHover' : null} toggle={toggle}>
+          <Dropdown isOpen={dropdownOpen} className={!wantsCustomMessage ? 'disableHover' : null} toggle={toggleFunction}>
             <DropdownToggle className="fontdropdown" caret>
               Police du message:
             </DropdownToggle>
@@ -46,7 +47,7 @@ const CustomMessageInput = (props) => {
                         fontFamily: index,
                         fontSize: '2.5vmin',
                       }}
-                      onClick={() => chooseFontType(index)}
+                      onClick={() => chooseFontTypeFunction(index)}
                     >
                       Pimp my cake
                     </DropdownItem>
@@ -61,15 +62,23 @@ const CustomMessageInput = (props) => {
   );
 };
 
+CustomMessageInput.propTypes = {
+  dropdownOpen: PropTypes.bool.isRequired,
+  selectedFonts: PropTypes.string.isRequired,
+  toggleFunction: PropTypes.func.isRequired,
+  chooseFontTypeFunction: PropTypes.func.isRequired,
+  wantsCustomMessage: PropTypes.bool.isRequired,
+};
+
 const mapStatetoProps = state => ({
   selectedFonts: state.customization.selectedFonts,
-  textDisabled: state.customization.textDisabled,
+  wantsCustomMessage: state.customization.wantsCustomMessage,
   dropdownOpen: state.customization.dropdownOpen,
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggle: () => dispatch(toggle()),
-  chooseFontType: choice => dispatch(chooseFont(choice)),
+  toggleFunction: () => dispatch(toggle()),
+  chooseFontTypeFunction: choice => dispatch(chooseFont(choice)),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(CustomMessageInput);

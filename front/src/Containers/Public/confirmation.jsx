@@ -26,7 +26,7 @@ class Confirmation extends Component {
       occasion,
       quantity,
       ingredients,
-      customization,
+      // customization,
       price,
       story,
     } = this.props;
@@ -43,7 +43,7 @@ class Confirmation extends Component {
           {size}
           <br />
           Personnalisation:
-          {customization}
+          {/* {customization} */}
           <br />
       La composition de votre
           {type}
@@ -65,7 +65,7 @@ class Confirmation extends Component {
           {type}
           <br />
         Personnalisation:
-          {customization}
+          {/* {customization} */}
           <br />
           <br />
         La composition de votre cheesecake:
@@ -90,7 +90,7 @@ class Confirmation extends Component {
           {size}
           <br />
           Personnalisation:
-          {customization}
+          {/* {customization} */}
           <br />
           La composition de vos macarrons:
           {(ingredients.map(item => <div>{item.name}</div>))}
@@ -114,7 +114,7 @@ class Confirmation extends Component {
         étage(s) pour
         {size}
          personnes qui a une décoration
-        {customization}
+        {/* {customization} */}
         <br />
         {(ingredients.map(item => <div>{item.name}</div>))}
         <br />
@@ -153,7 +153,7 @@ Confirmation.propTypes = {
   ingredients: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
-  customization: PropTypes.string.isRequired,
+  // customization: PropTypes.string.isRequired,
   story: PropTypes.number.isRequired,
 
 
@@ -164,7 +164,7 @@ const mapStateToProps = (state) => {
     {
       story: state.cakeCharacteristics.story,
       price: state.cakeCharacteristics.price,
-      customization: state.cakeCharacteristics.customization,
+      // customization: state.cakeCharacteristics.customization,
       ingredients: state.cakeCharacteristics.ingredients,
       quantity: state.cakeCharacteristics.quantity,
       occasion: state.cakeCharacteristics.occasion,
