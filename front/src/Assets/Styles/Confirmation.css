@@ -1,0 +1,12 @@
+#Card {
+height: 35vh;
+width: 20vw;
+
+} 
+#exampleText {
+  width: 20vw;
+}
+.change {
+  position: relative;
+  left: 60%
+}
