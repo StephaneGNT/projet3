@@ -18,8 +18,8 @@ export default class Admin extends Component {
 
   render() {
     return (
-      <Container>
-        <BrowserRouter>
+      <Container fluid>
+        <BrowserRouter style={{ width: '90vw', marginLeft: '5vw' }}>
           <Row className="mt-5">
             <Col sm="2">
               <VerticalNavBar />

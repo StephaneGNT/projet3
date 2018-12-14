@@ -3,7 +3,9 @@ import React from 'react';
 const TipsCake = () => (
   <div className="mt-3">
     <p>
-      Choisissez le nombre de personnes et/ou le nombre d'étages en cliquant sur les blocs voulus.
+      Choisissez le nombre de personnes et/ou le nombre d
+      {"'"}
+      étages en cliquant sur les blocs voulus.
     </p>
     <p>
       Par exemple, pour 20 personnes, vous pouvez choisir un gâteau
