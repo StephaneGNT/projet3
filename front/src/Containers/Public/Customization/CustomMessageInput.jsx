@@ -55,7 +55,7 @@ const CustomMessageInput = (props) => {
 
 CustomMessageInput.propTypes = {
   bgColor: PropTypes.string.isRequired,
-  // chosenFont: PropTypes.string.isRequired,
+  // chosenFont: PropTypes.string,
   // chosenBackgroundColor: PropTypes.string.isRequired,
   // chosenFontColor: PropTypes.string.isRequired,
   font: PropTypes.string.isRequired,

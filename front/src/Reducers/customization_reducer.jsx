@@ -3,7 +3,7 @@ export default (state = {
   selectedFonts: ['Bungee', 'Charmonman'],
   wantsCustomMessage: false,
   customMessage: {
-    name: 'Message personnalisé',
+    choice: 'Message personnalisé',
     message: '',
     font: 'Sedgwick Ave',
     fontColor: 'black',
@@ -12,13 +12,13 @@ export default (state = {
   },
   customMessage_placeHolder: '♥ Joyeux anniversaire chéri! ♥',
   print2D: {
-    name: '2 Dimensions',
-    image: '',
+    choice: '2 Dimensions',
+    image: {},
     price: 4,
   },
   print3Dimage: {
-    name: '3 Dimensions',
-    image: '',
+    choice: '3 Dimensions',
+    image: {},
     price: 0,
   },
 }, action) => {
