@@ -3,7 +3,7 @@ import { Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import NavArrowsLayout from './Navigation/NavArrowsLayout';
 import Progressbar from './Progressbar';
-import Confirmation from './confirmation'
+import Confirmation from './Confirmation';
 import Composition from './Composition';
 import Price from './Price';
 import CakeInProgress from './CakeInProgress';

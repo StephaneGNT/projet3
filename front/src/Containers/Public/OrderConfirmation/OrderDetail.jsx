@@ -4,7 +4,7 @@ import Progressbar from '../Progressbar';
 import OrderCalendar from './OrderCalendar';
 import CalendarTips from './CalendarTips';
 import NavArrowsLayout from '../Navigation/NavArrowsLayout';
-import Confirmation from '../../Public/confirmation'
+import Confirmation from '../../Public/Confirmation'
 
 import '../../../Assets/Styles/OrderDetail.css';
 

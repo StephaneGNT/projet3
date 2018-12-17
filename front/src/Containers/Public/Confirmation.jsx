@@ -26,7 +26,8 @@ class Confirmation extends Component {
       occasion,
       quantity,
       ingredients,
-      // customization,
+      customMessage,
+      decoration,
       price,
       story,
     } = this.props;
@@ -36,14 +37,16 @@ class Confirmation extends Component {
           A l’occasion d’un(e)
           {occasion}
           ,
+          <br />
           vous avez commandé
           {quantity}
           {type}
           de taille
           {size}
           <br />
-          Personnalisation:
-          {/* {customization} */}
+          votre personnalisation:
+          {decoration}
+          {customMessage}
           <br />
       La composition de votre
           {type}
@@ -65,7 +68,8 @@ class Confirmation extends Component {
           {type}
           <br />
         Personnalisation:
-          {/* {customization} */}
+          {decoration}
+          {customMessage}
           <br />
           <br />
         La composition de votre cheesecake:
@@ -90,7 +94,8 @@ class Confirmation extends Component {
           {size}
           <br />
           Personnalisation:
-          {/* {customization} */}
+          {decoration}
+          {customMessage}
           <br />
           La composition de vos macarrons:
           {(ingredients.map(item => <div>{item.name}</div>))}
@@ -114,7 +119,8 @@ class Confirmation extends Component {
         étage(s) pour
         {size}
          personnes qui a une décoration
-        {/* {customization} */}
+        {decoration}
+        {customMessage}
         <br />
         {(ingredients.map(item => <div>{item.name}</div>))}
         <br />
@@ -153,9 +159,9 @@ Confirmation.propTypes = {
   ingredients: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
-  // customization: PropTypes.string.isRequired,
+  customMessage: PropTypes.string.isRequired,
+  decoration: PropTypes.string.isRequired,
   story: PropTypes.number.isRequired,
-
 
 };
 
@@ -172,6 +178,8 @@ const mapStateToProps = (state) => {
       type: state.cakeCharacteristics.type,
       cake: state.cakeCharacteristics,
       index: state.pageIndex,
+      customMessage: state.cakeCharacteristics.customization.customMessage.choice,
+      decoration: state.cakeCharacteristics.customization.decoration.choice, 
     }
   );
 };
