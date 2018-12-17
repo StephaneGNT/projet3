@@ -1,3 +1,5 @@
+@import './CommonStyle.css';
+
 .body-zone {
   display: block;
   margin: 0;
@@ -9,10 +11,10 @@
 }
 
 .header-zone {
-  background-color: var(--purpleColor);;
+  background-color: var(--mainColor);;
   width: 100vw;
   height: 10vh;
-  font-family: 'Lobster Two', cursive;
+  font-family: var(--mainPolice);
   font-size:3em;
   color:white;
   text-align:center;
@@ -41,7 +43,7 @@
 }
 
 .footer-zone {
-  background-color: var(--purpleColor);;
+  background-color: var(--mainColor);;
   width: 100vw;
   height: 10vh;
 }

@@ -1,27 +1,32 @@
 import axios from 'axios';
 
-export const allowMessage = () => ({
+export const allowMessage = item => ({
   type: 'ALLOW_MESSAGE',
+  item,
+});
+
+export const removeCakeMessage = blank => ({
+  type: 'REMOVE_CUSTOM_MESSAGE',
+  blank,
 });
 
 export const updateCustomMessage = e => ({
   type: 'UPDATE_CUSTOM_MESSAGE',
-  customMessage: e.target.value,
+  message: e.target.value,
 });
 
 export const toggle = () => ({
   type: 'TOGGLE_FONTS',
 });
 
-
-export const chooseDecorationType = dimension => ({
-  type: 'CHOOSE_DECORATION_TYPE',
-  decorationChoice: dimension,
+export const submitDecorationChoice = choice => ({
+  type: 'SUBMIT_DECORATION_CHOICE',
+  choice,
 });
 
 export const chooseFont = choice => ({
-  type: 'CHOOSE_FONT',
-  font: choice,
+  type: 'CHOOSE_FONT_FAMILY',
+  fontFamily: choice,
 });
 
 export const getFonts = fonts => ({
@@ -36,12 +41,12 @@ export const addFont = font => ({
 
 export const changeBgColor = color => ({
   type: 'CHANGE_BACKGROUND_COLOR',
-  color,
+  backgroundColor: color.hex,
 });
 
 export const changeFontColor = color => ({
   type: 'CHANGE_FONT_COLOR',
-  color,
+  fontColor: color.hex,
 });
 
 export const fetchFonts = () => {

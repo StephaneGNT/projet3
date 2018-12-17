@@ -7,8 +7,8 @@
   width: 120px;
   padding: 0;
   margin: 0 20px;
-  color: var(--purpleColor);
-  font-family: 'Lobster Two', cursive;
+  color: var(--mainColor);
+  font-family: var(--mainPolice);
   font-size: 1.5em;
   background-color: white;
   background-image: url('../Images/macaron_cafe.png');
@@ -20,7 +20,7 @@
 
 .macaronSizeSelection Button:hover, .macaronSizeSelection Button:active, .macaronSizeSelection Button:focus{
   border: 2px solid;
-  border-color: var(--purpleColor);
+  border-color: var(--mainColor);
   color: black !important;
   background-color: white !important;
   box-shadow: 0 !important;

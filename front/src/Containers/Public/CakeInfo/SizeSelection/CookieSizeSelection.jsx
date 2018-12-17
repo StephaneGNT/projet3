@@ -12,7 +12,7 @@ import '../../../../Assets/Styles/CookieSizeSelection.css';
 const CakeSizeSelection = (props) => {
   const { selectCakeSize, selectQuantity } = props;
   return (
-    <Container style={{ minWidth: '100%' }} className="text-center cookieSize">
+    <Container style={{ minWidth: '100%' }} className="text-center cookieSizeSelection">
       <Label className="labels-perso mt-3">Choisissez la taille de vos cookies</Label>
       <Row className="sizeSelection">
         <Col className="sm-4"><Button id="smallCookie" onClick={() => selectCakeSize('S')}>Petit</Button></Col>

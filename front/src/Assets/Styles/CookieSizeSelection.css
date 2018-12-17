@@ -2,12 +2,12 @@
   width: 100%;
 }
 
-.sizeSelection Button{
+.cookieSizeSelection Button{
   height: 120px;
   width: 120px;
   padding: 0;
-  color: var(--purpleColor);
-  font-family: 'Lobster Two', cursive;
+  color: var(--mainColor);
+  font-family: var(--mainPolice);
   font-size: 1.5em;
   background-color: white;
   background-image: url('../Images/cookie.jpg');
@@ -17,9 +17,9 @@
   padding-top: 60%;
 }
 
-.sizeSelection Button:hover, .sizeSelection Button:active, .sizeSelection Button:focus{
+.cookieSizeSelection Button:hover, .cookieSizeSelection Button:active, .cookieSizeSelection Button:focus{
   border: 2px solid;
-  border-color: var(--purpleColor);
+  border-color: var(--mainColor);
   color: black !important;
   background-color: white !important;
   box-shadow: 0 !important;

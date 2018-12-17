@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { GithubPicker } from 'react-color';
 import { Row, Col } from 'reactstrap';
@@ -19,6 +20,11 @@ const ColorPicker = (props) => {
       </Col>
     </Row>
   );
+};
+
+ColorPicker.propTypes = {
+  changeBackgroundColor: PropTypes.func.isRequired,
+  changeFontColour: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({

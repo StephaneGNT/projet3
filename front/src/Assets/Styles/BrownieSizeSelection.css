@@ -1,13 +1,15 @@
+/* @import './CommonStyle.css'; */
+
 .brownieSize Row{
   width: 100%;
 }
 
-.sizeSelection Button{
+.brownieSizeSelection Button{
   height: 120px;
   width: 120px;
   padding: 0;
-  color: var(--purpleColor);
-  font-family: 'Lobster Two', cursive;
+  color: var(--mainColor);
+  font-family: var(--mainPolice);
   font-size: 1.5em;
   background-color: white;
   background-image: url('../Images/brownie.png');
@@ -17,9 +19,9 @@
   padding-top: 60%;
 }
 
-.sizeSelection Button:hover, .sizeSelection Button:active, .sizeSelection Button:focus{
+.brownieSizeSelection Button:hover, .brownieSizeSelection Button:active, .brownieSizeSelection Button:focus{
   border: 2px solid;
-  border-color: var(--purpleColor);
+  border-color: var(--mainColor);
   color: black !important;
   background-color: white !important;
   box-shadow: 0 !important;
