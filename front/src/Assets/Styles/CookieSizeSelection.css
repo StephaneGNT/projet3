@@ -1,0 +1,40 @@
+.cookieSize Row{
+  width: 100%;
+}
+
+.sizeSelection Button{
+  height: 120px;
+  width: 120px;
+  padding: 0;
+  color: var(--purpleColor);
+  font-family: 'Lobster Two', cursive;
+  font-size: 1.5em;
+  background-color: white;
+  background-image: url('../Images/cookie.jpg');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  border-radius: 20px;
+  padding-top: 60%;
+}
+
+.sizeSelection Button:hover, .sizeSelection Button:active, .sizeSelection Button:focus{
+  border: 2px solid;
+  border-color: var(--purpleColor);
+  color: black !important;
+  background-color: white !important;
+  box-shadow: 0 !important;
+}
+
+#smallCookie{
+  background-size: 40% 40%;
+  background-position-y: 35%;
+}
+
+#averageCookie{
+  background-size: 60% 60%;
+  background-position-y: 20%;
+}
+
+#bigCookie{
+  background-size: 80% 80%;
+}

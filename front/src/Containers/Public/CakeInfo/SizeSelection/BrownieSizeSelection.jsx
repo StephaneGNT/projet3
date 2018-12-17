@@ -2,25 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  Button,
-  Row,
-  Container,
-  Label,
+  Button, Row, Container, Label, Col,
 } from 'reactstrap';
 import changeCakeSize from '../../../../Actions/cakeActions/changeCakeSize';
 import changeCakeAmount from '../../../../Actions/cakeActions/changeCakeAmount';
 
-import '../../../../Assets/Styles/CakeSizeSelection.css';
+import '../../../../Assets/Styles/BrownieSizeSelection.css';
 
 const CakeSizeSelection = (props) => {
   const { selectCakeSize, selectQuantity } = props;
   return (
-    <Container style={{ minWidth: '100%' }}>
+    <Container style={{ minWidth: '100%' }} className="text-center">
       <Label className="labels-perso mt-3">Choisissez la taille de vos brownies</Label>
-      <Row>
-        <Button onClick={() => selectCakeSize('S')}>Petit</Button>
-        <Button onClick={() => selectCakeSize('M')}>Moyen</Button>
-        <Button onClick={() => selectCakeSize('L')}>Gros</Button>
+      <Row className="sizeSelection">
+        <Col className="sm-4"><Button id="smallBrownie" onClick={() => selectCakeSize('S')}>Petit</Button></Col>
+        <Col className="sm-4"><Button id="averageBrownie" onClick={() => selectCakeSize('M')}>Moyen</Button></Col>
+        <Col className="sm-4"><Button id="bigBrownie" onClick={() => selectCakeSize('L')}>Gros</Button></Col>
       </Row>
       <Row>
         <Label className="labels-perso mt-3">Choisissez le nombre de brownies que vous voulez </Label>

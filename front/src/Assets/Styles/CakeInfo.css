@@ -20,12 +20,18 @@
 }
 
 /* Apparence des questions */
-.labels-perso {
+/* .labels-perso {
     font-weight: 900;
     color: black;
     margin: 5px;
     display: block;
     font-size: 12px;
+} */
+
+.labels-perso{
+    font-size: 1.5em;
+    font-family: 'Lobster Two', cursive;
+    color: var(--purpleColor);
 }
 
 /* Bloc description input */
@@ -78,7 +84,7 @@ h3 {
     font-size:1.8em !important;
     font-weight:700 !important;
     font-family: 'Lobster Two', cursive !important;
-    color:rgb(141, 29, 44) !important;
+    color: var(--purpleColor) !important;
     text-shadow:1px 1px 0px rgb(255, 255, 255);
 }
 

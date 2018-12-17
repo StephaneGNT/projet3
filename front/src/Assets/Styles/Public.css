@@ -9,7 +9,7 @@
 }
 
 .header-zone {
-  background-color: #9C0045;
+  background-color: var(--purpleColor);;
   width: 100vw;
   height: 10vh;
   font-family: 'Lobster Two', cursive;
@@ -41,7 +41,7 @@
 }
 
 .footer-zone {
-  background-color: #9C0045;
+  background-color: var(--purpleColor);;
   width: 100vw;
   height: 10vh;
 }

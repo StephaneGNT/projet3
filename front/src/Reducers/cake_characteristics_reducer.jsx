@@ -14,7 +14,6 @@ export default (state = {
 action) => {
   const listIngredients = state.ingredients;
   const indexItem = listIngredients.indexOf(action.item);
-  console.log(state,action)
   switch (action.type) {
     case 'CHANGE_CAKE_TYPE': return { ...state, size: 0, type: action.payload };
     case 'ADD_INGREDIENT': listIngredients.push(action.item);
