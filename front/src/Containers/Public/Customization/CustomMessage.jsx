@@ -21,6 +21,7 @@ const CustomMessage = (props) => {
           <Input
             className="textdecocheckbox"
             type="checkbox"
+            defaultChecked={wantsCustomMessage}
             onClick={wantsCustomMessage
               ? () => removeMessage()
               : () => allowCakeMessage(customMessage)
@@ -28,7 +29,13 @@ const CustomMessage = (props) => {
           />
         </div>
         <div>
-          <p>Cochez si vous souhaitez ajouter une message au gâteau</p>
+          <span>Cochez si vous souhaitez ajouter une message au gâteau: </span>
+          <span>
+            <b>
+              {customMessage.price}
+              €
+            </b>
+          </span>
         </div>
       </div>
     </div>

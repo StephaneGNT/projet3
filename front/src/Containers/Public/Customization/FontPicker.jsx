@@ -64,7 +64,7 @@ const CustomMessageInput = (props) => {
 
 CustomMessageInput.propTypes = {
   dropdownOpen: PropTypes.bool.isRequired,
-  selectedFonts: PropTypes.string.isRequired,
+  selectedFonts: PropTypes.arrayOf(PropTypes.string).isRequired,
   toggleFunction: PropTypes.func.isRequired,
   chooseFontTypeFunction: PropTypes.func.isRequired,
   wantsCustomMessage: PropTypes.bool.isRequired,

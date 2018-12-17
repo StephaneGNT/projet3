@@ -1,6 +1,6 @@
 import base_banane from '../Assets/Images/base_banane.png';
 import base_vanille from '../Assets/Images/base_vanille.png';
-import base_chocolat from '../Assets/Images/base_chocolat.png'
+import base_chocolat from '../Assets/Images/base_chocolat.png';
 
 export default () => { 
   return [

@@ -13,9 +13,9 @@ import { submitDecorationChoice } from '../../../Actions/customization_actions';
 class Decoration extends Component {
   constructor(props) {
     super(props);
-    const { name, image, price } = this.props;
+    const { choice, image, price } = this.props;
     this.state = {
-      decoration: { name, image, price },
+      decoration: { choice, image, price },
     };
   }
 
@@ -35,6 +35,7 @@ class Decoration extends Component {
       D3,
       submitDecoChoice,
     } = this.props;
+    console.log(decoration);
     return (
       <div>
         <FormGroup tag="fieldset">
@@ -44,8 +45,8 @@ class Decoration extends Component {
               <Input
                 type="radio"
                 name="radio1"
-                defaultChecked={decoration.name === 'Pas de décoration'}
-                onClick={() => this.chooseDecoType({ name: 'Pas de décoration', price: 0 })}
+                defaultChecked={decoration.choice === 'Pas de décoration'}
+                onClick={() => this.chooseDecoType({ choice: 'Pas de décoration', price: 0 })}
               />
               {' '}
               Pas de décoration personnalisée sur le gâteau
@@ -56,11 +57,16 @@ class Decoration extends Component {
               <Input
                 type="radio"
                 name="radio1"
-                defaultChecked={decoration.name === '2 Dimensions'}
+                defaultChecked={decoration.choice === '2 Dimensions'}
                 onClick={() => this.chooseDecoType(D2)}
               />
               {' '}
               Image 2D (image en sucre sur le gâteau)
+              {' '}
+              <b>
+                {D2.price}
+                €
+              </b>
             </Label>
           </FormGroup>
           <FormGroup check>
@@ -68,28 +74,36 @@ class Decoration extends Component {
               <Input
                 type="radio"
                 name="radio1"
-                defaultChecked={decoration.name === '3 Dimensions'}
+                defaultChecked={decoration.choice === '3 Dimensions'}
                 onClick={() => this.chooseDecoType(D3)}
               />
               {' '}
               Décoration 3D (sculpture personnalisée)
+              <br />
+              <b style={{
+                color: 'red',
+                fontSize: '0.7em',
+              }}
+              >
+                Prix pour scuplture 3D: variable en fonction de la demande.
+              </b>
             </Label>
           </FormGroup>
         </FormGroup>
         {(() => {
-          if (decoration.name === 'Pas de décoration') {
+          if (decoration.choice === 'Pas de décoration') {
             submitDecoChoice(decoration);
             return <div className="emptyDiv" />;
           }
           submitDecoChoice(decoration);
           return (
             <FormGroup className="uploadImage justify-content">
-              <Label for={decoration.name === '2 Dimensions' ? 'file2D' : 'file3D'}>
+              <Label for={decoration.choice === '2 Dimensions' ? 'file2D' : 'file3D'}>
                 <u>
                   <b>
                     Votre image
                     {' '}
-                    {decoration.name === '2 Dimensions' ? 2 : 3}
+                    {decoration.choice === '2 Dimensions' ? 2 : 3}
                     D
                   </b>
                 </u>
@@ -97,22 +111,25 @@ class Decoration extends Component {
               <Input
                 type="file"
                 name="file"
-                id={decoration.name === '2 Dimensions' ? 'file2D' : 'file3D'}
+                id={decoration.choice === '2 Dimensions' ? 'file2D' : 'file3D'}
                 maxsize={5242880}
                 multiple={false}
                 accept="image/*"
                 onChange={this.uploadPic}
               />
-              {decoration.image ? (
-                <Button bsSize="xsmall">
-                  Supprimer photo
-                </Button>
-              )
-                : ''}
+              {Object.keys(decoration.image).length === 0
+                && (decoration.image).constructor !== Object && (
+                  <Button
+                    onClick={() => this.chooseDecoType(decoration.choice === '2 Dimensions' ? D2 : D3)}
+                    size="xsmall"
+                  >
+                    Supprimer photo
+                  </Button>)}
               <FormText color="muted">
-                {decoration.image
-                  ? ''
-                  : `Veuillez télécharger l’image à imprimer en ${decoration.name === '2 Dimensions' ? '2' : '3'}D`}
+                {Object.keys(decoration.image).length === 0
+                  && (decoration.image).constructor === Object
+                  && decoration.choice === '2 Dimensions' ? 'Veuillez télécharger l’image à imprimer en 2 dimensions'
+                  : 'Vous pouvez télécharger une image d’inspiration pour votre décoration 3D'}
               </FormText>
             </FormGroup>
           );
@@ -126,13 +143,16 @@ class Decoration extends Component {
 Decoration.propTypes = {
   D2: PropTypes.shape({}).isRequired,
   D3: PropTypes.shape({}).isRequired,
+  choice: PropTypes.string.isRequired,
+  // image: PropTypes.shape({}).isRequired,
+  price: PropTypes.number.isRequired,
   submitDecoChoice: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({
   D2: state.customization.print2D,
   D3: state.customization.print3Dimage,
-  name: state.cakeCharacteristics.customization.decoration.name,
+  choice: state.cakeCharacteristics.customization.decoration.choice,
   image: state.cakeCharacteristics.customization.decoration.image,
   price: state.cakeCharacteristics.customization.decoration.price,
 });
