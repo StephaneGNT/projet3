@@ -9,8 +9,8 @@ import {
   CardTitle,
 } from 'reactstrap';
 
-import '../../Assets/Styles/OrderDetail.css';
-import '../../Assets/Styles/Confirmation.css';
+import '../../../Assets/Styles/OrderDetail.css';
+import '../../../Assets/Styles/Confirmation.css';
 
 
 class Confirmation extends Component {

@@ -1,14 +1,14 @@
-.bloc-etape-1 {
+/* .bloc-etape-1 {
     background-color: lightgrey;
     border: 1px solid black;
     padding: 5px;
     margin: 5%;
     color: black;
-}
+} */
 
 
 /* Bloc des boutons cake, cookies, macarons et cheesescake */
-.bloc-cake-type {
+/* .bloc-cake-type {
     width: 80%;
     border: 1px solid rgb(187, 164, 164);
     background-color: rgb(228, 228, 228);
@@ -17,19 +17,25 @@
     padding: 5px;
     display: flex;
     justify-content: center;
-}
+} */
 
 /* Apparence des questions */
-.labels-perso {
+/* .labels-perso {
     font-weight: 900;
     color: black;
     margin: 5px;
     display: block;
     font-size: 12px;
+} */
+
+.labels-perso{
+    font-size: 1.5em;
+    font-family: var(--mainPolice);
+    color: var(--mainColor);
 }
 
 /* Bloc description input */
-.bloc-tips {
+/* .bloc-tips {
     min-width: 200px;
     height: 150px;
     background-color: white;
@@ -40,45 +46,45 @@
     font-size: 12px;
     line-height: 1.1em;
     text-align: justify;
-}
+} */
 
-.text-tips {
+/* .text-tips {
     font-weight: 900;
     display: block;
 
-}
+} */
 
 /* Bloc inputs */
-.col-form-mycake {
+/* .col-form-mycake {
     min-width: 400px;
     margin: 10px !important;
     padding: 5px;
     background-color: rgb(194, 194, 194);
     border-radius: 5px;
-}
+} */
 
-.btn-choix-type {
+/* .btn-choix-type {
     padding:5px;
     width:150px;
     background-color: rgb(214, 125, 42);
     border:none;
-}
+} */
 
-.btn-choix-type:hover {
+/* .btn-choix-type:hover {
     padding:5px;
     width:150px;
     background-color: rgb(255, 255, 255);
     border:none;
     transition: all 1s ease-out;
-}
+} */
 
 h3 {
     margin:auto;
     padding:10px;
     font-size:1.8em !important;
     font-weight:700 !important;
-    font-family: 'Lobster Two', cursive !important;
-    color:rgb(141, 29, 44) !important;
+    font-family: var(--mainPolice) !important;
+    color: var(--mainColor) !important;
     text-shadow:1px 1px 0px rgb(255, 255, 255);
 }
 

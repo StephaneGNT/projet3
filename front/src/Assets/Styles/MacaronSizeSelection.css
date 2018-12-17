@@ -1,0 +1,36 @@
+.macaronSize Row{
+  width: 100%;
+}
+
+.macaronSizeSelection Button{
+  height: 120px;
+  width: 120px;
+  padding: 0;
+  margin: 0 20px;
+  color: var(--mainColor);
+  font-family: var(--mainPolice);
+  font-size: 1.5em;
+  background-color: white;
+  background-image: url('../Images/macaron_cafe.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  border-radius: 20px;
+  padding-top: 85px;
+}
+
+.macaronSizeSelection Button:hover, .macaronSizeSelection Button:active, .macaronSizeSelection Button:focus{
+  border: 2px solid;
+  border-color: var(--mainColor);
+  color: black !important;
+  background-color: white !important;
+  box-shadow: 0 !important;
+}
+
+#smallMacaron{
+  background-size: 40% 40%;
+  background-position-y: 35%;
+}
+
+#bigMacaron{
+  background-size: 80% 80%;
+}

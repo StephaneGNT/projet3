@@ -9,7 +9,7 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div> 
+      <div>
         <h1>Bienvenue sur Pimp My Cake !</h1>
         <Link to="/mycake"><button type="button">Commencez votre gâteau</button></Link>
       </div>

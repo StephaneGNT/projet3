@@ -45,6 +45,7 @@ export default (state = {
     case 'CHANGE_CAKE_AMOUNT': return { ...state, quantity: action.payload };
     case 'CHANGE_CAKE_ETAGE': return { ...state, story: action.payload };
     case 'CHANGE_PRICE': return { ...state, price: action.price };
+    case 'CHANGE_CAKE_OCCASION': return { ...state, occasion: action.occasion };
     case 'ALLOW_MESSAGE':
       return { ...state, customization: { ...state.customization, customMessage: action.item } };
     case 'REMOVE_CUSTOM_MESSAGE':
