@@ -1,4 +1,4 @@
-export default (state = {
+const initialState = {
   type: '',
   size: 0, // size doit impérativement être définie comme un entier !!
   story: 0, // story doit impérativement être définie comme un entier !!
@@ -20,7 +20,9 @@ export default (state = {
   comment: '',
   price: 0,
   time: 2,
-}, action) => {
+};
+
+export default (state = initialState, action) => {
   const listIngredients = state.ingredients;
   const indexItem = listIngredients.indexOf(action.item);
   const modifyMessage = item => ({
@@ -34,10 +36,13 @@ export default (state = {
     },
   });
   switch (action.type) {
-    case 'CHANGE_CAKE_TYPE': return { ...state, size: 0, type: action.payload };
-    case 'ADD_INGREDIENT': listIngredients.push(action.item);
+    case 'CHANGE_CAKE_TYPE':
+      return action.payload;
+    case 'ADD_INGREDIENT':
+      listIngredients.push(action.item);
       return { ...state, ingredients: listIngredients };
-    case 'REMOVE_INGREDIENT': listIngredients.splice(indexItem, 1);
+    case 'REMOVE_INGREDIENT':
+      listIngredients.splice(indexItem, 1);
       return { ...state, ingredients: listIngredients };
     case 'CHANGE_CAKE_SIZE': return { ...state, size: action.payload };
     case 'ADD_PIECES': return { ...state, size: state.size + action.payload, story: state.story + 1 };
