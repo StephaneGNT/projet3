@@ -1,12 +1,12 @@
 // Déclaration de l'ensemble des librairies nécessaires
 const express = require('express');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const app = express();
-const authRouter = require('./routes/auth/auth');
+const ingred = require('./routes/ingredients');
 
 // Configuration de l'application
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
@@ -24,5 +24,5 @@ let server = app.listen(5000, function () {
   console.log('Listening on port ' + server.address().port);
 });
 
-app.use('/auth', authRouter);
+app.use(ingred);
 

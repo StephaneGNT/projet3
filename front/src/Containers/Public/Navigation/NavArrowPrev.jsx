@@ -22,7 +22,7 @@ class NavArrowPrev extends Component {
   render() {
     const { pageIndex, type, changePageIndex } = this.props;
     return (
-      <div className="btn-group">
+      <div>
         <NavLink to={this.translateIndexToRoute(pageIndex, type)}>
           <button type="button" onClick={() => changePageIndex(-1)} className="btn-prev-next">Précédent</button>
         </NavLink>

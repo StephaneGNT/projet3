@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Row, Button } from 'reactstrap';
+import { Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import NavArrowsLayout from '../Navigation/NavArrowsLayout';
@@ -11,10 +11,6 @@ import '../../../Assets/Styles/IngredientsButtons.css';
 class IngredientsButtons extends Component {
   renderButton = (index, cake) => {
     let render;
-    const ingredientsType = cake.ingredients.map(ingredient => ingredient.type);
-    if (index === 3 && ingredientsType.indexOf('Filling') >= 0) {
-      render = (<Button className="order-btn"> Une garniture supplémentaire ? </Button>);
-    }
     return render;
   };
 
@@ -29,12 +25,12 @@ class IngredientsButtons extends Component {
     const { index, cake } = this.props;
     const disabled = !cake.ingredients.length > 0;
     return (
-      <Row>
-        <Button className="order-btn" disabled={disabled}>
+      <Row className="back-btn">
+        <button type="button" className="order-btn" disabled={disabled}>
           <Link className="commandLink" onClick={e => this.checkEnable(e, disabled)} to="/mycake/customCake">
             Commander
           </Link>
-        </Button>
+        </button>
         {this.renderButton(index, cake)}
         <NavArrowsLayout />
       </Row>

@@ -3,7 +3,6 @@ import {
   Route, Switch, BrowserRouter, Redirect,
 } from 'react-router-dom';
 import { Container, Col, Row } from 'reactstrap';
-
 import VerticalNavBar from './Navigation/VerticalNavBar';
 import OrdersAdmin from './OrdersAdmin';
 import DataBase from './DatabaseIngredient/DataBase';
@@ -11,6 +10,7 @@ import Clients from './Clients';
 import CalendarAdmin from './CalendarAdmin';
 import HomePageAdmin from './HomePageAdmin';
 import CustomizationAdmin from './CustomizationAdmin';
+import AddIngredients from './AddIngredients';
 import Login from './Login';
 
 export default class Admin extends Component {
@@ -45,13 +45,13 @@ export default class Admin extends Component {
             </Col>
             <Col sm="10">
               <Switch>
-                <Route path="/admin/login" component={Login} />
-                <Route exact path="/admin" render={() => this.redirect('order')} />
-                <Route exact path="/admin/ingredients" render={() => this.redirect('database')} />
-                <Route exact path="/admin/clients" render={() => this.redirect('clients')} />
-                <Route exact path="/admin/calendar" render={() => this.redirect('calendar')} />
-                <Route exact path="/admin/edit" render={() => this.redirect('edit')} />
-                <Route exact path="/admin/customization" render={() => this.redirect('customization')} />
+                <Route exact path="/admin" component={OrdersAdmin} />
+                <Route path="/admin/ingredients" component={DataBase} />
+                <Route path="/admin/clients" component={Clients} />
+                <Route path="/admin/calendar" component={CalendarAdmin} />
+                <Route path="/admin/edit" component={HomePageAdmin} />
+                <Route path="/admin/customization" component={CustomizationAdmin} />
+                <Route path="/admin/newingredient" component={AddIngredients} />
               </Switch>
             </Col>
           </Row>
