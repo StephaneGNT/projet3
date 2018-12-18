@@ -29,7 +29,7 @@ const CustomMessage = (props) => {
           />
         </div>
         <div>
-          <span>Cochez si vous souhaitez ajouter une message au gâteau: </span>
+          <span>Cochez si vous souhaitez ajouter un message au gâteau: </span>
           <span>
             <b>
               {customMessage.price}

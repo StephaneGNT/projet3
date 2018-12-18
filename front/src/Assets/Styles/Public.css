@@ -36,8 +36,8 @@
 
 .content-zone {
   display: block;
-  width: 90vw;
-  height: 87vh;
+  width: 80vw;
+  height: 86vh;
   margin:1% auto;
   background-color: rgb(207, 207, 207);
 }
@@ -46,3 +46,17 @@
   margin: 0 !important;
   justify-content: center;
 }
+
+h3 {
+  margin:auto;
+  padding:5px;
+  font-size:1.8em !important;
+  font-weight:700 !important;
+  font-family: var(--mainPolice) !important;
+  color: var(--mainColor) !important;
+  /* text-shadow:1px 1px 0px rgb(255, 255, 255); */
+  border-bottom:1px solid rgb(187, 187, 187);
+  display:flex;
+  justify-content: center;
+}
+

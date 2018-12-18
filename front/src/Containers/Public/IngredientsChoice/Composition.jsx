@@ -25,7 +25,7 @@ const Composition = (props) => {
       case 'brownie': render = (<IngredientsBrownieStructure />); break;
       case 'cheesecake': render = (<IngredientsCheeseCakeStructure />); break;
       default: render = (
-        <Row sm="12" style={{ height: '70vh' }}>
+        <Row sm="12">
           <Col sm="8">
             <IngredientsCakeStructure />
           </Col>
