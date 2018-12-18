@@ -1,46 +1,89 @@
+.bloc-price {
+    width: 20vh;
+    color: rgb(34, 34, 34);
+    font-size: 0.9em;
+    text-align: center;
+    background-color: rgb(226, 225, 225);
+    padding: 13px;
+    margin: auto;
+    display: inline-block;
+    font-weight: 700;
+    z-index: 1;
+    position: relative;
+    left: 65vh;
+    top: -5vh;
+}
+
+/* Le background de tous les boutons lors de la création */
+.back-btn {
+    background-color: rgb(190, 188, 188);
+    position: absolute;
+    width: 80%;
+    top: 85%;
+    display: flex;
+    justify-content: center;
+}
+
 /* Bouton de commande */
 .order-btn {
-    background-color:gray;
-    min-width:200px;
-    display:inline-block;
-    margin-top:20px;
-    margin-left:10px;
-    height:33px;
-    font-size:1em;
-    border-radius: 5px 15px;
-    font-weight:bold;
-    border:none;
+    background-color: rgb(163, 163, 163);
+    width: 20vh;
+    display: inline-block;
+    font-size: 0.8em;
+    font-weight: 700;
+    border: none;
+    font-weight: 700;
+    padding: 14px;
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    color: rgb(34, 34, 34);
+    text-transform: uppercase;
 }
 
 /* Groupe des deux boutons */
- .btn-group {
-    margin:20px auto 0px 10px;
-    padding:0px;
- }
+.btn-group {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 5px;
+}
 
 /* Boutons Previous & Next */
 .btn-prev-next {
-    background-color:chocolate;
-    width:100px;
-    display:inline-block;
-    margin:auto;
-    border-radius:15px 5px;
-    font-weight:700;
-    padding:3px;
-    border:none;
+    background-color: rgb(129, 38, 38);
+    width: 20vh;
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: 700;
+    font-size: 0.8em;
+    padding: 15px;
+    border: none;
+    color: white;
+    text-transform: uppercase;
+}
+
+.btn-prev-next:hover {
+    background-color: rgb(189, 64, 64);
+    transition: all 0.7s ease-out;
 }
 
 /* bouton conirmation de commande */
 .btn-confirmation {
-    background-color:chocolate;
-    color:black;
-    display:inline-block;
-    margin:auto;
-    border-radius:15px 5px;
-    font-weight:700;
-    padding:5px;
-    font-size:0.9em;
-    border:none;
+    background-color: rgb(129, 38, 38);
+    display: inline;
+    margin-right: 5px;
+    font-weight: 700;
+    font-size: 0.8em;
+    padding: 15px;
+    border: none;
+    color: white;
+    text-transform: uppercase;
+}
+
+.btn-confirmation:hover {
+    background-color: rgb(189, 64, 64);
+    transition: all 0.7s ease-out;
 }
 
 
@@ -59,30 +102,20 @@
 .cakeLayout {
     margin:auto; 
     height: 60vh;
-    background-color:rgb(190, 190, 190);
-    border-radius:20px;
+    background-color: rgb(190, 190, 190);
+    border-radius: 20px;
     overflow: auto;
     display: flex;
     flex-direction: column-reverse;
 }
 
 
-/* .cakeLayout *{
-    margin: 0;
+/* background boutons onglet UserInfo */
+.back-btn-userinfo {
+    background:rgb(185, 184, 184);
+    position:absolute;
+    display:block;
+    width:80%;
+    left:10%;
+    padding:10px;
 }
-
-.Base{
-    height: 20vh;
-}
-
-.Filling{
-    height: 10vh;
-}
-
-.Glaçage{
-    height: 10vh;
-}
-
-.Toppings{
-    height: 10vh;
-} */

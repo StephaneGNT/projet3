@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import IngredientsDisplay from './IngredientsDisplay';
+import { updateIndex } from '../../../Actions/cakeActions/changeIndex';
 
 class IngredientsCakeStructure extends Component {
   // Choix des ingrédients des cakes et cheesecakes
   renderStructure = (cake, bases, icings, fillings, toppings, flavor, index) => {
-    let render;
+    let render = null;
     let elementToDisplay;
 
     // Premier écran : Choix de la base du cake, ou du parfum du cheesecake
@@ -74,6 +76,11 @@ class IngredientsCakeStructure extends Component {
         </Row>
       );
     }
+    const { setPageIndex } = this.props;
+    if (render === null) {
+      setPageIndex(1);
+      return <Redirect to="/mycake" />;
+    }
     return render;
   }
 
@@ -103,6 +110,7 @@ IngredientsCakeStructure.propTypes = {
   toppings: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   flavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   index: PropTypes.number.isRequired,
+  setPageIndex: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -115,4 +123,8 @@ const mapStateToProps = state => ({
   index: state.pageIndex,
 });
 
-export default connect(mapStateToProps)(IngredientsCakeStructure);
+const mapDispatchToProps = dispatch => ({
+  setPageIndex: index => dispatch(updateIndex(index)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(IngredientsCakeStructure);

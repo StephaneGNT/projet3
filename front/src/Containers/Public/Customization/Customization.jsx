@@ -23,7 +23,7 @@ const Customization = (props) => {
   const { wantsCustomMessage } = props;
   return (
     <div>
-      <Container className="container">
+      <Container className="content-zone">
         <Row className="text-center">
           <Progressbar />
         </Row>
@@ -34,7 +34,7 @@ const Customization = (props) => {
           <Col sm="6" lg="6" className="column">
             <FormGroup>
               <CustomMessage />
-              <div className={!wantsCustomMessage ? 'greyScale' : null}>
+              <div className={!wantsCustomMessage && 'greyScale'}>
                 <CustomMessageInput />
                 <ColorPicker />
                 <FontPicker />
@@ -47,9 +47,11 @@ const Customization = (props) => {
             <DecorationExamples />
           </Col>
         </Row>
-        <Price />
       </Container>
-      <NavArrowsLayout />
+      <Row className="back-btn">
+        <NavArrowsLayout />
+        <Price />
+      </Row>
     </div>
   );
 };

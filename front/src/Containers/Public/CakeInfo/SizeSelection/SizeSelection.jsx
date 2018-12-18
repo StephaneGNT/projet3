@@ -5,6 +5,7 @@ import CakeSizeSelection from './CakeSizeSelection';
 import MacaronSizeSelection from './MacaronSizeSelection';
 import CookieSizeSelection from './CookieSizeSelection';
 import BrownieSizeSelection from './BrownieSizeSelection';
+import CheeseCakeSelection from './CheeseCakeSelection';
 
 class SizeSelection extends Component {
   renderSizeSelection = (cakeType) => {
@@ -13,6 +14,7 @@ class SizeSelection extends Component {
       case 'macaron': return (<MacaronSizeSelection />);
       case 'cookie': return (<CookieSizeSelection />);
       case 'brownie': return (<BrownieSizeSelection />);
+      case 'cheesecake': return (<CheeseCakeSelection />);
       default: return (<div />);
     }
   }
