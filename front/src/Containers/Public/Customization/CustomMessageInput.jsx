@@ -67,15 +67,15 @@ CustomMessageInput.propTypes = {
 };
 
 const mapStatetoProps = state => ({
-  font: state.customization.customMessage.font,
-  chosenFont: state.cakeCharacteristics.customization.customMessage.font,
+  font: state.customizationAdmin.customMessage.fontFamily,
+  chosenFont: state.cakeCharacteristics.customization.customMessage.fontFamily,
   chosenFontColor: state.cakeCharacteristics.customization.customMessage.fontColor,
   chosenBackgroundColor: state.cakeCharacteristics.customization.customMessage.backgroundColor,
-  placeholder: state.customization.customMessage_placeHolder,
-  bgColor: state.customization.customMessage.backgroundColor,
-  fontColor: state.customization.customMessage.fontColor,
+  placeholder: state.customizationAdmin.customMessage_placeHolder,
+  bgColor: state.customizationAdmin.customMessage.backgroundColor,
+  fontColor: state.customizationAdmin.customMessage.fontColor,
   message: state.cakeCharacteristics.customization.customMessage.message,
-  wantsCustomMessage: state.customization.wantsCustomMessage,
+  wantsCustomMessage: state.customizationAdmin.wantsCustomMessage,
 });
 
 const mapDispatchToProps = dispatch => ({
