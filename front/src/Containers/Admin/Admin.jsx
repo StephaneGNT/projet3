@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
+import {
+  Route, Switch, BrowserRouter, Redirect,
+} from 'react-router-dom';
 import { Container, Col, Row } from 'reactstrap';
 
 import VerticalNavBar from './Navigation/VerticalNavBar';
