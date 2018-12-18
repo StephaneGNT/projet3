@@ -25,27 +25,27 @@ const CakeInfo = (props) => {
       </Row>
       <Row className="mt-3 justify-content-around">
         <Col sm="2" className="text-center">
-          <Button className="btn" color="info" onClick={() => { localChangeCakeType('cookie'); resetCakeStories(); }}>
+          <Button className="typeButton" id="cookieButton" onClick={() => { localChangeCakeType('cookie'); resetCakeStories(); }}>
             Cookie
           </Button>
         </Col>
         <Col sm="2" className="text-center">
-          <Button className="btn-marg" color="info" onClick={() => { localChangeCakeType('cake'); resetCakeStories(); }}>
+          <Button className="typeButton" id="cakeButton" onClick={() => { localChangeCakeType('cake'); resetCakeStories(); }}>
             Cake
           </Button>
         </Col>
         <Col sm="2" className="text-center">
-          <Button className="btn-marg" color="info" onClick={() => { localChangeCakeType('cheesecake'); resetCakeStories(); }}>
+          <Button className="typeButton" id="cheesecakeButton" onClick={() => { localChangeCakeType('cheesecake'); resetCakeStories(); }}>
             Cheesecake
           </Button>
         </Col>
         <Col sm="2" className="text-center">
-          <Button className="btn-marg" color="info" onClick={() => { localChangeCakeType('macaron'); resetCakeStories(); }}>
+          <Button className="typeButton" id="macaronButton" onClick={() => { localChangeCakeType('macaron'); resetCakeStories(); }}>
             Macaron
           </Button>
         </Col>
         <Col sm="2" className="text-center">
-          <Button className="btn-marg" color="info" onClick={() => { localChangeCakeType('brownie'); resetCakeStories(); }}>
+          <Button className="typeButton" id="brownieButton" onClick={() => { localChangeCakeType('brownie'); resetCakeStories(); }}>
             Brownie
           </Button>
         </Col>

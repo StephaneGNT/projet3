@@ -1,3 +1,6 @@
+import amandes from '../Assets/Images/topping_amandes.png';
+import cacahuetes from '../Assets/Images/topping_cacahuetes.png';
+
 export default () => {
   return [
     {
@@ -8,7 +11,7 @@ export default () => {
       price: 4,
       dispo: true,
       info: 'some info',
-      img: 'https://via.placeholder.com/150',
+      img: amandes,
       allerg: '',
       compatible: [],
     },
@@ -20,7 +23,7 @@ export default () => {
       price: 4,
       dispo: true,
       info: 'some info',
-      img: 'https://via.placeholder.com/150',
+      img: cacahuetes,
       allerg: '',
       compatible: [],
     },

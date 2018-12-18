@@ -142,3 +142,10 @@ CREATE TABLE final_orders
     FOREIGN KEY(customer_id) REFERENCES customers(id),
     FOREIGN KEY(cake_id) REFERENCES final_cakes(id)
 );
+
+CREATE TABLE admin
+( 
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    admin_id VARCHAR(50),
+    admin_password VARCHAR(100)
+);
