@@ -13,7 +13,7 @@ import cookiesBasesReducer from './cookie_bases_reducer';
 import browniesBasesReducer from './brownie_bases_reducer';
 import chosenStoriesReducer from './chosen_story_reducer';
 import orderReducer from './order_reducer';
-import customizationReducer from './customization_reducer';
+import customizationAdminReducer from './customization_admin_reducer';
 import databaseDisplayReducer from './database_display_reducer';
 import databaseNewIngredientDisplayReducer from './database_new_ingredient_reducer';
 
@@ -32,7 +32,7 @@ const allReducers = combineReducers({
   browniesBases: browniesBasesReducer,
   chosenStories: chosenStoriesReducer,
   orderCharacteristics: orderReducer,
-  customization: customizationReducer,
+  customizationAdmin: customizationAdminReducer,
   databaseDisplay: databaseDisplayReducer,
   databaseNewIngredientDisplay: databaseNewIngredientDisplayReducer,
 });
