@@ -34,7 +34,7 @@ const Customization = (props) => {
           <Col sm="6" lg="6" className="column">
             <FormGroup>
               <CustomMessage />
-              <div className={!wantsCustomMessage ? 'greyScale' : null}>
+              <div className={!wantsCustomMessage && 'greyScale'}>
                 <CustomMessageInput />
                 <ColorPicker />
                 <FontPicker />
