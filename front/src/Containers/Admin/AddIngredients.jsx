@@ -9,8 +9,8 @@ class AddIngredients extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
       type: '',
+      name: '',
       size: '',
       price: 0,
       dispo: false,
@@ -19,8 +19,9 @@ class AddIngredients extends Component {
       allerg: '',
       compatible: [],
     };
+
     this.onSubmit = this.onSubmit.bind(this);
-    this.urlParams = '';
+    this.urlParams = 'cake_bases';
   }
 
   updateState = (e) => {
@@ -48,6 +49,27 @@ class AddIngredients extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    const config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state),
+    };
+
+    const url = `http://localhost:5000/ingredients/${this.urlParams}/new`;
+
+    fetch(url, config)
+      .then(res => res.json())
+      .then((res) => {
+        if (res.error) { alert(res.error);
+        } else { alert('Ingrédient ajouté!');
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+        alert('Erreur');
+      });
   }
 
   render() {
@@ -67,8 +89,8 @@ class AddIngredients extends Component {
                 <Label className="label-type">
                   Type d'ingrédient
                   <Input type="select" name="type" className="input-admin-type" onChange={this.updateState}>
-                    <option></option>
-                    <option onClick={() => this.updateState('base')}>Base</option>
+                    <option> </option>
+                    <option onClick={() => this.pupdateState('base')}>Base</option>
                     <option onClick={() => this.updateState('fourrage')}>Fourrage</option>
                     <option onClick={() => this.updateState('glaçage')}>Glaçage</option>
                     <option onClick={() => this.updateState('decoration')}>Décoration</option>
@@ -127,7 +149,7 @@ class AddIngredients extends Component {
 };
 
 AddIngredients.propTypes = {
-  updateState: PropTypes.string.isRequired,
+  updateState: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
