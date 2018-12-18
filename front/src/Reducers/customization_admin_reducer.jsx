@@ -1,11 +1,11 @@
 export default (state = {
   dropdownOpen: false,
-  selectedFonts: ['Bungee', 'Charmonman'],
+  selectedFonts: ['Sedgwick Ave', 'Bungee', 'Charmonman'],
   wantsCustomMessage: false,
   customMessage: {
     choice: 'Message personnalisé',
     message: '',
-    font: 'Sedgwick Ave',
+    fontFamily: 'Sedgwick Ave',
     fontColor: 'black',
     backgroundColor: 'white',
     price: 3,

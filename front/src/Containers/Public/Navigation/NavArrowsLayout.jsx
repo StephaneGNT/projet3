@@ -15,7 +15,7 @@ class NavArrowsLayout extends Component {
         </div>
       );
     }
-    if ((index === 7) || (index === 5 && type === 'cookie') || (index === 5 && type === 'macaron')) {
+    if ((index === 7) || (index === 5 && type === 'cookie') || (index === 5 && type === 'macaron') || (index === 5 && type === 'brownie')) {
       return (
         <div>
           <NavArrowPrev />
