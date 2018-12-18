@@ -1,69 +1,164 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
+  Button,
   FormGroup,
   FormText,
   Label,
   Input,
 } from 'reactstrap';
-import { chooseDecorationType } from '../../../Actions/customization_actions';
+import { submitDecorationChoice } from '../../../Actions/customization_actions';
 
-const Decoration = (props) => {
-  const { decorationChoice, chooseDecoType } = props;
-  return (
-    <div>
-      <FormGroup tag="fieldset">
-        <legend>Décoration</legend>
-        <FormGroup check>
-          <Label check>
-            <Input type="radio" name="radio1" onClick={() => chooseDecoType(null)} />
-            {' '}
-            Pas de décoration personnalisée sur le gâteau
-          </Label>
-        </FormGroup>
-        <FormGroup check>
-          <Label check>
-            <Input type="radio" name="radio1" onClick={() => chooseDecoType('2D')} />
-            {' '}
-            Image 2D (image en sucre sur le gâteau)
-          </Label>
-        </FormGroup>
-        <FormGroup check>
-          <Label check>
-            <Input type="radio" name="radio1" onClick={() => chooseDecoType('3D')} />
-            {' '}
-            Décoration 3D (sculpture personnalisée)
-          </Label>
-        </FormGroup>
-      </FormGroup>
-      {
-        decorationChoice === null ? <div className="emptyDiv"><br></br><br></br><br></br></div> : decorationChoice === "2D" ?
-          <FormGroup className="uploadImage justify-content">
-            <Label for="file2D"><u><b>Votre image 2D</b></u></Label>
-            <Input type="file" name="file" id="file2D" />
-            <FormText color="muted">
-              Veuillez télécharger l’image à imprimer en 2D
-                  </FormText>
+class Decoration extends Component {
+  constructor(props) {
+    super(props);
+    const { choice, image, price } = this.props;
+    this.state = {
+      decoration: { choice, image, price },
+    };
+  }
+
+  chooseDecoType = (structure) => {
+    this.setState({ decoration: structure });
+  }
+
+  uploadPic = (e) => {
+    const { decoration } = this.state;
+    this.setState({ decoration: { ...decoration, image: e.target.files[0] } });
+  }
+
+  render() {
+    const { decoration } = this.state;
+    const {
+      D2,
+      D3,
+      submitDecoChoice,
+    } = this.props;
+    console.log(decoration);
+    return (
+      <div>
+        <FormGroup tag="fieldset">
+          <legend>Décoration</legend>
+          <FormGroup check>
+            <Label check>
+              <Input
+                type="radio"
+                name="radio1"
+                defaultChecked={decoration.choice === 'Pas de décoration'}
+                onClick={() => this.chooseDecoType({ choice: 'Pas de décoration', price: 0 })}
+              />
+              {' '}
+              Pas de décoration personnalisée sur le gâteau
+            </Label>
           </FormGroup>
-          :
-          <FormGroup className="uploadImage justify-content">
-            <Label for="file3D"><u><b>Décoration 3D</b></u></Label>
-            <Input type="file" name="file" id="file3D" />
-            <FormText color="muted">
-              Vous pouvez télécharger une image d’exemple
-                  </FormText>
+          <FormGroup check>
+            <Label check>
+              <Input
+                type="radio"
+                name="radio1"
+                defaultChecked={decoration.choice === '2 Dimensions'}
+                onClick={() => this.chooseDecoType(D2)}
+              />
+              {' '}
+              Image 2D (image en sucre sur le gâteau)
+              {' '}
+              <b>
+                {D2.price}
+                €
+              </b>
+            </Label>
           </FormGroup>
-      }
-    </div>
-  );
+          <FormGroup check>
+            <Label check>
+              <Input
+                type="radio"
+                name="radio1"
+                defaultChecked={decoration.choice === '3 Dimensions'}
+                onClick={() => this.chooseDecoType(D3)}
+              />
+              {' '}
+              Décoration 3D (sculpture personnalisée)
+              <br />
+              <b style={{
+                color: 'red',
+                fontSize: '0.7em',
+              }}
+              >
+                Prix pour scuplture 3D: variable en fonction de la demande.
+              </b>
+            </Label>
+          </FormGroup>
+        </FormGroup>
+        {(() => {
+          if (decoration.choice === 'Pas de décoration') {
+            submitDecoChoice(decoration);
+            return <div className="emptyDiv" />;
+          }
+          submitDecoChoice(decoration);
+          return (
+            <FormGroup className="uploadImage justify-content">
+              <Label for={decoration.choice === '2 Dimensions' ? 'file2D' : 'file3D'}>
+                <u>
+                  <b>
+                    Votre image
+                    {' '}
+                    {decoration.choice === '2 Dimensions' ? 2 : 3}
+                    D
+                  </b>
+                </u>
+              </Label>
+              <Input
+                type="file"
+                name="file"
+                id={decoration.choice === '2 Dimensions' ? 'file2D' : 'file3D'}
+                maxsize={5242880}
+                multiple={false}
+                accept="image/*"
+                onChange={this.uploadPic}
+              />
+              {Object.keys(decoration.image).length === 0
+                && (decoration.image).constructor !== Object && (
+                  <Button
+                    onClick={() => this.chooseDecoType(decoration.choice === '2 Dimensions' ? D2 : D3)}
+                    size="xsmall"
+                  >
+                    Supprimer photo
+                  </Button>)}
+              <FormText color="muted">
+                {Object.keys(decoration.image).length === 0
+                  && (decoration.image).constructor === Object
+                  && decoration.choice === '2 Dimensions' ? 'Veuillez télécharger l’image à imprimer en 2 dimensions'
+                  : 'Vous pouvez télécharger une image d’inspiration pour votre décoration 3D'}
+              </FormText>
+            </FormGroup>
+          );
+        }
+        )()}
+      </div>
+    );
+  }
+}
+
+Decoration.propTypes = {
+  D2: PropTypes.shape({}).isRequired,
+  D3: PropTypes.shape({}).isRequired,
+  choice: PropTypes.string.isRequired,
+  // image: PropTypes.shape({}).isRequired,
+  price: PropTypes.number.isRequired,
+  submitDecoChoice: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({
-  decorationChoice: state.customization.decorationChoice,
+  D2: state.customization.print2D,
+  D3: state.customization.print3Dimage,
+  choice: state.cakeCharacteristics.customization.decoration.choice,
+  image: state.cakeCharacteristics.customization.decoration.image,
+  price: state.cakeCharacteristics.customization.decoration.price,
 });
 
 const mapDispatchToProps = dispatch => ({
-  chooseDecoType: dimension => dispatch(chooseDecorationType(dimension)),
+  submitDecoChoice: content => dispatch(submitDecorationChoice(content)),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(Decoration);

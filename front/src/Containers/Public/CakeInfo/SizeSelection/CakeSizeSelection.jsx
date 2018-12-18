@@ -13,28 +13,11 @@ import '../../../../Assets/Styles/CakeSizeSelection.css';
 
 class CakeSizeSelection extends Component {
 
-  renderNombreDePersonnes = () => {
-    const { size } = this.props;
-    if (size > 0) {
-      return (
-        <p>
-          Nombre de personnes :
-          {size}
-        </p>);
-    }
-    return <div />;
-  }
-
-  renderNombreDeStories = () => {
+  renderCakeDetails = () => {
     const { size, story } = this.props;
     if (size > 0) {
       return (
-        <p>
-          Nombre d
-          {"'"}
-          étages :
-          {story}
-        </p>
+        `Personnes : ${size} - Etage(s) : ${story}`
       );
     }
     return <div />;
@@ -45,16 +28,13 @@ class CakeSizeSelection extends Component {
       <Container style={{ minWidth: '100%' }}>
         <Label className="labels-perso mt-3">Choisissez la taille de votre gâteau</Label>
         <Row>
-          <Col sm="6" className="text-center"> Nombre de personnes </Col>
-          <Col sm="3" className="text-center"> Diamètre </Col>
+          <Col sm="6" className="text-center table-head"> Nombre de personnes </Col>
+          <Col sm="3" className="text-center table-head"> Diamètre </Col>
           <Col sm="3" />
         </Row>
         <CakeSizeDisplay />
-        <Row>
-          {this.renderNombreDePersonnes()}
-        </Row>
-        <Row>
-          {this.renderNombreDeStories()}
+        <Row className="cakeDetail mt-5">
+          {this.renderCakeDetails()}
         </Row>
       </Container>
     );

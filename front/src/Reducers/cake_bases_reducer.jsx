@@ -1,6 +1,6 @@
 import base_banane from '../Assets/Images/base_banane.png';
 import base_vanille from '../Assets/Images/base_vanille.png';
-import base_chocolat from '../Assets/Images/base_chocolat.png'
+import base_chocolat from '../Assets/Images/base_chocolat.png';
 
 export default () => { 
   return [
@@ -14,7 +14,7 @@ export default () => {
       info: 'some info',
       img: base_banane,
       allerg: 'gluten',
-      compatible: ['fourrage citron', 'Glaçage citron', 'noisettes', 'cerise'],
+      compatible: ['Cream cheese', 'Ganache chocolat', 'Ganache caramel', 'Dentelles chocolat', 'Noix', 'Amandes'],
       isCompatibe: true,
     },
     {
@@ -27,7 +27,7 @@ export default () => {
       info: 'some info',
       img: base_banane,
       allerg: 'gluten',
-      compatible: ['fourrage citron', 'Glaçage citron', 'noisettes', 'cerise'],
+      compatible: ['Cream cheese', 'Ganache chocolat', 'Ganache caramel', 'Dentelles chocolat', 'Noix', 'Amandes'],
       isCompatibe: true,
     },
     {
@@ -40,7 +40,7 @@ export default () => {
       info: 'some info',
       img: base_banane,
       allerg: 'gluten',
-      compatible: ['fourrage citron', 'Glaçage citron', 'noisettes', 'cerise'],
+      compatible: ['Cream cheese', 'Ganache chocolat', 'Ganache caramel', 'Dentelles chocolat', 'Noix', 'Amandes'],
       isCompatibe: true,
     },
     {
@@ -53,7 +53,7 @@ export default () => {
       info: 'some info',
       img: base_chocolat,
       allerg: 'gluten',
-      compatible: ['fourrage framboise', 'Glaçage framboise'],
+      compatible: ['Crème chocolat', 'Fraise'],
       isCompatibe: true,
     },
     {
@@ -66,7 +66,7 @@ export default () => {
       info: 'some info',
       img: base_chocolat,
       allerg: 'gluten',
-      compatible: ['fourrage framboise', 'Glaçage framboise'],
+      compatible: ['Crème chocolat', 'Fraise'],
       isCompatibe: true,
     },
     {
@@ -79,7 +79,7 @@ export default () => {
       info: 'some info',
       img: base_chocolat,
       allerg: 'gluten',
-      compatible: ['fourrage framboise', 'Glaçage framboise'],
+      compatible: ['Crème chocolat', 'Fraise'],
       isCompatibe: true,
     },
     {

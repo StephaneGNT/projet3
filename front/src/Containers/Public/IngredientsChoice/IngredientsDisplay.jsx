@@ -3,6 +3,19 @@ import { connect } from 'react-redux';
 import Ingredient from './Ingredient';
 
 const IngredientsDisplay = (props) => {
+  const getCompatibleIngredients = (cake) => {
+    let localCompatibleIngredients = [];
+    // Si 1 ou plusieurs ingrédient(s) dans le gâteau : récupération des ingrédients compatibles communs
+    if (cake.ingredients.length > 0) {
+      for (let i = 0; i < cake.ingredients.length; i += 1) {
+        localCompatibleIngredients = (cake.ingredients[0].compatible).filter(
+          obj => cake.ingredients[i].compatible.indexOf(obj) !== -1,
+        );
+      }
+    }
+    return localCompatibleIngredients;
+  };
+
   const orderElement = (elementToDisplay, elementCompatible) => {
     if (elementCompatible.length > 0) {
       for (let i = 0; i < elementToDisplay.length; i += 1) {
@@ -19,14 +32,15 @@ const IngredientsDisplay = (props) => {
 
   const renderIngredients = (elementToDisplay, cake) => {
     // Récupération des ingrédients compatibles
-    const compatibleIngredients = cake.ingredients[0] ? cake.ingredients[0].compatible : [];
+    const compatibleIngredients = getCompatibleIngredients(cake);
+    console.log(compatibleIngredients);
     // Tri des éléments avant affichage
     const orderedElement = orderElement(elementToDisplay, compatibleIngredients);
     const render = [];
     orderedElement.map(
       (ingredient) => {
         const disabled = !(ingredient.dispo && (compatibleIngredients.length === 0
-          || compatibleIngredients.indexOf(ingredient.name) >= 0))
+          || compatibleIngredients.indexOf(ingredient.name) >= 0));
         render.push(
           <Ingredient
             ingredient={ingredient}

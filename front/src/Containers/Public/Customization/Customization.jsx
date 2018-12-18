@@ -1,13 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   Container,
   Row,
   Col,
   FormGroup,
-  Label,
-  Input,
 } from 'reactstrap';
+import CustomMessage from './CustomMessage';
 import CustomMessageInput from './CustomMessageInput';
 import ColorPicker from './ColorPicker';
 import Price from '../Price';
@@ -18,14 +18,9 @@ import DecorationExamples from './DecorationExamples';
 import NavArrowsLayout from '../Navigation/NavArrowsLayout';
 import Progressbar from '../Progressbar';
 import '../../../Assets/Styles/Personalisation.css';
-import { allowMessage } from '../../../Actions/customization_actions';
 
-const Personalisation = (props) => {
-  const {
-    textDisabled,
-    allowCakeMessage,
-  } = props;
-
+const Customization = (props) => {
+  const { wantsCustomMessage } = props;
   return (
     <div>
       <Container className="container">
@@ -38,17 +33,8 @@ const Personalisation = (props) => {
         <Row>
           <Col sm="6" lg="6" className="column">
             <FormGroup>
-              <Label for="wantsCutomMessage"><u><b>Message personnalisé sur le gâteau?</b></u></Label>
-              <br />
-              <div className="messageYes">
-                <div>
-                  <Input className="textdecocheckbox" type="checkbox" onChange={allowCakeMessage} />
-                </div>
-                <div>
-                  <p>Cochez si vous souhaitez ajouter une message au gâteau</p>
-                </div>
-              </div>
-              <div className={textDisabled ? 'greyScale' : null}>
+              <CustomMessage />
+              <div className={!wantsCustomMessage ? 'greyScale' : null}>
                 <CustomMessageInput />
                 <ColorPicker />
                 <FontPicker />
@@ -68,12 +54,12 @@ const Personalisation = (props) => {
   );
 };
 
+Customization.propTypes = {
+  wantsCustomMessage: PropTypes.bool.isRequired,
+};
+
 const mapStatetoProps = state => ({
-  textDisabled: state.customization.textDisabled,
+  wantsCustomMessage: state.customization.wantsCustomMessage,
 });
 
-const mapDispatchToProps = dispatch => ({
-  allowCakeMessage: () => dispatch(allowMessage()),
-});
-
-export default connect(mapStatetoProps, mapDispatchToProps)(Personalisation);
+export default connect(mapStatetoProps, null)(Customization);

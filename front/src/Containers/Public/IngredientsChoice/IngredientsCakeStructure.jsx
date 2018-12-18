@@ -32,18 +32,18 @@ class IngredientsCakeStructure extends Component {
           <Row className="displayIngredient">
             <Col sm="6" style={{ overflowY: 'scroll' }}>
               <Row>
-                <h1>{icings[0].type}</h1>
-              </Row>
-              <Row>
-                <IngredientsDisplay elementToDisplay={icings} />
-              </Row>
-            </Col>
-            <Col sm="6" style={{ overflowY: 'scroll' }}>
-              <Row>
                 <h1>{fillings[0].type}</h1>
               </Row>
               <Row>
                 <IngredientsDisplay elementToDisplay={fillings} />
+              </Row>
+            </Col>
+            <Col sm="6" style={{ overflowY: 'scroll' }}>
+              <Row>
+                <h1>{icings[0].type}</h1>
+              </Row>
+              <Row>
+                <IngredientsDisplay elementToDisplay={icings} />
               </Row>
             </Col>
           </Row>
@@ -110,7 +110,7 @@ const mapStateToProps = state => ({
   bases: state.cakeBases,
   fillings: state.cakeFillings,
   icings: state.cakeIcings,
-  flavor: state.cheesecakePerfumes,
+  flavor: state.cheesecakeFlavors,
   toppings: state.cakeToppings,
   index: state.pageIndex,
 });

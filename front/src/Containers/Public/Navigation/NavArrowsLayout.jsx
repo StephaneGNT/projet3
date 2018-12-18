@@ -22,6 +22,14 @@ class NavArrowsLayout extends Component {
         </div>
       );
     }
+    if (index === 2 && cake.ingredients.length === 0) {
+      return (
+        <div>
+          <NavArrowPrev />
+          <NavArrowNext disabled={true} />
+        </div>
+      );
+    }
     return (
       <div>
         <NavArrowPrev />
