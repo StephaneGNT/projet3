@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../Assets/Styles/Price.css';
 import { connect } from 'react-redux';
 import { changePrice } from '../../Actions/cakeActions/changeCakePrice';
 

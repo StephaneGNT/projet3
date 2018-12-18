@@ -1,5 +1,4 @@
 
-import '../../../Assets/Styles/CakeInfo.css';
 import { Label, Input, Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,7 +8,6 @@ import changeCakeType from '../../../Actions/cakeActions/changeCakeType';
 import SizeSelection from './SizeSelection/SizeSelection';
 import Tips from './Tips/Tips';
 import CakeOccasion from './CakeOccasion';
-
 import '../../../Assets/Styles/CakeInfo.css';
 
 const CakeInfo = (props) => {
@@ -19,7 +17,7 @@ const CakeInfo = (props) => {
     <Container style={{ height: '80vh' }}>
       <Row className="justify-content-around">
         <Col sm="5">
-          <h3 className="mt-3">Choisissez votre type de douceur :</h3>
+          <h3 className="mt-3">Choisissez votre type de douceur</h3>
         </Col>
       </Row>
       <Row className="mt-3 justify-content-around">
@@ -59,11 +57,11 @@ const CakeInfo = (props) => {
           <Row>
             <Tips />
           </Row>
-          <Row className="text-right">
-            <NavArrowsLayout />
-          </Row>
         </Col>
       </Row>
+      <div className="btn-group">
+        <NavArrowsLayout />
+      </div>
     </Container>
   );
 };
