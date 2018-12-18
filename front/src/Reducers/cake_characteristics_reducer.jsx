@@ -25,7 +25,6 @@ const initialState = {
 export default (state = initialState, action) => {
   const listIngredients = state.ingredients;
   const indexItem = listIngredients.indexOf(action.item);
-  const resettedState = initialState;
   const modifyMessage = item => ({
     ...state,
     customization: {
@@ -38,7 +37,7 @@ export default (state = initialState, action) => {
   });
   switch (action.type) {
     case 'CHANGE_CAKE_TYPE':
-      return { ...resettedState, type: action.payload };
+      return action.payload;
     case 'ADD_INGREDIENT':
       listIngredients.push(action.item);
       return { ...state, ingredients: listIngredients };

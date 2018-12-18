@@ -35,7 +35,6 @@ class Decoration extends Component {
       D3,
       submitDecoChoice,
     } = this.props;
-    console.log(decoration);
     return (
       <div>
         <FormGroup tag="fieldset">
@@ -147,6 +146,7 @@ Decoration.propTypes = {
   // image: PropTypes.shape({}).isRequired,
   price: PropTypes.number.isRequired,
   submitDecoChoice: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 const mapStatetoProps = state => ({
