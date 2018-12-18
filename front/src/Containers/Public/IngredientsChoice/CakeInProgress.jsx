@@ -33,7 +33,6 @@ class CakeInProgress extends Component {
 
   render() {
     const { cake } = this.props;
-    console.log(cake);
     return (
       <Row className="cakeLayout">
         {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index, arr))}

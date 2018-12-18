@@ -1,8 +1,6 @@
-const setDeliveryDate = (date) => { 
-  return {
-    type: 'SET_DELIVERY_DATE',
-    date,
-  };
-};
+const setDeliveryDate = date => ({
+  type: 'SET_DELIVERY_DATE',
+  date,
+});
 
 export default setDeliveryDate;

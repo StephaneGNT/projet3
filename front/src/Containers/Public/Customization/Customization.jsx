@@ -59,7 +59,7 @@ Customization.propTypes = {
 };
 
 const mapStatetoProps = state => ({
-  wantsCustomMessage: state.customization.wantsCustomMessage,
+  wantsCustomMessage: state.customizationAdmin.wantsCustomMessage,
 });
 
 export default connect(mapStatetoProps, null)(Customization);

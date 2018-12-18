@@ -42,12 +42,6 @@
   background-color: rgb(207, 207, 207);
 }
 
-.footer-zone {
-  background-color: var(--mainColor);;
-  width: 100vw;
-  height: 10vh;
-}
-
 .row{
   margin: 0 !important;
   justify-content: center;

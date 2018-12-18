@@ -12,7 +12,6 @@ import CakeSizeDisplay from './CakeSizeDisplay';
 import '../../../../Assets/Styles/CakeSizeSelection.css';
 
 class CakeSizeSelection extends Component {
-
   renderCakeDetails = () => {
     const { size, story } = this.props;
     if (size > 0) {

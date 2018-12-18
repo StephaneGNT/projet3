@@ -22,12 +22,12 @@ Allergènes: ${ingredient.allerg}.
 Giluna recommande une portion de ${ingredient.portion}`;
       }
       description = `${ingredient.info}
-Allergènes: ${ingredient.allerg}`
+Allergènes: ${ingredient.allerg}`;
     }
     return description;
   };
 
-  const filter = disabled ? 'grayscale(80%)' : '';
+  const filter = disabled && 'grayscale(80%)';
 
   return (
     <Col className="ingredient" style={{ textAlign: 'center' }}>
