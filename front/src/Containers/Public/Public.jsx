@@ -27,7 +27,6 @@ class Public extends Component {
             </Switch>
           </BrowserRouter>
         </div>
-        <div className="footer-zone"> Footer </div>
       </div>
     );
   }
