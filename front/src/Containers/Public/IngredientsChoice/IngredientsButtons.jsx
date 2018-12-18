@@ -4,6 +4,9 @@ import { Row, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import NavArrowsLayout from '../Navigation/NavArrowsLayout';
+import { updateIndex } from '../../../Actions/cakeActions/changeIndex';
+
+import '../../../Assets/Styles/IngredientsButtons.css';
 
 class IngredientsButtons extends Component {
   renderButton = (index, cake) => {
@@ -15,11 +18,23 @@ class IngredientsButtons extends Component {
     return render;
   };
 
+  checkEnable = (event, disabled) => {
+    const { cake, setPageIndex } = this.props;
+    const newIndex = (cake.type === 'cake' || cake.type === 'cheesecake') ? 5 : 3;
+    if (disabled) event.preventDefault();
+    else setPageIndex(newIndex);
+  };
+
   render() {
     const { index, cake } = this.props;
+    const disabled = !cake.ingredients.length > 0;
     return (
       <Row>
-        <Link to="/mycake/customCake"><Button className="order-btn"> Commander </Button></Link>
+        <Button className="order-btn" disabled={disabled}>
+          <Link className="commandLink" onClick={e => this.checkEnable(e, disabled)} to="/mycake/customCake">
+            Commander
+          </Link>
+        </Button>
         {this.renderButton(index, cake)}
         <NavArrowsLayout />
       </Row>
@@ -30,10 +45,15 @@ class IngredientsButtons extends Component {
 IngredientsButtons.propTypes = {
   index: PropTypes.number.isRequired,
   cake: PropTypes.shape({}).isRequired,
+  setPageIndex: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   cake: state.cakeCharacteristics,
 });
 
-export default connect(mapStateToProps, null)(IngredientsButtons);
+const mapDispatchToProps = dispatch => ({
+  setPageIndex: index => dispatch(updateIndex(index)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(IngredientsButtons);

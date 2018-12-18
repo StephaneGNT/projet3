@@ -27,8 +27,8 @@ Allergènes: ${ingredient.allerg}`;
     return description;
   };
 
-  // const filter = disabled ? 'grayscale(80%)' : '';
-  const visibility = disabled ? 'hidden' : '';
+  // const filter = disabled && 'grayscale(80%)';
+  const visibility = disabled && 'hidden';
   const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
 
   return (

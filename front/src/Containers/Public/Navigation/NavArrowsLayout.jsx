@@ -15,7 +15,7 @@ class NavArrowsLayout extends Component {
         </div>
       );
     }
-    if ((index === 7) || (index === 5 && type === 'cookie') || (index === 5 && type === 'macaron')) {
+    if ((index === 7) || (index === 5 && type === 'cookie') || (index === 5 && type === 'macaron') || (index === 5 && type === 'brownie')) {
       return (
         <div>
           <NavArrowPrev />
@@ -26,7 +26,7 @@ class NavArrowsLayout extends Component {
       return (
         <div>
           <NavArrowPrev />
-          <NavArrowNext disabled={true} />
+          <NavArrowNext disabled />
         </div>
       );
     }
@@ -50,12 +50,11 @@ NavArrowsLayout.propTypes = {
   cake: PropTypes.shape({}).isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    pageIndex: state.pageIndex,
-    type: state.cakeCharacteristics.type,
-    cake: state.cakeCharacteristics,
-  };
-};
+const mapStateToProps = state => ({
+  pageIndex: state.pageIndex,
+  type: state.cakeCharacteristics.type,
+  cake: state.cakeCharacteristics,
+});
+
 
 export default connect(mapStateToProps)(NavArrowsLayout);
