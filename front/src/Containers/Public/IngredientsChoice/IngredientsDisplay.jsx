@@ -38,7 +38,7 @@ const IngredientsDisplay = (props) => {
     const render = [];
     orderedElement.map(
       (ingredient) => {
-        const disabled = !(ingredient.dispo && (compatibleIngredients.length === 0
+        const disabled = !(ingredient.dispo && (cake.ingredients.length === 0
           || compatibleIngredients.indexOf(ingredient.name) >= 0));
         render.push(
           <Ingredient

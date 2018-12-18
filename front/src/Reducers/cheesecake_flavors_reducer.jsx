@@ -1,3 +1,6 @@
+import speculoos from '../Assets/Images/speculoos.jpg';
+import caramel from '../Assets/Images/caramel.jpg';
+
 export default () => {
   return [
     {
@@ -8,9 +11,9 @@ export default () => {
       price: 4,
       dispo: true,
       info: 'some info',
-      img: '',
+      img: speculoos,
       allerg: '',
-      compatible: ['cheesecake'],
+      compatible: [],
     },
     {
       id: 4,
@@ -20,9 +23,9 @@ export default () => {
       price: 4,
       dispo: true,
       info: 'some info',
-      img: '',
+      img: caramel,
       allerg: '',
-      compatible: ['cheesecake'],
+      compatible: [],
     },
   ];
 };

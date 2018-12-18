@@ -28,7 +28,7 @@ class NavArrowNext extends Component {
     } = this.props;
 
     return (
-      <div className="btn-group">
+      <div>
         <NavLink to={this.translateIndexToRoute(pageIndex, type)}>
           <button disabled={disabled} type="button" onClick={() => changePageIndex(1)} className="btn-prev-next">
             Suivant

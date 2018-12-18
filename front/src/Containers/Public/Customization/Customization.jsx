@@ -22,8 +22,8 @@ import '../../../Assets/Styles/Personalisation.css';
 const Customization = (props) => {
   const { wantsCustomMessage } = props;
   return (
-    <div className="Customization">
-      <Container className="container">
+    <div>
+      <Container className="content-zone">
         <Row className="text-center">
           <Progressbar />
         </Row>
@@ -47,9 +47,11 @@ const Customization = (props) => {
             <DecorationExamples />
           </Col>
         </Row>
-        <Price />
       </Container>
-      <NavArrowsLayout />
+      <Row className="back-btn">
+        <NavArrowsLayout />
+        <Price />
+      </Row>
     </div>
   );
 };

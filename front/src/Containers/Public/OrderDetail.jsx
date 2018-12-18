@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import { Row } from 'reactstrap';
-import { connect } from 'react-redux';
 import NavArrowsLayout from './Navigation/NavArrowsLayout';
 import Progressbar from './Progressbar';
 import Confirmation from './confirmation'
-import Composition from './Composition';
 import Price from './Price';
-import CakeInProgress from './CakeInProgress';
 import '../../Assets/Styles/OrderDetail.css';
-
-
+import Price from '../Price';
 
 class OrderDetail extends Component {
   constructor(props) {
@@ -19,15 +15,17 @@ class OrderDetail extends Component {
 
   render() {
     return (
-      <div>
+      <div className="content-zone">
         <Row className="text-center">
           <Progressbar />
         </Row>
         <Row>
           <Confirmation />
         </Row>
-        <NavArrowsLayout />
-       
+        <Row className="back-btn">
+          <NavArrowsLayout />
+          <Price />
+        </Row>
       </div>
     );
   }
