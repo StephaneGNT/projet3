@@ -71,9 +71,9 @@ CustomMessageInput.propTypes = {
 };
 
 const mapStatetoProps = state => ({
-  selectedFonts: state.customization.selectedFonts,
-  wantsCustomMessage: state.customization.wantsCustomMessage,
-  dropdownOpen: state.customization.dropdownOpen,
+  selectedFonts: state.customizationAdmin.selectedFonts,
+  wantsCustomMessage: state.customizationAdmin.wantsCustomMessage,
+  dropdownOpen: state.customizationAdmin.dropdownOpen,
 });
 
 const mapDispatchToProps = dispatch => ({

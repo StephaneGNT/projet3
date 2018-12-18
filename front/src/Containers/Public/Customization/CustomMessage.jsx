@@ -50,8 +50,8 @@ CustomMessage.propTypes = {
 };
 
 const mapStatetoProps = state => ({
-  customMessage: state.customization.customMessage,
-  wantsCustomMessage: state.customization.wantsCustomMessage,
+  customMessage: state.customizationAdmin.customMessage,
+  wantsCustomMessage: state.customizationAdmin.wantsCustomMessage,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -5,13 +5,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import NavArrowsLayout from '../Navigation/NavArrowsLayout';
 import changeCakeType from '../../../Actions/cakeActions/changeCakeType';
+import { resetCakePieces } from '../../../Actions/cakeActions/changeCakePiecesAndStories';
 import SizeSelection from './SizeSelection/SizeSelection';
 import Tips from './Tips/Tips';
 import CakeOccasion from './CakeOccasion';
 import '../../../Assets/Styles/CakeInfo.css';
 
 const CakeInfo = (props) => {
-  const { localChangeCakeType } = props;
+  const { localChangeCakeType, resetCakeStories } = props;
 
   return (
     <Container style={{ height: '80vh' }}>
@@ -22,27 +23,27 @@ const CakeInfo = (props) => {
       </Row>
       <Row className="mt-3 justify-content-around">
         <Col sm="2" className="text-center">
-          <button type="button" className="btn-marg" color="info" onClick={() => localChangeCakeType('cookie')}>
+          <button type="button" className="typeButton" id="cookieButton" onClick={() => { localChangeCakeType('cookie'); resetCakeStories(); }}>
             Cookie
           </button>
         </Col>
         <Col sm="2" className="text-center">
-          <button type="button" className="btn-marg" color="info" onClick={() => localChangeCakeType('cake')}>
+          <button type="button" className="typeButton" id="cakeButton" onClick={() => { localChangeCakeType('cake'); resetCakeStories(); }}>
             Cake
           </button>
         </Col>
         <Col sm="2" className="text-center">
-          <button type="button" className="btn-marg" color="info" onClick={() => localChangeCakeType('cheesecake')}>
+          <button type="button" className="typeButton" id="cheesecakeButton" onClick={() => { localChangeCakeType('cheesecake'); resetCakeStories(); }}>
             Cheesecake
           </button>
         </Col>
         <Col sm="2" className="text-center">
-          <button type="button" className="btn-marg" color="info" onClick={() => localChangeCakeType('macaron')}>
+          <button type="button" className="typeButton" id="macaronButton" onClick={() => { localChangeCakeType('macaron'); resetCakeStories(); }}>
             Macaron
           </button>
         </Col>
         <Col sm="2" className="text-center">
-          <button type="button" className="btn-marg" color="info" onClick={() => localChangeCakeType('brownie')}>
+          <button type="button" className="typeButton" id="brownieButton" onClick={() => { localChangeCakeType('brownie'); resetCakeStories(); }}>
             Brownie
           </button>
         </Col>
@@ -68,6 +69,7 @@ const CakeInfo = (props) => {
 
 CakeInfo.propTypes = {
   localChangeCakeType: PropTypes.func.isRequired,
+  resetCakeStories: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -77,6 +79,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   localChangeCakeType: cakeType => dispatch(changeCakeType(cakeType)),
+  resetCakeStories: () => dispatch(resetCakePieces()),
 });
 
 
