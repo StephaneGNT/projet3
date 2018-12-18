@@ -13,7 +13,7 @@ import CakeOccasion from './CakeOccasion';
 import '../../../Assets/Styles/CakeInfo.css';
 
 const CakeInfo = (props) => {
-  const { localChangeCakeType } = props;
+  const { setCakeType } = props;
 
   return (
     <Container style={{ height: '80vh' }}>
@@ -24,27 +24,27 @@ const CakeInfo = (props) => {
       </Row>
       <Row className="mt-3 justify-content-around">
         <Col sm="2" className="text-center">
-          <Button className="btn" color="info" onClick={() => localChangeCakeType('cookie')}>
+          <Button className="typeButton" id="cookieButton" onClick={() => setCakeType('cookie')}>
             Cookie
           </Button>
         </Col>
         <Col sm="2" className="text-center">
-          <Button className="btn-marg" color="info" onClick={() => localChangeCakeType('cake')}>
+          <Button className="typeButton" id="cakeButton" onClick={() => setCakeType('cake')}>
             Cake
           </Button>
         </Col>
         <Col sm="2" className="text-center">
-          <Button className="btn-marg" color="info" onClick={() => localChangeCakeType('cheesecake')}>
+          <Button className="typeButton" id="cheesecakeButton" onClick={() => setCakeType('cheesecake')}>
             Cheesecake
           </Button>
         </Col>
         <Col sm="2" className="text-center">
-          <Button className="btn-marg" color="info" onClick={() => localChangeCakeType('macaron')}>
+          <Button className="typeButton" id="macaronButton" onClick={() => setCakeType('macaron')}>
             Macaron
           </Button>
         </Col>
         <Col sm="2" className="text-center">
-          <Button className="btn-marg" color="info" onClick={() => localChangeCakeType('brownie')}>
+          <Button className="typeButton" id="brownieButton" onClick={() => setCakeType('brownie')}>
             Brownie
           </Button>
         </Col>
@@ -69,7 +69,7 @@ const CakeInfo = (props) => {
 };
 
 CakeInfo.propTypes = {
-  localChangeCakeType: PropTypes.func.isRequired,
+  setCakeType: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -78,7 +78,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  localChangeCakeType: cakeType => dispatch(changeCakeType(cakeType)),
+  setCakeType: cakeType => dispatch(changeCakeType(cakeType)),
 });
 
 

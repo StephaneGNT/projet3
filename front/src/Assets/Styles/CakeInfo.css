@@ -28,11 +28,7 @@
     font-size: 12px;
 } */
 
-.labels-perso{
-    font-size: 1.5em;
-    font-family: var(--mainPolice);
-    color: var(--mainColor);
-}
+
 
 /* Bloc description input */
 /* .bloc-tips {
@@ -78,6 +74,12 @@
     transition: all 1s ease-out;
 } */
 
+.labels-perso{
+    font-size: 1.5em;
+    font-family: var(--mainPolice);
+    color: var(--mainColor);
+}
+
 h3 {
     margin:auto;
     padding:10px;
@@ -86,6 +88,39 @@ h3 {
     font-family: var(--mainPolice) !important;
     color: var(--mainColor) !important;
     text-shadow:1px 1px 0px rgb(255, 255, 255);
+}
+
+.typeButton{
+    width: 11vw;
+    height: 14vh;
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    font-family: var(--secondPolice);
+    font-weight: bolder !important;
+    color: black !important;
+    padding-top: 53% !important;
+    background-color: white !important;
+}
+
+#cookieButton{
+    background-image: url(../Images/cookie.jpg);
+}
+
+#cakeButton{
+    background-image: url(../Images/cake.png);
+}
+
+#cheesecakeButton{
+    background-image: url(../Images/cheesecake.png);
+}
+
+#macaronButton{
+    background-image: url(../Images/macaron_cafe.png);
+}
+
+#brownieButton{
+    background-image: url(../Images/brownie.png);
 }
 
 .tipsColumn{

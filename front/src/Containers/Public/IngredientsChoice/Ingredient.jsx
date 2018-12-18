@@ -22,16 +22,19 @@ Allergènes: ${ingredient.allerg}.
 Giluna recommande une portion de ${ingredient.portion}`;
       }
       description = `${ingredient.info}
-Allergènes: ${ingredient.allerg}`
+Allergènes: ${ingredient.allerg}`;
     }
     return description;
   };
 
-  const filter = disabled ? 'grayscale(80%)' : '';
+  // const filter = disabled ? 'grayscale(80%)' : '';
+  const visibility = disabled ? 'hidden' : '';
+  const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
 
   return (
-    <Col className="ingredient" style={{ textAlign: 'center' }}>
-      <Button disabled={disabled} style={{ filter }} onClick={() => addNewIngredient(ingredient)}><img src={ingredient.img} title={getFullDescripion()} alt="" /></Button>
+    <Col className="ingredient" style={{ textAlign: 'center', visibility }}>
+      {/* <Button disabled={disabled} style={{ filter }} onClick={() => addNewIngredient(ingredient)}><img src={ingredient.img} title={getFullDescripion()} alt="" /></Button> */}
+      <Button disabled={disabled} style={{ backgroundColor }} onClick={() => addNewIngredient(ingredient)}><img src={ingredient.img} title={getFullDescripion()} alt="" /></Button>
       <p>{ingredient.name}</p>
     </Col>
   );

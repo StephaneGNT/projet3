@@ -33,7 +33,7 @@ class CakeSizeSelection extends Component {
           <Col sm="3" />
         </Row>
         <CakeSizeDisplay />
-        <Row className="cakeDetail mt-5">
+        <Row className="cakeDetail mt-3">
           {this.renderCakeDetails()}
         </Row>
       </Container>

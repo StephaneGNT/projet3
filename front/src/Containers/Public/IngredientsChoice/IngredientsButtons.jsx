@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import NavArrowsLayout from '../Navigation/NavArrowsLayout';
 
 class IngredientsButtons extends Component {
@@ -18,7 +19,7 @@ class IngredientsButtons extends Component {
     const { index, cake } = this.props;
     return (
       <Row>
-        <Button className="order-btn"> Commander </Button>
+        <Link to="/mycake/customCake"><Button className="order-btn"> Commander </Button></Link>
         {this.renderButton(index, cake)}
         <NavArrowsLayout />
       </Row>

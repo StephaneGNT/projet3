@@ -34,7 +34,9 @@ export default (state = {
     },
   });
   switch (action.type) {
-    case 'CHANGE_CAKE_TYPE': return { ...state, size: 0, type: action.payload };
+    case 'CHANGE_CAKE_TYPE': return {
+      ...state, size: 0, story: 0, quantity: 1, time: 0, type: action.payload,
+    };
     case 'ADD_INGREDIENT': listIngredients.push(action.item);
       return { ...state, ingredients: listIngredients };
     case 'REMOVE_INGREDIENT': listIngredients.splice(indexItem, 1);
