@@ -43,21 +43,29 @@
     border:none;
 }
 
+
+.cakeProgressLayout Button {
+  position: relative;
+  bottom: 10px;
+  left: 90px;
+}
+
+.cakeProgressLayout img {
+  width: 150px !important;
+  margin: -60px;
+  position: absolute;
+}
+
 .cakeLayout {
-    margin:auto;
-    text-align:center;
+    margin:auto; 
     height: 60vh;
     background-color:rgb(190, 190, 190);
     border-radius:20px;
     overflow: auto;
-    /* display: flex;
-    flex-direction: column-reverse; */
+    display: flex;
+    flex-direction: column-reverse;
 }
 
-.cakeLayout img{
-    width:70%;
-    margin: 0 auto;
-}
 
 /* .cakeLayout *{
     margin: 0;
