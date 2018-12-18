@@ -15,7 +15,7 @@ export default () => [
     info: 'some info',
     img: vanille,
     allerg: '',
-    compatible: [],
+    compatible: ['red', 'green', 'blue'],
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ export default () => [
     info: 'some info',
     img: chocolat,
     allerg: '',
-    compatible: [],
+    compatible: ['red', 'green', 'blue'],
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ export default () => [
     info: 'some info',
     img: fruitsRouges,
     allerg: '',
-    compatible: [],
+    compatible: ['red', 'green', 'blue'],
   },
   {
     id: 4,
@@ -51,7 +51,7 @@ export default () => [
     info: 'some info',
     img: citron,
     allerg: '',
-    compatible: [],
+    compatible: ['red', 'green', 'blue'],
   },
   {
     id: 5,
@@ -63,6 +63,6 @@ export default () => [
     info: 'some info',
     img: caramel,
     allerg: '',
-    compatible: [],
+    compatible: ['red', 'green', 'blue'],
   },
 ];

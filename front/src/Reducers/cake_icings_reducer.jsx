@@ -29,7 +29,7 @@ export default () => {
       info: 'some info',
       img: glacageChocolat,
       allerg: '',
-      compatible: ['Noix caramélisées', 'Dentelles de chocolat', 'Crumble'],
+      compatible: ['Ganache chocolat', 'Ganache caramel', 'Noix caramélisées', 'Dentelles de chocolat', 'Crumble'],
     },
     {
       id: 3,
@@ -41,7 +41,7 @@ export default () => {
       info: 'some info',
       img: ganacheCaramel,
       allerg: '',
-      compatible: ['Dentelles de chocolat', 'Crumble'],
+      compatible: ['Ganache chocolat', 'Ganache caramel', 'Dentelles de chocolat', 'Crumble'],
     },
     {
       id: 4,

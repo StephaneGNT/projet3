@@ -3,6 +3,15 @@ import { connect } from 'react-redux';
 import Ingredient from './Ingredient';
 
 const IngredientsDisplay = (props) => {
+  const getNumberOf = (cake, elementSearched) => {
+    let sum = 0;
+    cake.ingredients.map((ingredient) => {
+      if (ingredient.type === elementSearched) sum += 1;
+    });
+    console.log("sum", sum);
+    return sum;
+  };
+
   const getCompatibleIngredients = (cake) => {
     let localCompatibleIngredients = [];
     // Si 1 ou plusieurs ingrédient(s) dans le gâteau : récupération des ingrédients compatibles communs
@@ -31,6 +40,10 @@ const IngredientsDisplay = (props) => {
   };
 
   const renderIngredients = (elementToDisplay, cake) => {
+    // Récupération du nombre de icing, filling et base
+    const icingNumber = getNumberOf(cake, 'Glaçage');
+    const fillingNumber = getNumberOf(cake, 'Filling');
+    const baseNumber = getNumberOf(cake, 'Base');
     // Récupération des ingrédients compatibles
     const compatibleIngredients = getCompatibleIngredients(cake);
     // Tri des éléments avant affichage
@@ -38,8 +51,13 @@ const IngredientsDisplay = (props) => {
     const render = [];
     orderedElement.map(
       (ingredient) => {
-        const disabled = !(ingredient.dispo && (cake.ingredients.length === 0
-          || compatibleIngredients.indexOf(ingredient.name) >= 0));
+        const disabled = !(
+          ingredient.dispo
+          && (cake.ingredients.length === 0 || compatibleIngredients.indexOf(ingredient.name) >= 0)
+          && (ingredient.type !== 'Glaçage' || icingNumber < 1)
+          && (ingredient.type !== 'Filling' || fillingNumber < 2)
+          && (ingredient.type !== 'Base' || baseNumber < 1)
+        );
         render.push(
           <Ingredient
             ingredient={ingredient}
