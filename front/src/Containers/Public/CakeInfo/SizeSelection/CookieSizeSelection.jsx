@@ -10,14 +10,14 @@ import changeCakeAmount from '../../../../Actions/cakeActions/changeCakeAmount';
 import '../../../../Assets/Styles/CookieSizeSelection.css';
 
 const CakeSizeSelection = (props) => {
-  const { selectCakeSize, selectQuantity } = props;
+  const { size, selectCakeSize, selectQuantity } = props;
   return (
     <Container style={{ minWidth: '100%' }} className="text-center cookieSizeSelection">
       <Label className="labels-perso mt-3">Choisissez la taille de vos cookies</Label>
       <Row className="sizeSelection">
-        <Col className="sm-4"><Button id="smallCookie" onClick={() => selectCakeSize('S')}>Petit</Button></Col>
-        <Col className="sm-4"><Button id="averageCookie" onClick={() => selectCakeSize('M')}>Moyen</Button></Col>
-        <Col className="sm-4"><Button id="bigCookie" onClick={() => selectCakeSize('L')}>Gros</Button></Col>
+        <Col className="sm-4"><Button id="smallCookie" onClick={() => selectCakeSize('S')} className={size === 'S' && 'selectionOutline'}>Petit</Button></Col>
+        <Col className="sm-4"><Button id="averageCookie" onClick={() => selectCakeSize('M')} className={size === 'M' && 'selectionOutline'}>Moyen</Button></Col>
+        <Col className="sm-4"><Button id="bigCookie" onClick={() => selectCakeSize('L')} className={size === 'L' && 'selectionOutline'}>Gros</Button></Col>
       </Row>
       <Row>
         <Label className="labels-perso mt-3">Choisissez le nombre de cookies que vous voulez </Label>
@@ -28,13 +28,16 @@ const CakeSizeSelection = (props) => {
 };
 
 CakeSizeSelection.propTypes = {
+  size: PropTypes.string.isRequired,
   selectCakeSize: PropTypes.func.isRequired,
   selectQuantity: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = state => ({ size: state.cakeCharacteristics.size });
 
 const mapDispatchToProps = dispatch => ({
   selectCakeSize: size => dispatch(changeCakeSize(size)),
   selectQuantity: amount => dispatch(changeCakeAmount(amount)),
 });
 
-export default connect(null, mapDispatchToProps)(CakeSizeSelection);
+export default connect(mapStateToProps, mapDispatchToProps)(CakeSizeSelection);

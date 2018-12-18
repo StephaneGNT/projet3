@@ -94,3 +94,7 @@ h3 {
     flex-direction: column;
     justify-content: space-between;
 }
+
+.selectionOutline {
+  box-shadow: 0 0 3pt 2pt rgb(114, 6, 55) !important
+}

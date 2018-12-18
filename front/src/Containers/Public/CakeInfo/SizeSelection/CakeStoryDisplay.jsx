@@ -24,6 +24,11 @@ class CakeStoryDisplay extends Component {
     return (chosenStories.indexOf(story) === -1) ? 'hidden' : 'visible';
   };
 
+  outlineSelectedStory = () => {
+    const { chosenStories, story } = this.props;
+    return chosenStories.indexOf(story) !== -1 && 'selectionOutline';
+  };
+
   render() {
     const {
       width,
@@ -37,7 +42,13 @@ class CakeStoryDisplay extends Component {
       <Container className="cakeSize">
         <Row>
           <Col sm="6" className="text-center">
-            <Button onClick={() => addPieces(story)} style={{ width }} className="story text-center">{story}</Button>
+            <Button
+              onClick={() => addPieces(story)}
+              style={{ width }}
+              className={`${this.outlineSelectedStory()} story text-center`}
+            >
+              {story}
+            </Button>
           </Col>
           <Col sm="3" className="text-center"><div>{taille}</div></Col>
           <Col sm="3" className="buttonDisplay">
@@ -45,7 +56,7 @@ class CakeStoryDisplay extends Component {
               style={{ visibility: this.getDisabledMinus() }}
               onClick={() => removePieces(story)}
             >
-            -
+              -
             </Button>
           </Col>
         </Row>

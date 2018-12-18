@@ -22,7 +22,7 @@ import '../../../Assets/Styles/Personalisation.css';
 const Customization = (props) => {
   const { wantsCustomMessage } = props;
   return (
-    <div>
+    <div className="Customization">
       <Container className="container">
         <Row className="text-center">
           <Progressbar />
@@ -34,7 +34,7 @@ const Customization = (props) => {
           <Col sm="6" lg="6" className="column">
             <FormGroup>
               <CustomMessage />
-              <div className={!wantsCustomMessage ? 'greyScale' : null}>
+              <div className={!wantsCustomMessage && 'greyScale'}>
                 <CustomMessageInput />
                 <ColorPicker />
                 <FontPicker />
