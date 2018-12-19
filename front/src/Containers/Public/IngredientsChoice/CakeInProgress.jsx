@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, Row } from 'reactstrap';
+import { Button, Row, Col } from 'reactstrap';
 import removeIngredient from '../../../Actions/cakeActions/removeIngredient';
 import '../../../Assets/Styles/CakeInProgress.css';
 
@@ -15,18 +15,18 @@ class CakeInProgress extends Component {
     const { remove } = this.props;
     if (index + 1 === arr.length) {
       return (
-        <div>
-          <img src={item.img} alt="ingredient" className={item.type} />
-          <Button close onClick={() => remove(item)} />
-          <p>{item.name}</p>
-        </div>
+        <Row className="cakeProgressLayout">
+          <p>
+            <img src={item.img} alt="ingredient" className={item.type} />
+          </p>
+          <Button size="sm" close onClick={() => remove(item)} />
+        </Row>
       );
     }
     return (
-      <div>
-        <img src={item.img} alt="ingredient" />
-        <p>{item.name}</p>
-      </div>
+      <Row className="cakeProgressLayout">
+        <p><img src={item.img} alt="ingredient" /></p>
+      </Row>
     );
   }
 
@@ -34,7 +34,7 @@ class CakeInProgress extends Component {
   render() {
     const { cake } = this.props;
     return (
-      <Row className="cakeLayout">
+      <Row className="cakeLayout justify-content-center">
         {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index, arr))}
       </Row>
     );
