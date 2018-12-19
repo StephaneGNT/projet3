@@ -6,7 +6,6 @@ import IngredientsCakeStructure from './IngredientsCakeStructure';
 import IngredientsMacaronStructure from './IngredientsMacaronStructure';
 import IngredientsCookieStructure from './IngredientsCookieStructure';
 import IngredientsBrownieStructure from './IngredientsBrownieStructure';
-import IngredientsCheeseCakeStructure from './IngredientsCheeseCakeStructure';
 import IngredientsButtons from './IngredientsButtons';
 import Progressbar from '../Progressbar';
 import Price from '../Price';
@@ -23,7 +22,6 @@ const Composition = (props) => {
       case 'macaron': render = (<IngredientsMacaronStructure />); break;
       case 'cookie': render = (<IngredientsCookieStructure />); break;
       case 'brownie': render = (<IngredientsBrownieStructure />); break;
-      case 'cheesecake': render = (<IngredientsCheeseCakeStructure />); break;
       default: render = (<IngredientsCakeStructure />);
     }
     return render;

@@ -89,19 +89,34 @@
 
 .cakeProgressLayout Button {
   position: relative;
-  bottom: 10px;
-  left: 90px;
+  margin: -8px;
+  bottom: 40px;
+  left: 110px;
 }
 
 .cakeProgressLayout img {
-  width: 150px !important;
-  margin: -60px;
+  width: 200px; 
+  margin: -100px;
   position: absolute;
+}
+
+.toppingsLayout {
+  width: 40px !important;
+  position: absolute;
+  right: 230px;
+  bottom: 690px;
+}
+
+.icingsLayout {
+  width: 200px !important;
+  margin: -90px;
+  position: absolute;
+  bottom: 600px;
 }
 
 .cakeLayout {
     margin:auto; 
-    height: 60vh;
+    height: 40vh;
     background-color: rgb(190, 190, 190);
     border-radius: 20px;
     overflow: auto;
@@ -109,6 +124,20 @@
     flex-direction: column-reverse;
 }
 
+.namesLayout {
+    margin:auto; 
+    height: 20vh;
+    background-color: rgb(140, 140, 140);
+    border-radius: 20px;
+    overflow: auto;
+    flex-direction: column-reverse;
+}
+
+.namesLayout p {
+  font-family: 'lobster';
+  font-size: 19px;
+  margin: 0px;
+}
 
 /* background boutons onglet UserInfo */
 .back-btn-userinfo {

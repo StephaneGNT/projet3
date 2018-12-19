@@ -14,10 +14,17 @@ class CakeInProgress extends Component {
   compareIndexToLength = (item, index, arr) => {
     const { remove } = this.props;
     if (index + 1 === arr.length) {
+      const cakeLayoutType = () => {
+        switch (item.type) {
+          case 'Toppings': return 'toppingsLayout';
+          case 'Glaçage': return 'icingsLayout';
+          default: return null;
+        }
+      };
       return (
         <Row className="cakeProgressLayout">
           <p>
-            <img src={item.img} alt="ingredient" className={item.type} />
+            <img src={item.img} alt="ingredient" className={cakeLayoutType()} />
           </p>
           <Button size="sm" close onClick={() => remove(item)} />
         </Row>
@@ -30,13 +37,26 @@ class CakeInProgress extends Component {
     );
   }
 
+  displayNamesIngredients = (item) => {
+    return (
+      <Row>
+        <p>{item.name}</p>
+      </Row>
+    );
+  }
+
 
   render() {
     const { cake } = this.props;
     return (
-      <Row className="cakeLayout justify-content-center">
-        {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index, arr))}
-      </Row>
+      <div>
+        <Row className="cakeLayout justify-content-center">
+          {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index, arr))}
+        </Row>
+        <Row className="namesLayout ">
+          {cake.ingredients.map(item => this.displayNamesIngredients(item))}
+        </Row>
+      </div>
     );
   }
 }
