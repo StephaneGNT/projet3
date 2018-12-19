@@ -8,7 +8,6 @@ const IngredientsDisplay = (props) => {
     cake.ingredients.map((ingredient) => {
       if (ingredient.type === elementSearched) sum += 1;
     });
-    console.log("sum", sum);
     return sum;
   };
 
