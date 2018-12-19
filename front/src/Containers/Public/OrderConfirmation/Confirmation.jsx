@@ -64,13 +64,10 @@ class Confirmation extends Component {
           {(ingredients.map(item => <div>{item.name}</div>))}
           {' '}
           <br />
-          Votre
+          Date de retrait :
           {' '}
-          {type}
           {' '}
-        sera pret le
-          {' '}
-          {moment(deliveryDate).format('Do MMMM YYYY')}
+          {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
         </p>
       );
     }
@@ -101,13 +98,10 @@ class Confirmation extends Component {
           {(ingredients.map(item => <div>{item.name}</div>))}
           <br />
           <br />
-          Votre
+          Date de retrait :
           {' '}
-          {type}
           {' '}
-        sera pret le
-          {' '}
-          {moment(deliveryDate).format('Do MMMM YYYY')}
+          {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
         </p>
       );
     }
@@ -142,17 +136,14 @@ class Confirmation extends Component {
           Parfum de vos macarrons:
           <br />
           {' '}
-          {(ingredients.map(item => <div>{item.name}</div>))}
+          {(ingredients.map(item => item.name.includes('Parfum') && <div>{item.name}</div>))}
           <br />
           Couleur de vos macarrons:
-          {(ingredients.map(item => <div>{item.color}</div>))}
-          Votre
+          {(ingredients.map(item => !item.name.includes('Parfum') && <div>{item.name}</div>))}
+          Date de retrait :
           {' '}
-          {type}
           {' '}
-          sera pret le
-          {' '}
-          {moment(deliveryDate).format('Do MMMM YYYY')}
+          {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
           <br />
         </p>
       );
@@ -191,13 +182,10 @@ class Confirmation extends Component {
         {' '}
         {(ingredients.map(item => <div>{item.name}</div>))}
         <br />
-        Votre
+        Date de retrait :
         {' '}
-        {type}
         {' '}
-        sera pret le
-        {' '}
-        {moment(deliveryDate).format('Do MMMM YYYY')}
+        {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
       </p>
     );
   }
