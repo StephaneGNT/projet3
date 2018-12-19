@@ -104,14 +104,14 @@
   width: 40px !important;
   position: absolute;
   right: 230px;
-  bottom: 690px;
+  bottom: 70vh;
 }
 
 .icingsLayout {
   width: 200px !important;
   margin: -90px;
   position: absolute;
-  bottom: 600px;
+  bottom: 60vh;
 }
 
 .cakeLayout {
