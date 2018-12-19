@@ -48,6 +48,7 @@ const CustomMessageInput = (props) => {
         disabled={!wantsCustomMessage}
         onChange={updateMessage}
         value={wantsCustomMessage ? message : placeholder}
+        resize="none"
       />
     </div>
   );
@@ -55,12 +56,12 @@ const CustomMessageInput = (props) => {
 
 CustomMessageInput.propTypes = {
   bgColor: PropTypes.string.isRequired,
-  // chosenFont: PropTypes.string,
-  // chosenBackgroundColor: PropTypes.string.isRequired,
-  // chosenFontColor: PropTypes.string.isRequired,
+  chosenFont: PropTypes.string.isRequired,
+  chosenBackgroundColor: PropTypes.string.isRequired,
+  chosenFontColor: PropTypes.string.isRequired,
   font: PropTypes.string.isRequired,
   fontColor: PropTypes.string.isRequired,
-  // message: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   updateMessage: PropTypes.func.isRequired,
   wantsCustomMessage: PropTypes.bool.isRequired,
@@ -68,13 +69,13 @@ CustomMessageInput.propTypes = {
 
 const mapStatetoProps = state => ({
   font: state.customizationAdmin.customMessage.fontFamily,
-  chosenFont: state.cakeCharacteristics.customization.customMessage.fontFamily,
-  chosenFontColor: state.cakeCharacteristics.customization.customMessage.fontColor,
-  chosenBackgroundColor: state.cakeCharacteristics.customization.customMessage.backgroundColor,
+  chosenFont: state.customizationCustomer.customMessage.fontFamily,
+  chosenFontColor: state.customizationCustomer.customMessage.fontColor,
+  chosenBackgroundColor: state.customizationCustomer.customMessage.backgroundColor,
   placeholder: state.customizationAdmin.customMessage_placeHolder,
   bgColor: state.customizationAdmin.customMessage.backgroundColor,
   fontColor: state.customizationAdmin.customMessage.fontColor,
-  message: state.cakeCharacteristics.customization.customMessage.message,
+  message: state.customizationCustomer.customMessage.message,
   wantsCustomMessage: state.customizationAdmin.wantsCustomMessage,
 });
 

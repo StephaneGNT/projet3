@@ -37,8 +37,8 @@ class Decoration extends Component {
     } = this.props;
     return (
       <div>
-        <FormGroup tag="fieldset">
-          <legend>Décoration</legend>
+        <FormGroup style={{ textAlign: 'center' }} tag="fieldset">
+          <p><b>Décoration</b></p>
           <FormGroup check>
             <Label check>
               <Input
@@ -143,18 +143,17 @@ Decoration.propTypes = {
   D2: PropTypes.shape({}).isRequired,
   D3: PropTypes.shape({}).isRequired,
   choice: PropTypes.string.isRequired,
-  // image: PropTypes.shape({}).isRequired,
+  image: PropTypes.shape({}).isRequired,
   price: PropTypes.number.isRequired,
   submitDecoChoice: PropTypes.func.isRequired,
-  image: PropTypes.string.isRequired,
 };
 
 const mapStatetoProps = state => ({
   D2: state.customizationAdmin.print2D,
   D3: state.customizationAdmin.print3Dimage,
-  choice: state.cakeCharacteristics.customization.decoration.choice,
-  image: state.cakeCharacteristics.customization.decoration.image,
-  price: state.cakeCharacteristics.customization.decoration.price,
+  choice: state.customizationCustomer.decoration.choice,
+  image: state.customizationCustomer.decoration.image,
+  price: state.customizationCustomer.decoration.price,
 });
 
 const mapDispatchToProps = dispatch => ({

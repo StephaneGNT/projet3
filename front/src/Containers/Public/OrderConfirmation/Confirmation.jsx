@@ -94,7 +94,7 @@ class Confirmation extends Component {
           {' '}
           <br />
           <br />
-        La composition de votre cheesecake:
+          La composition de votre cheesecake:
           {(ingredients.map(item => <div>{item.name}</div>))}
           <br />
           <br />
@@ -240,8 +240,8 @@ const mapStateToProps = (state) => {
       deliveryDate: state.orderCharacteristics.delivery_date,
       story: state.cakeCharacteristics.story,
       price: state.cakeCharacteristics.price,
-      customMessage: state.cakeCharacteristics.customization.customMessage.choice,
-      decoration: state.cakeCharacteristics.customization.decoration.choice, 
+      customMessage: state.customizationCustomer.customMessage.choice,
+      decoration: state.customizationCustomer.decoration.choice,
       ingredients: state.cakeCharacteristics.ingredients,
       quantity: state.cakeCharacteristics.quantity,
       occasion: state.cakeCharacteristics.occasion,

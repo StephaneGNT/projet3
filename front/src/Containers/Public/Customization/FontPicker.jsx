@@ -36,7 +36,8 @@ const CustomMessageInput = (props) => {
         <Col sm="6" lg="6">
           <Dropdown isOpen={dropdownOpen} className={!wantsCustomMessage ? 'disableHover' : null} toggle={toggleFunction}>
             <DropdownToggle className="fontdropdown" caret>
-              Police du message:
+              Police
+
             </DropdownToggle>
             <DropdownMenu>
               {

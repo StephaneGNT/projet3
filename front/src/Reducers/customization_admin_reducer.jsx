@@ -1,6 +1,6 @@
 export default (state = {
   dropdownOpen: false,
-  selectedFonts: ['Sedgwick Ave', 'Bungee', 'Charmonman'],
+  selectedFonts: ['Sedgwick Ave', 'Bungee', 'Charmonman', 'Kaushan Script', 'Lobster Two'],
   wantsCustomMessage: false,
   customMessage: {
     choice: 'Message personnalisé',

@@ -21,8 +21,8 @@ Price.propTypes = {
 const mapStatetoProps = state => ({
   price: state.cakeCharacteristics.ingredients
     .map(p => p.price).reduce((a, v) => a + v, 0)
-  + state.cakeCharacteristics.customization.customMessage.price
-  + state.cakeCharacteristics.customization.decoration.price,
+  + state.customizationCustomer.customMessage.price
+  + state.customizationCustomer.decoration.price,
 });
 
 const mapDispatchToProps = dispatch => ({
