@@ -9,7 +9,7 @@ export default () => {
     {
       id: 1,
       name: 'Cream cheese',
-      type: 'Filling',
+      type: 'Garniture',
       size: 'S',
       price: 4,
       dispo: true,
@@ -22,7 +22,7 @@ export default () => {
     {
       id: 2,
       name: 'Crème chocolat',
-      type: 'Filling',
+      type: 'Garniture',
       size: 'M',
       price: 5,
       dispo: true,
@@ -35,7 +35,7 @@ export default () => {
     {
       id: 3,
       name: 'Ganache caramel',
-      type: 'Filling',
+      type: 'Garniture',
       size: 'XL',
       price: 6,
       dispo: true,
@@ -48,7 +48,7 @@ export default () => {
     {
       id: 4,
       name: 'Fourrage fraise',
-      type: 'Filling',
+      type: 'Garniture',
       size: 'S',
       price: 2,
       dispo: true,
@@ -62,7 +62,7 @@ export default () => {
     {
       id: 5,
       name: 'Fourrage citron',
-      type: 'Filling',
+      type: 'Garniture',
       size: 'S',
       price: 2,
       dispo: true,
