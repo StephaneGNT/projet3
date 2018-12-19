@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import moment from 'moment';
+import 'moment/locale/fr';
 import {
   Card,
   CardText,
@@ -9,8 +10,8 @@ import {
   CardTitle,
 } from 'reactstrap';
 
-import '../../Assets/Styles/OrderDetail.css';
-import '../../Assets/Styles/Confirmation.css';
+import '../../../Assets/Styles/OrderDetail.css';
+import '../../../Assets/Styles/Confirmation.css';
 
 
 class Confirmation extends Component {
@@ -28,122 +29,201 @@ class Confirmation extends Component {
       ingredients,
       customMessage,
       decoration,
-      price,
       story,
+      deliveryDate,
     } = this.props;
     if (type === 'brownie' || type === 'cookie') {
       return (
         <p>
-          A l’occasion d’un(e)
+          Occasion:
+          {' '}
           {occasion}
-          ,
           <br />
-          vous avez commandé
+      Votre commande:
+          {' '}
           {quantity}
+          {' '}
           {type}
+          {' '}
           de taille
+          {' '}
           {size}
           <br />
-          votre personnalisation:
+          <br />
+          Personnalisation:
+          <br />
           {decoration}
+          {' '}
+          {' '}
           {customMessage}
+          {' '}
           <br />
-      La composition de votre
-          {type}
-      :
+          <br />
+      Composition:
+          {' '}
           {(ingredients.map(item => <div>{item.name}</div>))}
+          {' '}
           <br />
-          Montant de votre commande :
-          {price}
-          €
+          Votre
+          {' '}
+          {type}
+          {' '}
+        sera pret le
+          {' '}
+          {moment(deliveryDate).format('Do MMMM YYYY')}
         </p>
       );
     }
     if (type === 'cheesecake') {
       return (
         <p>
-        A l’occasion d’un(e)
+        Occasion :
+          {' '}
           {occasion}
-        vous avez commandé un
+          {' '}
+          <br />
+        Votre commande :
+          {' '}
           {type}
+          {' '}
+          <br />
           <br />
         Personnalisation:
+          <br />
           {decoration}
+          {' '}
+          {' '}
           {customMessage}
+          {' '}
           <br />
           <br />
         La composition de votre cheesecake:
           {(ingredients.map(item => <div>{item.name}</div>))}
           <br />
           <br />
-        Montant de votre commande :
-          {price}
-        €
+          Votre
+          {' '}
+          {type}
+          {' '}
+        sera pret le
+          {' '}
+          {moment(deliveryDate).format('Do MMMM YYYY')}
         </p>
       );
     }
     if (type === 'macaron') {
       return (
         <p>
-          A l’occasion d’un(e)
+         Occasion:
+          {' '}
           {occasion}
-          vous avez commandé
+          <br />
+      Votre commande:
+          {' '}
           {quantity}
+          {' '}
           {type}
+          {' '}
         de taille
+          {' '}
           {size}
+          {' '}
+          <br />
           <br />
           Personnalisation:
-          {decoration}
-          {customMessage}
           <br />
-          La composition de vos macarrons:
+          {decoration}
+          {' '}
+          {' '}
+          {customMessage}
+          {' '}
+          <br />
+          <br />
+          Parfum de vos macarrons:
+          <br />
+          {' '}
           {(ingredients.map(item => <div>{item.name}</div>))}
           <br />
-          Montant de votre commande :
-          {price}
-          €
+          Couleur de vos macarrons:
+          {(ingredients.map(item => <div>{item.name}</div>))}
+          Votre
+          {' '}
+          {type}
+          {' '}
+          sera pret le
+          {' '}
+          {moment(deliveryDate).format('Do MMMM YYYY')}
+          <br />
         </p>
       );
     }
     return (
       <p>
-      A l’occasion d’un(e)
+      Occasion:
+        {' '}
         {occasion}
-      ,
         <br />
-      votre commande est un
+      Votre commande:
+        {' '}
         {type}
+        {' '}
        de
+        {' '}
         {story}
+        {' '}
         étage(s) pour
+        {' '}
         {size}
-         personnes qui a une décoration
-        {decoration}
-        {customMessage}
+        {' '}
+         personnes
         <br />
+        <br />
+      Personnalisation:
+        <br />
+        {decoration}
+        {' '}
+        {' '}
+        {customMessage}
+        {' '}
+        <br />
+        <br />
+        Composition de votre cake:
+        {' '}
         {(ingredients.map(item => <div>{item.name}</div>))}
         <br />
-        Montant de votre commande :
-        {price}
-        €
+        Votre
+        {' '}
+        {type}
+        {' '}
+        sera pret le
+        {' '}
+        {moment(deliveryDate).format('Do MMMM YYYY')}
       </p>
     );
   }
 
   render() {
+    const { price } = this.props;
     return (
-
       <div>
         <Card id="Card">
           <CardBody>
-            <CardTitle>Votre commande :</CardTitle>
+            <CardTitle>Résumé de votre commande :</CardTitle>
             <CardText>
               {this.changeConfirmation()}
             </CardText>
           </CardBody>
         </Card>
         <br />
+
+        <div>
+          <p>
+          Montant de votre commande :
+            {' '}
+            {price}
+        €
+          </p>
+        </div>
 
         <p> Conditions générales de vente</p>
 
@@ -162,15 +242,18 @@ Confirmation.propTypes = {
   customMessage: PropTypes.string.isRequired,
   decoration: PropTypes.string.isRequired,
   story: PropTypes.number.isRequired,
+  deliveryDate: PropTypes.string.isRequired,
 
 };
 
 const mapStateToProps = (state) => {
   return (
     {
+      deliveryDate: state.orderCharacteristics.delivery_date,
       story: state.cakeCharacteristics.story,
       price: state.cakeCharacteristics.price,
-      // customization: state.cakeCharacteristics.customization,
+      customMessage: state.cakeCharacteristics.customization.customMessage.choice,
+      decoration: state.cakeCharacteristics.customization.decoration.choice, 
       ingredients: state.cakeCharacteristics.ingredients,
       quantity: state.cakeCharacteristics.quantity,
       occasion: state.cakeCharacteristics.occasion,
@@ -178,8 +261,6 @@ const mapStateToProps = (state) => {
       type: state.cakeCharacteristics.type,
       cake: state.cakeCharacteristics,
       index: state.pageIndex,
-      customMessage: state.cakeCharacteristics.customization.customMessage.choice,
-      decoration: state.cakeCharacteristics.customization.decoration.choice, 
     }
   );
 };

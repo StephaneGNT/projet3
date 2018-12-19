@@ -2,24 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  Button,
-  Row,
-  Container,
-  Label,
+  Button, Row, Container, Label,
 } from 'reactstrap';
 import changeCakeSize from '../../../../Actions/cakeActions/changeCakeSize';
 import changeCakeAmount from '../../../../Actions/cakeActions/changeCakeAmount';
 
-import '../../../../Assets/Styles/CakeSizeSelection.css';
+import '../../../../Assets/Styles/MacaronSizeSelection.css';
 
 const MacaronSizeSelection = (props) => {
   const { selectCakeSize, selectQuantity } = props;
   return (
-    <Container style={{ minWidth: '100%' }}>
-      <Row>
-        <Label className="labels-perso mt-3">Choisissez la taille de vos macarons</Label>
-        <Button onClick={() => selectCakeSize('S')}>Petit</Button>
-        <Button onClick={() => selectCakeSize('L')}>Gros</Button>
+    <Container style={{ minWidth: '100%' }} className="macaronSize text-center">
+      <Label className="labels-perso mt-3">Choisissez la taille de vos macarons</Label>
+      <Row className="macaronSizeSelection">
+        <Button id="smallMacaron" onClick={() => selectCakeSize('S')}>Petit</Button>
+        <Button id="bigMacaron" onClick={() => selectCakeSize('L')}>Gros</Button>
       </Row>
       <Row>
         <Label className="labels-perso mt-3">Choisissez le nombre de macarons que vous voulez </Label>

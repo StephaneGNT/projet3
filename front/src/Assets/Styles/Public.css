@@ -1,3 +1,5 @@
+@import './CommonStyle.css';
+
 .body-zone {
   display: block;
   margin: 0;
@@ -9,14 +11,27 @@
 }
 
 .header-zone {
-  background-color: #9C0045;
+  background-color: var(--mainColor);;
   width: 100vw;
   height: 10vh;
-  font-family: 'Lobster Two', cursive;
+  font-family: var(--mainPolice);
   font-size:3em;
   color:white;
   text-align:center;
   text-shadow:3px 3px 0px rgb(114, 6, 55);
+}
+
+.header-zone Button{
+  background-color: transparent;
+  border: none;
+  font-family: 'Arial', cursive;
+  font-size:0.4em;
+  color:black;
+  text-decoration: underline;
+  text-align:center;
+  position: absolute;
+  right: 1vw;
+  top: 3vh;
 }
 
 .content-zone {
@@ -28,7 +43,7 @@
 }
 
 .footer-zone {
-  background-color: #9C0045;
+  background-color: var(--mainColor);;
   width: 100vw;
   height: 10vh;
 }

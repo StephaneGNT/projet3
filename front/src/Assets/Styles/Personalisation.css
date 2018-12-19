@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-/* .content {
-  position: absolute;
-} */
-=======
 .bloc-personnalisation {
   margin:1%;
   width:90%;
@@ -10,7 +5,6 @@
   border-radius:50px 100px;
   box-shadow: 2px 2px 0px rgb(177, 177, 177);
 }
->>>>>>> dev
 
 .btn-group2 {
   display:block;
@@ -23,25 +17,6 @@ h1 {
   text-align: center;
 }
 
-<<<<<<< HEAD
-hr {
-  background-color: black;
-  height: 10px;
-  width: 100%;
-}
-
-.column {
-  font-family: "roboto";
-  font-size: 1em;
-}
-
-.emtpyDiv {
-  height: 12vmin;
-  width: 100%;
-}
-
-=======
->>>>>>> dev
 .uploadImage {
   display: flex;
   flex-direction: column;

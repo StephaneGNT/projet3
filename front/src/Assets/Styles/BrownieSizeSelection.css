@@ -1,0 +1,42 @@
+/* @import './CommonStyle.css'; */
+
+.brownieSize Row{
+  width: 100%;
+}
+
+.brownieSizeSelection Button{
+  height: 120px;
+  width: 120px;
+  padding: 0;
+  color: var(--mainColor);
+  font-family: var(--mainPolice);
+  font-size: 1.5em;
+  background-color: white;
+  background-image: url('../Images/brownie.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  border-radius: 20px;
+  padding-top: 60%;
+}
+
+.brownieSizeSelection Button:hover, .brownieSizeSelection Button:active, .brownieSizeSelection Button:focus{
+  border: 2px solid;
+  border-color: var(--mainColor);
+  color: black !important;
+  background-color: white !important;
+  box-shadow: 0 !important;
+}
+
+#smallBrownie{
+  background-size: 40% 40%;
+  background-position-y: 35%;
+}
+
+#averageBrownie{
+  background-size: 60% 60%;
+  background-position-y: 20%;
+}
+
+#bigBrownie{
+  background-size: 80% 80%;
+}
