@@ -20,7 +20,7 @@ import Progressbar from '../Progressbar';
 import '../../../Assets/Styles/Personalisation.css';
 
 const Customization = (props) => {
-  const { wantsCustomMessage } = props;
+  const { pastryType, wantsCustomMessage } = props;
   return (
     <div>
       <Container className="content-zone">
@@ -31,18 +31,27 @@ const Customization = (props) => {
           <h1>Personnalisation</h1>
         </Row>
         <Row>
-          <Col sm="6" lg="6" className="column">
+          <Col sm={!pastryType.includes('cake') ? '12' : '6'} className="column">
             <FormGroup>
-              <CustomMessage />
-              <div className={!wantsCustomMessage && 'greyScale'}>
-                <CustomMessageInput />
-                <ColorPicker />
-                <FontPicker />
-              </div>
-              <CustomWish />
+              {(() => {
+                if (pastryType.includes('cake')) {
+                  return (
+                    <div>
+                      <CustomMessage />
+                      <div className={!wantsCustomMessage && 'greyScale'}>
+                        <CustomMessageInput />
+                        <ColorPicker />
+                        {/* <FontPicker /> */}
+                      </div>
+                    </div>
+                  );
+                }
+                return <div />;
+              })()}
             </FormGroup>
+            {/* <CustomWish /> */}
           </Col>
-          <Col sm="6" lg="6" className="column">
+          <Col sm={!pastryType.includes('cake') ? '12' : '6'} className="column">
             <Decoration />
             <DecorationExamples />
           </Col>
@@ -57,11 +66,13 @@ const Customization = (props) => {
 };
 
 Customization.propTypes = {
+  pastryType: PropTypes.string.isRequired,
   wantsCustomMessage: PropTypes.bool.isRequired,
 };
 
 const mapStatetoProps = state => ({
   wantsCustomMessage: state.customizationAdmin.wantsCustomMessage,
+  pastryType: state.cakeCharacteristics.type,
 });
 
 export default connect(mapStatetoProps, null)(Customization);

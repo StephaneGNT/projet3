@@ -17,6 +17,14 @@ h1 {
   text-align: center;
 }
 
+li {
+  list-style-type: none;
+}
+
+.customWish {
+  min-width: 100%;
+}
+
 .uploadImage {
   display: flex;
   flex-direction: column;
@@ -53,6 +61,7 @@ input {
 
 .fontdropdown {
   font-size: 1em;
+  padding-right: 5vh !important;
 }
 
 .messageYes {
@@ -104,3 +113,14 @@ input {
   cursor: help;
 }
 
+.palette {
+  margin-top: 1vh;
+  padding-bottom: 3vh;
+}
+
+.buttonGroup {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: start !important;
+  margin-left: -8vh;
+}

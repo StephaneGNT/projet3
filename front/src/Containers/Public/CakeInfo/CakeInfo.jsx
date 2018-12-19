@@ -12,7 +12,7 @@ import CakeOccasion from './CakeOccasion';
 import '../../../Assets/Styles/CakeInfo.css';
 
 const CakeInfo = (props) => {
-  const { localChangeCakeType, resetCakeStories } = props;
+  const { type, localChangeCakeType, resetCakeStories } = props;
 
   return (
     <Container style={{ height: '80vh' }}>
@@ -23,27 +23,27 @@ const CakeInfo = (props) => {
       </Row>
       <Row className="mt-3 justify-content-around">
         <Col sm="2" className="text-center">
-          <button type="button" className="typeButton" id="cookieButton" onClick={() => { localChangeCakeType('cookie'); resetCakeStories(); }}>
+          <button type="button" className={`typeButton ${type === 'cookie' && 'selectionOutline'}`} id="cookieButton" onClick={() => { localChangeCakeType('cookie'); resetCakeStories(); }}>
             Cookie
           </button>
         </Col>
         <Col sm="2" className="text-center">
-          <button type="button" className="typeButton" id="cakeButton" onClick={() => { localChangeCakeType('cake'); resetCakeStories(); }}>
+          <button type="button" className={`typeButton ${type === 'cake' && 'selectionOutline'}`} id="cakeButton" onClick={() => { localChangeCakeType('cake'); resetCakeStories(); }}>
             Cake
           </button>
         </Col>
         <Col sm="2" className="text-center">
-          <button type="button" className="typeButton" id="cheesecakeButton" onClick={() => { localChangeCakeType('cheesecake'); resetCakeStories(); }}>
+          <button type="button" className={`typeButton ${type === 'cheesecake' && 'selectionOutline'}`} id="cheesecakeButton" onClick={() => { localChangeCakeType('cheesecake'); resetCakeStories(); }}>
             Cheesecake
           </button>
         </Col>
         <Col sm="2" className="text-center">
-          <button type="button" className="typeButton" id="macaronButton" onClick={() => { localChangeCakeType('macaron'); resetCakeStories(); }}>
+          <button type="button" className={`typeButton ${type === 'macaron' && 'selectionOutline'}`} id="macaronButton" onClick={() => { localChangeCakeType('macaron'); resetCakeStories(); }}>
             Macaron
           </button>
         </Col>
         <Col sm="2" className="text-center">
-          <button type="button" className="typeButton" id="brownieButton" onClick={() => { localChangeCakeType('brownie'); resetCakeStories(); }}>
+          <button type="button" className={`typeButton ${type === 'brownie' && 'selectionOutline'}`} id="brownieButton" onClick={() => { localChangeCakeType('brownie'); resetCakeStories(); }}>
             Brownie
           </button>
         </Col>
@@ -74,7 +74,7 @@ CakeInfo.propTypes = {
 
 const mapStateToProps = state => ({
   dispatch: state.dispatch,
-  selectedCakeType: state.cakeCharacteristics,
+  type: state.cakeCharacteristics.type,
 });
 
 const mapDispatchToProps = dispatch => ({

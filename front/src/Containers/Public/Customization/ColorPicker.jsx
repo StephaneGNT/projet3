@@ -1,26 +1,59 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { GithubPicker } from 'react-color';
-import { Row, Col } from 'reactstrap';
+import { CirclePicker } from 'react-color';
+import { Button, ButtonGroup, Row, Col } from 'reactstrap';
+import FontPicker from './FontPicker';
 import { changeBgColor, changeFontColor } from '../../../Actions/customization_actions';
 import '../../../Assets/Styles/Personalisation.css';
 
-const ColorPicker = (props) => {
-  const { changeBackgroundColor, changeFontColour } = props;
-  return (
-    <Row>
-      <Col xs="12" lg="6">
-        <p>Couleur de fond</p>
-        <GithubPicker name="backgroundColor" onChange={changeBackgroundColor} />
-      </Col>
-      <Col xs="12" lg="6">
-        <p>Couleur de l’écriture</p>
-        <GithubPicker name="fontColor" onChange={changeFontColour} />
-      </Col>
-    </Row>
-  );
-};
+class ColorPicker extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { color: 'font' };
+  }
+
+  changeColorPalette = (palette) => {
+    this.setState({ color: palette });
+  }
+
+  render() {
+    const buttonStyle = { 'background-color': 'rgb(129, 38, 38)' }
+    const { changeBackgroundColor, changeFontColour } = this.props;
+    const { color } = this.state;
+    return (
+      <div>
+        <Row>
+          <Col className="buttonGroup">
+            <ButtonGroup>
+              <FontPicker />
+              <Button
+                onClick={() => this.changeColorPalette('font')}
+                style={color === 'font' ? buttonStyle : {}}
+              >
+                Couleur de l’écriture
+              </Button>
+              <Button
+                onClick={() => this.changeColorPalette('background')}
+                style={color === 'background' ? buttonStyle : {}}
+              >
+                Couleur de fond
+              </Button>
+            </ButtonGroup>
+          </Col>
+        </Row>
+        <Row>
+          {
+            (color === 'font')
+              ? <CirclePicker className="palette" name="fontColor" onChange={changeFontColour} />
+              : <CirclePicker className="palette" name="backgroundColor" onChange={changeBackgroundColor} />
+          }
+        </Row>
+      </div>
+    );
+  }
+}
+
 
 ColorPicker.propTypes = {
   changeBackgroundColor: PropTypes.func.isRequired,

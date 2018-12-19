@@ -14,6 +14,7 @@ import browniesBasesReducer from './brownie_bases_reducer';
 import chosenStoriesReducer from './chosen_story_reducer';
 import orderReducer from './order_reducer';
 import customizationAdminReducer from './customization_admin_reducer';
+import customizationCustomerReducer from './customization_customer_reducer';
 import databaseDisplayReducer from './database_display_reducer';
 import databaseNewIngredientDisplayReducer from './database_new_ingredient_reducer';
 
@@ -33,6 +34,7 @@ const allReducers = combineReducers({
   chosenStories: chosenStoriesReducer,
   orderCharacteristics: orderReducer,
   customizationAdmin: customizationAdminReducer,
+  customizationCustomer: customizationCustomerReducer,
   databaseDisplay: databaseDisplayReducer,
   databaseNewIngredientDisplay: databaseNewIngredientDisplayReducer,
 });
