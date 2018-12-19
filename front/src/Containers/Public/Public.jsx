@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Switch, BrowserRouter, Link } from 'react-router-dom';
+import {
+  Route,
+  Switch,
+  BrowserRouter,
+  // Link
+} from 'react-router-dom';
 import HomePage from './HomePage';
 import PimpMyCake from './PimpMyCake';
 import Contact from './Contact';
@@ -16,7 +21,7 @@ class Public extends Component {
       <div className="body-zone">
         <div className="header-zone">
           Pimp My Cake
-          <Link to="/admin"><button type="button">Admin</button></Link>
+          {/* <Link to="/admin"><button type="button">Admin</button></Link> */}
         </div>
         <div className="content-zone">
           <BrowserRouter>
@@ -27,7 +32,6 @@ class Public extends Component {
             </Switch>
           </BrowserRouter>
         </div>
-        <div className="footer-zone"> Footer </div>
       </div>
     );
   }

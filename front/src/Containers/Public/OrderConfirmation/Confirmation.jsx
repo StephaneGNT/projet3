@@ -145,7 +145,7 @@ class Confirmation extends Component {
           {(ingredients.map(item => <div>{item.name}</div>))}
           <br />
           Couleur de vos macarrons:
-          {(ingredients.map(item => <div>{item.name}</div>))}
+          {(ingredients.map(item => <div>{item.color}</div>))}
           Votre
           {' '}
           {type}

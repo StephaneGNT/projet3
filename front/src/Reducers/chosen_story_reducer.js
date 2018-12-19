@@ -14,6 +14,8 @@ export default function (state = [], action) {
       newStories.splice(newStories.indexOf(action.payload), 1);
       return newStories;
     }
+    case 'RESET_PIECES':
+      return [];
     default:
       return state;
   }

@@ -12,7 +12,6 @@ import CakeSizeDisplay from './CakeSizeDisplay';
 import '../../../../Assets/Styles/CakeSizeSelection.css';
 
 class CakeSizeSelection extends Component {
-
   renderCakeDetails = () => {
     const { size, story } = this.props;
     if (size > 0) {
@@ -33,7 +32,7 @@ class CakeSizeSelection extends Component {
           <Col sm="3" />
         </Row>
         <CakeSizeDisplay />
-        <Row className="cakeDetail mt-5">
+        <Row className="cakeDetail mt-3">
           {this.renderCakeDetails()}
         </Row>
       </Container>
