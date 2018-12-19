@@ -24,17 +24,7 @@ const Composition = (props) => {
       case 'cookie': render = (<IngredientsCookieStructure />); break;
       case 'brownie': render = (<IngredientsBrownieStructure />); break;
       case 'cheesecake': render = (<IngredientsCheeseCakeStructure />); break;
-      default: render = (
-        <Row sm="12">
-          <Col sm="8">
-            <IngredientsCakeStructure />
-          </Col>
-          <Col sm="4" className="cakeAndPriceDisplay">
-            <div className="cakeDisplay" />
-            <CakeInProgress />
-          </Col>
-        </Row>
-      );
+      default: render = (<IngredientsCakeStructure />);
     }
     return render;
   };
@@ -44,7 +34,15 @@ const Composition = (props) => {
       <Row className="text-center">
         <Progressbar />
       </Row>
-      {renderComposition(cake.type)}
+      <Row style={{ height: '70vh' }}>
+        <Col sm="8">
+          {renderComposition(cake.type)}
+        </Col>
+        <Col sm="4" className="cakeAndPriceDisplay">
+          <div className="cakeDisplay" />
+          <CakeInProgress />
+        </Col>
+      </Row>
       <Row sm="12">
         <Price />
         <IngredientsButtons index={index} />

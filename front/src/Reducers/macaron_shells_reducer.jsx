@@ -1,7 +1,7 @@
 export default () => [
   {
     id: 1,
-    color: 'red',
+    name: 'Rouge',
     colorCode: 'rgba(255,0,0,1)',
     type: 'Coquille',
     size: 'S',
@@ -14,7 +14,7 @@ export default () => [
   },
   {
     id: 2,
-    color: 'green',
+    name: 'Vert',
     colorCode: 'rgba(0,255,0,1)',
     type: 'Coquille',
     size: 'S',
@@ -27,7 +27,7 @@ export default () => [
   },
   {
     id: 3,
-    color: 'blue',
+    name: 'Bleu',
     colorCode: 'rgba(0,0,255,1)',
     type: 'Coquille',
     size: 'S',

@@ -40,6 +40,7 @@ export default (state = initialState, action) => {
       return action.payload;
     case 'ADD_INGREDIENT':
       listIngredients.push(action.item);
+      console.log(listIngredients);
       return { ...state, ingredients: listIngredients };
     case 'REMOVE_INGREDIENT':
       listIngredients.splice(indexItem, 1);
