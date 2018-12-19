@@ -9,7 +9,7 @@ export default (state = {
 },
 action) => {
   switch (action.type) {
-    case 'setDeliveryDate': return { ...state, delivery_date: action.date };
+    case 'SET_DELIVERY_DATE': return { ...state, delivery_date: action.date };
     default: return state;
   }
 };
