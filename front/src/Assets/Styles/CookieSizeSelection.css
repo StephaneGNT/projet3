@@ -6,15 +6,15 @@
   height: 120px;
   width: 120px;
   padding: 0;
-  color: var(--mainColor);
-  font-family: var(--mainPolice);
-  font-size: 1.5em;
+  color: black;
+  font-family: var(--secondPolice);
+  font-size: 1em;
   background-color: white;
   background-image: url('../Images/cookie.jpg');
   background-repeat: no-repeat;
   background-position-x: center;
   border-radius: 20px;
-  padding-top: 60%;
+  padding-top: 70%;
 }
 
 .cookieSizeSelection Button:hover, .cookieSizeSelection Button:active, .cookieSizeSelection Button:focus{

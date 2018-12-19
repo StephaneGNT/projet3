@@ -13,7 +13,7 @@ export default () => {
       info: 'some info',
       img: speculoos,
       allerg: '',
-      compatible: [],
+      compatible: ['Cream cheese', 'Sucre glace', 'Amandes caramélisées', 'Noix caramélisées', 'Noisettes caramélisées', 'Crumble'],
     },
     {
       id: 4,
@@ -25,7 +25,7 @@ export default () => {
       info: 'some info',
       img: caramel,
       allerg: '',
-      compatible: [],
+      compatible: ['Cream cheese', 'Sucre glace', 'Amandes caramélisées', 'Noix caramélisées', 'Noisettes caramélisées', 'Crumble'],
     },
   ];
 };

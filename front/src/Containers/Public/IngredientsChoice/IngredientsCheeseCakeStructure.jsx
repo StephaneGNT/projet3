@@ -6,6 +6,7 @@ import IngredientsDisplay from './IngredientsDisplay';
 
 const IngredientsCheeseCakeStructure = (props) => {
   const { flavor } = props;
+  console.log(flavor);
   return (
     <Row style={{ height: '70vh', overflowY: 'scroll' }}>
       <Col sm="12">

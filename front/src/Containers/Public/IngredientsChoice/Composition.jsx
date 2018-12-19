@@ -23,7 +23,7 @@ const Composition = (props) => {
       case 'macaron': render = (<IngredientsMacaronStructure />); break;
       case 'cookie': render = (<IngredientsCookieStructure />); break;
       case 'brownie': render = (<IngredientsBrownieStructure />); break;
-      case 'cheesecake': render = (<IngredientsCheeseCakeStructure />); break;
+      // case 'cheesecake': render = (<IngredientsCheeseCakeStructure />); break;
       default: render = (<IngredientsCakeStructure />);
     }
     return render;
