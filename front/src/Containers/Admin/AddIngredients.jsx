@@ -19,7 +19,6 @@ class AddIngredients extends Component {
       allerg: '',
       compatible: [],
     };
-
     this.onSubmit = this.onSubmit.bind(this);
     this.urlParams = 'cake_bases';
   }

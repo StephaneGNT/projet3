@@ -32,6 +32,19 @@ class Confirmation extends Component {
       story,
       deliveryDate,
     } = this.props;
+
+    // let message = '';
+
+    // if (occasion) message += `Occasion: ${occasion}`;
+    // message += `Commande: ${quantity} ${type}`;
+    // if (typeof (size) === 'number') message += ` pour ${size} personnes`;
+    // else message += ` de taille ${size}`;
+    // if (decoration || customMessage) message += `Personnalisation : ${decoration} ${customMessage}`;
+    // message += `Composition : ${(ingredients.map(item => item.name))}`;
+    // if (deliveryDate) message += `Date de retrait : ${moment(deliveryDate).format('Do MMMM YYYY')}`;
+
+    // return message;
+
     if (type === 'brownie' || type === 'cookie') {
       return (
         <p>
@@ -133,12 +146,12 @@ class Confirmation extends Component {
           {' '}
           <br />
           <br />
-          Parfum de vos macarrons:
+          Parfum de vos macarons:
           <br />
           {' '}
           {(ingredients.map(item => item.name.includes('Parfum') && <div>{item.name}</div>))}
           <br />
-          Couleur de vos macarrons:
+          Couleur de vos macarons:
           {(ingredients.map(item => !item.name.includes('Parfum') && <div>{item.name}</div>))}
           Date de retrait :
           {' '}
