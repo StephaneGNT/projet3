@@ -2,7 +2,7 @@
   "name": "project3",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://StephaneGNT.github.io/projet3",
+  "homepage": "https://StephaneGNT.github.io/projet3/front",
   "dependencies": {
     "@material-ui/core": "^3.6.2",
     "axios": "^0.18.0",
