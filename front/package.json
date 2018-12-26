@@ -2,6 +2,7 @@
   "name": "project3",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://StephaneGNT.github.io/projet3",
   "dependencies": {
     "@material-ui/core": "^3.6.2",
     "axios": "^0.18.0",
@@ -23,6 +24,8 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -35,7 +38,8 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "gh-pages": "^2.0.1"
   },
   "keywords": [],
   "author": "",
