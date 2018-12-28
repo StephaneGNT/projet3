@@ -20,174 +20,34 @@ class Confirmation extends Component {
     this.state = {};
   }
 
-  changeConfirmation = () => {
+  renderConfirmation = () => {
+    let description = '';
     const {
-      type,
-      size,
-      occasion,
-      quantity,
-      ingredients,
-      customMessage,
-      decoration,
-      story,
-      deliveryDate,
+      type, size, occasion, quantity, ingredients, customMessage, decoration, story, deliveryDate,
     } = this.props;
-    if (type === 'brownie' || type === 'cookie') {
-      return (
-        <p>
-          Occasion:
-          {' '}
-          {occasion}
-          <br />
-      Votre commande:
-          {' '}
-          {quantity}
-          {' '}
-          {type}
-          {' '}
-          de taille
-          {' '}
-          {size}
-          <br />
-          <br />
-          Personnalisation:
-          <br />
-          {decoration}
-          {' '}
-          {' '}
-          {customMessage}
-          {' '}
-          <br />
-          <br />
-      Composition:
-          {' '}
-          {(ingredients.map(item => <div>{item.name}</div>))}
-          {' '}
-          <br />
-          Date de retrait :
-          {' '}
-          {' '}
-          {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
-        </p>
-      );
+
+    if (occasion) description += `Occasion : ${occasion}`;
+    description += `Commande :
+ ${quantity} ${type} `;
+    if (type === 'cake') description += `de ${story} étage(s)`;
+    if (typeof size === 'number') description += `pour ${size} personnes`;
+    else description += `de taille ${size}`;
+
+    if (decoration && customMessage) description += `Décoration : ${decoration} et ${customMessage}`;
+    else if (decoration || customMessage) {
+      if (decoration) description += `Décoration : ${decoration}`;
+      else description += `Décoration : ${customMessage}`;
     }
-    if (type === 'cheesecake') {
-      return (
-        <p>
-        Occasion :
-          {' '}
-          {occasion}
-          {' '}
-          <br />
-        Votre commande :
-          {' '}
-          {type}
-          {' '}
-          <br />
-          <br />
-        Personnalisation:
-          <br />
-          {decoration}
-          {' '}
-          {' '}
-          {customMessage}
-          {' '}
-          <br />
-          <br />
-          La composition de votre cheesecake:
-          {(ingredients.map(item => <div>{item.name}</div>))}
-          <br />
-          <br />
-          Date de retrait :
-          {' '}
-          {' '}
-          {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
-        </p>
-      );
-    }
-    if (type === 'macaron') {
-      return (
-        <p>
-         Occasion:
-          {' '}
-          {occasion}
-          <br />
-      Votre commande:
-          {' '}
-          {quantity}
-          {' '}
-          {type}
-          {' '}
-        de taille
-          {' '}
-          {size}
-          {' '}
-          <br />
-          <br />
-          Personnalisation:
-          <br />
-          {decoration}
-          {' '}
-          {' '}
-          {customMessage}
-          {' '}
-          <br />
-          <br />
-          Parfum de vos macarrons:
-          <br />
-          {' '}
-          {(ingredients.map(item => item.name.includes('Parfum') && <div>{item.name}</div>))}
-          <br />
-          Couleur de vos macarrons:
-          {(ingredients.map(item => !item.name.includes('Parfum') && <div>{item.name}</div>))}
-          Date de retrait :
-          {' '}
-          {' '}
-          {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
-          <br />
-        </p>
-      );
-    }
-    return (
-      <p>
-      Occasion:
-        {' '}
-        {occasion}
-        <br />
-      Votre commande:
-        {' '}
-        {type}
-        {' '}
-       de
-        {' '}
-        {story}
-        {' '}
-        étage(s) pour
-        {' '}
-        {size}
-        {' '}
-         personnes
-        <br />
-        <br />
-      Personnalisation:
-        <br />
-        {decoration}
-        {' '}
-        {' '}
-        {customMessage}
-        {' '}
-        <br />
-        <br />
-        Composition de votre cake:
-        {' '}
-        {(ingredients.map(item => <div>{item.name}</div>))}
-        <br />
-        Date de retrait :
-        {' '}
-        {' '}
-        {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
-      </p>
-    );
+
+    if (type === 'macarons') {
+      const flavor = ingredients.map((ingredient) => { if (ingredient.type === 'Parfum') return ingredient.name; });
+      const color = ingredients.map((ingredient) => { if (ingredient.type === 'Coquille') return ingredient.name; });
+      description += `Parfum : ${flavor} - Couleur : ${color}`;
+    } else description += `${ingredients.map(item => item.name)} `;
+
+    if (deliveryDate) description += `Date de retrait : ${moment(deliveryDate).format('Do MMMM YYYY')}`;
+
+    return description;
   }
 
   render() {
@@ -196,9 +56,9 @@ class Confirmation extends Component {
       <div>
         <Card id="Card">
           <CardBody>
-            <CardTitle>Résumé de votre commande :</CardTitle>
+            <CardTitle>Votre commande</CardTitle>
             <CardText>
-              {this.changeConfirmation()}
+              {this.renderConfirmation()}
             </CardText>
           </CardBody>
         </Card>

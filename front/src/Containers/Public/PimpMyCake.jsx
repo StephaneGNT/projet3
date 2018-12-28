@@ -17,11 +17,11 @@ class PimpMyCake extends Component {
       // <div style={{ width: '100%', height: '100%' }}>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/mycake" component={CakeInfo} />
-          <Route path="/mycake/composition" component={Composition} />
-          <Route path="/mycake/customCake" component={Customization} />
-          <Route path="/mycake/orderDetail" component={OrderDetail} />
-          <Route path="/mycake/userInfo" component={UserInfo} />
+          <Route exact path={`${process.env.PUBLIC_URL}/mycake`} component={CakeInfo} />
+          <Route path={`${process.env.PUBLIC_URL}/mycake/composition`} component={Composition} />
+          <Route path={`${process.env.PUBLIC_URL}/mycake/customCake`} component={Customization} />
+          <Route path={`${process.env.PUBLIC_URL}/mycake/orderDetail`} component={OrderDetail} />
+          <Route path={`${process.env.PUBLIC_URL}/mycake/userInfo`} component={UserInfo} />
         </Switch>
       </BrowserRouter>
       // </div>
