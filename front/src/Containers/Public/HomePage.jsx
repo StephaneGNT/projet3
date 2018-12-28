@@ -11,7 +11,7 @@ class HomePage extends Component {
     return (
       <div>
         <h1>Bienvenue sur Pimp My Cake !</h1>
-        <Link to="/mycake"><button type="button">Commencez votre gâteau</button></Link>
+        <Link to={`${process.env.PUBLIC_URL}/mycake`}><button type="button">Commencez votre gâteau</button></Link>
       </div>
     );
   }

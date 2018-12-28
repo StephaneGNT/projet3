@@ -8,8 +8,8 @@ const App = () => {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route path="/admin" component={Admin} />
-          <Route path="/" component={Public} />
+          <Route path={`${process.env.PUBLIC_URL}/admin`} component={Admin} />
+          <Route path={`${process.env.PUBLIC_URL}/`} component={Public} />
         </Switch>
       </BrowserRouter>
     </div>
