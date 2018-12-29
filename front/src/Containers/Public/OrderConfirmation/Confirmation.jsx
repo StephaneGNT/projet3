@@ -27,8 +27,7 @@ class Confirmation extends Component {
     } = this.props;
 
     if (occasion) description += `Occasion : ${occasion}`;
-    description += `Commande :
- ${quantity} ${type} `;
+    description += `Commande : ${quantity} ${type} `;
     if (type === 'cake') description += `de ${story} étage(s)`;
     if (typeof size === 'number') description += `pour ${size} personnes`;
     else description += `de taille ${size}`;
