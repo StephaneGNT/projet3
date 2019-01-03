@@ -6,7 +6,7 @@ import { changeIndex } from '../../../Actions/cakeActions/changeIndex';
 
 class NavArrowNext extends Component {
   translateIndexToRoute = (index, cakeType) => {
-    const routes = ['/mycake', '/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'];
+    const routes = [`${process.env.PUBLIC_URL}/mycake`, `${process.env.PUBLIC_URL}/mycake/composition`, `${process.env.PUBLIC_URL}/mycake/customCake`, `${process.env.PUBLIC_URL}/mycake/orderDetail`, `${process.env.PUBLIC_URL}/mycake/userInfo`];
     if (cakeType === 'cookie' || cakeType === 'macaron' || cakeType === 'brownie') {
       return routes[index];
     }

@@ -42,7 +42,7 @@ class OrderCalendar extends Component {
 }
 
 OrderCalendar.propTypes = {
-  selectDeliveryDate: PropTypes.string.isRequired,
+  selectDeliveryDate: PropTypes.func.isRequired,
   cake: PropTypes.shape({}).isRequired,
 };
 

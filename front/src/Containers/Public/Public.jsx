@@ -26,9 +26,9 @@ class Public extends Component {
         <div className="content-zone">
           <BrowserRouter>
             <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route path="/mycake" component={PimpMyCake} />
-              <Route path="/contact" component={Contact} />
+              <Route exact path={`${process.env.PUBLIC_URL}/`} component={HomePage} />
+              <Route path={`${process.env.PUBLIC_URL}/mycake`} component={PimpMyCake} />
+              <Route path={`${process.env.PUBLIC_URL}/contact`} component={Contact} />
             </Switch>
           </BrowserRouter>
         </div>

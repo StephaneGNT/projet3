@@ -1,6 +1,6 @@
 export default (state = {
   customMessage: {
-    choice: 'Pas de message personnalisé',
+    choice: '',
     message: '',
     fontFamily: '',
     fontColor: '',
@@ -8,7 +8,7 @@ export default (state = {
     price: 0,
   },
   decoration: {
-    choice: 'Pas de décoration',
+    choice: '',
     image: {},
     price: 0,
   },
@@ -24,7 +24,7 @@ export default (state = {
     case 'ALLOW_MESSAGE':
       return { ...state, customMessage: action.item };
     case 'REMOVE_CUSTOM_MESSAGE':
-      return { ...state, customMessage: { ...state.customMessage, choice: 'Pas de message personnalisé', price: 0 } };
+      return { ...state, customMessage: { ...state.customMessage, choice: '', price: 0 } };
     case 'UPDATE_CUSTOM_MESSAGE': return modifyMessage('message');
     case 'CHOOSE_FONT_FAMILY': return modifyMessage('fontFamily');
     case 'CHANGE_FONT_COLOR': return modifyMessage('fontColor');

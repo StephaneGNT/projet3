@@ -5,7 +5,7 @@ export default () => {
   return [
     {
       id: 1,
-      name: 'Amandes',
+      name: 'Amandes caramélisées',
       type: 'Base',
       size: 'S',
       price: 4,
