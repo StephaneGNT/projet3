@@ -1,3 +1,5 @@
+import update from 'react-addons-update';
+
 const initialState = {
   type: '',
   size: 0, // size doit impérativement être définie comme un entier !!
@@ -17,9 +19,16 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case 'CHANGE_CAKE_TYPE':
       return action.payload;
+    case 'CHANGE_CAKE_BASE':
+      return update(state, {
+        ingredients: {
+          0: {
+            name: { $set: action.payload },
+          },
+        },
+      });
     case 'ADD_INGREDIENT':
       listIngredients.push(action.item);
-      console.log(listIngredients);
       return { ...state, ingredients: listIngredients };
     case 'REMOVE_INGREDIENT':
       listIngredients.splice(indexItem, 1);
