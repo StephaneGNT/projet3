@@ -32,17 +32,7 @@ class Confirmation extends Component {
     // else if (decoration || customMessage) {
     //   if (decoration) description += `Décoration : ${decoration}`;
     //   else description += `Décoration : ${customMessage}`;
-    // let message = '';
 
-    // if (occasion) message += `Occasion: ${occasion}`;
-    // message += `Commande: ${quantity} ${type}`;
-    // if (typeof (size) === 'number') message += ` pour ${size} personnes`;
-    // else message += ` de taille ${size}`;
-    // if (decoration || customMessage) message += `Personnalisation : ${decoration} ${customMessage}`;
-    // message += `Composition : ${(ingredients.map(item => item.name))}`;
-    // if (deliveryDate) message += `Date de retrait : ${moment(deliveryDate).format('Do MMMM YYYY')}`;
-
-    // return message;
 
     if (type === 'brownie' || type === 'cookie') {
       return (
@@ -160,20 +150,6 @@ class Confirmation extends Component {
         </p>
       );
     }
-
-    // if (type === 'macarons') {
-    //   const flavor = ingredients.map((ingredient) => {
-    //     if (ingredient.type === 'Parfum') return ingredient.name;
-    //   });
-    //   const color = ingredients.map((ingredient) => {
-    //     if (ingredient.type === 'Coquille') return ingredient.name;
-    //   });
-    //   description += `Parfum : ${flavor} - Couleur : ${color}`;
-    // } else description += `${ingredients.map(item => item.name)} `;
-
-    // if (deliveryDate) description += `Date de retrait : ${moment(deliveryDate).format('Do MMMM YYYY')}`;
-
-    // return description;
   }
 
   render() {
