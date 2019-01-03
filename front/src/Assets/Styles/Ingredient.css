@@ -12,9 +12,9 @@
 }
 
 /* ingredient structure */
-.displayIngredient{
+.displayIngredient {
   background-color: rgb(219, 219, 219);
   height: 60vh;
   overflow: auto;
-  border-radius:20px;
+  border-radius: 20px;
 }

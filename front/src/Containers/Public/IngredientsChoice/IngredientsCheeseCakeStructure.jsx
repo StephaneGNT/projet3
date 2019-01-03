@@ -3,15 +3,16 @@ import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import IngredientsDisplay from './IngredientsDisplay';
+import '../../../Assets/Styles/Ingredient.css';
 
 const IngredientsCheeseCakeStructure = (props) => {
   const { flavor } = props;
   return (
-    <Row style={{ height: '70vh', overflowY: 'scroll' }}>
-      <Col sm="12">
+    <Row style={{ height: '40vh', overflowY: 'scroll' }}>
+      <Col md="12">
         <h1 style={{ textAlign: 'center' }}>{flavor[0].type}</h1>
       </Col>
-      <Col sm="12" style={{ display: 'flex', flexDirection: 'row' }}>
+      <Col md="12" style={{ display: 'flex', flexDirection: 'row' }}>
         <IngredientsDisplay elementToDisplay={flavor} />
       </Col>
     </Row>

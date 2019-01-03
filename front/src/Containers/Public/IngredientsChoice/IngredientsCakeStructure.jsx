@@ -19,7 +19,7 @@ class IngredientsCakeStructure extends Component {
 
       render = (
         <Row className="displayIngredient">
-          <Row>
+          <Row className="w-100 mx-auto">
             <h1>{elementToDisplay[0].type}</h1>
           </Row>
           <Row>
