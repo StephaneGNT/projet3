@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import {
   Container, Row, Col, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
-import NavArrowsLayout from './Navigation/NavArrowsLayout';
 import Progressbar from './Progressbar';
 
 class UserInfo extends Component {
