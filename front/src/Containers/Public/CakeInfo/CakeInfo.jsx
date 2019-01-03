@@ -23,27 +23,57 @@ const CakeInfo = (props) => {
       </Row>
       <Row className="mt-3 justify-content-around">
         <Col sm="2" className="text-center">
-          <button type="button" className={`typeButton ${type === 'cookie' && 'selectionOutline'}`} id="cookieButton" onClick={() => { localChangeCakeType('cookie'); resetCakeStories(); }}>
+          <button
+            type="button"
+            className="typeButton"
+            id="cookieButton"
+            title="A partir de 2,5€"
+            onClick={() => { localChangeCakeType('cookie'); resetCakeStories(); }}
+          >
             Cookie
           </button>
         </Col>
         <Col sm="2" className="text-center">
-          <button type="button" className={`typeButton ${type === 'cake' && 'selectionOutline'}`} id="cakeButton" onClick={() => { localChangeCakeType('cake'); resetCakeStories(); }}>
+          <button
+            type="button"
+            className="typeButton"
+            id="cakeButton"
+            title="A partir de 8€"
+            onClick={() => { localChangeCakeType('cake'); resetCakeStories(); }}
+          >
             Cake
           </button>
         </Col>
         <Col sm="2" className="text-center">
-          <button type="button" className={`typeButton ${type === 'cheesecake' && 'selectionOutline'}`} id="cheesecakeButton" onClick={() => { localChangeCakeType('cheesecake'); resetCakeStories(); }}>
+          <button
+            type="button"
+            className="typeButton"
+            id="cheesecakeButton"
+            title="A partir de 8€"
+            onClick={() => { localChangeCakeType('cheesecake'); resetCakeStories(); }}
+          >
             Cheesecake
           </button>
         </Col>
         <Col sm="2" className="text-center">
-          <button type="button" className={`typeButton ${type === 'macaron' && 'selectionOutline'}`} id="macaronButton" onClick={() => { localChangeCakeType('macaron'); resetCakeStories(); }}>
+          <button
+            type="button"
+            className="typeButton"
+            id="macaronButton"
+            title="A partir de 2,5€"
+            onClick={() => { localChangeCakeType('macaron'); resetCakeStories(); }}
+          >
             Macaron
           </button>
         </Col>
         <Col sm="2" className="text-center">
-          <button type="button" className={`typeButton ${type === 'brownie' && 'selectionOutline'}`} id="brownieButton" onClick={() => { localChangeCakeType('brownie'); resetCakeStories(); }}>
+          <button
+            type="button"
+            className="typeButton"
+            id="brownieButton"
+            title="A partir de 2,5€"
+            onClick={() => { localChangeCakeType('brownie'); resetCakeStories(); }}
+          >
             Brownie
           </button>
         </Col>

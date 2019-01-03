@@ -7,15 +7,15 @@
   width: 120px;
   padding: 0;
   margin: 0 20px;
-  color: var(--mainColor);
-  font-family: var(--mainPolice);
-  font-size: 1.5em;
+  color: black;
+  font-family: var(--secondPolice);
+  font-size: 1em;
   background-color: white;
   background-image: url('../Images/macaron_cafe.png');
   background-repeat: no-repeat;
   background-position-x: center;
   border-radius: 20px;
-  padding-top: 85px;
+  padding-top: 95px;
 }
 
 .macaronSizeSelection Button:hover, .macaronSizeSelection Button:active, .macaronSizeSelection Button:focus{

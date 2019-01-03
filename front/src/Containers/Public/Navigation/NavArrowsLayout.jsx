@@ -6,9 +6,10 @@ import NavArrowPrev from './NavArrowPrev';
 
 class NavArrowsLayout extends Component {
   changeLayoutviaPageindex = (index, type, cake) => {
+    const minMacarons = 6;
     let disabled = true;
     if (index === 1) {
-      if ((cake.type === 'cake' && cake.size > 0) || (cake.type === 'cheesecake') || ((cake.type === 'cookie' || cake.type === 'macaron' || cake.type === 'brownie') && cake.size !== 0 && cake.quantity > 1)) disabled = false;
+      if ((cake.type === 'cake' && cake.size > 0) || (cake.type === 'cheesecake') || ((cake.type === 'cookie' || cake.type === 'brownie') && cake.size !== 0 && cake.quantity > 1) || (cake.type === 'macaron' && cake.size !== 0 && cake.quantity >= minMacarons)) disabled = false;
       return (
         <div className="btn-group">
           <NavArrowNext disabled={disabled} />
