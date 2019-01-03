@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../../Assets/Styles/MainNavigation.css';
-
 import {
   Navbar, Nav, NavItem, NavbarBrand, NavLink,
 } from 'reactstrap';
