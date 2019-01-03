@@ -3,6 +3,7 @@ import {
   Route,
   Switch,
   BrowserRouter,
+  Link,
 } from 'react-router-dom';
 import HomePage from './HomePage';
 import PimpMyCake from './PimpMyCake';
@@ -22,7 +23,7 @@ class Public extends Component {
         <MainNavigation />
         <div className="header-zone">
           Pimp My Cake
-          {/* <Link to="/admin"><button type="button">Admin</button></Link> */}
+          <Link to="/admin/ingredients"><button type="button">Admin</button></Link>
         </div>
         <div className="content-zone">
           <BrowserRouter>

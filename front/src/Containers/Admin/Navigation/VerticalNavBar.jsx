@@ -5,23 +5,23 @@ import '../../../Assets/Styles/NavBarAdmin.css';
 
 const VerticalNavBar = () => (
   <div className="nav-b-admin">
-  <Nav style={{ display: 'flex', flexDirection: 'column' }}>
-    <NavItem>
-      <Link to="/admin"> Commandes </Link>
-    </NavItem>
-    <NavItem>
-      <Link to="/admin/ingredients"> Ingrédients </Link>
-    </NavItem>
-    <NavItem>
-      <Link to="/admin/clients"> Clients </Link>
-    </NavItem>
-    <NavItem>
-      <Link to="/admin/calendar"> Calendrier </Link>
-    </NavItem>
-    <NavItem>
-      <Link to="/admin/edit"> Contenu & Personnalisation </Link>
-    </NavItem>
-  </Nav>
+    <Nav style={{ display: 'flex', flexDirection: 'column' }}>
+      <NavItem>
+        <Link to="/admin"> Commandes </Link>
+      </NavItem>
+      <NavItem>
+        <Link to="/admin/ingredients"> Ingrédients </Link>
+      </NavItem>
+      <NavItem>
+        <Link to="/admin/clients"> Clients </Link>
+      </NavItem>
+      <NavItem>
+        <Link to="/admin/calendar"> Calendrier </Link>
+      </NavItem>
+      <NavItem>
+        <Link to="/admin/edit"> Contenu & Personnalisation </Link>
+      </NavItem>
+    </Nav>
   </div>
 );
 
