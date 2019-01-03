@@ -3,11 +3,11 @@ import {
   Route,
   Switch,
   BrowserRouter,
-  // Link
 } from 'react-router-dom';
 import HomePage from './HomePage';
 import PimpMyCake from './PimpMyCake';
 import Contact from './Contact';
+import MainNavigation from './Navigation/MainNavigation';
 import '../../Assets/Styles/Public.css';
 
 class Public extends Component {
@@ -19,6 +19,7 @@ class Public extends Component {
   render() {
     return (
       <div className="body-zone">
+        <MainNavigation />
         <div className="header-zone">
           Pimp My Cake
           {/* <Link to="/admin"><button type="button">Admin</button></Link> */}
