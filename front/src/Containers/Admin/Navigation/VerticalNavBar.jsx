@@ -1,28 +1,50 @@
 import React from 'react';
-import { Nav, NavItem } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import '../../../Assets/Styles/NavBarAdmin.css';
+import {
+  Nav, NavItem, NavLink, Navbar, NavbarBrand,
+} from 'reactstrap';
+import '../../../Assets/Styles/MainNavigation.css';
+import logo from '../../../Assets/Images/LOGO_GILUNA.png';
 
 const VerticalNavBar = () => (
-  <div className="nav-b-admin">
-    <Nav style={{ display: 'flex', flexDirection: 'column' }}>
-      <NavItem>
-        <Link to="/admin"> Commandes </Link>
-      </NavItem>
-      <NavItem>
-        <Link to="/admin/ingredients"> Ingrédients </Link>
-      </NavItem>
-      <NavItem>
-        <Link to="/admin/clients"> Clients </Link>
-      </NavItem>
-      <NavItem>
-        <Link to="/admin/calendar"> Calendrier </Link>
-      </NavItem>
-      <NavItem>
-        <Link to="/admin/edit"> Contenu & Personnalisation </Link>
-      </NavItem>
-    </Nav>
-  </div>
+  <Navbar className="navbar-expand fixed-adapt navbar-light bg-light">
+    <div className="bloc">
+      <NavbarBrand href="/">
+        <img src={logo} className="logo" alt="giluna-logo" />
+      </NavbarBrand>
+      <Nav className="navbar-nav fs mr-auto">
+        <NavItem>
+          <NavLink href="/admin">
+            <span className="menu-name mr-2">Home Admin</span>
+            <i className="fas fa-home" />
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/admin/ingredients">
+            <span className="menu-name mr-2"> Ingrédients</span>
+            <i className="fas fa-birthday-cake" />
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/admin/clients">
+            <span className="menu-name mr-2">Clients</span>
+            <i className="fas fa-users" />
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/admin/calendar">
+            <span className="menu-name mr-2">Calendrier</span>
+            <i className="fas fa-calendar-alt" />
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/admin/edit">
+            <span className="menu-name mr-2"> Contenu</span>
+            <i className="fas fa-paint-brush" />
+          </NavLink>
+        </NavItem>
+      </Nav>
+    </div>
+  </Navbar>
 );
 
 export default VerticalNavBar;
