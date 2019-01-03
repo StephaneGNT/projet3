@@ -4,10 +4,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import 'moment/locale/fr';
 import {
-  Card,
-  CardText,
-  CardBody,
-  CardTitle,
+  Card, CardText, CardBody, CardTitle,
 } from 'reactstrap';
 
 import '../../../Assets/Styles/OrderDetail.css';
@@ -28,8 +25,7 @@ class Confirmation extends Component {
 
     if (occasion) description += `Occasion : ${occasion}`;
     description += `Commande : ${quantity} ${type} `;
-    if (type === 'cake') description += `de ${story} étage(s)`;
-    if (typeof size === 'number') description += `pour ${size} personnes`;
+    if (type === 'cake') description += `de ${story} étage(s) pour ${size} personnes`;
     else description += `de taille ${size}`;
 
     if (decoration && customMessage) description += `Décoration : ${decoration} et ${customMessage}`;
@@ -39,8 +35,12 @@ class Confirmation extends Component {
     }
 
     if (type === 'macarons') {
-      const flavor = ingredients.map((ingredient) => { if (ingredient.type === 'Parfum') return ingredient.name; });
-      const color = ingredients.map((ingredient) => { if (ingredient.type === 'Coquille') return ingredient.name; });
+      const flavor = ingredients.map((ingredient) => {
+        if (ingredient.type === 'Parfum') return ingredient.name;
+      });
+      const color = ingredients.map((ingredient) => {
+        if (ingredient.type === 'Coquille') return ingredient.name;
+      });
       description += `Parfum : ${flavor} - Couleur : ${color}`;
     } else description += `${ingredients.map(item => item.name)} `;
 
@@ -51,6 +51,7 @@ class Confirmation extends Component {
 
   render() {
     const { price } = this.props;
+    const priceMessage = `Montant de votre commande : ${price} €`;
     return (
       <div>
         <Card id="Card">
@@ -64,12 +65,7 @@ class Confirmation extends Component {
         <br />
 
         <div>
-          <p>
-          Montant de votre commande :
-            {' '}
-            {price}
-        €
-          </p>
+          {priceMessage}
         </div>
 
         <p> Conditions générales de vente</p>
