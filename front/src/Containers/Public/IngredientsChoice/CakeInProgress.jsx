@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, Row, Col } from 'reactstrap';
+import { Button, Row } from 'reactstrap';
 import removeIngredient from '../../../Actions/cakeActions/removeIngredient';
 import '../../../Assets/Styles/CakeInProgress.css';
 

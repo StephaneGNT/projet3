@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+
 import IngredientsDisplay from './IngredientsDisplay';
+import CarrotCakeSupplement from './CarrotCakeSupplement';
+
 import { updateIndex } from '../../../Actions/cakeActions/changeIndex';
 
 class IngredientsCakeStructure extends Component {
@@ -19,21 +22,28 @@ class IngredientsCakeStructure extends Component {
 
       render = (
         <Row className="displayIngredient">
-          <Row className="w-100 mx-auto">
-            <h1>{elementToDisplay[0].type}</h1>
+          <Row style={{
+            position: 'sticky', top: '0', zIndex: '5', backgroundColor: '#DADADA'
+          }}
+          >
+            <h1 style={{ position: 'sticky', top: '0' }}>{elementToDisplay[0].type}</h1>
           </Row>
           <Row>
             <IngredientsDisplay elementToDisplay={elementToDisplay} />
+            <CarrotCakeSupplement />
           </Row>
         </Row>
       );
     } else if (index === 3) {
-    // Deuxième écran : Choix du glaçage et filling du cake,
+      // Deuxième écran : Choix du glaçage et filling du cake,
       if (cake.type === 'cake') {
         render = (
           <Row className="displayIngredient">
             <Col sm="6" style={{ overflowY: 'scroll' }}>
-              <Row>
+              <Row style={{
+                position: 'sticky', top: '0', zIndex: '5', backgroundColor: '#DADADA'
+              }}
+              >
                 <h1>{fillings[0].type}</h1>
               </Row>
               <Row>
@@ -41,7 +51,10 @@ class IngredientsCakeStructure extends Component {
               </Row>
             </Col>
             <Col sm="6" style={{ overflowY: 'scroll' }}>
-              <Row>
+              <Row style={{
+                position: 'sticky', top: '0', zIndex: '5', backgroundColor: '#DADADA'
+              }}
+              >
                 <h1>{icings[0].type}</h1>
               </Row>
               <Row>
@@ -51,11 +64,14 @@ class IngredientsCakeStructure extends Component {
           </Row>
         );
       } else {
-      // ou choix du glaçage du cheesecake
+        // ou choix du glaçage du cheesecake
         render = (
           <Row className="displayIngredient">
-            <Row>
-              <h1>{icings[0].type}</h1>
+            <Row style={{
+              position: 'sticky', top: '0', zIndex: '5', backgroundColor: '#DADADA'
+            }}
+            >
+              <h1 style={{ position: 'sticky', top: '0' }}>{icings[0].type}</h1>
             </Row>
             <Row>
               <IngredientsDisplay elementToDisplay={icings} />
@@ -63,12 +79,15 @@ class IngredientsCakeStructure extends Component {
           </Row>
         );
       }
-    // Troisième écran : Choix des toppings
+      // Troisième écran : Choix des toppings
     } else if (index === 4) {
       render = (
         <Row className="displayIngredient">
-          <Row>
-            <h1>{toppings[0].type}</h1>
+          <Row style={{
+            position: 'sticky', top: '0', zIndex: '5', backgroundColor: '#DADADA'
+          }}
+          >
+            <h1 style={{ position: 'sticky', top: '0' }}>{toppings[0].type}</h1>
           </Row>
           <Row>
             <IngredientsDisplay elementToDisplay={toppings} />

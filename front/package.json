@@ -10,6 +10,7 @@
     "moment": "^2.23.0",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
+    "react-addons-update": "^15.6.2",
     "react-calendar": "^2.17.5",
     "react-color": "^2.14.1",
     "react-dom": "^16.6.3",
