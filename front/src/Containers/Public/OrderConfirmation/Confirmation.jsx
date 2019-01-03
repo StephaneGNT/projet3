@@ -73,7 +73,7 @@ class Confirmation extends Component {
         </p>
       );
     }
-    if (type === 'cheesecake') {
+    if (type === 'cheesecake' || type === 'cake') {
       return (
         <p>
         Occasion :
@@ -96,7 +96,7 @@ class Confirmation extends Component {
           {' '}
           <br />
           <br />
-        La composition de votre cheesecake:
+        Composition:
           {(ingredients.map(item => <div>{item.name}</div>))}
           <br />
           <br />
