@@ -10,7 +10,7 @@ import {
   DropdownItem,
 } from 'reactstrap';
 import { toggle, chooseFont } from '../../../Actions/customization_actions';
-import '../../../Assets/Styles/Personalisation.css';
+import '../../../Assets/Styles/Customization.css';
 
 const CustomMessageInput = (props) => {
   const {

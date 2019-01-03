@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Label, Input, Row } from 'reactstrap';
 import { allowMessage, removeCakeMessage } from '../../../Actions/customization_actions';
-import '../../../Assets/Styles/Personalisation.css';
+import '../../../Assets/Styles/Customization.css';
 
 const CustomMessage = (props) => {
   const {

@@ -7,8 +7,17 @@ import '../../Assets/Styles/ProgressBar.css';
 
 
 class Progressbar extends Component {
+  handleClick = (e, index) => {
+    const { ingredient, indexUpdate, deliveryDate, type } = this.props;
+    if (ingredient.length > 0) {
+      if (type === 'cake' || type === 'cheesecake' ? index === 5 && !deliveryDate : index === 3 && !deliveryDate) {
+        alert('Veuillez renseigner une date de retrait');
+        e.preventDefault();
+      } else indexUpdate(index + 2);
+    } else e.preventDefault();
+  }
+
   createProgressElements = (type, nbActive) => {
-    const { indexUpdate } = this.props;
     const routes = (type === 'cake' || type === 'cheesecake') ? ['/mycake/composition', '/mycake/composition', '/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'] : ['/mycake/composition', '/mycake/customCake', '/mycake/orderDetail', '/mycake/userInfo'];
     const stepNames = (type === 'cake' || type === 'cheesecake') ? ['Base', 'Glacage & Garniture', 'Toppings', 'Personnalisation', 'Order Details', 'Client Information'] : ['Base', 'Personnalisation', 'Order Details', 'Client Information'];
     let countActive = nbActive;
@@ -17,7 +26,7 @@ class Progressbar extends Component {
       if (countActive <= 0) {
         return (
           <li className="text-center" key={index}>
-            <NavLink to={route} onClick={() => indexUpdate(index + 2)}>
+            <NavLink to={route} onClick={e => this.handleClick(e, index)}>
               {stepNames[index]}
             </NavLink>
           </li>
@@ -25,7 +34,7 @@ class Progressbar extends Component {
       }
       return (
         <li className="activeProgress text-center" key={index}>
-          <NavLink to={route} onClick={() => indexUpdate(index + 2)}>
+          <NavLink to={route} onClick={e => this.handleClick(e, index)}>
             {stepNames[index]}
           </NavLink>
         </li>
@@ -46,6 +55,7 @@ class Progressbar extends Component {
 
 Progressbar.propTypes = {
   type: PropTypes.string.isRequired,
+  ingredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   index: PropTypes.number.isRequired,
   indexUpdate: PropTypes.func.isRequired,
 };
@@ -57,6 +67,8 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   index: state.pageIndex,
   type: state.cakeCharacteristics.type,
+  ingredient: state.cakeCharacteristics.ingredients,
+  deliveryDate: state.orderCharacteristics.delivery_date,
 });
 
 
