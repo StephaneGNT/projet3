@@ -83,7 +83,7 @@ class Confirmation extends Component {
         </p>
       );
     }
-    if (type === 'cheesecake') {
+    if (type === 'cheesecake' || type === 'cake') {
       return (
         <p>
         Occasion :
@@ -106,7 +106,7 @@ class Confirmation extends Component {
           {' '}
           <br />
           <br />
-        La composition de votre cheesecake:
+        Composition:
           {(ingredients.map(item => <div>{item.name}</div>))}
           <br />
           <br />
@@ -160,20 +160,6 @@ class Confirmation extends Component {
         </p>
       );
     }
-
-    // if (type === 'macarons') {
-    //   const flavor = ingredients.map((ingredient) => {
-    //     if (ingredient.type === 'Parfum') return ingredient.name;
-    //   });
-    //   const color = ingredients.map((ingredient) => {
-    //     if (ingredient.type === 'Coquille') return ingredient.name;
-    //   });
-    //   description += `Parfum : ${flavor} - Couleur : ${color}`;
-    // } else description += `${ingredients.map(item => item.name)} `;
-
-    // if (deliveryDate) description += `Date de retrait : ${moment(deliveryDate).format('Do MMMM YYYY')}`;
-
-    // return description;
   }
 
   render() {
