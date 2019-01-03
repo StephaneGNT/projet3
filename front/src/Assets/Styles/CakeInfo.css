@@ -57,3 +57,8 @@ h3 {
 .selectionOutline {
   box-shadow: 0 0 3pt 2pt rgb(114, 6, 55) !important
 }
+
+/* .typeButton[title]:hover:after {
+    content: attr(title);
+    background-color: red;
+  } */
