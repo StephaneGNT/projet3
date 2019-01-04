@@ -23,12 +23,12 @@ class IngredientsCakeStructure extends Component {
       render = (
         <Row className="displayIngredient">
           <Row style={{
-            position: 'sticky', top: '0', zIndex: '5', backgroundColor: '#DADADA'
+            top: '0', zIndex: '5',
           }}
           >
             <h1 style={{ position: 'sticky', top: '0' }}>{elementToDisplay[0].type}</h1>
           </Row>
-          <Row>
+          <Row className="w-100 mx-auto">
             <IngredientsDisplay elementToDisplay={elementToDisplay} />
             <CarrotCakeSupplement />
           </Row>
@@ -39,9 +39,9 @@ class IngredientsCakeStructure extends Component {
       if (cake.type === 'cake') {
         render = (
           <Row className="displayIngredient">
-            <Col sm="6" style={{ overflowY: 'scroll' }}>
+            <Col sm="6">
               <Row style={{
-                position: 'sticky', top: '0', zIndex: '5', backgroundColor: '#DADADA'
+                top: '0', zIndex: '5',
               }}
               >
                 <h1>{fillings[0].type}</h1>
@@ -50,9 +50,9 @@ class IngredientsCakeStructure extends Component {
                 <IngredientsDisplay elementToDisplay={fillings} />
               </Row>
             </Col>
-            <Col sm="6" style={{ overflowY: 'scroll' }}>
+            <Col sm="6">
               <Row style={{
-                position: 'sticky', top: '0', zIndex: '5', backgroundColor: '#DADADA'
+                top: '0', zIndex: '5',
               }}
               >
                 <h1>{icings[0].type}</h1>
@@ -68,12 +68,12 @@ class IngredientsCakeStructure extends Component {
         render = (
           <Row className="displayIngredient">
             <Row style={{
-              position: 'sticky', top: '0', zIndex: '5', backgroundColor: '#DADADA'
+              top: '0', zIndex: '5',
             }}
             >
               <h1 style={{ position: 'sticky', top: '0' }}>{icings[0].type}</h1>
             </Row>
-            <Row>
+            <Row className="w-100 mx-auto">
               <IngredientsDisplay elementToDisplay={icings} />
             </Row>
           </Row>
@@ -84,12 +84,12 @@ class IngredientsCakeStructure extends Component {
       render = (
         <Row className="displayIngredient">
           <Row style={{
-            position: 'sticky', top: '0', zIndex: '5', backgroundColor: '#DADADA'
+            top: '0', zIndex: '5',
           }}
           >
             <h1 style={{ position: 'sticky', top: '0' }}>{toppings[0].type}</h1>
           </Row>
-          <Row>
+          <Row className="w-100 mx-auto">
             <IngredientsDisplay elementToDisplay={toppings} />
           </Row>
         </Row>

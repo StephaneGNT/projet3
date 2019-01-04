@@ -7,7 +7,7 @@ import IngredientsDisplay from './IngredientsDisplay';
 const IngredientsBrownieStructure = (props) => {
   const { bases } = props;
   return (
-    <Row style={{ height: '70vh', overflowY: 'scroll' }}>
+    <Row>
       <Col sm="12">
         <h1 style={{ textAlign: 'center' }}>{bases[0].type}</h1>
       </Col>

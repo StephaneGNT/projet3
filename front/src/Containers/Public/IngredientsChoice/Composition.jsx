@@ -28,21 +28,20 @@ const Composition = (props) => {
   };
 
   return (
-    <Container>
+    <Container className="wrapper">
       <Row className="text-center">
         <Progressbar />
       </Row>
-      <Row style={{ height: '70vh' }}>
+      <Row className="renderComposition">
         <Col sm="8">
           {renderComposition(cake.type)}
         </Col>
-        <Col sm="4" className="cakeAndPriceDisplay">
-          <div className="cakeDisplay" />
+        <Col sm="4">
           <CakeInProgress />
+          <Price />
         </Col>
       </Row>
       <Row sm="12">
-        <Price />
         <IngredientsButtons index={index} />
       </Row>
     </Container>

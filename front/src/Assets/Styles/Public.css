@@ -7,10 +7,12 @@
   width: 100vw;
   height: 100vh;
   background-color: rgb(233, 230, 230);
-  overflow:hidden;
+  overflow-y: hidden;
 }
 
 .header-zone {
+  position: fixed;
+  z-index: 2;
   background-color: var(--mainColor);;
   width: 100vw;
   height: 10vh;
@@ -35,11 +37,9 @@
 }
 
 .content-zone {
-  display: block;
   width: 80vw;
   height: 86vh;
-  margin:1% auto;
-  background-color: rgb(207, 207, 207);
+  margin: 12vh auto;
 }
 
 .row{

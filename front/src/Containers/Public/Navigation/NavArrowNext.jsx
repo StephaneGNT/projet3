@@ -30,7 +30,7 @@ class NavArrowNext extends Component {
     return (
       <div>
         <NavLink to={this.translateIndexToRoute(pageIndex, type)}>
-          <button disabled={disabled} type="button" onClick={() => changePageIndex(1)} className="btn-prev-next">
+          <button title="hello" disabled={disabled} type="button" onClick={() => changePageIndex(1)} className="btn-prev-next">
             Suivant
             {/* {this.pageIndex} */}
           </button>

@@ -3,6 +3,7 @@
   position: fixed !important;
   left: 0;
   justify-content: space-between;
+  z-index: 11;
 }
 
 .fixed-adapt > .bloc {

@@ -23,7 +23,6 @@ class Public extends Component {
         <MainNavigation />
         <div className="header-zone">
           Pimp My Cake
-          <Link to="/admin/ingredients"><button type="button">Admin</button></Link>
         </div>
         <div className="content-zone">
           <BrowserRouter>

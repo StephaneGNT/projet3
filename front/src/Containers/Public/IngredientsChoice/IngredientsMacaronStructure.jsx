@@ -8,8 +8,8 @@ const IngredientsMacaronStructure = (props) => {
   const { flavor, shell } = props;
 
   return (
-    <Row style={{ height: '70vh' }}>
-      <Col sm="6" style={{ overflowY: 'scroll', height: '100%' }}>
+    <Row>
+      <Col sm="6" style={{ height: 'auto' }}>
         <Row>
           <h1>{flavor[0].type}</h1>
         </Row>
@@ -17,7 +17,7 @@ const IngredientsMacaronStructure = (props) => {
           <IngredientsDisplay elementToDisplay={flavor} />
         </Row>
       </Col>
-      <Col sm="6" style={{ overflowY: 'scroll', height: '100%' }}>
+      <Col sm="6" style={{ height: 'auto' }}>
         <Row>
           <h1>{shell[0].type}</h1>
         </Row>

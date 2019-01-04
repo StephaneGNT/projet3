@@ -53,7 +53,7 @@ class CakeInProgress extends Component {
         <Row className="cakeLayout justify-content-center">
           {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index, arr))}
         </Row>
-        <Row className="namesLayout ">
+        <Row className="namesLayout">
           {cake.ingredients.map(item => this.displayNamesIngredients(item))}
         </Row>
       </div>

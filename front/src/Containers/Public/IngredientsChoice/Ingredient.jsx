@@ -28,11 +28,11 @@ Allergènes: ${ingredient.allerg}`;
   };
 
   // const filter = disabled && 'grayscale(80%)';
-  const visibility = disabled && 'hidden';
+  const display = disabled && 'none';
   const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
 
   return (
-    <Col className="ingredient" style={{ textAlign: 'center', visibility }}>
+    <Col className="ingredient" style={{ textAlign: 'center', display }}>
       {/* <Button disabled={disabled} style={{ filter }} onClick={() => addNewIngredient(ingredient)}><img src={ingredient.img} title={getFullDescripion()} alt="" /></Button> */}
       <Button
         disabled={disabled}
