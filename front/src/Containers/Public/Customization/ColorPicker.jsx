@@ -5,7 +5,7 @@ import { CirclePicker } from 'react-color';
 import { Button, ButtonGroup, Row, Col } from 'reactstrap';
 import FontPicker from './FontPicker';
 import { changeBgColor, changeFontColor } from '../../../Actions/customization_actions';
-import '../../../Assets/Styles/Personalisation.css';
+import '../../../Assets/Styles/Customization.css';
 
 class ColorPicker extends Component {
   constructor(props) {

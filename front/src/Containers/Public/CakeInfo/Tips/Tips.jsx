@@ -30,7 +30,7 @@ const Tips = (props) => {
   const { cake } = props;
 
   return (
-    <div className="bg-light p-2" style={{ width: '100%' }}>
+    <div className="bg-light p-2" style={{ width: '100%', borderRadius: '9px' }}>
       <h5 className="mt-3 text-center">Tips</h5>
       {renderTips(cake.type)}
     </div>

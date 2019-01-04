@@ -32,7 +32,6 @@
     font-size: 0.8em;
     font-weight: 700;
     border: none;
-    font-weight: 700;
     padding: 14px;
     position: absolute;
     left: 5%;
@@ -101,7 +100,7 @@
 }
 
 .toppingsLayout {
-  width: 40px !important;
+  width: 70px !important;
   position: absolute;
   right: 230px;
   bottom: 70vh;
@@ -111,7 +110,7 @@
   width: 200px !important;
   margin: -90px;
   position: absolute;
-  bottom: 60vh;
+  bottom: 58vh;
 }
 
 .cakeLayout {

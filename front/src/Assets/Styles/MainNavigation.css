@@ -1,0 +1,97 @@
+.logo {
+  width: 36px;
+  height: 36px;
+  transition: width 0.5s, height 0.5s;
+  -webkit-transition: width 0.5s, height 0.5s;
+}
+
+.fas {
+  font-size: 1.5rem;
+  display: inline;
+}
+
+.linkname {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 1s;
+  -webkit-transition:  visibility 0s, opacity 1s;
+}
+
+.fixed-adapt {
+  position: fixed !important;
+  align-items: flex-start !important;
+  left: 0;
+  transition: width 0.5s;
+  -webkit-transition: width 0.5s;
+}
+
+.fixed-adapt > .bloc > .navbar-brand {
+  position: absolute;
+}
+
+.fixed-adapt > .bloc > .navbar-nav {
+  display: flex;
+}
+
+@media (orientation: landscape) {
+  .fixed-adapt {
+    top: 0;
+    height: 100%;
+    flex-direction: column;
+    width: 60px;
+  }
+
+  .fixed-adapt:hover {
+    width: 145px;
+  }
+
+  .fixed-adapt:hover .linkname {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .fixed-adapt:hover .logo {
+    width: 105px;
+    height: 105px;
+  }
+
+  .fixed-adapt > .bloc {
+    flex-direction: column;
+  }
+
+  .fixed-adapt > .bloc > .navbar-nav {
+    flex-direction: column;
+    margin-top: 120px;
+  }
+}
+
+@media (orientation: portrait) {
+  .fixed-adapt > .bloc > .navbar-brand {
+    display: none;
+  }
+
+  .fixed-adapt {
+    bottom: 0;
+    width: 100%;
+    flex-direction: row;
+    transition: width 0s;
+    -webkit-transition: width 0s;
+  }
+
+  .fixed-adapt > .bloc {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .fixed-adapt > .bloc > .navbar-nav {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  .fixed-adapt > .bloc.fit-content {
+    width: fit-content;
+  }
+} 
+

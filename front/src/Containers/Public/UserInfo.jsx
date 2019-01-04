@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import {
   Container, Row, Col, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
-import NavArrowsLayout from './Navigation/NavArrowsLayout';
 import Progressbar from './Progressbar';
 
 class UserInfo extends Component {
@@ -15,7 +14,8 @@ class UserInfo extends Component {
       email: '',
       telephone: '',
       birthdate: '',
-      feedback: 'd-none',
+      comment: '',
+      giftcard: '',
     };
   }
 
@@ -61,7 +61,7 @@ class UserInfo extends Component {
 
   render() {
     const {
-      firstname, lastname, birthdate, telephone, email,
+      firstname, lastname, birthdate, telephone, email, comment, giftcard,
     } = this.state;
     return (
       <Container>
@@ -106,6 +106,12 @@ class UserInfo extends Component {
               <Input invalid={this.validEmail(email)} type="email" name="email" id="email" placeholder="votre adresse mail" value={email} onChange={e => this.updateState(e)} />
               <FormFeedback>adresse mail non valide</FormFeedback>
             </FormGroup>
+            <FormGroup>
+              <Label>
+                Commentaire à Giluna
+              </Label>
+              <Input type="textarea" id="comment" value={comment} onChange={e => this.updateState(e)} />
+            </FormGroup>
           </Col>
           <Col sm="10" md="5">
             <FormGroup>
@@ -115,13 +121,16 @@ class UserInfo extends Component {
               </Label>
               <Input type="text" name="telephone" id="telephone" placeholder="votre numéro de téléphone" value={telephone} onChange={e => this.updateState(e)} />
             </FormGroup>
+            <FormGroup>
+              <Label>
+                Ajoutez une carte à votre Commande
+              </Label>
+              <Input type="textarea" id="giftcard" value={giftcard} onChange={e => this.updateState(e)} />
+            </FormGroup>
           </Col>
         </Row>
         <Row className="back-btn-userinfo">
-          <button type="button" className="btn-confirmation" disabled={this.activateButton()} onClick={() => this.setState({ feedback: 'd-block' })}>envoyer la Commande</button>
-        </Row>
-        <Row className="mt-3 text-center">
-          <h4 className={this.state.feedback}>Merci pour votre commande!</h4>
+          <button type="button" className="btn-confirmation" disabled={this.activateButton()}>envoyer la Commande</button>
         </Row>
       </Container>
     );
