@@ -1,3 +1,8 @@
 .possibleDate{
   background-color: gold;
 }
+
+.selectedDate {
+  color: white !important;
+  background-color: #006edc !important;
+}
