@@ -1,19 +1,70 @@
+.logo {
+  width: 36px;
+  height: 36px;
+  transition: width 0.5s, height 0.5s;
+  -webkit-transition: width 0.5s, height 0.5s;
+}
+
+.fas {
+  font-size: 1.5rem;
+  display: inline;
+}
+
+.linkname {
+  visibility: collapse;
+  opacity: 0;
+  transition: visibility 0s, opacity 1s;
+  -webkit-transition:  visibility 0s, opacity 1s;
+}
 
 .fixed-adapt {
   position: fixed !important;
+  align-items: flex-start !important;
   left: 0;
-  justify-content: space-between;
+  width: 60px;
+  transition: width 0.5s;
+  -webkit-transition: width 0.5s;
 }
 
-.fixed-adapt > .bloc {
+.fixed-adapt > .bloc > .navbar-brand {
+  position: absolute;
+}
+
+.fixed-adapt > .bloc > .navbar-nav {
   display: flex;
-  text-align: center;
+}
+
+@media (orientation: landscape) {
+  .fixed-adapt {
+    top: 0;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  .fixed-adapt:hover {
+    width: 140px;
+  }
+
+  .fixed-adapt:hover .linkname {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .fixed-adapt:hover .logo {
+    width: 105px;
+    height: 105px;
+  }
+
+  .fixed-adapt > .bloc {
+    flex-direction: column;
+  }
+  .fixed-adapt > .bloc > .navbar-nav {
+    flex-direction: column;
+    margin-top: 120px;
+  }
 }
 
 @media (orientation: portrait) {
-  .logo {
-    display: none;
-  }
 
   .menu-name {
     display: none;
@@ -29,37 +80,16 @@
     flex-direction: row;
     width: 100%;
   }
+
   .fixed-adapt > .bloc > .navbar-nav.fs {
     flex-direction: row;
     align-items: center;
     width: 100%;
     justify-content: space-evenly;
   }
+  
   .fixed-adapt > .bloc.fit-content {
     width: fit-content;
   }
-}
+} 
 
-@media (orientation: landscape) {
-  .fixed-adapt {
-    top: 0;
-    height: 100%;
-    flex-direction: column;
-  }
-  .fixed-adapt > .bloc > .navbar-brand {
-    margin: 0.1em auto;
-  }
-  .fixed-adapt > .bloc {
-    flex-direction: column;
-  }
-  .fixed-adapt > .bloc > .navbar-nav.fs {
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: center;
-  }
-}
-
-.logo {
-  width: 120px;
-  height: 120px;
-}
