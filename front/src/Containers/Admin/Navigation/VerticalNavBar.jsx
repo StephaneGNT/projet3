@@ -11,35 +11,35 @@ const VerticalNavBar = () => (
       <NavbarBrand href="/">
         <img src={logo} className="logo" alt="giluna-logo" />
       </NavbarBrand>
-      <Nav className="navbar-nav fs mr-auto">
+      <Nav className="navbar-nav mr-auto">
         <NavItem>
           <NavLink href="/admin">
-            <span className="menu-name mr-2">Home Admin</span>
             <i className="fas fa-home" />
+            <span className="linkname ml-3">Admin</span>
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink href="/admin/ingredients">
-            <span className="menu-name mr-2"> Ingrédients</span>
-            <i className="fas fa-birthday-cake" />
+            <i className="fas fa-birthday-cake ml-1" />
+            <span className="linkname ml-2">Incredients</span>
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink href="/admin/clients">
-            <span className="menu-name mr-2">Clients</span>
             <i className="fas fa-users" />
+            <span className="linkname ml-2">Clients</span>
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink href="/admin/calendar">
-            <span className="menu-name mr-2">Calendrier</span>
             <i className="fas fa-calendar-alt" />
+            <span className="linkname ml-3">Calendrier</span>
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink href="/admin/edit">
-            <span className="menu-name mr-2"> Contenu</span>
             <i className="fas fa-paint-brush" />
+            <span className="linkname ml-3">Contenu</span>
           </NavLink>
         </NavItem>
       </Nav>
