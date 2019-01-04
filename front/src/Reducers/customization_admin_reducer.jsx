@@ -1,7 +1,7 @@
 export default (state = {
   dropdownOpen: false,
   selectedFonts: ['Sedgwick Ave', 'Bungee', 'Charmonman', 'Kaushan Script', 'Lobster Two'],
-  wantsCustomMessage: false,
+  wantsCustomMessage: true,
   customMessage: {
     choice: 'Message personnalisé',
     message: '',
@@ -26,7 +26,6 @@ export default (state = {
   switch (action.type) {
     case 'ALLOW_MESSAGE': return {
       ...state,
-      wantsCustomMessage: !customMessageYes,
       customMessage: {
         ...state.customMessage,
         message: '',
@@ -34,7 +33,6 @@ export default (state = {
     };
     case 'REMOVE_CUSTOM_MESSAGE': return {
       ...state,
-      wantsCustomMessage: !customMessageYes,
       customMessage: state.customMessage,
     };
     case 'TOGGLE_FONTS': if (customMessageYes) {

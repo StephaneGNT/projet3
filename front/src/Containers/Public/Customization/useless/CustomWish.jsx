@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormGroup, Label, Input } from 'reactstrap';
-import comment from '../../../Actions/cakeActions/changeComment';
+import comment from '../../../../Actions/cakeActions/changeComment';
 
 const CustomWish = (props) => {
   const { customerComment, changeComment } = props;
