@@ -12,7 +12,6 @@
 
 .header-zone {
   position: fixed;
-  z-index: 2;
   background-color: var(--mainColor);;
   width: 100vw;
   height: 10vh;
