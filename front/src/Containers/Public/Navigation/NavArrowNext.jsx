@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { changeIndex } from '../../../Actions/cakeActions/changeIndex';
-import CakeSizeDisplay from '../CakeInfo/SizeSelection/CakeSizeDisplay';
 
 class NavArrowNext extends Component {
-
   translateIndexToRoute = (index, cakeType) => {
     const routes = [`${process.env.PUBLIC_URL}/mycake`, `${process.env.PUBLIC_URL}/mycake/composition`, `${process.env.PUBLIC_URL}/mycake/customCake`, `${process.env.PUBLIC_URL}/mycake/orderDetail`, `${process.env.PUBLIC_URL}/mycake/userInfo`];
     if (cakeType === 'cookie' || cakeType === 'macaron' || cakeType === 'brownie') {
@@ -22,13 +20,15 @@ class NavArrowNext extends Component {
   }
 
   getTitle = () => {
-    const { cake } = this.props;
-    if (cake.type === '') return 'Choisissez votre gâteau';
-    if (cake.type === 'cake') return 'Choisissez la taille de votre gâteau';
-    if (cake.type === 'cookie' || cake.type === 'macaron' || cake.type === 'brownie') {
-      return 'Choisissez la taille et le nombre de vos douceurs';
+    const { cake, pageIndex } = this.props;
+    if (pageIndex === 1) {
+      if (cake.type === '') return 'Choisissez votre gâteau';
+      if (cake.type === 'cake') return 'Choisissez la taille de votre gâteau';
+      if (cake.type === 'cookie' || cake.type === 'macaron' || cake.type === 'brownie') {
+        return 'Choisissez la taille et le nombre de vos douceurs';
+      }
+      // return '';
     }
-    return '';
   }
 
   render() {
@@ -57,12 +57,13 @@ NavArrowNext.propTypes = {
   type: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
   changePageIndex: PropTypes.func.isRequired,
-  cake: PropTypes.string.isRequired,
+  cake: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
   dispatch: state.dispatch,
   pageIndex: state.pageIndex,
+  type: state.cakeCharacteristics.type,
   cake: state.cakeCharacteristics,
 });
 
