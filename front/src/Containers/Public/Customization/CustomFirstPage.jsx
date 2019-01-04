@@ -11,10 +11,8 @@ import Progressbar from '../Progressbar';
 
 const CustomFirstPage = () => (
   <Container>
-    <Row>
-      <Progressbar />
-    </Row>
-    <Row>
+    <Progressbar />
+    <Row style={{ height: '65vh' }}>
       <Col sm={1} xs={0}>
         <LeftPics />
       </Col>
