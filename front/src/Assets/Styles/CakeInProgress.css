@@ -6,22 +6,18 @@
     background-color: rgb(226, 225, 225);
     padding: 13px;
     margin: auto;
-    display: inline-block;
     font-weight: 700;
     z-index: 1;
-    position: relative;
-    left: 65vh;
-    top: -5vh;
 }
 
 /* Le background de tous les boutons lors de la création */
 .back-btn {
     background-color: rgb(190, 188, 188);
-    position: absolute;
-    width: 80%;
-    top: 85%;
+    position: fixed;
+    width: 70vw;
     display: flex;
     justify-content: center;
+    border-radius: 20px;
 }
 
 /* Bouton de commande */
@@ -110,14 +106,14 @@
   width: 200px !important;
   margin: -90px;
   position: absolute;
-  bottom: 58vh;
+  bottom: 53vh;
 }
 
 .cakeLayout {
     margin:auto; 
     height: 40vh;
     background-color: rgb(190, 190, 190);
-    border-radius: 20px;
+    border-style: solid 20px;
     overflow: auto;
     display: flex;
     flex-direction: column-reverse;
@@ -127,7 +123,7 @@
     margin:auto; 
     height: 20vh;
     background-color: rgb(140, 140, 140);
-    border-radius: 20px;
+    border-style: solid 20px;
     overflow: auto;
     flex-direction: column-reverse;
 }

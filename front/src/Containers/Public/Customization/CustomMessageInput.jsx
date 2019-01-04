@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Input } from 'reactstrap';
 import { updateCustomMessage } from '../../../Actions/customization_actions';
-import '../../../Assets/Styles/Personalisation.css';
+import '../../../Assets/Styles/Customization.css';
 
 const CustomMessageInput = (props) => {
   const {

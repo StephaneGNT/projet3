@@ -7,3 +7,16 @@ h1 {
   color:var(--mainColor) !important;
   text-shadow:1px 1px 0px white;
 }
+
+.renderComposition {
+  padding-top: 7vh;
+}
+
+.wrapper {
+  overflow-y: scroll;
+  min-height: 70vh;
+  max-height: 60vh;
+  position: relative;
+  top: 6vh;
+}
+

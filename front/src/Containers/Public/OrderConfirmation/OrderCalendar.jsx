@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import setDeliveryDate from '../../../Actions/orderActions/setDeliveryDate';
+import moment from 'moment';
 
 class OrderCalendar extends Component {
   constructor(props) {
@@ -12,13 +13,28 @@ class OrderCalendar extends Component {
   }
 
   getTileClassName = (date) => {
-    const { cake } = this.props;
+    const { cake, order } = this.props;
     const today = new Date();
     const minDate = new Date();
     minDate.setDate(today.getDate() + cake.time);
 
+    let className = [];
+    if (date.date <= minDate || date.date.getDay() === 6) className.push('possibleDate');
+    if (moment(date.date).isSame(order.delivery_date)) className.push('selectedDate');
+    return className;
+    // else if (moment(date.date).isSame(order.delivery_date)) className = 'selectedDate';
+    // return className;
+  }
+
+  getSelectedDate = (date) => {
+    const { order } = this.props;
+    if(moment(date.date).isSame(order.delivery_date)) console.log(date.date)
+    // console.log('calendar date', date.date, 'delivery date', order.delivery_date, 'comparaison', 
+    // date.date === order.delivery_date,
+    // moment(date.date).isSame(order.delivery_date)
+    // );
     let className = '';
-    if (date.date <= minDate || date.date.getDay() === 6) className = 'possibleDate';
+    if (moment(date.date).isSame(order.delivery_date)) className = 'selectedDate';
     return className;
   }
 
@@ -36,6 +52,7 @@ class OrderCalendar extends Component {
         tileClassName={date => this.getTileClassName(date)}
         tileDisabled={date => this.getTileDisable(date)}
         minDate={new Date()}
+      // value={new Date(2019, 01, 16)}
       />
     );
   }
@@ -44,6 +61,7 @@ class OrderCalendar extends Component {
 OrderCalendar.propTypes = {
   selectDeliveryDate: PropTypes.func.isRequired,
   cake: PropTypes.shape({}).isRequired,
+  order: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
