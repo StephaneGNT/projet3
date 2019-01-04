@@ -15,7 +15,15 @@ const Tips = (props) => {
       case 'cookie': return <TipsCookie />;
       case 'macaron': return <TipsMacaron />;
       case 'brownie': return <TipsBrownie />;
-      default: return <p className="mt-3"> Choisissez votre type de pâtisserie </p>;
+      default: return (
+        <div>
+          <p className="mt-3">
+          Paiment sur place en CB, espèce ou chèque.
+          </p>
+          <br />
+          <p>Choisissez votre type de pâtisserie </p>
+        </div>
+      );
     }
   };
 

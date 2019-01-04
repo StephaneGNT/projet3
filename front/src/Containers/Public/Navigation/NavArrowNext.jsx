@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { changeIndex } from '../../../Actions/cakeActions/changeIndex';
+import CakeSizeDisplay from '../CakeInfo/SizeSelection/CakeSizeDisplay';
 
 class NavArrowNext extends Component {
   translateIndexToRoute = (index, cakeType) => {
@@ -18,7 +19,14 @@ class NavArrowNext extends Component {
       default: return routes[1];
     }
   }
+  getTitle = () => {
+    const { cake } = this.props;
+    if (cake.type === '') return 'choisissez votre gâteau';
+    if (cake.type === 'cake') return 'choisissez la taille de votre gâteau';
+    if (cake.type === 'cookie' || cake.type === 'macaron' || cake.type === 'brownie')
+      return 'choisissez la taille et le nombre de vos dousseurs';
 
+  }
   render() {
     const {
       pageIndex,
@@ -30,7 +38,7 @@ class NavArrowNext extends Component {
     return (
       <div>
         <NavLink to={this.translateIndexToRoute(pageIndex, type)}>
-          <button disabled={disabled} type="button" onClick={() => changePageIndex(1)} className="btn-prev-next">
+          <button title={this.getTitle()} disabled={disabled} type="button" onClick={() => changePageIndex(1)} className="btn-prev-next">
             Suivant
             {/* {this.pageIndex} */}
           </button>
@@ -50,7 +58,7 @@ NavArrowNext.propTypes = {
 const mapStateToProps = state => ({
   dispatch: state.dispatch,
   pageIndex: state.pageIndex,
-  type: state.cakeCharacteristics.type,
+  cake: state.cakeCharacteristics,
 });
 
 const matchDispatchToProps = dispatch => ({ changePageIndex: num => dispatch(changeIndex(num)) });
