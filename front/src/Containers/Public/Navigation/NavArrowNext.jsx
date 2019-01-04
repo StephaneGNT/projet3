@@ -6,6 +6,7 @@ import { changeIndex } from '../../../Actions/cakeActions/changeIndex';
 import CakeSizeDisplay from '../CakeInfo/SizeSelection/CakeSizeDisplay';
 
 class NavArrowNext extends Component {
+
   translateIndexToRoute = (index, cakeType) => {
     const routes = [`${process.env.PUBLIC_URL}/mycake`, `${process.env.PUBLIC_URL}/mycake/composition`, `${process.env.PUBLIC_URL}/mycake/customCake`, `${process.env.PUBLIC_URL}/mycake/orderDetail`, `${process.env.PUBLIC_URL}/mycake/userInfo`];
     if (cakeType === 'cookie' || cakeType === 'macaron' || cakeType === 'brownie') {
@@ -19,14 +20,17 @@ class NavArrowNext extends Component {
       default: return routes[1];
     }
   }
+
   getTitle = () => {
     const { cake } = this.props;
-    if (cake.type === '') return 'choisissez votre gâteau';
-    if (cake.type === 'cake') return 'choisissez la taille de votre gâteau';
-    if (cake.type === 'cookie' || cake.type === 'macaron' || cake.type === 'brownie')
-      return 'choisissez la taille et le nombre de vos dousseurs';
-
+    if (cake.type === '') return 'Choisissez votre gâteau';
+    if (cake.type === 'cake') return 'Choisissez la taille de votre gâteau';
+    if (cake.type === 'cookie' || cake.type === 'macaron' || cake.type === 'brownie') {
+      return 'Choisissez la taille et le nombre de vos douceurs';
+    }
+    return '';
   }
+
   render() {
     const {
       pageIndex,
@@ -53,6 +57,7 @@ NavArrowNext.propTypes = {
   type: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
   changePageIndex: PropTypes.func.isRequired,
+  cake: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
