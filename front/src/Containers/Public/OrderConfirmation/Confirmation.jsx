@@ -170,7 +170,7 @@ class Confirmation extends Component {
     const priceMessage = `Montant de votre commande : ${price} €`;
     return (
       <div>
-        <Card id="Card">
+        <Card id="Card" style={{ width: "100%" }}>
           <CardBody>
             <CardTitle>Votre commande</CardTitle>
             <CardText style={{ whiteSpace: 'pre' }}>

@@ -16,7 +16,7 @@ class NavArrowsLayout extends Component {
         </div>
       );
     }
-    if (!dateOfDelivery && ((index === 6) || (index === 4 && type === 'cookie') || (index === 4 && type === 'macaron') || (index === 4 && type === 'brownie'))) {
+    if (!dateOfDelivery && ((index === 6) || (index === 4 && ['cookie', 'macaron', 'brownie'].includes(cake.type)))) {
       return (
         <div className="btn-group">
           <NavArrowPrev />
