@@ -18,21 +18,34 @@ class Confirmation extends Component {
   }
 
   renderConfirmation = () => {
-    // let description = '';
+    let description = '';
     const {
       type, size, occasion, quantity, ingredients, customMessage, decoration, story, deliveryDate,
     } = this.props;
 
     // if (occasion) description += `Occasion : ${occasion}`;
+    
     // description += `Commande : ${quantity} ${type} `;
     // if (type === 'cake') description += `de ${story} étage(s) pour ${size} personnes`;
     // else description += `de taille ${size}`;
+
+    // description += 'Composition : ';
+    // if (type === 'macarons') {
+    //   const flavor = ingredients.map(ingredient => ingredient.type === 'Parfum' && ingredient.name);
+    //   const shell = ingredients.map(ingredient => ingredient.type === 'Coquille' && ingredient.name);
+    //   description += `Parfum ${flavor} et couleur ${shell}`;
+    // } else {
+    //   ingredients.map((ingredient) => { description += ingredient.name; });
+    // }
 
     // if (decoration && customMessage) description += `Décoration : ${decoration} et ${customMessage}`;
     // else if (decoration || customMessage) {
     //   if (decoration) description += `Décoration : ${decoration}`;
     //   else description += `Décoration : ${customMessage}`;
+    // }
 
+    // if (deliveryDate) description += `Date de retrait : ${deliveryDate}`;
+    // return description;
 
     if (type === 'brownie' || type === 'cookie') {
       return (
@@ -160,7 +173,7 @@ class Confirmation extends Component {
         <Card id="Card">
           <CardBody>
             <CardTitle>Votre commande</CardTitle>
-            <CardText>
+            <CardText style={{ whiteSpace: 'pre' }}>
               {this.renderConfirmation()}
             </CardText>
           </CardBody>
@@ -182,7 +195,7 @@ Confirmation.propTypes = {
   type: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,
   occasion: PropTypes.string.isRequired,
-  ingredients: PropTypes.string.isRequired,
+  ingredients: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   quantity: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   customMessage: PropTypes.string.isRequired,

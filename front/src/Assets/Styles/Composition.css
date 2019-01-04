@@ -14,9 +14,9 @@ h1 {
 
 .wrapper {
   overflow-y: scroll;
-  min-height: 70vh;
+  min-height: 72vh;
   max-height: 60vh;
   position: relative;
-  top: 6vh;
+  top: 5vh;
 }
 

@@ -2,8 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Label, Input, Row } from 'reactstrap';
+<<<<<<< HEAD:front/src/Containers/Public/Customization/useless/CustomMessage.jsx
+import { allowMessage, removeCakeMessage } from '../../../../Actions/customization_actions';
+import '../../../Assets/Styles/Personalisation.css';
+=======
 import { allowMessage, removeCakeMessage } from '../../../Actions/customization_actions';
 import '../../../Assets/Styles/Customization.css';
+>>>>>>> ae42df98767b1deeb1f6f6b2a8bbcf62dc15c16e:front/src/Containers/Public/Customization/CustomMessage.jsx
 
 const CustomMessage = (props) => {
   const {

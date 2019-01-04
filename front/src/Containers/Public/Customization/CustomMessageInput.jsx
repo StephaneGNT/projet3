@@ -45,9 +45,10 @@ const CustomMessageInput = (props) => {
         name="text"
         id="wantsCustomMessage"
         maxLength="40"
-        disabled={!wantsCustomMessage}
+        placeholder={placeholder}
         onChange={updateMessage}
-        value={wantsCustomMessage ? message : placeholder}
+        onClick={updateMessage}
+        value={message}
         resize="none"
       />
     </div>
