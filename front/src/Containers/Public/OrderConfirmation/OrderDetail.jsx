@@ -22,11 +22,11 @@ class OrderDetail extends Component {
           <Progressbar />
         </Row>
         <Row>
-          <Col sm="6" className="mt-4"><Confirmation /></Col>
           <Col sm="6">
             <Row center="xs" className="mt-4"><OrderCalendar /></Row>
             <Row center="xs" className="mt-4"><CalendarTips /></Row>
           </Col>
+          <Col sm="6" className="mt-4"><Confirmation /></Col>
         </Row>
         <NavArrowsLayout />
       </Container>

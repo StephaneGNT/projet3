@@ -58,6 +58,7 @@ Progressbar.propTypes = {
   ingredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   index: PropTypes.number.isRequired,
   indexUpdate: PropTypes.func.isRequired,
+  deliveryDate: PropTypes.shape({}).isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({

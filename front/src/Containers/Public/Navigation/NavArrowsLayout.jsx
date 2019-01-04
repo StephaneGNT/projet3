@@ -57,6 +57,7 @@ NavArrowsLayout.propTypes = {
   pageIndex: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
   cake: PropTypes.shape({}).isRequired,
+  deliveryDate: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
