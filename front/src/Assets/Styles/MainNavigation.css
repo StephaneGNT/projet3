@@ -11,7 +11,7 @@
 }
 
 .linkname {
-  visibility: collapse;
+  visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 1s;
   -webkit-transition:  visibility 0s, opacity 1s;
@@ -21,7 +21,6 @@
   position: fixed !important;
   align-items: flex-start !important;
   left: 0;
-  width: 60px;
   transition: width 0.5s;
   -webkit-transition: width 0.5s;
 }
@@ -39,10 +38,11 @@
     top: 0;
     height: 100%;
     flex-direction: column;
+    width: 60px;
   }
 
   .fixed-adapt:hover {
-    width: 140px;
+    width: 145px;
   }
 
   .fixed-adapt:hover .linkname {
@@ -58,6 +58,7 @@
   .fixed-adapt > .bloc {
     flex-direction: column;
   }
+
   .fixed-adapt > .bloc > .navbar-nav {
     flex-direction: column;
     margin-top: 120px;
@@ -65,8 +66,7 @@
 }
 
 @media (orientation: portrait) {
-
-  .menu-name {
+  .fixed-adapt > .bloc > .navbar-brand {
     display: none;
   }
 
@@ -74,6 +74,8 @@
     bottom: 0;
     width: 100%;
     flex-direction: row;
+    transition: width 0s;
+    -webkit-transition: width 0s;
   }
 
   .fixed-adapt > .bloc {
@@ -81,13 +83,13 @@
     width: 100%;
   }
 
-  .fixed-adapt > .bloc > .navbar-nav.fs {
+  .fixed-adapt > .bloc > .navbar-nav {
     flex-direction: row;
     align-items: center;
     width: 100%;
     justify-content: space-evenly;
   }
-  
+
   .fixed-adapt > .bloc.fit-content {
     width: fit-content;
   }
