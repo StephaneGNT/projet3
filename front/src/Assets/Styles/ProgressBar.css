@@ -1,9 +1,13 @@
 .progressBar {
   list-style-type: none;
+  position: fixed;
+  top: 12vh;
+  width: 80vw;
+  z-index: 10;
 }
 
 .progressBar a {
-  color:rgb(0, 0, 0);
+  color:rgb(255, 255, 255);
   font-weight:700;
   text-decoration: none;
   text-transform: uppercase;
@@ -35,4 +39,8 @@
 
 .activeProgress {
   background-color: rgba(160, 17, 60, 0.911);
+}
+
+.inactiveProgress {
+  background-color: rgba(160, 17, 60, 0.4);
 }

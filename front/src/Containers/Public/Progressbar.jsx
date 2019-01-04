@@ -25,7 +25,7 @@ class Progressbar extends Component {
       countActive -= 1;
       if (countActive <= 0) {
         return (
-          <li className="text-center" key={index}>
+          <li className="inactiveProgress text-center" key={index}>
             <NavLink to={route} onClick={e => this.handleClick(e, index)}>
               {stepNames[index]}
             </NavLink>
@@ -46,7 +46,7 @@ class Progressbar extends Component {
   render() {
     const { type, index } = this.props;
     return (
-      <ul className="progressBar w-100 mt-2">
+      <ul className="progressBar">
         {this.createProgressElements(type, index)}
       </ul>
     );

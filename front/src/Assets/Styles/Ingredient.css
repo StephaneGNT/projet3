@@ -12,9 +12,8 @@
 } */
 
 /* ingredient structure */
-.displayIngredient {
+/* .displayIngredient {
   background-color: rgb(219, 219, 219);
-  height: 60vh;
-  overflow: auto;
+  min-height: 60vh;
   border-radius: 20px;
-}
+} */
