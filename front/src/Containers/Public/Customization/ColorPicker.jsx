@@ -5,7 +5,7 @@ import { CirclePicker } from 'react-color';
 import { Button, ButtonGroup, Row, Col } from 'reactstrap';
 import FontPicker from './FontPicker';
 import { changeBgColor, changeFontColor } from '../../../Actions/customization_actions';
-import '../../../Assets/Styles/Personalisation.css';
+import '../../../Assets/Styles/Customization.css';
 
 class ColorPicker extends Component {
   constructor(props) {
@@ -45,7 +45,9 @@ class ColorPicker extends Component {
         <Row>
           {
             (color === 'font')
-              ? <CirclePicker className="palette" name="fontColor" onChange={changeFontColour} />
+              ? <CirclePicker className="palette"
+              colors={["#000000", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50", "#8bc34a", "#cddc39", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#795548", "#607d8b"]}
+              name="fontColor" onChange={changeFontColour} />
               : <CirclePicker className="palette" name="backgroundColor" onChange={changeBackgroundColor} />
           }
         </Row>

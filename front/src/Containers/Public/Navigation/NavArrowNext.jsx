@@ -19,6 +19,18 @@ class NavArrowNext extends Component {
     }
   }
 
+  getTitle = () => {
+    const { cake, pageIndex } = this.props;
+    if (pageIndex === 1) {
+      if (cake.type === '') return 'Choisissez votre gâteau';
+      if (cake.type === 'cake') return 'Choisissez la taille de votre gâteau';
+      if (cake.type === 'cookie' || cake.type === 'macaron' || cake.type === 'brownie') {
+        return 'Choisissez la taille et le nombre de vos douceurs';
+      }
+      // return '';
+    }
+  }
+
   render() {
     const {
       pageIndex,
@@ -30,7 +42,7 @@ class NavArrowNext extends Component {
     return (
       <div>
         <NavLink to={this.translateIndexToRoute(pageIndex, type)}>
-          <button title="hello" disabled={disabled} type="button" onClick={() => changePageIndex(1)} className="btn-prev-next">
+          <button title={this.getTitle()} disabled={disabled} type="button" onClick={() => changePageIndex(1)} className="btn-prev-next">
             Suivant
             {/* {this.pageIndex} */}
           </button>
@@ -45,12 +57,14 @@ NavArrowNext.propTypes = {
   type: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
   changePageIndex: PropTypes.func.isRequired,
+  cake: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
   dispatch: state.dispatch,
   pageIndex: state.pageIndex,
   type: state.cakeCharacteristics.type,
+  cake: state.cakeCharacteristics,
 });
 
 const matchDispatchToProps = dispatch => ({ changePageIndex: num => dispatch(changeIndex(num)) });
