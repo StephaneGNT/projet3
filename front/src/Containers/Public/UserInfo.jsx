@@ -68,7 +68,7 @@ class UserInfo extends Component {
         <Row className="text-center">
           <Progressbar />
         </Row>
-        <Row className="justify-content-around">
+        <Row className="justify-content-around" style={{ paddingTop: '15vh' }}>
           <Col sm="10" md="4">
             <FormGroup>
               <Label for="firstname">

@@ -21,7 +21,7 @@ class OrderDetail extends Component {
         <Row className="text-center">
           <Progressbar />
         </Row>
-        <Row>
+        <Row style={{ paddingTop: '5vh' }}>
           <Col sm="4">
             <Row center="xs" className="mt-3"><OrderCalendar /></Row>
             <Row center="xs" className="mt-3"><CalendarTips /></Row>
