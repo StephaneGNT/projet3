@@ -25,7 +25,7 @@ const CakeInfo = (props) => {
         <Col sm="2" className="text-center">
           <button
             type="button"
-            className="typeButton"
+            className={`typeButton ${type === 'cookie' && 'selectionOutline'}`}
             id="cookieButton"
             title="A partir de 2,5€"
             onClick={() => { localChangeCakeType('cookie'); resetCakeStories(); }}
@@ -36,7 +36,7 @@ const CakeInfo = (props) => {
         <Col sm="2" className="text-center">
           <button
             type="button"
-            className="typeButton"
+            className={`typeButton ${type === 'cake' && 'selectionOutline'}`}
             id="cakeButton"
             title="A partir de 8€"
             onClick={() => { localChangeCakeType('cake'); resetCakeStories(); }}
@@ -47,7 +47,7 @@ const CakeInfo = (props) => {
         <Col sm="2" className="text-center">
           <button
             type="button"
-            className="typeButton"
+            className={`typeButton ${type === 'cheesecake' && 'selectionOutline'}`}
             id="cheesecakeButton"
             title="A partir de 8€"
             onClick={() => { localChangeCakeType('cheesecake'); resetCakeStories(); }}
@@ -58,7 +58,7 @@ const CakeInfo = (props) => {
         <Col sm="2" className="text-center">
           <button
             type="button"
-            className="typeButton"
+            className={`typeButton ${type === 'macaron' && 'selectionOutline'}`}
             id="macaronButton"
             title="A partir de 2,5€"
             onClick={() => { localChangeCakeType('macaron'); resetCakeStories(); }}
@@ -69,7 +69,7 @@ const CakeInfo = (props) => {
         <Col sm="2" className="text-center">
           <button
             type="button"
-            className="typeButton"
+            className={`typeButton ${type === 'brownie' && 'selectionOutline'}`}
             id="brownieButton"
             title="A partir de 2,5€"
             onClick={() => { localChangeCakeType('brownie'); resetCakeStories(); }}
