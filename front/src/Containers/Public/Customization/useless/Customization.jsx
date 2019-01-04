@@ -8,15 +8,15 @@ import {
   FormGroup,
 } from 'reactstrap';
 import CustomMessage from './CustomMessage';
-import CustomMessageInput from './CustomMessageInput';
-import ColorPicker from './ColorPicker';
-import Price from '../Price';
-import FontPicker from './FontPicker';
-import CustomWish from './CustomWish';
-import Decoration from './Decoration';
+import CustomMessageInput from '../CustomMessageInput';
+import ColorPicker from '../ColorPicker';
+import Price from '../../Price';
+import FontPicker from '../FontPicker';
+import CustomWish from '../CustomWish';
+import Decoration from '../Decoration';
 import DecorationExamples from './DecorationExamples';
-import NavArrowsLayout from '../Navigation/NavArrowsLayout';
-import Progressbar from '../Progressbar';
+import NavArrowsLayout from '../../Navigation/NavArrowsLayout';
+import Progressbar from '../../Progressbar';
 import '../../../Assets/Styles/Personalisation.css';
 
 const Customization = (props) => {

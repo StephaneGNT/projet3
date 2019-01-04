@@ -18,7 +18,7 @@ class ColorPicker extends Component {
   }
 
   render() {
-    const buttonStyle = { 'background-color': 'rgb(129, 38, 38)' }
+    const buttonStyle = { backgroundColor: 'rgb(129, 38, 38)' }
     const { changeBackgroundColor, changeFontColour } = this.props;
     const { color } = this.state;
     return (
