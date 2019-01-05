@@ -23,10 +23,10 @@ class IngredientsCakeStructure extends Component {
       render = (
         <Row className="displayIngredient">
           <Row style={{
-            top: '0', zIndex: '5',
+            position: 'sticky', top: '0vh', zIndex: '5', backgroundColor: '#E8E5E5',
           }}
           >
-            <h1 style={{ position: 'sticky', top: '0' }}>{elementToDisplay[0].type}</h1>
+            <h1>{elementToDisplay[0].type}</h1>
           </Row>
           <Row className="w-100 mx-auto">
             <IngredientsDisplay elementToDisplay={elementToDisplay} />
@@ -41,7 +41,7 @@ class IngredientsCakeStructure extends Component {
           <Row className="displayIngredient">
             <Col sm="6">
               <Row style={{
-                top: '0', zIndex: '5',
+                position: 'sticky', top: '0vh', zIndex: '5', backgroundColor: '#E8E5E5',
               }}
               >
                 <h1>{fillings[0].type}</h1>
@@ -52,7 +52,7 @@ class IngredientsCakeStructure extends Component {
             </Col>
             <Col sm="6">
               <Row style={{
-                top: '0', zIndex: '5',
+                position: 'sticky', top: '0vh', zIndex: '5', backgroundColor: '#E8E5E5',
               }}
               >
                 <h1>{icings[0].type}</h1>
@@ -68,10 +68,10 @@ class IngredientsCakeStructure extends Component {
         render = (
           <Row className="displayIngredient">
             <Row style={{
-              top: '0', zIndex: '5',
+              position: 'sticky', top: '0vh', zIndex: '5', backgroundColor: '#E8E5E5',
             }}
             >
-              <h1 style={{ position: 'sticky', top: '0' }}>{icings[0].type}</h1>
+              <h1>{icings[0].type}</h1>
             </Row>
             <Row className="w-100 mx-auto">
               <IngredientsDisplay elementToDisplay={icings} />
@@ -84,10 +84,10 @@ class IngredientsCakeStructure extends Component {
       render = (
         <Row className="displayIngredient">
           <Row style={{
-            top: '0', zIndex: '5',
+            position: 'sticky', top: '5vh', zIndex: '5', backgroundColor: '#E8E5E5',
           }}
           >
-            <h1 style={{ position: 'sticky', top: '0' }}>{toppings[0].type}</h1>
+            <h1>{toppings[0].type}</h1>
           </Row>
           <Row className="w-100 mx-auto">
             <IngredientsDisplay elementToDisplay={toppings} />
@@ -106,13 +106,7 @@ class IngredientsCakeStructure extends Component {
   render() {
     const
       {
-        cake,
-        bases,
-        icings,
-        fillings,
-        toppings,
-        flavor,
-        index,
+        cake, bases, icings, fillings, toppings, flavor, index,
       } = this.props;
 
     return (

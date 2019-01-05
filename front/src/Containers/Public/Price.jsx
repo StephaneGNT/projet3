@@ -7,7 +7,7 @@ const Price = (props) => {
   const { price, sendToPrice } = props;
   sendToPrice(price);
   return (
-    <div className="bloc-price">
+    <div className="bloc-price" style={{ position: 'sticky', top: '60vh' }}>
       {`PRIX TTC: ${price} €`}
     </div>
   );

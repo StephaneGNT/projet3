@@ -10,7 +10,7 @@ const IngredientsMacaronStructure = (props) => {
   return (
     <Row>
       <Col sm="6" style={{ height: 'auto' }}>
-        <Row>
+        <Row style={{ position: 'sticky', top: '0' }}>
           <h1>{flavor[0].type}</h1>
         </Row>
         <Row>
