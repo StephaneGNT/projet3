@@ -49,7 +49,7 @@ class CakeInProgress extends Component {
   render() {
     const { cake } = this.props;
     return (
-      <div>
+      <div style={{ position: 'sticky', top: '0vh' }}>
         <Row className="cakeLayout justify-content-center">
           {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index, arr))}
         </Row>
