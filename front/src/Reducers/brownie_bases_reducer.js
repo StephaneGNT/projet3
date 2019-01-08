@@ -6,7 +6,7 @@ export default () => {
     {
       id: 1,
       name: 'Amandes caramélisées',
-      type: 'Base',
+      type: 'Base brownie',
       size: 'S',
       price: 4,
       dispo: true,
@@ -18,7 +18,7 @@ export default () => {
     {
       id: 2,
       name: 'Cacahuètes',
-      type: 'Base',
+      type: 'Base brownie',
       size: 'S',
       price: 4,
       dispo: true,

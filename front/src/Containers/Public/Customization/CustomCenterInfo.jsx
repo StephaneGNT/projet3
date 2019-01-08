@@ -10,7 +10,7 @@ import getDescription from './Customization_functions';
 import { submitDecorationChoice, allowMessage } from '../../../Actions/customization_actions';
 import { changePrice } from '../../../Actions/cakeActions/changeCakePrice';
 
-class CustomWelcomePage extends Component {
+class CustomCenterInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,7 +70,7 @@ class CustomWelcomePage extends Component {
     this.setState({
       [deco]: !this.state[deco],
       type: status === 'on' ? deco : '',
-      typeResilient: status === 'on' ? '' : this.state.typeResilient,
+      // typeResilient: status === 'on' ? '' : this.state.typeResilient,
     });
   }
 
@@ -107,7 +107,7 @@ class CustomWelcomePage extends Component {
   render() {
     const { typeResilient } = this.state;
     const { custom } = this.props;
-    console.log('cake', this.props.cake, 'customization', custom)
+    console.log(this.state)
     return (
       <Col>
         <Row className="decorationRow">
@@ -161,9 +161,10 @@ class CustomWelcomePage extends Component {
   }
 }
 
-CustomWelcomePage.propTypes = {
+CustomCenterInfo.propTypes = {
   cake: PropTypes.shape({}).isRequired,
   custom: PropTypes.shape({}).isRequired,
+  customAdmin: PropTypes.shape({}).isRequired,
   submitDecoChoice: PropTypes.func.isRequired,
   addMessage: PropTypes.func.isRequired,
 };
@@ -180,4 +181,4 @@ const mapDispatchToProps = dispatch => ({
   updatePrice: price => dispatch(changePrice(price)),
 });
 
-export default connect(mapStatetoProps, mapDispatchToProps)(CustomWelcomePage);
+export default connect(mapStatetoProps, mapDispatchToProps)(CustomCenterInfo);

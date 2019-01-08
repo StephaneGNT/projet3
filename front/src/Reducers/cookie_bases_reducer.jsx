@@ -6,7 +6,7 @@ export default () => {
     {
       id: 1,
       name: 'Chocolat amandes',
-      type: 'Base',
+      type: 'Base cookie',
       size: 'S',
       price: 4,
       dispo: true,
@@ -18,7 +18,7 @@ export default () => {
     {
       id: 2,
       name: 'Cacahuètes',
-      type: 'Base',
+      type: 'Base cookie',
       size: 'S',
       price: 4,
       dispo: true,
