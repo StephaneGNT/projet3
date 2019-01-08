@@ -2,6 +2,7 @@ export default (state = {
   dropdownOpen: false,
   selectedFonts: ['Sedgwick Ave', 'Bungee', 'Charmonman', 'Kaushan Script', 'Lobster Two'],
   wantsCustomMessage: true,
+  googleFonts: [],
   customMessage: {
     choice: 'Message personnalisé',
     message: '',
@@ -42,6 +43,10 @@ export default (state = {
       };
     }
       return state;
+    case 'UPDATE_FONTS': return {
+      ...state,
+      googleFonts: action.fonts,
+    };
     default: return state;
   }
 };

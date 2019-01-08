@@ -75,7 +75,7 @@ class CustomCenterInfo extends Component {
   }
 
   open = (deco) => {
-    const { submitDecoChoice, addMessage, cake, customAdmin } = this.props;
+    const { submitDecoChoice, addMessage, customAdmin } = this.props;
     const setToUpdate = `${deco}Resilient`;
     this.setState({
       messageResilient: false,

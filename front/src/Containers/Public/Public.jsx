@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {
-  Route, Switch, BrowserRouter, Link,
+  Route,
+  Switch,
+  BrowserRouter,
+  Link,
 } from 'react-router-dom';
 import HomePage from './HomePage';
 import PimpMyCake from './PimpMyCake';
