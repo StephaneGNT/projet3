@@ -1,46 +1,49 @@
 import axios from 'axios';
 
 export const getCakeBases = () => (dispatch => (
-  axios.get('/api/cakebases')
-    .then(data => dispatch({ type: 'GET_CAKE_BASES', payload: data }))
+  axios.get('/incredients/cakebases')
+    .then((data) => {
+      console.log(data);
+      dispatch({ type: 'GET_CAKE_BASES', payload: data });
+    })
 ));
 
 export const getFillings = () => (dispatch => (
-  axios.get('/api/fillings')
+  axios.get('/incredients/fillings')
     .then(data => dispatch({ type: 'GET_FILLINGS', payload: data }))
 ));
 
 export const getIcings = () => (dispatch => (
-  axios.get('/api/icings')
+  axios.get('/incredients/icings')
     .then(data => dispatch({ type: 'GET_ICINGS', payload: data }))
 ));
 
 export const getToppings = () => (dispatch => (
-  axios.get('/api/toppings')
+  axios.get('/incredients/toppings')
     .then(data => dispatch({ type: 'GET_TOPPINGS', payload: data }))
 ));
 
 export const getCheesecakeFlavor = () => (dispatch => (
-  axios.get('/api/cheesecakeFlavors')
+  axios.get('/incredients/cheesecakeFlavors')
     .then(data => dispatch({ type: 'GET_CHEESECAKE_FLAVORS', payload: data }))
 ));
 
 export const getCookieBases = () => (dispatch => (
-  axios.get('/api/cookieBases')
+  axios.get('/incredients/cookieBases')
     .then(data => dispatch({ type: 'GET_COOKIE_BASES', payload: data }))
 ));
 
 export const getMacaronShells = () => (dispatch => (
-  axios.get('/api/macaronShells')
+  axios.get('/incredients/macaronShells')
     .then(data => dispatch({ type: 'GET_MACARON_SHELLS', payload: data }))
 ));
 
 export const getMacaronFlavors = () => (dispatch => (
-  axios.get('/api/macaronFlavors')
+  axios.get('/incredients/macaronFlavors')
     .then(data => dispatch({ type: 'GET_MACARON_FLAVORS', payload: data }))
 ));
 
 export const getBrownieBases = () => (dispatch => (
-  axios.get('/api/brownieBases')
+  axios.get('/incredients/brownieBases')
     .then(data => dispatch({ type: 'GET_BROWNIE_BASES', payload: data }))
 ));
