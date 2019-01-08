@@ -6,7 +6,7 @@ import '../../../Assets/Styles/MainNavigation.css';
 import logo from '../../../Assets/Images/LOGO_GILUNA.png';
 
 const VerticalNavBar = () => (
-  <Navbar className="navbar-expand fixed-adapt navbar-light bg-light">
+  <Navbar className="navbar-expand fixed-adapt navbar-light ">
     <div className="bloc">
       <NavbarBrand href="/">
         <img src={logo} className="logo" alt="giluna-logo" />
@@ -21,7 +21,7 @@ const VerticalNavBar = () => (
         <NavItem>
           <NavLink href="/admin/ingredients">
             <i className="fas fa-birthday-cake ml-1" />
-            <span className="linkname ml-2">Incredients</span>
+            <span className="linkname ml-2">Ingredients</span>
           </NavLink>
         </NavItem>
         <NavItem>
