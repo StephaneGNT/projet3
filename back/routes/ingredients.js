@@ -1,10 +1,7 @@
 const express = require('express');
 const ingred = express.Router();
 const coco = require('../helper/db.js');
-const bodyParser = require('body-parser');
 
-ingred.use(bodyParser.urlencoded({ extend: true }));
-ingred.use(bodyParser.json());
 
 ingred.post(`/ingredients/:type/new`, (req, res) => {
   const formData = req.body;
@@ -28,5 +25,17 @@ ingred.delete('/ingredients/:type/:id', (req, res) => {
     }
   );
 });
+
+
+/*-------------------- FETCH COMPLETE INCREDIENT TABLES ----------------------*/
+
+
+ingred.get('/ingredients/cakebases', (req, res) => {
+  coco.query('SELECT * from cake_bases', (err, results) => {
+    err ? res.status(500).send(err) : res.status(200).send(results);
+  })
+});
+
+
 
 module.exports = ingred;

@@ -4,12 +4,22 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Public from './Containers/Public/Public';
 import Admin from './Containers/Admin/Admin';
-import getCakeBases from './Actions/fetchDB/fetch_database_actions';
+import {
+  getCakeBases,
+  getBrownieBases,
+  getCookieBases,
+  getCheesecakeFlavor,
+  getFillings,
+  getIcings,
+  getToppings,
+  getMacaronFlavors,
+  getMacaronShells,
+} from './Actions/fetchDB/fetch_database_actions';
 
 class App extends Component {
   componentWillMount() {
-    const { CakeBases } = this.props;
-    CakeBases();
+    const { fetchDatabase } = this.props;
+    fetchDatabase();
   }
 
   render() {
@@ -27,13 +37,30 @@ class App extends Component {
 }
 
 App.propTypes = {
-  CakeBases: PropTypes.func.isRequired,
+  fetchDatabase: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => (
   {
-    getCakeBases: () => dispatch(getCakeBases()),
+    fetchDatabase: () => dispatch(
+      getCakeBases(),
+      getBrownieBases(),
+      getCheesecakeFlavor(),
+      getCookieBases(),
+      getFillings(),
+      getIcings(),
+      getToppings(),
+      getMacaronFlavors(),
+      getMacaronShells(),
+    ),
   }
 );
 
-export default connect(mapDispatchToProps)(App);
+const mapStateToProps = state => (
+  {
+    dispatch: state.dispatch,
+    appstate: state,
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
