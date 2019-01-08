@@ -21,8 +21,8 @@ export const getToppings = () => (dispatch => (
 ));
 
 export const getCheesecakeFlavor = () => (dispatch => (
-  axios.get('/api/cheesecakeFlavor')
-    .then(data => dispatch({ type: 'GET_CHEESECAKE_FLAVOR', payload: data }))
+  axios.get('/api/cheesecakeFlavors')
+    .then(data => dispatch({ type: 'GET_CHEESECAKE_FLAVORS', payload: data }))
 ));
 
 export const getCookieBases = () => (dispatch => (

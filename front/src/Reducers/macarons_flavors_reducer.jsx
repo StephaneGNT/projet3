@@ -4,7 +4,7 @@ import fruitsRouges from '../Assets/Images/macaron_fruitsrouges.png';
 import citron from '../Assets/Images/macaron_citron.png';
 import caramel from '../Assets/Images/macaron_caramel.png';
 
-export default () => [
+const initialState = [
   {
     id: 1,
     name: 'Parfum vanille',
@@ -66,3 +66,12 @@ export default () => [
     compatible: ['Rouge', 'Vert', 'Bleu'],
   },
 ];
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case 'GET_MACARON_FLAVORS':
+      return action.payload;
+    default:
+      return state;
+  }
+};

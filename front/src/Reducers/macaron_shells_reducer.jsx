@@ -1,4 +1,4 @@
-export default () => [
+const initialState = [
   {
     id: 1,
     name: 'Rouge',
@@ -39,3 +39,12 @@ export default () => [
     compatible: ['macaron'],
   },
 ];
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case 'GET_MACARON_SHELLS':
+      return action.payload;
+    default:
+      return state;
+  }
+};
