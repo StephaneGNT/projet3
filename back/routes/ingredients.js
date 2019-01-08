@@ -1,15 +1,11 @@
 const express = require('express');
 const ingred = express.Router();
 const connection = require('../helper/db.js');
+const bodyParser = require('body-parser');
 
-// ingred.post('/ingredients/:type/new', (req, res, next) => {
-//   connection.query(`INSERT INTO ? (id, name, type, size, price, dispo, info, img, allerg, compatible) VALUES (?,?,?,?,?,?,?,?,?)`,
-//   [null, req.params.name, req.params.type, req.params.type, req.params.size, req.params.price, req.params.dispo, req.params.info, req.params.img, req.params.allerg, req.params.compatible]  
-//   (error, results, fields)=> {
-//     if (error) res.status(500).json({ flash:  error.message });
-//     else res.status(200).json({ flash:  "Nouvel ingrédient ajouté !" });
-//   });
-// });
+// middleware youhouuuuuuu
+app.use(bodyParser.urlencoded({ extend: false }));
+app.use(bodyParser.json());
 
 ingred.post('/ingredients/:type/new', (req, res) => {
   const formData = req.body;

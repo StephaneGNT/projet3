@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://stephanegnt.github.io/projet3/",
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@material-ui/core": "^3.6.2",
     "axios": "^0.18.0",
