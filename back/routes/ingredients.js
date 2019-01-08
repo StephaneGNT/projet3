@@ -1,25 +1,20 @@
 const express = require('express');
 const ingred = express.Router();
-const connection = require('../helper/db.js');
+const coco = require('../helper/db.js');
+const bodyParser = require('body-parser');
 
-// ingred.post('/ingredients/:type/new', (req, res, next) => {
-//   connection.query(`INSERT INTO ? (id, name, type, size, price, dispo, info, img, allerg, compatible) VALUES (?,?,?,?,?,?,?,?,?)`,
-//   [null, req.params.name, req.params.type, req.params.type, req.params.size, req.params.price, req.params.dispo, req.params.info, req.params.img, req.params.allerg, req.params.compatible]  
-//   (error, results, fields)=> {
-//     if (error) res.status(500).json({ flash:  error.message });
-//     else res.status(200).json({ flash:  "Nouvel ingrédient ajouté !" });
-//   });
-// });
+ingred.use(bodyParser.urlencoded({ extend: true }));
+ingred.use(bodyParser.json());
 
-ingred.post('/ingredients/:type/new', (req, res) => {
+ingred.post(`/ingredients/:type/new`, (req, res) => {
   const formData = req.body;
   console.log(formData);
-  connection.query('INSERT INTO ? SET ?', formData, (err, results) => {
+  coco.query('INSERT INTO ? SET ?', formData, (err, results) => {
     if (err) {
-      console.log(err);
+      console.log('fatal error: ' + err.message );
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");
     } else {
-      res.sendStatus(200).send("Nouvel ingrédient ajouté !");
+      res.status(200).send("Nouvel ingrédient ajouté !" + JSON.stringify(results));
     }
   });
 });

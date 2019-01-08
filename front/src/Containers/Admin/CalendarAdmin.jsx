@@ -8,7 +8,9 @@ export default class CalendarAdmin extends Component {
 
   render() {
     return (
-      <div> Calendar Admin </div>
+      <div>
+        Calendar Admin
+      </div>
     );
   }
 }
