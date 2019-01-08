@@ -4,5 +4,3 @@ const setDeliveryDate = date => ({
 });
 
 export default setDeliveryDate;
-
-dispo: true

@@ -8,7 +8,7 @@ export default () => [
   {
     id: 1,
     name: 'Parfum vanille',
-    type: 'Parfum',
+    type: 'Macaron',
     size: 'S',
     price: 4,
     dispo: true,
@@ -20,7 +20,7 @@ export default () => [
   {
     id: 2,
     name: 'Parfum chocolat',
-    type: 'Parfum',
+    type: 'Macaron',
     size: 'S',
     price: 4,
     dispo: true,
@@ -32,7 +32,7 @@ export default () => [
   {
     id: 3,
     name: 'Parfum fruits rouges',
-    type: 'Parfum',
+    type: 'Macaron',
     size: 'S',
     price: 4,
     dispo: true,
@@ -44,7 +44,7 @@ export default () => [
   {
     id: 4,
     name: 'Parfum citron',
-    type: 'Parfum',
+    type: 'Macaron',
     size: 'S',
     price: 4,
     dispo: true,
@@ -56,7 +56,7 @@ export default () => [
   {
     id: 5,
     name: 'Parfum caramel',
-    type: 'Parfum',
+    type: 'Macaron',
     size: 'S',
     price: 4,
     dispo: true,
