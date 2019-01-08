@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Label, Input, Container, Row, Col, Button } from 'reactstrap';
+import axios from 'axios';
+import {
+  Label, Input, Container, Row, Col, Button,
+} from 'reactstrap';
 // import AlertAddIngredient from './AlertAddIngredient';
 import PropTypes from 'prop-types';
 import '../../../Assets/Styles/Add_Ingredients.css';
-import axios from 'axios';
 
 class AddIngredients extends Component {
   constructor(props) {
@@ -12,13 +14,14 @@ class AddIngredients extends Component {
     this.state = {
       type: '',
       name: '',
-      size: '',
+      size_diameter: '',
       price: 0,
-      dispo: false,
+      availability: false,
       info: '',
-      img: '',
+      image_id: '',
       allerg: '',
       compatible: [],
+      dispo: true,
     };
     this.onSubmit = this.onSubmit.bind(this);
     // this.updateState = this.onChange.bind(this);
@@ -27,20 +30,20 @@ class AddIngredients extends Component {
 
   updateState = (e) => {
     switch (e.target.value) {
-      case 'base':
-        this.setState({ type: 'base' });
+      case 'Base':
+        this.setState({ type: 'Base' });
         this.urlParams = 'cake_bases';
         break;
-      case 'fourrage':
-        this.setState({ type: 'fourrage' });
+      case 'Filling':
+        this.setState({ type: 'Filling' });
         this.urlParams = 'fillings';
         break;
-      case 'glaçage':
-        this.setState({ type: 'glaçage' });
+      case 'Icing':
+        this.setState({ type: 'Icing' });
         this.urlParams = 'icings';
         break;
-      case 'decoration':
-        this.setState({ type: 'decoration' });
+      case 'Topping':
+        this.setState({ type: 'Topping' });
         this.urlParams = 'topping';
         break;
       default:
@@ -51,29 +54,31 @@ class AddIngredients extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const {
-      type, name, size, price, dispo, info, img, allerg, compatible,
+      type, name, size_diameter, price, availability, info, image_id, allerg, compatible, dispo,
     } = this.state;
 
     const newIngredient = {
       type,
       name,
-      size,
+      size_diameter,
       price,
-      dispo,
+      availability,
       info,
-      img,
+      image_id,
       allerg,
       compatible,
+      dispo,
     };
 
     // const url = `http://localhost:5000/ingredients/${this.urlParams}/new`;
 
-    axios.post(`/ingredients/${this.urlParams}/new`, newIngredient)
+    axios.post(`http://localhost:5000/ingredients/${this.urlParams}/new`, newIngredient)
       .then(res => console.log(res.data))
       .catch(err => console.log(err.response.data));
   };
 
   render() {
+    console.log(this.urlParams)
     return (
       <div className="bodyIng">
         <form onSubmit={this.onSubmit}>
@@ -91,10 +96,10 @@ class AddIngredients extends Component {
                   Type d'ingrédient
                   <Input type="select" name="type" className="input-admin-type" onChange={this.updateState}>
                     <option> </option>
-                    <option onClick={() => this.updateState('base')}>Base</option>
-                    <option onClick={() => this.updateState('fourrage')}>Fourrage</option>
-                    <option onClick={() => this.updateState('glaçage')}>Glaçage</option>
-                    <option onClick={() => this.updateState('decoration')}>Décoration</option>
+                    <option onClick={() => this.updateState('Base')}>Base</option>
+                    <option onClick={() => this.updateState('Filling')}>Filling</option>
+                    <option onClick={() => this.updateState('Icing')}>Icing</option>
+                    <option onClick={() => this.updateState('Topping')}>Topping</option>
                   </Input>
                 </Label>
               </Col>
@@ -107,7 +112,7 @@ class AddIngredients extends Component {
               <Col sm="1">
                 <Label className="label-type">
                   Taille
-                  <Input value={this.size} type="text" name="size" className="input-admin-type" onChange={this.updateState} />
+                  <Input value={this.size_diameter} type="text" name="size" className="input-admin-type" onChange={this.updateState} />
                 </Label>
               </Col>
               <Col sm="1">
@@ -131,7 +136,7 @@ class AddIngredients extends Component {
               <Col sm="1">
                 <Label check className="label-type" onChange={this.updateState}>
                   Disponibilité
-                  <Input value={this.dispo} type="checkbox" name="dispo" />
+                  <Input value={this.availability} type="checkbox" name="dispo" />
                   {' '}
                 </Label>
               </Col>
@@ -150,7 +155,7 @@ class AddIngredients extends Component {
 };
 
 AddIngredients.propTypes = {
-  updateState: PropTypes.string.isRequired
+  updateState: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -159,7 +164,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addNewIngredient: ingredientType => dispatch(this.updateState(ingredientType)),
+  updateState: ingredientType => dispatch(this.props.updateState(ingredientType)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddIngredients);

@@ -1,21 +1,20 @@
 const express = require('express');
 const ingred = express.Router();
-const connection = require('../helper/db.js');
+const coco = require('../helper/db.js');
 const bodyParser = require('body-parser');
 
-// middleware youhouuuuuuu
-app.use(bodyParser.urlencoded({ extend: false }));
-app.use(bodyParser.json());
+ingred.use(bodyParser.urlencoded({ extend: true }));
+ingred.use(bodyParser.json());
 
-ingred.post('/ingredients/:type/new', (req, res) => {
+ingred.post(`/ingredients/:type/new`, (req, res) => {
   const formData = req.body;
   console.log(formData);
-  connection.query('INSERT INTO ? SET ?', formData, (err, results) => {
+  coco.query('INSERT INTO ? SET ?', formData, (err, results) => {
     if (err) {
-      console.log(err);
+      console.log('fatal error: ' + err.message );
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");
     } else {
-      res.sendStatus(200).send("Nouvel ingrédient ajouté !");
+      res.status(200).send("Nouvel ingrédient ajouté !" + JSON.stringify(results));
     }
   });
 });
