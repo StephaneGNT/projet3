@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Public from './Containers/Public/Public';
 import Admin from './Containers/Admin/Admin';
-import {
-  getCakeBases,
-  getBrownieBases,
-  getCookieBases,
-  getCheesecakeFlavor,
-  getFillings,
-  getIcings,
-  getToppings,
-  getMacaronFlavors,
-  getMacaronShells,
-} from './Actions/fetchDB/fetch_database_actions';
+import axiosIngredientsDB from './Actions/fetchDB/fetch_database_actions';
 
 class App extends Component {
   componentWillMount() {
-    const { fetchDatabase } = this.props;
-    fetchDatabase();
+    const { axiosDatabase } = this.props;
+    const allTables = ['cake_bases', 'cookie_bases', /* 'brownie_bases', */'fillings', 'icings', 'toppings', 'macaron_flavors', 'macaron_shells', 'cheesecake_flavors'];
+    allTables.map(table => axiosDatabase(table));
   }
 
   render() {
@@ -37,29 +29,18 @@ class App extends Component {
 }
 
 App.propTypes = {
-  fetchDatabase: PropTypes.func.isRequired,
+  axiosDatabase: PropTypes.func.isRequired,
 };
-
-const mapDispatchToProps = dispatch => (
-  {
-    fetchDatabase: () => dispatch(
-      getCakeBases(),
-      getBrownieBases(),
-      getCheesecakeFlavor(),
-      getCookieBases(),
-      getFillings(),
-      getIcings(),
-      getToppings(),
-      getMacaronFlavors(),
-      getMacaronShells(),
-    ),
-  }
-);
 
 const mapStateToProps = state => (
   {
     dispatch: state.dispatch,
-    appstate: state,
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    axiosDatabase: bindActionCreators(axiosIngredientsDB, dispatch),
   }
 );
 

@@ -30,8 +30,9 @@ ingred.delete('/ingredients/:type/:id', (req, res) => {
 /*-------------------- FETCH COMPLETE INCREDIENT TABLES ----------------------*/
 
 
-ingred.get('/ingredients/cakebases', (req, res) => {
-  coco.query('SELECT * from cake_bases', (err, results) => {
+ingred.get('/ingredients/:ingredTable', (req, res) => {
+  const tableToLoad = req.params.ingredTable;
+  coco.query(`SELECT * from ${tableToLoad}`, (err, results) => {
     err ? res.status(500).send(err) : res.status(200).send(results);
   })
 });

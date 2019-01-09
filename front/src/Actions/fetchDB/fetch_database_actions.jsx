@@ -1,46 +1,23 @@
 import axios from 'axios';
 
-export const getCakeBases = () => (dispatch => (
-  axios.get('/ingredients/cakebases')
-    .then(response => dispatch({ type: 'GET_CAKE_BASES', payload: response.data }))
-));
+const axiosIngredientsDB = (ingredTableName) => {
+  const actionType = (ingred) => {
+    switch (ingred) {
+      case 'cake_bases': return 'GET_CAKE_BASES';
+      case 'cookie_bases': return 'GET_COOKIE_BASES';
+      case 'brownie_bases': return 'GET_BROWNIE_BASES';
+      case 'fillings': return 'GET_FILLINGS';
+      case 'icings': return 'GET_ICINGS';
+      case 'toppings': return 'GET_TOPPINGS';
+      case 'macaron_flavors': return 'GET_MACARON_FLAVORS';
+      case 'macaron_shells': return 'GET_MACARON_SHELLS';
+      default: return 'GET_CHEESECAKE_FLAVORS';
+    }
+  };
+  return dispatch => (
+    axios.get(`/ingredients/${ingredTableName}`)
+      .then(res => dispatch({ type: actionType(ingredTableName), payload: res.data }))
+  );
+};
 
-export const getFillings = () => (dispatch => (
-  axios.get('/ingredients/fillings')
-    .then(response => dispatch({ type: 'GET_FILLINGS', payload: response.data }))
-));
-
-export const getIcings = () => (dispatch => (
-  axios.get('/ingredients/icings')
-    .then(response => dispatch({ type: 'GET_ICINGS', payload: response.data }))
-));
-
-export const getToppings = () => (dispatch => (
-  axios.get('/ingredients/toppings')
-    .then(response => dispatch({ type: 'GET_TOPPINGS', payload: response.data }))
-));
-
-export const getCheesecakeFlavor = () => (dispatch => (
-  axios.get('/ingredients/cheesecakeFlavors')
-    .then(response => dispatch({ type: 'GET_CHEESECAKE_FLAVORS', payload: response.data }))
-));
-
-export const getCookieBases = () => (dispatch => (
-  axios.get('/ingredients/cookieBases')
-    .then(response => dispatch({ type: 'GET_COOKIE_BASES', payload: response.data }))
-));
-
-export const getMacaronShells = () => (dispatch => (
-  axios.get('/ingredients/macaronShells')
-    .then(response => dispatch({ type: 'GET_MACARON_SHELLS', payload: response.data }))
-));
-
-export const getMacaronFlavors = () => (dispatch => (
-  axios.get('/ingredients/macaronFlavors')
-    .then(response => dispatch({ type: 'GET_MACARON_FLAVORS', payload: response.data }))
-));
-
-export const getBrownieBases = () => (dispatch => (
-  axios.get('/ingredients/brownieBases')
-    .then(response => dispatch({ type: 'GET_BROWNIE_BASES', payload: response.data }))
-));
+export default axiosIngredientsDB;
