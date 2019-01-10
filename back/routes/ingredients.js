@@ -9,7 +9,7 @@ const coco = require('../helper/db.js');
 ingred.post(`/ingredients/:type/new`, (req, res) => {
   const formData = req.body;
   console.log(formData);
-  coco.query('INSERT INTO ? SET ?', formData, (err, results) => {
+  coco.query("INSERT INTO ? SET ?", [formData, req.params.body], (err, results) => {
     if (err) {
       console.log('fatal error: ' + err.message );
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");

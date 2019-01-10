@@ -15,12 +15,12 @@ class AddIngredients extends Component {
       type: '',
       name: '',
       size_diameter: 0,
+      nb_persons: 0,
       price: 0,
       availability: true,
       info: '',
-      image_id: '',
-      allerg: '',
-      compatible: [],
+      image_id: 0,
+      is_compatible: [],
       dispo: true,
     };
     this.onSubmit = this.onSubmit.bind(this);
@@ -31,7 +31,7 @@ class AddIngredients extends Component {
   updateState = (e) => {
     switch (e.target.value) {
       case 'Base':
-        this.setState({ type: 'bases' });
+        this.setState({ type: 'cake_bases' });
         this.urlParams = 'cake_bases';
         break;
       case 'Filling':
@@ -54,18 +54,18 @@ class AddIngredients extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const {
-      type, name, size_diameter, price, availability, info, image_id, allerg, compatible, dispo,
+      type, name, size_diameter, nb_persons, price, availability, info, image_id, compatible, dispo,
     } = this.state;
 
     const newIngredient = {
       type,
       name,
       size_diameter,
+      nb_persons,
       price,
       availability,
       info,
       image_id,
-      allerg,
       compatible,
       dispo,
     };
