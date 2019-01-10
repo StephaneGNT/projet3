@@ -1,9 +1,8 @@
 .bodyIng {
-    background-color: rgb(196, 196, 196);
-    padding:1em;
-    height:750px;
-    width:120%;
-    margin-left:-10%;
+    /* background-color: rgb(190, 190, 190); */
+    padding:1%;
+    width:100%;
+    margin:auto;
 }
 
 .label-type {
@@ -19,14 +18,14 @@
 .les-row {
     width:100%;
     padding:1em;
-    display:flex;
-    justify-content: left;
-    background-color: rgb(219, 219, 219);
+    background-color: rgb(233, 233, 233);
+}
+label {
+    width:100%;
 }
 
 .ligne-titre {
-    background:rgb(235, 233, 233);
-    padding:1em;
+    padding:1%;
     width:100% !important;
     margin:auto;
 }

@@ -61,8 +61,8 @@ export default class Admin extends Component {
                 <Route path="/admin/customization" component={CustomizationAdmin} />
                 <Route path="/admin/newingredient" component={AddIngredients} /> */}
                 <Route exact path="/admin" component={Login} />
-                <PrivateRoute path='/admin/orders' component={OrdersAdmin} />
-                <PrivateRoute path='/admin/ingredients' component={DataBase} />
+                <PrivateRoute path="/admin/orders" component={OrdersAdmin} />
+                <PrivateRoute path="/admin/ingredients" component={DataBase} />
                 <Route path="/admin/clients" component={Clients} />
                 <Route path="/admin/calendar" component={CalendarAdmin} />
                 <Route path="/admin/edit" component={HomePageAdmin} />
