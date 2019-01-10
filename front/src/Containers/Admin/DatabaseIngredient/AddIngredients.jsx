@@ -70,8 +70,6 @@ class AddIngredients extends Component {
       dispo,
     };
 
-    // const url = `http://localhost:5000/ingredients/${this.urlParams}/new`;
-
     axios.post(`http://localhost:5000/ingredients/${this.urlParams}/new`, newIngredient)
       .then(res => console.log(res.data))
       .catch(err => console.log(err.response.data));
