@@ -12,7 +12,6 @@ class AddIngredients extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: '',
       name: '',
       size_diameter: 0,
       nb_persons: 0,
@@ -20,8 +19,6 @@ class AddIngredients extends Component {
       availability: true,
       info: '',
       image_id: 0,
-      is_compatible: [],
-      dispo: true,
     };
     this.onSubmit = this.onSubmit.bind(this);
     // this.updateState = this.onChange.bind(this);
@@ -54,11 +51,10 @@ class AddIngredients extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const {
-      type, name, size_diameter, nb_persons, price, availability, info, image_id, compatible, dispo,
+      name, size_diameter, nb_persons, price, availability, info, image_id,
     } = this.state;
 
     const newIngredient = {
-      type,
       name,
       size_diameter,
       nb_persons,
@@ -66,11 +62,9 @@ class AddIngredients extends Component {
       availability,
       info,
       image_id,
-      compatible,
-      dispo,
     };
 
-    axios.post(`http://localhost:5000/ingredients/${this.urlParams}/new`, newIngredient)
+    axios.post(`http://localhost:5000/ingredients/${this.urlParams}`, newIngredient)
       .then(res => console.log(res.data))
       .catch(err => console.log(err.response.data));
   };
@@ -134,7 +128,7 @@ class AddIngredients extends Component {
               <Col sm="1">
                 <Label check className="label-type" onChange={this.updateState}>
                   Disponibilité
-                  <Input value={this.availability} type="checkbox" name="dispo" />
+                  <Input value={this.availability} type="checkbox" name="availabilty" />
                   {' '}
                 </Label>
               </Col>
