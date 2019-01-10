@@ -6,6 +6,7 @@ import cheesecakeFlavorsReducer from './cheesecake_flavors_reducer';
 import macaronsFlavorsReducer from './macarons_flavors_reducer';
 import cakeToppingsReducer from './cake_toppings_reducer';
 import cakeCharacsReducer from './cake_characteristics_reducer';
+import calendarAdminReducer from './calendar_admin_reducer';
 import pageIndexReducer from './page_index_reducer';
 import defaultImageReducer from './default_images_reducer';
 import macaronsShellsReducer from './macaron_shells_reducer';
@@ -27,6 +28,7 @@ const allReducers = combineReducers({
   macaronsFlavors: macaronsFlavorsReducer,
   cakeToppings: cakeToppingsReducer,
   cakeCharacteristics: cakeCharacsReducer,
+  calendarAdmin: calendarAdminReducer,
   pageIndex: pageIndexReducer,
   defaultImage: defaultImageReducer,
   macaronsShells: macaronsShellsReducer,

@@ -1,0 +1,45 @@
+.orangeTile {
+  background-color: #ffc107;
+  color: white;
+}
+
+.orangeTile:hover {
+  background-color: rgba(255, 187, 0, 0.466) !important;
+}
+
+.orangeTile:focus {
+  background: #ffc107 !important;
+}
+
+.orangeTile:focus:hover {
+  background: rgba(255, 217, 0, 0.466) !important;
+}
+
+.redTile {
+  background-color: #c82333;
+  color: white;
+}
+
+.redTile:hover {
+  background-color: rgb(148, 7, 7) !important;
+}
+
+.redTile:focus {
+  background:r#c82333 !important;
+}
+
+.redTile:focus:hover {
+  background: rgb(148, 7, 7) !important;
+}
+
+.activeButton {
+  box-shadow: 0 0 5pt 4pt #5a6268 !important;
+}
+
+.react-calendar__tile--active:enabled:hover {
+  background: none;
+  color: #212529;
+}
+
+/* .react-calendar__tile--active:enabled:hover,  */
+/* .react-calendar__tile--active:enabled:focus */

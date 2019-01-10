@@ -56,14 +56,14 @@ class CustomizationAdmin extends Component {
   }
 
   render() {
-    const { googleFonts, selectedFonts } = this.props;
+    const { googleFonts } = this.props;
     const { range, clickedPage } = this.state;
     const limitedFontList = googleFonts.slice(range - this.fontsAtATime, range);
     return (
       <div>
         {
           googleFonts.map((font, i) => (
-            <div key={font.family + " " + i}>
+            <div key={font.family}>
               <link
                 rel="stylesheet"
                 href={`https://fonts.googleapis.com/css?family=${font.family}`}
