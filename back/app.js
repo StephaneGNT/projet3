@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 // const morgan = require('morgan');
 const app = express();
 const ingred = require('./routes/ingredients');
+const customization = require('./routes/customization');
 
 // Configuration de l'application
 // app.use(morgan('dev'));
@@ -23,4 +24,4 @@ let server = app.listen(5000, function () {
 });
 
 app.use(ingred);
-
+app.use('/customization', customization);

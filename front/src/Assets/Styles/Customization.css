@@ -109,9 +109,34 @@ input {
   justify-content: space-around; */
   font-size: 1.2em;
   margin-right: 1.5vh;
+  max-height: 55vh;
+  overflow-y: auto;
+  border: solid 1px rgba(214, 214, 214, 0.747);;
+  padding: 3vh;
 }
 
+
 .FontList:hover {
+  cursor: pointer;
+}
+
+h4 {
+  text-align: center;
+}
+
+.chosenFontList {
+  background-color: rgba(214, 214, 214, 0.747);
+  padding: 2vh; 
+  font-size: 1.2em;
+}
+
+.chosenFontList {
+  background-color: rgba(214, 214, 214, 0.747);
+  padding: 2vh; 
+  font-size: 1.2em;
+}
+
+.chosenFontList:hover {
   cursor: pointer;
 }
 
