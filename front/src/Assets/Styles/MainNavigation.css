@@ -39,11 +39,12 @@
     top: 0;
     height: 100%;
     flex-direction: column;
-    width: 60px;
+    width: 6%;
+    background-color:rgb(216, 216, 216);
   }
 
   .fixed-adapt:hover {
-    width: 145px;
+    width: 13%;
   }
 
   .fixed-adapt:hover .linkname {
@@ -62,7 +63,7 @@
 
   .fixed-adapt > .bloc > .navbar-nav {
     flex-direction: column;
-    margin-top: 120px;
+    margin-top: 100%;
   }
 }
 
@@ -87,12 +88,11 @@
   .fixed-adapt > .bloc > .navbar-nav {
     flex-direction: row;
     align-items: center;
-    width: 100%;
     justify-content: space-evenly;
   }
 
   .fixed-adapt > .bloc.fit-content {
-    width: fit-content;
+    width: auto;
   }
 } 
 

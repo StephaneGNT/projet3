@@ -2,7 +2,8 @@
     /* background-color: rgb(190, 190, 190); */
     padding:1%;
     width:100%;
-    margin:auto;
+    margin:1%;
+    border:1px solid black;
 }
 
 .label-type {

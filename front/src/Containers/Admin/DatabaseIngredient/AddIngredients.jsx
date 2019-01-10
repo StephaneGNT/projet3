@@ -14,9 +14,9 @@ class AddIngredients extends Component {
     this.state = {
       type: '',
       name: '',
-      size_diameter: '',
+      size_diameter: 0,
       price: 0,
-      availability: false,
+      availability: true,
       info: '',
       image_id: '',
       allerg: '',
@@ -25,26 +25,26 @@ class AddIngredients extends Component {
     };
     this.onSubmit = this.onSubmit.bind(this);
     // this.updateState = this.onChange.bind(this);
-    this.urlParams = 'cake_bases';
+    this.urlParams = this.state;
   }
 
   updateState = (e) => {
     switch (e.target.value) {
       case 'Base':
-        this.setState({ type: 'Base' });
+        this.setState({ type: 'bases' });
         this.urlParams = 'cake_bases';
         break;
       case 'Filling':
-        this.setState({ type: 'Filling' });
+        this.setState({ type: 'fillings' });
         this.urlParams = 'fillings';
         break;
       case 'Icing':
-        this.setState({ type: 'Icing' });
+        this.setState({ type: 'icings' });
         this.urlParams = 'icings';
         break;
       case 'Topping':
-        this.setState({ type: 'Topping' });
-        this.urlParams = 'topping';
+        this.setState({ type: 'toppings' });
+        this.urlParams = 'toppings';
         break;
       default:
         this.setState({ [e.target.name]: e.target.value });
@@ -78,7 +78,7 @@ class AddIngredients extends Component {
   };
 
   render() {
-    console.log(this.urlParams)
+    console.log(this.urlParams);
     return (
       <div className="bodyIng">
         <form onSubmit={this.onSubmit}>
@@ -96,10 +96,10 @@ class AddIngredients extends Component {
                   Type d'ingrédient
                   <Input type="select" name="type" className="input-admin-type" onChange={this.updateState}>
                     <option> </option>
-                    <option onClick={() => this.updateState('Base')}>Base</option>
-                    <option onClick={() => this.updateState('Filling')}>Filling</option>
-                    <option onClick={() => this.updateState('Icing')}>Icing</option>
-                    <option onClick={() => this.updateState('Topping')}>Topping</option>
+                    <option onClick={() => this.updateState('bases')}>Base</option>
+                    <option onClick={() => this.updateState('fillings')}>Filling</option>
+                    <option onClick={() => this.updateState('icings')}>Icing</option>
+                    <option onClick={() => this.updateState('toppings')}>Topping</option>
                   </Input>
                 </Label>
               </Col>

@@ -38,7 +38,7 @@ export default class Admin extends Component {
     this.test = OrdersAdmin;
     return (
       <Container fluid>
-        <BrowserRouter style={{ width: '90vw', marginLeft: '5vw' }}>
+        <BrowserRouter>
           <Row className="mt-5">
             <Col sm="2">
               <VerticalNavBar />
