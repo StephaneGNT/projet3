@@ -6,13 +6,37 @@
 }
 body {
   background-color: rgb(236, 237, 238) !important;
-  background-image: url(https://i.imgur.com/K9Gvr8T.png);
+  background-image: url(../Images/backgroundapp.png);
+}
+
+a {
+  text-decoration: transparent;
+}
+
+.btn-accueil {
+  display:block;
+  margin:auto;  
+  text-align: center;
+}
+
+.img-gallery {
+  width:20vh;
+  height:20vh;
+  object-fit:cover;
+  border:20px solid white;
+  margin:8% auto;
+}
+
+.bloc-gallery {
+  display:flex;
+  justify-content: center;
+
 }
 
 /* PANNEAU D'ADMINISTRATION */
 .body-admin {
   padding:2%;
-  height:120%;
+  height:100%;
   width:100%;
   margin:0%;
   background-color: rgb(235, 235, 235);
@@ -20,7 +44,7 @@ body {
 
 .para-admin {
   text-align: justify;
-  font-size:1.3em;
+  font-size:1.2em;
   line-height: 1.3em;
   padding:2%;
 }
