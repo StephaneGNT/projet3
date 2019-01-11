@@ -4,3 +4,29 @@
   --mainPolice: 'Lobster Two', cursive;
   --secondPolice: 'Arial';
 }
+body {
+  background-color: rgb(236, 237, 238) !important;
+  background-image: url(https://i.imgur.com/K9Gvr8T.png);
+}
+
+/* PANNEAU D'ADMINISTRATION */
+.body-admin {
+  padding:2%;
+  height:120%;
+  width:100%;
+  margin:0%;
+  background-color: rgb(235, 235, 235);
+}
+
+.para-admin {
+  text-align: justify;
+  font-size:1.3em;
+  line-height: 1.3em;
+  padding:2%;
+}
+
+.admin-home-logo {
+  width:30%;
+  display:block;
+  margin:auto;    
+}

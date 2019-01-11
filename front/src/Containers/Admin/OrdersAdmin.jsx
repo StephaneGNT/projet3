@@ -8,7 +8,7 @@ export default class OrdersAdmin extends Component {
 
   render() {
     return (
-      <div> Orders Admin</div>
+      <div className="body-admin"> Orders Admin</div>
     );
   }
 }

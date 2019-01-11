@@ -3,7 +3,6 @@ import {
   Route,
   Switch,
   BrowserRouter,
-  Link,
 } from 'react-router-dom';
 import HomePage from './HomePage';
 import PimpMyCake from './PimpMyCake';
@@ -19,11 +18,8 @@ class Public extends Component {
 
   render() {
     return (
-      <div className="body-zone">
+      <div>
         <MainNavigation />
-        <div className="header-zone">
-          Pimp My Cake
-        </div>
         <div className="content-zone">
           <BrowserRouter>
             <Switch>

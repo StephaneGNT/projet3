@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../Assets/Styles/MainCss.css';
 
 export default class Clients extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ export default class Clients extends Component {
 
   render() {
     return (
-      <div> Clients </div>
+      <div className="body-admin"> Clients </div>
     );
   }
 }

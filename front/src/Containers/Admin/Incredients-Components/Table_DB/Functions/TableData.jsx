@@ -12,14 +12,14 @@ const TableData = incredients => incredients.map(incredient => (
   <tr>
     {createTableDataFields(incredient)}
     <td>
-      <Button>
-        - #
+      <Button color="primary" size="sm">
+      
         {incredient.id}
       </Button>
-      <Button>
-        / #
+      {/* <Button color="primary" size="sm">
+        
         {incredient.id}
-      </Button>
+      </Button> */}
     </td>
   </tr>
 ));
