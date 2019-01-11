@@ -12,39 +12,36 @@ class AddIngredients extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: '',
       name: '',
-      size_diameter: '',
+      size_diameter: 0,
+      nb_persons: 0,
       price: 0,
-      availability: false,
+      availability: true,
       info: '',
-      image_id: '',
-      allerg: '',
-      compatible: [],
-      dispo: true,
+      image_id: 0,
     };
     this.onSubmit = this.onSubmit.bind(this);
     // this.updateState = this.onChange.bind(this);
-    this.urlParams = 'cake_bases';
+    this.urlParams = this.state;
   }
 
   updateState = (e) => {
     switch (e.target.value) {
       case 'Base':
-        this.setState({ type: 'Base' });
+        this.setState({ type: 'cake_bases' });
         this.urlParams = 'cake_bases';
         break;
       case 'Filling':
-        this.setState({ type: 'Filling' });
+        this.setState({ type: 'fillings' });
         this.urlParams = 'fillings';
         break;
       case 'Icing':
-        this.setState({ type: 'Icing' });
+        this.setState({ type: 'icings' });
         this.urlParams = 'icings';
         break;
       case 'Topping':
-        this.setState({ type: 'Topping' });
-        this.urlParams = 'topping';
+        this.setState({ type: 'toppings' });
+        this.urlParams = 'toppings';
         break;
       default:
         this.setState({ [e.target.name]: e.target.value });
@@ -54,31 +51,26 @@ class AddIngredients extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const {
-      type, name, size_diameter, price, availability, info, image_id, allerg, compatible, dispo,
+      name, size_diameter, nb_persons, price, availability, info, image_id,
     } = this.state;
 
     const newIngredient = {
-      type,
       name,
       size_diameter,
+      nb_persons,
       price,
       availability,
       info,
       image_id,
-      allerg,
-      compatible,
-      dispo,
     };
 
-    // const url = `http://localhost:5000/ingredients/${this.urlParams}/new`;
-
-    axios.post(`http://localhost:5000/ingredients/${this.urlParams}/new`, newIngredient)
+    axios.post(`http://localhost:5000/ingredients/${this.urlParams}`, newIngredient)
       .then(res => console.log(res.data))
       .catch(err => console.log(err.response.data));
   };
 
   render() {
-    console.log(this.urlParams)
+    console.log(this.urlParams);
     return (
       <div className="bodyIng">
         <form onSubmit={this.onSubmit}>
@@ -96,10 +88,10 @@ class AddIngredients extends Component {
                   Type d'ingrédient
                   <Input type="select" name="type" className="input-admin-type" onChange={this.updateState}>
                     <option> </option>
-                    <option onClick={() => this.updateState('Base')}>Base</option>
-                    <option onClick={() => this.updateState('Filling')}>Filling</option>
-                    <option onClick={() => this.updateState('Icing')}>Icing</option>
-                    <option onClick={() => this.updateState('Topping')}>Topping</option>
+                    <option onClick={() => this.updateState('bases')}>Base</option>
+                    <option onClick={() => this.updateState('fillings')}>Filling</option>
+                    <option onClick={() => this.updateState('icings')}>Icing</option>
+                    <option onClick={() => this.updateState('toppings')}>Topping</option>
                   </Input>
                 </Label>
               </Col>
@@ -136,7 +128,7 @@ class AddIngredients extends Component {
               <Col sm="1">
                 <Label check className="label-type" onChange={this.updateState}>
                   Disponibilité
-                  <Input value={this.availability} type="checkbox" name="dispo" />
+                  <Input value={this.availability} type="checkbox" name="availabilty" />
                   {' '}
                 </Label>
               </Col>

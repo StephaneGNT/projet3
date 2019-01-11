@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import CustomMessageInput from './CustomMessageInput';
 import ColorPicker from './ColorPicker';
 import Decoration from './Decoration';
-
 import getDescription from './Customization_functions';
 import { submitDecorationChoice, allowMessage, fetchAdminFonts } from '../../../Actions/customization_actions';
 import { changePrice } from '../../../Actions/cakeActions/changeCakePrice';
