@@ -1,7 +1,8 @@
 export default (state = {
   dropdownOpen: false,
-  selectedFonts: ['Sedgwick Ave', 'Bungee', 'Charmonman', 'Kaushan Script', 'Lobster Two'],
+  selectedFonts: [],
   wantsCustomMessage: true,
+  googleFonts: [],
   customMessage: {
     choice: 'Message personnalisé',
     message: '',
@@ -22,6 +23,7 @@ export default (state = {
     price: 0,
   },
 }, action) => {
+  let fontsArray = state.selectedFonts;
   const customMessageYes = state.wantsCustomMessage;
   switch (action.type) {
     case 'ALLOW_MESSAGE': return {
@@ -42,6 +44,17 @@ export default (state = {
       };
     }
       return state;
+    case 'UPDATE_FONTS': return {
+      ...state,
+      googleFonts: action.fonts,
+    };
+    case 'POPULATE_FONTS':
+      fontsArray = [];
+      action.fonts.map(eachFont => fontsArray.push(eachFont.name));
+      return {
+        ...state,
+        selectedFonts: fontsArray,
+      };
     default: return state;
   }
 };

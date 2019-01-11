@@ -8,27 +8,14 @@ import {
   FormGroup,
 } from 'reactstrap';
 import CustomMessage from './CustomMessage';
-<<<<<<< HEAD:front/src/Containers/Public/Customization/useless/Customization.jsx
 import CustomMessageInput from '../CustomMessageInput';
 import ColorPicker from '../ColorPicker';
 import Price from '../../Price';
-import FontPicker from '../FontPicker';
-import CustomWish from '../CustomWish';
 import Decoration from '../Decoration';
 import DecorationExamples from './DecorationExamples';
 import NavArrowsLayout from '../../Navigation/NavArrowsLayout';
 import Progressbar from '../../Progressbar';
-import '../../../Assets/Styles/Personalisation.css';
-=======
-import CustomMessageInput from './CustomMessageInput';
-import ColorPicker from './ColorPicker';
-import Price from '../Price';
-import Decoration from './Decoration';
-import DecorationExamples from './DecorationExamples';
-import NavArrowsLayout from '../Navigation/NavArrowsLayout';
-import Progressbar from '../Progressbar';
-import '../../../Assets/Styles/Customization.css';
->>>>>>> ae42df98767b1deeb1f6f6b2a8bbcf62dc15c16e:front/src/Containers/Public/Customization/Customization.jsx
+import '../../../../Assets/Styles/Customization.css';
 
 const Customization = (props) => {
   const { pastryType, wantsCustomMessage } = props;

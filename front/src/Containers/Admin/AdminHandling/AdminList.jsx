@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Button } from 'reactstrap';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Login from './Login';
 import { getAllAdmins, deleteAdminFromDB } from './admin_DB_actions';
 import changeIndex from '../../../Actions/changeAdminIndex';
@@ -94,6 +95,10 @@ class AdminList extends Component {
     );
   }
 }
+
+AdminList.propTypes = {
+  setAdminIndex: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => ({
   setAdminIndex: index => dispatch(changeIndex(index)),

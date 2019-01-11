@@ -1,5 +1,5 @@
 
-import { Label, Input, Container, Row, Col } from 'reactstrap';
+import { Label, Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
