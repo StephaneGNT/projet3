@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import axios from 'axios';
+import ButtonModify from '../../../DatabaseIngredient/ButtonModify';
+
 // import openSnackBar from '../../../../../Actions/snackBarActions';
 
 const createTableDataFields = (element) => {
@@ -30,14 +32,16 @@ const deleteIngredient = (type, id) => {
   }
 };
 
+
+
 const TableData = ingredients => ingredients.map(ingredient => (
   <tr>
-    {createTableDataFields(ingredient)}
+    {createTableDataFields(ingredient)};
     <td>
-      <Button title="Modifier ingrédient">
-        - #
+      <ButtonModify ingredient={ingredient.type}/>
+      - #
         {ingredient.id}
-      </Button>
+        {ingredient.type}
       <Button
         title="Supprimer ingrédient"
         onClick={() => deleteIngredient(ingredient.type, ingredient.id)}
@@ -45,7 +49,11 @@ const TableData = ingredients => ingredients.map(ingredient => (
         ✘
       </Button>
     </td>
-  </tr>
+  </tr >
 ));
+;
 
-export default TableData;
+
+export default (TableData);
+
+
