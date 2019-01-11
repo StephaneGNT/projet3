@@ -6,7 +6,7 @@ router.get('/getfonts', (req, res) => {
   connection.query('SELECT name FROM fonts', (err, results) => {
     if (err) {
       console.log(err);
-      res.sendStatus(500);
+      res.status(500);
     } else {
       res.json(results);
     }
@@ -20,9 +20,9 @@ router.post('/addfonts', (req, res) => {
   connection.query('INSERT INTO fonts SET ?', formData, (err, results) => {
     if (err) {
       console.log(err);
-      res.sendStatus(500);
+      res.status(500);
     } else {
-      res.sendStatus(200);
+      res.status(200);
     }
     return;
   });
@@ -34,10 +34,10 @@ router.delete('/deletefonts/:fontName', (req, res) => {
     if (err) {
       // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
       console.log(err);
-      res.sendStatus(500);
+      res.status(500);
     } else {
       // Si tout s'est bien passé, on envoie un statut "ok".
-      res.sendStatus(200);
+      res.status(200);
     }
   });
 });
