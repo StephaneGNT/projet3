@@ -49,6 +49,7 @@ auth.post('/auth/login', function (req, res, next) {
 
 // Ajout d'un nouvel admin - OK
 auth.post('/auth/new', (req, res) => {
+  console.log(req)
   // hashage password
   const hash = bcrypt.hashSync(req.body.password, 10);
   const id = req.body.id;
