@@ -4,49 +4,79 @@ import { Button, ButtonGroup } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { insertAvailabilityDate, removeAvailabilityDate } from '../../Actions/calendar_admin_actions';
-import { checkDateMatch } from './CheckDateMatch';
+import { fetchDatesInDB } from '../../Actions/calendar_admin_actions';
+import { getDateID, checkDateMatch } from './CheckDateMatch';
 import '../../Assets/Styles/CalendarAdmin.css';
 
 class CalendarAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      orangeActive: false,
-      redActive: false,
+      orangeDate: false,
+      redDate: false,
+      lastClicked: '',
     };
   }
 
+  componentWillMount() {
+    const { getDatesInDB } = this.props;
+    getDatesInDB();
+  }
+
   chooseButton = (color) => {
-    const { redActive, orangeActive } = this.state;
-    if (!redActive && !orangeActive) this.setState(prevState => ({ [color]: !prevState[color] }));
+    const { redDate, orangeDate } = this.state;
+    this.setState({ lastClicked: color })
+    if (!redDate && !orangeDate) this.setState(prevState => ({ [color]: !prevState[color] }));
     else if (this.state[color]) return null;
     else {
       this.setState(prevState => ({
-        orangeActive: !prevState.orangeActive,
-        redActive: !prevState.redActive,
+        orangeDate: !prevState.orangeDate,
+        redDate: !prevState.redDate,
       }));
     }
   }
 
-  setDateAvailability = (date) => {
-    const { insertDate, removeDate, orange, red } = this.props;
-    const { redActive, orangeActive } = this.state;
-    if (redActive && !checkDateMatch(red, date) && !checkDateMatch(orange, date)) insertDate(date, 'redDate');
-    else if (redActive && !checkDateMatch(red, date) && checkDateMatch(orange, date)) alert('Veuillez d’abord supprimer la date orange');
-    else if (redActive && checkDateMatch(red, date)) removeDate(date, 'redDate');
-    else if (orangeActive && !checkDateMatch(orange, date) && !checkDateMatch(red, date)) insertDate(date, 'orangeDate');
-    else if (orangeActive && !checkDateMatch(orange, date) && checkDateMatch(red, date)) alert('Veuillez d’abord supprimer la date rouge');
-    else if (orangeActive && checkDateMatch(orange, date)) removeDate(date, 'orangeDate');
-    else alert('Veuillez d’abord choisir une couleur');
+  addDate = (date, color) => {
+    const { getDatesInDB } = this.props;
+    axios.post('/calendar/adddate', { date, color })
+      .then(function (response) {
+        response.data === 'OK' && getDatesInDB();
+      })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    // alert(`Police "${name}" ajoutée`)
+    // } else alert('Vous avez déjà ajouté cette police');
+  }
+
+  removeDate = (id) => {
+    const { getDatesInDB } = this.props;
+    axios.delete(`/calendar/deletedate/${id}`)
+    .then(function (response) {
+      console.log(response);
+      response.data === 'OK' && getDatesInDB();
+    })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+  }
+
+  setDateAvailability = (date, activeColor) => {
+    const { calendar } = this.props;
+    const { lastClicked } = this.state;
+    const id = getDateID(calendar, date);
+    if (checkDateMatch(calendar.map(c => c.date), date)) this.removeDate(id);
+    else if (lastClicked === '') alert('Veuillez d’abord choisir une couleur');
+    else this.addDate(date, [activeColor]);
   }
 
   setTileClasses = (tiles) => {
-    const { orange, red } = this.props;
+    const { calendar } = this.props;
     const classes = [];
-    orange.filter(or => (moment(tiles.date).isSame(or))).map(ange => ange === classes.push('orangeTile'));
-    red.filter(r => (moment(tiles.date).isSame(r))).map(ed => ed === classes.push('redTile'));
+    calendar.filter(am => (moment(tiles.date).isSame(am.date)))
+      .map(aj => aj === classes.push(aj.color));
     return classes;
   };
 
@@ -56,15 +86,15 @@ class CalendarAdmin extends Component {
   }
 
   render() {
-    const { orangeActive, redActive } = this.state;
+    const { redDate, orangeDate, lastClicked } = this.state;
     return (
       <div>
         <ButtonGroup>
-          <Button className={orangeActive && 'activeButton'} onClick={() => this.chooseButton('orangeActive')} color="warning">Dates oranges</Button>
-          <Button className={redActive && 'activeButton'} onClick={() => this.chooseButton('redActive')} color="danger">Dates rouges</Button>
+          <Button className={orangeDate && 'activeButton'} onClick={() => this.chooseButton('orangeDate')} color="warning">Dates oranges</Button>
+          <Button className={redDate && 'activeButton'} onClick={() => this.chooseButton('redDate')} color="danger">Dates rouges</Button>
         </ButtonGroup>
         <Calendar
-          onClickDay={date => this.setDateAvailability(date)}
+          onClickDay={date => this.setDateAvailability(date, lastClicked)}
           tileClassName={date => this.setTileClasses(date)}
           tileDisabled={date => this.disableTile(date)}
           minDate={new Date()}
@@ -78,21 +108,16 @@ class CalendarAdmin extends Component {
 }
 
 CalendarAdmin.propTypes = {
-  insertDate: PropTypes.func.isRequired,
-  removeDate: PropTypes.func.isRequired,
-  orange: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  red: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  getDatesInDB: PropTypes.func.isRequired,
+  calendar: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 const mapStateToProps = state => ({
-  orange: state.calendarAdmin.orangeDate,
-  red: state.calendarAdmin.redDate,
+  calendar: state.calendarAdmin.masterCalendar,
 });
 
 const mapDispatchToProps = dispatch => ({
-  insertDate: (date, color) => dispatch(insertAvailabilityDate(date, color)),
-  removeDate: (date, color) => dispatch(removeAvailabilityDate(date, color)),
-
+  getDatesInDB: () => dispatch(fetchDatesInDB()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarAdmin);

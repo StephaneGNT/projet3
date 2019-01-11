@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { checkDateMatch } from '../../Admin/CheckDateMatch';
 import setDeliveryDate from '../../../Actions/orderActions/setDeliveryDate';
+import { fetchDatesInDB } from '../../../Actions/calendar_admin_actions';
 
 class OrderCalendar extends Component {
   // constructor(props) {
@@ -13,22 +14,29 @@ class OrderCalendar extends Component {
   //   this.blockedDate[0] = this.blockedDate[0].getTime();
   // }
 
+  componentWillMount() {
+    const { getDatesInDB } = this.props;
+    getDatesInDB();
+  }
+
   getTileClassName = (date) => {
-    const { cake, order, orangeDate } = this.props;
+    const { cake, order, calendar } = this.props;
     const today = new Date();
     const minDate = new Date();
     minDate.setDate(today.getDate() + cake.time);
     const className = [];
-    if ((date.date <= minDate || date.date.getDay() === 6)
-    || checkDateMatch(orangeDate, date.date)) className.push('possibleDate');
+    calendar.filter(am => (moment(date.date).isSame(am.date)) && am.color === 'orangeDate')
+      .map(aj => aj === className.push('possibleDate'));
+    if ((date.date <= minDate || date.date.getDay() === 6)) className.push('possibleDate');
     if (moment(date.date).isSame(order.delivery_date)) className.push('selectedDate');
     return className;
   }
 
   getTileDisable = (date) => {
-    const { redDate } = this.props;
-    if (checkDateMatch(redDate, date.date)) return true;
+    const { calendar } = this.props;
     // if (this.blockedDate.indexOf(date.date.getTime()) >= 0) return true;
+    if (checkDateMatch((calendar.filter(c => c.color === 'redDate')
+      .map(c => c.date)), date.date)) return true;
     if (date.date.getDay() === 0) return true;
     return false;
   }
@@ -48,20 +56,20 @@ class OrderCalendar extends Component {
 
 OrderCalendar.propTypes = {
   selectDeliveryDate: PropTypes.func.isRequired,
+  getDatesInDB: PropTypes.func.isRequired,
   cake: PropTypes.shape({}).isRequired,
   order: PropTypes.shape({}).isRequired,
-  orangeDate: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  redDate: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  calendar: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 const mapStateToProps = state => ({
   cake: state.cakeCharacteristics,
   order: state.orderCharacteristics,
-  orangeDate: state.calendarAdmin.orangeDate,
-  redDate: state.calendarAdmin.redDate,
+  calendar: state.calendarAdmin.masterCalendar,
 });
 
 const mapDispatchToProps = dispatch => ({
+  getDatesInDB: () => dispatch(fetchDatesInDB()),
   selectDeliveryDate: date => dispatch(setDeliveryDate(date)),
 });
 

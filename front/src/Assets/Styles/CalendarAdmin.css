@@ -1,34 +1,34 @@
-.orangeTile {
+.orangeDate {
   background-color: #ffc107;
   color: white;
 }
 
-.orangeTile:hover {
+.orangeDate:hover {
   background-color: rgba(255, 187, 0, 0.466) !important;
 }
 
-.orangeTile:focus {
+.orangeDate:focus {
   background: #ffc107 !important;
 }
 
-.orangeTile:focus:hover {
+.orangeDate:focus:hover {
   background: rgba(255, 217, 0, 0.466) !important;
 }
 
-.redTile {
+.redDate {
   background-color: #c82333;
   color: white;
 }
 
-.redTile:hover {
+.redDate:hover {
   background-color: rgb(148, 7, 7) !important;
 }
 
-.redTile:focus {
+.redDate:focus {
   background:r#c82333 !important;
 }
 
-.redTile:focus:hover {
+.redDate:focus:hover {
   background: rgb(148, 7, 7) !important;
 }
 

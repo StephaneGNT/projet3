@@ -1,17 +1,12 @@
-import { checkArrayIndex } from '../Containers/Admin/CheckDateMatch';
-
-export default (state = {
-  orangeDate: [],
-  redDate: [],
-}, action) => {
-  const dateArray = state[action.color];
+export default (state = { masterCalendar: [] }, action) => {
+  let tempArray = [];
   switch (action.type) {
-    case 'INSERT_DATE':
-      dateArray.push(action.date);
-      return { ...state, [action.color]: dateArray };
-    case 'REMOVE_DATE':
-      dateArray.splice(checkArrayIndex(dateArray, action.date), 1);
-      return { ...state, [action.color]: dateArray };
+    case 'POPULATE_DATE_ARRAY':
+      tempArray = [];
+      action.data.map(one => tempArray.push(one));
+      return {
+        masterCalendar: tempArray,
+      };
     default: return state;
   }
 };

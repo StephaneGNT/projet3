@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const ingred = require('./routes/ingredients');
 const customization = require('./routes/customization');
+const calendar = require('./routes/calendar');
 
 // Configuration de l'application
 // app.use(morgan('dev'));
@@ -25,3 +26,4 @@ let server = app.listen(5000, function () {
 
 app.use(ingred);
 app.use('/customization', customization);
+app.use('/calendar', calendar);
