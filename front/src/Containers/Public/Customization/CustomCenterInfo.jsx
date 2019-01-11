@@ -112,7 +112,6 @@ class CustomCenterInfo extends Component {
     const { typeResilient } = this.state;
     const { custom } = this.props;
 
-  console.log("hello here", this.props.customAdmin.selectedFonts)
     return (
       <Col>
         <Row className="decorationRow">

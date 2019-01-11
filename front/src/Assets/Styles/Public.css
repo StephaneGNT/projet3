@@ -1,7 +1,6 @@
 @import './CommonStyle.css';
 
 .header-zone {
-  position: fixed;
   background-color: #884e65;
   width: 100vw;
   height: 10vh;
