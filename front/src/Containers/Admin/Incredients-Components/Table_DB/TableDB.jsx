@@ -4,7 +4,7 @@ import TableHeader from './Functions/TableHeader';
 import TableData from './Functions/TableData';
 
 const TableDB = type => (
-  <Table>
+  <Table hover>
     <thead>
       <tr>
         {TableHeader(type[0])}

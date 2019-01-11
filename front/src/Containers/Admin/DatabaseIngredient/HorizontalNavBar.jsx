@@ -5,7 +5,6 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import setCategory from '../../../Actions/databaseActions/setCategory';
-
 import '../../../Assets/Styles/HorizontalNavBar.css';
 
 class HorizontalNavBar extends Component {
@@ -44,7 +43,7 @@ class HorizontalNavBar extends Component {
       } else {
         render.push(
           <NavItem>
-            <Button onClick={() => changeCategory(this.ingredients[i])}>
+            <Button color="primary" size="sm" onClick={() => changeCategory(this.ingredients[i])}>
               {this.ingredients[i]}
             </Button>
           </NavItem>,

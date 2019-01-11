@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import CustomMessageInput from './CustomMessageInput';
 import ColorPicker from './ColorPicker';
 import Decoration from './Decoration';
-
 import getDescription from './Customization_functions';
 import { submitDecorationChoice, allowMessage, fetchAdminFonts } from '../../../Actions/customization_actions';
 import { changePrice } from '../../../Actions/cakeActions/changeCakePrice';
@@ -113,7 +112,6 @@ class CustomCenterInfo extends Component {
     const { typeResilient } = this.state;
     const { custom } = this.props;
 
-  console.log("hello here", this.props.customAdmin.selectedFonts)
     return (
       <Col>
         <Row className="decorationRow">

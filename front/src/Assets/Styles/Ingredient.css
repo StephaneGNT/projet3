@@ -3,17 +3,12 @@
 }
 
 .ingredient img{
-  width:150px !important;
+  width:7vw !important;
   object-fit:cover;
 }
 
-/* .ingredient Badge {
-  
-} */
-
-/* ingredient structure */
-/* .displayIngredient {
+.displayIngredient {
   background-color: rgb(219, 219, 219);
-  min-height: 60vh;
-  border-radius: 20px;
-} */
+  height: 60vh;
+  overflow:auto;
+}

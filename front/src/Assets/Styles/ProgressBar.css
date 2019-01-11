@@ -1,9 +1,8 @@
 .progressBar {
   list-style-type: none;
-  position: fixed;
-  top: 12vh;
-  width: 80vw;
-  z-index: 10;
+  width: 100vw;
+  /* z-index: 10; */
+  margin:auto;
 }
 
 .progressBar a {
@@ -11,7 +10,7 @@
   font-weight:700;
   text-decoration: none;
   text-transform: uppercase;
-  font-size:0.8em;
+  font-size:0.7em;
 }
 
 .progressBar a:hover {
@@ -38,9 +37,16 @@
 }
 
 .activeProgress {
-  background-color: rgba(160, 17, 60, 0.911);
+  background-color: rgba(105, 48, 65, 0.911);
 }
 
 .inactiveProgress {
-  background-color: rgba(160, 17, 60, 0.4);
+  background-color: rgba(175, 171, 172, 0.911);
+}
+
+.inactiveProgress a{
+  color:rgb(88, 88, 88);
+}
+.inactiveProgress a:hover{
+  color:rgb(56, 56, 56);
 }
