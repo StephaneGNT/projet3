@@ -20,15 +20,6 @@ class Login extends Component {
     };
   }
 
-  // checkDisabled = () => {
-    
-  //   const { action } = this.props;
-  //   const { user, passwordConfirm } = this.state;
-  //   if (action === 'Créer' && (user.id === '' || user.password === '' || user.password !== passwordConfirm)) return true;
-  //   if (action === 'Se connecter' && (user.id === '' || user.password === '')) return true;
-  //   return false;
-  // }
-
   submitUser = () => {
     const { action, history } = this.props;
     const { user } = this.state;

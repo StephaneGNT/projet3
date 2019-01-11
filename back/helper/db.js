@@ -1,9 +1,9 @@
 const mysql = require('mysql');
-const con = mysql.createConnection({
+const connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : 'pelicanduturf',
+  password : 'New4Pass415Ordi_',
   database: 'pimp_my_cake_admin',
 });
 
-module.exports = con;
+module.exports = connection;
