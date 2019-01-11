@@ -3,10 +3,14 @@ const ingred = express.Router();
 const coco = require('../helper/db.js');
 const bodyParser = require('body-parser');
 
+<<<<<<< HEAD
+ingred.post('/ingredients/:type/new', (req, res) => {
+=======
 ingred.use(bodyParser.urlencoded({ extend: true }));
 ingred.use(bodyParser.json());
 
 ingred.post(`/ingredients/:type/new`, (req, res) => {
+>>>>>>> dev
   const formData = req.body;
   console.log(formData);
   coco.query('INSERT INTO ? SET ?', formData, (err, results) => {
