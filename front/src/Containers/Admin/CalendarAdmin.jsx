@@ -90,9 +90,9 @@ class CalendarAdmin extends Component {
     const { redDate, orangeDate, lastClicked } = this.state;
     return (
       <div style={{ marginLeft: '-10vh' }}>
-        <h3>Vos disponibilités</h3>
+        <h3>Calendrier</h3>
         <Row className="calendar-row">
-          <Col xs="5" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Col xs="12" md="5" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h5>Gestion de vos dates</h5>
             <Calendar
               onClickDay={date => this.setDateAvailability(date, lastClicked)}
@@ -105,24 +105,24 @@ class CalendarAdmin extends Component {
               <Button className={redDate && 'activeButton'} onClick={() => this.chooseButton('redDate')} color="danger">Dates rouges</Button>
             </ButtonGroup>
           </Col>
-          <Col style={{ display: 'flex', flexDirection: 'row', alignContent: 'center' }}>
-            <p style={{ fontSize: '20vh', textAlign: 'center', marginTop: '20%' }}>→</p><b></b>
+          <Col xs="0" md="2" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+            <p className="arrow">→</p>
 
           </Col>
-          <Col xs="5" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Col xs="12" md="5" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h5>Vue côté client</h5>
             <CustomerViewCalendar />
           </Col>
         </Row>
-        <Row>
-          <b>Cliquer sur un bouton coloré puis sur une ou plusieurs dates du calendrier pour renseigner vos disponibilités:</b> <br />
+        <Row style={{ backgroundColor: 'rgba(214, 214, 214, 0.747)' }}>
+          <b>Cliquez sur un bouton coloré puis sur une ou plusieurs dates du calendrier pour renseigner vos disponibilités:</b> <br />
           <ul>
-            <li stlye={{ listStyleType: 'circle' }}><Badge color="danger">Dates rouges</Badge> les clients ne peuvent pas commander à ces dates</li>
-            <li stlye={{ listStyleType: 'circle' }}><Badge color="warning">Dates oranges</Badge> vous ne garantissez pas pouvoir honorer la commande mais donnez la possibilité au client de réserver cette date.</li>
+            <li><Badge color="danger">Dates rouges</Badge> les clients ne peuvent pas commander à ces dates</li>
+            <li><Badge color="warning">Dates oranges</Badge> vous ne garantissez pas pouvoir honorer la commande mais donnez la possibilité au client de réserver cette date.</li>
+            <li style={{ marginTop: '1vh' }}>Par défaut, vous êtes disponibles aux dates non colorées et votre disponibilité est limitée les samedis<br></br></li>
           </ul>
         </Row>
-        <Row>
-          Par défaut, vous êtes disponibles aux dates non colorées et votre disponibilité est limitée les samedis<br></br>
+        <Row style={{ backgroundColor: 'rgba(255, 0, 0, 0.2)' }}>
           Pour supprimer une date colorée, cliquez dessus.
         </Row>
       </div>
