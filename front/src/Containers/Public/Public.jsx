@@ -9,6 +9,7 @@ import PimpMyCake from './PimpMyCake';
 import Contact from './Contact';
 import MainNavigation from './Navigation/MainNavigation';
 import '../../Assets/Styles/Public.css';
+import Admin from '../Admin/Admin';
 
 class Public extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class Public extends Component {
               <Route exact path={`${process.env.PUBLIC_URL}/`} component={HomePage} />
               <Route path={`${process.env.PUBLIC_URL}/mycake`} component={PimpMyCake} />
               <Route path={`${process.env.PUBLIC_URL}/contact`} component={Contact} />
+              <Route path={`${process.env.PUBLIC_URL}/admin`} component={Admin} />
             </Switch>
           </BrowserRouter>
         </div>

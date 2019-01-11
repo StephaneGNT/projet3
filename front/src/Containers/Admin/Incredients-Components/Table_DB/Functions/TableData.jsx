@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
+import axios from 'axios';
+// import openSnackBar from '../../../../../Actions/snackBarActions';
 
 const createTableDataFields = (element) => {
   const objValues = Object.values(element);
@@ -8,18 +10,40 @@ const createTableDataFields = (element) => {
   ));
 };
 
-const TableData = incredients => incredients.map(incredient => (
+const deleteIngredient = (type, id) => {
+  if (window.confirm('Voulez-vous supprimer cet ingrédient ?')) {
+    let tableName = '';
+    switch (type) {
+      case ('Base cookie'): tableName = 'cookie_bases'; break;
+      case ('Base'): tableName = 'cake_bases'; break;
+      case ('Garniture'): tableName = 'fillings'; break;
+      case ('Glaçage'): tableName = 'icings'; break;
+      case ('Toppings'): tableName = 'toppings'; break;
+      case ('Parfum'): tableName = 'cheesecake_flavors'; break;
+      case ('Base brownie'): tableName = 'brownie_bases'; break;
+      case ('Coquille'): tableName = 'macaron_shells'; break;
+      case ('Macaron'): tableName = 'macaron_flavors'; break;
+      default: tableName = ''; break;
+    }
+    axios.delete(`/ingredients/${tableName}/${id}`)
+      .then(res => window.alert(res.data.message));
+  }
+};
+
+const TableData = ingredients => ingredients.map(ingredient => (
   <tr>
-    {createTableDataFields(incredient)}
+    {createTableDataFields(ingredient)}
     <td>
-      <Button color="primary" size="sm">
-      
-        {incredient.id}
+      <Button title="Modifier ingrédient">
+        - #
+        {ingredient.id}
       </Button>
-      {/* <Button color="primary" size="sm">
-        
-        {incredient.id}
-      </Button> */}
+      <Button
+        title="Supprimer ingrédient"
+        onClick={() => deleteIngredient(ingredient.type, ingredient.id)}
+      >
+        ✘
+      </Button>
     </td>
   </tr>
 ));

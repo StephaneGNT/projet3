@@ -4,6 +4,12 @@ const bodyParser = require('body-parser');
 // const morgan = require('morgan');
 const app = express();
 const ingred = require('./routes/ingredients');
+<<<<<<< HEAD
+const auth = require('./routes/auth');
+const admin = require('./routes/admin');
+=======
+const customization = require('./routes/customization');
+>>>>>>> dev
 
 // Configuration de l'application
 // app.use(morgan('dev'));
@@ -23,4 +29,10 @@ let server = app.listen(5000, function () {
 });
 
 app.use(ingred);
+<<<<<<< HEAD
+app.use(auth);
+app.use(admin);
 
+=======
+app.use('/customization', customization);
+>>>>>>> dev

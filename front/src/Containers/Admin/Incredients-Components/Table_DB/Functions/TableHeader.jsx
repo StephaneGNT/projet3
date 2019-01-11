@@ -1,8 +1,8 @@
 import React from 'react';
 
-const TableHeader = (incredient) => {
-  const incredientKeys = Object.keys(incredient);
-  return incredientKeys.map(key => (
+const TableHeader = (ingredient) => {
+  const ingredientKeys = Object.keys(ingredient);
+  return ingredientKeys.map(key => (
     <th>{key}</th>
   ));
 };

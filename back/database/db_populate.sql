@@ -211,15 +211,15 @@ INSERT INTO allergenes (id, name) VALUES (null, 'Oeuf'), (null, 'Lactose'), (nul
 
 INSERT INTO fonts (id, name, availability) VALUES (
   null,
-  'Times New Roman',
+  'Ewert',
   true
 ), (
   null,
-  'Arial',
+  'Frijole',
   true
 ), (
   null,
-  'Comic San',
+  'Rochester',
   false
 );
 

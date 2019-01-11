@@ -18,6 +18,7 @@ import customizationCustomerReducer from './customization_customer_reducer';
 import databaseDisplayReducer from './database_display_reducer';
 import databaseNewIngredientDisplayReducer from './database_new_ingredient_reducer';
 import { leftPics, rightPics } from './pics_reducer';
+import adminIndexReducer from './admin_reducer';
 
 const allReducers = combineReducers({
   cakeBases: cakeBasesReducer,
@@ -40,6 +41,7 @@ const allReducers = combineReducers({
   databaseNewIngredientDisplay: databaseNewIngredientDisplayReducer,
   leftColumnPics: leftPics,
   rightColumnPics: rightPics,
+  adminIndex: adminIndexReducer,
 });
 
 export default allReducers;

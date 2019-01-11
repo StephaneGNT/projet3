@@ -7,10 +7,10 @@ import ColorPicker from './ColorPicker';
 import Decoration from './Decoration';
 
 import getDescription from './Customization_functions';
-import { submitDecorationChoice, allowMessage } from '../../../Actions/customization_actions';
+import { submitDecorationChoice, allowMessage, fetchAdminFonts } from '../../../Actions/customization_actions';
 import { changePrice } from '../../../Actions/cakeActions/changeCakePrice';
 
-class CustomWelcomePage extends Component {
+class CustomCenterInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,6 +27,11 @@ class CustomWelcomePage extends Component {
         type: '',
       },
     };
+  }
+
+  componentWillMount() {
+    const { fetchAdminFontList, customAdmin } = this.props;
+    if (customAdmin.selectedFonts.length === 0) fetchAdminFontList();
   }
 
   renderInfo = () => {
@@ -70,12 +75,12 @@ class CustomWelcomePage extends Component {
     this.setState({
       [deco]: !this.state[deco],
       type: status === 'on' ? deco : '',
-      typeResilient: status === 'on' ? '' : this.state.typeResilient,
+      // typeResilient: status === 'on' ? '' : this.state.typeResilient,
     });
   }
 
   open = (deco) => {
-    const { submitDecoChoice, addMessage, cake, customAdmin } = this.props;
+    const { submitDecoChoice, addMessage, customAdmin } = this.props;
     const setToUpdate = `${deco}Resilient`;
     this.setState({
       messageResilient: false,
@@ -107,7 +112,8 @@ class CustomWelcomePage extends Component {
   render() {
     const { typeResilient } = this.state;
     const { custom } = this.props;
-    console.log('cake', this.props.cake, 'customization', custom)
+
+  console.log("hello here", this.props.customAdmin.selectedFonts)
     return (
       <Col>
         <Row className="decorationRow">
@@ -161,11 +167,13 @@ class CustomWelcomePage extends Component {
   }
 }
 
-CustomWelcomePage.propTypes = {
+CustomCenterInfo.propTypes = {
   cake: PropTypes.shape({}).isRequired,
   custom: PropTypes.shape({}).isRequired,
+  customAdmin: PropTypes.shape({}).isRequired,
   submitDecoChoice: PropTypes.func.isRequired,
   addMessage: PropTypes.func.isRequired,
+  fetchAdminFontList: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({
@@ -178,6 +186,7 @@ const mapDispatchToProps = dispatch => ({
   submitDecoChoice: choice => dispatch(submitDecorationChoice(choice)),
   addMessage: choice => dispatch(allowMessage(choice)),
   updatePrice: price => dispatch(changePrice(price)),
+  fetchAdminFontList: () => dispatch(fetchAdminFonts()),
 });
 
-export default connect(mapStatetoProps, mapDispatchToProps)(CustomWelcomePage);
+export default connect(mapStatetoProps, mapDispatchToProps)(CustomCenterInfo);

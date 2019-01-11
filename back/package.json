@@ -1,0 +1,41 @@
+{
+<<<<<<< HEAD
+  "name": "back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "stop": "pm2 stop app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.3",
+    "jsonwebtoken": "^8.4.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
+  }
+=======
+    "name": "serveur",
+    "version": "1.0.0",
+    "description": "serveur de la Wild",
+    "main": "routes/app.js",
+    "scripts": {
+        "nodemon": "nodemon app.js"
+    },
+    "author": "wilder",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.16.4",
+        "morgan": "^1.9.1",
+        "mysql": "^2.16.0",
+        "serve-favicon": "^2.5.0"
+    },
+    "devDependencies": {
+        "nodemon": "^1.18.6"
+    }
+>>>>>>> dev
+}
