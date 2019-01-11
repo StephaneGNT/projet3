@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   Container, Row, Label, Button,
 } from 'reactstrap';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import { createAdmin, connectAdmin, updateAdmin } from './admin_DB_actions';
 
 
@@ -59,7 +59,9 @@ class Login extends Component {
     const confirmStyle = {
       display: action === 'Se connecter' ? 'none' : 'block',
     };
-    const disabled = user.id === '' || user.password === '' || user.password !== passwordConfirm;
+    let disabled;
+    if (action === 'Se connecter') disabled = user.id === '' || user.password === '';
+    else disabled = user.id === '' || user.password === '' || user.password !== passwordConfirm;
 
     return (
       <Container>
