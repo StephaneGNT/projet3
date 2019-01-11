@@ -1,0 +1,18 @@
+Add a file "db.js" that contains :
+
+const mysql      = require('mysql');
+const connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : *your password* (string format),
+  database : *the database name* (string format)
+});
+module.exports  =  connection;
+
+--------------------------------------------------------------------------------------------------
+
+Add a file "jwt_secret.js" that contains :
+
+const secret = *your secret* (string format);
+
+module.exports = secret;
