@@ -43,3 +43,29 @@
 
 /* .react-calendar__tile--active:enabled:hover,  */
 /* .react-calendar__tile--active:enabled:focus */
+
+.arrow {
+  border-top: 1px solid #a9a9a9;
+  border-right: 1px solid #a9a9a9;
+  transform: rotate(54deg) skew(20deg);
+  right: 20px;
+}
+
+.square {
+  top: auto;
+  bottom: 10px;
+}
+
+.square.right {
+  transform: rotate(45deg);
+}
+
+.calendar-row {
+  margin-bottom: 5vh !important;
+}
+/* 
+.info-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+} */

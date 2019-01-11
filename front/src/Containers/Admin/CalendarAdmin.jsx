@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Calendar from 'react-calendar';
-import { Button, ButtonGroup } from 'reactstrap';
+import Calendar from 'react-calendar/dist/entry.nostyle';
+import { Button, ButtonGroup, Row, Col, Badge } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { fetchDatesInDB } from '../../Actions/calendar_admin_actions';
 import { getDateID, checkDateMatch } from './CheckDateMatch';
 import '../../Assets/Styles/CalendarAdmin.css';
+import CustomerViewCalendar from '../Public/OrderConfirmation/OrderCalendar';
 
 class CalendarAdmin extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class CalendarAdmin extends Component {
 
   chooseButton = (color) => {
     const { redDate, orangeDate } = this.state;
-    this.setState({ lastClicked: color })
+    this.setState({ lastClicked: color });
     if (!redDate && !orangeDate) this.setState(prevState => ({ [color]: !prevState[color] }));
     else if (this.state[color]) return null;
     else {
@@ -54,10 +55,10 @@ class CalendarAdmin extends Component {
   removeDate = (id) => {
     const { getDatesInDB } = this.props;
     axios.delete(`/calendar/deletedate/${id}`)
-    .then(function (response) {
-      console.log(response);
-      response.data === 'OK' && getDatesInDB();
-    })
+      .then(function (response) {
+        console.log(response);
+        response.data === 'OK' && getDatesInDB();
+      })
     // .catch(function (error) {
     //   console.log(error);
     // });
@@ -88,20 +89,42 @@ class CalendarAdmin extends Component {
   render() {
     const { redDate, orangeDate, lastClicked } = this.state;
     return (
-      <div>
-        <ButtonGroup>
-          <Button className={orangeDate && 'activeButton'} onClick={() => this.chooseButton('orangeDate')} color="warning">Dates oranges</Button>
-          <Button className={redDate && 'activeButton'} onClick={() => this.chooseButton('redDate')} color="danger">Dates rouges</Button>
-        </ButtonGroup>
-        <Calendar
-          onClickDay={date => this.setDateAvailability(date, lastClicked)}
-          tileClassName={date => this.setTileClasses(date)}
-          tileDisabled={date => this.disableTile(date)}
-          minDate={new Date()}
-        />
-        <Link to="/mycake/orderDetail">
-          <Button>To customer calendar</Button>
-        </Link>
+      <div style={{ marginLeft: '-10vh' }}>
+        <h3>Vos disponibilités</h3>
+        <Row className="calendar-row">
+          <Col xs="5" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h5>Gestion de vos dates</h5>
+            <Calendar
+              onClickDay={date => this.setDateAvailability(date, lastClicked)}
+              tileClassName={date => this.setTileClasses(date)}
+              tileDisabled={date => this.disableTile(date)}
+              minDate={new Date()}
+            />
+            <ButtonGroup>
+              <Button className={orangeDate && 'activeButton'} onClick={() => this.chooseButton('orangeDate')} color="warning">Dates oranges</Button>
+              <Button className={redDate && 'activeButton'} onClick={() => this.chooseButton('redDate')} color="danger">Dates rouges</Button>
+            </ButtonGroup>
+          </Col>
+          <Col style={{ display: 'flex', flexDirection: 'row', alignContent: 'center' }}>
+            <p style={{ fontSize: '20vh', textAlign: 'center', marginTop: '20%' }}>→</p><b></b>
+
+          </Col>
+          <Col xs="5" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h5>Vue côté client</h5>
+            <CustomerViewCalendar />
+          </Col>
+        </Row>
+        <Row>
+          <b>Cliquer sur un bouton coloré puis sur une ou plusieurs dates du calendrier pour renseigner vos disponibilités:</b> <br />
+          <ul>
+            <li stlye={{ listStyleType: 'circle' }}><Badge color="danger">Dates rouges</Badge> les clients ne peuvent pas commander à ces dates</li>
+            <li stlye={{ listStyleType: 'circle' }}><Badge color="warning">Dates oranges</Badge> vous ne garantissez pas pouvoir honorer la commande mais donnez la possibilité au client de réserver cette date.</li>
+          </ul>
+        </Row>
+        <Row>
+          Par défaut, vous êtes disponibles aux dates non colorées et votre disponibilité est limitée les samedis<br></br>
+          Pour supprimer une date colorée, cliquez dessus.
+        </Row>
       </div>
     );
   }
