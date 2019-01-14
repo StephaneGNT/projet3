@@ -99,6 +99,7 @@ class ModifyIngredient extends Component {
                 <Col sm="5">
                   <h3 className="mt-3">
                     Modifier l’ingrédient
+                    {' '}
                     {betaType.name}
                   </h3>
                 </Col>
