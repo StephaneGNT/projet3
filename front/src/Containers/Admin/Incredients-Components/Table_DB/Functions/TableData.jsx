@@ -10,7 +10,7 @@ const createTableDataFields = (element) => {
   ));
 };
 
-const deleteIngredient = (type, id) => {
+const deleteIngredient = (type, id, token) => {
   if (window.confirm('Voulez-vous supprimer cet ingrédient ?')) {
     let tableName = '';
     switch (type) {
@@ -25,12 +25,17 @@ const deleteIngredient = (type, id) => {
       case ('Macaron'): tableName = 'macaron_flavors'; break;
       default: tableName = ''; break;
     }
-    axios.delete(`/ingredients/${tableName}/${id}`)
+    const url = `/ingredients/${tableName}/${id}`;
+    const headers = { Authorization: `Bearer ${token}` };
+
+    console.log("token", token);
+
+    axios.delete(url, { headers })
       .then(res => window.alert(res.data.message));
   }
 };
 
-const TableData = ingredients => ingredients.map(ingredient => (
+const TableData = (ingredients, token) => ingredients.map(ingredient => (
   <tr>
     {createTableDataFields(ingredient)}
     <td>
@@ -40,7 +45,7 @@ const TableData = ingredients => ingredients.map(ingredient => (
       </Button>
       <Button
         title="Supprimer ingrédient"
-        onClick={() => deleteIngredient(ingredient.type, ingredient.id)}
+        onClick={() => deleteIngredient(ingredient.type, ingredient.id, token)}
       >
         ✘
       </Button>

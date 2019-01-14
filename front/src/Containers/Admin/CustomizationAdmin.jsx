@@ -45,14 +45,8 @@ class CustomizationAdmin extends Component {
     const { selectedFonts, fetchAdminFontList } = this.props;
     if (!selectedFonts.includes(name)) {
       axios.post('/customization/addfonts', { name, availability: true })
-      .then(function (response) {
-        response.data === 'OK' && fetchAdminFontList();
-      })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
-      // alert(`Police "${name}" ajoutée`)
-    } else alert('Vous avez déjà ajouté cette police');
+        .then(response => response.data === 'OK' && fetchAdminFontList())
+    } else window.alert('Vous avez déjà ajouté cette police');
   }
 
   render() {
@@ -63,7 +57,7 @@ class CustomizationAdmin extends Component {
       <div>
         {
           googleFonts.map((font, i) => (
-            <div key={font.family + " " + i}>
+            <div key={`${font.family} ${i}`}>
               <link
                 rel="stylesheet"
                 href={`https://fonts.googleapis.com/css?family=${font.family}`}
@@ -93,7 +87,7 @@ class CustomizationAdmin extends Component {
               ))
             }
           </div>
-        </div >
+        </div>
         <ButtonGroup>
           {this.generatePagination().map((pageNumber, i) => (
             <Button

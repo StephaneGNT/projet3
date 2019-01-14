@@ -1,6 +1,3 @@
-/*jslint browser: true */
-/*global window */
-
 import axios from 'axios';
 
 // Récupération d'un seul admin - OK
@@ -50,13 +47,17 @@ export const deleteAdminFromDB = (id) => {
 
 // Mise à jour d'un admin - Not OK
 export const updateAdmin = (newAdmin, id) => {
-  console.log("in update", newAdmin, id);
   axios.put(`/auth/${id}`, { newAdmin, id })
     .then(response => window.alert(response.data));
 };
 
 // Connexion
 export const connectAdmin = (admin) => {
-  axios.post('/auth/login', admin)
-    .then(response => window.alert(response.data.message));
+  return axios.post('/auth/login', admin)
+    .then((response) => {
+      if (response.status === 200) {
+        return ({ message: 'Identification réussie', token: response.data.token });
+      }
+      return ({ message: 'Erreur lors de l’identification', token: '' });
+    });
 };

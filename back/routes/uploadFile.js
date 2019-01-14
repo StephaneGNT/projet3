@@ -14,7 +14,6 @@ const storage = multer.diskStorage({
 });
 
 picture.post('/api/uploadfile', upload.single('avatar'), async (req, res) => {
-  console.log(req.file)
   try {
     res.status(200).end();
   } catch (err) {
