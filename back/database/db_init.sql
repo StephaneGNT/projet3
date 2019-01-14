@@ -18,6 +18,7 @@ CREATE TABLE cake_bases
     availability BOOLEAN,
     info VARCHAR(150),
     image_id INTEGER,
+    is_compatible BOOLEAN,
     FOREIGN KEY(image_id) REFERENCES images(id)
 );
 
@@ -30,8 +31,10 @@ CREATE TABLE cookie_bases
     availability BOOLEAN,
     info VARCHAR(150),
     image_id INTEGER,
+    is_compatible BOOLEAN,
     FOREIGN KEY(image_id) REFERENCES images(id)
 );
+CREATE TABLE brownie_bases LIKE cookie_bases;
 
 CREATE TABLE toppings
 ( 
@@ -42,6 +45,7 @@ CREATE TABLE toppings
     availability BOOLEAN,
     info VARCHAR(150),
     image_id INTEGER,
+    is_compatible BOOLEAN,
     FOREIGN KEY(image_id) REFERENCES images(id)
 );
 
@@ -54,6 +58,7 @@ CREATE TABLE fillings
     availability BOOLEAN,
     info VARCHAR(150),
     image_id INTEGER,
+    is_compatible BOOLEAN,
     FOREIGN KEY(image_id) REFERENCES images(id)
 );
 
@@ -65,20 +70,21 @@ CREATE TABLE macaron_shells
 ( 
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
     name VARCHAR(20),
-    code VARCHAR(20)
+    code VARCHAR(20),
+    is_compatible BOOLEAN
 );
 
 CREATE TABLE allergenes
 ( 
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(90)
+id INTEGER PRIMARY KEY AUTO_INCREMENT, 
+name VARCHAR(90)
 );
 
 CREATE TABLE fonts
 ( 
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(50),
-    availability BOOLEAN
+id INTEGER PRIMARY KEY AUTO_INCREMENT, 
+name VARCHAR(50),
+availability BOOLEAN
 );
 
 CREATE TABLE custom_wishes
@@ -148,4 +154,11 @@ CREATE TABLE admin
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     admin_id VARCHAR(50),
     admin_password VARCHAR(100)
+);
+
+CREATE TABLE calendar
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    date VARCHAR(50),
+    color VARCHAR(10)
 );

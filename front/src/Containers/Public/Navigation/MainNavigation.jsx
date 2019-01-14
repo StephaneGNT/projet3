@@ -6,7 +6,7 @@ import {
 import logo from '../../../Assets/Images/LOGO_GILUNA.png';
 
 const MainNavigation = () => (
-  <Navbar className="fixed-adapt navbar-light bg-light">
+  <Navbar className="fixed-adapt navbar-light">
     <div className="bloc">
       <NavbarBrand href="/">
         <img src={logo} className="logo" alt="Giluna-logo" />

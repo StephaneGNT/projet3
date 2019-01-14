@@ -18,9 +18,8 @@ class Confirmation extends Component {
   }
 
   renderConfirmation = () => {
-    let description = '';
     const {
-      type, size, occasion, quantity, ingredients, customMessage, decoration, story, deliveryDate,
+      type, size, occasion, quantity, ingredients, customMessage, decoration, deliveryDate,
     } = this.props;
 
     // if (occasion) description += `Occasion : ${occasion}`;

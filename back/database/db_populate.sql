@@ -211,15 +211,15 @@ INSERT INTO allergenes (id, name) VALUES (null, 'Oeuf'), (null, 'Lactose'), (nul
 
 INSERT INTO fonts (id, name, availability) VALUES (
   null,
-  'Times New Roman',
+  'Ewert',
   true
 ), (
   null,
-  'Arial',
+  'Frijole',
   true
 ), (
   null,
-  'Comic San',
+  'Rochester',
   false
 );
 
@@ -316,4 +316,18 @@ INSERT INTO final_orders (
   'En cours de préparation',
   'Payée',
   ''
+);
+
+INSERT INTO admin (
+  id,
+  admin_id,
+  admin_password
+) VALUES (
+  null,
+  'Giluna',
+  'aaaaaaa'
+),(
+  null,
+  'Giluna2',
+  'sudfhmlkfds'
 );

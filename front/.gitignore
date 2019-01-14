@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#accès db
+../back/helper/db.js
+
+#secret JWT
+../back/helper/jwt_secret.js

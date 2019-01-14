@@ -19,6 +19,7 @@ import databaseDisplayReducer from './database_display_reducer';
 import databaseNewIngredientDisplayReducer from './database_new_ingredient_reducer';
 import databaseDisplayModifyForm from './database_display_modifyForm';
 import { leftPics, rightPics } from './pics_reducer';
+import adminIndexReducer from './admin_reducer';
 
 const allReducers = combineReducers({
   cakeBases: cakeBasesReducer,
@@ -42,6 +43,7 @@ const allReducers = combineReducers({
   databaseModifyFormIndex: databaseDisplayModifyForm,
   leftColumnPics: leftPics,
   rightColumnPics: rightPics,
+  adminIndex: adminIndexReducer,
 });
 
 export default allReducers;

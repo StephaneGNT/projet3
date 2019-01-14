@@ -1,30 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
-import { Row, Col } from 'reactstrap';
+import { fetchAdminFonts } from '../../Actions/customization_actions';
 
-const ColorPicker = (props) => {
-//   const {  } = props;
-//   return (
-//     <Row>
-//       <Col xs="12" lg="6" >
-//         <p>Couleur de fond</p>
-//         <GithubPicker name="backgroundColor" onChange={changeBgColor} />
-//       </Col>
-//       <Col xs="12" lg="6">
-//         <p>Couleur de l'écriture</p>
-//         <GithubPicker name="fontColor" onChange={changeFontColor} />
-//       </Col>
-//     </Row>
-//   );
-};
+class FontList extends Component {
+  componentWillMount() {
+    const { fetchAdminFontList } = this.props;
+    fetchAdminFontList();
+  }
 
-const mapStateToProps = state => ({
+  deleteFonts = (name) => {
+    const { fetchAdminFontList } = this.props;
+    axios.delete(`/customization/deletefonts/${name}`)
+    .then(function (response) {
+      console.log(response);
+      response.data === 'OK' && fetchAdminFontList();
+    })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+  }
 
+  render() {
+    const { selectedFonts } = this.props;
+    console.log("render",selectedFonts)
+    return (
+      <div style={{ marginBottom: '3vh' }} className="chosenFontList">
+        <h4>Votre séléction de polices:</h4>
+        <p style={{ fontSize: '1em', textAlign: 'center' }} >Cliquez sur une police pour la retirer da la liste</p>
+        {
+          selectedFonts.map((font => (
+            <span
+              key={font}
+              style={{ fontFamily: font, marginRight: '4vh' }}
+              onClick={() => this.deleteFonts(font)}
+            >
+              {font}
+            </span>
+          )))
+        }
+      </div>
+    );
+  }
+}
+
+const mapStatetoProps = state => ({
+  selectedFonts: JSON.parse(JSON.stringify(state.customizationAdmin.selectedFonts)),
 });
 
 const mapDispatchToProps = dispatch => ({
-  // changeBgColor: color => dispatch(changeBgColor(color)),
+  fetchAdminFontList: () => dispatch(fetchAdminFonts()),
 });
 
 
-export default connect(null, mapDispatchToProps)(ColorPicker);
+export default connect(mapStatetoProps, mapDispatchToProps)(FontList);

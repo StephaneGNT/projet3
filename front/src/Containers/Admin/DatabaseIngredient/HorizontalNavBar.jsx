@@ -44,7 +44,7 @@ class HorizontalNavBar extends Component {
       } else {
         render.push(
           <NavItem>
-            <Button onClick={() => changeCategory(this.ingredients[i]) && toggleForm(false)}>
+            <Button color="primary" size="sm" onClick={() => changeCategory(this.ingredients[i]) && toggleForm(false)}>
               {this.ingredients[i]}
             </Button>
           </NavItem>,

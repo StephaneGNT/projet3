@@ -24,3 +24,6 @@ yarn-error.log*
 
 #accès db
 ./helper/db.js
+
+#secret JWT
+./helper/jwt_secret.js

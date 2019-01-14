@@ -4,6 +4,10 @@
     color: var(--mainColor);
 }
 
+.body-cake-select {
+    background-color:rgb(201, 201, 201);
+}
+
 h3 {
     margin:auto;
     padding:10px;
@@ -11,12 +15,11 @@ h3 {
     font-weight:700 !important;
     font-family: var(--mainPolice) !important;
     color: var(--mainColor) !important;
-    text-shadow:1px 1px 0px rgb(255, 255, 255);
 }
 
 .typeButton{
     width: 11vw;
-    height: 14vh;
+    height: 18vh;
     background-size: 70% 70%;
     background-repeat: no-repeat;
     background-position-x: center;
@@ -25,10 +28,11 @@ h3 {
     color: black !important;
     padding-top: 53% !important;
     background-color: white !important;
+    border:none;
 }
 
 #cookieButton{
-    background-image: url(../Images/cookie.jpg);
+    background-image: url(../Images/cookie.png);
 }
 
 #cakeButton{
@@ -55,7 +59,7 @@ h3 {
 }
 
 .selectionOutline {
-  box-shadow: 0 0 3pt 2pt rgb(114, 6, 55) !important
+    box-shadow: 0 0 3pt 2pt rgb(168, 112, 48) !important
 }
 
 /* .typeButton[title]:hover:after {
