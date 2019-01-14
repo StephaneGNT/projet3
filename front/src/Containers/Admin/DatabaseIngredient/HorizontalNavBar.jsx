@@ -64,6 +64,7 @@ class HorizontalNavBar extends Component {
 }
 
 HorizontalNavBar.propTypes = {
+  toggleForm: PropTypes.func.isRequired,
   changeCategory: PropTypes.func.isRequired,
 };
 
