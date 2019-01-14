@@ -26,9 +26,9 @@ const VerticalNavBar = () => (
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/admin/clients">
+          <NavLink to="/admin/Customization">
             <i className="fas fa-users" />
-            <span className="linkname ml-2">Clients</span>
+            <span className="linkname ml-2">Customization</span>
           </NavLink>
         </NavItem>
         <NavItem>

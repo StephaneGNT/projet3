@@ -8,6 +8,12 @@ CREATE TABLE images
     name VARCHAR(90)
 );
 
+CREATE TABLE calendar ( 
+    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
+    date VARCHAR(50),
+    color VARCHAR(10)
+);
+
 CREATE TABLE cake_bases 
 ( 
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
@@ -156,9 +162,3 @@ CREATE TABLE admin
     admin_password VARCHAR(100)
 );
 
-CREATE TABLE calendar
-(
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    date VARCHAR(50),
-    color VARCHAR(10)
-);

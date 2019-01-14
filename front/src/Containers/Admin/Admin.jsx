@@ -27,8 +27,8 @@ class Admin extends Component {
       <Route
         {...rest}
         render={() => (
-          // jwtToken !== ''
-          this.loggedIn
+          jwtToken !== ''
+          // this.loggedIn
             ? <Component />
             : <Redirect to="/admin" />
         )}

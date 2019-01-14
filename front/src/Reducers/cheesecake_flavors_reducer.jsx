@@ -4,7 +4,7 @@ import caramel from '../Assets/Images/caramel.jpg';
 export default () => {
   return [
     {
-      id: 3,
+      id: 1,
       name: 'Parfum speculoos',
       type: 'Parfum',
       size: 'S',
@@ -16,7 +16,7 @@ export default () => {
       compatible: ['Cream cheese', 'Sucre glace', 'Amandes caramélisées', 'Noix caramélisées', 'Noisettes caramélisées', 'Crumble'],
     },
     {
-      id: 4,
+      id: 2,
       name: 'Parfum caramel',
       type: 'Parfum',
       size: 'S',
