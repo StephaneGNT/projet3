@@ -12,18 +12,15 @@ class FontList extends Component {
   deleteFonts = (name) => {
     const { fetchAdminFontList } = this.props;
     axios.delete(`/customization/deletefonts/${name}`)
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
       })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
+
     fetchAdminFontList();
   }
 
   render() {
     const { selectedFonts } = this.props;
-    console.log("render", selectedFonts)
     return (
       <div style={{ marginBottom: '3vh' }} className="chosenFontList">
         <h4>Votre séléction de polices:</h4>

@@ -14,7 +14,7 @@ class DataBase extends Component {
     this.state = {};
   }
 
-  displayIngredients = () => {
+  displayIngredients = (token) => {
     const {
       display, cake, cookie, topping, filling, icing, macaronFlavor, macaronShell, chessecakeFlavor,
     } = this.props;
@@ -29,7 +29,7 @@ class DataBase extends Component {
       case ('Cheesecake'): elementToDisplay = chessecakeFlavor; break;
       default: elementToDisplay = cake;
     }
-    return TableDB(elementToDisplay);
+    return TableDB(elementToDisplay, token);
   }
 
   renderFormAddIngredient = () => {
@@ -54,7 +54,7 @@ class DataBase extends Component {
   }
 
   render() {
-    
+    const { token } = this.props;
     return (
       <Container>
         <Row>
@@ -62,8 +62,8 @@ class DataBase extends Component {
         </Row>
         <Toolbar />
         {this.renderFormAddIngredient()}
+        {this.displayIngredients(token)}
         {this.renderFormModifyIngredient()}
-        {this.displayIngredients()}
       </Container>
     );
   }
@@ -82,6 +82,7 @@ DataBase.propTypes = {
   macaronFlavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   macaronShell: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   chessecakeFlavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  token: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -98,6 +99,7 @@ const mapStateToProps = state => ({
   macaronShell: state.macaronsShells,
   cookie: state.cookiesBases,
   brownie: state.browniesBases,
+  token: state.adminToken,
 });
 
 export default connect(mapStateToProps, null)(DataBase);

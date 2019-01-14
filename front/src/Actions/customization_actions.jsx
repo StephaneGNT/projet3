@@ -69,7 +69,6 @@ export const fetchAdminFonts = () => {
     return axios.get('/customization/getfonts')
       .then((res) => {
         const fonts = res.data;
-        console.log("axios in actions?",fonts)
         dispatch(populateFonts(fonts));
       });
   };

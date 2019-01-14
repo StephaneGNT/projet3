@@ -21,7 +21,6 @@ class UploadPics extends Component {
 
       onUploadProgress: (progressEvent) => {
         const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-        console.log(percentCompleted);
       },
     };
 
