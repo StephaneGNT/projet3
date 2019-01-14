@@ -38,15 +38,15 @@ class DataBase extends Component {
   }
 
   renderFormModifyIngredient = () => {
-    const { display, cake, cookie, topping, filling, icing, macaronFlavor, macaronShell, chessecakeFlavor,formModifyVisible } = this.props;
+    const { displaybeta, cake, cookie, topping, filling, icing, macaronFlavor, macaronShell, chessecakeFlavor,formModifyVisible } = this.props;
     let formToDisplay;
-    switch (display) {
+    switch (displaybeta) {
       case ('Base cookie'): formToDisplay = cookie; break;
       case ('Toppings'): formToDisplay = topping; break;
-      case ('Remplissage'): formToDisplay = filling; break;
+      case ('Garniture'): formToDisplay = filling; break;
       case ('Glaçage'): formToDisplay = icing; break;
-      case ('Parfum macaron'): formToDisplay = macaronFlavor; break;
-      case ('Couleur macaron'): formToDisplay = macaronShell; break;
+      case ('Macaron'): formToDisplay = macaronFlavor; break;
+      case ('Coquille'): formToDisplay = macaronShell; break;
       case ('Parfum'): formToDisplay = chessecakeFlavor; break;
       default: formToDisplay = cake;
     }
@@ -71,6 +71,7 @@ class DataBase extends Component {
 
 DataBase.propTypes = {
   display: PropTypes.string.isRequired,
+  displaybeta: PropTypes.string.isRequired,
   formVisible: PropTypes.bool.isRequired,
   formModifyVisible: PropTypes.bool.isRequired,
   cake: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -84,7 +85,8 @@ DataBase.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  display: state.databaseDisplay,
+  display: state.databaseDisplay.alpha,
+  displaybeta: state.databaseDisplay.beta,
   formVisible: state.databaseNewIngredientDisplay.new,
   formModifyVisible: state.databaseNewIngredientDisplay.modify,
   cake: state.cakeBases,

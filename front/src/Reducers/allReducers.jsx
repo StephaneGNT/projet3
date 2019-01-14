@@ -17,6 +17,7 @@ import customizationAdminReducer from './customization_admin_reducer';
 import customizationCustomerReducer from './customization_customer_reducer';
 import databaseDisplayReducer from './database_display_reducer';
 import databaseNewIngredientDisplayReducer from './database_new_ingredient_reducer';
+import databaseDisplayModifyForm from './database_display_modifyForm';
 import { leftPics, rightPics } from './pics_reducer';
 
 const allReducers = combineReducers({
@@ -38,6 +39,7 @@ const allReducers = combineReducers({
   customizationCustomer: customizationCustomerReducer,
   databaseDisplay: databaseDisplayReducer,
   databaseNewIngredientDisplay: databaseNewIngredientDisplayReducer,
+  databaseModifyFormIndex: databaseDisplayModifyForm,
   leftColumnPics: leftPics,
   rightColumnPics: rightPics,
 });

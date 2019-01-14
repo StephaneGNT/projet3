@@ -38,10 +38,9 @@ const TableData = ingredients => ingredients.map(ingredient => (
   <tr>
     {createTableDataFields(ingredient)};
     <td>
-      <ButtonModify ingredient={ingredient.type}/>
+      <ButtonModify ingredient={ingredient} id={ingredient.id}/>
       - #
-        {ingredient.id}
-        {ingredient.type}
+        {ingredient.name}
       <Button
         title="Supprimer ingrédient"
         onClick={() => deleteIngredient(ingredient.type, ingredient.id)}
