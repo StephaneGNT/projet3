@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   Container, Row, Label, Button,
 } from 'reactstrap';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import { createAdmin, connectAdmin, updateAdmin } from './admin_DB_actions';
 
 
@@ -19,15 +19,6 @@ class Login extends Component {
       passwordConfirm: '',
     };
   }
-
-  // checkDisabled = () => {
-    
-  //   const { action } = this.props;
-  //   const { user, passwordConfirm } = this.state;
-  //   if (action === 'Créer' && (user.id === '' || user.password === '' || user.password !== passwordConfirm)) return true;
-  //   if (action === 'Se connecter' && (user.id === '' || user.password === '')) return true;
-  //   return false;
-  // }
 
   submitUser = () => {
     const { action, history } = this.props;
@@ -68,7 +59,9 @@ class Login extends Component {
     const confirmStyle = {
       display: action === 'Se connecter' ? 'none' : 'block',
     };
-    const disabled = user.id === '' || user.password === '' || user.password !== passwordConfirm;
+    let disabled;
+    if (action === 'Se connecter') disabled = user.id === '' || user.password === '';
+    else disabled = user.id === '' || user.password === '' || user.password !== passwordConfirm;
 
     return (
       <Container>

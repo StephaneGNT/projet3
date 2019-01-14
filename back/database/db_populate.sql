@@ -317,3 +317,17 @@ INSERT INTO final_orders (
   'Payée',
   ''
 );
+
+INSERT INTO admin (
+  id,
+  admin_id,
+  admin_password
+) VALUES (
+  null,
+  'Giluna',
+  'aaaaaaa'
+),(
+  null,
+  'Giluna2',
+  'sudfhmlkfds'
+);

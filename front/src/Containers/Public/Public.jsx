@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import {
-  Route,
-  Switch,
-  BrowserRouter,
-  Link,
+  Route, Switch, BrowserRouter, withRouter,
 } from 'react-router-dom';
 import HomePage from './HomePage';
 import PimpMyCake from './PimpMyCake';
 import Contact from './Contact';
 import MainNavigation from './Navigation/MainNavigation';
 import '../../Assets/Styles/Public.css';
-import Admin from '../Admin/Admin';
 
 class Public extends Component {
   constructor(props) {
@@ -19,20 +15,25 @@ class Public extends Component {
   }
 
   render() {
+    const { history } = this.props;
     return (
       <BrowserRouter>
         <div className="body-zone">
           <MainNavigation />
           <div className="header-zone">
             Pimp My Cake
-            <button><Link to={`${process.env.PUBLIC_URL}/admin`}>Admin</Link></button>
+            <button
+              type="button"
+              onClick={() => history.push(`${process.env.PUBLIC_URL}/admin`)}
+            >
+              Admin
+            </button>
           </div>
           <div className="content-zone">
             <Switch>
               <Route exact path={`${process.env.PUBLIC_URL}/`} component={HomePage} />
               <Route path={`${process.env.PUBLIC_URL}/mycake`} component={PimpMyCake} />
               <Route path={`${process.env.PUBLIC_URL}/contact`} component={Contact} />
-              <Route path={`${process.env.PUBLIC_URL}/admin`} component={Admin} />
             </Switch>
           </div>
         </div>
@@ -41,4 +42,4 @@ class Public extends Component {
   }
 }
 
-export default Public;
+export default withRouter(Public);

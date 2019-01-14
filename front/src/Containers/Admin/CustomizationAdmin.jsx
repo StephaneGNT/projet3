@@ -46,7 +46,8 @@ class CustomizationAdmin extends Component {
     if (!selectedFonts.includes(name)) {
       axios.post('/customization/addfonts', { name, availability: true })
         .then(function (response) {
-          response.data === 'OK' && fetchAdminFontList();
+          console.log("response", response)
+// if response === OK &&& fetchAdminFontList()
         })
       // .catch(function (error) {
       //   console.log(error);

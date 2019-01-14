@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-
 import IngredientsDisplay from './IngredientsDisplay';
 import CarrotCakeSupplement from './CarrotCakeSupplement';
-
 import { updateIndex } from '../../../Actions/cakeActions/changeIndex';
 
 class IngredientsCakeStructure extends Component {
@@ -22,10 +20,7 @@ class IngredientsCakeStructure extends Component {
 
       render = (
         <Row className="displayIngredient">
-          <Row style={{
-            position: 'sticky', top: '0vh', zIndex: '5', backgroundColor: '#E8E5E5',
-          }}
-          >
+          <Row>
             <h1>{elementToDisplay[0].type}</h1>
           </Row>
           <Row className="w-100 mx-auto">
@@ -40,10 +35,7 @@ class IngredientsCakeStructure extends Component {
         render = (
           <Row className="displayIngredient">
             <Col sm="6">
-              <Row style={{
-                position: 'sticky', top: '0vh', zIndex: '5', backgroundColor: '#E8E5E5',
-              }}
-              >
+              <Row>
                 <h1>{fillings[0].type}</h1>
               </Row>
               <Row>
@@ -51,10 +43,7 @@ class IngredientsCakeStructure extends Component {
               </Row>
             </Col>
             <Col sm="6">
-              <Row style={{
-                position: 'sticky', top: '0vh', zIndex: '5', backgroundColor: '#E8E5E5',
-              }}
-              >
+              <Row>
                 <h1>{icings[0].type}</h1>
               </Row>
               <Row>
@@ -67,10 +56,7 @@ class IngredientsCakeStructure extends Component {
         // ou choix du glaçage du cheesecake
         render = (
           <Row className="displayIngredient">
-            <Row style={{
-              position: 'sticky', top: '0vh', zIndex: '5', backgroundColor: '#E8E5E5',
-            }}
-            >
+            <Row>
               <h1>{icings[0].type}</h1>
             </Row>
             <Row className="w-100 mx-auto">
@@ -83,10 +69,7 @@ class IngredientsCakeStructure extends Component {
     } else if (index === 4) {
       render = (
         <Row className="displayIngredient">
-          <Row style={{
-            position: 'sticky', top: '5vh', zIndex: '5', backgroundColor: '#E8E5E5',
-          }}
-          >
+          <Row>
             <h1>{toppings[0].type}</h1>
           </Row>
           <Row className="w-100 mx-auto">
