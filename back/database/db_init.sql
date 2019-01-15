@@ -10,18 +10,6 @@ name VARCHAR(90)
 
 CREATE TABLE cake_bases 
 ( 
-<<<<<<< HEAD
-id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-name VARCHAR(90), 
-size_diameter INTEGER,
-nb_persons INTEGER,
-price DECIMAL,
-availability BOOLEAN,
-info VARCHAR(150),
-image_id INTEGER,
-is_compatible BOOLEAN,
-FOREIGN KEY(image_id) REFERENCES images(id)
-=======
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
     name VARCHAR(90), 
     size_diameter INTEGER,
@@ -32,22 +20,10 @@ FOREIGN KEY(image_id) REFERENCES images(id)
     image_id INTEGER,
     is_compatible BOOLEAN,
     FOREIGN KEY(image_id) REFERENCES images(id)
->>>>>>> 530ab182eda8c4b329af1660312848ae299fb891
 );
 
 CREATE TABLE cookie_bases
 ( 
-<<<<<<< HEAD
-id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-name VARCHAR(90),
-size_diameter INTEGER,
-price DECIMAL,
-availability BOOLEAN,
-info VARCHAR(150),
-image_id INTEGER,
-is_compatible BOOLEAN,
-FOREIGN KEY(image_id) REFERENCES images(id)
-=======
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
     name VARCHAR(90),
     size_diameter INTEGER,
@@ -57,23 +33,11 @@ FOREIGN KEY(image_id) REFERENCES images(id)
     image_id INTEGER,
     is_compatible BOOLEAN,
     FOREIGN KEY(image_id) REFERENCES images(id)
->>>>>>> 530ab182eda8c4b329af1660312848ae299fb891
 );
 CREATE TABLE brownie_bases LIKE cookie_bases;
 
 CREATE TABLE toppings
 ( 
-<<<<<<< HEAD
-id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-name VARCHAR(90), 
-portion VARCHAR(10),
-price DECIMAL,
-availability BOOLEAN,
-info VARCHAR(150),
-image_id INTEGER,
-is_compatible BOOLEAN,
-FOREIGN KEY(image_id) REFERENCES images(id)
-=======
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
     name VARCHAR(90), 
     portion VARCHAR(10),
@@ -83,22 +47,10 @@ FOREIGN KEY(image_id) REFERENCES images(id)
     image_id INTEGER,
     is_compatible BOOLEAN,
     FOREIGN KEY(image_id) REFERENCES images(id)
->>>>>>> 530ab182eda8c4b329af1660312848ae299fb891
 );
 
 CREATE TABLE fillings
 ( 
-<<<<<<< HEAD
-id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-name VARCHAR(30), 
-size INTEGER,
-price DECIMAL,
-availability BOOLEAN,
-info VARCHAR(150),
-image_id INTEGER,
-is_compatible BOOLEAN,
-FOREIGN KEY(image_id) REFERENCES images(id)
-=======
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
     name VARCHAR(30), 
     size INTEGER,
@@ -108,7 +60,6 @@ FOREIGN KEY(image_id) REFERENCES images(id)
     image_id INTEGER,
     is_compatible BOOLEAN,
     FOREIGN KEY(image_id) REFERENCES images(id)
->>>>>>> 530ab182eda8c4b329af1660312848ae299fb891
 );
 
 CREATE TABLE icings LIKE fillings;
@@ -117,17 +68,10 @@ CREATE TABLE cheesecake_flavors LIKE fillings;
 
 CREATE TABLE macaron_shells
 ( 
-<<<<<<< HEAD
-id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-name VARCHAR(20),
-code VARCHAR(20),
-is_compatible BOOLEAN
-=======
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
     name VARCHAR(20),
     code VARCHAR(20),
     is_compatible BOOLEAN
->>>>>>> 530ab182eda8c4b329af1660312848ae299fb891
 );
 
 CREATE TABLE allergenes
