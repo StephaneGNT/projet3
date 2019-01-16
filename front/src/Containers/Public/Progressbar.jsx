@@ -11,7 +11,7 @@ class Progressbar extends Component {
     const { ingredient, indexUpdate, deliveryDate, type } = this.props;
     if (ingredient.length > 0) {
       if (type === 'cake' || type === 'cheesecake' ? index === 5 && !deliveryDate : index === 3 && !deliveryDate) {
-        alert('Veuillez renseigner une date de retrait');
+        window.alert('Veuillez renseigner une date de retrait');
         e.preventDefault();
       } else indexUpdate(index + 2);
     } else e.preventDefault();

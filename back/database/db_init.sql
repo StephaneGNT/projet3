@@ -112,7 +112,9 @@ CREATE TABLE customers
     lastName VARCHAR(20),
     email VARCHAR(50) UNIQUE,
     tel_number VARCHAR(12),
-    birthday DATE
+    birthday VARCHAR(10),
+    comment VARCHAR(100),
+    giftcard VARCHAR(200)
 );
 
 CREATE TABLE final_cakes

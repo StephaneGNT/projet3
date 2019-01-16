@@ -247,21 +247,27 @@ INSERT INTO customers (
   lastName,
   email,
   tel_number,
-  birthday
+  birthday,
+  comment,
+  giftcard
 ) VALUES (
   null,
   'Mathieu',
   'De Armey',
   'famousfour@hotmail.com',
   '0600000000',
-  '1981-06-23'
+  '1981-06-23',
+  'Merci pour le gâteau !',
+  'Joyeux anniversaire !!'
 ),(
   null,
   'Kapu',
   'Nielsen',
   'kapunielsen@voila.fr',
   '0612345678',
-  '1987-03-12'
+  '1987-03-12',
+  '',
+  ''
 );
 
 INSERT INTO final_cakes (
@@ -326,8 +332,4 @@ INSERT INTO admin (
   null,
   'Giluna',
   'aaaaaaa'
-),(
-  null,
-  'Giluna2',
-  'sudfhmlkfds'
 );

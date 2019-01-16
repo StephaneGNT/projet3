@@ -22,30 +22,6 @@ class Confirmation extends Component {
       type, size, occasion, quantity, ingredients, customMessage, decoration, deliveryDate,
     } = this.props;
 
-    // if (occasion) description += `Occasion : ${occasion}`;
-    
-    // description += `Commande : ${quantity} ${type} `;
-    // if (type === 'cake') description += `de ${story} étage(s) pour ${size} personnes`;
-    // else description += `de taille ${size}`;
-
-    // description += 'Composition : ';
-    // if (type === 'macarons') {
-    //   const flavor = ingredients.map(ingredient => ingredient.type === 'Parfum' && ingredient.name);
-    //   const shell = ingredients.map(ingredient => ingredient.type === 'Coquille' && ingredient.name);
-    //   description += `Parfum ${flavor} et couleur ${shell}`;
-    // } else {
-    //   ingredients.map((ingredient) => { description += ingredient.name; });
-    // }
-
-    // if (decoration && customMessage) description += `Décoration : ${decoration} et ${customMessage}`;
-    // else if (decoration || customMessage) {
-    //   if (decoration) description += `Décoration : ${decoration}`;
-    //   else description += `Décoration : ${customMessage}`;
-    // }
-
-    // if (deliveryDate) description += `Date de retrait : ${deliveryDate}`;
-    // return description;
-
     if (type === 'brownie' || type === 'cookie') {
       return (
         <p>
