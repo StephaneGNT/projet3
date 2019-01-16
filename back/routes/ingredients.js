@@ -55,10 +55,51 @@ ingred.delete(
 
 /*-------------------- FETCH COMPLETE INCREDIENT TABLES ----------------------*/
 
+ingred.get('/ingredients', (req, res) => {
+  connection.query(
+    `SELECT ingredients.*, allerg.name AS allergenes, comp.name as compatible
+    FROM ingredients 
+      LEFT JOIN 
+        (SELECT jt_allergenes.id_ingred, GROUP_CONCAT(allergenes.name) AS name
+         FROM jt_allergenes
+         INNER JOIN allergenes
+         ON jt_allergenes.id_allergene = allergenes.id
+         GROUP BY jt_allergenes.id_ingred) AS allerg
+      ON allerg.id_ingred = ingredients.id
+      LEFT JOIN
+        (SELECT jt_compatibility.id_ingred1, GROUP_CONCAT(ingredients.name) AS name
+         FROM jt_compatibility
+         INNER JOIN ingredients
+         ON jt_compatibility.id_ingred2 = ingredients.id
+         GROUP BY jt_compatibility.id_ingred1) AS comp
+      ON comp.id_ingred1 = ingredients.id;` 
+    , (err, results) => {
+    err ? res.status(500).send(err) : res.status(200).send(results);
+  })
+});
 
-ingred.get('/ingredients/:ingredTable', (req, res) => {
-  const tableToLoad = req.params.ingredTable;
-  connection.query(`SELECT * from ${tableToLoad}`, (err, results) => {
+ingred.get('/ingredients/:ingredType', (req, res) => {
+  const typeToLoad = req.params.ingredType.replace(/\_/g, ' ');
+  console.log(typeToLoad);
+  connection.query(
+    `SELECT ingredients.*, allerg.name AS allergenes, comp.name as compatible
+    FROM ingredients 
+      LEFT JOIN 
+        (SELECT jt_allergenes.id_ingred, GROUP_CONCAT(allergenes.name) AS name
+         FROM jt_allergenes
+         INNER JOIN allergenes
+         ON jt_allergenes.id_allergene = allergenes.id
+         GROUP BY jt_allergenes.id_ingred) AS allerg
+      ON allerg.id_ingred = ingredients.id
+      LEFT JOIN
+        (SELECT jt_compatibility.id_ingred1, GROUP_CONCAT(ingredients.name) AS name
+         FROM jt_compatibility
+         INNER JOIN ingredients
+         ON jt_compatibility.id_ingred2 = ingredients.id
+         GROUP BY jt_compatibility.id_ingred1) AS comp
+      ON comp.id_ingred1 = ingredients.id
+      WHERE ingredients.type = ? ;` 
+    , typeToLoad, (err, results) => {
     err ? res.status(500).send(err) : res.status(200).send(results);
   })
 });
