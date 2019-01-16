@@ -22,7 +22,7 @@ class DataBase extends Component {
     switch (display) {
       case ('Cookie'): elementToDisplay = cookie; break;
       case ('Toppings'): elementToDisplay = topping; break;
-      case ('Remplissage'): elementToDisplay = filling; break;
+      case ('Garniture'): elementToDisplay = filling; break;
       case ('Glaçage'): elementToDisplay = icing; break;
       case ('Parfum macaron'): elementToDisplay = macaronFlavor; break;
       case ('Couleur macaron'): elementToDisplay = macaronShell; break;

@@ -11,7 +11,7 @@ import '../../../Assets/Styles/HorizontalNavBar.css';
 class HorizontalNavBar extends Component {
   constructor(props) {
     super(props);
-    this.ingredients = ['Cake', 'Cookie', 'Toppings', 'Remplissage', 'Glaçage', 'Macarons', 'Cheesecake', 'Allergènes'];
+    this.ingredients = ['Cake', 'Cookie', 'Toppings', 'Garniture', 'Glaçage', 'Macarons', 'Cheesecake', 'Allergènes'];
     this.state = {
       dropdownOpen: false,
     };

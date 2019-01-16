@@ -61,7 +61,7 @@ export default () => {
       portion: '100g',
     },
     {
-      id: 4,
+      id: 5,
       name: 'Fraise',
       type: 'Toppings',
       size: 'M',

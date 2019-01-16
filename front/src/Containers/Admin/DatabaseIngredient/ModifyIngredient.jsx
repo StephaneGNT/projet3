@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Label, Input, Container, Row, Col, Button } from 'reactstrap';
+import {
+  Label, Input, Container, Row, Col, Button,
+} from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { toggleFormModify } from '../../../Actions/databaseActions/toggleFormNew';
@@ -11,75 +13,68 @@ class ModifyIngredient extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: '',
       name: '',
       type: '',
       size: '',
-      price: 0,
-      dispo: false,
+      price: '',
+      dispo: true,
       info: '',
       img: '',
       allerg: '',
-      compatible: [],
+      compatible: '',
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.urlParams = 'cake_bases';
+    const { displayIndexForm, ingredients } = this.props;
+    // this.betaType = ingredients[displayIndexForm -1];
+  }
+
+  componentDidMount() {
+    console.log('didmount:' + this.state.name);
+  }
+
+  componentDidUpdate() {
+    console.log('didupdate:' + this.state.name)
   }
 
   updateState = (e) => {
     switch (e.target.placeholder) {
-      case 'base':
+      case 'Base':
         this.setState({ type: 'Base' });
         this.urlParams = 'cake_bases';
         break;
-      case 'fourrage':
-        this.setState({ type: 'fourrage' });
+      case 'Garniture':
+        this.setState({ type: 'Garniture' });
         this.urlParams = 'fillings';
         break;
-      case 'glaçage':
-        this.setState({ type: 'glaçage' });
+      case 'Glaçage':
+        this.setState({ type: 'Glaçage' });
         this.urlParams = 'icings';
         break;
-      case 'decoration':
-        this.setState({ type: 'decoration' });
+      case 'Toppings':
+        this.setState({ type: 'Toppings' });
         this.urlParams = 'topping';
         break;
       default:
-        this.setState({ [e.target.name]: e.target.placeholder });
+        this.setState({ [e.target.name]: e.target.value });
     }
-  }
+  };
 
   onSubmit = (e) => {
     e.preventDefault();
-    const {
-      // eslint-disable-next-line camelcase
-      type, name, size_diameter, price, availability, info, image_id, allerg, compatible, dispo,
-    } = this.state;
-
-    const newIngredient = {
-      type,
-      name,
-      size_diameter,
-      price,
-      availability,
-      info,
-      image_id,
-      allerg,
-      compatible,
-      dispo,
-    };
-
-    // const url = `http://localhost:5000/ingredients/${this.urlParams}/new`;
-
-    axios.post(`http://localhost:5000/ingredients/${this.urlParams}/new`, newIngredient)
+    const modifiedIngredient = this.state;
+    axios.put(`/ingredients/${this.urlParams}/mo`)
       .then(res => console.log(res.data))
       .catch(err => console.log(err.response.data));
   };
 
   createModifyForm = () => {
     const {
-      toggleForm, displayIndexForm, displaybeta, cake, cookie, topping, filling, icing, macaronFlavor, macaronShell, chessecakeFlavor,
+      toggleForm, displayIndexForm, displaybeta, cake, cookie, topping, filling,
+      icing, macaronFlavor, macaronShell, chessecakeFlavor,
     } = this.props;
-    let betaType = [];
+    let betaType;
     switch (displaybeta) {
       case ('Base cookie'): betaType = cookie[displayIndexForm - 1]; break;
       case ('Toppings'): betaType = topping[displayIndexForm - 1]; break;
@@ -89,7 +84,7 @@ class ModifyIngredient extends Component {
       case ('Coquille'): betaType = macaronShell[displayIndexForm - 1]; break;
       case ('Parfum'): betaType = chessecakeFlavor[displayIndexForm - 1]; break;
       default: betaType = cake[displayIndexForm - 1];
-    }
+    } // this.state.defaultIngredient = betaType / for submitting default state, (and updated state)
     return (
       <div className="bodyIng">
         <form onSubmit={this.onSubmit}>
@@ -111,47 +106,47 @@ class ModifyIngredient extends Component {
                   Type d’ingrédient
                   <Input type="select" name="type" className="input-admin-type" onChange={this.updateState}>
                     <option />
-                    <option onClick={() => this.updateState('base')}>Base</option>
-                    <option onClick={() => this.updateState('fourrage')}>Fourrage</option>
-                    <option onClick={() => this.updateState('glaçage')}>Glaçage</option>
-                    <option onClick={() => this.updateState('decoration')}>Décoration</option>
+                    <option onClick={() => this.updateState('Base')}>Base</option>
+                    <option onClick={() => this.updateState('Garniture')}>Garniture</option>
+                    <option onClick={() => this.updateState('Glaçage')}>Glaçage</option>
+                    <option onClick={() => this.updateState('Toppings')}>Toppings</option>
                   </Input>
                 </Label>
               </Col>
               <Col sm="2">
                 <Label className="label-type">
                   Nom
-                  <Input type="text" name="name" className="input-admin-type" onChange={this.updateState} placeholder={betaType.name} />
+                  <Input type="text" name="name" className="input-admin-type" onChange={this.updateState} placeholder={betaType.name} value={this.state.name} />
                 </Label>
               </Col>
               <Col sm="1">
                 <Label className="label-type">
                   Taille
-                  <Input type="text" name="size" className="input-admin-type" onChange={this.updateState} placeholder={betaType.size} />
+                  <Input type="text" name="size" className="input-admin-type" onChange={this.updateState} placeholder={betaType.size} value={this.state.size} />
                 </Label>
               </Col>
               <Col sm="1">
                 <Label for="choix_occasion" className="label-type">
                   Prix €
-                  <Input type="text" name="price" className="input-admin-type" onChange={this.updateState} placeholder={betaType.price} />
+                  <Input type="text" name="price" className="input-admin-type" onChange={this.updateState} placeholder={betaType.price} value={this.state.price} />
                 </Label>
               </Col>
               <Col sm="3">
                 <Label check className="label-type">
                   Description
-                  <Input type="text" name="info" className="input-admin-type" onChange={this.updateState} placeholder={betaType.info} />
+                  <Input type="text" name="info" className="input-admin-type" onChange={this.updateState} placeholder={betaType.info} value={this.state.info} />
                 </Label>
               </Col>
               <Col sm="2">
                 <Label check className="label-type">
                   Allergènes
-                  <Input type="text" name="allerg" className="input-admin-type" onChange={this.updateState} placeholder={betaType.allerg} />
+                  <Input type="text" name="allerg" className="input-admin-type" onChange={this.updateState} placeholder={betaType.allerg} value={this.state.allerg} />
                 </Label>
               </Col>
               <Col sm="1">
                 <Label check className="label-type" onChange={this.updateState}>
                   Disponibilité
-                  <Input type="checkbox" name="dispo" value={betaType.dispo} />
+                  <Input type="checkbox" name="dispo" value={betaType.dispo} value={this.state.dispo} />
                   {' '}
                 </Label>
               </Col>
@@ -166,7 +161,7 @@ class ModifyIngredient extends Component {
           </Container>
         </form>
       </div>
-    )
+    );
   }
 
   render() {
