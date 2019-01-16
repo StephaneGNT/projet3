@@ -4,7 +4,7 @@ import CakeInfo from './CakeInfo/CakeInfo';
 import Composition from './IngredientsChoice/Composition';
 // import Customization from './Customization/Customization';
 import OrderDetail from './OrderConfirmation/OrderDetail';
-import UserInfo from './UserInfo';
+import UserInfo from './FinalOrder/UserInfo';
 import CustomizationStructure from './Customization/CustomizationStructure';
 
 class PimpMyCake extends Component {

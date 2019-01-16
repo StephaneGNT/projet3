@@ -14,11 +14,13 @@ class UserInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      tel_number: '',
-      birthday: '',
+      user:{
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        birthday: '',
+      },
       comment: '',
       giftcard: '',
     };
@@ -35,8 +37,8 @@ class UserInfo extends Component {
       case 'email':
         this.setState({ email: e.target.value });
         break;
-      case 'tel_number':
-        this.setState({ tel_number: e.target.value });
+      case 'phone':
+        this.setState({ phone: e.target.value });
         break;
       case 'birthday':
         this.setState({ birthday: e.target.value });
@@ -55,11 +57,11 @@ class UserInfo extends Component {
 
   activateButton = () => {
     const {
-      email, firstName, lastName, tel_number,
+      email, firstName, lastName, phone,
     } = this.state;
     if (firstName.length > 1
         && lastName.length > 1
-        && tel_number.length >= 10
+        && phone.length >= 10
         && this.validEmail(email) === false) return false;
     return true;
   }
@@ -87,7 +89,7 @@ class UserInfo extends Component {
 
   render() {
     const {
-      firstName, lastName, birthday, tel_number, email, comment, giftcard,
+      user,
     } = this.state;
     const { order, cake, customWishes } = this.props;
     return (
@@ -142,11 +144,11 @@ class UserInfo extends Component {
           </Col>
           <Col sm="10" md="5">
             <FormGroup>
-              <Label for="tel_number">
+              <Label for="phone">
                 <span className="text-danger">* </span>
                 Téléphone
               </Label>
-              <Input type="text" name="tel_number" id="tel_number" placeholder="votre numéro de téléphone" value={tel_number} onChange={e => this.updateState(e)} />
+              <Input type="text" name="phone" id="phone" placeholder="votre numéro de téléphone" value={phone} onChange={e => this.updateState(e)} />
             </FormGroup>
             <FormGroup>
               <Label>
@@ -161,7 +163,7 @@ class UserInfo extends Component {
             type="button"
             className="btn-confirmation"
             disabled={this.activateButton()}
-            onClick={() => this.sendOrder(order, this.state, cake, customWishes)}
+            onClick={() => this.sendOrder(order, user, cake, customWishes)}
           >
             Envoyer la commande
           </button>

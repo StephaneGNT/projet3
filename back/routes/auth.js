@@ -10,15 +10,15 @@ const LocalStrategy = require('passport-local').Strategy;
 // Connexion - Passeport - OK
 passport.use(new LocalStrategy(
   {
-    usernameField: 'id',
-    passwordField: 'password'
+    usernameField: 'name',
+    passwordField: 'adminPassword'
   },
-  function (id, password, cb) {
-    connection.query('SELECT * FROM admin WHERE admin_id = ?', id, (err, result) => {
+  function (name, password, cb) {
+    connection.query('SELECT * FROM admin WHERE name = ?', name, (err, result) => {
       if (err || result.length === 0) return cb(err);
       else {
         const user = result[0];
-        const hash = result[0].admin_password;
+        const hash = result[0].adminPassword;
         // const isSame = bcrypt.compareSync(password, hash);
         const isSame = true;
         console.log("user, hash, isSame", user, hash, isSame)
@@ -45,7 +45,7 @@ auth.post('/auth/login', (req, res, next) => {
         res.status(500).send(err);
       }
       // generates a signed son web token with the admin_id and returns it in the response
-      const token = jwt.sign(user.id, secret);
+      const token = jwt.sign(user.name, secret);
       res.status(200).json({ user, token });
     });
   })(req, res);

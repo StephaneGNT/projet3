@@ -8,16 +8,31 @@ const jwtAuthentification = require('../helper/passport_strategies');
 cake.use(bodyParser.urlencoded({ extend: true }));
 cake.use(bodyParser.json());
 
+// Enregistrement d'un nouveau cake - OK
 cake.post(`/cakes/new`, (req, res) => {
-  const formData = req.body;
-  connection.query('INSERT INTO final_cakes SET ?', formData, (err, results) => {
+  connection.query('INSERT INTO final_cakes SET ?', req.body, (err, results) => {
+    console.log(err, results);
     if (err) {
-      res.status(500).send("Erreur lors de la commande");
+      res.status(500).send("Erreur lors de l'ajout du gâteau'");
     } else {
-      res.status(200).send(results);
+      res.status(200).json({ id: results.insertId });
     }
   });
 });
+
+// Remplissage de la junction_table final_cake /ingredient
+cake.post('/jtcakeingredients', (req, res) => {
+  console.log(req.body);
+  const formData = {
+    id_final_cake: req.body.cakeID,
+    id_ingred: req.body.ingredientID
+  }
+  connection.query('INSERT INTO jt_cake_ingredients SET ?', formData, (err, results) => {
+    console.log(err, results);
+    if (err) res.status(500).send("Erreur lors de la création de commande");
+    else res.status(200).send("Commande enregistrée");
+  })
+})
 
 // const passport = require('passport');
 // const JWTStrategy = require('passport-jwt').Strategy;

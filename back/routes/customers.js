@@ -8,7 +8,9 @@ customer.use(bodyParser.json());
 
 // Création d'un nouveau client - Fonctionne
 customer.post(`/customer/new`, (req, res) => {
+  console.log(req.body);
   connection.query('INSERT INTO customers SET ?', req.body, (err, results) => {
+    console.log(err, results);
     if (err) {
       res.status(500).send("Erreur lors de la création du client");
     } else {
@@ -17,7 +19,7 @@ customer.post(`/customer/new`, (req, res) => {
   });
 });
 
-// Récupération de l'id d'un client avec son mail - Fonctionne
+// Récupération de l'id d'un client avec son mail- Fonctionne
 customer.get(`/customer`, (req, res) => {
   connection.query('SELECT id FROM customers WHERE email = ?', req.body.email, (err, results) => {
     if (err) {
