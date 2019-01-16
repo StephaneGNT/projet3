@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export default (state = {
   customer: '',
   cake: '',
@@ -9,7 +11,7 @@ export default (state = {
 },
 action) => {
   switch (action.type) {
-    case 'SET_DELIVERY_DATE': return { ...state, delivery_date: action.date };
+    case 'SET_DELIVERY_DATE': return { ...state, delivery_date: moment(action.date) };
     default: return state;
   }
 };

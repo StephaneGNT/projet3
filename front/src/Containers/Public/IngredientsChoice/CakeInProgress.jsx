@@ -22,7 +22,7 @@ class CakeInProgress extends Component {
         }
       };
       return (
-        <Row className="cakeProgressLayout">
+        <Row key={item.name} className="cakeProgressLayout">
           <p>
             <img src={item.img} alt="ingredient" className={cakeLayoutType()} />
           </p>
@@ -39,7 +39,7 @@ class CakeInProgress extends Component {
 
   displayNamesIngredients = (item) => {
     return (
-      <Row>
+      <Row key={item.name}>
         <p>{item.name}</p>
       </Row>
     );

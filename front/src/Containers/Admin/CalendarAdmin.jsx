@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import Calendar from 'react-calendar/dist/entry.nostyle';
-import { Button, ButtonGroup, Row, Col, Badge } from 'reactstrap';
+import Calendar from 'react-calendar';
+import {
+  Button,
+  ButtonGroup,
+  Row,
+  Col,
+  Badge,
+} from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { fetchDatesInDB } from '../../Actions/calendar_admin_actions';
 import { getDateID, checkDateMatch } from './CheckDateMatch';
 import '../../Assets/Styles/CalendarAdmin.css';
@@ -101,8 +106,8 @@ class CalendarAdmin extends Component {
               minDate={new Date()}
             />
             <ButtonGroup>
-              <Button className={orangeDate && 'activeButton'} onClick={() => this.chooseButton('orangeDate')} color="warning">Dates oranges</Button>
-              <Button className={redDate && 'activeButton'} onClick={() => this.chooseButton('redDate')} color="danger">Dates rouges</Button>
+              <Button className={`${orangeDate && 'activeButton'} buttons`} onClick={() => this.chooseButton('orangeDate')} color="warning">Dates oranges</Button>
+              <Button className={`${redDate && 'activeButton'} buttons`} onClick={() => this.chooseButton('redDate')} color="danger">Dates rouges</Button>
             </ButtonGroup>
           </Col>
           <Col xs="0" md="2" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
