@@ -8,9 +8,9 @@ const jwtAuthentification = require('../helper/passport_strategies');
 ingred.use(bodyParser.urlencoded({ extend: true }));
 ingred.use(bodyParser.json());
 
-ingred.post(`/ingredients/:type/new`, (req, res) => {
+ingred.post(`/ingredients/new`, (req, res) => {
   const formData = req.body;
-  connection.query('INSERT INTO ? SET ?', formData, (err, results) => {
+  connection.query('INSERT INTO ingredients SET ?', formData, (err, results) => {
     if (err) {
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");
     } else {
