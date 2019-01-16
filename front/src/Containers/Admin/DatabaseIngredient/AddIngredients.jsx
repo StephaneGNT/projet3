@@ -16,7 +16,7 @@ class AddIngredients extends Component {
       type: '',
       size: '',
       price: null,
-      dispo: '',
+      dispo: true,
       description: '',
       image: '',
       isCompatible: true,
@@ -50,12 +50,15 @@ class AddIngredients extends Component {
       color,
     };
 
+    console.log("newIngredient", newIngredient);
+
     axios.post('http://localhost:5000/ingredients/new', newIngredient)
       .then(res => console.log(res.data))
       .catch(err => console.log(err.response.data));
   }
 
   render() {
+    console.log("this.state", this.state)
     return (
       <div className="bodyIng">
         <h5>{JSON.stringify(this.state, 1, 1)}</h5>
@@ -66,42 +69,42 @@ class AddIngredients extends Component {
                 <tr>
                   <td>
                     <Label>Name</Label>
-                    <Input type="text" onChange={this.handleChange} />
+                    <Input type="text" name="name" onChange={this.handleChange} />
                   </td>
                   <td>
                     <Label>Type</Label>
-                    <Input type="select" className="input-admin-type">
-                      <option> </option>
-                      <option onClick={this.handleChange}>Base</option>
-                      <option onClick={this.handleChange}>Filling</option>
-                      <option onClick={this.handleChange}>Icing</option>
-                      <option onClick={this.handleChange}>Topping</option>
-                      <option onClick={this.handleChange}>Macaron</option>
-                      <option onClick={this.handleChange}>Cookie</option>
-                      <option onClick={this.handleChange}>Brownie</option>
+                    <Input type="select" className="input-admin-type" name="type" onChange={this.handleChange}>
+                      <option />
+                      <option>Base</option>
+                      <option>Filling</option>
+                      <option>Icing</option>
+                      <option>Topping</option>
+                      <option>Macaron</option>
+                      <option>Cookie</option>
+                      <option>Brownie</option>
                     </Input>
                   </td>
                   <td>
                     <Label>Size</Label>
-                    <Input type="text" onChange={this.handleChange} />
+                    <Input type="text" name="size" onChange={this.handleChange} />
                   </td>
                   <td>
                     <Label>Price</Label>
-                    <Input type="text" onChange={this.handleChange} />
+                    <Input type="text" name="price" onChange={this.handleChange} />
                   </td>
                 </tr>
               </tbody>
 
               <td>
-                <Label check onChange={this.handleChange}>
+                <Label>
                   Dispo
-                <Input value={this.dispo} type="checkbox" />
+                  <Input style={{zIndex: "35"}} name="dispo" type="checkbox" checked onClick={() => this.setState({ dispo: !this.state.dispo })} />
                   {' '}
                 </Label>
               </td>
               <td>
                 <Label>Description</Label>
-                <Input type="text" onChange={this.handleChange} />
+                <Input type="text" name="description" />
               </td>
             </Table>
             <br />
