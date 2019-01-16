@@ -5,7 +5,6 @@ const connection = require('../helper/db.js');
 router.get('/getfonts', (req, res) => {
   connection.query('SELECT name FROM fonts', (err, results) => {
     if (err) {
-      console.log(err);
       res.status(500);
     } else {
       res.json(results);
@@ -16,13 +15,11 @@ router.get('/getfonts', (req, res) => {
 
 router.post('/addfonts', (req, res) => {
   const formData = req.body;
-  console.log(formData);
   connection.query('INSERT INTO fonts SET ?', formData, (err, results) => {
     if (err) {
-      console.log(err);
       res.status(500);
     } else {
-      res.status(200);
+      res.status(200).send('OK');
     }
     return;
   });
@@ -33,11 +30,10 @@ router.delete('/deletefonts/:fontName', (req, res) => {
   connection.query('DELETE FROM fonts WHERE name = ?', [formData], err => {
     if (err) {
       // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-      console.log(err);
-      res.status(500);
+      res.status(500).send();
     } else {
       // Si tout s'est bien passé, on envoie un statut "ok".
-      res.status(200);
+      res.status(200).send("ok");
     }
   });
 });

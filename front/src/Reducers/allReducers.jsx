@@ -14,13 +14,15 @@ import cookiesBasesReducer from './cookie_bases_reducer';
 import browniesBasesReducer from './brownie_bases_reducer';
 import chosenStoriesReducer from './chosen_story_reducer';
 import orderReducer from './order_reducer';
+import customerInfoReducer from './customer_info_reducer';
 import customizationAdminReducer from './customization_admin_reducer';
 import customizationCustomerReducer from './customization_customer_reducer';
 import databaseDisplayReducer from './database_display_reducer';
 import databaseNewIngredientDisplayReducer from './database_new_ingredient_reducer';
 import databaseDisplayModifyForm from './database_display_modifyForm';
 import { leftPics, rightPics } from './pics_reducer';
-import adminIndexReducer from './admin_reducer';
+import adminIndexReducer from './admin_index_reducer';
+import adminTokenReducer from './admin_token_reducer';
 
 const allReducers = combineReducers({
   cakeBases: cakeBasesReducer,
@@ -38,6 +40,7 @@ const allReducers = combineReducers({
   browniesBases: browniesBasesReducer,
   chosenStories: chosenStoriesReducer,
   orderCharacteristics: orderReducer,
+  customerInfo: customerInfoReducer,
   customizationAdmin: customizationAdminReducer,
   customizationCustomer: customizationCustomerReducer,
   databaseDisplay: databaseDisplayReducer,
@@ -46,6 +49,7 @@ const allReducers = combineReducers({
   leftColumnPics: leftPics,
   rightColumnPics: rightPics,
   adminIndex: adminIndexReducer,
+  adminToken: adminTokenReducer,
 });
 
 export default allReducers;

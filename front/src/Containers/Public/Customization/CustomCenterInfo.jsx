@@ -44,7 +44,7 @@ class CustomCenterInfo extends Component {
     if ((message || messageResilient) && (type === 'message' || typeResilient === 'message')) {
       if (cake.type === 'cake' || cake.type === 'cheesecake' || cake.type === '') {
         render.push(
-          <div>
+          <div key={type}>
             <p style={{ whiteSpace: 'pre' }}>{description}</p>
             <CustomMessageInput />
             <ColorPicker />
@@ -52,19 +52,19 @@ class CustomCenterInfo extends Component {
         );
       } else {
         render.push(
-          <p>Il n'est pas possible d'ajouter un message personnalisé sur votre pâtisserie (brownie, cookie ou macaron)</p>,
+          <p key={cake.type}>Il n’est pas possible d’ajouter un message personnalisé sur votre pâtisserie (brownie, cookie ou macaron)</p>,
         );
       }
     } else if (image || imageResilient || sculpture || sculptureResilient) {
       render.push(
-        <div>
+        <div key={type}>
           <p style={{ whiteSpace: 'pre' }}>{description}</p>
           <Decoration />
         </div>,
       );
     } else {
       render.push(
-        <p style={{ whiteSpace: 'pre' }}>{description}</p>,
+        <p key={type} style={{ whiteSpace: 'pre' }}>{description}</p>,
       );
     }
     return render;

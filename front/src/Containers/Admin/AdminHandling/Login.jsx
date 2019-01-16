@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 // import { Redirect } from 'react-router-dom';
 import { createAdmin, connectAdmin, updateAdmin } from './admin_DB_actions';
+import registerToken from '../../../Actions/adminsActions/registerToken';
 
 
 class Login extends Component {
@@ -20,25 +21,22 @@ class Login extends Component {
     };
   }
 
-  submitUser = () => {
-    const { action, history } = this.props;
+  submitUser = async () => {
+    const { action, history, saveToken } = this.props;
     const { user } = this.state;
-    console.log(action);
     if (action === 'Créer') {
       createAdmin(user);
-      // return <Redirect to="/admin/adminList" />;
       history.push('/admin/adminList');
     }
     if (action === 'Se connecter') {
-      connectAdmin(user);
-      // return <Redirect to="/admin/orders" />;
+      const answer = await connectAdmin(user);
+      window.alert(answer.message);
+      saveToken(answer.token);
       history.push('/admin/adminList');
     }
     if (action === 'Modifier') {
-      console.log("click on modifier")
       const { id } = this.props;
       updateAdmin(user, id);
-      // return <Redirect to="/admin/adminList" />;
       history.push('/admin/adminList');
     }
   }
@@ -99,4 +97,8 @@ const mapStateToProps = state => ({
   id: state.adminIndex,
 });
 
-export default withRouter(connect(mapStateToProps, null)(Login));
+const mapDispatchToProps = dispatch => ({
+  saveToken: token => dispatch(registerToken(token))
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

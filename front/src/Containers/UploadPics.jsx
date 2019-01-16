@@ -19,10 +19,9 @@ class UploadPics extends Component {
     const config = {
       headers: { Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMTlmYWU1Mzk3NjYwODg0ODhmZTFkOCIsImVtYWlsIjoieW91cGl0YXRhb3VpbmVAeW9wbWFpbC5jb20iLCJpYXQiOjE1NDUyMDgzNTN9.6pRCWwrnGZKC60XrpUGSdWPGlKEtVKHyoDOR1ZQN6k4' },
 
-      onUploadProgress: (progressEvent) => {
-        const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-        console.log(percentCompleted);
-      },
+      // onUploadProgress: (progressEvent) => {
+      //   const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+      // },
     };
 
     axios.post('/api/uploadfile', data, config)

@@ -25,46 +25,47 @@ class ModifyIngredient extends Component {
       compatible: '',
     };
     this.onSubmit = this.onSubmit.bind(this);
-    this.urlParams = 'cake_bases';
-    const { displayIndexForm, ingredients } = this.props;
-    // this.betaType = ingredients[displayIndexForm -1];
+    const {
+      displayIndexForm, ingredient, compatibleIngredient, allerg
+    } = this.props;
+    this.betaType = ingredient[displayIndexForm - 1];
   }
 
   componentDidMount() {
-    console.log('didmount:' + this.state.name);
+    console.log('didmount:', this.betaType);
   }
 
   componentDidUpdate() {
-    console.log('didupdate:' + this.state.name)
+    console.log('didupdate:', this.state);
   }
 
   updateState = (e) => {
     switch (e.target.placeholder) {
       case 'Base':
         this.setState({ type: 'Base' });
-        this.urlParams = 'cake_bases';
         break;
       case 'Garniture':
         this.setState({ type: 'Garniture' });
-        this.urlParams = 'fillings';
         break;
       case 'Glaçage':
         this.setState({ type: 'Glaçage' });
-        this.urlParams = 'icings';
         break;
       case 'Toppings':
         this.setState({ type: 'Toppings' });
-        this.urlParams = 'topping';
         break;
       default:
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({
+          ...this.betaType,
+          [e.target.name]: e.target.value,
+        });
     }
   };
 
+  // prevoir  fetch la DB au submit pour avoir betaType correctement MAJ
   onSubmit = (e) => {
     e.preventDefault();
     const modifiedIngredient = this.state;
-    axios.put(`/ingredients/${this.urlParams}/mo`)
+    axios.put(`http://localhost:5000/ingredients/${modifiedIngredient.id}/`, modifiedIngredient)
       .then(res => console.log(res.data))
       .catch(err => console.log(err.response.data));
   };
@@ -175,6 +176,9 @@ class ModifyIngredient extends Component {
 }
 
 ModifyIngredient.propTypes = {
+  compatibleIngredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  allerg: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  ingredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   toggleForm: PropTypes.func.isRequired,
   displaybeta: PropTypes.string.isRequired,
   displayIndexForm: PropTypes.number.isRequired,
