@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {
-  Label, Input, Container, Row, Col, Button,
+  Label, Input, Button, Form, FormGroup, Table
 } from 'reactstrap';
 // import AlertAddIngredient from './AlertAddIngredient';
 import PropTypes from 'prop-types';
@@ -15,7 +15,7 @@ class AddIngredients extends Component {
       name: '',
       type: '',
       size: '',
-      price: 1,
+      price: null,
       dispo: '',
       description: '',
       image: '',
@@ -23,37 +23,16 @@ class AddIngredients extends Component {
       flavor: '',
       color: '',
     };
-    this.onSubmit = this.onSubmit.bind(this);
-    // this.updateState = this.onChange.bind(this);
-    this.urlParams = this.state;
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  updateState = (e) => {
-    switch (e.target.value) {
-      case 'Base':
-        this.setState({ type: 'ingredient' });
-        this.urlParams = 'new';
-        break;
-      case 'Filling':
-        this.setState({ type: 'ingredient' });
-        this.urlParams = 'new';
-        break;
-      case 'Icing':
-        this.setState({ type: 'ingredient' });
-        this.urlParams = 'new';
-        break;
-      case 'Topping':
-        this.setState({ type: 'ingredient' });
-        this.urlParams = 'new';
-        break;
-      default:
-        this.setState({ [e.target.name]: e.target.value });
-    }
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
-
-  onSubmit = (e) => {
-    e.preventDefault();
+  handleSubmit = () => {
+    // e.preventDefault();
     const {
       name, type, size, price, dispo, description, image, isCompatible, flavor, color,
     } = this.state;
@@ -71,80 +50,64 @@ class AddIngredients extends Component {
       color,
     };
 
-    axios.post(`http://localhost:5000/ingredients/${this.urlParams}`, newIngredient)
+    axios.post('http://localhost:5000/ingredients/new', newIngredient)
       .then(res => console.log(res.data))
       .catch(err => console.log(err.response.data));
-  };
+  }
 
   render() {
-    console.log(this.urlParams);
     return (
       <div className="bodyIng">
-        <form onSubmit={this.onSubmit}>
-          <Container>
-            <div className="ligne-titre">
-              <Row>
-                <Col sm="5">
-                  <h3 className="mt-3">Ajout d'un nouvel ingrédient</h3>
-                </Col>
-              </Row>
-            </div>
-            <Row className="les-row">
-              <Col sm="2">
-                <Label className="label-type">
-                  Type d'ingrédient
-                  <Input type="select" name="type" className="input-admin-type" onChange={this.updateState}>
-                    <option> </option>
-                    <option onClick={() => this.updateState('bases')}>Base</option>
-                    <option onClick={() => this.updateState('fillings')}>Filling</option>
-                    <option onClick={() => this.updateState('icings')}>Icing</option>
-                    <option onClick={() => this.updateState('toppings')}>Topping</option>
-                    <option onClick={() => this.updateState('macarons')}>Macaron</option>
-                    <option onClick={() => this.updateState('cookie')}>Cookie</option>
-                    <option onClick={() => this.updateState('brownie')}>Brownie</option>
-                  </Input>
-                </Label>
-              </Col>
-              <Col sm="2">
-                <Label className="label-type">
-                  Nom
-                  <Input value={this.name} type="text" name="name" className="input-admin-type" onChange={this.updateState} />
-                </Label>
-              </Col>
-              <Col sm="1">
-                <Label className="label-type">
-                  Taille
-                  <Input value={this.size} type="text" name="size" className="input-admin-type" onChange={this.updateState} />
-                </Label>
-              </Col>
-              <Col sm="1">
-                <Label for="choix_occasion" className="label-type">
-                  Prix €
-                  <Input value={this.price} type="text" name="price" className="input-admin-type" onChange={this.updateState} />
-                </Label>
-              </Col>
-              <Col sm="3">
-                <Label check className="label-type">
-                  Description
-                  <Input value={this.description} type="text" name="info" className="input-admin-type" onChange={this.updateState} />
-                </Label>
-              </Col>
-              <Col sm="1">
-                <Label check className="label-type" onChange={this.updateState}>
-                  Disponibilité
-                  <Input value={this.dispo} type="checkbox" name="availabilty" />
+        <h5>{JSON.stringify(this.state, 1, 1)}</h5>
+        <Form>
+          <FormGroup>
+            <Table responsive>
+              <tbody>
+                <tr>
+                  <td>
+                    <Label>Name</Label>
+                    <Input type="text" onChange={this.handleChange} />
+                  </td>
+                  <td>
+                    <Label>Type</Label>
+                    <Input type="select" className="input-admin-type">
+                      <option> </option>
+                      <option onClick={this.handleChange}>Base</option>
+                      <option onClick={this.handleChange}>Filling</option>
+                      <option onClick={this.handleChange}>Icing</option>
+                      <option onClick={this.handleChange}>Topping</option>
+                      <option onClick={this.handleChange}>Macaron</option>
+                      <option onClick={this.handleChange}>Cookie</option>
+                      <option onClick={this.handleChange}>Brownie</option>
+                    </Input>
+                  </td>
+                  <td>
+                    <Label>Size</Label>
+                    <Input type="text" onChange={this.handleChange} />
+                  </td>
+                  <td>
+                    <Label>Price</Label>
+                    <Input type="text" onChange={this.handleChange} />
+                  </td>
+                </tr>
+              </tbody>
+
+              <td>
+                <Label check onChange={this.handleChange}>
+                  Dispo
+                <Input value={this.dispo} type="checkbox" />
                   {' '}
                 </Label>
-              </Col>
-              <Col sm="4">
-                <Input type="file" name="file" id="exampleFile" onChange={this.updateState} />
-              </Col>
-            </Row>
-            <Row>
-              <Button type="submit" className="btn-ajout">Ajouter mon ingrédient</Button>
-            </Row>
-          </Container>
-        </form>
+              </td>
+              <td>
+                <Label>Description</Label>
+                <Input type="text" onChange={this.handleChange} />
+              </td>
+            </Table>
+            <br />
+            <Button color="danger" onClick={() => this.handleSubmit()}>Ajouter</Button>
+          </FormGroup>
+        </Form>
       </div>
     );
   }

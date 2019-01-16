@@ -5,11 +5,13 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const jwtAuthentification = require('../helper/passport_strategies');
 
-ingred.use(bodyParser.urlencoded({ extended: true }));
 ingred.use(bodyParser.json());
+ingred.use(bodyParser.urlencoded({ extended: true }));
 
 ingred.post('/ingredients/new', (req, res) => {
+  console.log(req.body)
   connection.query('INSERT INTO ingredients SET ?', req.body, (err, results) => {
+    console.log(err, results);
     if (err) {
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");
     } else {
