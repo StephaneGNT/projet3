@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Route, Switch, Redirect,
 } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Container, Col, Row } from 'reactstrap';
 import VerticalNavBar from './Navigation/VerticalNavBar';
 import Login from './AdminHandling/Login';
@@ -13,7 +14,7 @@ import HomePageAdmin from './HomePageAdmin';
 import CustomizationAdmin from './CustomizationAdmin';
 import AdminList from './AdminHandling/AdminList';
 
-export default class Admin extends Component {
+class Admin extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -21,11 +22,13 @@ export default class Admin extends Component {
   }
 
   render() {
+    const { jwtToken } = this.props;
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route
         {...rest}
         render={() => (
-          this.loggedIn
+          jwtToken !== ''
+          // this.loggedIn
             ? <Component />
             : <Redirect to="/admin" />
         )}
@@ -79,3 +82,9 @@ export default class Admin extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  jwtToken: state.adminToken,
+});
+
+export default connect(mapStateToProps, null)(Admin);

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import axios from 'axios';
+import ButtonModify from '../../../DatabaseIngredient/ButtonModify';
+
 // import openSnackBar from '../../../../../Actions/snackBarActions';
 
 const createTableDataFields = (element) => {
@@ -10,7 +12,7 @@ const createTableDataFields = (element) => {
   ));
 };
 
-const deleteIngredient = (type, id) => {
+const deleteIngredient = (type, id, token) => {
   if (window.confirm('Voulez-vous supprimer cet ingrédient ?')) {
     let tableName = '';
     switch (type) {
@@ -25,27 +27,35 @@ const deleteIngredient = (type, id) => {
       case ('Macaron'): tableName = 'macaron_flavors'; break;
       default: tableName = ''; break;
     }
-    axios.delete(`/ingredients/${tableName}/${id}`)
+    const url = `/ingredients/${tableName}/${id}`;
+    const headers = { Authorization: `Bearer ${token}` };
+
+    console.log("token", token);
+
+    axios.delete(url, { headers })
       .then(res => window.alert(res.data.message));
   }
 };
 
-const TableData = ingredients => ingredients.map(ingredient => (
+const TableData = (ingredients, token) => ingredients.map(ingredient => (
   <tr>
     {createTableDataFields(ingredient)}
     <td>
-      <Button title="Modifier ingrédient">
-        - #
-        {ingredient.id}
-      </Button>
+      <ButtonModify ingredient={ingredient} id={ingredient.id}/>
+      - #
+      {ingredient.name}
       <Button
         title="Supprimer ingrédient"
-        onClick={() => deleteIngredient(ingredient.type, ingredient.id)}
+        onClick={() => deleteIngredient(ingredient.type, ingredient.id, token)}
       >
         ✘
       </Button>
     </td>
-  </tr>
+  </tr >
 ));
+;
 
-export default TableData;
+
+export default (TableData);
+
+

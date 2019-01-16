@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Login from './Login';
 import { getAllAdmins, deleteAdminFromDB } from './admin_DB_actions';
-import changeIndex from '../../../Actions/changeAdminIndex';
+import changeIndex from '../../../Actions/adminsActions/changeAdminIndex';
 
 class AdminList extends Component {
   constructor(props) {

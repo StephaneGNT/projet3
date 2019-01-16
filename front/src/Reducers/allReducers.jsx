@@ -6,6 +6,7 @@ import cheesecakeFlavorsReducer from './cheesecake_flavors_reducer';
 import macaronsFlavorsReducer from './macarons_flavors_reducer';
 import cakeToppingsReducer from './cake_toppings_reducer';
 import cakeCharacsReducer from './cake_characteristics_reducer';
+import calendarAdminReducer from './calendar_admin_reducer';
 import pageIndexReducer from './page_index_reducer';
 import defaultImageReducer from './default_images_reducer';
 import macaronsShellsReducer from './macaron_shells_reducer';
@@ -17,8 +18,10 @@ import customizationAdminReducer from './customization_admin_reducer';
 import customizationCustomerReducer from './customization_customer_reducer';
 import databaseDisplayReducer from './database_display_reducer';
 import databaseNewIngredientDisplayReducer from './database_new_ingredient_reducer';
+import databaseDisplayModifyForm from './database_display_modifyForm';
 import { leftPics, rightPics } from './pics_reducer';
-import adminIndexReducer from './admin_reducer';
+import adminIndexReducer from './admin_index_reducer';
+import adminTokenReducer from './admin_token_reducer';
 
 const allReducers = combineReducers({
   cakeBases: cakeBasesReducer,
@@ -28,6 +31,7 @@ const allReducers = combineReducers({
   macaronsFlavors: macaronsFlavorsReducer,
   cakeToppings: cakeToppingsReducer,
   cakeCharacteristics: cakeCharacsReducer,
+  calendarAdmin: calendarAdminReducer,
   pageIndex: pageIndexReducer,
   defaultImage: defaultImageReducer,
   macaronsShells: macaronsShellsReducer,
@@ -39,9 +43,11 @@ const allReducers = combineReducers({
   customizationCustomer: customizationCustomerReducer,
   databaseDisplay: databaseDisplayReducer,
   databaseNewIngredientDisplay: databaseNewIngredientDisplayReducer,
+  databaseModifyFormIndex: databaseDisplayModifyForm,
   leftColumnPics: leftPics,
   rightColumnPics: rightPics,
   adminIndex: adminIndexReducer,
+  adminToken: adminTokenReducer,
 });
 
 export default allReducers;

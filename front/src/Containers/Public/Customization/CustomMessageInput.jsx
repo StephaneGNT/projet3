@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Input } from 'reactstrap';
-import { updateCustomMessage, fetchAdminFonts } from '../../../Actions/customization_actions';
+import { updateCustomMessage } from '../../../Actions/customization_actions';
 import '../../../Assets/Styles/Customization.css';
 
 const CustomMessageInput = (props) => {

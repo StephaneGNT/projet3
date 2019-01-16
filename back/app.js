@@ -7,6 +7,8 @@ const ingred = require('./routes/ingredients');
 const auth = require('./routes/auth');
 const admin = require('./routes/admin');
 const customization = require('./routes/customization');
+const calendar = require('./routes/calendar');
+const uploadFile = require('./routes/uploadFile');
 
 // Configuration de l'application
 // app.use(morgan('dev'));
@@ -28,4 +30,8 @@ let server = app.listen(5000, function () {
 app.use(ingred);
 app.use(auth);
 app.use(admin);
+
+
 app.use('/customization', customization);
+app.use('/calendar', calendar);
+app.use(uploadFile);
