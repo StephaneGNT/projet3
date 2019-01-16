@@ -22,13 +22,13 @@ class IngredientsButtons extends Component {
   };
 
   render() {
-    const { cake } = this.props;
-    const disabled = !cake.ingredients.length > 0;
+    // const { cake } = this.props;
+    // const disabled = !cake.ingredients.length > 0;
     return (
       <Row className="back-btn">
-        <button type="button" disabled={disabled} style={{ zIndex: '10' }} className="order-btn" onClick={() => this.redirect(cake)}>
+        {/* <button type="button" disabled={disabled} style={{ zIndex: '10' }} className="order-btn" onClick={() => this.redirect(cake)}>
           Commander
-        </button>
+        </button> */}
         <NavArrowsLayout />
       </Row>
     );

@@ -3,8 +3,8 @@ import { Table } from 'reactstrap';
 import TableHeader from './Functions/TableHeader';
 import TableData from './Functions/TableData';
 
-const TableDB = type => (
-  <Table>
+const TableDB = (type, token) => (
+  <Table hover>
     <thead>
       <tr>
         {TableHeader(type[0])}
@@ -12,7 +12,7 @@ const TableDB = type => (
       </tr>
     </thead>
     <tbody>
-      {TableData(type)}
+      {TableData(type, token)}
     </tbody>
   </Table>
 );

@@ -1,9 +1,13 @@
-const toggleFormNew = (visible) => {
-  console.log(visible);
+export const toggleFormNew = (visible) => {
   return {
     type: 'TOGGLE_FORM',
     visible,
   };
 };
 
-export default toggleFormNew;
+export const toggleFormModify = (show) => {
+  return {
+    type: 'TOGGLE_MODIFY_FORM',
+    show,
+  };
+};

@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
-  Button,
-  FormGroup,
-  FormText,
-  Label,
-  Input,
+  FormGroup, FormText, Label,
 } from 'reactstrap';
 import { submitDecorationChoice } from '../../../Actions/customization_actions';
+import UploadPics from '../../UploadPics';
 
 class Decoration extends Component {
   constructor(props) {
@@ -30,10 +27,10 @@ class Decoration extends Component {
 
   render() {
     const { decoration } = this.state;
-    const {
-      D2,
-      D3,
-    } = this.props;
+    // const {
+    //   D2,
+    //   D3,
+    // } = this.props;
 
     return (
       <FormGroup className="uploadImage justify-content">
@@ -44,7 +41,8 @@ class Decoration extends Component {
             </b>
           </u>
         </Label>
-        <Input
+        <UploadPics />
+        {/* <Input
           type="file"
           name="file"
           id={decoration.choice === '2 Dimensions' ? 'file2D' : 'file3D'}
@@ -60,7 +58,7 @@ class Decoration extends Component {
               size="xsmall"
             >
               Supprimer photo
-            </Button>)}
+            </Button>)} */}
         <FormText color="muted">
           {Object.keys(decoration.image).length === 0
             && (decoration.image).constructor === Object

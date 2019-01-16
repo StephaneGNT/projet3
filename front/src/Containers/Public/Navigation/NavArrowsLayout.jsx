@@ -5,6 +5,7 @@ import NavArrowNext from './NavArrowNext';
 import NavArrowPrev from './NavArrowPrev';
 
 class NavArrowsLayout extends Component {
+
   changeLayoutviaPageindex = (index, type, cake, dateOfDelivery) => {
     const minMacarons = 6;
     let disabled = true;
@@ -16,14 +17,14 @@ class NavArrowsLayout extends Component {
         </div>
       );
     }
-    if (!dateOfDelivery && ((index === 6) || (index === 4 && ['cookie', 'macaron', 'brownie'].includes(cake.type)))) {
-      return (
-        <div className="btn-group">
-          <NavArrowPrev />
-          <NavArrowNext disabled />
-        </div>
-      );
-    }
+    // if (!dateOfDelivery && ((index === 6) || (index === 4 && !['cake', 'cheesecake'].includes(cake.type)))) {
+    //   return (
+    //     <div className="btn-group">
+    //       <NavArrowPrev />
+    //       <NavArrowNext />
+    //     </div>
+    //   );
+    // }
     if ((index === 7) || (index === 5 && type === 'cookie') || (index === 5 && type === 'macaron') || (index === 5 && type === 'brownie')) {
       return (
         <div className="btn-group">
@@ -57,7 +58,7 @@ NavArrowsLayout.propTypes = {
   pageIndex: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
   cake: PropTypes.shape({}).isRequired,
-  deliveryDate: PropTypes.shape({}).isRequired,
+  deliveryDate: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -15,7 +15,7 @@ class CarrotCakeSupplement extends Component {
     if (cake.type === 'cake' && cake.ingredients.length > 0) {
       if (cake.ingredients[0].name === 'Base carotte') {
         render.push(
-          <p>Voulez-vous ajouter un ingrédient à la base de votre gâteau ?</p>,
+          <p key={cake.ingredients[0].name}>Voulez-vous ajouter un ingrédient à la base de votre gâteau ?</p>,
           <Input type="select" name="select" onChange={e => this.modifyCakeBase(cake.ingredients[0].name, e.target.value)}>
             <option />
             <option>Noisettes</option>

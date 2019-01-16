@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Alert } from 'reactstrap';
 
-class AlertAddIngredient extends React.Component {
+class AlertAddIngredient extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      visible: true
+      visible: true,
     };
 
     this.onDismiss = this.onDismiss.bind(this);
@@ -20,6 +20,7 @@ class AlertAddIngredient extends React.Component {
     return (
       <Alert color="info" isOpen={this.state.visible} toggle={this.onDismiss}>
         Votre ingrédient a bien été ajouté !
+        {/* {this.props.message} */}
       </Alert>
     );
   }

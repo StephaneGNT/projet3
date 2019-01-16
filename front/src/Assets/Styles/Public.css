@@ -1,25 +1,13 @@
 @import './CommonStyle.css';
 
-.body-zone {
-  display: block;
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(233, 230, 230);
-  overflow-y: hidden;
-}
-
 .header-zone {
-  position: fixed;
-  background-color: var(--mainColor);;
+  background-color: #884e65;
   width: 100vw;
   height: 10vh;
   font-family: var(--mainPolice);
   font-size:3em;
   color:white;
   text-align:center;
-  text-shadow:3px 3px 0px rgb(114, 6, 55);
 }
 
 .header-zone button{
@@ -39,6 +27,7 @@
   width: 80vw;
   height: 86vh;
   margin: 12vh auto;
+  margin-top: 0;
 }
 
 .row{

@@ -1,0 +1,99 @@
+.orangeDate {
+  background-color: #ffc107;
+  color: white;
+}
+
+.orangeDate:hover {
+  background-color: rgba(255, 187, 0, 0.466) !important;
+}
+
+.orangeDate:focus {
+  background: #ffc107 !important;
+}
+
+.orangeDate:focus:hover {
+  background: rgba(255, 217, 0, 0.466) !important;
+}
+
+.redDate {
+  background-color: #c82333;
+  color: white;
+}
+
+.redDate:hover {
+  background-color: rgb(148, 7, 7) !important;
+}
+
+.redDate:focus {
+  background: #c82333 !important;
+}
+
+.redDate:focus:hover {
+  background: rgb(148, 7, 7) !important;
+}
+
+.activeButton {
+  box-shadow: 0 0 5pt 4pt #5a6268 !important;
+}
+
+.react-calendar__tile--active:enabled:hover {
+  background: none;
+  color: #212529;
+}
+
+.react-calendar__tile--active:enabled:focus {
+  background: none;
+  color: #212529;
+}
+
+.buttons {
+ max-width: 20vh !important;
+}
+
+/* .react-calendar__tile--active {
+  background: none;
+  color: #212529;
+} */
+
+/* .react-calendar__tile--active:enabled:hover,  */
+/* .react-calendar__tile--active:enabled:focus */
+
+.calendar-row {
+  margin-bottom: 5vh !important;
+}
+/* 
+.info-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+} */
+
+.arrow {
+  font-size: 40vmin;
+  text-align: center;
+  margin-top: -20%;
+}
+
+@media only screen and (max-width: 768px) {
+ .arrow {
+    font-size: 25vmin;
+    margin-top: 0;
+    /* transform: rotate(90deg) */
+    }
+  }
+  
+  @media only screen 
+  and (max-width: 667px) {
+    .arrow {
+
+       margin-top: 0;
+      transform: rotate(90deg)
+       }
+     }
+/* 
+  @media only screen  
+and (max-width : 667px) { 
+  .arrow {
+    display: none;
+  }
+} */

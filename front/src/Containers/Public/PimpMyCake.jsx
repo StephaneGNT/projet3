@@ -6,6 +6,7 @@ import Composition from './IngredientsChoice/Composition';
 import OrderDetail from './OrderConfirmation/OrderDetail';
 import UserInfo from './UserInfo';
 import CustomizationStructure from './Customization/CustomizationStructure';
+import ConfirmationPage from './OrderConfirmation/ConfirmationPage';
 
 class PimpMyCake extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class PimpMyCake extends Component {
           <Route path={`${process.env.PUBLIC_URL}/mycake/customCake`} component={CustomizationStructure} />
           <Route path={`${process.env.PUBLIC_URL}/mycake/orderDetail`} component={OrderDetail} />
           <Route path={`${process.env.PUBLIC_URL}/mycake/userInfo`} component={UserInfo} />
+          <Route path={`${process.env.PUBLIC_URL}/mycake/orderConfirmation`} component={ConfirmationPage} />
         </Switch>
       </BrowserRouter>
       // </div>

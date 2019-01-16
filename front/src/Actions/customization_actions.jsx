@@ -34,6 +34,11 @@ export const getFonts = fonts => ({
   fonts,
 });
 
+export const populateFonts = fonts => ({
+  type: 'POPULATE_FONTS',
+  fonts,
+});
+
 export const addFont = font => ({
   type: 'ADD_FONT',
   font,
@@ -55,6 +60,16 @@ export const fetchFonts = () => {
       .then((res) => {
         const fonts = res.data.items;
         dispatch(getFonts(fonts));
+      });
+  };
+};
+
+export const fetchAdminFonts = () => {
+  return (dispatch) => {
+    return axios.get('/customization/getfonts')
+      .then((res) => {
+        const fonts = res.data;
+        dispatch(populateFonts(fonts));
       });
   };
 };

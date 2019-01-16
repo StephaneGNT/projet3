@@ -18,13 +18,12 @@ class Confirmation extends Component {
   }
 
   renderConfirmation = () => {
-    let description = '';
     const {
-      type, size, occasion, quantity, ingredients, customMessage, decoration, story, deliveryDate,
+      type, size, occasion, quantity, ingredients, customMessage, decoration, deliveryDate,
     } = this.props;
 
     // if (occasion) description += `Occasion : ${occasion}`;
-    
+
     // description += `Commande : ${quantity} ${type} `;
     // if (type === 'cake') description += `de ${story} étage(s) pour ${size} personnes`;
     // else description += `de taille ${size}`;
@@ -49,12 +48,12 @@ class Confirmation extends Component {
 
     if (type === 'brownie' || type === 'cookie') {
       return (
-        <p>
+        <div>
           Occasion:
           {' '}
           {occasion}
           <br />
-      Votre commande:
+          Votre commande:
           {' '}
           {quantity}
           {' '}
@@ -74,33 +73,33 @@ class Confirmation extends Component {
           {' '}
           <br />
           <br />
-      Composition:
+          Composition:
           {' '}
-          {(ingredients.map(item => <div>{item.name}</div>))}
+          {(ingredients.map(item => <p>{item.name}</p>))}
           {' '}
           <br />
           Date de retrait :
           {' '}
           {' '}
           {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
-        </p>
+        </div>
       );
     }
     if (type === 'cheesecake' || type === 'cake') {
       return (
-        <p>
-        Occasion :
+        <div>
+          Occasion :
           {' '}
           {occasion}
           {' '}
           <br />
-        Votre commande :
+          Votre commande :
           {' '}
           {type}
           {' '}
           <br />
           <br />
-        Personnalisation:
+          Personnalisation:
           <br />
           {decoration}
           {' '}
@@ -109,31 +108,31 @@ class Confirmation extends Component {
           {' '}
           <br />
           <br />
-        Composition:
-          {(ingredients.map(item => <div>{item.name}</div>))}
+          Composition:
+          {(ingredients.map(item => <p>{item.name}</p>))}
           <br />
           <br />
           Date de retrait :
           {' '}
           {' '}
           {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
-        </p>
+        </div>
       );
     }
     if (type === 'macaron') {
       return (
-        <p>
-         Occasion:
+        <div>
+          Occasion:
           {' '}
           {occasion}
           <br />
-      Votre commande:
+          Votre commande:
           {' '}
           {quantity}
           {' '}
           {type}
           {' '}
-        de taille
+          de taille
           {' '}
           {size}
           {' '}
@@ -151,16 +150,16 @@ class Confirmation extends Component {
           Parfum de vos macarons:
           <br />
           {' '}
-          {(ingredients.map(item => item.name.includes('Parfum') && <div>{item.name}</div>))}
+          {(ingredients.map(item => item.name.includes('Parfum') && <p>{item.name}</p>))}
           <br />
           Couleur de vos macarons:
-          {(ingredients.map(item => !item.name.includes('Parfum') && <div>{item.name}</div>))}
+          {(ingredients.map(item => !item.name.includes('Parfum') && <p>{item.name}</p>))}
           Date de retrait :
           {' '}
           {' '}
           {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
           <br />
-        </p>
+        </div>
       );
     }
   }
@@ -193,14 +192,14 @@ class Confirmation extends Component {
 }
 Confirmation.propTypes = {
   type: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   occasion: PropTypes.string.isRequired,
   ingredients: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   quantity: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   customMessage: PropTypes.string.isRequired,
   decoration: PropTypes.string.isRequired,
-  story: PropTypes.number.isRequired,
+  // story: PropTypes.number.isRequired,
   deliveryDate: PropTypes.string.isRequired,
 
 };
