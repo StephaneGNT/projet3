@@ -5,12 +5,11 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const jwtAuthentification = require('../helper/passport_strategies');
 
-ingred.use(bodyParser.urlencoded({ extend: true }));
+ingred.use(bodyParser.urlencoded({ extended: true }));
 ingred.use(bodyParser.json());
 
-ingred.post(`/ingredients/:type/new`, (req, res) => {
-  const formData = req.body;
-  connection.query('INSERT INTO ? SET ?', formData, (err, results) => {
+ingred.post('/ingredients/new', (req, res) => {
+  connection.query('INSERT INTO ingredients SET ?', req.body, (err, results) => {
     if (err) {
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");
     } else {
@@ -46,7 +45,7 @@ ingred.delete(
   (req, res) => {
     console.log(req.headers)
     const formData = [req.params.type, req.params.id];
-    connection.query('DELETE FROM ?? WHERE id = ?', formData, (err, results) => {
+    connection.query('DELETE FROM ingredients WHERE id = ?', formData, (err, results) => {
       if (err) res.status(500).json({ message:  "Erreur lors de la suppression" });
       else res.status(200).json({ message:  "Ingrédient supprimé" });
       }
