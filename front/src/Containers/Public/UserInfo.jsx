@@ -63,7 +63,7 @@ class UserInfo extends Component {
 
   validBirthdate = (DOBstate) => {
     if (DOBstate === '') return false;
-    if (!this.birthdateRegex.test(DOBstate) && DOBstate.length > 9);
+    if (!this.birthdateRegex.test(DOBstate) && DOBstate.length > 9) return true;
   }
 
   enterForm = (e) => {
