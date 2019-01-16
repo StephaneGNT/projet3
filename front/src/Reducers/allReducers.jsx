@@ -14,6 +14,7 @@ import cookiesBasesReducer from './cookie_bases_reducer';
 import browniesBasesReducer from './brownie_bases_reducer';
 import chosenStoriesReducer from './chosen_story_reducer';
 import orderReducer from './order_reducer';
+import customerInfoReducer from './customer_info_reducer';
 import customizationAdminReducer from './customization_admin_reducer';
 import customizationCustomerReducer from './customization_customer_reducer';
 import databaseDisplayReducer from './database_display_reducer';
@@ -39,6 +40,7 @@ const allReducers = combineReducers({
   browniesBases: browniesBasesReducer,
   chosenStories: chosenStoriesReducer,
   orderCharacteristics: orderReducer,
+  customerInfo: customerInfoReducer,
   customizationAdmin: customizationAdminReducer,
   customizationCustomer: customizationCustomerReducer,
   databaseDisplay: databaseDisplayReducer,
