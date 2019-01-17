@@ -4,12 +4,14 @@ const bodyParser = require('body-parser');
 // const morgan = require('morgan');
 const app = express();
 const ingred = require('./routes/ingredients');
+const mail = require('./routes/SendMail');
 
 // Configuration de l'application
 // app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
+app.use('/api/send',mail)
 
 
 app.use(function (req, res, next) {
