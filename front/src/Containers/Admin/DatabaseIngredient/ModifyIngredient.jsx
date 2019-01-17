@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  Label, Input, Container, Row, Col, Button,
+  Label, Input, Form, FormGroup, Row, Col, Button,
 } from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -22,17 +22,20 @@ class ModifyIngredient extends Component {
       info: '',
       img: '',
       allerg: '',
-      compatible: '',
+      compatible: true,
+      flavor: '',
+      color: '',
     };
     this.onSubmit = this.onSubmit.bind(this);
     const {
-      displayIndexForm, ingredient, compatibleIngredient, allerg
+      displayIndexForm, ingredient, // arrays ingredients.compatible et ingredients.allergenes inherited form phil 
     } = this.props;
     this.betaType = ingredient[displayIndexForm - 1];
   }
 
   componentDidMount() {
     console.log('didmount:', this.betaType);
+    // axios.get table de jt_compatible => return fullIngredientCompat = [res]
   }
 
   componentDidUpdate() {
@@ -61,7 +64,7 @@ class ModifyIngredient extends Component {
     }
   };
 
-  // prevoir  fetch la DB au submit pour avoir betaType correctement MAJ
+  // prevoir fetch la DB au submit pour avoir betaType correctement MAJ
   onSubmit = (e) => {
     e.preventDefault();
     const modifiedIngredient = this.state;
@@ -88,79 +91,99 @@ class ModifyIngredient extends Component {
     } // this.state.defaultIngredient = betaType / for submitting default state, (and updated state)
     return (
       <div className="bodyIng">
-        <form onSubmit={this.onSubmit}>
-          <Container>
-            <div className="ligne-titre">
-              <Row>
-                <Col sm="5">
-                  <h3 className="mt-3">
-                    Modifier l’ingrédient
-                    {' '}
-                    {betaType.name}
-                  </h3>
-                </Col>
-              </Row>
-            </div>
-            <Row className="les-row">
-              <Col sm="2">
-                <Label className="label-type">
-                  Type d’ingrédient
-                  <Input type="select" name="type" className="input-admin-type" onChange={this.updateState}>
-                    <option />
-                    <option onClick={() => this.updateState('Base')}>Base</option>
-                    <option onClick={() => this.updateState('Garniture')}>Garniture</option>
-                    <option onClick={() => this.updateState('Glaçage')}>Glaçage</option>
-                    <option onClick={() => this.updateState('Toppings')}>Toppings</option>
-                  </Input>
-                </Label>
-              </Col>
-              <Col sm="2">
-                <Label className="label-type">
-                  Nom
-                  <Input type="text" name="name" className="input-admin-type" onChange={this.updateState} placeholder={betaType.name} value={this.state.name} />
-                </Label>
-              </Col>
-              <Col sm="1">
-                <Label className="label-type">
-                  Taille
-                  <Input type="text" name="size" className="input-admin-type" onChange={this.updateState} placeholder={betaType.size} value={this.state.size} />
-                </Label>
-              </Col>
-              <Col sm="1">
-                <Label for="choix_occasion" className="label-type">
-                  Prix €
-                  <Input type="text" name="price" className="input-admin-type" onChange={this.updateState} placeholder={betaType.price} value={this.state.price} />
-                </Label>
-              </Col>
-              <Col sm="3">
-                <Label check className="label-type">
-                  Description
-                  <Input type="text" name="info" className="input-admin-type" onChange={this.updateState} placeholder={betaType.info} value={this.state.info} />
-                </Label>
-              </Col>
-              <Col sm="2">
-                <Label check className="label-type">
-                  Allergènes
-                  <Input type="text" name="allerg" className="input-admin-type" onChange={this.updateState} placeholder={betaType.allerg} value={this.state.allerg} />
-                </Label>
-              </Col>
-              <Col sm="1">
-                <Label check className="label-type" onChange={this.updateState}>
-                  Disponibilité
-                  <Input type="checkbox" name="dispo" value={betaType.dispo} value={this.state.dispo} />
-                  {' '}
-                </Label>
-              </Col>
-              <Col sm="4">
-                <Input type="file" name="file" id="exampleFile" onChange={this.updateState} />
-              </Col>
-            </Row>
-            <Row>
-              <Button className="btn-ajout" onClick={() => toggleForm(false)}>Annuler</Button>
-              <Button type="submit" className="btn-ajout">Modifier mon ingrédient</Button>
-            </Row>
-          </Container>
-        </form>
+        <h3>
+          Modifier l’ingrédient
+          {' '}
+          {betaType.name}
+        </h3>
+        <Form>
+          <Row form>
+            <Col md={2}>
+              <FormGroup>
+                <Label>Name</Label>
+                <Input type="text" name="name" onChange={this.updateState} placeholder={betaType.name} value={this.state.name} />
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label>Type</Label>
+                <Input type="select" name="type" onChange={this.updateState}>
+                  <option />
+                  <option onClick={() => this.updateState('Base')}>Base</option>
+                  <option onClick={() => this.updateState('Garniture')}>Filling</option>
+                  <option onClick={() => this.updateState('Glaçage')}>Icing</option>
+                  <option onClick={() => this.updateState('Toppings')}>Topping</option>
+                  <option onClick={() => this.updateState('Macaron')}>Macaron</option>
+                  <option onClick={() => this.updateState('Cookie')}>Cookie</option>
+                  <option onClick={() => this.updateState('Brownie')}>Brownie</option>
+                </Input>
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label>Size</Label>
+                <Input type="text" name="size" onChange={this.updateState} placeholder={betaType.size} value={this.state.size} />
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label>Price</Label>
+                <Input type="text" name="price" onChange={this.updateState} placeholder={betaType.price} value={this.state.price} />
+              </FormGroup>
+            </Col>
+            <Col md={4}>
+              <FormGroup>
+                <Label>Description</Label>
+                <Input type="text" name="description" onChange={this.updateState} placeholder={betaType.info} value={this.state.info} />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row form>
+            <Col md={2}>
+              <FormGroup>
+                <Label>Flavor</Label>
+                <Input type="text" name="flavor" />
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label>Color</Label>
+                <Input type="text" name="color" />
+              </FormGroup>
+            </Col>
+            <Col md={4}>
+              <FormGroup>
+                fullIngredientCompat.map(compatible => return
+                                  <Input type="checkbox">{compatible.name}</Input>
+                )
+                <Label for="listCompat">Compatibilité</Label>
+                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
+                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
+                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
+                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
+                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
+                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
+                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
+                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label for="image">File</Label>
+                <Input type="file" name="file" id="image" />
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup check>
+                <Input name="dispo" type="checkbox" value={betaType.dispo} onClick={() => this.setState({ dispo: !this.state.dispo })} id="dispoCheck" />
+                <Label for="dispoCheck" check>Disponnibilité</Label>
+              </FormGroup>
+            </Col>
+
+          </Row>
+          <Button className="btn-ajout" onClick={() => toggleForm(false)}>Annuler</Button>
+          <Button color="primary" onClick={this.onSubmit}>Modifier</Button>
+        </Form>
       </div>
     );
   }
@@ -176,8 +199,8 @@ class ModifyIngredient extends Component {
 }
 
 ModifyIngredient.propTypes = {
-  compatibleIngredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  allerg: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  ingredientCompatible: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  ingredientAllerg: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   ingredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   toggleForm: PropTypes.func.isRequired,
   displaybeta: PropTypes.string.isRequired,
