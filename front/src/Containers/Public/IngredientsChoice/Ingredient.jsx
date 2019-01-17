@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Button, Badge } from 'reactstrap';
+import { Col, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import addIngredient from '../../../Actions/cakeActions/addIngredient';
@@ -27,14 +27,14 @@ Allergènes: ${ingredient.allerg}`;
     return description;
   };
 
-  // const filter = disabled && 'grayscale(80%)';
-  const display = disabled && 'none';
+  const filter = disabled && 'grayscale(80%)';
+  // const display = disabled && 'none';
   const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
 
   return (
-    <Col className="ingredient" style={{ textAlign: 'center', display }}>
-      {/* <Button disabled={disabled} style={{ filter }} onClick={() => addNewIngredient(ingredient)}><img src={ingredient.img} title={getFullDescripion()} alt="" /></Button> */}
-      <Button
+    <Col className="ingredient" style={{ textAlign: 'center' }}>
+      <Button disabled={disabled} style={{ filter, backgroundColor }} onClick={() => addNewIngredient(ingredient)}><img src={ingredient.img} title={getFullDescripion()} alt="" /></Button>
+      {/* <Button
         disabled={disabled}
         style={{ backgroundColor }}
         onClick={() => addNewIngredient(ingredient)}
@@ -44,7 +44,7 @@ Allergènes: ${ingredient.allerg}`;
           €
         </Badge>
         <img src={ingredient.img} title={getFullDescripion()} alt="" />
-      </Button>
+      </Button> */}
       <p>{ingredient.name}</p>
     </Col>
   );

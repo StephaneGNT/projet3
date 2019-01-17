@@ -2,83 +2,46 @@ CREATE DATABASE pimp_my_cake_admin;
 
 USE pimp_my_cake_admin;
 
-CREATE TABLE images 
-( 
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(90)
-);
 
-CREATE TABLE cake_bases 
-( 
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(90), 
-    size_diameter INTEGER,
-    nb_persons INTEGER,
-    price DECIMAL,
-    availability BOOLEAN,
-    info VARCHAR(150),
-    image_id INTEGER,
-    FOREIGN KEY(image_id) REFERENCES images(id)
-);
-
-CREATE TABLE cookie_bases
-( 
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
+CREATE TABLE ingredients
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(90),
-    size_diameter INTEGER,
-    price DECIMAL,
-    availability BOOLEAN,
-    info VARCHAR(150),
-    image_id INTEGER,
-    FOREIGN KEY(image_id) REFERENCES images(id)
-);
-
-CREATE TABLE toppings
-( 
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(90), 
-    portion VARCHAR(10),
-    price DECIMAL,
-    availability BOOLEAN,
-    info VARCHAR(150),
-    image_id INTEGER,
-    FOREIGN KEY(image_id) REFERENCES images(id)
-);
-
-CREATE TABLE fillings
-( 
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(30), 
-    size INTEGER,
-    price DECIMAL,
-    availability BOOLEAN,
-    info VARCHAR(150),
-    image_id INTEGER,
-    FOREIGN KEY(image_id) REFERENCES images(id)
-);
-
-CREATE TABLE icings LIKE fillings;
-CREATE TABLE macaron_flavors LIKE fillings;
-CREATE TABLE cheesecake_flavors LIKE fillings;
-
-CREATE TABLE macaron_shells
-( 
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(20),
-    code VARCHAR(20)
+    type VARCHAR(20),
+    size VARCHAR(20),
+    price INTEGER,
+    dispo BOOLEAN,
+    description VARCHAR(250),
+    image VARCHAR(100),
+    isCompatible BOOLEAN,
+    flavor VARCHAR(50),
+    color VARCHAR(20)
 );
 
 CREATE TABLE allergenes
 ( 
+id INTEGER PRIMARY KEY AUTO_INCREMENT, 
+name VARCHAR(90)
+);
+
+CREATE TABLE admin
+( 
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    adminPassword VARCHAR(100)
+);
+
+CREATE TABLE calendar ( 
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(90)
+    date VARCHAR(50),
+    color VARCHAR(10)
 );
 
 CREATE TABLE fonts
 ( 
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(50),
-    availability BOOLEAN
+id INTEGER PRIMARY KEY AUTO_INCREMENT, 
+name VARCHAR(50),
+availability BOOLEAN
 );
 
 CREATE TABLE custom_wishes
@@ -86,11 +49,11 @@ CREATE TABLE custom_wishes
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
     type VARCHAR(10),
     photo VARCHAR(100),
-    msg_content	VARCHAR(100),
-    msg_color VARCHAR(20),
-    msg_bg_color VARCHAR(20),
-    msg_font_id INTEGER,
-    FOREIGN KEY(msg_font_id) REFERENCES fonts(id)
+    msgContent	VARCHAR(100),
+    msgColor VARCHAR(20),
+    msgBgColor VARCHAR(20),
+    msgFontId INTEGER,
+    FOREIGN KEY(msgFontId) REFERENCES fonts(id)
 );
 
 CREATE TABLE customers
@@ -99,53 +62,39 @@ CREATE TABLE customers
     firstName VARCHAR(20),
     lastName VARCHAR(20),
     email VARCHAR(50) UNIQUE,
-    tel_number VARCHAR(12),
+    phone VARCHAR(15),
     birthday DATE
 );
 
 CREATE TABLE final_cakes
 ( 
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    type VARCHAR(15),
-    size VARCHAR(5),
-    level INTEGER,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    type VARCHAR(20),
+    size VARCHAR(20),
     quantity INTEGER,
-    occasion VARCHAR(100),
-    price DECIMAL,
-    time INTEGER,
-    cake_base_id INTEGER,
-    cookie_base_id INTEGER,
-    icing_id INTEGER,
-    custom_wishes_id INTEGER,
-    macaron_flavor_id INTEGER,
-    macaron_color_id INTEGER,
-    cheesecake_flavor_id INTEGER,
-    FOREIGN KEY(cake_base_id) REFERENCES cake_bases(id),
-    FOREIGN KEY(cookie_base_id) REFERENCES cookie_bases(id),
-    FOREIGN KEY(icing_id) REFERENCES icings(id),
-    FOREIGN KEY(custom_wishes_id) REFERENCES custom_wishes(id),
-    FOREIGN KEY(macaron_flavor_id) REFERENCES macaron_flavors(id),
-    FOREIGN KEY(macaron_color_id) REFERENCES macaron_shells(id),
-    FOREIGN KEY(cheesecake_flavor_id) REFERENCES cheesecake_flavors(id)
+    story INTEGER,
+    occasion VARCHAR(90),
+    comments VARCHAR(300),
+    price INTEGER,
+    customWishes INTEGER,
+    FOREIGN KEY(customWishes) REFERENCES custom_wishes(id) 
+
 );
 
 CREATE TABLE final_orders
 ( 
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    customer_id INTEGER,
-    cake_id INTEGER,
-    order_date DATE,
-    delivery_date DATE,
-    customer_status VARCHAR(50),
-    admin_status VARCHAR(50),
-    customer_comment VARCHAR(300),
-    FOREIGN KEY(customer_id) REFERENCES customers(id),
-    FOREIGN KEY(cake_id) REFERENCES final_cakes(id)
+    cakeId INTEGER,
+    deliveryDate DATE,
+    orderDate DATE,
+    customerId INTEGER,
+    customerStatus VARCHAR(50),
+    adminStatus VARCHAR(50),
+    customerComment VARCHAR(300),
+    customerMessage VARCHAR(300),
+    FOREIGN KEY(customerId) REFERENCES customers(id),
+    FOREIGN KEY(cakeId) REFERENCES final_cakes(id)
 );
 
-CREATE TABLE admin
-( 
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    admin_id VARCHAR(50),
-    admin_password VARCHAR(100)
-);
+
+

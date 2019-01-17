@@ -1,5 +1,5 @@
 
-import { Label, Input, Container, Row, Col } from 'reactstrap';
+import { Label, Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -15,7 +15,7 @@ const CakeInfo = (props) => {
   const { type, localChangeCakeType, resetCakeStories } = props;
 
   return (
-    <Container style={{ height: '80vh' }}>
+    <Container className="body-cake-select">
       <Row className="justify-content-around">
         <Col sm="5">
           <h3 className="mt-3">Choisissez votre type de douceur</h3>

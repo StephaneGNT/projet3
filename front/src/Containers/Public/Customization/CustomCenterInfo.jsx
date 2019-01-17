@@ -5,9 +5,8 @@ import PropTypes from 'prop-types';
 import CustomMessageInput from './CustomMessageInput';
 import ColorPicker from './ColorPicker';
 import Decoration from './Decoration';
-
 import getDescription from './Customization_functions';
-import { submitDecorationChoice, allowMessage } from '../../../Actions/customization_actions';
+import { submitDecorationChoice, allowMessage, fetchAdminFonts } from '../../../Actions/customization_actions';
 import { changePrice } from '../../../Actions/cakeActions/changeCakePrice';
 
 class CustomCenterInfo extends Component {
@@ -29,6 +28,11 @@ class CustomCenterInfo extends Component {
     };
   }
 
+  componentWillMount() {
+    const { fetchAdminFontList, customAdmin } = this.props;
+    if (customAdmin.selectedFonts.length === 0) fetchAdminFontList();
+  }
+
   renderInfo = () => {
     const render = [];
     const {
@@ -40,7 +44,7 @@ class CustomCenterInfo extends Component {
     if ((message || messageResilient) && (type === 'message' || typeResilient === 'message')) {
       if (cake.type === 'cake' || cake.type === 'cheesecake' || cake.type === '') {
         render.push(
-          <div>
+          <div key={type}>
             <p style={{ whiteSpace: 'pre' }}>{description}</p>
             <CustomMessageInput />
             <ColorPicker />
@@ -48,19 +52,19 @@ class CustomCenterInfo extends Component {
         );
       } else {
         render.push(
-          <p>Il n'est pas possible d'ajouter un message personnalisé sur votre pâtisserie (brownie, cookie ou macaron)</p>,
+          <p key={cake.type}>Il n’est pas possible d’ajouter un message personnalisé sur votre pâtisserie (brownie, cookie ou macaron)</p>,
         );
       }
     } else if (image || imageResilient || sculpture || sculptureResilient) {
       render.push(
-        <div>
+        <div key={type}>
           <p style={{ whiteSpace: 'pre' }}>{description}</p>
           <Decoration />
         </div>,
       );
     } else {
       render.push(
-        <p style={{ whiteSpace: 'pre' }}>{description}</p>,
+        <p key={type} style={{ whiteSpace: 'pre' }}>{description}</p>,
       );
     }
     return render;
@@ -75,7 +79,7 @@ class CustomCenterInfo extends Component {
   }
 
   open = (deco) => {
-    const { submitDecoChoice, addMessage, cake, customAdmin } = this.props;
+    const { submitDecoChoice, addMessage, customAdmin } = this.props;
     const setToUpdate = `${deco}Resilient`;
     this.setState({
       messageResilient: false,
@@ -107,7 +111,7 @@ class CustomCenterInfo extends Component {
   render() {
     const { typeResilient } = this.state;
     const { custom } = this.props;
-    console.log(this.state)
+
     return (
       <Col>
         <Row className="decorationRow">
@@ -167,6 +171,7 @@ CustomCenterInfo.propTypes = {
   customAdmin: PropTypes.shape({}).isRequired,
   submitDecoChoice: PropTypes.func.isRequired,
   addMessage: PropTypes.func.isRequired,
+  fetchAdminFontList: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({
@@ -179,6 +184,7 @@ const mapDispatchToProps = dispatch => ({
   submitDecoChoice: choice => dispatch(submitDecorationChoice(choice)),
   addMessage: choice => dispatch(allowMessage(choice)),
   updatePrice: price => dispatch(changePrice(price)),
+  fetchAdminFontList: () => dispatch(fetchAdminFonts()),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(CustomCenterInfo);

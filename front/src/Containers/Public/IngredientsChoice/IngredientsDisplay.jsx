@@ -7,6 +7,7 @@ const IngredientsDisplay = (props) => {
     let sum = 0;
     cake.ingredients.map((ingredient) => {
       if (ingredient.type === elementSearched) sum += 1;
+      return null;
     });
     return sum;
   };
@@ -61,6 +62,7 @@ const IngredientsDisplay = (props) => {
           <Ingredient
             ingredient={ingredient}
             disabled={disabled}
+            key={ingredient.name}
           />,
         );
         return render;

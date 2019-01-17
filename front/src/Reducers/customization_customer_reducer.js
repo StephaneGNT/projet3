@@ -1,4 +1,5 @@
 export default (state = {
+  giftcard: '',
   customMessage: {
     choice: '',
     message: '',
@@ -30,6 +31,7 @@ export default (state = {
     case 'CHANGE_FONT_COLOR': return modifyMessage('fontColor');
     case 'CHANGE_BACKGROUND_COLOR': return modifyMessage('backgroundColor');
     case 'SUBMIT_DECORATION_CHOICE': return { ...state, decoration: action.choice };
+    case 'UPDATE_USER_INFO': return { ...state, giftcard: action.information.giftcard };
     default: return state;
   }
 };

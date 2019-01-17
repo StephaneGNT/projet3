@@ -5,7 +5,7 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import displaySearched from '../../../Actions/databaseActions/displaySearched';
-import toggleFormNew from '../../../Actions/databaseActions/toggleFormNew';
+import { toggleFormNew } from '../../../Actions/databaseActions/toggleFormNew';
 import '../../../Assets/Styles/Toolbar.css';
 
 const Toolbar = (props) => {

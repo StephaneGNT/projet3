@@ -5,6 +5,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const ingred = require('./routes/ingredients');
 const mail = require('./routes/SendMail');
+const auth = require('./routes/auth');
+const admin = require('./routes/admin');
+const customization = require('./routes/customization');
+const calendar = require('./routes/calendar');
+const uploadFile = require('./routes/uploadFile');
 
 // Configuration de l'application
 // app.use(morgan('dev'));
@@ -13,18 +18,22 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 app.use('/api/send',mail)
 
-
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
-}
-)
+});
 
 let server = app.listen(5000, function () {
   console.log('Listening on port ' + server.address().port);
 });
 
 app.use(ingred);
+app.use(auth);
+app.use(admin);
 
+
+app.use('/customization', customization);
+app.use('/calendar', calendar);
+app.use(uploadFile);

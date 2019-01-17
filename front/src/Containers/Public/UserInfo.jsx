@@ -4,233 +4,73 @@ import axios from 'axios';
 import {
   Container, Row, Col, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Progressbar from './Progressbar';
+import updateUserInfo from '../../Actions/orderActions/updateUserInfo';
+import '../../Assets/Styles/UserInfo.css';
 
 
 class UserInfo extends Component {
   constructor(props) {
     super(props);
+    const { customer, giftcard, comment } = this.props;
+    this.mailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    this.birthdateRegex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
     this.state = {
-      firstname: '',
-      lastname: '',
-      email: '',
-      telephone: '',
-      birthdate: '',
-      comment: '',
-      giftcard: '',
+      user: {
+        firstname: customer.firstname,
+        lastname: customer.lastname,
+        birthday: customer.birthdate,
+        email: customer.email,
+        phone: customer.telephone,
+      },
+      comment,
+      giftcard,
+      inputAttempt: false,
     };
   }
 
-  updateState = (e) => {
-    switch (e.target.id) {
-      case 'firstname':
-        this.setState({ firstname: e.target.value });
-        break;
-      case 'lastname':
-        this.setState({ lastname: e.target.value });
-        break;
-      case 'email':
-        this.setState({ email: e.target.value });
-        break;
-      case 'telephone':
-        this.setState({ telephone: e.target.value });
-        break;
-      case 'birthdate':
-        this.setState({ birthdate: e.target.value });
-        break;
-      default:
-        return null;
-    }
-    return null;
+  componentDidMount() {
+    window.scrollTo(0, 0);
   }
+
+  componentWillUnmount() {
+    const { updateUser } = this.props; updateUser(this.state);
+  }
+
+  updateState = (evt) => {
+    evt.persist();
+    this.setState(prevState => ({
+      prevState, [evt.target.id]: evt.target.value,
+    }));
+  }
+
+  setUserState = (evt) => {
+    evt.persist();
+    this.setState(prevState => ({
+      prevState,
+      user: {
+        ...prevState.user,
+        [evt.target.id]: evt.target.value,
+      },
+    }));
+  }
+
 
   validEmail = (mailState) => {
-    const mailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (mailState === '') return false;
-    return !mailRegex.test(mailState);
+    return !this.mailRegex.test(mailState);
   }
 
-  activateButton = () => {
-    const {
-      email, firstname, lastname, telephone,
-    } = this.state;
-    if (firstname.length > 1
-      && lastname.length > 1
-      && telephone.length >= 10
-      && this.validEmail(email) === false) return false;
-    return true;
-  }
-
-  
-          sendConfirmationEmails = () => {
-            console.log("in function")
+  sendConfirmationEmails = () => {
+    const { user } = this.state;
             const mail = {
               "client": {
                 "email": "mathieuwcs@gmail.com",
                 "title": "bonjour client",
-                "content":`Bonjour ${this.state.firstname} ${this.state.lastname}, votre commande a bien été prise en compte.
+                "content":`Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
                 Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`
-               
-//           renderConfirmation = () => {
-//             let description = '';
-//             const {
-//               type, size, occasion, quantity, ingredients, customMessage, decoration, story, deliveryDate,
-//             } = this.props;
-//             if (type === 'brownie' || type === 'cookie') {
-//               return (
-//                 <p>
-//                   Occasion:
-//                   {' '}
-//                   {occasion}
-//                   <br />
-//               Votre commande:
-//                   {' '}
-//                   {quantity}
-//                   {' '}
-//                   {type}
-//                   {' '}
-//                   de taille
-//                   {' '}
-//                   {size}
-//                   <br />
-//                   <br />
-//                   Personnalisation:
-//                   <br />
-//                   {decoration}
-//                   {' '}
-//                   {' '}
-//                   {customMessage}
-//                   {' '}
-//                   <br />
-//                   <br />
-//               Composition:
-//                   {' '}
-//                   {(ingredients.map(item => <div>{item.name}</div>))}
-//                   {' '}
-//                   <br />
-//                   Date de retrait :
-//                   {' '}
-//                   {' '}
-//                   {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
-//                 </p>
-//               );
-//             }
-//             if (type === 'cheesecake' || type === 'cake') {
-//               return (
-//                 <p>
-//                 Occasion :
-//                   {' '}
-//                   {occasion}
-//                   {' '}
-//                   <br />
-//                 Votre commande :
-//                   {' '}
-//                   {type}
-//                   {' '}
-//                   <br />
-//                   <br />
-//                 Personnalisation:
-//                   <br />
-//                   {decoration}
-//                   {' '}
-//                   {' '}
-//                   {customMessage}
-//                   {' '}
-//                   <br />
-//                   <br />
-//                 Composition:
-//                   {(ingredients.map(item => <div>{item.name}</div>))}
-//                   <br />
-//                   <br />
-//                   Date de retrait :
-//                   {' '}
-//                   {' '}
-//                   {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
-//                 </p>
-//               );
-//             }
-//             if (type === 'macaron') {
-//               return (
-//                 <p>
-//                  Occasion:
-//                   {' '}
-//                   {occasion}
-//                   <br />
-//               Votre commande:
-//                   {' '}
-//                   {quantity}
-//                   {' '}
-//                   {type}
-//                   {' '}
-//                 de taille
-//                   {' '}
-//                   {size}
-//                   {' '}
-//                   <br />
-//                   <br />
-//                   Personnalisation:
-//                   <br />
-//                   {decoration}
-//                   {' '}
-//                   {' '}
-//                   {customMessage}
-//                   {' '}
-//                   <br />
-//                   <br />
-//                   Parfum de vos macarons:
-//                   <br />
-//                   {' '}
-//                   {(ingredients.map(item => item.name.includes('Parfum') && <div>{item.name}</div>))}
-//                   <br />
-//                   Couleur de vos macarons:
-//                   {(ingredients.map(item => !item.name.includes('Parfum') && <div>{item.name}</div>))}
-//                   Date de retrait :
-//                   {' '}
-//                   {' '}
-//                   {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
-//                   <br />
-//                 </p>
-//               );
-//             }
-//           }
-//           Confirmation.propTypes = {
-//             type: PropTypes.string.isRequired,
-//             size: PropTypes.string.isRequired,
-//             occasion: PropTypes.string.isRequired,
-//             ingredients: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-//             quantity: PropTypes.number.isRequired,
-//             price: PropTypes.number.isRequired,
-//             customMessage: PropTypes.string.isRequired,
-//             decoration: PropTypes.string.isRequired,
-//             story: PropTypes.number.isRequired,
-//             deliveryDate: PropTypes.string.isRequired,
-          
-//           };
-          
-//           const mapStateToProps = (state) => {
-//             return (
-//               {
-//                 deliveryDate: state.orderCharacteristics.delivery_date,
-//                 story: state.cakeCharacteristics.story,
-//                 price: state.cakeCharacteristics.price,
-//                 customMessage: state.customizationCustomer.customMessage.choice,
-//                 decoration: state.customizationCustomer.decoration.choice,
-//                 ingredients: state.cakeCharacteristics.ingredients,
-//                 quantity: state.cakeCharacteristics.quantity,
-//                 occasion: state.cakeCharacteristics.occasion,
-//                 size: state.cakeCharacteristics.size,
-//                 type: state.cakeCharacteristics.type,
-//                 cake: state.cakeCharacteristics,
-//                 index: state.pageIndex,
-//               }
-//             );
-//           };
-//           export default connect(mapStateToProps)(Confirmation);
-
-        
-
-        
-        
       },
       "giluna": {
         "email": "mathieumiquel@gmail.com",
@@ -241,87 +81,154 @@ class UserInfo extends Component {
     axios.post('/api/send/mail', mail).then(response => console.log(response.data))
   }
 
+  validBirthdate = (DOBstate) => {
+    if (DOBstate === '') return false;
+    if (!this.birthdateRegex.test(DOBstate) && DOBstate.length > 9) return true;
+  }
+
+  enterForm = (e) => {
+    if (e.key === 'Enter') {
+      this.handleClick(e);
+    }
+    return <Link disabled to={`${process.env.PUBLIC_URL}/mycake/orderConfirmation`} />;
+  }
+
+  handleClick = (event) => {
+    const { user } = this.state;
+    if (!user.firstname || !user.lastname || !this.mailRegex.test(user.email)
+      || user.phone.length < 10) {
+      this.setState({ inputAttempt: true });
+      event.preventDefault();
+    }
+    else this.sendConfirmationEmails();
+  }
+
+  setWarning = (event) => {
+    const { inputAttempt } = this.state;
+    const warning = { borderColor: '#dc3545' };
+    if (!this.state[event.target.name] && inputAttempt) return warning;
+    return null;
+  }
+
+
   render() {
     const {
-      firstname, lastname, birthdate, telephone, email, comment, giftcard,
+      user, comment, giftcard, inputAttempt,
     } = this.state;
-    
+    const warning = { border: '3px solid', borderColor: '#dc3545' };
     return (
       <Container>
         <Row className="text-center">
           <Progressbar />
         </Row>
-        <Row className="justify-content-around" style={{ paddingTop: '15vh' }}>
-          <Col sm="10" md="4">
+        <Row className="justify-content-around" style={{ paddingTop: '5vh' }}>
+          <Col xs="12" className="alert">
+            {
+              inputAttempt ? (
+                <div>
+                  Veuillez renseigner les champs obligatoires* avant d’envoyer la commande
+                </div>
+              ) : <div />
+            }
+          </Col>
+          <Col sm="12" md="4">
             <FormGroup>
               <Label for="firstname">
                 <span className="text-danger">* </span>
                 Prénom
               </Label>
-              <Input type="text" name="firstname" id="firstname" placeholder="votre prénom" value={firstname} onChange={e => this.updateState(e)} />
+              <Input autoFocus type="text" name="firstname" id="firstname" placeholder="votre prénom" value={user.firstname} style={inputAttempt && !user.firstname ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
-          <Col sm="10" md="4">
+          <Col sm="12" md="4">
             <FormGroup>
               <Label for="lastname">
                 <span className="text-danger">* </span>
                 Nom
               </Label>
-              <Input type="text" name="lastname" id="lastname" placeholder="votre nom de famille" value={lastname} onChange={e => this.updateState(e)} />
+              <Input type="text" name="lastname" id="lastname" placeholder="votre nom de famille" value={user.lastname} style={inputAttempt && !user.lastname ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
-          <Col sm="10" md="3">
+          <Col sm="12" md="4">
             <FormGroup>
               <Label for="birthdate">
                 Date de naissance
               </Label>
-              <Input type="text" name="birthdate" id="birthdate" placeholder="votre date de naissance" value={birthdate} onChange={e => this.updateState(e)} />
+              <Input invalid={this.validBirthdate(user.birthday)} type="text" name="birthday" id="birthday" placeholder="date de naissance – ex: 30/09/1982" value={user.birthday} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <FormFeedback>date de naissance non valide (format requis: JJ/MM/AAAA)</FormFeedback>
+              {!this.birthdateRegex.test(user.birthday) && user.birthday.length <= 9 ? (
+                <div className="invalidDOB">
+                  <p>Format: JJ/MM/AAAA</p>
+                </div>
+              ) : <div />
+              }
             </FormGroup>
           </Col>
         </Row>
         <Row className="justify-content-around">
-          <Col sm="10" md="6">
+          <Col sm="12" md="6">
             <FormGroup>
               <Label for="email">
                 <span className="text-danger">* </span>
                 E-mail
               </Label>
-              <Input invalid={this.validEmail(email)} type="email" name="email" id="email" placeholder="votre adresse mail" value={email} onChange={e => this.updateState(e)} />
+              <Input invalid={this.validEmail(user.email)} type="email" name="email" id="email" placeholder="votre adresse mail" value={user.email} style={inputAttempt && !this.mailRegex.test(user.email) ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
               <FormFeedback>adresse mail non valide</FormFeedback>
             </FormGroup>
-            <FormGroup>
-              <Label>
-                Commentaire à Giluna
-              </Label>
-              <Input type="textarea" id="comment" value={comment} onChange={e => this.updateState(e)} />
-            </FormGroup>
           </Col>
-          <Col sm="10" md="5">
+          <Col sm="12" md="6">
             <FormGroup>
               <Label for="telephone">
                 <span className="text-danger">* </span>
                 Téléphone
               </Label>
-              <Input type="text" name="telephone" id="telephone" placeholder="votre numéro de téléphone" value={telephone} onChange={e => this.updateState(e)} />
+              <Input type="text" name="phone" id="phone" placeholder="votre numéro de téléphone" value={user.phone} style={inputAttempt && user.phone.length < 10 ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm="12" md="6">
+            <FormGroup>
+              <Label>
+                Commentaire à Giluna
+              </Label>
+              <Input type="textarea" id="comment" value={comment} onChange={e => this.updateState(e)} onKeyPress={this.enterForm} />
+            </FormGroup>
+          </Col>
+          <Col sm="12" md="6">
             <FormGroup>
               <Label>
                 Ajoutez une carte à votre Commande
               </Label>
-              <Input type="textarea" id="giftcard" value={giftcard} onChange={e => this.updateState(e)} />
+              <Input type="textarea" id="giftcard" value={giftcard} onChange={e => this.updateState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
         </Row>
         <Row className="back-btn-userinfo">
-          <button type="button" onClick={() => this.sendConfirmationEmails()} className="btn-confirmation" >envoyer la Commande</button>
+          <Link disabled to={`${process.env.PUBLIC_URL}/mycake/orderConfirmation`}>
+            <button type="button" onClick={e => this.handleClick(e)} className="btn-confirmation">envoyer la Commande</button>
+          </Link>
         </Row>
       </Container>
     );
   }
 }
 
-const mapStateToProps = state => ({ cake: state.cakeCharacteristics });
+UserInfo.propTypes = {
+  updateUser: PropTypes.func.isRequired,
+  customer: PropTypes.shape({}).isRequired,
+  comment: PropTypes.string.isRequired,
+  giftcard: PropTypes.string.isRequired,
+};
 
-export default connect(mapStateToProps)(UserInfo);
+const mapStateToProps = state => ({
+  customer: state.customerInfo,
+  giftcard: state.customizationCustomer.giftcard,
+  comment: state.cakeCharacteristics.comment,
+});
 
-// disabled={this.activateButton()}
+const mapDispatchToProps = dispatch => ({
+  updateUser: data => dispatch(updateUserInfo(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);

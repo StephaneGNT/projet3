@@ -4,8 +4,8 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import setCategory from '../../../Actions/databaseActions/setCategory';
-
+import { setCategory } from '../../../Actions/databaseActions/setCategory';
+import { toggleFormModify } from '../../../Actions/databaseActions/toggleFormNew';
 import '../../../Assets/Styles/HorizontalNavBar.css';
 
 class HorizontalNavBar extends Component {
@@ -25,7 +25,7 @@ class HorizontalNavBar extends Component {
   }
 
   renderNavBar = () => {
-    const { changeCategory } = this.props;
+    const { changeCategory, toggleForm } = this.props;
     const { dropdownOpen } = this.state;
     const render = [];
     for (let i = 0; i < this.ingredients.length; i += 1) {
@@ -35,8 +35,8 @@ class HorizontalNavBar extends Component {
             <ButtonDropdown className="dropdown" isOpen={dropdownOpen} toggle={this.toggle}>
               <DropdownToggle caret> Macarons </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem onClick={() => changeCategory('Parfum macaron')}>Parfum</DropdownItem>
-                <DropdownItem onClick={() => changeCategory('Couleur macaron')}>Couleur</DropdownItem>
+                <DropdownItem onClick={() => changeCategory('Parfum macaron') && toggleForm(false)}>Parfum</DropdownItem>
+                <DropdownItem onClick={() => changeCategory('Couleur macaron') && toggleForm(false)}>Couleur</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
           </NavItem>,
@@ -44,7 +44,7 @@ class HorizontalNavBar extends Component {
       } else {
         render.push(
           <NavItem>
-            <Button onClick={() => changeCategory(this.ingredients[i])}>
+            <Button color="primary" size="sm" onClick={() => changeCategory(this.ingredients[i]) && toggleForm(false)}>
               {this.ingredients[i]}
             </Button>
           </NavItem>,
@@ -64,11 +64,13 @@ class HorizontalNavBar extends Component {
 }
 
 HorizontalNavBar.propTypes = {
+  toggleForm: PropTypes.func.isRequired,
   changeCategory: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
   changeCategory: category => dispatch(setCategory(category)),
+  toggleForm: show => dispatch(toggleFormModify(show))
 });
 
 

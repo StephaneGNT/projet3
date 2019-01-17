@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import HorizontalNavBar from './HorizontalNavBar';
 import Toolbar from './Toolbar';
 import AddIngredients from './AddIngredients';
+import ModifyIngredient from './ModifyIngredient';
 import TableDB from '../Incredients-Components/Table_DB/TableDB';
 
 class DataBase extends Component {
@@ -13,7 +14,7 @@ class DataBase extends Component {
     this.state = {};
   }
 
-  displayIngredients = () => {
+  displayIngredients = (token) => {
     const {
       display, cake, cookie, topping, filling, icing, macaronFlavor, macaronShell, chessecakeFlavor,
     } = this.props;
@@ -28,7 +29,7 @@ class DataBase extends Component {
       case ('Cheesecake'): elementToDisplay = chessecakeFlavor; break;
       default: elementToDisplay = cake;
     }
-    return TableDB(elementToDisplay);
+    return TableDB(elementToDisplay, token);
   }
 
   renderFormAddIngredient = () => {
@@ -36,7 +37,24 @@ class DataBase extends Component {
     return formVisible ? <AddIngredients /> : <div />;
   }
 
+  renderFormModifyIngredient = () => {
+    const { displaybeta, cake, cookie, topping, filling, icing, macaronFlavor, macaronShell, chessecakeFlavor,formModifyVisible } = this.props;
+    let formToDisplay;
+    switch (displaybeta) {
+      case ('Base cookie'): formToDisplay = cookie; break;
+      case ('Toppings'): formToDisplay = topping; break;
+      case ('Garniture'): formToDisplay = filling; break;
+      case ('Glaçage'): formToDisplay = icing; break;
+      case ('Macaron'): formToDisplay = macaronFlavor; break;
+      case ('Coquille'): formToDisplay = macaronShell; break;
+      case ('Parfum'): formToDisplay = chessecakeFlavor; break;
+      default: formToDisplay = cake;
+    }
+    return formModifyVisible ? <ModifyIngredient ingredient={formToDisplay} /> : <div />;
+  }
+
   render() {
+    const { token } = this.props;
     return (
       <Container>
         <Row>
@@ -44,7 +62,8 @@ class DataBase extends Component {
         </Row>
         <Toolbar />
         {this.renderFormAddIngredient()}
-        {this.displayIngredients()}
+        {this.displayIngredients(token)}
+        {this.renderFormModifyIngredient()}
       </Container>
     );
   }
@@ -52,7 +71,9 @@ class DataBase extends Component {
 
 DataBase.propTypes = {
   display: PropTypes.string.isRequired,
+  displaybeta: PropTypes.string.isRequired,
   formVisible: PropTypes.bool.isRequired,
+  formModifyVisible: PropTypes.bool.isRequired,
   cake: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   cookie: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   topping: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -61,11 +82,14 @@ DataBase.propTypes = {
   macaronFlavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   macaronShell: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   chessecakeFlavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  token: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  display: state.databaseDisplay,
-  formVisible: state.databaseNewIngredientDisplay,
+  display: state.databaseDisplay.alpha,
+  displaybeta: state.databaseDisplay.beta,
+  formVisible: state.databaseNewIngredientDisplay.new,
+  formModifyVisible: state.databaseNewIngredientDisplay.modify,
   cake: state.cakeBases,
   filling: state.cakeFillings,
   icing: state.cakeIcings,
@@ -75,6 +99,7 @@ const mapStateToProps = state => ({
   macaronShell: state.macaronsShells,
   cookie: state.cookiesBases,
   brownie: state.browniesBases,
+  token: state.adminToken,
 });
 
 export default connect(mapStateToProps, null)(DataBase);
