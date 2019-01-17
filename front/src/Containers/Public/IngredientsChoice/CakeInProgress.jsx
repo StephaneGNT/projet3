@@ -37,13 +37,11 @@ class CakeInProgress extends Component {
     );
   }
 
-  displayNamesIngredients = (item) => {
-    return (
-      <Row key={item.name}>
-        <p>{item.name}</p>
-      </Row>
-    );
-  }
+  displayNamesIngredients = item => (
+    <Row key={item.name}>
+      <p>{item.name}</p>
+    </Row>
+  );
 
 
   render() {

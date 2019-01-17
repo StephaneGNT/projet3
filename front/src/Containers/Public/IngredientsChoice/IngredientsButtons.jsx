@@ -9,10 +9,6 @@ import { updateIndex } from '../../../Actions/cakeActions/changeIndex';
 import '../../../Assets/Styles/IngredientsButtons.css';
 
 class IngredientsButtons extends Component {
-  // constructor(props){
-  //   super(props);
-  // }
-
   redirect = (cake) => {
     const { history, setPageIndex } = this.props;
     if (cake.type === 'cake' || cake.type === 'cheesecake') setPageIndex(5);
@@ -22,13 +18,8 @@ class IngredientsButtons extends Component {
   };
 
   render() {
-    // const { cake } = this.props;
-    // const disabled = !cake.ingredients.length > 0;
     return (
       <Row className="back-btn">
-        {/* <button type="button" disabled={disabled} style={{ zIndex: '10' }} className="order-btn" onClick={() => this.redirect(cake)}>
-          Commander
-        </button> */}
         <NavArrowsLayout />
       </Row>
     );

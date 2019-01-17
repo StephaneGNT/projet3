@@ -102,6 +102,6 @@ AdminList.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   setAdminIndex: index => dispatch(changeIndex(index)),
-})
+});
 
 export default connect(null, mapDispatchToProps)(AdminList);

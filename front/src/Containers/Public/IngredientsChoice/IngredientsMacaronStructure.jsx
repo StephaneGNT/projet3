@@ -35,8 +35,8 @@ IngredientsMacaronStructure.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  flavor: state.macaronsFlavors,
-  shell: state.macaronsShells,
+  flavor: state.ingredients.filter(ing => ing.type === 'Macaron'),
+  shell: state.ingredients.filter(ing => ing.type === 'Coquille'),
 });
 
 export default connect(mapStateToProps)(IngredientsMacaronStructure);

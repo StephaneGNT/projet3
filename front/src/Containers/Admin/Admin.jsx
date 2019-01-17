@@ -44,7 +44,8 @@ class Admin extends Component {
           <Col sm="10">
             <Switch>
               <Route
-                exact path={`${process.env.PUBLIC_URL}/admin`}
+                exact
+                path={`${process.env.PUBLIC_URL}/admin`}
                 render={props => <Login {...props} action="Se connecter" />}
               />
               <PrivateRoute

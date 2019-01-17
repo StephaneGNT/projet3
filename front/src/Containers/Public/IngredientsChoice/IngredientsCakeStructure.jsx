@@ -111,11 +111,11 @@ IngredientsCakeStructure.propTypes = {
 
 const mapStateToProps = state => ({
   cake: state.cakeCharacteristics,
-  bases: state.cakeBases,
-  fillings: state.cakeFillings,
-  icings: state.cakeIcings,
-  flavor: state.cheesecakeFlavors,
-  toppings: state.cakeToppings,
+  bases: state.ingredients.filter(ing => ing.type === 'Base'),
+  fillings: state.ingredients.filter(ing => ing.type === 'Garniture'),
+  icings: state.ingredients.filter(ing => ing.type === 'Glaçage'),
+  flavor: state.ingredients.filter(ing => ing.type === 'Parfum'),
+  toppings: state.ingredients.filter(ing => ing.type === 'Toppings'),
   index: state.pageIndex,
 });
 

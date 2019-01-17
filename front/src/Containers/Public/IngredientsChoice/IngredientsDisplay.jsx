@@ -76,13 +76,12 @@ const IngredientsDisplay = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return (
-    {
-      cake: state.cakeCharacteristics,
-    }
-  );
-};
+const mapStateToProps = state => (
+  {
+    cake: state.cakeCharacteristics,
+  }
+);
+
 
 export default connect(
   mapStateToProps,
