@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import {
   Container, Row, Col, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
@@ -8,6 +9,7 @@ import PropTypes from 'prop-types';
 import Progressbar from './Progressbar';
 import updateUserInfo from '../../Actions/orderActions/updateUserInfo';
 import '../../Assets/Styles/UserInfo.css';
+
 
 class UserInfo extends Component {
   constructor(props) {
@@ -61,6 +63,24 @@ class UserInfo extends Component {
     return !this.mailRegex.test(mailState);
   }
 
+  sendConfirmationEmails = () => {
+    const { user } = this.state;
+            const mail = {
+              "client": {
+                "email": "mathieuwcs@gmail.com",
+                "title": "bonjour client",
+                "content":`Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
+                Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`
+      },
+      "giluna": {
+        "email": "mathieumiquel@gmail.com",
+        "title": "Bonjour giluna",
+        "content":"une nouvelle commande vient d'être générée sur le site"
+      },
+    }
+    axios.post('/api/send/mail', mail).then(response => console.log(response.data))
+  }
+
   validBirthdate = (DOBstate) => {
     if (DOBstate === '') return false;
     if (!this.birthdateRegex.test(DOBstate) && DOBstate.length > 9) return true;
@@ -80,6 +100,7 @@ class UserInfo extends Component {
       this.setState({ inputAttempt: true });
       event.preventDefault();
     }
+    else this.sendConfirmationEmails();
   }
 
   setWarning = (event) => {
