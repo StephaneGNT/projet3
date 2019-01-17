@@ -6,13 +6,29 @@ import CustomMessageInput from './CustomMessageInput';
 import ColorPicker from './ColorPicker';
 import Decoration from './Decoration';
 import getDescription from './Customization_functions';
-import { submitDecorationChoice, allowMessage, fetchAdminFonts } from '../../../Actions/customization_actions';
+import {
+  submitDecorationChoice,
+  allowMessage,
+  fetchAdminFonts,
+  updateSummaryInfo,
+} from '../../../Actions/customization_actions';
 import { changePrice } from '../../../Actions/cakeActions/changeCakePrice';
 
 class CustomCenterInfo extends Component {
   constructor(props) {
     super(props);
+    const { custom } = props;
     this.state = {
+      customSummary: {
+        deco1: custom.deco1,
+        deco2: custom.deco2,
+        photo1: custom.photo1,
+        photo2: custom.photo2,
+        msgContent: custom.msgContent,
+        msgColor: custom.msgColor,
+        msgBgColor: custom.msgBgColor,
+        msgFontId: custom.msgFontId,
+      },
       message: false,
       messageResilient: false,
       image: false,
@@ -33,11 +49,42 @@ class CustomCenterInfo extends Component {
     if (customAdmin.selectedFonts.length === 0) fetchAdminFontList();
   }
 
+  componentWillUnmount() {
+    const { updateSummary } = this.props;
+    const { customSummary } = this.state;
+    updateSummary(customSummary);
+  }
+
+  updateSummary = (type, content) => {
+    const { customSummary } = this.state;
+    const modifySummary = (item) => {
+      this.setState(prevState => ({
+        prevState,
+        customSummary: {
+          ...prevState.customSummary,
+          [item]: content,
+        },
+      }));
+    };
+    switch (type) {
+      case 'ADD_DECORATION': if (!customSummary.deco1) return modifySummary('deco1');
+        return modifySummary('deco2');
+      case 'GET_PHOTO_URL': if (!customSummary.photo1) modifySummary('photo1');
+      else modifySummary('photo2'); break;
+      case 'UPDATE_CUSTOM_MESSAGE': return modifySummary('msgContent');
+      case 'CHOOSE_FONT_FAMILY': return modifySummary('msgFontId');
+      case 'CHANGE_FONT_COLOR': return modifySummary('msgColor');
+      case 'CHANGE_BACKGROUND_COLOR': return modifySummary('msgBgColor');
+
+      default: return this.state;
+    }
+  }
+
   renderInfo = () => {
     const render = [];
     const {
       message, messageResilient, image, imageResilient,
-      sculpture, sculptureResilient, type, typeResilient,
+      sculpture, sculptureResilient, type, typeResilient, customSummary,
     } = this.state;
     const { cake, custom, customAdmin } = this.props;
     const description = getDescription(type, typeResilient, custom, customAdmin);
@@ -46,8 +93,8 @@ class CustomCenterInfo extends Component {
         render.push(
           <div key={type}>
             <p style={{ whiteSpace: 'pre' }}>{description}</p>
-            <CustomMessageInput />
-            <ColorPicker />
+            <CustomMessageInput modify={this.updateSummary} message={customSummary} />
+            <ColorPicker modify={this.updateSummary} />
           </div>,
         );
       } else {
@@ -59,7 +106,7 @@ class CustomCenterInfo extends Component {
       render.push(
         <div key={type}>
           <p style={{ whiteSpace: 'pre' }}>{description}</p>
-          <Decoration />
+          <Decoration modify={this.updateSummary} />
         </div>,
       );
     } else {
@@ -89,18 +136,13 @@ class CustomCenterInfo extends Component {
       typeResilient: deco,
     });
     switch (deco) {
-      case ('message'): {
-        const message = customAdmin.customMessage;
-        addMessage(message);
-      } break;
-      case ('image'): {
-        const deco2D = customAdmin.print2D;
-        submitDecoChoice(deco2D);
-      } break;
-      default: {
-        const deco3D = customAdmin.print2D;
-        submitDecoChoice(deco3D);
-      } break;
+      case ('message'): this.updateSummary('ADD_DECORATION', 'message');
+        break;
+      case ('image'): this.updateSummary('ADD_DECORATION', '2D');
+        break;
+      case ('sculpture'): this.updateSummary('ADD_DECORATION', '3D');
+        break;
+      default: return this.state;
     }
   }
 
@@ -109,9 +151,9 @@ class CustomCenterInfo extends Component {
   }
 
   render() {
-    const { typeResilient } = this.state;
+    const { typeResilient, customSummary } = this.state;
     const { custom } = this.props;
-
+    console.log("Custom summary: ", this.state.customSummary)
     return (
       <Col>
         <Row className="decorationRow">
@@ -121,8 +163,9 @@ class CustomCenterInfo extends Component {
           <button
             type="button"
             id="message"
-            onMouseEnter={() => this.toggle('message', 'on')}
-            onMouseLeave={() => this.toggle('message', 'off')}
+            disabled={customSummary.deco1 && customSummary.deco2}
+            // onMouseEnter={() => this.toggle('message', 'on')}
+            // onMouseLeave={() => this.toggle('message', 'off')}
             onClick={() => this.open('message', 'on')}
           >
             Message
@@ -130,8 +173,9 @@ class CustomCenterInfo extends Component {
           <button
             type="button"
             id="image"
-            onMouseEnter={() => this.toggle('image', 'on')}
-            onMouseLeave={() => this.toggle('image', 'off')}
+            disabled={customSummary.deco1 && customSummary.deco2}
+            // onMouseEnter={() => this.toggle('image', 'on')}
+            // onMouseLeave={() => this.toggle('image', 'off')}
             onClick={() => this.open('image', 'on')}
           >
             Photo
@@ -139,8 +183,9 @@ class CustomCenterInfo extends Component {
           <button
             type="button"
             id="sculpture"
-            onMouseEnter={() => this.toggle('sculpture', 'on')}
-            onMouseLeave={() => this.toggle('sculpture', 'off')}
+            disabled={customSummary.deco1 && customSummary.deco2}
+            // onMouseEnter={() => this.toggle('sculpture', 'on')}
+            // onMouseLeave={() => this.toggle('sculpture', 'off')}
             onClick={() => this.open('sculpture', 'on')}
           >
             Sculpture
@@ -152,13 +197,13 @@ class CustomCenterInfo extends Component {
         <Row className="decorationRow">
           {typeResilient !== ''
             && (
-            <button
-              type="button"
-              disabled={custom.customMessage.message === '' && custom.decoration.image === ''}
-              onClick={() => this.addDecoration()}
-            >
-            Ajouter une autre décoration
-            </button>)}
+              <button
+                type="button"
+                disabled={customSummary.deco1}
+                onClick={() => this.addDecoration()}
+              >
+                Ajouter une autre décoration
+              </button>)}
         </Row>
       </Col>
     );
@@ -172,6 +217,7 @@ CustomCenterInfo.propTypes = {
   submitDecoChoice: PropTypes.func.isRequired,
   addMessage: PropTypes.func.isRequired,
   fetchAdminFontList: PropTypes.func.isRequired,
+  updateSummary: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({
@@ -185,6 +231,7 @@ const mapDispatchToProps = dispatch => ({
   addMessage: choice => dispatch(allowMessage(choice)),
   updatePrice: price => dispatch(changePrice(price)),
   fetchAdminFontList: () => dispatch(fetchAdminFonts()),
+  updateSummary: data => dispatch(updateSummaryInfo(data)),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(CustomCenterInfo);

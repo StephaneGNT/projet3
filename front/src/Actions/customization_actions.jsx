@@ -54,6 +54,11 @@ export const changeFontColor = color => ({
   fontColor: color.hex,
 });
 
+export const updateSummaryInfo = data => ({
+  type: 'UPDATE_CUSTOM_SUMMARY',
+  data,
+});
+
 export const fetchFonts = () => {
   return (dispatch) => {
     return axios.get('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBvHfWdKdPsFRaVwwh8z5lNIto2Ct9xzaA')

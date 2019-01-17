@@ -7,76 +7,83 @@ import '../../../Assets/Styles/Customization.css';
 
 const CustomMessageInput = (props) => {
   const {
-    bgColor,
-    chosenFont,
-    chosenBackgroundColor,
-    chosenFontColor,
-    font,
-    fontColor,
-    message,
+    // bgColor,
+    // chosenFont,
+    // chosenBackgroundColor,
+    // chosenFontColor,
+    // font,
+    // fontColor,
+    // message,
     placeholder,
-    updateMessage,
+    // updateMessage,
     wantsCustomMessage,
+    message,
   } = props;
-  const defaultStyle = {
-    fontFamily: font,
-    color: fontColor,
-    backgroundColor: bgColor,
+  // const defaultStyle = {
+  //   fontFamily: font,
+  //   color: fontColor,
+  //   backgroundColor: bgColor,
+  // };
+
+  const updateMessage = (e) => {
+    const { modify } = props;
+    const type = 'UPDATE_CUSTOM_MESSAGE';
+    modify(type, e.target.value);
   };
 
   return (
     <div>
       <link
         rel="stylesheet"
-        href={`https://fonts.googleapis.com/css?family=${font}`}
+        href={`https://fonts.googleapis.com/css?family=${message.msgFontId}`}
       />
       <Input
         type="textarea"
         style={
           wantsCustomMessage
             ? {
-              fontFamily: chosenFont,
+              fontFamily: message.msgFontId,
               fontSize: '1.2em',
-              backgroundColor: chosenBackgroundColor,
-              color: chosenFontColor,
+              backgroundColor: message.msgBgColor,
+              color: message.msgColor,
             }
-            : defaultStyle
+            : {}
         }
         name="text"
         id="wantsCustomMessage"
         maxLength="40"
         placeholder={placeholder}
         onChange={updateMessage}
-        onClick={updateMessage}
-        value={message}
+        // onClick={updateMessage}
+        value={message.msgContent}
         resize="none"
       />
     </div>
   );
 };
 
-CustomMessageInput.propTypes = {
-  bgColor: PropTypes.string.isRequired,
-  chosenFont: PropTypes.string.isRequired,
-  chosenBackgroundColor: PropTypes.string.isRequired,
-  chosenFontColor: PropTypes.string.isRequired,
-  font: PropTypes.string.isRequired,
-  fontColor: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  updateMessage: PropTypes.func.isRequired,
-  wantsCustomMessage: PropTypes.bool.isRequired,
-};
+// CustomMessageInput.propTypes = {
+//   bgColor: PropTypes.string.isRequired,
+//   chosenFont: PropTypes.string.isRequired,
+//   chosenBackgroundColor: PropTypes.string.isRequired,
+//   chosenFontColor: PropTypes.string.isRequired,
+//   font: PropTypes.string.isRequired,
+//   fontColor: PropTypes.string.isRequired,
+//   message: PropTypes.string.isRequired,
+//   placeholder: PropTypes.string.isRequired,
+//   updateMessage: PropTypes.func.isRequired,
+//   wantsCustomMessage: PropTypes.bool.isRequired,
+// };
 
 const mapStatetoProps = state => ({
-  font: state.customizationAdmin.customMessage.fontFamily,
-  chosenFont: state.customizationCustomer.customMessage.fontFamily,
-  chosenFontColor: state.customizationCustomer.customMessage.fontColor,
-  chosenBackgroundColor: state.customizationCustomer.customMessage.backgroundColor,
+  // font: state.customizationAdmin.customMessage.fontFamily,
+  // chosenFont: state.customizationCustomer.customMessage.fontFamily,
+  // chosenFontColor: state.customizationCustomer.customMessage.fontColor,
+  // chosenBackgroundColor: state.customizationCustomer.customMessage.backgroundColor,
   placeholder: state.customizationAdmin.customMessage_placeHolder,
-  bgColor: state.customizationAdmin.customMessage.backgroundColor,
-  fontColor: state.customizationAdmin.customMessage.fontColor,
-  message: state.customizationCustomer.customMessage.message,
+  // bgColor: state.customizationAdmin.customMessage.backgroundColor,
+  // fontColor: state.customizationAdmin.customMessage.fontColor,
+  // message: state.customizationCustomer.customMessage.message,
   wantsCustomMessage: state.customizationAdmin.wantsCustomMessage,
 });
 

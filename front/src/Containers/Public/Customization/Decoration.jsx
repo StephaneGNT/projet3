@@ -20,9 +20,15 @@ class Decoration extends Component {
     this.setState({ decoration: structure });
   }
 
-  uploadPic = (e) => {
-    const { decoration } = this.state;
-    this.setState({ decoration: { ...decoration, image: e.target.files[0] } });
+  // uploadPic = (e) => {
+  //   const { decoration } = this.state;
+  //   this.setState({ decoration: { ...decoration, image: e.target.files[0] } });
+  // }
+
+  sendPhotoUrl = (url) => {
+    const { modify } = this.props;
+    const type = 'GET_PHOTO_URL';
+    modify(type, url);
   }
 
   render() {
@@ -41,7 +47,7 @@ class Decoration extends Component {
             </b>
           </u>
         </Label>
-        <UploadPics />
+        <UploadPics imYourFather="decoration" sendPhotoUrl={this.sendPhotoUrl} />
         {/* <Input
           type="file"
           name="file"
@@ -60,10 +66,7 @@ class Decoration extends Component {
               Supprimer photo
             </Button>)} */}
         <FormText color="muted">
-          {Object.keys(decoration.image).length === 0
-            && (decoration.image).constructor === Object
-            && decoration.choice === '2 Dimensions' ? 'Veuillez télécharger l’image à imprimer en 2 dimensions'
-            : 'Vous pouvez télécharger une image d’inspiration pour votre décoration 3D'}
+          <p>Veuillez télécharger votre image</p>
         </FormText>
       </FormGroup>
     );
@@ -77,15 +80,15 @@ Decoration.propTypes = {
   choice: PropTypes.string.isRequired,
   image: PropTypes.shape({}).isRequired,
   price: PropTypes.number.isRequired,
-  submitDecoChoice: PropTypes.func.isRequired,
+  modify: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({
   D2: state.customizationAdmin.print2D,
   D3: state.customizationAdmin.print3Dimage,
-  choice: state.customizationCustomer.decoration.choice,
-  image: state.customizationCustomer.decoration.image,
-  price: state.customizationCustomer.decoration.price,
+  // choice: state.customizationCustomer.decoration.choice,
+  // image: state.customizationCustomer.decoration.image,
+  // price: state.customizationCustomer.decoration.price,
 });
 
 const mapDispatchToProps = dispatch => ({

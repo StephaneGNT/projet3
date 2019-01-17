@@ -1,8 +1,8 @@
 export default (state = {
-  dropdownOpen: false,
   selectedFonts: [],
   wantsCustomMessage: true,
   googleFonts: [],
+  
   customMessage: {
     choice: 'Message personnalisé',
     message: '',

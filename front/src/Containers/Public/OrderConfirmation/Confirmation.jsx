@@ -19,7 +19,7 @@ class Confirmation extends Component {
 
   renderConfirmation = () => {
     const {
-      type, size, occasion, quantity, ingredients, customMessage, decoration, deliveryDate,
+      customSummary, type, size, occasion, quantity, ingredients, customMessage, decoration, deliveryDate,
     } = this.props;
 
     // if (occasion) description += `Occasion : ${occasion}`;
@@ -66,10 +66,10 @@ class Confirmation extends Component {
           <br />
           Personnalisation:
           <br />
-          {decoration}
+          {customSummary.deco1}
           {' '}
           {' '}
-          {customMessage}
+          {customSummary.deco2}
           {' '}
           <br />
           <br />
@@ -101,10 +101,10 @@ class Confirmation extends Component {
           <br />
           Personnalisation:
           <br />
-          {decoration}
+          {customSummary.deco1}
           {' '}
           {' '}
-          {customMessage}
+          {customSummary.deco2}
           {' '}
           <br />
           <br />
@@ -140,10 +140,10 @@ class Confirmation extends Component {
           <br />
           Personnalisation:
           <br />
-          {decoration}
+          {customSummary.deco1}
           {' '}
           {' '}
-          {customMessage}
+          {customSummary.deco2}
           {' '}
           <br />
           <br />
@@ -210,8 +210,8 @@ const mapStateToProps = (state) => {
       deliveryDate: state.orderCharacteristics.delivery_date,
       story: state.cakeCharacteristics.story,
       price: state.cakeCharacteristics.price,
-      customMessage: state.customizationCustomer.customMessage.choice,
-      decoration: state.customizationCustomer.decoration.choice,
+      customSummary: state.customizationCustomer,
+      // decoration: state.customizationCustomer.decoration.choice,
       ingredients: state.cakeCharacteristics.ingredients,
       quantity: state.cakeCharacteristics.quantity,
       occasion: state.cakeCharacteristics.occasion,

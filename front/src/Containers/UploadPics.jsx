@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import {
-  Container, FormGroup, Label, FormText, Button
+  Container, FormGroup, Label, FormText, Button,
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 class UploadPics extends Component {
   constructor(props) {
     super(props);
+    // const { imYourFather, decorationPhoto } = props;
     this.fileInput = React.createRef();
+    // this.state = {
+    //   photo: imYourFather === 'decoration' ? decorationPhoto : '',
+    // };
   }
 
   submitFile = (event) => {
     event.preventDefault();
     const data = new FormData();
+    const { sendPhotoUrl } = this.props;
     data.append('foo', 'bar');
     data.append('avatar', this.fileInput.current.files[0]);
 
@@ -25,7 +32,11 @@ class UploadPics extends Component {
     };
 
     axios.post('/api/uploadfile', data, config)
-      .then(result => console.log(result));
+      .then((result) => {
+        // this.setState({ photo: result.data });
+        console.log(result.data)
+        sendPhotoUrl(result.data);
+      });
   }
 
   render() {
@@ -50,4 +61,17 @@ class UploadPics extends Component {
   }
 }
 
-export default UploadPics;
+UploadPics.propTypes = {
+  imYourFather: PropTypes.string.isRequired,
+  decorationPhoto: PropTypes.string.isRequired,
+};
+
+const mapStatetoProps = state => ({
+  // decorationPhoto: state.customizationCustomer.customSummary.photo,
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStatetoProps, mapDispatchToProps)(UploadPics);
