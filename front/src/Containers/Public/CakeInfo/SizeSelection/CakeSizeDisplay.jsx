@@ -14,6 +14,7 @@ const CakeSizeDisplay = () => {
           width={width}
           story={storys[i]}
           taille={tailles[i]}
+          key={width}
         />,
       );
     }

@@ -27,6 +27,10 @@ class Decoration extends Component {
 
   render() {
     const { decoration } = this.state;
+    // const {
+    //   D2,
+    //   D3,
+    // } = this.props;
 
     return (
       <FormGroup className="uploadImage justify-content">
