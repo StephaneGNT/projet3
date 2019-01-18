@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  Label, Input, Form, FormGroup, Row, Col, Button,
+  Table, Label, Input, Form, FormGroup, Row, Col, Button,
 } from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -25,16 +25,24 @@ class ModifyIngredient extends Component {
       compatible: true,
       flavor: '',
       color: '',
+      fullList: [],
+      fullAllerg: [],
+
     };
     this.onSubmit = this.onSubmit.bind(this);
     const {
-      displayIndexForm, ingredient, // arrays ingredients.compatible et ingredients.allergenes inherited form phil 
+      displayIndexForm, ingredient, // arrays ingredients.compatible et ingredients.allergenes inherited from phil
     } = this.props;
     this.betaType = ingredient[displayIndexForm - 1];
   }
 
-  componentDidMount() {
-    console.log('didmount:', this.betaType);
+  componentWillMount() {
+    axios.get('http://localhost:5000/ingredients/name')
+      .then((res) => { const fullListArray = res.data[0]; this.setState({ fullList: fullListArray }); })
+      .catch(err => console.log(err.response.data));
+
+    axios.get('http://localhost:5000/ingredients/allerg')
+      .then((res) => { const fullAllergArray = res.data[0]; this.setState({ fullAllerg: fullAllergArray }); });
     // axios.get table de jt_compatible => return fullIngredientCompat = [res]
   }
 
@@ -73,12 +81,14 @@ class ModifyIngredient extends Component {
       .catch(err => console.log(err.response.data));
   };
 
+
   createModifyForm = () => {
     const {
       toggleForm, displayIndexForm, displaybeta, cake, cookie, topping, filling,
       icing, macaronFlavor, macaronShell, chessecakeFlavor,
     } = this.props;
     let betaType;
+    // let checkCompatible = ingredient.compatible.indexOf(ingredient.name >)
     switch (displaybeta) {
       case ('Base cookie'): betaType = cookie[displayIndexForm - 1]; break;
       case ('Toppings'): betaType = topping[displayIndexForm - 1]; break;
@@ -89,6 +99,7 @@ class ModifyIngredient extends Component {
       case ('Parfum'): betaType = chessecakeFlavor[displayIndexForm - 1]; break;
       default: betaType = cake[displayIndexForm - 1];
     } // this.state.defaultIngredient = betaType / for submitting default state, (and updated state)
+    console.log('render:', this.state.fullList);
     return (
       <div className="bodyIng">
         <h3>
@@ -153,18 +164,56 @@ class ModifyIngredient extends Component {
             </Col>
             <Col md={4}>
               <FormGroup>
-                fullIngredientCompat.map(compatible => return
-                                  <Input type="checkbox">{compatible.name}</Input>
-                )
                 <Label for="listCompat">Compatibilité</Label>
-                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
-                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
-                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
-                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
-                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
-                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
-                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
-                <Input type="checkbox" name="selectMulti" id="listCompat"></Input>
+                <Col md={5} className="col-size-checkbox">
+                  <Table className="table-add-ingred">
+                    <thead>
+                      <tr>
+                        <th className="title-label-list">Compatibilités</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        {this.state.fullList.map(compatible => (
+                          <td>
+                            <Input
+                              name="isCompatible"
+                              type="checkbox"
+                              defaultChecked={betaType.compatible}
+                            />
+                            <Label check>{compatible.name}</Label>
+                          </td>))}
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Col>
+              </FormGroup>
+            </Col>
+            <Col md={4}>
+              <FormGroup>
+                <Label for="listCompat">Allergenes</Label>
+                <Col md={5} className="col-size-checkbox">
+                  <Table className="table-add-ingred">
+                    <thead>
+                      <tr>
+                        <th className="title-label-list">Allergenes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        {this.state.fullAllerg.map(allergene => (
+                          <td>
+                            <Input
+                              name="isCompatible"
+                              type="checkbox"
+                              
+                            />
+                            <Label check>{allergene.name}</Label>
+                          </td>))}
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Col>
               </FormGroup>
             </Col>
             <Col md={2}>
@@ -189,8 +238,7 @@ class ModifyIngredient extends Component {
   }
 
   render() {
-    return (
-
+    return !this.state.fullList.length ? <div /> : (
       <div>
         {this.createModifyForm()}
       </div>
@@ -198,9 +246,11 @@ class ModifyIngredient extends Component {
   }
 }
 
+
 ModifyIngredient.propTypes = {
   ingredientCompatible: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   ingredientAllerg: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  fullListIngredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   ingredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   toggleForm: PropTypes.func.isRequired,
   displaybeta: PropTypes.string.isRequired,

@@ -13,6 +13,31 @@ const secret = require('../helper/jwt_secret');
 ingred.use(bodyParser.urlencoded({ extend: true }));
 ingred.use(bodyParser.json());
 
+ingred.get('/ingredients/name', (req, res) => {
+  console.log(req.body)
+  connection.query('SELECT * from ingredients', (err, results) => {
+    if (err) {
+      res.status(500).send('Erreur lors de la recup des noms');
+    } else {
+      res.send([results]);
+      console.log(results)
+    }
+  });
+});
+
+ingred.get('/ingredients/allerg', (req, res) => {
+  console.log(req.body)
+  connection.query('SELECT * from allergenes', (err, results) => {
+    if (err) {
+      res.status(500).send('Erreur lors de la recup des noms');
+    } else {
+      res.send([results]);
+      console.log(results)
+    }
+  });
+});
+
+
 ingred.post(`/ingredients/:type/new`, (req, res) => {
   const formData = req.body;
   connection.query('INSERT INTO ? SET ?', formData, (err, results) => {
@@ -33,7 +58,7 @@ ingred.put(`/ingredients/:id`, (req, res) => {
     size: req.body.size,
     price: req.body.price,
     dispo: req.body.dispo,
-    description: req.body.info, 
+    description: req.body.info,
     image: req.body.img,
     isCompatible: null,
     flavor: null,
@@ -49,23 +74,22 @@ ingred.put(`/ingredients/:id`, (req, res) => {
 })
 
 
-
 // Identification par token
 passport.use(new JWTStrategy(
-  {  
-    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),  
-    secretOrKey   : secret  
-  },  
+  {
+    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+    secretOrKey: secret
+  },
   (jwtPayload, cb) => {
     return cb(null, jwtPayload);
-  }  
+  }
 ));
 
 ingred.delete(
   '/ingredients/:type/:id',
   // jwtAuthentification(),
   passport.authenticate('jwt', {
-    session:  false,
+    session: false,
     failureRedirect: '/login',
     // failureFlash: 'You need to be logged in',
   }),
@@ -73,9 +97,9 @@ ingred.delete(
     console.log(req.headers)
     const formData = [req.params.type, req.params.id];
     connection.query('DELETE FROM ?? WHERE id = ?', formData, (err, results) => {
-      if (err) res.status(500).json({ message:  "Erreur lors de la suppression" });
-      else res.status(200).json({ message:  "Ingrédient supprimé" });
-      }
+      if (err) res.status(500).json({ message: "Erreur lors de la suppression" });
+      else res.status(200).json({ message: "Ingrédient supprimé" });
+    }
     );
   }
 );
