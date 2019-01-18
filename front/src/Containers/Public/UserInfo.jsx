@@ -10,7 +10,6 @@ import Progressbar from './Progressbar';
 import updateUserInfo from '../../Actions/orderActions/updateUserInfo';
 import '../../Assets/Styles/UserInfo.css';
 
-
 class UserInfo extends Component {
   constructor(props) {
     super(props);
@@ -19,8 +18,8 @@ class UserInfo extends Component {
     this.birthdateRegex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
     this.state = {
       user: {
-        firstname: customer.firstname,
-        lastname: customer.lastname,
+        firstName: customer.firstName,
+        lastName: customer.lastName,
         birthday: customer.birthdate,
         email: customer.email,
         phone: customer.telephone,
@@ -28,6 +27,7 @@ class UserInfo extends Component {
       comment,
       giftcard,
       inputAttempt: false,
+      dobNotValid: false,
     };
   }
 
@@ -48,6 +48,8 @@ class UserInfo extends Component {
 
   setUserState = (evt) => {
     evt.persist();
+    const { user } = this.state;
+    if (!user.birthdate) this.setState({ dobNotValid: false });
     this.setState(prevState => ({
       prevState,
       user: {
@@ -65,23 +67,23 @@ class UserInfo extends Component {
 
   sendConfirmationEmails = () => {
     const { user } = this.state;
-            const mail = {
-              "client": {
-                "email": "mathieuwcs@gmail.com",
-                "title": "bonjour client",
-                "content":`Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
+    const mail = {
+      client: {
+        email: 'mdearmey@gmail.com',
+        title: 'bonjour client',
+        content: `Bonjour ${user.firstName} ${user.lastName}, votre commande a bien été prise en compte.
                 Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`
       },
-      "giluna": {
-        "email": "mathieumiquel@gmail.com",
-        "title": "Bonjour giluna",
-        "content":"une nouvelle commande vient d'être générée sur le site"
+      giluna: {
+        email: 'mdearmey@gmail.com',
+        title: 'Bonjour giluna',
+        content: 'une nouvelle commande vient d’être générée sur le site',
       },
-    }
-    axios.post('/api/send/mail', mail).then(response => console.log(response.data))
+    };
+    axios.post('/api/send/mail', mail).then(response => console.log(response.data));
   }
 
-  validBirthdate = (DOBstate) => {
+  invalidBirthdate = (DOBstate) => {
     if (DOBstate === '') return false;
     if (!this.birthdateRegex.test(DOBstate) && DOBstate.length > 9) return true;
   }
@@ -95,12 +97,16 @@ class UserInfo extends Component {
 
   handleClick = (event) => {
     const { user } = this.state;
-    if (!user.firstname || !user.lastname || !this.mailRegex.test(user.email)
+    if (!user.firstName || !user.lastName || !this.mailRegex.test(user.email)
       || user.phone.length < 10) {
       this.setState({ inputAttempt: true });
       event.preventDefault();
     }
-    else this.sendConfirmationEmails();
+    if (user.birthday && !this.birthdateRegex.test(user.birthday)) {
+      this.setState({ dobNotValid: true });
+      event.preventDefault();
+    }
+    // else this.sendConfirmationEmails();
   }
 
   setWarning = (event) => {
@@ -113,7 +119,7 @@ class UserInfo extends Component {
 
   render() {
     const {
-      user, comment, giftcard, inputAttempt,
+      user, comment, giftcard, inputAttempt, dobNotValid
     } = this.state;
     const warning = { border: '3px solid', borderColor: '#dc3545' };
     return (
@@ -133,20 +139,20 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="firstname">
+              <Label for="firstName">
                 <span className="text-danger">* </span>
                 Prénom
               </Label>
-              <Input autoFocus type="text" name="firstname" id="firstname" placeholder="votre prénom" value={user.firstname} style={inputAttempt && !user.firstname ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input autoFocus type="text" name="firstName" id="firstName" placeholder="votre prénom" value={user.firstName} style={inputAttempt && !user.firstName ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="lastname">
+              <Label for="lastName">
                 <span className="text-danger">* </span>
                 Nom
               </Label>
-              <Input type="text" name="lastname" id="lastname" placeholder="votre nom de famille" value={user.lastname} style={inputAttempt && !user.lastname ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input type="text" name="lastName" id="lastName" placeholder="votre nom de famille" value={user.lastName} style={inputAttempt && !user.lastName ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
           <Col sm="12" md="4">
@@ -154,7 +160,7 @@ class UserInfo extends Component {
               <Label for="birthdate">
                 Date de naissance
               </Label>
-              <Input invalid={this.validBirthdate(user.birthday)} type="text" name="birthday" id="birthday" placeholder="date de naissance – ex: 30/09/1982" value={user.birthday} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input invalid={(user.birthday && this.invalidBirthdate(user.birthday)) || dobNotValid} type="text" name="birthday" id="birthday" placeholder="date de naissance – ex: 30/09/1982" value={user.birthday} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
               <FormFeedback>date de naissance non valide (format requis: JJ/MM/AAAA)</FormFeedback>
               {!this.birthdateRegex.test(user.birthday) && user.birthday.length <= 9 ? (
                 <div className="invalidDOB">
@@ -209,11 +215,12 @@ class UserInfo extends Component {
             <button type="button" onClick={e => this.handleClick(e)} className="btn-confirmation">envoyer la Commande</button>
           </Link>
         </Row>
+        <img src={ require(`../../../../back/tmp/${this.props.customization.photo1}`) } alt="customer decoration" />
+        {/* <img src={ require(`../../Assets/Temp/${this.props.customization.photo1}`) } alt="customer decoration" /> */}
       </Container>
     );
   }
 }
-
 UserInfo.propTypes = {
   updateUser: PropTypes.func.isRequired,
   customer: PropTypes.shape({}).isRequired,
@@ -223,7 +230,7 @@ UserInfo.propTypes = {
 
 const mapStateToProps = state => ({
   customer: state.customerInfo,
-  giftcard: state.customizationCustomer.giftcard,
+  customization: state.customizationCustomer,
   comment: state.cakeCharacteristics.comment,
 });
 

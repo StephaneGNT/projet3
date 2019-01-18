@@ -5,15 +5,12 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Giluna from '../Assets/Images/LOGO_GILUNA.png';
 
 class UploadPics extends Component {
   constructor(props) {
     super(props);
-    // const { imYourFather, decorationPhoto } = props;
     this.fileInput = React.createRef();
-    // this.state = {
-    //   photo: imYourFather === 'decoration' ? decorationPhoto : '',
-    // };
   }
 
   submitFile = (event) => {
@@ -30,7 +27,6 @@ class UploadPics extends Component {
       //   const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
       // },
     };
-
     axios.post('/api/uploadfile', data, config)
       .then((result) => {
         // this.setState({ photo: result.data });
@@ -41,6 +37,7 @@ class UploadPics extends Component {
 
   render() {
     const token = localStorage.getItem('token');
+    const { photo1 } = this.props;
     return (
       <Container style={{ margin: '5vh 5vw' }}>
         Hello {token}<br />
@@ -56,18 +53,18 @@ class UploadPics extends Component {
           </FormGroup>
         </form>
         {/* <SignOut /> */}
+        <img src={this.props.photo1 ? require(`../../../back/tmp/${photo1}`) : Giluna} alt="customer decoration" />
+
       </Container>
     );
   }
 }
 
 UploadPics.propTypes = {
-  imYourFather: PropTypes.string.isRequired,
-  decorationPhoto: PropTypes.string.isRequired,
 };
 
 const mapStatetoProps = state => ({
-  // decorationPhoto: state.customizationCustomer.customSummary.photo,
+  photo1: state.customizationCustomer.photo1,
 });
 
 const mapDispatchToProps = dispatch => ({

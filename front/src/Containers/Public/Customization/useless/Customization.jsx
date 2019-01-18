@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 import CustomMessage from './CustomMessage';
 import CustomMessageInput from '../CustomMessageInput';
-import ColorPicker from '../ColorPicker';
+import Beautify from '../Beautify';
 import Price from '../../Price';
 import Decoration from '../Decoration';
 import DecorationExamples from './DecorationExamples';
@@ -38,7 +38,7 @@ const Customization = (props) => {
                       <CustomMessage />
                       <div className={!wantsCustomMessage && 'greyScale'}>
                         <CustomMessageInput />
-                        <ColorPicker />
+                        <Beautify />
                         {/* <FontPicker /> */}
                       </div>
                     </div>

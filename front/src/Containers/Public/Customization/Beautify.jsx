@@ -7,7 +7,7 @@ import FontPicker from './FontPicker';
 // import { changeBgColor, changeFontColor } from '../../../Actions/customization_actions';
 import '../../../Assets/Styles/Customization.css';
 
-class ColorPicker extends Component {
+class Beautify extends Component {
   constructor(props) {
     super(props);
     this.state = { color: 'font' };
@@ -63,9 +63,9 @@ class ColorPicker extends Component {
           {
             (color === 'font')
               ? <CirclePicker className="palette"
-              name="fontColor" onChange={this.modifyFontColor} />
+                name="fontColor" onChange={this.modifyFontColor} />
               : <CirclePicker className="palette" name="backgroundColor" onChange={this.modifyBgColor} />
-            }
+          }
         </Row>
       </div>
     );
@@ -73,7 +73,7 @@ class ColorPicker extends Component {
 }
 
 
-ColorPicker.propTypes = {
+Beautify.propTypes = {
   // changeBackgroundColor: PropTypes.func.isRequired,
   modify: PropTypes.func.isRequired,
 };
@@ -83,5 +83,5 @@ const mapDispatchToProps = dispatch => ({
   // changeFontColour: color => dispatch(changeFontColor(color)),
 });
 
-export default ColorPicker;
+export default Beautify;
 // colors={["#000000", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50", "#8bc34a", "#cddc39", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#795548", "#607d8b"]}

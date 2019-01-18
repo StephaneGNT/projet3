@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-var api_key = '31516c404e325b1aa8129d8c3d38c9b8-3939b93a-b4d6a96f';
-var DOMAIN = 'sandbox54ba418ab9ef4f97b6ff5df6a9467ecf.mailgun.org';
+var api_key = '';
+var DOMAIN = '';
 
 var mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN });
 

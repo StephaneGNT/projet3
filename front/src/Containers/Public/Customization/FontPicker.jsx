@@ -9,7 +9,6 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
-import { chooseFont } from '../../../Actions/customization_actions';
 import '../../../Assets/Styles/Customization.css';
 
 class CustomMessageInput extends Component {
@@ -28,7 +27,6 @@ class CustomMessageInput extends Component {
   render() {
     const {
       selectedFonts,
-      chooseFontTypeFunction,
       wantsCustomMessage,
     } = this.props;
     const { dropdownOpen } = this.state;
@@ -86,6 +84,7 @@ CustomMessageInput.propTypes = {
   // toggleFunction: PropTypes.func.isRequired,
   chooseFontTypeFunction: PropTypes.func.isRequired,
   wantsCustomMessage: PropTypes.bool.isRequired,
+  sendFontChoice: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({
@@ -95,7 +94,7 @@ const mapStatetoProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   // toggleFunction: () => dispatch(toggle()),
-  chooseFontTypeFunction: choice => dispatch(chooseFont(choice)),
+  // chooseFontTypeFunction: choice => dispatch(chooseFont(choice)),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(CustomMessageInput);
