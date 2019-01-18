@@ -1,0 +1,56 @@
+:root {
+  --mainColor: rgba(141, 29, 44, 0.8);
+  --secondColor: rgba(212, 186, 34, 0.8);
+  --mainPolice: 'Lobster Two', cursive;
+  --secondPolice: 'Arial';
+}
+body {
+  background-color: rgb(236, 237, 238) !important;
+  background-image: url(../Images/backgroundapp.png);
+}
+
+a {
+  text-decoration: transparent;
+}
+
+.btn-accueil {
+  display:block;
+  margin:auto;  
+  text-align: center;
+}
+
+.img-gallery {
+  width:20vh;
+  height:20vh;
+  object-fit:cover;
+  border:20px solid white;
+  margin:8% auto;
+}
+
+.bloc-gallery {
+  display:flex;
+  justify-content: center;
+
+}
+
+/* PANNEAU D'ADMINISTRATION */
+.body-admin {
+  padding:2%;
+  height:100%;
+  width:100%;
+  margin:0%;
+  background-color: rgb(235, 235, 235);
+}
+
+.para-admin {
+  text-align: justify;
+  font-size:1.2em;
+  line-height: 1.3em;
+  padding:2%;
+}
+
+.admin-home-logo {
+  width:30%;
+  display:block;
+  margin:auto;    
+}

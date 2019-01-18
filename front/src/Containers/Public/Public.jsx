@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import {
+  Route, Switch, BrowserRouter, withRouter,
+} from 'react-router-dom';
 import HomePage from './HomePage';
 import PimpMyCake from './PimpMyCake';
 import Contact from './Contact';
+import MainNavigation from './Navigation/MainNavigation';
 import '../../Assets/Styles/Public.css';
 
 class Public extends Component {
@@ -12,22 +15,31 @@ class Public extends Component {
   }
 
   render() {
+    const { history } = this.props;
     return (
-      <div className="bodyZone">
-        <div className="headerZone"> NavBar </div>
-        <div className="contentZone">
-          <BrowserRouter>
+      <BrowserRouter>
+        <div className="body-zone">
+          <MainNavigation />
+          <div className="header-zone">
+            Pimp My Cake
+            <button
+              type="button"
+              onClick={() => history.push(`${process.env.PUBLIC_URL}/admin`)}
+            >
+              Admin
+            </button>
+          </div>
+          <div className="content-zone">
             <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route path="/mycake" component={PimpMyCake} />
-              <Route path="/contact/" component={Contact} />
+              <Route exact path={`${process.env.PUBLIC_URL}/`} component={HomePage} />
+              <Route path={`${process.env.PUBLIC_URL}/mycake`} component={PimpMyCake} />
+              <Route path={`${process.env.PUBLIC_URL}/contact`} component={Contact} />
             </Switch>
-          </BrowserRouter>
+          </div>
         </div>
-        <div className="footerZone"> Footer </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }
 
-export default Public;
+export default withRouter(Public);

@@ -1,27 +1,31 @@
 import React from 'react';
-import '../../Assets/Styles/Price.css';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { changePrice } from '../../Actions/Action';
+import { changePrice } from '../../Actions/cakeActions/changeCakePrice';
 
 const Price = (props) => {
-  props.sendToPrice(props.price);
+  const { price, sendToPrice } = props;
+  sendToPrice(price);
   return (
-    <div className="body">
-      <h4>
-        PRICE:
-        {' ' + props.price}
-        €
-      </h4>
+    <div className="bloc-price" style={{ position: 'sticky', top: '60vh' }}>
+      {`PRIX TTC: ${price} €`}
     </div>
   );
 };
 
-const mapStatetoProps = (state) => {
-  return {
-    price: state.cakeCharacteristics.ingredients
-      .map(p => p.price).reduce((a, v) => a + v, 0),
-  };
+Price.propTypes = {
+  price: PropTypes.number.isRequired,
+  sendToPrice: PropTypes.func.isRequired,
 };
+
+const mapStatetoProps = state => ({
+  price: state.cakeCharacteristics.ingredients
+    .map(p => p.price).reduce((a, v) => a + v, 0)
+  // + state.customizationCustomer.customMessage.price
+  // + state.customizationCustomer.decoration.price
+  ,
+});
+
 const mapDispatchToProps = dispatch => ({
   sendToPrice: amount => dispatch(changePrice(amount)),
 });

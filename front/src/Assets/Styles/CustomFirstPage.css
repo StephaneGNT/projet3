@@ -1,0 +1,25 @@
+/* .photoDisplay{
+  margin-top: 10vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#photoDisplayLeft{
+  align-items: flex-end;
+}
+
+#photoDisplayRight{
+  align-items: flex-start;
+}
+
+.photoDisplay img{
+  width: 6vw;
+  height: 10vh;
+} */
+
+.decorationRow{
+  /* padding-top: 5vh; */
+  justify-content: center;
+}

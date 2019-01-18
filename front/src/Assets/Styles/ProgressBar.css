@@ -1,0 +1,52 @@
+.progressBar {
+  list-style-type: none;
+  width: 100vw;
+  /* z-index: 10; */
+  margin:auto;
+}
+
+.progressBar a {
+  color:rgb(255, 255, 255);
+  font-weight:700;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size:0.7em;
+}
+
+.progressBar a:hover {
+  text-decoration: none;
+  color:white;
+}
+
+.progressBar li {
+  display: inline-block;
+  padding: 7px;
+  text-align: center;
+  width:16%;
+  margin:1px;
+}
+
+.progressBar li:first-child {
+  border-top-left-radius: 12px;;
+  border-bottom-left-radius: 12px;;
+}
+
+.progressBar li:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.activeProgress {
+  background-color: rgba(105, 48, 65, 0.911);
+}
+
+.inactiveProgress {
+  background-color: rgba(175, 171, 172, 0.911);
+}
+
+.inactiveProgress a{
+  color:rgb(88, 88, 88);
+}
+.inactiveProgress a:hover{
+  color:rgb(56, 56, 56);
+}

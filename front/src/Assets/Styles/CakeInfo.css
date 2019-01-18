@@ -1,61 +1,68 @@
-.bloc-etape-1 {
-    background-color:lightgrey;
-    border:1px solid black;
-    padding:5px;
-    margin:5%;
-    color:black;
+.labels-perso{
+    font-size: 1.5em;
+    font-family: var(--mainPolice);
+    color: var(--mainColor);
 }
 
-
-/* Bloc des boutons cake, cookies, macarons et cheesescake */
-.bloc-cake-type {
-    width:80%;
-    border:1px solid rgb(187, 164, 164);
-    background-color:rgb(228, 228, 228);
-    box-shadow: 3px 3px 0px rgb(92, 92, 92);
-    margin:5px auto 5px;
-    padding:5px;
-    display:flex;
-    justify-content: center;
-}
-/* Apparence des questions */
-.labels-perso {
-    font-weight:900;
-    color:black;
-    margin:5px;
-    display:block;
-    font-size:12px;
+.body-cake-select {
+    background-color:rgb(201, 201, 201);
 }
 
-/* Bloc description input */
-.bloc-tips {
-    min-width:200px;
-    height:150px;
-    background-color:white;
-    padding:5px;
-    margin:5px auto;
-    overflow:auto;
-    border-radius:5px;
-    font-size:12px;
-    line-height:1.1em;
-    text-align:justify;
+h3 {
+    margin:auto;
+    padding:10px;
+    font-size:1.8em !important;
+    font-weight:700 !important;
+    font-family: var(--mainPolice) !important;
+    color: var(--mainColor) !important;
 }
 
-.text-tips {
-    font-weight:900;
-    display:block;
-
+.typeButton{
+    width: 11vw;
+    height: 18vh;
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    font-family: var(--secondPolice);
+    font-weight: bolder !important;
+    color: black !important;
+    padding-top: 53% !important;
+    background-color: white !important;
+    border:none;
 }
 
-/* Bloc inputs */
-.col-form-mycake {
-    min-width:400px;
-    margin:10px !important;
-    padding:5px;
-    background-color: rgb(194, 194, 194);
-    border-radius:5px;
+#cookieButton{
+    background-image: url(../Images/cookie.png);
 }
 
-.btn-marg {
-    margin:5px;
+#cakeButton{
+    background-image: url(../Images/cake.png);
 }
+
+#cheesecakeButton{
+    background-image: url(../Images/cheesecake.png);
+}
+
+#macaronButton{
+    background-image: url(../Images/macaron_cafe.png);
+}
+
+#brownieButton{
+    background-image: url(../Images/brownie.png);
+}
+
+.tipsColumn{
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.selectionOutline {
+    box-shadow: 0 0 3pt 2pt rgb(168, 112, 48) !important
+}
+
+/* .typeButton[title]:hover:after {
+    content: attr(title);
+    background-color: red;
+  } */

@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import NavArrowsLayout from './NavArrowsLayout';
+import { Row } from 'reactstrap';
+import NavArrowsLayout from './Navigation/NavArrowsLayout';
+import Progressbar from './Progressbar';
+import Confirmation from './confirmation'
+import Price from './Price';
+import '../../Assets/Styles/OrderDetail.css';
+import Price from '../Price';
 
 class OrderDetail extends Component {
   constructor(props) {
@@ -9,12 +15,20 @@ class OrderDetail extends Component {
 
   render() {
     return (
-      <div>
-        Order detail
-        <NavArrowsLayout />
+      <div className="content-zone">
+        <Row className="text-center">
+          <Progressbar />
+        </Row>
+        <Row>
+          <Confirmation />
+        </Row>
+        <Row className="back-btn">
+          <NavArrowsLayout />
+          <Price />
+        </Row>
       </div>
     );
   }
 }
 
-export default OrderDetail;
+export default (OrderDetail);

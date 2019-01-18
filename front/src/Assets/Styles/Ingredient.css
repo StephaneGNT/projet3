@@ -1,9 +1,14 @@
-/* .ingredient img{
-  width: 100%;
-  height: 100%;
-} */
+.ingredient {
+  margin:1px;
+}
 
-.ingredient{
-  margin: auto;
-  background-color: purple;
+.ingredient img{
+  width:7vw !important;
+  object-fit:cover;
+}
+
+.displayIngredient {
+  background-color: rgb(219, 219, 219);
+  height: 60vh;
+  overflow:auto;
 }
