@@ -85,22 +85,38 @@ passport.use(new JWTStrategy(
   }  
 ));
 
+// ingred.delete(
+//   '/ingredients//:id',
+//   passport.authenticate('jwt', {
+//     session:  false,
+//     failureRedirect: '/login',
+//   }),
+//   (req, res) => {
+//     connection.query('DELETE FROM ingredients WHERE id = ?', req.params.id, (err, results) => {
+//       if (err) res.status(500).json({ message:  "Erreur lors de la suppression" });
+//       else res.status(200).json({ message:  "Ingrédient supprimé" });
+//       }
+//     );
+//   }
+// );
+
+// Méthode permettant l'envoi d'un message retour
 ingred.delete(
-  '/ingredients/:type/:id',
-  // jwtAuthentification(),
-  passport.authenticate('jwt', {
-    session:  false,
-    failureRedirect: '/login',
-    // failureFlash: 'You need to be logged in',
-  }),
+  '/ingredients/:id',
   (req, res) => {
-    console.log(req.headers)
-    const formData = [req.params.type, req.params.id];
-    connection.query('DELETE FROM ingredients WHERE id = ?', formData, (err, results) => {
-      if (err) res.status(500).json({ message:  "Erreur lors de la suppression" });
-      else res.status(200).json({ message:  "Ingrédient supprimé" });
+    passport.authenticate('jwt',
+      {
+        session: false,
+        failureRedirect: '/login'
+      },
+      (err, pay) => {
+        if (err) { res.sendStatus(500) }
+        connection.query('DELETE FROM ingredients WHERE id = ?', req.params.id, (err, results) => {
+          if (err) res.status(500).json({ message: "Erreur lors de la suppression" });
+          else res.status(200).json({ message: "Ingrédient supprimé" });
+        });
       }
-    );
+    )
   }
 );
 
