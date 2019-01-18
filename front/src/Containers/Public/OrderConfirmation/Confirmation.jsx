@@ -66,10 +66,10 @@ class Confirmation extends Component {
           <br />
           {/* Personnalisation:
           <br />
-          {decoration}
+          {customSummary.deco1}
           {' '}
           {' '}
-          {customMessage}
+          {customSummary.deco2}
           {' '}
           <br />
           <br /> */}
@@ -101,10 +101,10 @@ class Confirmation extends Component {
           <br />
           {/* Personnalisation:
           <br />
-          {decoration}
+          {customSummary.deco1}
           {' '}
           {' '}
-          {customMessage}
+          {customSummary.deco2}
           {' '}
           <br />
           <br /> */}
@@ -140,10 +140,10 @@ class Confirmation extends Component {
           <br />
           {/* Personnalisation:
           <br />
-          {decoration}
+          {customSummary.deco1}
           {' '}
           {' '}
-          {customMessage}
+          {customSummary.deco2}
           {' '}
           <br />
           <br /> */}
