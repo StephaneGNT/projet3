@@ -20,6 +20,7 @@ class OrdersAdmin extends Component {
     orders.map((order, index) => render.push(
       <tr>
         <td>{order.id}</td>
+        <td>{order.orderDate}</td>
         <td>{order.deliveryDate}</td>
         <td>
           <Input type="select" onChange={e => changeOrderStatus(index, e.target.value)}>
@@ -64,6 +65,7 @@ class OrdersAdmin extends Component {
           <thead>
             <tr>
               <th>N° de commande</th>
+              <th>Date de commande</th>
               <th>Date de livraison</th>
               <th>Statut commande</th>
               <th>Gâteau</th>
