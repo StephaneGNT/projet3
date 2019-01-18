@@ -10,6 +10,10 @@ const admin = require('./routes/admin');
 const customization = require('./routes/customization');
 const calendar = require('./routes/calendar');
 const uploadFile = require('./routes/uploadFile');
+const cake = require('./routes/cakes');
+const order = require('./routes/orders');
+const customer = require('./routes/customers');
+const junctionTable = require('./routes/junction_tables');
 
 // Configuration de l'application
 // app.use(morgan('dev'));
@@ -24,16 +28,20 @@ app.use(function (req, res, next) {
   next();
 });
 
-let server = app.listen(5000, function () {
-  console.log('Listening on port ' + server.address().port);
-});
-
+app.get("/",(req,res)=>res.send("hello"))
 app.use(ingred);
 app.use(auth);
 app.use(admin);
-
-
 app.use('/customization', customization);
 app.use('/calendar', calendar);
 app.use('/api/send',mail);
 app.use(uploadFile);
+app.use(cake);
+app.use(order);
+app.use(customer);
+app.use(junctionTable);
+
+
+let server = app.listen(5000, function () {
+  console.log('Listening on port ' + server.address().port);
+});

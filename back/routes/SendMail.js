@@ -1,29 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-var api_key = '';
-var DOMAIN = '';
+var api_key = '7622ef61346e681cb3a2bdec4de55c92-060550c6-99da5662';
+var DOMAIN = 'sandbox734cf4997fa7440fade438b0cb88ab79.mailgun.org';
 
 var mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN });
 
 
 
 router.post('/mail', (req, res) => {
-    console.log("dans node", req.body)
-    // const data = {
-    //     from: 'Quêtes Wild <wild@wild.com>',
-    //     to: req.body.email,
-    //     subject: req.body.title,
-    //     text: req.body.content,
-    // };
-    // mailgun.messages().send(data, function (error, body) {
-
-    //     console.log(error, body);
-    //     if (error) res.sendStatus(500)
-    //     else res.send("ok")
-    // });
-
-
     const data1 = {
         from: 'Pimpmycake <Pimpmycake@Giluna.com>',
         to: req.body.client.email,

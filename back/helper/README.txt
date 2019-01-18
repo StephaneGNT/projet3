@@ -9,10 +9,21 @@ const connection = mysql.createConnection({
 });
 module.exports  =  connection;
 
---------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
 
 Add a file "jwt_secret.js" that contains :
 
 const secret = *your secret* (string format);
-
 module.exports = secret;
+
+
+------------------------------------------------------------------------------------------------
+
+Add a file "mailGunHelper.js" that contains :
+
+const mailGunCredentials = {
+  api_key: *your API key* (string format);
+  DOMAIN: *your domain name* (string format);
+}
+
+module.exports = mailGunCredentials;
