@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { addFont, fetchFonts, fetchAdminFonts } from '../../Actions/customization_actions';
+import { fetchFonts, fetchAdminFonts } from '../../Actions/customization_actions';
 import '../../Assets/Styles/CustomizationAdmin.css';
 import FontList from './FontList';
 
@@ -116,7 +116,6 @@ const mapStatetoProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addFonts: font => dispatch(addFont(font)),
   fetchFontList: () => dispatch(fetchFonts()),
   fetchAdminFontList: () => dispatch(fetchAdminFonts()),
 });

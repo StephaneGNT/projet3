@@ -20,7 +20,6 @@ const junctionTable = require('./routes/junction_tables');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
-app.use('/api/send',mail)
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -35,6 +34,7 @@ app.use(auth);
 app.use(admin);
 app.use('/customization', customization);
 app.use('/calendar', calendar);
+app.use('/api/send',mail);
 app.use(uploadFile);
 app.use(cake);
 app.use(order);

@@ -33,7 +33,7 @@ class OrdersAdmin extends Component {
           <Button
             onClick={() => history.push({
               pathname: '/admin/orderDetail/cake',
-              state: { cake: cakes[order.cakeId - 1] },
+              state: { cake: cakes[index - 1] },
             })}
           >
             Détail

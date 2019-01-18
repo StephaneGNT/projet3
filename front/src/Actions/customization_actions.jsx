@@ -10,24 +10,24 @@ export const removeCakeMessage = blank => ({
   blank,
 });
 
-export const updateCustomMessage = e => ({
-  type: 'UPDATE_CUSTOM_MESSAGE',
-  message: e.target.value,
-});
+// export const updateCustomMessage = e => ({
+//   type: 'UPDATE_CUSTOM_MESSAGE',
+//   message: e.target.value,
+// });
 
-export const toggle = () => ({
-  type: 'TOGGLE_FONTS',
-});
+// export const toggle = () => ({
+//   type: 'TOGGLE_FONTS',
+// });
 
-export const submitDecorationChoice = choice => ({
-  type: 'SUBMIT_DECORATION_CHOICE',
-  choice,
-});
+// export const submitDecorationChoice = choice => ({
+//   type: 'SUBMIT_DECORATION_CHOICE',
+//   choice,
+// });
 
-export const chooseFont = choice => ({
-  type: 'CHOOSE_FONT_FAMILY',
-  fontFamily: choice,
-});
+// export const chooseFont = choice => ({
+//   type: 'CHOOSE_FONT_FAMILY',
+//   fontFamily: choice,
+// });
 
 export const getFonts = fonts => ({
   type: 'UPDATE_FONTS',
@@ -39,19 +39,29 @@ export const populateFonts = fonts => ({
   fonts,
 });
 
-export const addFont = font => ({
-  type: 'ADD_FONT',
-  font,
+// export const addFont = font => ({
+//   type: 'ADD_FONT',
+//   font,
+// });
+
+// export const changeBgColor = color => ({
+//   type: 'CHANGE_BACKGROUND_COLOR',
+//   backgroundColor: color.hex,
+// });
+
+// export const changeFontColor = color => ({
+//   type: 'CHANGE_FONT_COLOR',
+//   fontColor: color.hex,
+// });
+
+export const updateSummaryInfo = data => ({
+  type: 'UPDATE_CUSTOM_SUMMARY',
+  data,
 });
 
-export const changeBgColor = color => ({
-  type: 'CHANGE_BACKGROUND_COLOR',
-  backgroundColor: color.hex,
-});
-
-export const changeFontColor = color => ({
-  type: 'CHANGE_FONT_COLOR',
-  fontColor: color.hex,
+export const calculateCustomizationPrice = data => ({
+  type: 'UPDATE_CUSTOMIZATION_PRICE',
+  data,
 });
 
 export const fetchFonts = () => {
