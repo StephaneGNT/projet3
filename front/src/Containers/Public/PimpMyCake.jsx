@@ -4,7 +4,7 @@ import CakeInfo from './CakeInfo/CakeInfo';
 import Composition from './IngredientsChoice/Composition';
 // import Customization from './Customization/Customization';
 import OrderDetail from './OrderConfirmation/OrderDetail';
-import UserInfo from './FinalOrder/UserInfo';
+import UserInfo from './UserInfo';
 import CustomizationStructure from './Customization/CustomizationStructure';
 import ConfirmationPage from './OrderConfirmation/ConfirmationPage';
 

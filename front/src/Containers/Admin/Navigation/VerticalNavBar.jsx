@@ -14,21 +14,15 @@ const VerticalNavBar = () => (
       </NavbarBrand>
       <Nav className="navbar-nav mr-auto">
         <NavItem>
-          <NavLink to="/admin/orders">
+          <NavLink to="/admin">
             <i className="fas fa-home" />
-            <span className="linkname ml-3">Orders</span>
+            <span className="linkname ml-3">Home</span>
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink to="/admin/ingredients">
             <i className="fas fa-birthday-cake ml-1" />
             <span className="linkname ml-2">Ingrédients</span>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/admin/clients">
-            <i className="fas fa-users" />
-            <span className="linkname ml-2">Clients</span>
           </NavLink>
         </NavItem>
         <NavItem>

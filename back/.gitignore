@@ -24,4 +24,3 @@ yarn-error.log*
 
 #accès db
 ./helper/db.js
-./helper/mailGunHelper.js

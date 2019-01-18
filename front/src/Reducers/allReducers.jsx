@@ -15,9 +15,6 @@ import { leftPics, rightPics } from './pics_reducer';
 import adminIndexReducer from './admin_index_reducer';
 import adminTokenReducer from './admin_token_reducer';
 import ingredientsReducer from './ingredients_reducer';
-import cakeListReducer from './list_cakes';
-import orderListReducer from './list_orders';
-import customersListReducer from './list_clients';
 
 const allReducers = combineReducers({
   ingredients: ingredientsReducer,
@@ -37,9 +34,6 @@ const allReducers = combineReducers({
   rightColumnPics: rightPics,
   adminIndex: adminIndexReducer,
   adminToken: adminTokenReducer,
-  cakeList: cakeListReducer,
-  orderList: orderListReducer,
-  customerList: customersListReducer,
 });
 
 export default allReducers;
