@@ -26,7 +26,9 @@ order.get(`/orders/all`, (req, res) => {
 
 // Enregistrement du custom wishes lié à l'order - OK
 order.post('/customwishes/new', (req, res) => {
+  console.log(req.body)
   connection.query('INSERT INTO custom_wishes SET ?', req.body, (err, results) => {
+    console.log("err, results", err, results)
     if (err) res.status(500).send("Erreur lors de l'enregistrement des souhaits");
     else res.status(200).json({ id:results.insertId });
     // else res.status(200).send(results);

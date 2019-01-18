@@ -121,7 +121,7 @@ class UserInfo extends Component {
     // Remplissage de la table de jonction client / order
     populateClientOrderJT(customerID, orderID);
 
-    if (orderID > 0) history.push(`${process.env.PUBLIC_URL}/orderConfirmation`);
+    if (orderID > 0) history.push(`${process.env.PUBLIC_URL}/mycake/orderConfirmation`);
   }
 
   handleClick = (event) => {
@@ -155,7 +155,7 @@ class UserInfo extends Component {
             {
               inputAttempt ? (
                 <div>
-                  Veuillez renseigner les champs obligatoires* avant d’envoyer la commande
+                  Veuillez renseigner les champs obligatoires * avant d’envoyer la commande
                 </div>
               ) : <div />
             }
@@ -166,7 +166,17 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 Prénom
               </Label>
-              <Input autoFocus type="text" name="firstname" id="firstname" placeholder="votre prénom" value={user.firstname} style={inputAttempt && !user.firstname ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input
+                autoFocus
+                type="text"
+                name="firstname"
+                id="firstname"
+                placeholder="votre prénom"
+                value={user.firstname}
+                style={inputAttempt && !user.firstname ? warning : {}}
+                onChange={e => this.setUserState(e)}
+                onKeyPress={this.enterForm}
+              />
             </FormGroup>
           </Col>
           <Col sm="12" md="4">

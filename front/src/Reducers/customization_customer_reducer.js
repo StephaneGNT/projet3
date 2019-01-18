@@ -1,6 +1,5 @@
 export default () => {
   return {
-    id: 1,
     deco1: 'Message',
     deco2: '',
     photo1: '',
@@ -8,6 +7,6 @@ export default () => {
     msgContent: 'Happy bDay',
     msgColor: 'rgb(222, 12, 56)',
     msgBgColor: 'rgb(0,0,0)',
-    font: 1,
+    font: 'Times New Roman',
   };
 };
