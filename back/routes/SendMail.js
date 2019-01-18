@@ -7,10 +7,8 @@ var DOMAIN = mailGunCredentials.DOMAIN;
 
 var mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN });
 
-
-
 router.post('/mail', (req, res) => {
-
+    console.log("req.body", req.body)
     const data1 = {
         from: 'Pimpmycake <Pimpmycake@Giluna.com>',
         to: req.body.client.email,
@@ -26,7 +24,7 @@ router.post('/mail', (req, res) => {
 
     mailgun.messages().send(data1, function (error, body) {
         mailgun.messages().send(data2, function (error, body) {
-            console.log(body)
+            console.log("mail gun body", body)
             if (error) res.status(500).send("Erreur")
             else res.status(200).send("Succès")
         });

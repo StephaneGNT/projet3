@@ -68,16 +68,17 @@ class UserInfo extends Component {
   }
 
   sendConfirmationEmails = () => {
+    console.log("confirmation mails")
     const { user } = this.state;
     const mail = {
       client: {
-        email: 'mathieuwcs@gmail.com',
+        email: user.email,
         title: 'Confirmation de commande Giluna',
         content: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
                 Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
       },
       giluna: {
-        email: 'mathieumiquel@gmail.com',
+        email: 'sguinot86@gmail.com',
         title: 'Bonjour giluna',
         content: 'une nouvelle commande vient d’être générée sur le site',
       },
@@ -121,7 +122,10 @@ class UserInfo extends Component {
     // Remplissage de la table de jonction client / order
     populateClientOrderJT(customerID, orderID);
 
-    if (orderID > 0) history.push(`${process.env.PUBLIC_URL}/mycake/orderConfirmation`);
+    if (orderID > 0) {
+      this.sendConfirmationEmails();
+      history.push(`${process.env.PUBLIC_URL}/mycake/orderConfirmation`)
+    }
   }
 
   handleClick = (event) => {

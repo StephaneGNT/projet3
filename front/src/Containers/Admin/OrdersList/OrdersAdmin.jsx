@@ -14,7 +14,8 @@ class OrdersAdmin extends Component {
     const {
       history, orders, customers, cakes, changeOrderStatus,
     } = this.props;
-    console.log("orders", typeof orders)
+    console.log("orders", orders);
+    console.log("customers", customers);
     const render = [];
     orders.map((order, index) => render.push(
       <tr>
@@ -33,7 +34,7 @@ class OrdersAdmin extends Component {
           <Button
             onClick={() => history.push({
               pathname: '/admin/orderDetail/cake',
-              state: { cake: cakes[order.cakeId - 1] },
+              state: { cake: cakes[index - 1] },
             })}
           >
             Détail
@@ -41,10 +42,12 @@ class OrdersAdmin extends Component {
         </td>
         <td>
           <Button
-            onClick={() => history.push({
-              pathname: '/admin/orderDetail/client',
-              state: { customer: customers[order.customerId - 1] },
-            })}
+            onClick={() => {
+              history.push({
+                pathname: '/admin/orderDetail/client',
+                state: { customer: customers[order.customerId - 1] },
+              });
+            }}
           >
             Détail
           </Button>
