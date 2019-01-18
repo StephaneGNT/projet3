@@ -41,7 +41,7 @@ class ModifyIngredient extends Component {
       .then((res) => { const fullListArray = res.data[0]; this.setState({ fullList: fullListArray }); })
       .catch(err => console.log(err.response.data));
 
-    axios.get('http://localhost:5000/ingredients/allerg')
+    axios.get('http://localhost:5000/allergenes/name')
       .then((res) => { const fullAllergArray = res.data[0]; this.setState({ fullAllerg: fullAllergArray }); });
     // axios.get table de jt_compatible => return fullIngredientCompat = [res]
   }
