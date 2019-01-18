@@ -1,62 +1,63 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Button, ButtonGroup } from 'reactstrap';
 import axios from 'axios';
 import { addFont, fetchFonts, fetchAdminFonts } from '../../Actions/customization_actions';
 import '../../Assets/Styles/CustomizationAdmin.css';
 import FontList from './FontList';
 
 class CustomizationAdmin extends Component {
-  constructor(props) {
-    super(props);
-    this.fontsAtATime = 80;
-    this.state = {
-      range: this.fontsAtATime,
-      clickedPage: 0,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.fontsAtATime = 1000;
+  //   this.state = {
+  //     range: this.fontsAtATime,
+  //     clickedPage: 0,
+  //   };
+  // }
 
   componentWillMount() {
     const { fetchFontList } = this.props;
     fetchFontList();
   }
 
-  generatePagination = () => {
-    const { googleFonts } = this.props;
-    const array = [];
-    const pages = Math.ceil(googleFonts.length / this.fontsAtATime);
-    let i = 0;
-    while (i < pages) {
-      i += 1;
-      array.push(i);
-    }
-    return array;
-  }
+  // generatePagination = () => {
+  //   const { googleFonts } = this.props;
+  //   const array = [];
+  //   const pages = Math.ceil(googleFonts.length / this.fontsAtATime);
+  //   let i = 0;
+  //   while (i < pages) {
+  //     i += 1;
+  //     array.push(i);
+  //   }
+  //   return array;
+  // }
 
-  changePage = (index) => {
-    this.setState({
-      range: index * this.fontsAtATime + this.fontsAtATime,
-      clickedPage: index,
-    });
-  }
+  // changePage = (index) => {
+  //   this.setState({
+  //     range: index * this.fontsAtATime + this.fontsAtATime,
+  //     clickedPage: index,
+  //   });
+  // }
 
   addFont = (name) => {
     const { selectedFonts, fetchAdminFontList } = this.props;
     if (!selectedFonts.includes(name)) {
       axios.post('/customization/addfonts', { name, availability: true })
-        .then(response => response.data === 'OK' && fetchAdminFontList())
+        .then(function (response) {
+          if (response.data === 'OK') fetchAdminFontList();
+        });
     } else window.alert('Vous avez déjà ajouté cette police');
   }
 
   render() {
     const { googleFonts } = this.props;
-    const { range, clickedPage } = this.state;
-    const limitedFontList = googleFonts.slice(range - this.fontsAtATime, range);
+    // const { range, clickedPage } = this.state;
+    // const limitedFontList = googleFonts.slice(range - this.fontsAtATime, range);
     return (
       <div>
         {
-          googleFonts.map((font, i) => (
+          googleFonts.map(font => (
             <div key={font.family}>
               <link
                 rel="stylesheet"
@@ -72,10 +73,11 @@ class CustomizationAdmin extends Component {
         <div style={{ height: '60vh' }}>
           <div className="FontList">
             {
-              limitedFontList.map(font => (
+              googleFonts.map(font => (
                 <span
                   onClick={() => this.addFont(font.family)}
                   className="FontList"
+                  key={font.family}
                   style={{
                     fontFamily: font.family,
                     border: 'none',
@@ -87,8 +89,8 @@ class CustomizationAdmin extends Component {
               ))
             }
           </div>
-        </div>
-        <ButtonGroup>
+          {/* </div > */}
+          {/* <ButtonGroup>
           {this.generatePagination().map((pageNumber, i) => (
             <Button
               style={i === clickedPage ? { backgroundColor: 'black' } : {}}
@@ -97,7 +99,8 @@ class CustomizationAdmin extends Component {
               {pageNumber}
             </Button>
           ))}
-        </ButtonGroup>
+        </ButtonGroup> */}
+        </div>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { checkPropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { changeIndex } from '../../../Actions/cakeActions/changeIndex';
@@ -31,6 +31,15 @@ class NavArrowNext extends Component {
     }
   }
 
+  handleClick = (e) => {
+    const { pageIndex, deliveryDate, cake, changePageIndex } = this.props;
+    if (!deliveryDate && ((pageIndex === 6) || (pageIndex === 4 && !['cake', 'cheesecake'].includes(cake.type)))) {
+      e.preventDefault();
+      window.alert('Veuillez renseigner une date de retrait')
+    }
+    else changePageIndex(1);
+  }
+
   render() {
     const {
       pageIndex,
@@ -42,7 +51,7 @@ class NavArrowNext extends Component {
     return (
       <div>
         <NavLink to={this.translateIndexToRoute(pageIndex, type)}>
-          <button title={this.getTitle()} disabled={disabled} type="button" onClick={() => changePageIndex(1)} className="btn-prev-next">
+          <button title={this.getTitle()} disabled={disabled} type="button" onClick={e => this.handleClick(e)} className="btn-prev-next">
             Suivant
             {/* {this.pageIndex} */}
           </button>
@@ -65,6 +74,7 @@ const mapStateToProps = state => ({
   pageIndex: state.pageIndex,
   type: state.cakeCharacteristics.type,
   cake: state.cakeCharacteristics,
+  deliveryDate: state.orderCharacteristics.delivery_date,
 });
 
 const matchDispatchToProps = dispatch => ({ changePageIndex: num => dispatch(changeIndex(num)) });

@@ -62,6 +62,7 @@ const IngredientsDisplay = (props) => {
           <Ingredient
             ingredient={ingredient}
             disabled={disabled}
+            key={ingredient.name}
           />,
         );
         return render;
