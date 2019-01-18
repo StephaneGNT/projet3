@@ -7,9 +7,6 @@ import { setIndex } from '../../../Actions/databaseActions/setCategory';
 
 
 class ButtonModify extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { toggleForm, changeCategory, changeIndex } = this.props;

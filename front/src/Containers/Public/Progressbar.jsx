@@ -8,7 +8,7 @@ import '../../Assets/Styles/ProgressBar.css';
 
 class Progressbar extends Component {
   handleClick = (e, index) => {
-    const { ingredient, indexUpdate, deliveryDate, type } = this.props;
+    const { ingredient, indexUpdate, deliveryDate, type, updateCustomerInfo } = this.props;
     if (ingredient.length > 0) {
       if (type === 'cake' || type === 'cheesecake' ? index === 5 && !deliveryDate : index === 3 && !deliveryDate) {
         window.alert('Veuillez renseigner une date de retrait');
@@ -58,7 +58,8 @@ Progressbar.propTypes = {
   ingredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   index: PropTypes.number.isRequired,
   indexUpdate: PropTypes.func.isRequired,
-  deliveryDate: PropTypes.shape({}).isRequired,
+  deliveryDate: PropTypes.string.isRequired,
+  // updateCustomerInfo: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({

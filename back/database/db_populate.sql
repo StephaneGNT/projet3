@@ -27,17 +27,15 @@ VALUES ('Oeuf'), ('Lactose'), ('Arachide');
 INSERT INTO fonts (name, availability)
 VALUES ('Ewert', true), ('Frijole', true), ('Rochester', false);
 
-INSERT INTO custom_wishes (type, photo, msgContent, msgColor, msgBgColor, msgFontId)
-VALUES ('Message', '', 'Joyeux anniversaire', '#00ff00', '#111111',
-  (SELECT id FROM fonts WHERE fonts.id = 1)
-);
+INSERT INTO custom_wishes (deco1, deco2, photo1, photo2, msgContent, msgColor, msgBgColor, font)
+VALUES ('Message', '', '', '', 'Bon anniversaire !', '#00ff00', '#111111', 'Times New Roman');
 
 INSERT INTO customers (firstName, lastName, email, phone, birthday)
 VALUES ( 'Mathieu', 'De Armey', 'famousfour@hotmail.com', '0600000000', '1981-06-23'),
 ('Kapu', 'Nielsen', 'kapunielsen@voila.fr', '0612345678', '1987-03-12');
 
-INSERT INTO final_cakes (type, size, quantity, story, occasion, comments, price, customWishes)
-VALUES ('Cake','50', null, 1, 'Anniversaire', 'some comment', 40, 
+INSERT INTO final_cakes (type, size, quantity, story, occasion, price, customWishes)
+VALUES ('Cake','50', null, 1, 'Anniversaire', 40, 
   (SELECT id FROM custom_wishes WHERE custom_wishes.id = 1)
 );
 
@@ -53,18 +51,17 @@ VALUES ((SELECT id FROM final_cakes WHERE final_cakes.id = 1),
 );
 
 INSERT INTO admin (name, adminPassword)
-VALUES ('Giluna', 'aaaaaaa'),
-('Giluna2','sudfhmlkfds');
+VALUES ('Giluna', '$2b$10$zuvDfB67g.0QUzQJE20Vaea/TCbXYvjSGsLuxesG2UDILdp92dcse');
 
 
 INSERT INTO jt_allergenes (id_ingred, id_allergene)
 VALUES (1, 1), (1, 2), (2, 3), (2, 2), (4, 1), (4, 3), (5, 1), (6, 2), (8, 1), (8, 3), (11, 2), (12, 2), (15, 1), (15, 2), (17, 1), (18, 3);
 
-INSERT INTO jt_cake_ingredients (id_final_cake, id_ingred)
-VALUES (1, 3), (1, 8), (1, 9), (1, 14), (1, 18);
+-- INSERT INTO jt_cake_ingredients (id_final_cake, id_ingred)
+-- VALUES (1, 3), (1, 8), (1, 9), (1, 14), (1, 18);
 
-INSERT INTO jt_compatibility (id_ingred1, id_ingred2)
-VALUES (1, 8), (1, 9), (1, 10), (1, 11), (1, 12), (1, 12), (1, 13), (1, 14), (1, 15), (1, 16);
+-- INSERT INTO jt_compatibility (id_ingred1, id_ingred2)
+-- VALUES (1, 8), (1, 9), (1, 10), (1, 11), (1, 12), (1, 12), (1, 13), (1, 14), (1, 15), (1, 16);
 
-INSERT INTO jt_customers_orders (id_customer, id_order)
-VALUES (1, 1);
+-- INSERT INTO jt_customers_orders (id_customer, id_order)
+-- VALUES (1, 1);

@@ -8,7 +8,6 @@ const initialState = {
   // sinon (cookie, macaron), valeur de l'input
   occasion: '',
   ingredients: [],
-  comment: '',
   price: 0,
   time: 2,
 };
@@ -40,7 +39,6 @@ export default (state = initialState, action) => {
     case 'CHANGE_CAKE_ETAGE': return { ...state, story: action.payload };
     case 'CHANGE_PRICE': return { ...state, price: action.price };
     case 'CHANGE_CAKE_OCCASION': return { ...state, occasion: action.occasion };
-    case 'COMMENT': return { ...state, comment: action.text };
     default: return state;
   }
 };

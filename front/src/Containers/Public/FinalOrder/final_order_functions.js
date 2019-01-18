@@ -1,58 +1,85 @@
 import axios from 'axios';
 
-export const saveCustomer = (customer) => {
-  axios.get('/customer', customer).then((res) => {
-    console.log("res in customer get", res);
-    if (res.data.length > 0) window.alert("Utilisateur déjà existant")
-    else {
-      axios.post('customer/new', customer)
-        .then((result) => {
-          console.log(result);
-          return result.data.id;
-        });
-    }
-  });
+
+// Sauvegarde du client - OK back
+export const saveCustomer = async (customer) => {
+  const pushedCustomer = {
+    firstName: customer.firstname,
+    lastName: customer.lastname,
+    birthday: customer.birthday,
+    email: customer.email,
+    phone: customer.phone,
+  };
+  let customerID;
+  customerID = await axios.post('/customer', pushedCustomer)
+    .then((result) => { if (result.data.id) return result.data.id; });
+  if (!(customerID > 0)) {
+    customerID = await axios.post('/customer/new', pushedCustomer)
+      .then((result) => { return result.data.id; });
+  }
+  return customerID;
 };
 
-export const getIngredientsID = async (cake) => {
+// Récupération de l'ID de chacun des ingrédients du gâteau
+export const getIngredientsID = (cake) => {
   const IDlist = [];
   cake.ingredients.map(ingredient => IDlist.push(ingredient.id));
   return IDlist;
 };
 
-export const saveCustomWishes = (customWishes) => {
-  axios.post('/customwishes/new', customWishes).then(res => console.log(res));
+// Sauvegarde des custom wishes - OK back
+export const saveCustomWishes = async (customWishes) => {
+  console.log("customWishes", customWishes)
+  const customWishesID = await axios.post('/customwishes/new', customWishes).then((res) => {
+    return res.data.id;
+  });
+  return customWishesID;
 };
 
-export const saveCake = (cake, customWishesID) => {
+// Sauvegarde du gâteau - OK back
+export const saveCake = async (cake, customWishesID) => {
   const cakeToPush = {
-    ...cake,
-    customWishesID,
+    type: cake.type,
+    size: (cake.size).toString(),
+    quantity: cake.quantity,
+    story: cake.story,
+    occasion: cake.occasion,
+    price: cake.price,
+    customWishes: customWishesID,
   };
-  axios.post('/cake/new', cakeToPush)
-    .then(res => console.log(res));
+  const cakeID = await axios.post('/cakes/new', cakeToPush)
+    .then((res) => {
+      return res.data.id;
+    });
+  return cakeID;
 };
 
+// Remplissage de la junction table final_cake / ingredients - OK back
 export const populateCakeIngrJT = (cakeID, ingredientIDList) => {
   ingredientIDList.map((ingredientID) => {
     axios.post('/jtcakeingredients', { cakeID, ingredientID });
   });
 };
 
-export const saveOrder = (customerID, cakeID, order) => {
+// Sauvegarde de la commande finale - OK back
+export const saveOrder = async (customerID, cakeID, order, comment, giftcard) => {
   const orderToPush = {
-    customer_id: customerID,
-    cake_id: cakeID,
-    order_date: order.order_date,
-    delivery_date: order.delivery_date,
-    customer_status: 'Commandée',
-    admin_status: '',
-    customer_comments: order.customer_comments,
-    customer_message: order.customer_message,
+    customerID,
+    cakeID,
+    orderDate: order.order_date,
+    deliveryDate: order.delivery_date,
+    customerStatus: 'Commandée',
+    adminStatus: '',
+    customerComment: comment,
+    customerMessage: giftcard,
   };
-  axios.post('/order/new', orderToPush).then((res) => {
-    console.log(res)
-    if (res.status === 200) window.alert("Commande enregistrée");
-    else window.alert("Arf, problème à la commande")
+  const orderID = await axios.post('/orders/new', orderToPush).then((res) => {
+    if (res.status === 200) return (res.data.insertId);
+    return 0;
   });
+  return orderID;
 };
+
+export const populateClientOrderJT = (customerID, orderID) => {
+  axios.post('/jtclientorder', { customerID, orderID });
+}

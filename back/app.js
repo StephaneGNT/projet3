@@ -12,6 +12,7 @@ const uploadFile = require('./routes/uploadFile');
 const cake = require('./routes/cakes');
 const order = require('./routes/orders');
 const customer = require('./routes/customers');
+const junctionTable = require('./routes/junction_tables');
 
 // Configuration de l'application
 // app.use(morgan('dev'));
@@ -36,7 +37,7 @@ app.use(uploadFile);
 app.use(cake);
 app.use(order);
 app.use(customer);
-
+app.use(junctionTable);
 
 
 let server = app.listen(5000, function () {

@@ -21,6 +21,18 @@ class Login extends Component {
     };
   }
 
+  componentDidMount = () => {
+    document.addEventListener('keydown', this.handleKeyPress, false);
+  }
+
+  handleKeyPress = (event) => {
+    const { user, passwordConfirm } = this.state;
+    const { action } = this.props;
+    if (((action === 'Se connecter' && user.name === '' && user.adminPassword === '') || (user.name === '' || user.adminPassword === '' || user.adminPassword !== passwordConfirm)) && (event.key === 'Enter')) {
+      this.submitUser();
+    }
+  }
+
   submitUser = async () => {
     const { action, history, saveToken } = this.props;
     const { user } = this.state;
@@ -35,8 +47,8 @@ class Login extends Component {
       history.push('/admin/adminList');
     }
     if (action === 'Modifier') {
-      const { name } = this.props;
-      updateAdmin(user, name);
+      const { index } = this.props;
+      updateAdmin(user, index);
       history.push('/admin/adminList');
     }
   }
@@ -94,7 +106,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  name: state.adminIndex,
+  index: state.adminIndex,
 });
 
 const mapDispatchToProps = dispatch => ({
