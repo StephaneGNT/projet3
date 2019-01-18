@@ -47,13 +47,14 @@ availability BOOLEAN
 CREATE TABLE custom_wishes
 ( 
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    type VARCHAR(10),
-    photo VARCHAR(100),
+    deco1 VARCHAR(10),
+    deco2 VARCHAR(10),
+    photo1 VARCHAR(100),
+    photo2 VARCHAR(100),
     msgContent	VARCHAR(100),
     msgColor VARCHAR(20),
     msgBgColor VARCHAR(20),
-    msgFontId INTEGER,
-    FOREIGN KEY(msgFontId) REFERENCES fonts(id)
+    font VARCHAR(50)
 );
 
 CREATE TABLE customers
@@ -63,7 +64,7 @@ CREATE TABLE customers
     lastName VARCHAR(20),
     email VARCHAR(50) UNIQUE,
     phone VARCHAR(15),
-    birthday DATE
+    birthday VARCHAR(15)
 );
 
 CREATE TABLE final_cakes
@@ -74,7 +75,6 @@ CREATE TABLE final_cakes
     quantity INTEGER,
     story INTEGER,
     occasion VARCHAR(90),
-    comments VARCHAR(300),
     price INTEGER,
     customWishes INTEGER,
     FOREIGN KEY(customWishes) REFERENCES custom_wishes(id) 
@@ -85,8 +85,8 @@ CREATE TABLE final_orders
 ( 
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     cakeId INTEGER,
-    deliveryDate DATE,
-    orderDate DATE,
+    deliveryDate VARCHAR(50),
+    orderDate VARCHAR(50),
     customerId INTEGER,
     customerStatus VARCHAR(50),
     adminStatus VARCHAR(50),
