@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 // const morgan = require('morgan');
 const app = express();
 const ingred = require('./routes/ingredients');
+const mail = require('./routes/SendMail');
 const auth = require('./routes/auth');
 const admin = require('./routes/admin');
 const customization = require('./routes/customization');
@@ -19,6 +20,7 @@ const junctionTable = require('./routes/junction_tables');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
+app.use('/api/send',mail)
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');

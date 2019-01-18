@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import {
   Container, Row, Col, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
@@ -12,6 +13,7 @@ import {
 } from './final_order_functions';
 import updateUserInfo from '../../../Actions/orderActions/updateUserInfo';
 import '../../../Assets/Styles/UserInfo.css';
+
 
 class UserInfo extends Component {
   constructor(props) {
@@ -65,6 +67,24 @@ class UserInfo extends Component {
     return !this.mailRegex.test(mailState);
   }
 
+  sendConfirmationEmails = () => {
+    const { user } = this.state;
+    const mail = {
+      client: {
+        email: 'mathieuwcs@gmail.com',
+        title: 'Confirmation de commande Giluna',
+        content: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
+                Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
+      },
+      giluna: {
+        email: 'mathieumiquel@gmail.com',
+        title: 'Bonjour giluna',
+        content: 'une nouvelle commande vient d’être générée sur le site',
+      },
+    };
+    axios.post('/api/send/mail', mail).then(response => console.log(response.data));
+  }
+
   validBirthdate = (DOBstate) => {
     if (DOBstate === '') return false;
     if (!this.birthdateRegex.test(DOBstate) && DOBstate.length > 9) return true;
@@ -78,12 +98,11 @@ class UserInfo extends Component {
   }
 
   sendOrder = async (order, customer, cake, customWishes) => {
-    console.log("sendOrder");
     const { comment, giftcard } = this.state;
     const { history } = this.props;
     // Création du nouveau user et récupération de son id
     const customerID = await saveCustomer(customer);
-    console.log("customerID", customerID);
+
     // Récupération de l'ensemble des ID des ingrédients du cake, sous forme d'array
     const ingredientsIDList = await getIngredientsID(cake);
 
@@ -102,7 +121,7 @@ class UserInfo extends Component {
     // Remplissage de la table de jonction client / order
     populateClientOrderJT(customerID, orderID);
 
-    if (orderID > 0) history.push(`/orderConfirmation`);
+    if (orderID > 0) history.push(`${process.env.PUBLIC_URL}/orderConfirmation`);
   }
 
   handleClick = (event) => {
@@ -124,7 +143,7 @@ class UserInfo extends Component {
       user, comment, giftcard, inputAttempt,
     } = this.state;
     const disabled = !user.firstname || !user.lastname || !this.mailRegex.test(user.email)
-    || user.phone.length < 10;
+      || user.phone.length < 10;
     const warning = { border: '3px solid', borderColor: '#dc3545' };
     return (
       <Container>
