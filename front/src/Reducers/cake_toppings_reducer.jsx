@@ -18,7 +18,7 @@ export default () => {
       info: 'some info',
       img: toppingNoisettes,
       allerg: '',
-      compatible: 'tout',
+      compatible: [],
       portion: '250g',
     },
     {
@@ -31,7 +31,7 @@ export default () => {
       info: 'some info',
       img: toppingBillechocolat,
       allerg: '',
-      compatible: 'tout',
+      compatible: [],
       portion: '350g',
     },
     {
@@ -44,7 +44,7 @@ export default () => {
       info: 'some info',
       img: toppingNoix,
       allerg: '',
-      compatible: 'tout',
+      compatible: [],
       portion: '400g',
     },
     {
@@ -57,7 +57,7 @@ export default () => {
       info: 'some info',
       img: toppingCrumble,
       allerg: 'gluten',
-      compatible: 'tout',
+      compatible: [],
       portion: '100g',
     },
     {
@@ -70,7 +70,7 @@ export default () => {
       info: 'some info',
       img: toppingFraise,
       allerg: 'gluten',
-      compatible: 'tout',
+      compatible: [],
       portion: '200g',
     },
     {
@@ -83,7 +83,7 @@ export default () => {
       info: 'some info',
       img: toppingAmande,
       allerg: 'gluten',
-      compatible: 'tout',
+      compatible: [],
       portion: '300g',
     },
     {
@@ -96,7 +96,7 @@ export default () => {
       info: 'some info',
       img: toppingFramboise,
       allerg: 'gluten',
-      compatible: 'tout',
+      compatible: [],
       portion: '250g',
     },
   ];

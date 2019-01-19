@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 // import AlertAddIngredient from './AlertAddIngredient';
 import PropTypes from 'prop-types';
+import { toggleFormNew } from '../../../Actions/databaseActions/toggleFormNew';
 import UploadPicsAddIngred from '../../UploadPicsAddIngred';
 import '../../../Assets/Styles/Add_Ingredients.css';
 
@@ -77,7 +78,7 @@ class AddIngredients extends Component {
 
     // Enregistrement du nouvel ingrédient
     const newIngredientID = await axios.post('/ingredients/new', newIngredient)
-      .then(res => {return res.data.insertId})
+      .then(res => { return res.data.insertId })
       .catch(err => console.log(err.response.data));
 
     // Enregistrement des ingrédients compatibles
@@ -107,6 +108,7 @@ class AddIngredients extends Component {
   }
 
   render() {
+    const { toggleForm } = this.props;
     return (
       <div className="bodyIng">
         <title-admin>Décrivez votre nouvel ingrédient</title-admin>
@@ -187,14 +189,14 @@ class AddIngredients extends Component {
                 <tbody>
                   <tr>
                     {this.state.ingredList.map(ingredient => (
-                        <td>
-                          <Input
-                            name="isCompatible"
-                            type="checkbox"
-                            onClick={() => this.toggleIngredient(ingredient.id)}
-                          />
-                          <Label check>{ingredient.name}</Label>
-                        </td>))}
+                      <td>
+                        <Input
+                          name="isCompatible"
+                          type="checkbox"
+                          onClick={() => this.toggleIngredient(ingredient.id)}
+                        />
+                        <Label check>{ingredient.name}</Label>
+                      </td>))}
                   </tr>
                 </tbody>
               </Table>
@@ -223,7 +225,9 @@ class AddIngredients extends Component {
             </Col>
           </Row>
           <br />
-          <Button color="secondary" size="lg" onClick={() => this.handleSubmit()}>Ajouter</Button>
+          <Row>
+            <Button color="primary" size="lg" onClick={() => this.handleSubmit()}>Ajouter</Button>
+          </Row>
         </Form>
       </div>
     );
@@ -232,6 +236,7 @@ class AddIngredients extends Component {
 
 AddIngredients.propTypes = {
   updateState: PropTypes.shape({}).isRequired,
+  toggleForm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -241,6 +246,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateState: ingredientType => dispatch(this.props.updateState(ingredientType)),
+  toggleForm: display => dispatch(toggleFormNew(display)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddIngredients);

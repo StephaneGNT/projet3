@@ -6,6 +6,7 @@ import {
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { toggleFormModify } from '../../../Actions/databaseActions/toggleFormNew';
+import UploadPicsAddIngred from '../../UploadPicsAddIngred';
 // import AlertAddIngredient from './AlertAddIngredient';
 import '../../../Assets/Styles/Add_Ingredients.css';
 
@@ -13,22 +14,25 @@ class ModifyIngredient extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: '',
-      name: '',
-      type: '',
-      size: '',
-      price: '',
-      dispo: true,
-      info: '',
-      img: '',
-      allerg: '',
-      compatible: true,
-      flavor: '',
-      color: '',
+      ingredients: {
+        id: '',
+        name: '',
+        type: '',
+        size: '',
+        price: '',
+        dispo: true,
+        info: '',
+        img: '',
+        allerg: '',
+        compatible: true,
+        flavor: '',
+        color: '',
+      },
       fullList: [],
       fullAllerg: [],
 
     };
+    this.handleClickCompatible = this.handleClickCompatible.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     const {
       displayIndexForm, ingredient, // arrays ingredients.compatible et ingredients.allergenes inherited from phil
@@ -37,115 +41,103 @@ class ModifyIngredient extends Component {
   }
 
   componentWillMount() {
+    this.setState({
+      ingredients: {
+        ...this.betaType,
+      },
+    });
     axios.get('http://localhost:5000/ingredients/name')
-      .then((res) => { const fullListArray = res.data[0]; this.setState({ fullList: fullListArray }); })
-      .catch(err => console.log(err.response.data));
+      .then((res) => {
+        const fullListArray = res.data[0]; this.setState({ fullList: fullListArray });
+      });
+    // .catch(err => console.log(err.response.data));
 
     axios.get('http://localhost:5000/allergenes/name')
-      .then((res) => { const fullAllergArray = res.data[0]; this.setState({ fullAllerg: fullAllergArray }); });
-    // axios.get table de jt_compatible => return fullIngredientCompat = [res]
+      .then((res) => {
+        const fullAllergArray = res.data[0]; this.setState({ fullAllerg: fullAllergArray });
+      });
   }
 
-  componentDidUpdate() {
-    console.log('didupdate:', this.state);
-  }
 
-  updateState = (e) => {
-    switch (e.target.placeholder) {
-      case 'Base':
-        this.setState({ type: 'Base' });
-        break;
-      case 'Garniture':
-        this.setState({ type: 'Garniture' });
-        break;
-      case 'Glaçage':
-        this.setState({ type: 'Glaçage' });
-        break;
-      case 'Toppings':
-        this.setState({ type: 'Toppings' });
-        break;
-      default:
-        this.setState({
-          ...this.betaType,
-          [e.target.name]: e.target.value,
-        });
+  handleClickCompatible = (compatibleID) => {
+    if (this.betaType.compatible.indexOf(compatibleID >= 0)) {
+      this.betaType.compatible.splice(0, 1, compatibleID);
+    } else {
+      this.betaType.compatible.push(compatibleID);
     }
+    return this.betaType.compatible;
+  }
+
+
+  updateState = (e, ingredients) => {
+    this.setState({
+      ingredients: {
+        ...ingredients,
+        id: this.betaType.id,
+        [e.target.name]: e.target.value,
+      },
+    });
   };
+
 
   // prevoir fetch la DB au submit pour avoir betaType correctement MAJ
-  onSubmit = (e) => {
+  onSubmit = (e, ingredients) => {
     e.preventDefault();
-    const modifiedIngredient = this.state;
+    const modifiedIngredient = ingredients;
     axios.put(`http://localhost:5000/ingredients/${modifiedIngredient.id}/`, modifiedIngredient)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err.response.data));
+      .then(res => (res.data))
+      .catch(err => (err.response.data));
   };
 
 
-  createModifyForm = () => {
-    const {
-      toggleForm, displayIndexForm, displaybeta, cake, cookie, topping, filling,
-      icing, macaronFlavor, macaronShell, chessecakeFlavor,
-    } = this.props;
-    let betaType;
-    // let checkCompatible = ingredient.compatible.indexOf(ingredient.name >)
-    switch (displaybeta) {
-      case ('Base cookie'): betaType = cookie[displayIndexForm - 1]; break;
-      case ('Toppings'): betaType = topping[displayIndexForm - 1]; break;
-      case ('Garniture'): betaType = filling[displayIndexForm - 1]; break;
-      case ('Glaçage'): betaType = icing[displayIndexForm - 1]; break;
-      case ('Macaron'): betaType = macaronFlavor[displayIndexForm - 1]; break;
-      case ('Coquille'): betaType = macaronShell[displayIndexForm - 1]; break;
-      case ('Parfum'): betaType = chessecakeFlavor[displayIndexForm - 1]; break;
-      default: betaType = cake[displayIndexForm - 1];
-    } // this.state.defaultIngredient = betaType / for submitting default state, (and updated state)
-    console.log('render:', this.state.fullList);
+  createModifyForm = (ingredients, fullList, fullAllerg) => {
+    const { toggleForm } = this.props;
     return (
       <div className="bodyIng">
-        <h3>
+        <title-admin>
           Modifier l’ingrédient
           {' '}
-          {betaType.name}
-        </h3>
+          {this.betaType.name}
+        </title-admin>
         <Form>
           <Row form>
             <Col md={2}>
               <FormGroup>
                 <Label>Name</Label>
-                <Input type="text" name="name" onChange={this.updateState} placeholder={betaType.name} value={this.state.name} />
+                <Input type="text" name="name" onChange={e => this.updateState(e, ingredients)} placeholder={this.betaType.name} value={ingredients.name} />
               </FormGroup>
             </Col>
             <Col md={2}>
               <FormGroup>
                 <Label>Type</Label>
-                <Input type="select" name="type" onChange={this.updateState}>
+                <Input type="select" name="type" onChange={e => this.updateState(e, ingredients)}>
                   <option />
-                  <option onClick={() => this.updateState('Base')}>Base</option>
-                  <option onClick={() => this.updateState('Garniture')}>Filling</option>
-                  <option onClick={() => this.updateState('Glaçage')}>Icing</option>
-                  <option onClick={() => this.updateState('Toppings')}>Topping</option>
-                  <option onClick={() => this.updateState('Macaron')}>Macaron</option>
-                  <option onClick={() => this.updateState('Cookie')}>Cookie</option>
-                  <option onClick={() => this.updateState('Brownie')}>Brownie</option>
+                  <option>Base</option>
+                  <option>Filling</option>
+                  <option>Icing</option>
+                  <option>Topping</option>
+                  <option>Macaron</option>
+                  <option>Cookie</option>
+                  <option>Brownie</option>
                 </Input>
               </FormGroup>
             </Col>
             <Col md={2}>
               <FormGroup>
                 <Label>Size</Label>
-                <Input type="text" name="size" onChange={this.updateState} placeholder={betaType.size} value={this.state.size} />
+                <Input type="text" name="size" onChange={e => this.updateState(e, ingredients)} placeholder={this.betaType.size} value={ingredients.size} />
               </FormGroup>
             </Col>
             <Col md={2}>
               <FormGroup>
                 <Label>Price</Label>
-                <Input type="text" name="price" onChange={this.updateState} placeholder={betaType.price} value={this.state.price} />
+                <Input type="text" name="price" onChange={e => this.updateState(e, ingredients)} placeholder={this.betaType.price} value={ingredients.price} />
               </FormGroup>
             </Col>
             <Col md={4}>
               <FormGroup>
                 <Label>Description</Label>
-                <Input type="text" name="description" onChange={this.updateState} placeholder={betaType.info} value={this.state.info} />
+                <Input type="text" name="info" onChange={e => this.updateState(e, ingredients)} placeholder={this.betaType.info} value={ingredients.info} />
               </FormGroup>
             </Col>
           </Row>
@@ -163,86 +155,81 @@ class ModifyIngredient extends Component {
               </FormGroup>
             </Col>
             <Col md={4}>
-              <FormGroup>
-                <Label for="listCompat">Compatibilité</Label>
-                <Col md={5} className="col-size-checkbox">
-                  <Table className="table-add-ingred">
-                    <thead>
-                      <tr>
-                        <th className="title-label-list">Compatibilités</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        {this.state.fullList.map(compatible => (
-                          <td>
-                            <Input
-                              name="isCompatible"
-                              type="checkbox"
-                              defaultChecked={betaType.compatible}
-                            />
-                            <Label check>{compatible.name}</Label>
-                          </td>))}
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Col>
-              </FormGroup>
-            </Col>
-            <Col md={4}>
-              <FormGroup>
-                <Label for="listCompat">Allergenes</Label>
-                <Col md={5} className="col-size-checkbox">
-                  <Table className="table-add-ingred">
-                    <thead>
-                      <tr>
-                        <th className="title-label-list">Allergenes</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        {this.state.fullAllerg.map(allergene => (
-                          <td>
-                            <Input
-                              name="isCompatible"
-                              type="checkbox"
-                              
-                            />
-                            <Label check>{allergene.name}</Label>
-                          </td>))}
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Col>
-              </FormGroup>
-            </Col>
-            <Col md={2}>
-              <FormGroup>
-                <Label for="image">File</Label>
-                <Input type="file" name="file" id="image" />
-              </FormGroup>
+              <UploadPicsAddIngred />
             </Col>
             <Col md={2}>
               <FormGroup check>
-                <Input name="dispo" type="checkbox" value={betaType.dispo} onClick={() => this.setState({ dispo: !this.state.dispo })} id="dispoCheck" />
+                <Input name="dispo" type="checkbox" value={this.betaType.dispo} onClick={() => this.setState({ [ingredients]: { dispo: !ingredients.dispo } })} id="dispoCheck" />
                 <Label for="dispoCheck" check>Disponnibilité</Label>
               </FormGroup>
             </Col>
-
           </Row>
-          <Button className="btn-ajout" onClick={() => toggleForm(false)}>Annuler</Button>
-          <Button color="primary" onClick={this.onSubmit}>Modifier</Button>
+          <Row>
+            <Col md={5} className="col-size-checkbox">
+              <Table className="table-add-ingred">
+                <thead>
+                  <tr>
+                    <th className="title-label-list">Compatibilités</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    {fullList.map(compatible => (
+                      <td>
+                        <Input
+                          name="isCompatible"
+                          type="checkbox"
+                          defaultChecked={this.betaType.compatible.indexOf(compatible.name >= 0)} // inherited from phil
+                          onChange={(this.handleClickCompatible(compatible.id))}
+                        />
+                        <Label check>{compatible.name}</Label>
+                      </td>))}
+                  </tr>
+                </tbody>
+              </Table>
+            </Col>
+            <Col md={5} className="col-size-checkbox">
+              <Table className="table-add-ingred">
+                <thead>
+                  <tr>
+                    <th className="title-label-list">Allergenes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    {fullAllerg.map(allergene => (
+                      <td>
+                        <Input
+                          name="isCompatible"
+                          type="checkbox"
+                          defaultChecked={this.betaType.allerg.indexOf(allergene.name >= 0)}
+                        />
+                        <Label check>{allergene.name}</Label>
+                      </td>))}
+                  </tr>
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Button color="secondary" size="lg" onClick={() => toggleForm(false)}>Annuler</Button>
+            <Button color="primary" size="lg" onClick={e => toggleForm(false) && this.onSubmit(e, ingredients)}>Modifier</Button>
+          </Row>
         </Form>
       </div>
     );
   }
 
   render() {
-    return !this.state.fullList.length ? <div /> : (
+    const { ingredients, fullList, fullAllerg } = this.state;
+    // return !this.state.fullList.length ? <div /> : (
+    return (
       <div>
-        {this.createModifyForm()}
+        {this.createModifyForm(ingredients, fullList, fullAllerg)}
       </div>
     );
+    // );
   }
 }
 
@@ -253,16 +240,7 @@ ModifyIngredient.propTypes = {
   fullListIngredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   ingredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   toggleForm: PropTypes.func.isRequired,
-  displaybeta: PropTypes.string.isRequired,
   displayIndexForm: PropTypes.number.isRequired,
-  cake: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  cookie: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  topping: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  filling: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  icing: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  macaronFlavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  macaronShell: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  chessecakeFlavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -281,10 +259,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleForm: show => dispatch(toggleFormModify(show))
+  toggleForm: show => dispatch(toggleFormModify(show)),
 });
-// const mapDispatchToProps = dispatch => ({
-//   addNewIngredient: ingredientType => dispatch(this.updateState(ingredientType)),
-// });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModifyIngredient);
