@@ -29,8 +29,6 @@ ingred.post('/ingredients/new', (req, res) => {
 
 
 ingred.put(`/ingredients/:id`, (req, res) => {
-  console.log('put raw:', req.body)
-  console.log('put index 0:', req.body[0])
   const ingredientId = req.params.id;
   const formData = {
     name: req.body.name,
