@@ -129,13 +129,7 @@ passport.use(new JWTStrategy(
 
 // Méthode permettant l'envoi d'un message retour
 ingred.delete(
-  '/ingredients/:type/:id',
-  // jwtAuthentification(),
-  passport.authenticate('jwt', {
-    session: false,
-    failureRedirect: '/login',
-    // failureFlash: 'You need to be logged in',
-  }),
+  '/ingredients/:id',
   (req, res) => {
     passport.authenticate('jwt',
       {
