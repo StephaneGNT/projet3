@@ -1,4 +1,4 @@
-export default function (state = {new: false, modify: false}, action) {
+export default function (state = { new: false, modify: false }, action) {
   switch (action.type) {
     case 'TOGGLE_FORM':
       return { ...state, new: action.visible };
