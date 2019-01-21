@@ -27,7 +27,7 @@ VALUES ('Oeuf'), ('Lactose'), ('Arachide');
 INSERT INTO fonts (name, availability)
 VALUES ('Ewert', true), ('Frijole', true), ('Rochester', false);
 
-INSERT INTO custom_wishes (deco1, deco2, photo1, photo2, msgContent, msgColor, msgBgColor, font)
+INSERT INTO custom_wishes (deco1, deco2, photo1, photo2, msgContent, msgColor, msgBgColor, msgFont)
 VALUES ('Message', '', '', '', 'Bon anniversaire !', '#00ff00', '#111111', 'Times New Roman');
 
 INSERT INTO customers (firstName, lastName, email, phone, birthday)

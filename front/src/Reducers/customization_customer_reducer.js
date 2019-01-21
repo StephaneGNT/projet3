@@ -1,12 +1,13 @@
-export default () => {
-  return {
-    deco1: 'Message',
-    deco2: '',
-    photo1: '',
-    photo2: '',
-    msgContent: 'Happy bDay',
-    msgColor: 'rgb(222, 12, 56)',
-    msgBgColor: 'rgb(0,0,0)',
-    font: 'Times New Roman',
-  };
+export default (state = {
+  deco1: '',
+  deco2: '',
+  photo1: '',
+  photo2: '',
+  msgContent: '',
+  msgColor: '',
+  msgBgColor: '',
+  msgFont: '',
+}, action) => {
+  if (action.type === 'UPDATE_CUSTOM_SUMMARY') return action.data;
+  return state;
 };

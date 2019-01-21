@@ -14,7 +14,6 @@ import {
 import updateUserInfo from '../../../Actions/orderActions/updateUserInfo';
 import '../../../Assets/Styles/UserInfo.css';
 
-
 class UserInfo extends Component {
   constructor(props) {
     super(props);
@@ -23,8 +22,8 @@ class UserInfo extends Component {
     this.birthdateRegex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
     this.state = {
       user: {
-        firstname: customer.firstname,
-        lastname: customer.lastname,
+        firstName: customer.firstName,
+        lastName: customer.lastName,
         birthday: customer.birthdate,
         email: customer.email,
         phone: customer.telephone,
@@ -32,6 +31,7 @@ class UserInfo extends Component {
       comment,
       giftcard,
       inputAttempt: false,
+      dobNotValid: false,
     };
   }
 
@@ -52,6 +52,8 @@ class UserInfo extends Component {
 
   setUserState = (evt) => {
     evt.persist();
+    const { user } = this.state;
+    if (!user.birthdate) this.setState({ dobNotValid: false });
     this.setState(prevState => ({
       prevState,
       user: {
@@ -79,14 +81,14 @@ class UserInfo extends Component {
       },
       giluna: {
         email: 'sguinot86@gmail.com',
-        title: 'Bonjour giluna',
-        content: 'une nouvelle commande vient d’être générée sur le site',
+        title: 'Nouvelle commande',
+        content: 'Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.',
       },
     };
     axios.post('/api/send/mail', mail).then(response => console.log(response.data));
   }
 
-  validBirthdate = (DOBstate) => {
+  invalidBirthdate = (DOBstate) => {
     if (DOBstate === '') return false;
     if (!this.birthdateRegex.test(DOBstate) && DOBstate.length > 9) return true;
   }
@@ -101,6 +103,7 @@ class UserInfo extends Component {
   sendOrder = async (order, customer, cake, customWishes) => {
     const { comment, giftcard } = this.state;
     const { history } = this.props;
+    console.log("sendOrder")
     // Création du nouveau user et récupération de son id
     const customerID = await saveCustomer(customer);
 
@@ -124,16 +127,19 @@ class UserInfo extends Component {
 
     if (orderID > 0) {
       this.sendConfirmationEmails();
-      history.push(`${process.env.PUBLIC_URL}/mycake/orderConfirmation`)
+      history.push(`${process.env.PUBLIC_URL}/mycake/orderConfirmation`);
     }
   }
 
-  handleClick = (event) => {
+  handleClick = () => {
     const { order, cake, customWishes } = this.props;
     const { user } = this.state;
+    console.log("handleclick", "user.birthday", user.birthday.length, "regex", !this.birthdateRegex.test(user.birthday))
+    if (user.birthday && !this.birthdateRegex.test(user.birthday)) {
+      this.setState({ dobNotValid: true });
+    } else this.sendOrder(order, user, cake, customWishes);
     this.setState({ inputAttempt: true });
-    this.sendOrder(order, user, cake, customWishes);
-  }
+  };
 
   setWarning = (event) => {
     const { inputAttempt } = this.state;
@@ -144,10 +150,8 @@ class UserInfo extends Component {
 
   render() {
     const {
-      user, comment, giftcard, inputAttempt,
+      user, comment, giftcard, inputAttempt, dobNotValid,
     } = this.state;
-    const disabled = !user.firstname || !user.lastname || !this.mailRegex.test(user.email)
-      || user.phone.length < 10;
     const warning = { border: '3px solid', borderColor: '#dc3545' };
     return (
       <Container>
@@ -170,17 +174,7 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 Prénom
               </Label>
-              <Input
-                autoFocus
-                type="text"
-                name="firstname"
-                id="firstname"
-                placeholder="votre prénom"
-                value={user.firstname}
-                style={inputAttempt && !user.firstname ? warning : {}}
-                onChange={e => this.setUserState(e)}
-                onKeyPress={this.enterForm}
-              />
+              <Input autoFocus type="text" name="firstName" id="firstName" placeholder="votre prénom" value={user.firstName} style={inputAttempt && !user.firstName ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
           <Col sm="12" md="4">
@@ -189,7 +183,7 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 Nom
               </Label>
-              <Input type="text" name="lastname" id="lastname" placeholder="votre nom de famille" value={user.lastname} style={inputAttempt && !user.lastname ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input type="text" name="lastName" id="lastName" placeholder="votre nom de famille" value={user.lastName} style={inputAttempt && !user.lastName ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
           <Col sm="12" md="4">
@@ -197,7 +191,7 @@ class UserInfo extends Component {
               <Label for="birthday">
                 Date de naissance
               </Label>
-              <Input invalid={this.validBirthdate(user.birthday)} type="text" name="birthday" id="birthday" placeholder="date de naissance – ex: 30/09/1982" value={user.birthday} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input invalid={(user.birthday && this.invalidBirthdate(user.birthday)) || dobNotValid} type="text" name="birthday" id="birthday" placeholder="date de naissance – ex: 30/09/1982" value={user.birthday} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
               <FormFeedback>date de naissance non valide (format requis: JJ/MM/AAAA)</FormFeedback>
               {!this.birthdateRegex.test(user.birthday) && user.birthday.length <= 9 ? (
                 <div className="invalidDOB">
@@ -249,7 +243,6 @@ class UserInfo extends Component {
         </Row>
         <Row className="back-btn-userinfo">
           <button
-            disabled={disabled}
             type="button"
             onClick={e => this.handleClick(e)}
             className="btn-confirmation"
@@ -261,7 +254,6 @@ class UserInfo extends Component {
     );
   }
 }
-
 UserInfo.propTypes = {
   cake: PropTypes.shape({}).isRequired,
   order: PropTypes.shape({}).isRequired,
@@ -277,7 +269,7 @@ const mapStateToProps = state => ({
   order: state.orderCharacteristics,
   customWishes: state.customizationCustomer,
   customer: state.customerInfo,
-  giftcard: state.customizationCustomer.giftcard,
+  customization: state.customizationCustomer,
   comment: state.cakeCharacteristics.comment,
 });
 

@@ -3,13 +3,14 @@ import axios from 'axios';
 
 // Sauvegarde du client - OK back
 export const saveCustomer = async (customer) => {
-  const pushedCustomer = {
-    firstName: customer.firstname,
-    lastName: customer.lastname,
-    birthday: customer.birthday,
-    email: customer.email,
-    phone: customer.phone,
-  };
+  // const pushedCustomer = {
+  //   firstName: customer.firstname,
+  //   lastName: customer.lastname,
+  //   birthday: customer.birthday,
+  //   email: customer.email,
+  //   phone: customer.phone,
+  // };
+  const pushedCustomer = customer;
   let customerID;
   customerID = await axios.post('/customer', pushedCustomer)
     .then((result) => { if (result.data.id) return result.data.id; });

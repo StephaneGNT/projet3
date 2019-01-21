@@ -54,7 +54,7 @@ CREATE TABLE custom_wishes
     msgContent	VARCHAR(100),
     msgColor VARCHAR(20),
     msgBgColor VARCHAR(20),
-    font VARCHAR(50)
+    msgFont VARCHAR(50)
 );
 
 CREATE TABLE customers
