@@ -19,7 +19,7 @@ class Confirmation extends Component {
 
   renderConfirmation = () => {
     const {
-      type, size, occasion, quantity, ingredients, customMessage, decoration, deliveryDate,
+      type, size, occasion, quantity, ingredients, /*customMessage, decoration,*/ deliveryDate,
     } = this.props;
 
     // if (occasion) description += `Occasion : ${occasion}`;
@@ -64,15 +64,15 @@ class Confirmation extends Component {
           {size}
           <br />
           <br />
-          Personnalisation:
+          {/* Personnalisation:
           <br />
-          {decoration}
+          {customSummary.deco1}
           {' '}
           {' '}
-          {customMessage}
+          {customSummary.deco2}
           {' '}
           <br />
-          <br />
+          <br /> */}
           Composition:
           {' '}
           {(ingredients.map(item => <p>{item.name}</p>))}
@@ -99,15 +99,15 @@ class Confirmation extends Component {
           {' '}
           <br />
           <br />
-          Personnalisation:
+          {/* Personnalisation:
           <br />
-          {decoration}
+          {customSummary.deco1}
           {' '}
           {' '}
-          {customMessage}
+          {customSummary.deco2}
           {' '}
           <br />
-          <br />
+          <br /> */}
           Composition:
           {(ingredients.map(item => <p>{item.name}</p>))}
           <br />
@@ -138,15 +138,15 @@ class Confirmation extends Component {
           {' '}
           <br />
           <br />
-          Personnalisation:
+          {/* Personnalisation:
           <br />
-          {decoration}
+          {customSummary.deco1}
           {' '}
           {' '}
-          {customMessage}
+          {customSummary.deco2}
           {' '}
           <br />
-          <br />
+          <br /> */}
           Parfum de vos macarons:
           <br />
           {' '}
@@ -169,7 +169,7 @@ class Confirmation extends Component {
     const priceMessage = `Montant de votre commande : ${price} €`;
     return (
       <div>
-        <Card id="Card" style={{ width: "100%" }}>
+        <Card id="Card" style={{ width: '100%' }}>
           <CardBody>
             <CardTitle>Votre commande</CardTitle>
             <CardText style={{ whiteSpace: 'pre' }}>
@@ -197,8 +197,8 @@ Confirmation.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   quantity: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
-  customMessage: PropTypes.string.isRequired,
-  decoration: PropTypes.string.isRequired,
+  // customMessage: PropTypes.string.isRequired,
+  // decoration: PropTypes.string.isRequired,
   // story: PropTypes.number.isRequired,
   deliveryDate: PropTypes.string.isRequired,
 
@@ -210,8 +210,8 @@ const mapStateToProps = (state) => {
       deliveryDate: state.orderCharacteristics.delivery_date,
       story: state.cakeCharacteristics.story,
       price: state.cakeCharacteristics.price,
-      customMessage: state.customizationCustomer.customMessage.choice,
-      decoration: state.customizationCustomer.decoration.choice,
+      // customMessage: state.customizationCustomer.customMessage.choice,
+      // decoration: state.customizationCustomer.decoration.choice,
       ingredients: state.cakeCharacteristics.ingredients,
       quantity: state.cakeCharacteristics.quantity,
       occasion: state.cakeCharacteristics.occasion,

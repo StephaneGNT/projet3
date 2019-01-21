@@ -31,7 +31,7 @@ class AdminList extends Component {
     adminList.map((admin) => {
       render.push(
         <tr>
-          <td>{admin.admin_id}</td>
+          <td>{admin.name}</td>
           <td>
             <Button
               onClick={() => this.modifyAdmin(admin.id)}

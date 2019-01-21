@@ -10,11 +10,11 @@ export const getOneAdmin = (admin) => {
 };
 
 // Vérification si admin déjà présent en DB
-const testExisting = async (admin) => {
-  const adminDB = await getOneAdmin(admin);
-  if (adminDB.length > 0) return true;
-  return false;
-};
+// const testExisting = async (admin) => {
+//   const adminDB = await getOneAdmin(admin);
+//   if (adminDB.length > 0) return true;
+//   return false;
+// };
 
 // Récupération de tous les adminq - OK
 export const getAllAdmins = () => {
