@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   Route, Switch, BrowserRouter, withRouter,
 } from 'react-router-dom';
-import HomePage from './HomePage';
+import HomePage from './HomePage/HomePage';
 import PimpMyCake from './PimpMyCake';
 import Contact from './Contact';
 import MainNavigation from './Navigation/MainNavigation';

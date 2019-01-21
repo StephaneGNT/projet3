@@ -13,8 +13,16 @@ a {
   text-decoration: transparent;
 }
 
-.btn-accueil {
-  text-align: center !important;
+#enterButton{
+  background-color: var(--mainColor);
+  font-family: var(--mainPolice);
+  /* font-weight: bold; */
+  font-size: 2em;
+  color: white;
+  width: 15vw;
+  height: 15vw;
+  border-radius: 50%;
+  box-shadow: 5px 5px 5px darkslategrey;
   cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
