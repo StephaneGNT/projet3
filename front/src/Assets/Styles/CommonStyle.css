@@ -13,10 +13,16 @@ a {
   text-decoration: transparent;
 }
 
-.btn-accueil {
-  display:block;
-  margin:auto;  
-  text-align: center;
+#enterButton{
+  background-color: var(--mainColor);
+  font-family: var(--mainPolice);
+  /* font-weight: bold; */
+  font-size: 2em;
+  color: white;
+  width: 15vw;
+  height: 15vw;
+  border-radius: 50%;
+  box-shadow: 5px 5px 5px darkslategrey;
 }
 
 .img-gallery {

@@ -34,7 +34,7 @@ class OrdersAdmin extends Component {
         <td>
           <Button
             onClick={() => history.push({
-              pathname: '/admin/orderDetail/cake',
+              pathname: `${process.env.PUBLIC_URL}/admin/orderDetail/cake`,
               state: { cake: cakes[index - 1] },
             })}
           >
@@ -44,6 +44,7 @@ class OrdersAdmin extends Component {
         <td>
           <Button
             onClick={() => {
+              console.log("client")
               history.push({
                 pathame: `${process.env.PUBLIC_URL}/admin/orderDetail/client`,
                 state: { customer: customers[order.customerId - 1] },
