@@ -58,6 +58,7 @@
     border: none;
     color: white;
     text-transform: uppercase;
+    cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
 .btn-prev-next:hover {

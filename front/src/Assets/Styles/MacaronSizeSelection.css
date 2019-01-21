@@ -16,6 +16,7 @@
   background-position-x: center;
   border-radius: 20px;
   padding-top: 95px;
+  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
 .macaronSizeSelection Button:hover, .macaronSizeSelection Button:active, .macaronSizeSelection Button:focus{
