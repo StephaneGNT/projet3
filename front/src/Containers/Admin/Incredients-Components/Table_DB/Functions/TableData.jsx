@@ -41,7 +41,7 @@ const TableData = (ingredients, token) => ingredients.map(ingredient => (
   <tr>
     {createTableDataFields(ingredient)}
     <td>
-      <ButtonModify ingredient={ingredient} id={ingredient.id}/>
+      <ButtonModify ingredient={ingredient} id={ingredient.id} />
       - #
       {ingredient.name}
       <Button

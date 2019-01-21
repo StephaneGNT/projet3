@@ -6,6 +6,3 @@ export default function (state = '', action) {
       return state;
   }
 }
-
-// set an index from the ButtonModify component,
-// and use it in ModifyIngredient to display the relevant form
