@@ -25,3 +25,4 @@ yarn-error.log*
 #accès db
 ./helper/db.js
 ./helper/mailGunHelper.js
+./helper/jwt_secret.js

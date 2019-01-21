@@ -40,7 +40,8 @@ class UserInfo extends Component {
   }
 
   componentWillUnmount() {
-    const { updateUser } = this.props; updateUser(this.state);
+    const { updateUser } = this.props;
+    updateUser(this.state);
   }
 
   updateState = (evt) => {
@@ -63,25 +64,25 @@ class UserInfo extends Component {
     }));
   }
 
-
   validEmail = (mailState) => {
     if (mailState === '') return false;
     return !this.mailRegex.test(mailState);
   }
 
   sendConfirmationEmails = () => {
+    console.log("confirmation mails")
     const { user } = this.state;
     const mail = {
       client: {
-        email: 'mathieuwcs@gmail.com',
+        email: user.email,
         title: 'Confirmation de commande Giluna',
         content: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
                 Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
       },
       giluna: {
-        email: 'mathieumiquel@gmail.com',
-        title: 'Bonjour giluna',
-        content: 'une nouvelle commande vient d’être générée sur le site',
+        email: 'sguinot86@gmail.com',
+        title: 'Nouvelle commande',
+        content: 'Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.',
       },
     };
     axios.post('/api/send/mail', mail).then(response => console.log(response.data));
@@ -103,6 +104,7 @@ class UserInfo extends Component {
     const { comment, giftcard } = this.state;
     const { history } = this.props;
     console.log("sendOrder")
+
     // Création du nouveau user et récupération de son id
     const customerID = await saveCustomer(customer);
 
@@ -124,19 +126,29 @@ class UserInfo extends Component {
     // Remplissage de la table de jonction client / order
     populateClientOrderJT(customerID, orderID);
 
-    if (orderID > 0) history.push(`${process.env.PUBLIC_URL}/mycake/orderConfirmation`);
+    if (orderID > 0) {
+      this.sendConfirmationEmails();
+      history.push(`${process.env.PUBLIC_URL}/mycake/orderConfirmation`);
+      history.push({
+        pathname: `${process.env.PUBLIC_URL}/mycake/orderConfirmation`,
+        state: { orderID },
+      });
+    }
   }
 
-  handleClick = (event) => {
-    console.log("handleclick")
+  handleClick = () => {
     const { order, cake, customWishes } = this.props;
     const { user } = this.state;
-    /*if (user.birthday && !this.birthdateRegex.test(user.birthday)) {
-      this.setState({ dobNotValid: true });
-    }  */
-    //this.setState({ inputAttempt: true });
-    this.sendOrder(order, user, cake, customWishes);
-  }
+    console.log("handleclick", "user.birthday", user.birthday, "regex", !this.birthdateRegex.test(user.birthday))
+    if (!user.firstName || !user.lastName || !user.email || !user.phone || user.phone.length < 8) {
+      this.setState({ inputAttempt: true });
+    } else {
+      if (user.birthday.length > 0 && !this.birthdateRegex.test(user.birthday)) {
+        this.setState({ dobNotValid: true });
+      }
+      else this.sendOrder(order, user, cake, customWishes);
+    }
+  };
 
   setWarning = (event) => {
     const { inputAttempt } = this.state;
@@ -147,10 +159,8 @@ class UserInfo extends Component {
 
   render() {
     const {
-      user, comment, giftcard, inputAttempt, dobNotValid
+      user, comment, giftcard, inputAttempt, dobNotValid,
     } = this.state;
-    const disabled = !user.firstname || !user.lastname || !this.mailRegex.test(user.email)
-      || user.phone.length < 10;
     const warning = { border: '3px solid', borderColor: '#dc3545' };
     return (
       <Container>
@@ -173,7 +183,17 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 Prénom
               </Label>
-              <Input autoFocus type="text" name="firstName" id="firstName" placeholder="votre prénom" value={user.firstName} style={inputAttempt && !user.firstName ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input
+                autoFocus
+                type="text"
+                name="firstName"
+                id="firstName"
+                placeholder="votre prénom"
+                value={user.firstName}
+                style={inputAttempt && !user.firstName ? warning : {}}
+                onChange={e => this.setUserState(e)}
+                onKeyPress={this.enterForm}
+              />
             </FormGroup>
           </Col>
           <Col sm="12" md="4">
@@ -182,7 +202,16 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 Nom
               </Label>
-              <Input type="text" name="lastName" id="lastName" placeholder="votre nom de famille" value={user.lastName} style={inputAttempt && !user.lastName ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input
+                type="text"
+                name="lastName"
+                id="lastName"
+                placeholder="votre nom de famille"
+                value={user.lastName}
+                style={inputAttempt && !user.lastName ? warning : {}}
+                onChange={e => this.setUserState(e)}
+                onKeyPress={this.enterForm}
+              />
             </FormGroup>
           </Col>
           <Col sm="12" md="4">
@@ -190,7 +219,16 @@ class UserInfo extends Component {
               <Label for="birthday">
                 Date de naissance
               </Label>
-              <Input invalid={(user.birthday && this.invalidBirthdate(user.birthday)) || dobNotValid} type="text" name="birthday" id="birthday" placeholder="date de naissance – ex: 30/09/1982" value={user.birthday} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input
+                invalid={(user.birthday && this.invalidBirthdate(user.birthday)) || dobNotValid}
+                type="text"
+                name="birthday"
+                id="birthday"
+                placeholder="date de naissance – ex: 30/09/1982"
+                value={user.birthday}
+                onChange={e => this.setUserState(e)}
+                onKeyPress={this.enterForm}
+              />
               <FormFeedback>date de naissance non valide (format requis: JJ/MM/AAAA)</FormFeedback>
               {!this.birthdateRegex.test(user.birthday) && user.birthday.length <= 9 ? (
                 <div className="invalidDOB">
@@ -208,7 +246,17 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 E-mail
               </Label>
-              <Input invalid={this.validEmail(user.email)} type="email" name="email" id="email" placeholder="votre adresse mail" value={user.email} style={inputAttempt && !this.mailRegex.test(user.email) ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input
+                invalid={this.validEmail(user.email)}
+                type="email"
+                name="email"
+                id="email"
+                placeholder="votre adresse mail"
+                value={user.email}
+                style={inputAttempt && !this.mailRegex.test(user.email) ? warning : {}}
+                onChange={e => this.setUserState(e)}
+                onKeyPress={this.enterForm}
+              />
               <FormFeedback>adresse mail non valide</FormFeedback>
             </FormGroup>
           </Col>
@@ -242,7 +290,6 @@ class UserInfo extends Component {
         </Row>
         <Row className="back-btn-userinfo">
           <button
-            // disabled={disabled}
             type="button"
             onClick={e => this.handleClick(e)}
             className="btn-confirmation"
