@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import {
   Button,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import '../../../Assets/Styles/ConfirmationPage.css';
 
 const ConfirmationPage = (props) => {
-  const { customer } = props;
+  const { customer, history, location } = props;
 
 
   window.scrollTo(0, 0);
@@ -20,7 +19,7 @@ const ConfirmationPage = (props) => {
         <b>
           Merci d’avoir passé commande chez Pimp my Cake! Votre numéro de commande est le
           {' '}
-          <u>234</u>
+          {/* <u>{location.state.customer}</u> */}
           .
         </b>
         <br />
@@ -43,9 +42,12 @@ const ConfirmationPage = (props) => {
         A très bientôt.
       </div>
       <div className="button-group">
-        <a href={`${process.env.PUBLIC_URL}/`}>
-          <Button className="buttons">ACCUEIL</Button>
-        </a>
+        <Button
+          className="buttons"
+          onClick={() => history.push(`${process.env.PUBLIC_URL}/`)}
+        >
+          ACCUEIL
+        </Button>
         <Button className="buttons">CONTACT</Button>
       </div>
     </div>

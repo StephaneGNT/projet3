@@ -10,13 +10,12 @@ export const saveCustomer = async (customer) => {
   //   email: customer.email,
   //   phone: customer.phone,
   // };
-  const pushedCustomer = customer;
   let customerID;
-  customerID = await axios.post('/customer', pushedCustomer)
-    .then((result) => { if (result.data.id) return result.data.id; });
+  customerID = await axios.post('/customer', customer)
+    .then((result) => { console.log(result); if (result.data.id) return result.data.id; });
   if (!(customerID > 0)) {
-    customerID = await axios.post('/customer/new', pushedCustomer)
-      .then((result) => { return result.data.id; });
+    customerID = await axios.post('/customer/new', customer)
+      .then((result) => { console.log(result); return result.data.id; });
   }
   return customerID;
 };
