@@ -18,7 +18,9 @@
 }
 
 .ingredient span {
+  display: block;
   font-size: 1vw;
   color: white;
   background-color: rgb(136, 78, 101);
 }
+
