@@ -23,6 +23,7 @@ a {
   height: 15vw;
   border-radius: 50%;
   box-shadow: 5px 5px 5px darkslategrey;
+  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
 .img-gallery {
