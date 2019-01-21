@@ -12,3 +12,13 @@
   height: 60vh;
   overflow:auto;
 }
+
+.ingredient Button {
+  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+}
+
+.ingredient span {
+  font-size: 1vw;
+  color: white;
+  background-color: rgb(136, 78, 101);
+}

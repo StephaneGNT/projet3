@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Container, Col, Row,
+  Container, Col, Row, Button,
 } from 'reactstrap';
 import IMG_2729 from '../../Assets/Images/IMG_2729.JPG';
 import IMG_4184 from '../../Assets/Images/IMG_4184.JPG';
@@ -18,9 +18,9 @@ class HomePage extends Component {
     return (
       <div className="body-admin">
         <h1>Bienvenue sur Pimp My Cake !</h1>
-        <div className="btn-accueil">
-          <Link to={`${process.env.PUBLIC_URL}/mycake`}><button type="button">Commencez votre gâteau</button></Link>
-        </div>
+        <Row>
+          <Link to={`${process.env.PUBLIC_URL}/mycake`}><Button className="btn-accueil" color="secondary">Commencez votre gâteau</Button></Link>
+        </Row>
         <div className="bloc-gallery">
         <Container>
           <Row>

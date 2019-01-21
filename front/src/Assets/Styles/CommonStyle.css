@@ -14,9 +14,8 @@ a {
 }
 
 .btn-accueil {
-  display:block;
-  margin:auto;  
-  text-align: center;
+  text-align: center !important;
+  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
 .img-gallery {
