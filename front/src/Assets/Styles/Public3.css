@@ -14,22 +14,17 @@
   /* background-image: url('../Images/Fond3.jpg'); */
 }
 
-.homePageRow {
-  height: 85vh;
-  background-color: rgba(255,255,255,0.5);
-}
-
 .header-zone {
-  /* background-color: #884e65; */
-  background-image: url('../Images/Fond1.jpg');
+  background-color: #884e65;
+  /* background-image: url('../Images/Fond1.jpg'); */
   /* background-image: url('../Images/Fond2.jpg'); */
   /* background-image: url('../Images/Fond3.jpg'); */
   width: 100vw;
   height: 10vh;
   font-family: var(--mainPolice);
   font-size:3em;
-  /* color:white; */
-  color: black;
+  color:white;
+  /* color: var(--mainColor); */
   text-align:center;
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Button, Badge } from 'reactstrap';
+import { Col, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import addIngredient from '../../../Actions/cakeActions/addIngredient';
@@ -12,18 +12,16 @@ const Ingredient = (props) => {
     let description = '';
     if (ingredient.allerg.length === 0) {
       if (ingredient.portion) {
-        description = `${ingredient.info}
-Giluna recommande une portion de ${ingredient.portion}`;
-      } else description = `${ingredient.info}`;
+        description = `Giluna recommande une portion de ${ingredient.portion}`;
+      }
     } else {
       if (ingredient.portion) {
-        description = `${ingredient.info}
-Allergènes: ${ingredient.allerg}.
+        description = `Allergènes: ${ingredient.allerg}.
 Giluna recommande une portion de ${ingredient.portion}`;
       }
-      description = `${ingredient.info}
-Allergènes: ${ingredient.allerg}`;
+      description = `Allergènes: ${ingredient.allerg}`;
     }
+    console.log("description", description)
     return description;
   };
 
@@ -33,12 +31,15 @@ Allergènes: ${ingredient.allerg}`;
   const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
 
   return (
-    <Col className="ingredient" style={{ textAlign: 'center' }}>
-      <Button disabled={disabled} style={{ filter, backgroundColor }} onClick={() => addNewIngredient(ingredient)}>
+    <Col className="ingredient" style={{ display: 'flex', flexDirection: 'row', textAlign: 'center' }}>
+      <Button disabled={disabled} style={{ filter, backgroundColor, display: 'flex', flexDirection: 'column' }} onClick={() => addNewIngredient(ingredient)}>
         <span className="badge badge-light">{ingredient.price}€</span>
         <img src={ingredient.img} title={getFullDescripion()} alt="" />
       </Button>
-      <p style={{ color }}>{ingredient.name}</p>
+      <Col>
+        <p style={{ color, fontWeight: 'bold', textAlign: 'center', marginTop: '10px' }}>{ingredient.name}</p>
+        <p style={{ color, textAlign: 'left' }}>{ingredient.info}</p>
+      </Col>
     </Col>
   );
 };
