@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Public from './Containers/Public/Public';
 import Admin from './Containers/Admin/Admin';
 import { getAllOrders, getAllCustomers, getAllCakes } from './Actions/adminsActions/getAllOrdersCakesCustomers';
+import changeDescriptions from './Actions/adminsActions/changeDescriptions';
 
 class App extends Component {
   constructor(props) {
@@ -14,10 +15,13 @@ class App extends Component {
   }
 
   componentWillMount = () => {
-    const { saveOrdersList, saveCustomersList, saveCakesList } = this.props;
+    const {
+      saveOrdersList, saveCustomersList, saveCakesList, saveDescriptions,
+    } = this.props;
     axios.get('/orders/all').then(res => saveOrdersList(res.data));
     axios.get('/customers/all').then(res => saveCustomersList(res.data));
     axios.get('/cakes/all').then(res => saveCakesList(res.data));
+    axios.get('/admin/descriptions').then(res => saveDescriptions(res.data));
   }
 
   render() {
@@ -38,12 +42,14 @@ App.propTypes = {
   saveOrdersList: PropTypes.func.isRequired,
   saveCustomersList: PropTypes.func.isRequired,
   saveCakesList: PropTypes.func.isRequired,
+  saveDescriptions: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
   saveOrdersList: orderList => dispatch(getAllOrders(orderList)),
   saveCustomersList: customerList => dispatch(getAllCustomers(customerList)),
   saveCakesList: cakeList => dispatch(getAllCakes(cakeList)),
+  saveDescriptions: newDescription => dispatch(changeDescriptions(newDescription)),
 });
 
 export default connect(null, mapDispatchToProps)(App);

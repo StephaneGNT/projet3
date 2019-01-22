@@ -4,10 +4,6 @@
   --mainPolice: 'Lobster Two', cursive;
   --secondPolice: 'Arial';
 }
-body {
-  background-color: rgb(236, 237, 238) !important;
-  background-image: url(../Images/backgroundapp.png);
-}
 
 a {
   text-decoration: transparent;
@@ -21,8 +17,9 @@ a {
   color: white;
   width: 15vw;
   height: 15vw;
+  border: none;
   border-radius: 50%;
-  box-shadow: 5px 5px 5px darkslategrey;
+  box-shadow: 5px 5px 5px darkslategrey, -5px -5px 5px darkslategrey, 5px -5px 5px darkslategrey, -5px 5px 5px darkslategrey;
   cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 

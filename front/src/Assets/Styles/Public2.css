@@ -4,19 +4,19 @@
 .body-zone {
   height: 108vh;
   /* background-color: rgb(236, 237, 238) !important; */
-  background-color: rgb(245, 214, 221);
+  /* background-color: rgb(245, 214, 221); */
   /* background-color: #F1E7A4; */
   /* background-color: #C9D4EA; */
   /* background-color: #B1E6D8; */
   /* background-image: url(../Images/backgroundapp.png); */
-  /* background-image: url('../Images/Fond1.jpg'); */
+  background-image: url('../Images/Fond1.jpg');
   /* background-image: url('../Images/Fond2.jpg'); */
   /* background-image: url('../Images/Fond3.jpg'); */
 }
 
 .homePageRow {
   height: 85vh;
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255,255,255,0.8);
 }
 
 .header-zone {
