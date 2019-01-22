@@ -20,7 +20,6 @@ admin.get(
   '/admin/all',
   // jwtAuthentification(),
   (req, res) => {
-    
     connection.query('SELECT * FROM admin', (err, result) => {
       if (err) res.status(500).send("Erreur lors de la récupération des admin");
       if (result) res.status(200).send(result);
@@ -36,6 +35,29 @@ admin.delete(
     connection.query('DELETE FROM admin WHERE id = ?', req.params.id, (err, result) => {
       if (err) res.status(500).send("Erreur lors de la suppression");
       if (result) res.status(200).send("Admin supprimé");
+    })
+  }
+)
+
+// Mise à jour de la description homePage / aboutUs
+admin.put(
+  '/admin/descriptions/new',
+  (req, res) => {
+    console.log(req.body)
+    connection.query('UPDATE descriptions SET ? WHERE id=1', req.body, (err, results) => {
+      console.log("err, results", err, results)
+      if (err) res.status(500);
+      else res.status(200).json({data: results});
+    })
+  }
+)
+
+admin.get(
+  '/admin/descriptions',
+  (req, res) => {
+    connection.query('SELECT * FROM descriptions', (err, results) => {
+      if (err) res.status(500)
+      if (results) res.status(200).json({data: results})
     })
   }
 )

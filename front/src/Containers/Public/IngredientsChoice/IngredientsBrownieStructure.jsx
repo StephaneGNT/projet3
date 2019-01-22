@@ -23,7 +23,7 @@ IngredientsBrownieStructure.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  bases: state.browniesBases,
+  bases: state.ingredients.filter(ing => ing.type === 'Base brownie'),
 });
 
 export default connect(mapStateToProps)(IngredientsBrownieStructure);

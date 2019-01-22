@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {
-  Label, Input, Button, Form, FormGroup, Table, Col, Row,
+  Label, Input, Row, Col, Button, Form, FormGroup, Table,
 } from 'reactstrap';
 // import AlertAddIngredient from './AlertAddIngredient';
 import PropTypes from 'prop-types';
@@ -15,97 +15,62 @@ class AddIngredients extends Component {
     super(props);
     this.state = {
       name: '',
-      type: '',
-      size: '',
-      price: null,
-      dispo: true,
-      description: '',
-      image: '',
-      isCompatible: false,
-      flavor: '',
-      color: '',
-      ingredList: [],
-      allergList: [],
+      size_diameter: 0,
+      nb_persons: 0,
+      price: 0,
+      availability: true,
+      info: '',
+      image_id: 0,
     };
-    this.compatibleIngList = [];
-    this.allergeneIngList = [];
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    // this.updateState = this.onChange.bind(this);
+    this.urlParams = this.state;
   }
 
-  componentDidMount() {
-    axios.get('/ingredients/name')
-      // .then(results => results.json())
-      .then((data) => {
-        this.setState({ ingredList: (data.data[0]) });
-      })
-      .catch(err => console.log(err));
-
-    axios.get('/allergenes/name')
-      .then((data) => {
-        this.setState({ allergList: (data.data[0]) });
-      })
-      .catch(err => console.log(err));
+  updateState = (e) => {
+    switch (e.target.value) {
+      case 'Base':
+        this.setState({ type: 'cake_bases' });
+        this.urlParams = 'cake_bases';
+        break;
+      case 'Filling':
+        this.setState({ type: 'fillings' });
+        this.urlParams = 'fillings';
+        break;
+      case 'Icing':
+        this.setState({ type: 'icings' });
+        this.urlParams = 'icings';
+        break;
+      case 'Topping':
+        this.setState({ type: 'toppings' });
+        this.urlParams = 'toppings';
+        break;
+      default:
+        this.setState({ [e.target.name]: e.target.value });
+    }
   }
 
-  uploadPic = (e) => {
-    const { decoration } = this.state;
-    this.setState({ decoration: { ...decoration, image: e.target.files[0] } });
-  }
-
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  handleSubmit = async () => {
-    // e.preventDefault();
+  onSubmit = async (e) => {
+    e.preventDefault();
     const {
-      name, type, size, price, dispo, description, image, isCompatible, flavor, color,
+      name, size_diameter, nb_persons, price, availability, info, image_id,
     } = this.state;
 
     const newIngredient = {
       name,
-      type,
-      size,
+      size_diameter,
+      nb_persons,
       price,
-      dispo,
-      description,
-      image,
-      isCompatible,
-      flavor,
-      color,
+      availability,
+      info,
+      image_id,
     };
 
     // Enregistrement du nouvel ingrédient
     const newIngredientID = await axios.post('/ingredients/new', newIngredient)
       .then(res => { return res.data.insertId })
       .catch(err => console.log(err.response.data));
-
-    // Enregistrement des ingrédients compatibles
-    console.log(this.compatibleIngList);
-    this.compatibleIngList.map((ingID) => {
-      const formData = {
-        id_ingred1: newIngredientID,
-        id_ingred2: ingID,
-      };
-      axios.post('/jtingredients', formData, (req, res) => {
-        if (res.status === 200) return ('Ingrédients compatibles enregistrés !');
-        else return ('Error');
-      });
-    });
-  }
-
-  toggleIngredient = (ingredientID) => {
-    const index = this.compatibleIngList.indexOf(ingredientID);
-    if (index >= 0) this.compatibleIngList.splice(index, 1);
-    else this.compatibleIngList.push(ingredientID);
-  }
-
-  toggleAllergene = (allergeneID) => {
-    const index = this.allergeneIngList.indexOf(allergeneID);
-    if (index >= 0) this.allergeneIngList.splice(index, 1);
-    else this.allergeneIngList.push(allergeneID);
-  }
+  };
 
   render() {
     const { toggleForm } = this.props;
@@ -231,8 +196,8 @@ class AddIngredients extends Component {
         </Form>
       </div>
     );
-  }
-}
+  };
+};
 
 AddIngredients.propTypes = {
   updateState: PropTypes.shape({}).isRequired,

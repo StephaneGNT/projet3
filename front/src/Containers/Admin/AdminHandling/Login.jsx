@@ -14,23 +14,11 @@ class Login extends Component {
     super(props);
     this.state = {
       user: {
-        name: '',
-        adminPassword: '',
+        id: '',
+        password: '',
       },
       passwordConfirm: '',
     };
-  }
-
-  componentDidMount = () => {
-    document.addEventListener('keydown', this.handleKeyPress, false);
-  }
-
-  handleKeyPress = (event) => {
-    const { user, passwordConfirm } = this.state;
-    const { action } = this.props;
-    if (((action === 'Se connecter' && user.name === '' && user.adminPassword === '') || (user.name === '' || user.adminPassword === '' || user.adminPassword !== passwordConfirm)) && (event.key === 'Enter')) {
-      this.submitUser();
-    }
   }
 
   submitUser = async () => {
@@ -38,18 +26,18 @@ class Login extends Component {
     const { user } = this.state;
     if (action === 'Créer') {
       createAdmin(user);
-      history.push('/admin/adminList');
+      history.push(`${process.env.PUBLIC_URL}/admin/adminList`);
     }
     if (action === 'Se connecter') {
       const answer = await connectAdmin(user);
       window.alert(answer.message);
       saveToken(answer.token);
-      history.push('/admin/adminList');
+      history.push(`${process.env.PUBLIC_URL}/admin/orders`);
     }
     if (action === 'Modifier') {
       const { index } = this.props;
       updateAdmin(user, index);
-      history.push('/admin/adminList');
+      history.push(`${process.env.PUBLIC_URL}/admin/adminList`);
     }
   }
 
@@ -68,45 +56,50 @@ class Login extends Component {
     const { user, passwordConfirm } = this.state;
     const confirmStyle = {
       display: action === 'Se connecter' ? 'none' : 'block',
+      textAlign: 'center',
+      padding: '2vh',
+    };
+    const rowStyle = {
+      textAlign: 'center',
+      padding: '2vh',
     };
     let disabled;
-    if (action === 'Se connecter') disabled = user.name === '' || user.adminPassword === '';
-    else disabled = user.name === '' || user.adminPassword === '' || user.adminPassword !== passwordConfirm;
+    if (action === 'Se connecter') disabled = user.id === '' || user.password === '';
+    else disabled = user.id === '' || user.password === '' || user.password !== passwordConfirm;
 
     return (
       <Container>
-        <Row>
-          <Label>Identifiant : </Label>
+        <Row style={rowStyle}>
           <input
             placeholder="Identifiant"
             type="text"
-            onChange={e => this.updateUser('name', e.target.value)}
+            onChange={e => this.updateUser('id', e.target.value)}
           />
         </Row>
-        <Row>
-          <Label>Mot de passe : </Label>
+        <Row style={rowStyle}>
           <input
             placeholder="Mot de passe"
             type="password"
-            onChange={e => this.updateUser('adminPassword', e.target.value)}
+            onChange={e => this.updateUser('password', e.target.value)}
           />
         </Row>
         <Row style={confirmStyle}>
-          <Label>Confirmer mot de passe : </Label>
           <input
             placeholder="Confirmer mot de passe"
             type="password"
             onChange={e => this.setState({ passwordConfirm: e.target.value })}
           />
         </Row>
-        <Button disabled={disabled} onClick={() => this.submitUser()}>{action}</Button>
+        <Row style={rowStyle}>
+          <Button disabled={disabled} onClick={() => this.submitUser()}>{action}</Button>
+        </Row>
       </Container>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  index: state.adminIndex,
+  id: state.adminIndex,
 });
 
 const mapDispatchToProps = dispatch => ({

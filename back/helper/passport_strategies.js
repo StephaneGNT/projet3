@@ -14,4 +14,8 @@ passport.use(new JWTStrategy(
   }  
 ));
 
-module.exports = passport;
+const jwtAuthentification = passport.authenticate('jwt', { session:  false,
+  // failureFlash: 'You need to be logged in',
+})
+
+module.exports = jwtAuthentification;

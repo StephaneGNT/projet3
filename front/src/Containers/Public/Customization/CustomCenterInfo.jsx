@@ -8,7 +8,7 @@ import Beautify from './Beautify';
 import Decoration from './Decoration';
 import getDescription from './Customization_functions';
 import CakeMessagePhotoExample1 from '../../../Assets/Images/IMG_2729.JPG';
-import CakeMessagePhotoExample2 from '../../../Assets/Images/IMG-9122 (1).JPG';
+import CakeMessagePhotoExample2 from '../../../Assets/Images/IMG-2403.JPG';
 import {
   allowMessage,
   fetchAdminFonts,

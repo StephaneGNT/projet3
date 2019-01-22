@@ -42,12 +42,14 @@ const ConfirmationPage = (props) => {
         A très bientôt.
       </div>
       <div className="button-group">
-        <Button
-          className="buttons"
-          onClick={() => history.push(`${process.env.PUBLIC_URL}/`)}
-        >
-          ACCUEIL
-        </Button>
+        <a href={`${process.env.PUBLIC_URL}/`}>
+          <Button
+            className="buttons"
+            // onClick={() => history.push(`${process.env.PUBLIC_URL}/`)}
+          >
+            ACCUEIL
+          </Button>
+        </a>
         <Button className="buttons">CONTACT</Button>
       </div>
     </div>

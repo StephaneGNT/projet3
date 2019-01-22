@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 import {
   Container, Row, Col, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
+import axios from 'axios';
 import Progressbar from '../Progressbar';
 import {
   saveCustomer, getIngredientsID, saveCake, populateCakeIngrJT,
@@ -73,21 +73,22 @@ class UserInfo extends Component {
 
   sendConfirmationEmails = () => {
     const { user } = this.state;
-    const mail = {
-      client: {
-        email: user.email,
-        title: 'Confirmation de commande Giluna',
-        content: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
-                Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
-      },
-      giluna: {
-        email: 'sguinot86@gmail.com',
-        title: 'Nouvelle commande',
-        content: 'Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.',
-      },
+    const mailClient = {
+      from: 'pimpmycake@pimpmycake.com',
+      to: user.email,
+      subject: 'Confirmation de commande Giluna',
+      content: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
+              Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
     };
-    axios.post('/api/send/mail', mail).then(response => console.log(response.data));
-  }
+    axios.post('/api/send/mail', mailClient).then(response => console.log(response.data));
+    const gilunaMail = {
+      from: 'pimpmycake@pimpmycake.com',
+      to: 'philipp-elsaesser@outlook.com',
+      title: 'Nouvelle commande',
+      content: 'Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.',
+    };
+    axios.post('/api/send/mail', gilunaMail).then(response => console.log(response.data));
+  };
 
   invalidBirthdate = (DOBstate) => {
     if (DOBstate === '') return false;
@@ -157,6 +158,7 @@ class UserInfo extends Component {
     return null;
   }
 
+
   render() {
     const {
       user, comment, giftcard, inputAttempt, dobNotValid,
@@ -172,14 +174,14 @@ class UserInfo extends Component {
             {
               inputAttempt ? (
                 <div>
-                  Veuillez renseigner les champs obligatoires * avant d’envoyer la commande
+                  Veuillez renseigner les champs obligatoires* avant d’envoyer la commande
                 </div>
               ) : <div />
             }
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="firstName">
+              <Label for="firstname">
                 <span className="text-danger">* </span>
                 Prénom
               </Label>
@@ -198,7 +200,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="lastName">
+              <Label for="lastname">
                 <span className="text-danger">* </span>
                 Nom
               </Label>
@@ -216,7 +218,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="birthday">
+              <Label for="birthdate">
                 Date de naissance
               </Label>
               <Input
@@ -262,7 +264,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="6">
             <FormGroup>
-              <Label for="phone">
+              <Label for="telephone">
                 <span className="text-danger">* </span>
                 Téléphone
               </Label>
@@ -308,7 +310,7 @@ class UserInfo extends Component {
         <Row className="back-btn-userinfo">
           <button
             type="button"
-            onClick={e => this.handleClick(e)}
+            onClick={() => this.handleClick()}
             className="btn-confirmation"
           >
             Envoyer la commande
@@ -319,22 +321,20 @@ class UserInfo extends Component {
   }
 }
 UserInfo.propTypes = {
-  cake: PropTypes.shape({}).isRequired,
-  order: PropTypes.shape({}).isRequired,
   updateUser: PropTypes.func.isRequired,
   customer: PropTypes.shape({}).isRequired,
+  order: PropTypes.shape({}).isRequired,
   comment: PropTypes.string.isRequired,
   giftcard: PropTypes.string.isRequired,
   customWishes: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
+  customer: state.customerInfo,
+  customWishes: state.customizationCustomer,
+  comment: state.cakeCharacteristics.comment,
   cake: state.cakeCharacteristics,
   order: state.orderCharacteristics,
-  customWishes: state.customizationCustomer,
-  customer: state.customerInfo,
-  customization: state.customizationCustomer,
-  comment: state.cakeCharacteristics.comment,
 });
 
 const mapDispatchToProps = dispatch => ({

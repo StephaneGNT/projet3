@@ -12,3 +12,4 @@ Ceci peuplera les différentes tables (1 ou 2 éléments / table).
 En cas d'erreur, ne pas hésiter à supprimer l'entièreté de la db avec :
 DROP DATABASE pimp_my_cake_admin
 dans votre interface phpMyAdmin
+

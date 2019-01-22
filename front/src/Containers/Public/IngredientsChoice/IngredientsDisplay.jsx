@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Ingredient from './Ingredient';
+import Ingredient from './Ingredient2';
 
 const IngredientsDisplay = (props) => {
   const getNumberOf = (cake, elementSearched) => {
@@ -41,9 +41,11 @@ const IngredientsDisplay = (props) => {
 
   const renderIngredients = (elementToDisplay, cake) => {
     // Récupération du nombre de icing, filling et base
-    const icingNumber = getNumberOf(cake, 'Glaçage');
-    const fillingNumber = getNumberOf(cake, 'Filling');
     const baseNumber = getNumberOf(cake, 'Base');
+    const fillingNumber = getNumberOf(cake, 'Garniture');
+    const icingNumber = getNumberOf(cake, 'Glaçage');
+    const toppingNumber = getNumberOf(cake, 'Toppings');
+    console.log("icingNumber, fillingNumber, baseNumber", icingNumber, fillingNumber, baseNumber)
     // Récupération des ingrédients compatibles
     const compatibleIngredients = getCompatibleIngredients(cake);
     // Tri des éléments avant affichage
@@ -51,12 +53,13 @@ const IngredientsDisplay = (props) => {
     const render = [];
     orderedElement.map(
       (ingredient) => {
-        const disabled = !(
-          ingredient.dispo
-          && (cake.ingredients.length === 0 || compatibleIngredients.indexOf(ingredient.name) >= 0)
-          && (ingredient.type !== 'Glaçage' || icingNumber < 1)
-          && (ingredient.type !== 'Filling' || fillingNumber < 2)
-          && (ingredient.type !== 'Base' || baseNumber < 1)
+        const disabled = (
+          !ingredient.dispo
+          || (compatibleIngredients.length > 0 && compatibleIngredients.indexOf(ingredient.name) < 0)
+          || (ingredient.type === 'Base' && baseNumber === 1)
+          || (ingredient.type === 'Garniture' && fillingNumber === 2)
+          || (ingredient.type === 'Glaçage' && icingNumber === 1)
+          || (ingredient.type === 'Toppings' && toppingNumber === 3)
         );
         render.push(
           <Ingredient
@@ -76,13 +79,12 @@ const IngredientsDisplay = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return (
-    {
-      cake: state.cakeCharacteristics,
-    }
-  );
-};
+const mapStateToProps = state => (
+  {
+    cake: state.cakeCharacteristics,
+  }
+);
+
 
 export default connect(
   mapStateToProps,
