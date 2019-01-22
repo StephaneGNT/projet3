@@ -5,9 +5,9 @@ import {
 import HomePage from './HomePage/HomePage';
 import PimpMyCake from './PimpMyCake';
 import MainNavigation from './Navigation/MainNavigation';
+import Contact from './Contact';
 // import '../../Assets/Styles/Public.css';
 import '../../Assets/Styles/Public2.css';
-import Contact from './Contact';
 // import '../../Assets/Styles/Public3.css';
 
 class Public extends Component {

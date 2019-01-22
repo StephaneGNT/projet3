@@ -51,7 +51,7 @@ Contact.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  description: state.descriptions.aboutUs,
+  description: state.descriptions.contact,
 });
 
 export default connect(mapStateToProps)(Contact);

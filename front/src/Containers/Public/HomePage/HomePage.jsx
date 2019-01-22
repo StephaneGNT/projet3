@@ -9,6 +9,7 @@ import '../../../Assets/Styles/CommonStyle.css';
 
 const HomePage = (props) => {
   const { description } = props;
+  console.log("description", props)
 
   const colStyle = {
     display: 'flex',
@@ -39,7 +40,6 @@ const HomePage = (props) => {
         </Col>
         <Col xs={6} style={colStyle}>
           <Carousel />
-          {/* <img src={teamPicture} alt="The team" style={{ width: '25vw' }} /> */}
         </Col>
       </Row>
     </Container>

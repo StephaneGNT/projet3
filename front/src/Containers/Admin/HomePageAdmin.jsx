@@ -21,7 +21,8 @@ class HomePageAdmin extends Component {
   }
 
   saveDescription = (value, content) => {
-    axios.post(`/admin/description/${value}`, content, (res, err) => {
+    console.log("save description côté front")
+    axios.put('/admin/descriptions/new', content, (res, err) => {
       if (res.status === 200) window.alert(`Description ${value} mise à jour`);
       else window.alert('Erreur lors de la mise à jour');
     });
@@ -80,7 +81,7 @@ HomePageAdmin.propTypes = {
 
 const mapStateToProps = state => ({
   homePageDescription: state.descriptions.homePage,
-  contactDescription: state.descriptions.aboutUs,
+  contactDescription: state.descriptions.contact,
 });
 
 export default connect(mapStateToProps, null)(HomePageAdmin);
