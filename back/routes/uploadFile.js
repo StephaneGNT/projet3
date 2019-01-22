@@ -23,4 +23,8 @@ picture.post('/api/uploadfile', upload.single('avatar'), async (req, res) => {
   }
 })
 
+picture.get('/api/image/:imagename', (req, res) => {
+  res.sendFile(`../tmp/${req.params.imagename}`)
+})
+
 module.exports = picture;
