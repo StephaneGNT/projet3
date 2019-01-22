@@ -16,6 +16,7 @@ class CakeInProgress extends Component {
     if (index + 1 === arr.length) {
       const cakeLayoutType = () => {
         switch (item.type) {
+          case 'Garniture': return 'fillingLayout';
           case 'Toppings': return 'toppingsLayout';
           case 'Glaçage': return 'icingsLayout';
           default: return null;
@@ -40,6 +41,10 @@ class CakeInProgress extends Component {
   displayNamesIngredients = (item) => {
     return (
       <Row key={item.name}>
+        <p>
+          {item.type}
+        :
+        </p>
         <p>{item.name}</p>
       </Row>
     );
@@ -50,7 +55,7 @@ class CakeInProgress extends Component {
     const { cake } = this.props;
     return (
       <div style={{ position: 'sticky', top: '0vh' }}>
-        <Row className="cakeLayout justify-content-center">
+        <Row className="cakeLayout">
           {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index, arr))}
         </Row>
         <Row className="namesLayout">
