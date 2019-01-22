@@ -1,11 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Container, Col, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import teamPicture from '../../Assets/Images/team.webp';
-import '../../Assets/Styles/CommonStyle.css';
-
+import teamPicture from '../../../Assets/Images/team.webp';
+import '../../../Assets/Styles/CommonStyle.css';
 
 const Contact = (props) => {
   const { description } = props;
@@ -38,7 +36,7 @@ const Contact = (props) => {
             </Col>
           </Row>
           <Row>
-            
+            <Map /> 
           </Row>
         </Col>
       </Row>

@@ -70,7 +70,6 @@ class UserInfo extends Component {
   }
 
   sendConfirmationEmails = () => {
-    console.log("confirmation mails")
     const { user } = this.state;
     const mailClient = {
       from: 'Giluna Pimp My Cake',
@@ -104,7 +103,6 @@ class UserInfo extends Component {
   sendOrder = async (order, customer, cake, customWishes) => {
     const { comment, giftcard } = this.state;
     const { history } = this.props;
-    console.log("sendOrder")
 
     // Création du nouveau user et récupération de son id
     const customerID = await saveCustomer(customer);
@@ -140,7 +138,6 @@ class UserInfo extends Component {
   handleClick = () => {
     const { order, cake, customWishes } = this.props;
     const { user } = this.state;
-    console.log("handleclick", "user.birthday", user.birthday, "regex", !this.birthdateRegex.test(user.birthday))
     if (!user.firstName || !user.lastName || !user.email || !user.phone || user.phone.length < 8) {
       this.setState({ inputAttempt: true });
     } else {

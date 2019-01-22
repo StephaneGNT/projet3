@@ -8,7 +8,7 @@ import Beautify from './Beautify';
 import Decoration from './Decoration';
 import getDescription from './Customization_functions';
 import CakeMessagePhotoExample1 from '../../../Assets/Images/IMG_2729.JPG';
-import CakeMessagePhotoExample2 from '../../../Assets/Images/IMG-2403.JPG';
+import CakeMessagePhotoExample2 from '../../../Assets/Images/IMG_2222.JPG';
 import {
   allowMessage,
   fetchAdminFonts,
@@ -223,7 +223,6 @@ class CustomCenterInfo extends Component {
       sculptureResilient,
     } = this.state;
     const buttonStyle = { backgroundColor: 'rgb(129, 38, 38)' };
-    console.log(this.state)
     return (
       <Container>
         <Row className="decorationRow">

@@ -5,7 +5,7 @@ import {
 import HomePage from './HomePage/HomePage';
 import PimpMyCake from './PimpMyCake';
 import MainNavigation from './Navigation/MainNavigation';
-import Contact from './Contact';
+import Contact from './ContactPage/Contact';
 // import '../../Assets/Styles/Public.css';
 import '../../Assets/Styles/Public2.css';
 // import '../../Assets/Styles/Public3.css';

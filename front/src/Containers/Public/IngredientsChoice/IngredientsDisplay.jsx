@@ -45,7 +45,6 @@ const IngredientsDisplay = (props) => {
     const fillingNumber = getNumberOf(cake, 'Garniture');
     const icingNumber = getNumberOf(cake, 'Glaçage');
     const toppingNumber = getNumberOf(cake, 'Toppings');
-    console.log("icingNumber, fillingNumber, baseNumber", icingNumber, fillingNumber, baseNumber)
     // Récupération des ingrédients compatibles
     const compatibleIngredients = getCompatibleIngredients(cake);
     // Tri des éléments avant affichage

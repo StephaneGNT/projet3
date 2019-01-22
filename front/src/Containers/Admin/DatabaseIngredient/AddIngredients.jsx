@@ -82,7 +82,6 @@ class AddIngredients extends Component {
       .catch(err => console.log(err.response.data));
 
     // Enregistrement des ingrédients compatibles
-    console.log(this.compatibleIngList);
     this.compatibleIngList.map((ingID) => {
       const formData = {
         id_ingred1: newIngredientID,
@@ -226,6 +225,7 @@ class AddIngredients extends Component {
           </Row>
           <br />
           <Row>
+            <Button color="secondary" size="lg" onClick={() => toggleForm(false)}>Annuler</Button>
             <Button color="primary" size="lg" onClick={() => this.handleSubmit()}>Ajouter</Button>
           </Row>
         </Form>

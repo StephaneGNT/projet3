@@ -3,7 +3,7 @@ import { Container, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import HorizontalNavBar from './HorizontalNavBar';
-import Toolbar from './Toolbar';
+// import Toolbar from './Toolbar';
 import AddIngredients from './AddIngredients';
 import ModifyIngredient from './ModifyIngredient';
 import TableDB from '../Incredients-Components/Table_DB/TableDB';
@@ -63,7 +63,7 @@ class DataBase extends Component {
         <Row>
           <HorizontalNavBar />
         </Row>
-        <Toolbar />
+        {/* <Toolbar /> */}
         {this.renderFormAddIngredient()}
         {this.renderFormModifyIngredient()}
         {this.displayIngredients(token)}

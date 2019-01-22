@@ -37,7 +37,6 @@ class ClientDetail extends Component {
 
   render() {
     const { location, history } = this.props;
-    console.log("location.state.customer", location.state.customer);
     return (
       <Container>
         <Table>

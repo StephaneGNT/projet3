@@ -25,6 +25,10 @@ class Login extends Component {
     document.addEventListener('keydown', this.handleKeyPress, false);
   }
 
+  componentWillUnmount = () => {
+    document.removeEventListener('keydown', this.handleKeyPress, false);
+  }
+
   handleKeyPress = (event) => {
     const { user, passwordConfirm } = this.state;
     const { action } = this.props;

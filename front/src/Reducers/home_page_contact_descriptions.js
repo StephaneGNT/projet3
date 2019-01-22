@@ -3,7 +3,6 @@ export default (state = {
   contact: '',
 },
 action) => {
-  console.log("action in homePageReducer", action);
   switch (action.type) {
     case 'CHANGE_DESCRIPTIONS': return {
       homePage: action.descriptions.data[0].homePage,

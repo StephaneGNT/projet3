@@ -30,7 +30,6 @@ class Decoration extends Component {
     axios.post('/api/uploadfile', data, config)
       .then((result) => {
         // this.setState({ photo: result.data });
-        console.log(result.data);
         modify('GET_PHOTO_URL', result.data);
       });
   }

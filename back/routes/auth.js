@@ -20,7 +20,6 @@ passport.use(new LocalStrategy(
         const user = result[0];
         const hash = result[0].adminPassword;
         const isSame = bcrypt.compareSync(adminPassword, hash);
-        console.log("user, adminPassword, hash, isSame", user, adminPassword, hash, isSame)
         if (!isSame) cb(null, false, { message: 'Incorrect email or password.' });
         return cb(null, user, { message: 'Logged In Successfully' });
       }
@@ -31,7 +30,6 @@ passport.use(new LocalStrategy(
 // Authentification login / mot de passe - OK
 auth.post('/auth/login', (req, res, next) => {
   passport.authenticate('local', { session: false }, (err, user, info) => {
-    console.log("err, user in passport authenticate", err, user);
     if (err || !user) {
       res.status(400).json({
         message: 'Something is not right',
@@ -63,7 +61,6 @@ auth.post('/auth/new', (req, res) => {
 
 // Mise à jour d'un administrateur
 auth.put('/auth/:id', (req, res) => {
-  console.log(req.body);
   // hashage password
   const adminPassword = bcrypt.hashSync(req.body.newAdmin.adminPassword, 10);
   const adminData = { name: req.body.newAdmin.name, adminPassword }

@@ -9,8 +9,7 @@ export const getAllCustomers = customerList => ({
 });
 
 export const getAllCakes = cakeList => {
-  console.log("cakeList", cakeList)
   return ({ 
-  type: 'SAVE_CAKES',
-  cakeList,})
+    type: 'SAVE_CAKES',
+    cakeList,})
 };
