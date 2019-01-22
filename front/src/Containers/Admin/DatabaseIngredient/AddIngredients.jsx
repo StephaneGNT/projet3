@@ -6,6 +6,8 @@ import {
 } from 'reactstrap';
 // import AlertAddIngredient from './AlertAddIngredient';
 import PropTypes from 'prop-types';
+import { toggleFormNew } from '../../../Actions/databaseActions/toggleFormNew';
+import UploadPicsAddIngred from '../../UploadPicsAddIngred';
 import '../../../Assets/Styles/Add_Ingredients.css';
 
 class AddIngredients extends Component {
@@ -64,83 +66,134 @@ class AddIngredients extends Component {
       image_id,
     };
 
-    axios.post(`http://localhost:5000/ingredients/${this.urlParams}`, newIngredient)
-      .then(res => console.log(res.data))
+    // Enregistrement du nouvel ingrédient
+    const newIngredientID = await axios.post('/ingredients/new', newIngredient)
+      .then(res => { return res.data.insertId })
       .catch(err => console.log(err.response.data));
   };
 
   render() {
-    console.log(this.urlParams);
+    const { toggleForm } = this.props;
     return (
       <div className="bodyIng">
-        <form onSubmit={this.onSubmit}>
-          <Container>
-            <div className="ligne-titre">
-              <Row>
-                <Col sm="5">
-                  <h3 className="mt-3">Ajout d'un nouvel ingrédient</h3>
-                </Col>
-              </Row>
-            </div>
-            <Row className="les-row">
-              <Col sm="2">
-                <Label className="label-type">
-                  Type d'ingrédient
-                  <Input type="select" name="type" className="input-admin-type" onChange={this.updateState}>
-                    <option> </option>
-                    <option onClick={() => this.updateState('bases')}>Base</option>
-                    <option onClick={() => this.updateState('fillings')}>Filling</option>
-                    <option onClick={() => this.updateState('icings')}>Icing</option>
-                    <option onClick={() => this.updateState('toppings')}>Topping</option>
-                  </Input>
-                </Label>
-              </Col>
-              <Col sm="2">
-                <Label className="label-type">
-                  Nom
-                  <Input value={this.name} type="text" name="name" className="input-admin-type" onChange={this.updateState} />
-                </Label>
-              </Col>
-              <Col sm="1">
-                <Label className="label-type">
-                  Taille
-                  <Input value={this.size_diameter} type="text" name="size" className="input-admin-type" onChange={this.updateState} />
-                </Label>
-              </Col>
-              <Col sm="1">
-                <Label for="choix_occasion" className="label-type">
-                  Prix €
-                  <Input value={this.price} type="text" name="price" className="input-admin-type" onChange={this.updateState} />
-                </Label>
-              </Col>
-              <Col sm="3">
-                <Label check className="label-type">
-                  Description
-                  <Input value={this.info} type="text" name="info" className="input-admin-type" onChange={this.updateState} />
-                </Label>
-              </Col>
-              <Col sm="2">
-                <Label check className="label-type">
-                  Allergènes
-                  <Input value={this.allerg} type="text" name="allerg" className="input-admin-type" onChange={this.updateState} />
-                </Label>
-              </Col>
-              <Col sm="1">
-                <Label check className="label-type" onChange={this.updateState}>
-                  Disponibilité
-                  <Input value={this.availability} type="checkbox" name="availabilty" />
-                  {' '}
-                </Label>
-              </Col>
-              <Col sm="4">
-                <Input type="file" name="file" id="exampleFile" onChange={this.updateState} />
-              </Col>
-            </Row>
-            <Row>
-              <Button type="submit" className="btn-ajout">Ajouter mon ingrédient</Button>
-            </Row>
-          </Container>
-        </form>
+        <title-admin>Décrivez votre nouvel ingrédient</title-admin>
+        <Form>
+          <Row form>
+            <Col md={2}>
+              <FormGroup>
+                <Label>Name</Label>
+                <Input type="text" name="name" onChange={this.handleChange} />
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label>Type</Label>
+                <Input type="select" name="type" onChange={this.handleChange}>
+                  <option />
+                  <option>Base</option>
+                  <option>Filling</option>
+                  <option>Icing</option>
+                  <option>Topping</option>
+                  <option>Macaron</option>
+                  <option>Cookie</option>
+                  <option>Brownie</option>
+                </Input>
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label>Size</Label>
+                <Input type="text" name="size" onChange={this.handleChange} />
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label>Price</Label>
+                <Input type="text" name="price" onChange={this.handleChange} />
+              </FormGroup>
+            </Col>
+            <Col md={4}>
+              <FormGroup>
+                <Label>Description</Label>
+                <Input type="text" name="description" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row form>
+            <Col md={2}>
+              <FormGroup>
+                <Label>Flavor</Label>
+                <Input type="text" name="flavor" />
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label>Color</Label>
+                <Input type="text" name="color" />
+              </FormGroup>
+            </Col>
+
+            <Col md={4}>
+              <UploadPicsAddIngred />
+            </Col>
+            <Col md={2}>
+              <FormGroup check>
+                <Input name="dispo" defaultChecked type="checkbox" onClick={() => this.setState({ dispo: !this.state.dispo })} id="dispoCheck" />
+                <Label for="dispoCheck">Disponnible ?</Label>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={5} className="col-size-checkbox">
+              <Table className="table-add-ingred">
+                <thead>
+                  <tr>
+                    <th className="title-label-list">Compatibilités</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    {this.state.ingredList.map(ingredient => (
+                      <td>
+                        <Input
+                          name="isCompatible"
+                          type="checkbox"
+                          onClick={() => this.toggleIngredient(ingredient.id)}
+                        />
+                        <Label check>{ingredient.name}</Label>
+                      </td>))}
+                  </tr>
+                </tbody>
+              </Table>
+            </Col>
+            <Col md={5} className="col-size-checkbox">
+              <Table className="table-add-ingred">
+                <thead>
+                  <tr>
+                    <th className="title-label-list">Allergènes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    {this.state.allergList.map(allergene => (
+                      <td>
+                        <Input
+                          name="allergene"
+                          type="checkbox"
+                          onClick={() => this.toggleAllergene(allergene.id)}
+                        />
+                        <Label check>{allergene.name}</Label>
+                      </td>))}
+                  </tr>
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Button color="primary" size="lg" onClick={() => this.handleSubmit()}>Ajouter</Button>
+          </Row>
+        </Form>
       </div>
     );
   };
@@ -148,6 +201,7 @@ class AddIngredients extends Component {
 
 AddIngredients.propTypes = {
   updateState: PropTypes.shape({}).isRequired,
+  toggleForm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -157,6 +211,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateState: ingredientType => dispatch(this.props.updateState(ingredientType)),
+  toggleForm: display => dispatch(toggleFormNew(display)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddIngredients);

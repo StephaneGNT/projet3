@@ -52,8 +52,7 @@ CREATE TABLE custom_wishes
     msgContent	VARCHAR(100),
     msgColor VARCHAR(20),
     msgBgColor VARCHAR(20),
-    msgFontId INTEGER,
-    FOREIGN KEY(msgFontId) REFERENCES fonts(id)
+    msgFont VARCHAR(50)
 );
 
 CREATE TABLE customers
@@ -96,5 +95,9 @@ CREATE TABLE final_orders
     FOREIGN KEY(cakeId) REFERENCES final_cakes(id)
 );
 
-
-
+CREATE TABLE descriptions
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    homePage VARCHAR(1000),
+    contact VARCHAR(1000)
+);

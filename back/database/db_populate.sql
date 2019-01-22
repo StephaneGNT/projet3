@@ -27,30 +27,28 @@ VALUES ('Oeuf'), ('Lactose'), ('Arachide');
 INSERT INTO fonts (name, availability)
 VALUES ('Ewert', true), ('Frijole', true), ('Rochester', false);
 
-INSERT INTO custom_wishes (type, photo, msgContent, msgColor, msgBgColor, msgFontId)
-VALUES ('Message', '', 'Joyeux anniversaire', '#00ff00', '#111111',
-  (SELECT id FROM fonts WHERE fonts.id = 1)
-);
+-- INSERT INTO custom_wishes (deco1, deco2, photo1, photo2, msgContent, msgColor, msgBgColor, msgFont)
+-- VALUES ('Message', '', '', '', 'Bon anniversaire !', '#00ff00', '#111111', 'Times New Roman');
 
 INSERT INTO customers (firstName, lastName, email, phone, birthday)
 VALUES ( 'Mathieu', 'De Armey', 'famousfour@hotmail.com', '0600000000', '1981-06-23'),
 ('Kapu', 'Nielsen', 'kapunielsen@voila.fr', '0612345678', '1987-03-12');
 
-INSERT INTO final_cakes (type, size, quantity, story, occasion, comments, price, customWishes)
-VALUES ('Cake','50', null, 1, 'Anniversaire', 'some comment', 40, 
-  (SELECT id FROM custom_wishes WHERE custom_wishes.id = 1)
-);
+-- INSERT INTO final_cakes (type, size, quantity, story, occasion, price, customWishes)
+-- VALUES ('Cake','50', null, 1, 'Anniversaire', 40, 
+--   (SELECT id FROM custom_wishes WHERE custom_wishes.id = 1)
+-- );
 
-INSERT INTO final_orders (cakeId, deliveryDate, orderDate, customerId, customerStatus, adminStatus, customerComment, customerMessage)
-VALUES ((SELECT id FROM final_cakes WHERE final_cakes.id = 1),
-  '2018-12-06',
-  '2018-12-12',
-  (SELECT id FROM customers WHERE customers.id = 1),
-  'En cours de préparation',
-  'Payée',
-  'some customer comment',
-  'some customer message'
-);
+-- INSERT INTO final_orders (cakeId, deliveryDate, orderDate, customerId, customerStatus, adminStatus, customerComment, customerMessage)
+-- VALUES ((SELECT id FROM final_cakes WHERE final_cakes.id = 1),
+--   '2018-12-06',
+--   '2018-12-12',
+--   (SELECT id FROM customers WHERE customers.id = 1),
+--   'En cours de préparation',
+--   'Payée',
+--   'some customer comment',
+--   'some customer message'
+-- );
 
 INSERT INTO admin (name, adminPassword)
 VALUES ('Giluna', 'aaaaaaa'),
@@ -66,5 +64,9 @@ VALUES (1, 3), (1, 8), (1, 9), (1, 14), (1, 18);
 INSERT INTO jt_compatibility (id_ingred1, id_ingred2)
 VALUES (1, 8), (1, 9), (1, 10), (1, 11), (1, 12), (1, 12), (1, 13), (1, 14), (1, 15), (1, 16);
 
-INSERT INTO jt_customers_orders (id_customer, id_order)
-VALUES (1, 1);
+-- INSERT INTO jt_customers_orders (id_customer, id_order)
+-- VALUES (1, 1);
+
+INSERT INTO descriptions (homePage, contact)
+VALUES ('Nous vous proposons des gâteaux, cheesecake et autres pâtisseries entièrement à votre goût et personnalisées à votre demande. Nous sommes à votre écoute pourtoute demande supplémentaire !', 'Les fondatrices de GiLuna proviennent d’Amérique du Sud, spécifiquement du Venezuela:  Fabiola GIL et Maria Alejandra LUNA.');
+
