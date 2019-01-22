@@ -10,6 +10,7 @@ import { updateIndex } from '../../../Actions/cakeActions/changeIndex';
 class IngredientsCakeStructure extends Component {
   // Choix des ingrédients des cakes et cheesecakes
   renderStructure = (cake, bases, icings, fillings, toppings, flavor, index) => {
+    console.log("cake, bases, icings, fillings, toppings, flavor, index", cake, bases, icings, fillings, toppings, flavor, index)
     let render = null;
     let elementToDisplay;
 
@@ -111,11 +112,11 @@ IngredientsCakeStructure.propTypes = {
 
 const mapStateToProps = state => ({
   cake: state.cakeCharacteristics,
-  bases: state.cakeBases,
-  fillings: state.cakeFillings,
-  icings: state.cakeIcings,
-  flavor: state.cheesecakeFlavors,
-  toppings: state.cakeToppings,
+  bases: state.ingredients.filter(ing => ing.type === 'Base'),
+  fillings: state.ingredients.filter(ing => ing.type === 'Garniture'),
+  icings: state.ingredients.filter(ing => ing.type === 'Glaçage'),
+  flavor: state.ingredients.filter(ing => ing.type === 'Parfum'),
+  toppings: state.ingredients.filter(ing => ing.type === 'Toppings'),
   index: state.pageIndex,
 });
 

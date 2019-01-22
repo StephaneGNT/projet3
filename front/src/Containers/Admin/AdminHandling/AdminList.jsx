@@ -31,7 +31,7 @@ class AdminList extends Component {
     adminList.map((admin) => {
       render.push(
         <tr>
-          <td>{admin.name}</td>
+          <td>{admin.admin_id}</td>
           <td>
             <Button
               onClick={() => this.modifyAdmin(admin.id)}
@@ -102,6 +102,6 @@ AdminList.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   setAdminIndex: index => dispatch(changeIndex(index)),
-})
+});
 
 export default connect(null, mapDispatchToProps)(AdminList);

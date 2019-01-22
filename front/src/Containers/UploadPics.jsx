@@ -40,14 +40,16 @@ class UploadPics extends Component {
     const { photo1 } = this.props;
     return (
       <Container style={{ margin: '5vh 5vw' }}>
-        Hello {token}<br />
+        Hello
+        {token}
+        <br />
         <form onSubmit={this.submitFile}>
           <FormGroup>
             <Label for="exampleFile">File</Label>
             <input type="file" name="file" id="exampleFile" ref={this.fileInput} />
             <FormText color="muted">
               This is some placeholder block-level help text for the above input.
-              It's a bit lighter and easily wraps to a new line.
+              It is a bit lighter and easily wraps to a new line.
             </FormText>
             <Button type="submit">Soumettre</Button>
           </FormGroup>

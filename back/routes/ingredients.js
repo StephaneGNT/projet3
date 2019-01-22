@@ -12,21 +12,17 @@ const secret = require('../helper/jwt_secret');
 
 
 
-ingred.use(bodyParser.json());
-ingred.use(bodyParser.urlencoded({ extended: true }));
 
-ingred.post('/ingredients/new', (req, res) => {
-  console.log(req.body)
-  connection.query('INSERT INTO ingredients SET ?', req.body, (err, results) => {
-    console.log(err, results);
+ingred.post(`/ingredients/:type/new`, (req, res) => {
+  const formData = req.body;
+  connection.query('INSERT INTO ? SET ?', formData, (err, results) => {
     if (err) {
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");
     } else {
-      res.status(200).json((results));
+      res.status(200).send("Nouvel ingrédient ajouté !" + JSON.stringify(results));
     }
   });
 });
-
 
 ingred.put(`/ingredients/:id`, (req, res) => {
   const ingredientId = req.params.id;
@@ -112,39 +108,77 @@ passport.use(new JWTStrategy(
   }
 ));
 
-// ingred.delete(
-//   '/ingredients//:id',
-//   passport.authenticate('jwt', {
-//     session:  false,
-//     failureRedirect: '/login',
-//   }),
-//   (req, res) => {
-//     connection.query('DELETE FROM ingredients WHERE id = ?', req.params.id, (err, results) => {
-//       if (err) res.status(500).json({ message:  "Erreur lors de la suppression" });
-//       else res.status(200).json({ message:  "Ingrédient supprimé" });
-//       }
-//     );
-//   }
-// );
-
-// Méthode permettant l'envoi d'un message retour
 ingred.delete(
-  '/ingredients/:id',
+  '/ingredients/:type/:id',
+  // jwtAuthentification(),
+  passport.authenticate('jwt', {
+    session:  false,
+    failureRedirect: '/login',
+    // failureFlash: 'You need to be logged in',
+  }),
   (req, res) => {
-    passport.authenticate('jwt',
-      {
-        session: false,
-        failureRedirect: '/login'
-      },
-      (err, pay) => {
-        if (err) { res.sendStatus(500) }
-        connection.query('DELETE FROM ingredients WHERE id = ?', req.params.id, (err, results) => {
-          if (err) res.status(500).json({ message: "Erreur lors de la suppression" });
-          else res.status(200).json({ message: "Ingrédient supprimé" });
-        });
+    console.log(req.headers)
+    const formData = [req.params.type, req.params.id];
+    connection.query('DELETE FROM ?? WHERE id = ?', formData, (err, results) => {
+      if (err) res.status(500).json({ message:  "Erreur lors de la suppression" });
+      else res.status(200).json({ message:  "Ingrédient supprimé" });
       }
-    )
+    );
   }
 );
+
+
+/*-------------------- FETCH COMPLETE INCREDIENT TABLES ----------------------*/
+
+ingred.get('/ingredients', (req, res) => {
+  connection.query(
+    `SELECT ingredients.*, allerg.name AS allergenes, comp.name as compatible
+    FROM ingredients 
+      LEFT JOIN 
+        (SELECT jt_allergenes.id_ingred, GROUP_CONCAT(allergenes.name) AS name
+         FROM jt_allergenes
+         INNER JOIN allergenes
+         ON jt_allergenes.id_allergene = allergenes.id
+         GROUP BY jt_allergenes.id_ingred) AS allerg
+      ON allerg.id_ingred = ingredients.id
+      LEFT JOIN
+        (SELECT jt_compatibility.id_ingred1, GROUP_CONCAT(ingredients.name) AS name
+         FROM jt_compatibility
+         INNER JOIN ingredients
+         ON jt_compatibility.id_ingred2 = ingredients.id
+         GROUP BY jt_compatibility.id_ingred1) AS comp
+      ON comp.id_ingred1 = ingredients.id;` 
+    , (err, results) => {
+    err ? res.status(500).send(err) : res.status(200).send(results);
+  })
+});
+
+ingred.get('/ingredients/:ingredType', (req, res) => {
+  const typeToLoad = req.params.ingredType.replace(/\_/g, ' ');
+  console.log(typeToLoad);
+  connection.query(
+    `SELECT ingredients.*, allerg.name AS allergenes, comp.name as compatible
+    FROM ingredients 
+      LEFT JOIN 
+        (SELECT jt_allergenes.id_ingred, GROUP_CONCAT(allergenes.name) AS name
+         FROM jt_allergenes
+         INNER JOIN allergenes
+         ON jt_allergenes.id_allergene = allergenes.id
+         GROUP BY jt_allergenes.id_ingred) AS allerg
+      ON allerg.id_ingred = ingredients.id
+      LEFT JOIN
+        (SELECT jt_compatibility.id_ingred1, GROUP_CONCAT(ingredients.name) AS name
+         FROM jt_compatibility
+         INNER JOIN ingredients
+         ON jt_compatibility.id_ingred2 = ingredients.id
+         GROUP BY jt_compatibility.id_ingred1) AS comp
+      ON comp.id_ingred1 = ingredients.id
+      WHERE ingredients.type = ? ;` 
+    , typeToLoad, (err, results) => {
+    err ? res.status(500).send(err) : res.status(200).send(results);
+  })
+});
+
+
 
 module.exports = ingred;

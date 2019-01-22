@@ -15,6 +15,9 @@ class FontList extends Component {
       .then(response => {
         if (response.data === 'ok') fetchAdminFontList();
       })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
   }
 
   render() {

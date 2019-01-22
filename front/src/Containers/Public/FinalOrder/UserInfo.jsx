@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 import {
   Container, Row, Col, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
+import axios from 'axios';
 import Progressbar from '../Progressbar';
 import {
   saveCustomer, getIngredientsID, saveCake, populateCakeIngrJT,
@@ -73,7 +73,7 @@ class UserInfo extends Component {
     console.log("confirmation mails")
     const { user } = this.state;
     const mailClient = {
-      from: 'Giluna Pimp My Cake',
+      from: 'pimpmycake@pimpmycake.com',
       to: user.email,
       subject: 'Confirmation de commande Giluna',
       content: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
@@ -81,8 +81,8 @@ class UserInfo extends Component {
     };
     axios.post('/api/send/mail', mailClient).then(response => console.log(response.data));
     const gilunaMail = {
-      from: 'Giluna Pimp My Cake',
-      to: 'sguinot86@gmail.com',
+      from: 'pimpmycake@pimpmycake.com',
+      to: 'philipp-elsaesser@outlook.com',
       title: 'Nouvelle commande',
       content: 'Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.',
     };
@@ -104,7 +104,7 @@ class UserInfo extends Component {
   sendOrder = async (order, customer, cake, customWishes) => {
     const { comment, giftcard } = this.state;
     const { history } = this.props;
-    console.log("sendOrder")
+    console.log("sendOrder", cake)
 
     // Création du nouveau user et récupération de son id
     const customerID = await saveCustomer(customer);
@@ -140,7 +140,7 @@ class UserInfo extends Component {
   handleClick = () => {
     const { order, cake, customWishes } = this.props;
     const { user } = this.state;
-    console.log("handleclick", "user.birthday", user.birthday, "regex", !this.birthdateRegex.test(user.birthday))
+    console.log("cake in handleclick", cake)
     if (!user.firstName || !user.lastName || !user.email || !user.phone || user.phone.length < 8) {
       this.setState({ inputAttempt: true });
     } else {
@@ -158,6 +158,7 @@ class UserInfo extends Component {
     return null;
   }
 
+
   render() {
     const {
       user, comment, giftcard, inputAttempt, dobNotValid,
@@ -173,14 +174,14 @@ class UserInfo extends Component {
             {
               inputAttempt ? (
                 <div>
-                  Veuillez renseigner les champs obligatoires * avant d’envoyer la commande
+                  Veuillez renseigner les champs obligatoires* avant d’envoyer la commande
                 </div>
               ) : <div />
             }
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="firstName">
+              <Label for="firstname">
                 <span className="text-danger">* </span>
                 Prénom
               </Label>
@@ -199,7 +200,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="lastName">
+              <Label for="lastname">
                 <span className="text-danger">* </span>
                 Nom
               </Label>
@@ -217,7 +218,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="birthday">
+              <Label for="birthdate">
                 Date de naissance
               </Label>
               <Input
@@ -263,7 +264,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="6">
             <FormGroup>
-              <Label for="phone">
+              <Label for="telephone">
                 <span className="text-danger">* </span>
                 Téléphone
               </Label>
@@ -292,7 +293,7 @@ class UserInfo extends Component {
         <Row className="back-btn-userinfo">
           <button
             type="button"
-            onClick={e => this.handleClick(e)}
+            onClick={() => this.handleClick()}
             className="btn-confirmation"
           >
             Envoyer la commande
@@ -303,22 +304,20 @@ class UserInfo extends Component {
   }
 }
 UserInfo.propTypes = {
-  cake: PropTypes.shape({}).isRequired,
-  order: PropTypes.shape({}).isRequired,
   updateUser: PropTypes.func.isRequired,
   customer: PropTypes.shape({}).isRequired,
+  order: PropTypes.shape({}).isRequired,
   comment: PropTypes.string.isRequired,
   giftcard: PropTypes.string.isRequired,
   customWishes: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
+  customer: state.customerInfo,
+  customWishes: state.customizationCustomer,
+  comment: state.cakeCharacteristics.comment,
   cake: state.cakeCharacteristics,
   order: state.orderCharacteristics,
-  customWishes: state.customizationCustomer,
-  customer: state.customerInfo,
-  customization: state.customizationCustomer,
-  comment: state.cakeCharacteristics.comment,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -21,10 +21,9 @@ export const saveCustomer = async (customer) => {
 };
 
 // Récupération de l'ID de chacun des ingrédients du gâteau
-export const getIngredientsID = (cake) => {
-  const IDlist = [];
-  cake.ingredients.map(ingredient => IDlist.push(ingredient.id));
-  return IDlist;
+export const getIngredientsID = cake => {
+  console.log(cake);
+  return cake.ingredients.map(ingredient => ingredient.id)
 };
 
 // Sauvegarde des custom wishes - OK back
@@ -56,6 +55,7 @@ export const saveCake = async (cake, customWishesID) => {
 
 // Remplissage de la junction table final_cake / ingredients - OK back
 export const populateCakeIngrJT = (cakeID, ingredientIDList) => {
+  console.log(ingredientIDList);
   ingredientIDList.map((ingredientID) => {
     axios.post('/jtcakeingredients', { cakeID, ingredientID });
   });
@@ -82,4 +82,4 @@ export const saveOrder = async (customerID, cakeID, order, comment, giftcard) =>
 
 export const populateClientOrderJT = (customerID, orderID) => {
   axios.post('/jtclientorder', { customerID, orderID });
-}
+};

@@ -14,23 +14,11 @@ class Login extends Component {
     super(props);
     this.state = {
       user: {
-        name: '',
-        adminPassword: '',
+        id: '',
+        password: '',
       },
       passwordConfirm: '',
     };
-  }
-
-  componentDidMount = () => {
-    document.addEventListener('keydown', this.handleKeyPress, false);
-  }
-
-  handleKeyPress = (event) => {
-    const { user, passwordConfirm } = this.state;
-    const { action } = this.props;
-    if (((action === 'Se connecter' && user.name === '' && user.adminPassword === '') || (user.name === '' || user.adminPassword === '' || user.adminPassword !== passwordConfirm)) && (event.key === 'Enter')) {
-      this.submitUser();
-    }
   }
 
   submitUser = async () => {
@@ -76,8 +64,8 @@ class Login extends Component {
       padding: '2vh',
     };
     let disabled;
-    if (action === 'Se connecter') disabled = user.name === '' || user.adminPassword === '';
-    else disabled = user.name === '' || user.adminPassword === '' || user.adminPassword !== passwordConfirm;
+    if (action === 'Se connecter') disabled = user.id === '' || user.password === '';
+    else disabled = user.id === '' || user.password === '' || user.password !== passwordConfirm;
 
     return (
       <Container>
@@ -85,14 +73,14 @@ class Login extends Component {
           <input
             placeholder="Identifiant"
             type="text"
-            onChange={e => this.updateUser('name', e.target.value)}
+            onChange={e => this.updateUser('id', e.target.value)}
           />
         </Row>
         <Row style={rowStyle}>
           <input
             placeholder="Mot de passe"
             type="password"
-            onChange={e => this.updateUser('adminPassword', e.target.value)}
+            onChange={e => this.updateUser('password', e.target.value)}
           />
         </Row>
         <Row style={confirmStyle}>
@@ -111,7 +99,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  index: state.adminIndex,
+  id: state.adminIndex,
 });
 
 const mapDispatchToProps = dispatch => ({
