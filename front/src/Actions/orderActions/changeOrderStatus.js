@@ -3,7 +3,7 @@ const changeOrderAdminStatus = (index, status) => {
     type: 'CHANGE_ADMIN_STATUS',
     status,
     index,
-  }
+  };
 };
 
 export default changeOrderAdminStatus;

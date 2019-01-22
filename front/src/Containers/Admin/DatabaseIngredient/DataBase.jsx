@@ -22,7 +22,7 @@ class DataBase extends Component {
     switch (display) {
       case ('Cookie'): elementToDisplay = cookie; break;
       case ('Toppings'): elementToDisplay = topping; break;
-      case ('Remplissage'): elementToDisplay = filling; break;
+      case ('Garniture'): elementToDisplay = filling; break;
       case ('Glaçage'): elementToDisplay = icing; break;
       case ('Parfum macaron'): elementToDisplay = macaronFlavor; break;
       case ('Couleur macaron'): elementToDisplay = macaronShell; break;
@@ -38,7 +38,10 @@ class DataBase extends Component {
   }
 
   renderFormModifyIngredient = () => {
-    const { displaybeta, cake, cookie, topping, filling, icing, macaronFlavor, macaronShell, chessecakeFlavor,formModifyVisible } = this.props;
+    const {
+      displaybeta, cake, cookie, topping, filling, icing,
+      macaronFlavor, macaronShell, chessecakeFlavor, formModifyVisible,
+    } = this.props;
     let formToDisplay;
     switch (displaybeta) {
       case ('Base cookie'): formToDisplay = cookie; break;
@@ -62,8 +65,8 @@ class DataBase extends Component {
         </Row>
         <Toolbar />
         {this.renderFormAddIngredient()}
-        {this.displayIngredients(token)}
         {this.renderFormModifyIngredient()}
+        {this.displayIngredients(token)}
       </Container>
     );
   }

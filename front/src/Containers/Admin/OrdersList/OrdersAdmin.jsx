@@ -14,11 +14,13 @@ class OrdersAdmin extends Component {
     const {
       history, orders, customers, cakes, changeOrderStatus,
     } = this.props;
-    console.log("orders", typeof orders)
+    console.log("orders", orders);
+    console.log("customers", customers);
     const render = [];
     orders.map((order, index) => render.push(
       <tr>
         <td>{order.id}</td>
+        <td>{order.orderDate}</td>
         <td>{order.deliveryDate}</td>
         <td>
           <Input type="select" onChange={e => changeOrderStatus(index, e.target.value)}>
@@ -32,7 +34,7 @@ class OrdersAdmin extends Component {
         <td>
           <Button
             onClick={() => history.push({
-              pathname: '/admin/orderDetail/cake',
+              pathname: `${process.env.PUBLIC_URL}/admin/orderDetail/cake`,
               state: { cake: cakes[index - 1] },
             })}
           >
@@ -41,10 +43,13 @@ class OrdersAdmin extends Component {
         </td>
         <td>
           <Button
-            onClick={() => history.push({
-              pathname: '/admin/orderDetail/client',
-              state: { customer: customers[order.customerId - 1] },
-            })}
+            onClick={() => {
+              console.log("client")
+              history.push({
+                pathame: `${process.env.PUBLIC_URL}/admin/orderDetail/client`,
+                state: { customer: customers[order.customerId - 1] },
+              });
+            }}
           >
             Détail
           </Button>
@@ -61,6 +66,7 @@ class OrdersAdmin extends Component {
           <thead>
             <tr>
               <th>N° de commande</th>
+              <th>Date de commande</th>
               <th>Date de livraison</th>
               <th>Statut commande</th>
               <th>Gâteau</th>

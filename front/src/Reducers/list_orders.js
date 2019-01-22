@@ -12,7 +12,10 @@ export default (state = [{
 action) => {
   switch (action.type) {
     case 'SAVE_ORDERS': return action.orderList;
-    // case 'CHANGE_ADMIN_STATUS': return { ...state, admin_status: action.status }
+    // case 'CHANGE_ADMIN_STATUS': {
+    //   const orders = state;
+    //   orders[action.index].adminStatus = action.status;
+    //   return { orders }}
     default: return state;
   }
 };

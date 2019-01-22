@@ -6,8 +6,6 @@ var DOMAIN = 'sandbox734cf4997fa7440fade438b0cb88ab79.mailgun.org';
 
 var mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN });
 
-
-
 router.post('/mail', (req, res) => {
     const data1 = {
         from: 'Pimpmycake <Pimpmycake@Giluna.com>',

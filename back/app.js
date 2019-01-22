@@ -40,6 +40,7 @@ app.use(cake);
 app.use(order);
 app.use(customer);
 app.use(junctionTable);
+app.use('/api/send',mail);
 
 
 let server = app.listen(5000, function () {
