@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Public from './Containers/Public/Public';
 import Admin from './Containers/Admin/Admin';
+
 import { getAllOrders, getAllCustomers, getAllCakes } from './Actions/adminsActions/getAllOrdersCakesCustomers';
 
 class App extends Component {

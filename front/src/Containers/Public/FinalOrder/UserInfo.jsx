@@ -14,6 +14,8 @@ import {
 import updateUserInfo from '../../../Actions/orderActions/updateUserInfo';
 import '../../../Assets/Styles/UserInfo.css';
 
+import logo from '../../../Assets/Images/LOGO_GILUNA.png';
+
 class UserInfo extends Component {
   constructor(props) {
     super(props);
@@ -70,7 +72,6 @@ class UserInfo extends Component {
   }
 
   sendConfirmationEmails = () => {
-    console.log("confirmation mails")
     const { user } = this.state;
     const mail = {
       client: {
@@ -103,7 +104,6 @@ class UserInfo extends Component {
   sendOrder = async (order, customer, cake, customWishes) => {
     const { comment, giftcard } = this.state;
     const { history } = this.props;
-    console.log("sendOrder")
 
     // Création du nouveau user et récupération de son id
     const customerID = await saveCustomer(customer);
@@ -139,7 +139,7 @@ class UserInfo extends Component {
   handleClick = () => {
     const { order, cake, customWishes } = this.props;
     const { user } = this.state;
-    console.log("handleclick", "user.birthday", user.birthday, "regex", !this.birthdateRegex.test(user.birthday))
+    console.log('handleclick', 'user.birthday', user.birthday, "regex", !this.birthdateRegex.test(user.birthday))
     if (!user.firstName || !user.lastName || !user.email || !user.phone || user.phone.length < 8) {
       this.setState({ inputAttempt: true });
     } else {
@@ -188,7 +188,7 @@ class UserInfo extends Component {
                 type="text"
                 name="firstName"
                 id="firstName"
-                placeholder="votre prénom"
+
                 value={user.firstName}
                 style={inputAttempt && !user.firstName ? warning : {}}
                 onChange={e => this.setUserState(e)}
@@ -206,7 +206,7 @@ class UserInfo extends Component {
                 type="text"
                 name="lastName"
                 id="lastName"
-                placeholder="votre nom de famille"
+
                 value={user.lastName}
                 style={inputAttempt && !user.lastName ? warning : {}}
                 onChange={e => this.setUserState(e)}
@@ -224,7 +224,7 @@ class UserInfo extends Component {
                 type="text"
                 name="birthday"
                 id="birthday"
-                placeholder="date de naissance – ex: 30/09/1982"
+
                 value={user.birthday}
                 onChange={e => this.setUserState(e)}
                 onKeyPress={this.enterForm}
@@ -251,7 +251,7 @@ class UserInfo extends Component {
                 type="email"
                 name="email"
                 id="email"
-                placeholder="votre adresse mail"
+
                 value={user.email}
                 style={inputAttempt && !this.mailRegex.test(user.email) ? warning : {}}
                 onChange={e => this.setUserState(e)}
@@ -266,12 +266,12 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 Téléphone
               </Label>
-              <Input type="text" name="phone" id="phone" placeholder="votre numéro de téléphone" value={user.phone} style={inputAttempt && user.phone.length < 10 ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input type="text" name="phone" id="phone" value={user.phone} style={inputAttempt && user.phone.length < 10 ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
         </Row>
         <Row>
-          <Col sm="12" md="6">
+          <Col sm="12" md="12">
             <FormGroup>
               <Label>
                 Commentaire à Giluna
@@ -279,15 +279,32 @@ class UserInfo extends Component {
               <Input type="textarea" id="comment" value={comment} onChange={e => this.updateState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
+        </Row>
+        <Row>
+          <Col sm="2" md="2">
+            <img src={logo} className="logo" alt="giluna-logo" />
+          </Col>
           <Col sm="12" md="6">
             <FormGroup>
               <Label>
-                Ajoutez une carte à votre Commande
+                Ajoutez une carte message à votre Commande
               </Label>
-              <Input type="textarea" id="giftcard" value={giftcard} onChange={e => this.updateState(e)} onKeyPress={this.enterForm} />
+              <Input type="textarea" id="giftcard" placeholder="Ecrivez votre message personnel ici" value={giftcard} onChange={e => this.updateState(e)} onKeyPress={this.enterForm} />
+            </FormGroup>
+          </Col>
+
+        </Row>
+        <Row>
+          
+          <Col sm="11" md="8">
+            <FormGroup>
+              <Label>
+                Votre message, soigneusement imprimé sur une carte de qualité, sera livré avec votre gâteau.
+              </Label>
             </FormGroup>
           </Col>
         </Row>
+
         <Row className="back-btn-userinfo">
           <button
             type="button"

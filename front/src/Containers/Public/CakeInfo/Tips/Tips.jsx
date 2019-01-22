@@ -7,6 +7,7 @@ import TipsCookie from './TipsCookie';
 import TipsMacaron from './TipsMacaron';
 import TipsBrownie from './TipsBrownie';
 
+
 const Tips = (props) => {
   const renderTips = (cakeType) => {
     switch (cakeType) {
@@ -16,12 +17,12 @@ const Tips = (props) => {
       case 'macaron': return <TipsMacaron />;
       case 'brownie': return <TipsBrownie />;
       default: return (
-        <div>
+        <div style={{ fontSize: '17px' }}>
           <p className="mt-3">
-          Paiment sur place en CB, espèce ou chèque.
+          Retrouvez ici les informations pour vous aider à faire votre choix.
           </p>
           <br />
-          <p>Choisissez votre type de pâtisserie </p>
+          <p>Commencez par choisir votre type de pâtisserie </p>
         </div>
       );
     }
@@ -30,8 +31,12 @@ const Tips = (props) => {
   const { cake } = props;
 
   return (
-    <div className="bg-light p-2" style={{ width: '100%', borderRadius: '9px' }}>
-      <h5 className="mt-3 text-center">Tips</h5>
+    <div className="bg-light p-2" style={{ width: '100%', borderRadius: '9px', fontSize: '17px' }}>
+      <h4 className="mt-3 text-center" style={{ color: 'rgba(141, 29, 44, 0.8)' }}>
+        <strong>
+      Aide
+        </strong>
+      </h4>
       {renderTips(cake.type)}
     </div>
   );
