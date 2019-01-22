@@ -34,9 +34,11 @@ Allergènes: ${ingredient.allerg}`;
   return (
     <Col className="ingredient" style={{ textAlign: 'center' }}>
       <Button disabled={disabled} style={{ filter, backgroundColor }} onClick={() => addNewIngredient(ingredient)}>
-      <span className="badge badge-light">{ingredient.price}€</span>
+        <span className="badge badge-light">
+          {ingredient.price}
+          €
+        </span>
         <img src={ingredient.img} title={getFullDescripion()} alt="" />
-        
       </Button>
       {/* <Button
         disabled={disabled}
