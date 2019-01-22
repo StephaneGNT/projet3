@@ -23,7 +23,7 @@ const DemoCarousel = () => {
   };
 
   return (
-    <Row style={{ width: '20vw' }}>
+    <Row style={{ width: '30vw' }}>
       <Carousel
         showStatus={false}
         showThumbs={false}

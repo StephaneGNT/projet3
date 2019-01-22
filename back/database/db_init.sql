@@ -96,5 +96,9 @@ CREATE TABLE final_orders
     FOREIGN KEY(cakeId) REFERENCES final_cakes(id)
 );
 
-
-
+CREATE TABLE descriptions
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    homePage VARCHAR(1000),
+    contact VARCHAR(1000)
+);

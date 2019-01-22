@@ -40,4 +40,25 @@ admin.delete(
   }
 )
 
+// Mise à jour de la description homePage / aboutUs
+admin.post(
+  '/admin/description/:value',
+  (req, res) => {
+    connection.query('INSERT INTO descriptions', req.body, (err, results) => {
+      if (err) res.status(500);
+      else res.status(200);
+    })
+  }
+)
+
+admin.get(
+  '/admin/descriptions',
+  (req, res) => {
+    connection.query('SELECT * FROM descriptions', (err, results) => {
+      if (err) res.status(500)
+      if (results) res.status(200).json({data: results})
+    })
+  }
+)
+
 module.exports = admin;

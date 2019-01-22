@@ -26,6 +26,7 @@ import adminTokenReducer from './admin_token_reducer';
 import cakeListReducer from './list_cakes';
 import orderListReducer from './list_orders';
 import customersListReducer from './list_clients';
+import descriptionsReducer from './home_page_contact_descriptions';
 
 const allReducers = combineReducers({
   cakeBases: cakeBasesReducer,
@@ -56,6 +57,7 @@ const allReducers = combineReducers({
   cakeList: cakeListReducer,
   orderList: orderListReducer,
   customerList: customersListReducer,
+  descriptions: descriptionsReducer,
 });
 
 export default allReducers;
