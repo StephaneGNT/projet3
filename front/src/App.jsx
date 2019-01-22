@@ -3,7 +3,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { axios } from 'axios';
+import axios from 'axios';
 import Public from './Containers/Public/Public';
 import Admin from './Containers/Admin/Admin';
 import { getAllOrders, getAllCustomers, getAllCakes } from './Actions/adminsActions/getAllOrdersCakesCustomers';

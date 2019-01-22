@@ -10,6 +10,7 @@ import { updateIndex } from '../../../Actions/cakeActions/changeIndex';
 class IngredientsCakeStructure extends Component {
   // Choix des ingrédients des cakes et cheesecakes
   renderStructure = (cake, bases, icings, fillings, toppings, flavor, index) => {
+    console.log("cake, bases, icings, fillings, toppings, flavor, index", cake, bases, icings, fillings, toppings, flavor, index)
     let render = null;
     let elementToDisplay;
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {
-  Label, Input, Container, Row, Col, Button,
+  Label, Input, Row, Col, Button, Form, FormGroup, Table,
 } from 'reactstrap';
 // import AlertAddIngredient from './AlertAddIngredient';
 import PropTypes from 'prop-types';
@@ -50,7 +50,7 @@ class AddIngredients extends Component {
     }
   }
 
-  onSubmit = (e) => {
+  onSubmit = async (e) => {
     e.preventDefault();
     const {
       name, size_diameter, nb_persons, price, availability, info, image_id,

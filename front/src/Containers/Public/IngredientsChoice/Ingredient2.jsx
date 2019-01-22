@@ -10,7 +10,7 @@ const Ingredient = (props) => {
 
   const getFullDescripion = () => {
     let description = '';
-    if (ingredient.allerg.length === 0) {
+    if (ingredient.allergenes.length === 0) {
       if (ingredient.portion) {
         description = `Giluna recommande une portion de ${ingredient.portion}`;
       }

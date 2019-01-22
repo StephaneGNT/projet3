@@ -4,11 +4,16 @@ const bodyParser = require('body-parser');
 // const morgan = require('morgan');
 const app = express();
 const ingred = require('./routes/ingredients');
+const mail = require('./routes/SendMail');
 const auth = require('./routes/auth');
 const admin = require('./routes/admin');
 const customization = require('./routes/customization');
 const calendar = require('./routes/calendar');
 const uploadFile = require('./routes/uploadFile');
+const cake = require('./routes/cakes');
+const order = require('./routes/orders');
+const customer = require('./routes/customers');
+const junctionTable = require('./routes/junction_tables');
 
 // Configuration de l'application
 // app.use(morgan('dev'));
@@ -23,11 +28,10 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.get("/",(req,res)=>res.send("hello"))
 app.use(ingred);
 app.use(auth);
 app.use(admin);
-
-
 app.use('/customization', customization);
 app.use('/calendar', calendar);
 app.use('/api/send',mail);
