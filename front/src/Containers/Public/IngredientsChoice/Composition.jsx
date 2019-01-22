@@ -36,13 +36,17 @@ const Composition = (props) => {
         <Col sm="8">
           {renderComposition(cake.type)}
         </Col>
-        <Col sm="4">
+        <Col sm="4" style={{ height: '62vh', overflow: 'auto' }}>
           <CakeInProgress />
-          <Price />
         </Col>
       </Row>
       <Row sm="12">
-        <IngredientsButtons index={index} />
+        <Col sm="8">
+          <IngredientsButtons index={index} />
+        </Col>
+        <Col sm="4">
+          <Price />
+        </Col>
       </Row>
     </Container>
   );

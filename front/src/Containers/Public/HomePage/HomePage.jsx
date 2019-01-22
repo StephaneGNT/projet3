@@ -1,39 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Col, Row } from 'reactstrap';
-import Description from './Description';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Carousel from './Carousel';
-import teamPicture from '../../../Assets/Images/team.webp';
+import '../../../Assets/Styles/CommonStyle.css';
 
 
-class HomePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const HomePage = (props) => {
+  const { description } = props;
+  console.log("description", props)
 
-  render() {
-    const colStyle = {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-    };
+  const colStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  };
 
-    return (
-      <Container className="body" style={{ height: '100vh' }}>
-        <h1>Bienvenue sur Pimp My Cake !</h1>
-        <Row style={{ height: '85vh' }}>
-          <Col xs={6} style={colStyle}>
-            <Row>
-              <Description />
-            </Row>
-            <Row>
-              <Carousel />
-            </Row>
-          </Col>
-          <Col xs={6} style={colStyle}>
-            <img src={teamPicture} alt="The team" style={{ width: '25vw' }} />
+  return (
+    <Container className="body" style={{ height: '100vh' }}>
+      <Row className="homePageRow">
+        <Col xs={6} style={colStyle}>
+          <h1>Bienvenue !</h1>
+          <Row style={{ backgroundColor: 'transparent' }}>
+            {description}
+          </Row>
+          <Row style={{ backgroundColor: 'transparent' }}>
             <Link to={`${process.env.PUBLIC_URL}/mycake`}>
               <button
                 type="button"
@@ -42,11 +36,22 @@ class HomePage extends Component {
                 Commencez votre gâteau
               </button>
             </Link>
-          </Col>
-        </Row>        
-      </Container>
-    );
-  }
-}
+          </Row>
+        </Col>
+        <Col xs={6} style={colStyle}>
+          <Carousel />
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
-export default HomePage;
+HomePage.propTypes = {
+  description: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = state => ({
+  description: state.descriptions.homePage,
+});
+
+export default connect(mapStateToProps)(HomePage);

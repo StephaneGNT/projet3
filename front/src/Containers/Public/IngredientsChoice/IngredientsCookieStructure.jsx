@@ -23,7 +23,7 @@ IngredientsCookieStructure.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  bases: state.cookiesBases,
+  bases: state.ingredients.filter(ing => ing.type === 'Base cookie'),
 });
 
 export default connect(mapStateToProps)(IngredientsCookieStructure);

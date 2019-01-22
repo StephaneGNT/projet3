@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Container, FormGroup, Label, FormText, Button
+  Container, FormGroup, FormText, Button,
 } from 'reactstrap';
 import axios from 'axios';
 

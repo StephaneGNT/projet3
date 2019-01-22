@@ -14,7 +14,7 @@
 .back-btn {
     background-color: rgb(185, 185, 185);
     bottom: 2vh;
-    width: 70vw;
+    width: 150%;
     padding:2%;
     display: flex;
     justify-content: center;
@@ -87,35 +87,18 @@
 .cakeProgressLayout Button {
     position: relative;
     margin: -8px;
-    bottom: 40px;
-    left: 110px;
+    left: 10px;
 }
 
-.cakeProgressLayout img {
-    width: 60%; 
-    margin: -30%;
-    position: absolute;
-}
-
-.toppingsLayout {
-    width: 70px !important;
-    position: absolute;
-    right: 230px;
-    bottom: 70vh;
-    top:40%;
-}
-
-.icingsLayout {
-    width: 200px !important;
-    margin: -80px;
-    position: absolute;
-    bottom: 50vh;
+.cakeProgressLayout img{
+  margin-top: -30%;
+  margin-bottom: -30%;
 }
 
 .cakeLayout {
     margin:auto; 
-    height: 40vh;
-    background-color: rgb(190, 190, 190);
+    min-height: 40vh;
+    background-color: rgb(181, 227, 216);
     border-style: solid 20px;
     overflow: auto;
     display: flex;
@@ -123,10 +106,14 @@
 
 }
 
+.toppingsLayout {
+  width: 50px;
+}
+
 .namesLayout {
     margin:auto; 
-    height: 10vh;
-    background-color: rgb(140, 140, 140);
+    min-height: 20vh;
+    background-color: rgb(246, 217, 222);
     border-style: solid 20px;
     overflow: auto;
     flex-direction: column-reverse;
@@ -134,8 +121,8 @@
 }
 
 .namesLayout p {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:1em;
+    font-family: var(--mainPolice);
+    font-size:1.3em;
     margin: auto;
 }
 
