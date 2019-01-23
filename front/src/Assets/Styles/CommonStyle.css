@@ -20,7 +20,7 @@ a {
   border: none;
   border-radius: 50%;
   box-shadow: 5px 5px 5px darkslategrey, -5px -5px 5px darkslategrey, 5px -5px 5px darkslategrey, -5px 5px 5px darkslategrey;
-  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+  cursor: url(../Images/whiskflipped.ico), pointer !important;
 }
 
 .img-gallery {

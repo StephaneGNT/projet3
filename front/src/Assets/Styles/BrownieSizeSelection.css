@@ -17,7 +17,7 @@
   background-position-x: center;
   border-radius: 20px;
   padding-top: 70%;
-  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+  cursor: url(../Images/whiskflipped.ico), pointer !important;
 }
 
 .brownieSizeSelection Button:hover, .brownieSizeSelection Button:active, .brownieSizeSelection Button:focus{

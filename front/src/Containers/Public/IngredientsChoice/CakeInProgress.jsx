@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, Row } from 'reactstrap';
+import { Button, Row, Col } from 'reactstrap';
 import removeIngredient from '../../../Actions/cakeActions/removeIngredient';
 import '../../../Assets/Styles/CakeInProgress.css';
 
@@ -11,21 +11,40 @@ class CakeInProgress extends Component {
     this.state = {};
   }
 
-  compareIndexToLength = (item, index, arr) => {
+  displayToppings = (item, index, arr) => {
     const { remove } = this.props;
     if (index + 1 === arr.length) {
-      const cakeLayoutType = () => {
-        switch (item.type) {
-          case 'Garniture': return 'fillingLayout';
-          case 'Toppings': return 'toppingsLayout';
-          case 'Glaçage': return 'icingsLayout';
-          default: return null;
-        }
-      };
       return (
         <Row key={item.name} className="cakeProgressLayout">
           <p>
-            <img src={item.img} alt="ingredient" className={cakeLayoutType()} />
+            <img src={item.img} alt="ingredient" className="toppingsLayout" />
+          </p>
+          <Button size="sm" close onClick={() => remove(item)} />
+        </Row>
+      );
+    }
+    return (
+      <Row className="cakeProgressLayout">
+        <p><img src={item.img} alt="ingredient" className="toppingsLayout" /></p>
+      </Row>
+    );
+  }
+
+  compareIndexToLength = (item, index, arr) => {
+    const { remove } = this.props;
+    if (index + 1 === arr.length) {
+      // const cakeLayoutType = () => {
+      //   switch (item.type) {
+      //     case 'Garniture': return 'fillingLayout';
+      //     case 'Toppings': return 'toppingsLayout';
+      //     case 'Glaçage': return 'icingsLayout';
+      //     default: return null;
+      //   }
+      // };
+      return (
+        <Row key={item.name} className="cakeProgressLayout">
+          <p>
+            <img src={item.img} alt="ingredient" />
           </p>
           <Button size="sm" close onClick={() => remove(item)} />
         </Row>
@@ -38,25 +57,34 @@ class CakeInProgress extends Component {
     );
   }
 
-  displayNamesIngredients = (item) => {
-    return (
-      <Row key={item.name}>
-        <p>
-          {item.type}
+  displayNamesIngredients = item => (
+    <Row key={item.name}>
+      <p>
+        {item.type}
         :
-        </p>
-        <p>{item.name}</p>
-      </Row>
-    );
-  }
+      </p>
+      <p>{item.name}</p>
+    </Row>
+  );
 
 
   render() {
     const { cake } = this.props;
     return (
       <div style={{ position: 'sticky', top: '0vh' }}>
+        <Row className="toppingsCakeLayout">
+          {cake.ingredients
+            .filter(
+              type => type.type === 'Toppings',
+            )
+            .map((item, index, arr) => this.displayToppings(item, index, arr))}
+        </Row>
         <Row className="cakeLayout">
-          {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index, arr))}
+          {cake.ingredients
+            .filter(
+              type => type.type !== 'Toppings',
+            )
+            .map((item, index, arr) => this.compareIndexToLength(item, index, arr))}
         </Row>
         <Row className="namesLayout">
           {cake.ingredients.map(item => this.displayNamesIngredients(item))}

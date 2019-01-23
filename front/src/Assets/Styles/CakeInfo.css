@@ -33,27 +33,27 @@ h3 {
 
 #cookieButton{
     background-image: url(../Images/cookie.png);
-    cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+    cursor: url(../Images/whiskflipped.ico), pointer !important;
 }
 
 #cakeButton{
     background-image: url(../Images/cake.png);
-    cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+    cursor: url(../Images/whiskflipped.ico), pointer !important;
 }
 
 #cheesecakeButton{
     background-image: url(../Images/cheesecake.png);
-    cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+    cursor: url(../Images/whiskflipped.ico), pointer !important;
 }
 
 #macaronButton{
     background-image: url(../Images/macaron_cafe.png);
-    cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+    cursor: url(../Images/whiskflipped.ico), pointer !important;
 }
 
 #brownieButton{
     background-image: url(../Images/brownie.png);
-    cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+    cursor: url(../Images/whiskflipped.ico), pointer !important;
 }
 
 .tipsColumn{
