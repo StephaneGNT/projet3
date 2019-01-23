@@ -4,20 +4,15 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Col, Row } from 'reactstrap';
-import axios from 'axios';
-import PropTypes from 'prop-types';
 import VerticalNavBar from './Navigation/VerticalNavBar';
 import Login from './AdminHandling/Login';
-import OrdersAdmin from './OrdersList/OrdersAdmin';
-import CakeDetail from './OrdersList/CakeDetail';
-import ClientDetail from './OrdersList/ClientDetail';
+import OrdersAdmin from './OrdersAdmin';
 import DataBase from './DatabaseIngredient/DataBase';
-import Customers from './Customers';
+import Clients from './Clients';
 import CalendarAdmin from './CalendarAdmin';
 import HomePageAdmin from './HomePageAdmin';
 import CustomizationAdmin from './CustomizationAdmin';
 import AdminList from './AdminHandling/AdminList';
-import { getAllOrders, getAllCustomers, getAllCakes } from '../../Actions/adminsActions/getAllOrdersCakesCustomers';
 
 class Admin extends Component {
   constructor(props) {
@@ -26,21 +21,14 @@ class Admin extends Component {
     this.loggedIn = true;
   }
 
-  componentWillMount = () => {
-    const { saveOrdersList, saveCustomersList, saveCakesList } = this.props;
-    axios.get('/orders/all').then(res => saveOrdersList(res.data));
-    axios.get('/customers/all').then(res => saveCustomersList(res.data));
-    axios.get('/cakes/all').then(res => saveCakesList(res.data));
-  }
-
   render() {
     const { jwtToken } = this.props;
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route
         {...rest}
         render={() => (
-          jwtToken !== ''
-          // this.loggedIn
+          // jwtToken !== ''
+          this.loggedIn
             ? <Component />
             : <Redirect to="/admin" />
         )}
@@ -56,7 +44,8 @@ class Admin extends Component {
           <Col sm="10">
             <Switch>
               <Route
-                exact path={`${process.env.PUBLIC_URL}/admin`}
+                exact
+                path={`${process.env.PUBLIC_URL}/admin`}
                 render={props => <Login {...props} action="Se connecter" />}
               />
               <PrivateRoute
@@ -64,20 +53,12 @@ class Admin extends Component {
                 component={OrdersAdmin}
               />
               <PrivateRoute
-                path={`${process.env.PUBLIC_URL}/admin/orderDetail/cake`}
-                component={CakeDetail}
-              />
-              <PrivateRoute
-                path={`${process.env.PUBLIC_URL}/admin/orderDetail/client`}
-                component={ClientDetail}
-              />
-              <PrivateRoute
                 path={`${process.env.PUBLIC_URL}/admin/ingredients`}
                 component={DataBase}
               />
               <PrivateRoute
                 path={`${process.env.PUBLIC_URL}/admin/clients`}
-                component={Customers}
+                component={Clients}
               />
               <PrivateRoute
                 path={`${process.env.PUBLIC_URL}/admin/calendar`}
@@ -103,20 +84,8 @@ class Admin extends Component {
   }
 }
 
-Admin.propTypes = {
-  saveOrdersList: PropTypes.func.isRequired,
-  saveCustomersList: PropTypes.func.isRequired,
-  saveCakesList: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = dispatch => ({
-  saveOrdersList: orderList => dispatch(getAllOrders(orderList)),
-  saveCustomersList: customerList => dispatch(getAllCustomers(customerList)),
-  saveCakesList: cakeList => dispatch(getAllCakes(cakeList)),
-});
-
 const mapStateToProps = state => ({
   jwtToken: state.adminToken,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Admin);
+export default connect(mapStateToProps, null)(Admin);

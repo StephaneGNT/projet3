@@ -16,7 +16,5 @@ export const setIndex = (index) => {
   return {
     type: 'SET_INDEX',
     index,
-  }
-}
-
-
+  };
+};

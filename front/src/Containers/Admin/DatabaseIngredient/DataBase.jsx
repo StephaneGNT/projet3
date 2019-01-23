@@ -22,7 +22,7 @@ class DataBase extends Component {
     switch (display) {
       case ('Cookie'): elementToDisplay = cookie; break;
       case ('Toppings'): elementToDisplay = topping; break;
-      case ('Remplissage'): elementToDisplay = filling; break;
+      case ('Garniture'): elementToDisplay = filling; break;
       case ('Glaçage'): elementToDisplay = icing; break;
       case ('Parfum macaron'): elementToDisplay = macaronFlavor; break;
       case ('Couleur macaron'): elementToDisplay = macaronShell; break;
@@ -38,7 +38,10 @@ class DataBase extends Component {
   }
 
   renderFormModifyIngredient = () => {
-    const { displaybeta, cake, cookie, topping, filling, icing, macaronFlavor, macaronShell, chessecakeFlavor,formModifyVisible } = this.props;
+    const {
+      displaybeta, cake, cookie, topping, filling, icing,
+      macaronFlavor, macaronShell, chessecakeFlavor, formModifyVisible,
+    } = this.props;
     let formToDisplay;
     switch (displaybeta) {
       case ('Base cookie'): formToDisplay = cookie; break;
@@ -62,8 +65,8 @@ class DataBase extends Component {
         </Row>
         <Toolbar />
         {this.renderFormAddIngredient()}
-        {this.displayIngredients(token)}
         {this.renderFormModifyIngredient()}
+        {this.displayIngredients(token)}
       </Container>
     );
   }
@@ -90,15 +93,15 @@ const mapStateToProps = state => ({
   displaybeta: state.databaseDisplay.beta,
   formVisible: state.databaseNewIngredientDisplay.new,
   formModifyVisible: state.databaseNewIngredientDisplay.modify,
-  cake: state.cakeBases,
-  filling: state.cakeFillings,
-  icing: state.cakeIcings,
-  chessecakeFlavor: state.cheesecakeFlavors,
-  macaronFlavor: state.macaronsFlavors,
-  topping: state.cakeToppings,
-  macaronShell: state.macaronsShells,
-  cookie: state.cookiesBases,
-  brownie: state.browniesBases,
+  cake: state.ingredients.filter(ing => ing.type === 'Base'),
+  filling: state.ingredients.filter(ing => ing.type === 'Garniture'),
+  icing: state.ingredients.filter(ing => ing.type === 'Glaçage'),
+  chessecakeFlavor: state.ingredients.filter(ing => ing.type === 'Parfum'),
+  macaronFlavor: state.ingredients.filter(ing => ing.type === 'Macaron'),
+  topping: state.ingredients.filter(ing => ing.type === 'Toppings'),
+  macaronShell: state.ingredients.filter(ing => ing.type === 'Coquille'),
+  cookie: state.ingredients.filter(ing => ing.type === 'Base cookie'),
+  brownie: state.ingredients.filter(ing => ing.type === 'Base brownie'),
   token: state.adminToken,
 });
 

@@ -1,12 +1,12 @@
 const getDescription = (type, typeResilient, customCharacteristics, customAdmin) => {
   if (type === 'message' || typeResilient === 'message') {
     return `Choisissez la police du message, sa couleur et la couleur de fond !
-Coût supplémentaire : ${customAdmin.customMessage.price}€
+Coût supplémentaire : ${customAdmin.price_customMessage}€
 Compatible avec une photo ou une sculpture`;
   }
   if (type === 'image' || typeResilient === 'image') {
     return `Envoyez-nous la photo à imprimer !
-Coût supplémentaire : ${customAdmin.print2D.price}€
+Coût supplémentaire : ${customAdmin.price_2D}€
 Compatible avec un message`;
   }
   if (type === 'sculpture' || typeResilient === 'sculpture') {
