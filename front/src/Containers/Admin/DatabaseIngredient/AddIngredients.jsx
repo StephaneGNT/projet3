@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {
-  Label, Input, Button, Form, FormGroup, Table, Col, Row,
+  Label, Input, Button, Form, FormGroup, Table, Col, Row, Alert,
 } from 'reactstrap';
 // import AlertAddIngredient from './AlertAddIngredient';
 import PropTypes from 'prop-types';
@@ -105,6 +105,10 @@ class AddIngredients extends Component {
     if (index >= 0) this.allergeneIngList.splice(index, 1);
     else this.allergeneIngList.push(allergeneID);
   }
+
+  handleEvent = () => {
+    alert('Votre ingrédient a bien été ajouté.');
+  };
 
   render() {
     return (
@@ -223,7 +227,7 @@ class AddIngredients extends Component {
             </Col>
           </Row>
           <br />
-          <Button color="secondary" size="lg" onClick={() => this.handleSubmit()}>Ajouter</Button>
+          <Button color="secondary" size="lg" onClick={() => { this.handleSubmit(); this.handleEvent(); }}>Ajouter</Button>
         </Form>
       </div>
     );
