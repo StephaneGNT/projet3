@@ -2,8 +2,8 @@ import React from 'react';
 import CakeStoryDisplay from './CakeStoryDisplay';
 
 const CakeSizeDisplay = () => {
-  const storys = [5, 10, 20, 30, 50];
-  const tailles = ['10 cm', '12 cm', '14 cm', '16 cm', '18 cm'];
+  const storys = [5, 10, 15, 20, 30, 50];
+  const tailles = ['10 cm', '12 cm', '13 cm', '14 cm', '16 cm', '18 cm'];
 
   const renderDisplay = () => {
     const render = [];

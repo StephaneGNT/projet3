@@ -21,7 +21,6 @@ Giluna recommande une portion de ${ingredient.portion}`;
       }
       description = `Allergènes: ${ingredient.allerg}`;
     }
-    console.log("description", description)
     return description;
   };
 

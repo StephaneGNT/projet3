@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-  Container, Row, Label, Button,
-} from 'reactstrap';
-// import { Redirect } from 'react-router-dom';
+import { Container, Row, Button } from 'reactstrap';
 import { createAdmin, connectAdmin, updateAdmin } from './admin_DB_actions';
 import registerToken from '../../../Actions/adminsActions/registerToken';
 
@@ -19,6 +16,22 @@ class Login extends Component {
       },
       passwordConfirm: '',
     };
+  }
+
+  componentDidMount = () => {
+    document.addEventListener('keydown', this.handleKeyPress, false);
+  }
+
+  componentWillUnmount = () => {
+    document.removeEventListener('keydown', this.handleKeyPress, false);
+  }
+
+  handleKeyPress = (event) => {
+    const { user, passwordConfirm } = this.state;
+    const { action, history } = this.props;
+    if (((action === 'Se connecter' && user.name === '' && user.adminPassword === '') || (user.name === '' || user.adminPassword === '' || user.adminPassword !== passwordConfirm)) && (event.key === 'Enter')) {
+      this.submitUser();
+    }
   }
 
   submitUser = async () => {

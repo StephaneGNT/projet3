@@ -38,6 +38,7 @@ class ModifyIngredient extends Component {
       displayIndexForm, ingredient, // arrays ingredients.compatible et ingredients.allergenes inherited from phil
     } = this.props;
     this.betaType = ingredient[displayIndexForm - 1];
+    console.log(this.betaType);
   }
 
   componentWillMount() {
@@ -202,7 +203,7 @@ class ModifyIngredient extends Component {
                         <Input
                           name="isCompatible"
                           type="checkbox"
-                          defaultChecked={this.betaType.allerg.indexOf(allergene.name >= 0)}
+                          // defaultChecked={this.betaType.allerg.indexOf(allergene.name >= 0)}
                         />
                         <Label check>{allergene.name}</Label>
                       </td>))}

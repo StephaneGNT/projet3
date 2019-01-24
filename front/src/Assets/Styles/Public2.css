@@ -2,7 +2,7 @@
 
 
 .body-zone {
-  height: 108vh;
+  height: 100vh;
   /* background-color: rgb(236, 237, 238) !important; */
   /* background-color: rgb(245, 214, 221); */
   /* background-color: #F1E7A4; */
@@ -15,13 +15,14 @@
 }
 
 .homePageRow {
-  height: 85vh;
-  background-color: rgba(255,255,255,0.8);
+  height: 100vh;
+  background-color: var(--lightPurple);
 }
 
 .header-zone {
   /* background-color: #884e65; */
-  background-image: url('../Images/Fond1.jpg');
+  background-color: white;
+  /* background-image: url('../Images/Fond1.jpg'); */
   /* background-image: url('../Images/Fond2.jpg'); */
   /* background-image: url('../Images/Fond3.jpg'); */
   width: 100vw;
@@ -47,6 +48,7 @@
 }
 
 .content-zone {
+  /* background-color: var(--lightPurple); */
   width: 80vw;
   height: 86vh;
   margin: 12vh auto;

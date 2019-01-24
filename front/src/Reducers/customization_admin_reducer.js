@@ -3,7 +3,7 @@ export default (state = {
   googleFonts: [],
   price_customMessage: 3,
   price_2D: 4,
-  placeHolder: 'Joyeux anniversaire Nicolas',
+  placeHolder: 'Votre message ici',
   total_price: 0,
 }, action) => {
   let fontsArray = state.selectedFonts;

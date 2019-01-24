@@ -24,3 +24,50 @@
   justify-content: center;
   margin-top: 3vw;
 }
+
+.notChosen {
+  border: 4px red solid !important;
+}
+
+.chosen {
+  border: 4px rgb(114, 167, 114) solid !important;
+}
+
+.previewText {
+  position: relative;
+  height: 30vh;
+  width: 30vh;
+  border: dashed 1px black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputField {
+  opacity: 0.0; position: absolute; top: 0; width: 100%; height:100%; cursor: pointer;
+}
+
+.carousel {
+width: 80vh;
+}
+
+.carousel-small {
+  width: 45vh;
+}
+
+.carousel-images {
+  height: 50vh;
+width: 50vh;
+object-fit: fill;
+}
+
+.smaller-c-images {
+  height: 30vh;
+width: 10vh;
+object-fit: fill;
+}
+
+.decoRow {
+  padding-bottom: 2vh !important;
+}
