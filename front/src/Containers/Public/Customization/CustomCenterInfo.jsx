@@ -9,12 +9,12 @@ import BeautifyButtons from './BeautifyButtons';
 import Decoration from './Decoration';
 import getDescription from './Customization_functions';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import CakeMessagePhotoExample1 from '../../../Assets/Images/IMG_2729.JPG';
-import CakeMessagePhotoExample2 from '../../../Assets/Images/IMG_3064.JPG';
-import CakeMessagePhotoExample3 from '../../../Assets/Images/IMG-9593.JPG';
-import CakeMessagePhotoExample4 from '../../../Assets/Images/IMG-8295.jpg';
-import CakeMessagePhotoExample5 from '../../../Assets/Images/IMG-3088.JPG';
-import CakeMessagePhotoExample6 from '../../../Assets/Images/IMG-9593.JPG';
+import CakeMessagePhotoExample1 from '../../../Assets/Images/selectionGallerie/IMG_0987.JPG';
+import CakeMessagePhotoExample2 from '../../../Assets/Images/selectionGallerie/IMG_2222.JPG';
+import CakeMessagePhotoExample3 from '../../../Assets/Images/selectionGallerie/IMG_2247.jpg';
+import CakeMessagePhotoExample4 from '../../../Assets/Images/selectionGallerie/IMG_2459.JPG';
+import CakeMessagePhotoExample5 from '../../../Assets/Images/selectionGallerie/IMG_5546.JPG';
+import CakeMessagePhotoExample6 from '../../../Assets/Images/selectionGallerie/IMG-9746.JPG';
 import {
   allowMessage,
   fetchAdminFonts,

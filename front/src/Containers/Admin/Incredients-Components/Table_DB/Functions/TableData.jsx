@@ -30,8 +30,6 @@ const deleteIngredient = (type, id, token) => {
     const url = `/ingredients/${tableName}/${id}`;
     const headers = { Authorization: `Bearer ${token}` };
 
-    console.log("token", token);
-
     axios.delete(url, { headers })
       .then(res => window.alert(res.data.message));
   }

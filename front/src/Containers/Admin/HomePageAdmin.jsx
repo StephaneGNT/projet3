@@ -21,14 +21,17 @@ class HomePageAdmin extends Component {
   }
 
   saveDescription = (value, content) => {
-    console.log("save description côté front")
-    axios.put('/admin/descriptions/new', content, (res, err) => {
-      if (res.status === 200) window.alert(`Description ${value} mise à jour`);
-      else window.alert('Erreur lors de la mise à jour');
-    });
-  }
+    console.log("save description côté front", content);
+    axios.put('/admin/descriptions/new', content)
+      .then((response, err) => {
+        console.log("err, response", err, response);
+        if (response.status === 200) window.alert(`Description ${value} mise à jour`);
+        else window.alert('Erreur lors de la mise à jour');
+      });
+  };
 
   render() {
+    console.log("this.state", this.state)
     const { homePage, contact } = this.state;
     return (
       <Container>
@@ -47,7 +50,7 @@ class HomePageAdmin extends Component {
             <button
               style={{ width: '50%', margin: 'auto' }}
               type="button"
-              onClick={() => this.saveDescription(this.state)}
+              onClick={() => this.saveDescription('homepage', this.state)}
             >
               Enregistrer
             </button>
@@ -63,7 +66,7 @@ class HomePageAdmin extends Component {
             <button
               style={{ width: '50%', margin: 'auto' }}
               type="button"
-              onClick={() => this.saveDescription(this.state)}
+              onClick={() => this.saveDescription('contact', this.state)}
             >
               Enregistrer
             </button>

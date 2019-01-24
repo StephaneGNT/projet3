@@ -16,7 +16,6 @@ customer.post(`/customer/new`, (req, res) => {
 
 // Récupération de l'id d'un client avec son mail- Fonctionne
 customer.post(`/customer`, (req, res) => {
-  console.log(req.body);
   connection.query('SELECT id FROM customers WHERE email = ?', req.body.email, (err, results) => {
     if (err) res.status(500).send([]);
     else res.status(200).send(results[0]);
