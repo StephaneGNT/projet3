@@ -34,7 +34,7 @@ const Tips = (props) => {
     <div className="bg-light p-2" style={{ width: '100%', borderRadius: '9px', fontSize: '17px' }}>
       <h4 className="mt-3 text-center" style={{ color: 'rgba(141, 29, 44, 0.8)' }}>
         <strong>
-      Aide
+      Astuces
         </strong>
       </h4>
       {renderTips(cake.type)}
