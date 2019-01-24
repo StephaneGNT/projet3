@@ -17,6 +17,7 @@ import CalendarAdmin from './CalendarAdmin';
 import HomePageAdmin from './HomePageAdmin';
 import CustomizationAdmin from './CustomizationAdmin';
 import AdminList from './AdminHandling/AdminList';
+import IngredientTable from './Ingredients-Table/Ingredient-Table';
 
 class Admin extends Component {
   constructor(props) {
@@ -67,7 +68,7 @@ class Admin extends Component {
               />
               <PrivateRoute
                 path={`${process.env.PUBLIC_URL}/admin/ingredients`}
-                component={DataBase}
+                component={IngredientTable}
               />
               <PrivateRoute
                 path={`${process.env.PUBLIC_URL}/admin/clients`}
