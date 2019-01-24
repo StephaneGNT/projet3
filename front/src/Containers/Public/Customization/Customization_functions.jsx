@@ -33,8 +33,8 @@ const getDescription = (type, typeResilient, customCharacteristics, customAdmin)
    À déterminer selon la sculpture
         <br/>
         Compatible avec un message
-</p>
-    );
+      </p>
+    )
   }
   return '';
   // 'Ajoutez à votre gâteau un message, une image (imprimée sur feuille de sucre) ou une sculpture 3D !!';
