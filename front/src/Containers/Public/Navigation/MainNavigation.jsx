@@ -1,9 +1,8 @@
 import React from 'react';
 import '../../../Assets/Styles/MainNavigation.css';
 import {
-  Navbar, Nav, NavItem, NavbarBrand,
+  Navbar, Nav, NavItem, NavLink, NavbarBrand,
 } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
 import logo from '../../../Assets/Images/LOGO_GILUNA.png';
 
 const MainNavigation = () => (
@@ -14,25 +13,25 @@ const MainNavigation = () => (
       </NavbarBrand>
       <Nav className="navbar-nav mr-auto">
         <NavItem>
-          <NavLink to="/">
+          <NavLink href="/">
             <i className="fas fa-home" />
             <span className="linkname ml-3">Accueil</span>
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/mycake">
+          <NavLink href="/mycake">
             <i className="fas fa-birthday-cake ml-1" />
             <span className="linkname ml-3">Gâteaux</span>
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="#">
+          <NavLink href="#">
             <i className="fas fa-shopping-cart" />
             <span className="linkname ml-3">Panier</span>
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/contact">
+          <NavLink href="/contact">
             <i className="fas fa-mail-bulk" />
             <span className="linkname ml-3">Contact</span>
           </NavLink>

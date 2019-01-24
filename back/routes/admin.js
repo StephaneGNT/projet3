@@ -20,7 +20,6 @@ admin.get(
   '/admin/all',
   // jwtAuthentification(),
   (req, res) => {
-    
     connection.query('SELECT * FROM admin', (err, result) => {
       if (err) res.status(500).send("Erreur lors de la récupération des admin");
       if (result) res.status(200).send(result);

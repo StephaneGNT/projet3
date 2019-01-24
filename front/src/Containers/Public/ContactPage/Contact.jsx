@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Col, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Map from './Map';
 import teamPicture from '../../../Assets/Images/team.webp';
 import '../../../Assets/Styles/CommonStyle.css';
 

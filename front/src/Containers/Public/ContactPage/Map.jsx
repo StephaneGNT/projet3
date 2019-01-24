@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Container } from 'reactstrap';
 import apiKey from '../../../Assets/googleAPIKeys';
 
 export class MapContainer extends Component {
@@ -10,31 +11,31 @@ export class MapContainer extends Component {
     this.api = 'https://api-adresse.data.gouv.fr/search/?q=';
 
     this.state = {
-        lat: '',
-        lng: '',
+        lat: '45.746559',
+        lng: '4.827114',
     }
   }
 
   componentDidMount() {
-    this.renderOneMarker()
+    // this.renderOneMarker()
   }
 
-  renderOneMarker = (giver, giverIndex) => {
-    let query = "17+rue+Delandine&postcode=69007";
+  // renderOneMarker = (giver, giverIndex) => {
+  //   let query = "17+rue+Delandine&postcode=69007";
 
-    fetch(this.api + query)
-      .then(response => response.json())
-      .then(data => {
-        let fetchLocalLat = data.features[0].geometry.coordinates[1];
-        let fetchLocalLong = data.features[0].geometry.coordinates[0];
-        this.pos = { lat: fetchLocalLat, lng: fetchLocalLong };
+  //   fetch(this.api + query)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       let fetchLocalLat = data.features[0].geometry.coordinates[1];
+  //       let fetchLocalLong = data.features[0].geometry.coordinates[0];
+  //       this.pos = { lat: fetchLocalLat, lng: fetchLocalLong };
 
-        const markers = this.state.markers;
-        markers[giverIndex] = this.pos;
-        this.setState({ markers })
-        this.props.returnCoordinates(this.state.markers)
-      });
-  }
+  //       const markers = this.state.markers;
+  //       markers[giverIndex] = this.pos;
+  //       this.setState({ markers })
+  //       this.props.returnCoordinates(this.state.markers)
+  //     });
+  // }
 
   // displayAdress = (giver) => {
   //   if (giver) {
@@ -46,7 +47,7 @@ export class MapContainer extends Component {
     const { lat, lng } = this.state;
     const { google } = this.props;
     return (
-      <div id="mapZone">
+      <Container style={{ width: '25vw', height: '50vh' }}>
         <Map
           google={google}
           zoom={16}
@@ -58,10 +59,10 @@ export class MapContainer extends Component {
             lat,
             lng,
           }}
+          style={{ width: '25vw', height: '50vh' }}
         >
 
           <Marker
-            onClick={this.onMarkerClick}
             name="Giluna Coffee House"
             position={{
               lat,
@@ -70,7 +71,7 @@ export class MapContainer extends Component {
           />
         </Map>
 
-      </div>
+      </Container>
     );
   }
 }

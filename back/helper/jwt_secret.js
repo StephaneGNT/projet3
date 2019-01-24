@@ -1,2 +1,3 @@
-const secret = 'pimp_my_cake_admin';
+const secret = 'gilunaPimpMyCake';
+
 module.exports = secret;

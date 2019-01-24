@@ -7,8 +7,8 @@ import CustomMessageInput from './CustomMessageInput';
 import Beautify from './Beautify';
 import Decoration from './Decoration';
 import getDescription from './Customization_functions';
-import CakeMessagePhotoExample1 from '../../../Assets/Images/IMG_2729.JPG';
-import CakeMessagePhotoExample2 from '../../../Assets/Images/IMG_2222.JPG';
+// import CakeMessagePhotoExample1 from '../../../Assets/Images/IMG_2729.JPG';
+// import CakeMessagePhotoExample2 from '../../../Assets/Images/IMG_2222.JPG';
 import {
   allowMessage,
   fetchAdminFonts,
@@ -151,7 +151,7 @@ class CustomCenterInfo extends Component {
             </Row>
             <Row key={type}>
               <Col xs="12" md="6">
-                <img src={CakeMessagePhotoExample1} alt="Gâteau avec un message" />
+                {/* <img src={CakeMessagePhotoExample1} alt="Gâteau avec un message" /> */}
               </Col>
               <Col xs="12" md="6">
                 <CustomMessageInput modify={this.updateSummary} message={customSummary} sendDefaultFont={this.getDefaultFont} />
@@ -183,7 +183,7 @@ class CustomCenterInfo extends Component {
           <Row key={type}>
             <Col md="6">
               <p>{description}</p>
-              <img src={CakeMessagePhotoExample2} alt="Gâteau avec un message" />
+              {/* <img src={CakeMessagePhotoExample2} alt="Gâteau avec un message" /> */}
             </Col>
             <Col md="6">
               <Decoration modify={this.updateSummary} photography={customSummary.photo1} />

@@ -27,6 +27,11 @@ const Composition = (props) => {
     return render;
   };
 
+  const renderComplementBase = () => {
+    // let render;
+    // if
+  }
+
   return (
     <Container className="wrapper">
       <Row className="text-center">
@@ -35,6 +40,7 @@ const Composition = (props) => {
       <Row className="renderComposition">
         <Col sm="8">
           {renderComposition(cake.type)}
+          {renderComplementBase()}
         </Col>
         <Col sm="4" style={{ height: '62vh', overflow: 'auto' }}>
           <CakeInProgress />

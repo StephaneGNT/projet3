@@ -10,7 +10,7 @@ const Ingredient = (props) => {
 
   const getFullDescripion = () => {
     let description = '';
-    if (ingredient.allerg.length === 0) {
+    if (ingredient.allergenes.length === 0) {
       if (ingredient.portion) {
         description = `Giluna recommande une portion de ${ingredient.portion}`;
       }
@@ -33,7 +33,7 @@ Giluna recommande une portion de ${ingredient.portion}`;
     <Col className="ingredient" style={{ display: 'flex', flexDirection: 'row', textAlign: 'center' }}>
       <Button disabled={disabled} style={{ filter, backgroundColor, display: 'flex', flexDirection: 'column' }} onClick={() => addNewIngredient(ingredient)}>
         <span className="badge badge-light">{ingredient.price}€</span>
-        <img src={ingredient.img} title={getFullDescripion()} alt="" />
+        <img src={ingredient.image} title={getFullDescripion()} alt="" />
       </Button>
       <Col>
         <p style={{ color, fontWeight: 'bold', textAlign: 'center', marginTop: '10px' }}>{ingredient.name}</p>

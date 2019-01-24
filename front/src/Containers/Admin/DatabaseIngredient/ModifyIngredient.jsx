@@ -38,6 +38,7 @@ class ModifyIngredient extends Component {
       displayIndexForm, ingredient, // arrays ingredients.compatible et ingredients.allergenes inherited from phil
     } = this.props;
     this.betaType = ingredient[displayIndexForm - 1];
+    console.log(this.betaType);
   }
 
   componentWillMount() {
@@ -202,7 +203,7 @@ class ModifyIngredient extends Component {
                         <Input
                           name="isCompatible"
                           type="checkbox"
-                          defaultChecked={this.betaType.allerg.indexOf(allergene.name >= 0)}
+                          // defaultChecked={this.betaType.allerg.indexOf(allergene.name >= 0)}
                         />
                         <Label check>{allergene.name}</Label>
                       </td>))}
@@ -247,15 +248,15 @@ const mapStateToProps = state => ({
   selectedIngredient: state.ingredientCharacteristics,
   displaybeta: state.databaseDisplay.beta,
   displayIndexForm: state.databaseModifyFormIndex,
-  cake: state.cakeBases,
-  filling: state.cakeFillings,
-  icing: state.cakeIcings,
-  chessecakeFlavor: state.cheesecakeFlavors,
-  macaronFlavor: state.macaronsFlavors,
-  topping: state.cakeToppings,
-  macaronShell: state.macaronsShells,
-  cookie: state.cookiesBases,
-  brownie: state.browniesBases,
+  cake: state.ingredients.filter(ing => ing.type === 'Base'),
+  filling: state.ingredients.filter(ing => ing.type === 'Garniture'),
+  icing: state.ingredients.filter(ing => ing.type === 'Glaçage'),
+  chessecakeFlavor: state.ingredients.filter(ing => ing.type === 'Parfum'),
+  macaronFlavor: state.ingredients.filter(ing => ing.type === 'Macaron'),
+  topping: state.ingredients.filter(ing => ing.type === 'Toppings'),
+  macaronShell: state.ingredients.filter(ing => ing.type === 'Coquille'),
+  cookie: state.ingredients.filter(ing => ing.type === 'Base cookie'),
+  brownie: state.ingredients.filter(ing => ing.type === 'Base brownie'),
 });
 
 const mapDispatchToProps = dispatch => ({

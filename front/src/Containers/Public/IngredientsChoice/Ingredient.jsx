@@ -10,19 +10,16 @@ const Ingredient = (props) => {
 
   const getFullDescripion = () => {
     let description = '';
-    if (ingredient.allerg.length === 0) {
-      if (ingredient.portion) {
-        description = `${ingredient.info}
-Giluna recommande une portion de ${ingredient.portion}`;
+    if (ingredient.allergenes.length === 0) {
+      if (ingredient.size.indexOf('g') !== -1) {
+        description = `${ingredient.info} Giluna recommande une portion de ${ingredient.size}`;
       } else description = `${ingredient.info}`;
     } else {
-      if (ingredient.portion) {
-        description = `${ingredient.info}
-Allergènes: ${ingredient.allerg}.
-Giluna recommande une portion de ${ingredient.portion}`;
+      if (ingredient.size.indexOf('g') !== -1) {
+        description = `${ingredient.info} Allergènes: ${ingredient.allergenes}.
+                          Giluna recommande une portion de ${ingredient.size}`;
       }
-      description = `${ingredient.info}
-Allergènes: ${ingredient.allerg}`;
+      description = `${ingredient.info} Allergènes: ${ingredient.allerg}`;
     }
     return description;
   };
@@ -36,7 +33,7 @@ Allergènes: ${ingredient.allerg}`;
     <Col className="ingredient" style={{ textAlign: 'center' }}>
       <Button disabled={disabled} style={{ filter, backgroundColor }} onClick={() => addNewIngredient(ingredient)}>
         <span className="badge badge-light">{ingredient.price}€</span>
-        <img src={ingredient.img} title={getFullDescripion()} alt="" />
+        <img src={ingredient.image} title={getFullDescripion()} alt="" />
       </Button>
       <p style={{ color }}>{ingredient.name}</p>
     </Col>

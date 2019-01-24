@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-var api_key = '7622ef61346e681cb3a2bdec4de55c92-060550c6-99da5662';
-var DOMAIN = 'sandbox734cf4997fa7440fade438b0cb88ab79.mailgun.org';
+var api_key = '7dd28c8ac43fe8639d9bfee6273452b0-060550c6-b0fba8db';
+var DOMAIN = 'sandbox627d9c845056459f95b1034eeaff791d.mailgun.org';
 
 var mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN });
 
 router.post('/mail', (req, res) => {
+    console.log('send mail body:', req.body)
     const mailData = {
         'from': req.body.from,
         'to': req.body.to,
