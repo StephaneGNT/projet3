@@ -25,7 +25,7 @@ INSERT INTO allergenes (name)
 VALUES ('Oeuf'), ('Lactose'), ('Arachide');
 
 INSERT INTO fonts (name, availability)
-VALUES ('Ewert', true), ('Frijole', true), ('Rochester', false);
+VALUES ('Frijole', true), ('Rochester', true), ('Bungee Hairline', true), ('Creepster', true), ('Fontdiner Swanky', true), ('Knewave', true), ('Jim Nightshade', true), ('Mystery Quest', true), ('Permanent Marker', true), ('Rock Salt', true), ('Stalinist One', true), ('UnifrakturMaguntia', true), ('Quando', true), ('Meddon', true), ('Gloria Hallelujah', true), ('Fredoka One', true), ('Fredericka the Great', true), ('Leckerli One', true);
 
 INSERT INTO custom_wishes (deco1, deco2, photo1, photo2, msgContent, msgColor, msgBgColor, msgFont)
 VALUES ('Message', '', '', '', 'Bon anniversaire !', '#00ff00', '#111111', 'Times New Roman');

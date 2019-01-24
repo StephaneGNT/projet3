@@ -47,9 +47,9 @@
 }
 
 .content-zone {
-  width: 80vw;
-  height: 86vh;
-  margin: 12vh auto;
+  min-width: 80vw;
+  min-height: 86vh;
+  /* margin: 12vh auto; */
   margin-top: 0;
 }
 

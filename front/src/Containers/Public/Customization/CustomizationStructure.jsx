@@ -14,11 +14,11 @@ const CustomizationStructure = () => (
     <Row className="text-center">
       <Progressbar />
     </Row>
-    <Row style={{ minHeight: '75vh' }}>
+    <Row style={{ minHeight: '65vh', background: 'rgba(255,255,255, 0.9)' }}>
       {/* <Col sm={1} xs={0}>
         <LeftPics />
       </Col> */}
-      <Col sm={10} xs={12}>
+      <Col sm={12} xs={12}>
         <CustomCenterInfo />
       </Col>
       {/* <Col sm={1} xs={0}>

@@ -42,9 +42,8 @@ class CustomMessageInput extends Component {
               />
             </div>))
         }
-        <Row>
-          <Col sm="6" lg="6">
-            <Dropdown
+        <div className="fontTable">
+          {/* <Dropdown
               isOpen={dropdownOpen}
               className={!wantsCustomMessage ? 'disableHover' : null}
               toggle={() => this.setState({ dropdownOpen: !dropdownOpen })}
@@ -52,27 +51,24 @@ class CustomMessageInput extends Component {
               <DropdownToggle className="fontdropdown" caret>
                 Police
 
-              </DropdownToggle>
-              <DropdownMenu>
-                {
-                  selectedFonts.map(index => (
-                    <div key={index}>
-                      <DropdownItem
-                        style={{
-                          fontFamily: index,
-                          fontSize: '2.5vmin',
-                        }}
-                        onClick={() => this.sendFontChoiceToParent(index)}
-                      >
-                        Pimp my cake
-                      </DropdownItem>
-                      <DropdownItem divider />
-                    </div>))
-                }
-              </DropdownMenu>
-            </Dropdown>
-          </Col>
-        </Row>
+              </DropdownToggle> */}
+          {
+            selectedFonts.map((font, index) => (
+              <div
+                className="fontBubbles"
+                key={font}
+                style={{
+                  backgroundColor: index % 2 === 0 ? '#f5f5f4' : '',
+                  fontFamily: font,
+                  fontSize: '2.5vmin',
+                }}
+                onClick={() => this.sendFontChoiceToParent(font)}
+              >
+                Pimp my cake
+
+                </div>))
+          }
+        </div>
       </div>
     );
   }

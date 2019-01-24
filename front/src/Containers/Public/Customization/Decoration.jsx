@@ -1,31 +1,22 @@
 import React, { Component } from 'react';
+import { Button, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import {
-  FormGroup, FormText, Label, Button, Col, Container,
-} from 'reactstrap';
 import axios from 'axios';
-import Giluna from '../../../Assets/Images/LOGO_GILUNA.png';
 
 class Decoration extends Component {
   constructor(props) {
     super(props);
-    this.fileInput = React.createRef();
+    this.state = { imagePreviewUrl1: '', imagePreviewUrl2: '' };
   }
 
-  submitFile = (event) => {
-    event.preventDefault();
+  submitFile = (file) => {
     const data = new FormData();
     const { modify } = this.props;
     data.append('foo', 'bar');
-    data.append('avatar', this.fileInput.current.files[0]);
+    data.append('avatar', file);
 
     const config = {
       headers: { Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMTlmYWU1Mzk3NjYwODg0ODhmZTFkOCIsImVtYWlsIjoieW91cGl0YXRhb3VpbmVAeW9wbWFpbC5jb20iLCJpYXQiOjE1NDUyMDgzNTN9.6pRCWwrnGZKC60XrpUGSdWPGlKEtVKHyoDOR1ZQN6k4' },
-
-      // onUploadProgress: (progressEvent) => {
-      //   const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-      // },
     };
     axios.post('/api/uploadfile', data, config)
       .then((result) => {
@@ -34,50 +25,100 @@ class Decoration extends Component {
       });
   }
 
+
+  resetUrl = (type) => {
+    if (type === '2D') return this.setState({ imagePreviewUrl1: '' });
+    return this.setState({ imagePreviewUrl2: '' });
+  }
+
   sendPhotoUrl = (url) => {
     const { modify } = this.props;
     const type = 'GET_PHOTO_URL';
     modify(type, url);
   }
 
+
+  hideInputField = () => {
+    const { decoType, customSummary } = this.props;
+    const { imagePreviewUrl1, imagePreviewUrl2 } = this.state;
+    if ((decoType === '2D' && (imagePreviewUrl1 || customSummary.photo1))
+      || (decoType === '3D' && (imagePreviewUrl2 || customSummary.photo2))) return true;
+  }
+
+  handleImageChange(e) {
+    e.preventDefault();
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    const { decoType, sendFileEvent } = this.props;
+    const urlNum = decoType === '2D' ? 'imagePreviewUrl1' : 'imagePreviewUrl2';
+    reader.onloadend = () => {
+      this.setState({ [urlNum]: reader.result });
+    };
+    reader.readAsDataURL(file);
+    sendFileEvent(file, decoType);
+  }
+
   render() {
-    // const { decoration } = this.state;
-    // const token = localStorage.getItem('token');
+    const { imagePreviewUrl1, imagePreviewUrl2 } = this.state;
+    const { decoType, photography } = this.props;
+    const urlNum = decoType === '2D' ? imagePreviewUrl1 : imagePreviewUrl2;
+    const centerContent = { display: 'flex', flexDirection: 'column', alignItems: 'center' };
+    let imagePreview = null;
+    if (urlNum) {
+      imagePreview = (
+        <div style={centerContent}>
+          {!photography && (
+            <Button
+              style={{ marginTop: '0.5vh', marginBottom: '0,5vh' }}
+              onClick={() => this.resetUrl(decoType)}
+            >
+              Supprimer photo
+            </Button>
+          )}
+          <br />
+          <img src={urlNum} alt="exemple" />
+        </div>
+      );
+    } else {
+      imagePreview = (
+        <div className="previewText">
+          <p style={{ textAlign: 'center' }}>
+            Votre photo ici
+            <br />
+            (Cliquez pour ajouter)
+          </p>
+          <Input
+            type="file"
+            className="inputField"
+            name={decoType === '2D' ? 'file1' : 'file2'}
+            id={decoType === '2D' ? 'file1' : 'file2'}
+            onChange={e => this.handleImageChange(e)}
+            maxsize={5242880}
+            multiple={false}
+            accept="image/png"
+          />
+        </div>);
+    }
     return (
-      <div>
-        <form onSubmit={this.submitFile}>
-          <FormGroup>
-            <input type="file" name="file" id="exampleFile" ref={this.fileInput} />
-            <FormText color="muted">
-              {/* This is some placeholder block-level help text for the above input.
-              It's a bit lighter and easily wraps to a new line. */}
-            </FormText>
-            <Button type="submit">Soumettre</Button>
-          </FormGroup>
-        </form>
-        <img src={this.props.photo1 ? require(`../../../../../back/tmp/${this.props.photo1}`) : Giluna} alt="customer decoration" />
+      <div style={centerContent}>
+        {(() => {
+          if ((!urlNum && !photography) || urlNum) return imagePreview;
+          // return <img src={`/api/image/${photography}`} alt="Exemple" />;
+          return <img src={require(`../../../../../back/tmp/${photography}`)} alt="Exemple" />;
+        }
+        )()}
+        <br />
       </div>
     );
   }
 }
 
 Decoration.propTypes = {
-  D2: PropTypes.shape({}).isRequired,
-  D3: PropTypes.shape({}).isRequired,
-  choice: PropTypes.string.isRequired,
-  image: PropTypes.shape({}).isRequired,
-  price: PropTypes.number.isRequired,
+  customSummary: PropTypes.shape({}).isRequired,
   modify: PropTypes.func.isRequired,
+  sendFileEvent: PropTypes.func.isRequired,
+  decoType: PropTypes.string.isRequired,
+  photography: PropTypes.string.isRequired,
 };
 
-const mapStatetoProps = state => ({
-  photo1: state.customizationCustomer.photo1,
-  // choice: state.customizationCustomer.decoration.choice,
-  // image: state.customizationCustomer.decoration.image,
-  // price: state.customizationCustomer.decoration.price,
-});
-
-const mapDispatchToProps = dispatch => ({
-});
-
-export default connect(mapStatetoProps, mapDispatchToProps)(Decoration);
+export default Decoration;
