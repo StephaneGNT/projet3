@@ -28,9 +28,11 @@ class Admin extends Component {
   }
 
   componentWillMount = () => {
-    const { saveOrdersList, saveCustomersList, saveCakesList, getGoogleFonts, getCachedFonts } = this.props;
-    axios.get('/orders/all').then(res => saveOrdersList(res.data));
-    axios.get('/customers/all').then(res => saveCustomersList(res.data));
+    const {
+      saveOrdersList, saveCustomersList, saveCakesList, getGoogleFonts, getCachedFonts,
+    } = this.props;
+    axios.get('/api/orders/all').then(res => saveOrdersList(res.data));
+    axios.get('/api/customers/all').then(res => saveCustomersList(res.data));
     axios.get('/cakes/all').then(res => saveCakesList(res.data));
     if (localStorage.getItem('googleFonts') === null) getGoogleFonts();
     else getCachedFonts(JSON.parse(localStorage.getItem('googleFonts')));

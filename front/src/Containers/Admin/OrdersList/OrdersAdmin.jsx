@@ -64,10 +64,12 @@ class OrdersAdmin extends Component {
           </td>
           <td>
             <Button
-              onClick={() => history.push({
+              onClick={() => {
+                console.log("order", order, "cakes", cakes)
+                history.push({
                 pathname: `${process.env.PUBLIC_URL}/admin/orderDetail/cake`,
                 state: { cake: cakes.find(cake => cake.id === order.cakeId) },
-              })}
+              })}}
             >
               Détail
             </Button>

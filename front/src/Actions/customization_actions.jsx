@@ -43,7 +43,7 @@ export const fetchFonts = () => {
 
 export const fetchAdminFonts = () => {
   return (dispatch) => {
-    return axios.get('/customization/getfonts')
+    return axios.get('/api/customization/getfonts')
       .then((res) => {
         const fonts = res.data;
         dispatch(populateFonts(fonts));

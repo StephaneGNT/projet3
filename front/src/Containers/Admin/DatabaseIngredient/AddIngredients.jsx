@@ -67,7 +67,7 @@ class AddIngredients extends Component {
     };
 
     // Enregistrement du nouvel ingrédient
-    const newIngredientID = await axios.post('/ingredients/new', newIngredient)
+    const newIngredientID = await axios.post('/api/ingredients/new', newIngredient)
       .then(res => { return res.data.insertId })
       .catch(err => console.log(err.response.data));
 
@@ -77,7 +77,7 @@ class AddIngredients extends Component {
         id_ingred1: newIngredientID,
         id_ingred2: ingID,
       };
-      axios.post('/jtingredients', formData, (req, res) => {
+      axios.post('/api/jtingredients', formData, (req, res) => {
         if (res.status === 200) return ('Ingrédients compatibles enregistrés !');
         else return ('Error');
       });

@@ -12,7 +12,7 @@ const CustomizationAdmin = (props) => {
   const addFont = (name) => {
     const { selectedFonts, fetchAdminFontList } = props;
     if (!selectedFonts.includes(name)) {
-      axios.post('/customization/addfonts', { name, availability: true })
+      axios.post('/api/customization/addfonts', { name, availability: true })
         .then(function (response) {
           if (response.data === 'OK') fetchAdminFontList();
         });

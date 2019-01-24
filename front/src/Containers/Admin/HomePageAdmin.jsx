@@ -21,8 +21,7 @@ class HomePageAdmin extends Component {
   }
 
   saveDescription = (value, content) => {
-    console.log("save description côté front", content);
-    axios.put('/admin/descriptions/new', content)
+    axios.put('/api/admin/descriptions/new', content)
       .then((response, err) => {
         console.log("err, response", err, response);
         if (response.status === 200) window.alert(`Description ${value} mise à jour`);
@@ -31,7 +30,6 @@ class HomePageAdmin extends Component {
   };
 
   render() {
-    console.log("this.state", this.state)
     const { homePage, contact } = this.state;
     return (
       <Container>
