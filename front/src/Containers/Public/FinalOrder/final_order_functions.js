@@ -12,7 +12,7 @@ export const saveCustomer = async (customer) => {
   // };
   let customerID;
   customerID = await axios.post('/customer', customer)
-    .then((result) => { console.log(result); if (result.data.id) return result.data.id; });
+    .then((result) => { if (result.data.id) return result.data.id; });
   if (!(customerID > 0)) {
     customerID = await axios.post('/customer/new', customer)
       .then((result) => { console.log(result); return result.data.id; });
@@ -28,7 +28,6 @@ export const getIngredientsID = cake => {
 
 // Sauvegarde des custom wishes - OK back
 export const saveCustomWishes = async (customWishes) => {
-  console.log("customWishes", customWishes)
   const customWishesID = await axios.post('/customwishes/new', customWishes).then((res) => {
     return res.data.id;
   });
