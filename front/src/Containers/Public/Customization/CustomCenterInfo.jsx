@@ -1,18 +1,43 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
+import { Button, Row, Container, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Carousel } from 'react-responsive-carousel';
 import CustomMessageInput from './CustomMessageInput';
-import ColorPicker from './ColorPicker';
+import Beautify from './Beautify';
+import BeautifyButtons from './BeautifyButtons';
 import Decoration from './Decoration';
 import getDescription from './Customization_functions';
-import { submitDecorationChoice, allowMessage, fetchAdminFonts } from '../../../Actions/customization_actions';
-import { changePrice } from '../../../Actions/cakeActions/changeCakePrice';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import CakeMessagePhotoExample1 from '../../../Assets/Images/selectionGallerie/IMG_0987.JPG';
+import CakeMessagePhotoExample2 from '../../../Assets/Images/selectionGallerie/IMG_2222.JPG';
+import CakeMessagePhotoExample3 from '../../../Assets/Images/selectionGallerie/IMG_2247.jpg';
+import CakeMessagePhotoExample4 from '../../../Assets/Images/selectionGallerie/IMG_2459.JPG';
+import CakeMessagePhotoExample5 from '../../../Assets/Images/selectionGallerie/IMG_5546.JPG';
+import CakeMessagePhotoExample6 from '../../../Assets/Images/selectionGallerie/IMG-9746.JPG';
+import {
+  allowMessage,
+  fetchAdminFonts,
+  updateSummaryInfo,
+  calculateCustomizationPrice,
+} from '../../../Actions/customization_actions';
 
 class CustomCenterInfo extends Component {
   constructor(props) {
     super(props);
+    const { custom } = props;
+    this.decoration = React.createRef();
     this.state = {
+      customSummary: {
+        deco1: custom.deco1,
+        deco2: custom.deco2,
+        photo1: custom.photo1,
+        photo2: custom.photo2,
+        msgContent: custom.msgContent,
+        msgColor: custom.msgColor,
+        msgBgColor: custom.msgBgColor,
+        msgFont: custom.msgFont,
+      },
       message: false,
       messageResilient: false,
       image: false,
@@ -21,10 +46,10 @@ class CustomCenterInfo extends Component {
       sculptureResilient: false,
       type: '',
       typeResilient: '',
-      decoSelected: {
-        quantity: 0,
-        type: '',
-      },
+      config: 'fontStyle',
+      confirmButtonContent: '',
+      fileEvent1: '',
+      fileEvent2: '',
     };
   }
 
@@ -33,33 +58,250 @@ class CustomCenterInfo extends Component {
     if (customAdmin.selectedFonts.length === 0) fetchAdminFontList();
   }
 
+  componentWillUnmount() {
+    const { updateReducerSummary } = this.props; const { customSummary } = this.state;
+    updateReducerSummary(customSummary);
+  }
+
+  getConfigState = (config) => {
+    this.setState({ config });
+  }
+
+  getDefaultFont = (font) => {
+    this.setState(prevState => (
+      { prevState, customSummary: { ...prevState.customSummary, msgFont: font } }
+    ));
+  }
+
+  removeDeco = (type) => {
+    const { customSummary } = this.state;
+    const { calculatePrice, customAdmin } = this.props;
+    let { deco1, deco2 } = customSummary;
+    if (type === 'message') calculatePrice(-customAdmin.price_customMessage);
+    if (type === '2D') {
+      calculatePrice(-customAdmin.price_2D);
+      this.decoration.current.resetUrl('2D');
+      this.setState(prevState => ({
+        customSummary: {
+          ...prevState.customSummary,
+          photo1: '',
+        },
+      }));
+    }
+    if (type === '3D') {
+      this.decoration.current.resetUrl('3D');
+      this.setState(prevState => ({
+        customSummary: {
+          ...prevState.customSummary,
+          photo2: '',
+        },
+      }));
+    }
+    if (deco1.includes(type)) deco1 = '';
+    if (deco2.includes(type)) deco2 = '';
+    if (deco1 === '' && deco2) deco1 = deco2;
+    deco2 = '';
+    this.setState(prevState => ({
+      customSummary: {
+        ...prevState.customSummary,
+        deco1,
+        deco2,
+      },
+    }));
+  };
+
+  updateSummary = (type, content) => {
+    const { customSummary, typeResilient, fileEvent1, fileEvent2 } = this.state;
+    const { calculatePrice, customAdmin } = this.props;
+    const modifySummary = (item) => {
+      this.setState(prevState => ({
+        prevState,
+        customSummary: {
+          ...prevState.customSummary,
+          [item]: content,
+        },
+      }));
+    };
+    switch (type) {
+      case 'ADD_DECORATION':
+        if (content === 'message' && !customSummary.msgContent) return alert('Pour confirmer, veuillez entrer un message')
+        if ((content === '2D' && !fileEvent1) || (content === '3D' && !fileEvent2)) return alert('Pour confirmer, veuillez chargez une image');
+        if (content === '2D') calculatePrice(customAdmin.price_2D);
+        if (content === 'message') calculatePrice(customAdmin.price_customMessage);
+        if (content === '2D') this.decoration.current.submitFile(fileEvent1);
+        if (content === '3D') this.decoration.current.submitFile(fileEvent2);
+        if (!customSummary.deco1) return modifySummary('deco1');
+        return modifySummary('deco2');
+      case 'GET_PHOTO_URL': if (typeResilient === 'image') modifySummary('photo1');
+      else modifySummary('photo2'); break;
+      case 'UPDATE_CUSTOM_MESSAGE': return modifySummary('msgContent');
+      case 'CHOOSE_FONT_FAMILY': return modifySummary('msgFont');
+      case 'CHANGE_FONT_COLOR': return modifySummary('msgColor');
+      case 'CHANGE_BACKGROUND_COLOR': return modifySummary('msgBgColor');
+
+      default: return this.state;
+    }
+  }
+
+  // toggle = (deco, status) => {
+  //   this.setState({
+  //     [deco]: !this.state[deco],
+  //     type: status === 'on' ? deco : '',
+  //     typeResilient: status === 'on' ? '' : this.state.typeResilient,
+  //   });
+  // }
+
+  open = (deco) => {
+    const setToUpdate = `${deco}Resilient`;
+    const { customSummary } = this.state;
+    const type = deco === 'message' ? 'message' : deco === 'image' ? '2D' : '3D';
+    if (customSummary.deco1 && customSummary.deco2
+      && ![customSummary.deco1, customSummary.deco2].includes(type)) {
+      switch (type) {
+        case 'message': alert('Seulement deux choix sont possibles. Veuillez déselectionner l’option image ou sculpture pour accéder au message');
+          break;
+        case '2D': alert('Seulement deux choix sont possibles. Veuillez déselectionner l’option message ou sculpture pour accéder à l’ajout de photo');
+          break;
+        case '3D': alert('Seulement deux choix sont possibles. Veuillez déselectionner l’option message ou sculpture pour accéder à la sculpture');
+          break;
+        default: return null;
+      }
+    } else {
+      this.setState({
+        messageResilient: false,
+        imageResilient: false,
+        sculptureResilient: false,
+        [setToUpdate]: true,
+        typeResilient: deco,
+      });
+    }
+  }
+
+  // disableButton = (type) => {
+  //   const { customSummary } = this.state;
+  //   return customSummary.deco1 && customSummary.deco2
+  //     && ![customSummary.deco1, customSummary.deco2].includes(type);
+  // }
+
+  setButtonOutline = (type) => {
+    const { customSummary } = this.state;
+    if ([customSummary.deco1, customSummary.deco2].includes(type)) return 'chosen';
+    if (customSummary.deco1 && customSummary.deco2 && ![customSummary.deco1, customSummary.deco2].includes(type)) return 'notChosen';
+    return null;
+  }
+
+  getFileEvent = (e, t) => {
+    if (t === '2D') this.setState({ fileEvent1: e });
+    if (t === '3D') this.setState({ fileEvent2: e });
+  }
+
   renderInfo = () => {
     const render = [];
     const {
       message, messageResilient, image, imageResilient,
-      sculpture, sculptureResilient, type, typeResilient,
+      sculpture, sculptureResilient, type, typeResilient, customSummary, config, confirmButtonContent
     } = this.state;
     const { cake, custom, customAdmin } = this.props;
     const description = getDescription(type, typeResilient, custom, customAdmin);
+    const center = { display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' };
     if ((message || messageResilient) && (type === 'message' || typeResilient === 'message')) {
       if (cake.type === 'cake' || cake.type === 'cheesecake' || cake.type === '') {
         render.push(
-          <div key={type}>
-            <p style={{ whiteSpace: 'pre' }}>{description}</p>
-            <CustomMessageInput />
-            <ColorPicker />
+          <div>
+            <div style={{ minHeight: '50vh' }}>
+              <Row className="decoRow">
+                {description}
+              </Row>
+              <Row key={type} style={{ marginTop: '10vh' }}>
+                <Col xs="12" md="4" style={center}>
+                  {this.carousel('inDeco')}
+                </Col>
+                <Col xs="12" md="4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
+                  <BeautifyButtons configState={config} sendConfigState={this.getConfigState} />
+                  <CustomMessageInput modify={this.updateSummary} message={customSummary} sendDefaultFont={this.getDefaultFont} />
+                </Col>
+                <Col xs="1" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', fontSize: '5em' }}>
+                  <p>→</p>
+                  <p>←</p>
+                </Col>
+                <Col xs="12" md="3">
+                  <Beautify modify={this.updateSummary} customSummary={customSummary} configState={config} />
+                </Col>
+              </Row>
+            </div>
+            <Row>
+              <Button
+                style={{ width: '100%' }}
+                onClick={[customSummary.deco1, customSummary.deco2].includes('message')
+                  ? () => this.removeDeco('message')
+                  : () => this.updateSummary('ADD_DECORATION', 'message')
+                }
+              >
+                {![customSummary.deco1, customSummary.deco2].includes('message') ? `Confirmer l’ajout du message personnalisé (${customAdmin.price_customMessage}€)`
+                  : 'Supprimer l’ajout du message personnalisé'}
+              </Button>
+            </Row>
           </div>,
         );
       } else {
         render.push(
-          <p key={cake.type}>Il n’est pas possible d’ajouter un message personnalisé sur votre pâtisserie (brownie, cookie ou macaron)</p>,
+          <p key={cake.type} style={center}>
+            Il n’est pas possible d’ajouter un message personnalisé
+            sur votre pâtisserie (brownie, cookie ou macaron)
+          </p>,
         );
       }
     } else if (image || imageResilient || sculpture || sculptureResilient) {
       render.push(
-        <div key={type}>
-          <p style={{ whiteSpace: 'pre' }}>{description}</p>
-          <Decoration />
+        <div>
+          <div style={{ minHeight: '50vh' }}>
+            <Row key={type} style={{ maxHeight: '100%' }}>
+              <Col md="6" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <p>{description}</p>
+                {this.carousel('inDeco')}
+              </Col>
+              <Col md="6" style={center}>
+                <Decoration
+                  ref={this.decoration}
+                  modify={this.updateSummary}
+                  photography={typeResilient === 'image' ? customSummary.photo1 : customSummary.photo2}
+                  customSummary={customSummary}
+                  decoType={typeResilient === 'image' ? '2D' : '3D'}
+                  sendFileEvent={this.getFileEvent}
+                />
+              </Col>
+            </Row>
+          </div>
+          <Row>
+            {
+              typeResilient === 'image' ? (
+                <Button
+                  style={{ width: '100%' }}
+                  name="2D"
+                  onClick={[customSummary.deco1, customSummary.deco2].includes('2D')
+                    ? () => this.removeDeco('2D')
+                    : () => this.updateSummary('ADD_DECORATION', '2D')}
+                >
+                  {![customSummary.deco1, customSummary.deco2].includes('2D')
+                    ? `Confirmer l’ajout de l’image en pate sucrée (${customAdmin.price_2D}€)`
+                    : 'Supprimer l’image en pate sucrée'}
+                </Button>
+              )
+                : (
+                  <Button
+                    style={{ width: '100%' }}
+                    name="3D"
+                    onClick={[customSummary.deco1, customSummary.deco2].includes('3D')
+                      ? () => this.removeDeco('3D')
+                      : () => this.updateSummary('ADD_DECORATION', '3D')}
+                  >
+                    {![customSummary.deco1, customSummary.deco2].includes('3D')
+                      ? 'Confirmer votre demande de sculpture (prix à définir en fonction de la demande)'
+                      : 'Annuler votre demande de sculpture'}
+                  </Button>
+                )
+            }
+          </Row>
         </div>,
       );
     } else {
@@ -70,97 +312,113 @@ class CustomCenterInfo extends Component {
     return render;
   }
 
-  toggle = (deco, status) => {
-    this.setState({
-      [deco]: !this.state[deco],
-      type: status === 'on' ? deco : '',
-      // typeResilient: status === 'on' ? '' : this.state.typeResilient,
-    });
-  }
-
-  open = (deco) => {
-    const { submitDecoChoice, addMessage, customAdmin } = this.props;
-    const setToUpdate = `${deco}Resilient`;
-    this.setState({
-      messageResilient: false,
-      imageResilient: false,
-      sculptureResilient: false,
-      [setToUpdate]: true,
-      typeResilient: deco,
-    });
-    switch (deco) {
-      case ('message'): {
-        const message = customAdmin.customMessage;
-        addMessage(message);
-      } break;
-      case ('image'): {
-        const deco2D = customAdmin.print2D;
-        submitDecoChoice(deco2D);
-      } break;
-      default: {
-        const deco3D = customAdmin.print2D;
-        submitDecoChoice(deco3D);
-      } break;
-    }
-  }
-
-  addDecoration = () => {
-    return true;
+  carousel = (where) => {
+    const carouselStyle = where === 'inWelcome' ? 'carousel' : 'carousel-small';
+    const imageStyle = where === 'inWelcome' ? 'carousel-images' : 'smaller-c-images';
+    return (
+      <Carousel className={carouselStyle} autoPlay={true} interval={1000} infiniteLoop={true} dynamicHeight="true" showIndicators={false} showThumbs={false} interval={4000}>
+        <div>
+          <img className={imageStyle} src={CakeMessagePhotoExample1} />
+        </div>
+        <div>
+          <img className={imageStyle} src={CakeMessagePhotoExample2} />
+        </div>
+        <div>
+          <img className={imageStyle} src={CakeMessagePhotoExample3} />
+        </div>
+        <div>
+          <img className={imageStyle} src={CakeMessagePhotoExample4} />
+        </div>
+        <div>
+          <img className={imageStyle} src={CakeMessagePhotoExample5} />
+        </div>
+        <div>
+          <img className={imageStyle} src={CakeMessagePhotoExample6} />
+        </div>
+      </Carousel>
+    );
   }
 
   render() {
-    const { typeResilient } = this.state;
-    const { custom } = this.props;
-
+    const {
+      customSummary,
+      messageResilient,
+      imageResilient,
+      sculptureResilient,
+    } = this.state;
+    console.log(customSummary)
+    const buttonStyle = { backgroundColor: 'rgb(129, 38, 38)' };
+    const center = { display: 'flex', flexDirection: 'column', alignItems: 'center' }
     return (
-      <Col>
+      <Container>
         <Row className="decorationRow">
-          <h1>Choisissez votre décoration</h1>
+          <h1 style={{ cursor: 'pointer' }} onClick={() => this.open('', 'on')}>Choisissez votre décoration</h1>
         </Row>
         <Row className="decorationRow" style={{ justifyContent: 'space-around' }}>
-          <button
+          <Button
             type="button"
             id="message"
-            onMouseEnter={() => this.toggle('message', 'on')}
-            onMouseLeave={() => this.toggle('message', 'off')}
+            style={messageResilient ? buttonStyle : {}}
+            // onMouseEnter={() => this.toggle('message', 'on')}
+            // onMouseLeave={() => this.toggle('message', 'off')}
             onClick={() => this.open('message', 'on')}
+            className={this.setButtonOutline('message')}
           >
             Message
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             id="image"
-            onMouseEnter={() => this.toggle('image', 'on')}
-            onMouseLeave={() => this.toggle('image', 'off')}
+            style={imageResilient ? buttonStyle : {}}
+            // onMouseEnter={() => this.toggle('image', 'on')}
+            // onMouseLeave={() => this.toggle('image', 'off')}
             onClick={() => this.open('image', 'on')}
+            className={this.setButtonOutline('2D')}
           >
             Photo
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             id="sculpture"
-            onMouseEnter={() => this.toggle('sculpture', 'on')}
-            onMouseLeave={() => this.toggle('sculpture', 'off')}
+            style={sculptureResilient ? buttonStyle : {}}
+            // onMouseEnter={() => this.toggle('sculpture', 'on')}
+            // onMouseLeave={() => this.toggle('sculpture', 'off')}
             onClick={() => this.open('sculpture', 'on')}
+            className={this.setButtonOutline('3D')}
           >
             Sculpture
-          </button>
+          </Button>
         </Row>
-        <Row className="decorationRow">
-          {this.renderInfo()}
-        </Row>
-        <Row className="decorationRow">
+        <div className="decorationRow"
+          style={!imageResilient && !messageResilient && !sculptureResilient
+            ? center : {}}
+        >
+          {!imageResilient && !messageResilient && !sculptureResilient
+            ? (
+              <div style={{ ...center, marginTop: '-4vh' }}>
+                <h3 style={{ textAlign: 'center' }}>
+                  Donnez vie à votre gourmandise en y ajoutant
+                  <br />
+                  un message, une image ou une sculpture!
+                </h3>
+                {this.carousel('inWelcome')}
+              </div>
+            )
+            : this.renderInfo()
+          }
+        </div>
+        {/* <Row className="decorationRow">
           {typeResilient !== ''
             && (
-            <button
-              type="button"
-              disabled={custom.customMessage.message === '' && custom.decoration.image === ''}
-              onClick={() => this.addDecoration()}
-            >
-            Ajouter une autre décoration
-            </button>)}
-        </Row>
-      </Col>
+              <button
+                type="button"
+                disabled={customSummary.deco1}
+                onClick={() => this.addDecoration()}
+              >
+                Ajouter une autre décoration
+              </button>)}
+        </Row> */}
+      </Container >
     );
   }
 }
@@ -169,9 +427,10 @@ CustomCenterInfo.propTypes = {
   cake: PropTypes.shape({}).isRequired,
   custom: PropTypes.shape({}).isRequired,
   customAdmin: PropTypes.shape({}).isRequired,
-  submitDecoChoice: PropTypes.func.isRequired,
-  addMessage: PropTypes.func.isRequired,
+  // addMessage: PropTypes.func.isRequired,
   fetchAdminFontList: PropTypes.func.isRequired,
+  updateReducerSummary: PropTypes.func.isRequired,
+  calculatePrice: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({
@@ -181,10 +440,12 @@ const mapStatetoProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  submitDecoChoice: choice => dispatch(submitDecorationChoice(choice)),
   addMessage: choice => dispatch(allowMessage(choice)),
-  updatePrice: price => dispatch(changePrice(price)),
+  // updatePrice: price => dispatch(changePrice(price)),
   fetchAdminFontList: () => dispatch(fetchAdminFonts()),
+  updateReducerSummary: data => dispatch(updateSummaryInfo(data)),
+  calculatePrice: data => dispatch(calculateCustomizationPrice(data)),
+
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(CustomCenterInfo);

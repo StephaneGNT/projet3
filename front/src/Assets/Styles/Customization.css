@@ -149,5 +149,23 @@ h4 {
   display: flex !important;
   flex-direction: row !important;
   justify-content: flex-start !important;
-  margin-left: -8vh;
+}
+
+.buttons {
+  width: 33.33%;
+}
+
+.fontTable {
+  width: 100%;
+  cursor: pointer;
+  max-height: 40vh;
+  margin: 0;
+  overflow: scroll;
+  border: 1px solid grey;
+}
+
+.fontBubbles {
+  width: 25vh;
+  border-bottom: solid 1px black;
+  text-align: center;
 }

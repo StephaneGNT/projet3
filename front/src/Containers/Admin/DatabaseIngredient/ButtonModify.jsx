@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { toggleFormModify } from '../../../Actions/databaseActions/toggleFormNew';
-import { modsetCategory } from '../../../Actions/databaseActions/setCategory';
-import { setIndex } from '../../../Actions/databaseActions/setCategory';
+import { modsetCategory, setIndex } from '../../../Actions/databaseActions/setCategory';
 
 
 class ButtonModify extends Component {

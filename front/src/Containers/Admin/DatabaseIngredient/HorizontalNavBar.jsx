@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Nav, NavItem, Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
+  Nav, NavItem, Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -11,7 +11,7 @@ import '../../../Assets/Styles/HorizontalNavBar.css';
 class HorizontalNavBar extends Component {
   constructor(props) {
     super(props);
-    this.ingredients = ['Cake', 'Cookie', 'Toppings', 'Remplissage', 'Glaçage', 'Macarons', 'Cheesecake', 'Allergènes'];
+    this.ingredients = ['Cake', 'Cookie', 'Toppings', 'Garniture', 'Glaçage', 'Macarons', 'Cheesecake', 'Allergènes'];
     this.state = {
       dropdownOpen: false,
     };
@@ -55,10 +55,14 @@ class HorizontalNavBar extends Component {
   }
 
   render() {
+    const { toggleForm } = this.props;
     return (
-      <Nav className="navBar">
-        {this.renderNavBar()}
-      </Nav>
+      <Row>
+        <Nav className="navBar">
+          {this.renderNavBar()}
+        </Nav>
+        <Button onClick={() => toggleForm(true)}>Nouveau</Button>
+      </Row>
     );
   }
 }
@@ -70,7 +74,7 @@ HorizontalNavBar.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   changeCategory: category => dispatch(setCategory(category)),
-  toggleForm: show => dispatch(toggleFormModify(show))
+  toggleForm: show => dispatch(toggleFormModify(show)),
 });
 
 

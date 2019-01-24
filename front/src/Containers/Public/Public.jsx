@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import {
   Route, Switch, BrowserRouter, withRouter,
 } from 'react-router-dom';
-import HomePage from './HomePage';
+import HomePage from './HomePage/HomePage';
 import PimpMyCake from './PimpMyCake';
-import Contact from './Contact';
 import MainNavigation from './Navigation/MainNavigation';
-import '../../Assets/Styles/Public.css';
+import Contact from './ContactPage/Contact';
+// import '../../Assets/Styles/Public.css';
+import '../../Assets/Styles/Public2.css';
+// import '../../Assets/Styles/Public3.css';
 
 class Public extends Component {
   constructor(props) {

@@ -2,37 +2,89 @@ import React, { Component } from 'react';
 import {
   Container, Row, Col,
 } from 'reactstrap';
-import logo from '../../Assets/Images/LOGO_GILUNA.png';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 
-export default class HomePageAdmin extends Component {
+class HomePageAdmin extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    const { homePageDescription, contactDescription } = this.props;
+    this.state = {
+      homePage: homePageDescription,
+      contact: contactDescription,
+    };
   }
 
+  changeDescription = (value, e) => {
+    this.setState({ [value]: e.target.value });
+  }
+
+  saveDescription = (value, content) => {
+    console.log("save description côté front", content);
+    axios.put('/admin/descriptions/new', content)
+      .then((response, err) => {
+        console.log("err, response", err, response);
+        if (response.status === 200) window.alert(`Description ${value} mise à jour`);
+        else window.alert('Erreur lors de la mise à jour');
+      });
+  };
+
   render() {
+    console.log("this.state", this.state)
+    const { homePage, contact } = this.state;
     return (
       <Container>
         <Row>
-          <Col>
-            <div className="body-admin">
-              <img src={logo} className="admin-home-logo" alt="giluna-logo" />
-              <h1>Bienvenue sur votre panneau d'administration.</h1>
-              <p className="para-admin">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie luctus nisi,
-                eget egestas lectus vulputate eget. Morbi in quam quis odio venenatis mollis. Aliquam
-                convallis dui nec quam pulvinar lobortis. Nullam aliquet porta lacinia. Vestibulum
-                euismod neque vitae justo iaculis, ultricies eleifend sapien viverra. Duis facilisis,
-                justo at cursus interdum, urna erat tincidunt lacus, vitae semper turpis eros a eros.
-                Curabitur luctus non dui vel maximus. Vivamus gravida libero quis nisl ultrices, at aliquet
-                odio lobortis. Ut sodales varius dolor, et cursus metus viverra quis. Quisque id erat at
-                ipsum aliquet vehicula in ut justo. Donec a metus enim. Aliquam ac lacus mattis, ornare
-                ligula in, luctus est. Morbi aliquam pharetra ex, eu viverra velit finibus eu.
-        </p>
+          <h1>Modifier les textes des pages d'accueil / page de contact</h1>
+          <Col xs={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <h2 className="text-center">Texte de la page d'accueil</h2>
+            <div>
+              <textarea
+                style={{ width: '90%', height: '30vh', margin: '5vh' }}
+                type="text"
+                value={homePage}
+                onChange={e => this.changeDescription('homePage', e)}
+              />
             </div>
+            <button
+              style={{ width: '50%', margin: 'auto' }}
+              type="button"
+              onClick={() => this.saveDescription('homepage', this.state)}
+            >
+              Enregistrer
+            </button>
+          </Col>
+          <Col xs={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <h2>Texte de la page contact / about us</h2>
+            <textarea
+              style={{ width: '90%', height: '30vh', margin: '5vh' }}
+              type="text"
+              value={contact}
+              onChange={e => this.changeDescription('contact', e)}
+            />
+            <button
+              style={{ width: '50%', margin: 'auto' }}
+              type="button"
+              onClick={() => this.saveDescription('contact', this.state)}
+            >
+              Enregistrer
+            </button>
           </Col>
         </Row>
       </Container>
     );
   }
 }
+
+HomePageAdmin.propTypes = {
+  homePageDescription: PropTypes.string.isRequired,
+  contactDescription: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = state => ({
+  homePageDescription: state.descriptions.homePage,
+  contactDescription: state.descriptions.contact,
+});
+
+export default connect(mapStateToProps, null)(HomePageAdmin);

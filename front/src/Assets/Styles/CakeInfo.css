@@ -5,7 +5,7 @@
 }
 
 .body-cake-select {
-    background-color:rgb(201, 201, 201);
+    background-color:rgb(249, 242, 252);
 }
 
 h3 {
@@ -33,22 +33,27 @@ h3 {
 
 #cookieButton{
     background-image: url(../Images/cookie.png);
+    cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
 #cakeButton{
     background-image: url(../Images/cake.png);
+    cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
 #cheesecakeButton{
     background-image: url(../Images/cheesecake.png);
+    cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
 #macaronButton{
     background-image: url(../Images/macaron_cafe.png);
+    cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
 #brownieButton{
     background-image: url(../Images/brownie.png);
+    cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
 .tipsColumn{

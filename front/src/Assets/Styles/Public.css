@@ -1,12 +1,35 @@
 @import './CommonStyle.css';
 
+
+.body-zone {
+  height: 108vh;
+  /* background-color: rgb(236, 237, 238) !important; */
+  background-color: rgb(245, 214, 221);
+  /* background-color: #F1E7A4; */
+  /* background-color: #C9D4EA; */
+  /* background-color: #B1E6D8; */
+  /* background-image: url(../Images/backgroundapp.png); */
+  /* background-image: url('../Images/Fond1.jpg'); */
+  /* background-image: url('../Images/Fond2.jpg'); */
+  /* background-image: url('../Images/Fond3.jpg'); */
+}
+
+.homePageRow {
+  height: 85vh;
+  background-color: rgba(255,255,255,0.5);
+}
+
 .header-zone {
-  background-color: #884e65;
+  /* background-color: #884e65; */
+  background-image: url('../Images/Fond1.jpg');
+  /* background-image: url('../Images/Fond2.jpg'); */
+  /* background-image: url('../Images/Fond3.jpg'); */
   width: 100vw;
   height: 10vh;
   font-family: var(--mainPolice);
   font-size:3em;
-  color:white;
+  /* color:white; */
+  color: black;
   text-align:center;
 }
 
@@ -24,9 +47,9 @@
 }
 
 .content-zone {
-  width: 80vw;
-  height: 86vh;
-  margin: 12vh auto;
+  min-width: 80vw;
+  min-height: 86vh;
+  /* margin: 12vh auto; */
   margin-top: 0;
 }
 
