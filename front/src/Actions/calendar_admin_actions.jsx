@@ -7,7 +7,7 @@ export const populateDateArrays = data => ({
 
 export const fetchDatesInDB = () => {
   return (dispatch) => {
-    return axios.get('/calendar/getdates')
+    return axios.get('/api/calendar/getdates')
       .then((res) => {
         const dates = res.data;
         dispatch(populateDateArrays(dates));

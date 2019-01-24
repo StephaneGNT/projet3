@@ -35,7 +35,7 @@ app.use('/api/customization', customization);
 app.use('/calendar', calendar);
 app.use('/api/send',mail);
 app.use(uploadFile);
-app.use(cake);
+app.use('/api', cake);
 app.use('/api', order);
 app.use('/api', customer);
 app.use('/api', junctionTable);

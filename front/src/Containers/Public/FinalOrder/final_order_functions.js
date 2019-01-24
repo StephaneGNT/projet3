@@ -45,7 +45,7 @@ export const saveCake = async (cake, customWishesID) => {
     price: cake.price,
     customWishes: customWishesID,
   };
-  const cakeID = await axios.post('/cakes/new', cakeToPush)
+  const cakeID = await axios.post('/api/cakes/new', cakeToPush)
     .then((res) => {
       return res.data.id;
     });
