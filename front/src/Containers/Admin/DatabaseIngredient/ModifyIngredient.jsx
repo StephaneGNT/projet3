@@ -35,15 +35,15 @@ class ModifyIngredient extends Component {
     this.handleClickCompatible = this.handleClickCompatible.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     const {
-      displayIndexForm, ingredient, // arrays ingredients.compatible et ingredients.allergenes inherited from phil
+      ingredients, // arrays ingredients.compatible et ingredients.allergenes inherited from phil
     } = this.props;
-    this.betaType = ingredient[displayIndexForm - 1];
+    this.inheritedIngredient = ingredients;
   }
 
   componentWillMount() {
     this.setState({
       ingredients: {
-        ...this.betaType,
+        ...this.inheritedIngredient,
       },
     });
     axios.get('http://localhost:5000/ingredients/name')
@@ -60,12 +60,12 @@ class ModifyIngredient extends Component {
 
 
   handleClickCompatible = (compatibleID) => {
-    if (this.betaType.compatible.indexOf(compatibleID >= 0)) {
-      this.betaType.compatible.splice(0, 1, compatibleID);
+    if (this.inheritedIngredient.compatible.indexOf(compatibleID >= 0)) {
+      this.inheritedIngredient.compatible.splice(0, 1, compatibleID);
     } else {
-      this.betaType.compatible.push(compatibleID);
+      this.inheritedIngredient.compatible.push(compatibleID);
     }
-    return this.betaType.compatible;
+    return this.inheritedIngredient.compatible;
   }
 
 
@@ -73,14 +73,14 @@ class ModifyIngredient extends Component {
     this.setState({
       ingredients: {
         ...ingredients,
-        id: this.betaType.id,
+        id: this.inheritedIngredient.id,
         [e.target.name]: e.target.value,
       },
     });
   };
 
 
-  // prevoir fetch la DB au submit pour avoir betaType correctement MAJ
+  // prevoir fetch la DB au submit pour avoir inheritedIngredient correctement MAJ
   onSubmit = (e, ingredients) => {
     e.preventDefault();
     const modifiedIngredient = ingredients;
@@ -92,19 +92,21 @@ class ModifyIngredient extends Component {
 
   createModifyForm = (ingredients, fullList, fullAllerg) => {
     const { toggleForm } = this.props;
+    console.log('inheritedIng :', this.inheritedIngredient);
+    console.log('ingredients :', ingredients);
     return (
       <div className="bodyIng">
         <title-admin>
           Modifier l’ingrédient
           {' '}
-          {this.betaType.name}
+          {/* {this.inheritedIngredient.name} */}
         </title-admin>
         <Form>
           <Row form>
             <Col md={2}>
               <FormGroup>
                 <Label>Name</Label>
-                <Input type="text" name="name" onChange={e => this.updateState(e, ingredients)} placeholder={this.betaType.name} value={ingredients.name} />
+                <Input type="text" name="name" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.name} value={ingredients.name} />
               </FormGroup>
             </Col>
             <Col md={2}>
@@ -125,19 +127,19 @@ class ModifyIngredient extends Component {
             <Col md={2}>
               <FormGroup>
                 <Label>Size</Label>
-                <Input type="text" name="size" onChange={e => this.updateState(e, ingredients)} placeholder={this.betaType.size} value={ingredients.size} />
+                <Input type="text" name="size" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.size} value={ingredients.size} />
               </FormGroup>
             </Col>
             <Col md={2}>
               <FormGroup>
                 <Label>Price</Label>
-                <Input type="text" name="price" onChange={e => this.updateState(e, ingredients)} placeholder={this.betaType.price} value={ingredients.price} />
+                <Input type="text" name="price" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.price} value={ingredients.price} />
               </FormGroup>
             </Col>
             <Col md={4}>
               <FormGroup>
                 <Label>Description</Label>
-                <Input type="text" name="info" onChange={e => this.updateState(e, ingredients)} placeholder={this.betaType.info} value={ingredients.info} />
+                <Input type="text" name="info" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.info} value={ingredients.info} />
               </FormGroup>
             </Col>
           </Row>
@@ -159,7 +161,7 @@ class ModifyIngredient extends Component {
             </Col>
             <Col md={2}>
               <FormGroup check>
-                <Input name="dispo" type="checkbox" value={this.betaType.dispo} onClick={() => this.setState({ [ingredients]: { dispo: !ingredients.dispo } })} id="dispoCheck" />
+                <Input name="dispo" type="checkbox" value={this.inheritedIngredient.dispo} onClick={() => this.setState({ [ingredients]: { dispo: !ingredients.dispo } })} id="dispoCheck" />
                 <Label for="dispoCheck" check>Disponnibilité</Label>
               </FormGroup>
             </Col>
@@ -179,8 +181,8 @@ class ModifyIngredient extends Component {
                         <Input
                           name="isCompatible"
                           type="checkbox"
-                          defaultChecked={this.betaType.compatible.indexOf(compatible.name >= 0)} // inherited from phil
-                          onChange={(this.handleClickCompatible(compatible.id))}
+                          // defaultChecked={this.inheritedIngredient.compatible.indexOf(compatible.name >= 0)} // inherited from phil
+                          // onChange={(this.handleClickCompatible(compatible.id))}
                         />
                         <Label check>{compatible.name}</Label>
                       </td>))}
@@ -202,7 +204,7 @@ class ModifyIngredient extends Component {
                         <Input
                           name="isCompatible"
                           type="checkbox"
-                          defaultChecked={this.betaType.allerg.indexOf(allergene.name >= 0)}
+                          // defaultChecked={this.inheritedIngredient.allerg.indexOf(allergene.name >= 0)}
                         />
                         <Label check>{allergene.name}</Label>
                       </td>))}
@@ -235,6 +237,7 @@ class ModifyIngredient extends Component {
 
 
 ModifyIngredient.propTypes = {
+  ingredients: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   ingredientCompatible: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   ingredientAllerg: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   fullListIngredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -244,6 +247,7 @@ ModifyIngredient.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  ingredients: state.ingredientsReducer,
   selectedIngredient: state.ingredientCharacteristics,
   displaybeta: state.databaseDisplay.beta,
   displayIndexForm: state.databaseModifyFormIndex,
