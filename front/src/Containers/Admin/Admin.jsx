@@ -4,10 +4,16 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Col, Row } from 'reactstrap';
+import axios from 'axios';
+import PropTypes from 'prop-types';
 import VerticalNavBar from './Navigation/VerticalNavBar';
 import Login from './AdminHandling/Login';
-import OrdersAdmin from './OrdersAdmin';
+import OrdersAdmin from './OrdersList/OrdersAdmin';
+import CakeDetail from './OrdersList/CakeDetail';
+import ClientDetail from './OrdersList/ClientDetail';
 import DataBase from './DatabaseIngredient/DataBase';
+import { getAllOrders, getAllCustomers, getAllCakes } from '../../Actions/adminsActions/getAllOrdersCakesCustomers';
+import { fetchFonts, getFonts } from '../../Actions/customization_actions';
 import Clients from './Clients';
 import CalendarAdmin from './CalendarAdmin';
 import HomePageAdmin from './HomePageAdmin';
@@ -21,14 +27,23 @@ class Admin extends Component {
     this.loggedIn = true;
   }
 
+  componentWillMount = () => {
+    const { saveOrdersList, saveCustomersList, saveCakesList, getGoogleFonts, getCachedFonts } = this.props;
+    axios.get('/orders/all').then(res => saveOrdersList(res.data));
+    axios.get('/customers/all').then(res => saveCustomersList(res.data));
+    axios.get('/cakes/all').then(res => saveCakesList(res.data));
+    if (localStorage.getItem('googleFonts') === null) getGoogleFonts();
+    else getCachedFonts(JSON.parse(localStorage.getItem('googleFonts')));
+  }
+
   render() {
     const { jwtToken } = this.props;
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route
         {...rest}
         render={() => (
-          // jwtToken !== ''
-          this.loggedIn
+          jwtToken !== ''
+          // this.loggedIn
             ? <Component />
             : <Redirect to="/admin" />
         )}
@@ -76,6 +91,14 @@ class Admin extends Component {
                 path={`${process.env.PUBLIC_URL}/admin/adminList`}
                 component={AdminList}
               />
+              <PrivateRoute
+                path={`${process.env.PUBLIC_URL}/admin/orderDetail/cake`}
+                component={CakeDetail}
+              />
+              <PrivateRoute
+                path={`${process.env.PUBLIC_URL}/admin/orderDetail/client`}
+                component={ClientDetail}
+              />
             </Switch>
           </Col>
         </Row>
@@ -84,8 +107,22 @@ class Admin extends Component {
   }
 }
 
+Admin.propTypes = {
+  saveOrdersList: PropTypes.func.isRequired,
+  saveCustomersList: PropTypes.func.isRequired,
+  saveCakesList: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = dispatch => ({
+  saveOrdersList: orderList => dispatch(getAllOrders(orderList)),
+  saveCustomersList: customerList => dispatch(getAllCustomers(customerList)),
+  saveCakesList: cakeList => dispatch(getAllCakes(cakeList)),
+  getGoogleFonts: () => dispatch(fetchFonts()),
+  getCachedFonts: list => dispatch(getFonts(list)),
+});
+
 const mapStateToProps = state => ({
   jwtToken: state.adminToken,
 });
 
-export default connect(mapStateToProps, null)(Admin);
+export default connect(mapStateToProps, mapDispatchToProps)(Admin);

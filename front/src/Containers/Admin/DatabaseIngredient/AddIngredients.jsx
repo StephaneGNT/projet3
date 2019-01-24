@@ -70,7 +70,31 @@ class AddIngredients extends Component {
     const newIngredientID = await axios.post('/ingredients/new', newIngredient)
       .then(res => { return res.data.insertId })
       .catch(err => console.log(err.response.data));
-  };
+
+    // Enregistrement des ingrédients compatibles
+    this.compatibleIngList.map((ingID) => {
+      const formData = {
+        id_ingred1: newIngredientID,
+        id_ingred2: ingID,
+      };
+      axios.post('/jtingredients', formData, (req, res) => {
+        if (res.status === 200) return ('Ingrédients compatibles enregistrés !');
+        else return ('Error');
+      });
+    });
+  }
+
+  toggleIngredient = (ingredientID) => {
+    const index = this.compatibleIngList.indexOf(ingredientID);
+    if (index >= 0) this.compatibleIngList.splice(index, 1);
+    else this.compatibleIngList.push(ingredientID);
+  }
+
+  toggleAllergene = (allergeneID) => {
+    const index = this.allergeneIngList.indexOf(allergeneID);
+    if (index >= 0) this.allergeneIngList.splice(index, 1);
+    else this.allergeneIngList.push(allergeneID);
+  }
 
   handleEvent = () => {
     alert('Votre ingrédient a bien été ajouté.');
@@ -194,12 +218,15 @@ class AddIngredients extends Component {
             </Col>
           </Row>
           <br />
-          <Button color="secondary" size="lg" onClick={() => { this.handleSubmit(); this.handleEvent(); }}>Ajouter</Button>
+          <Row>
+            <Button color="secondary" size="lg" onClick={() => toggleForm(false)}>Annuler</Button>
+            <Button color="primary" size="lg" onClick={() => this.handleSubmit()}>Ajouter</Button>
+          </Row>
         </Form>
       </div>
     );
-  };
-};
+  }
+}
 
 AddIngredients.propTypes = {
   updateState: PropTypes.shape({}).isRequired,

@@ -23,13 +23,11 @@ junctionTable.post('/jtcakeingredients', (req, res) => {
 
 // Remplissage de la junction_table customer / order
 junctionTable.post('/jtclientorder', (req, res) => {
-  console.log(req.body);
   const formData = {
     id_customer: req.body.customerID,
     id_order: req.body.orderID
   }
   connection.query('INSERT INTO jt_customers_orders SET ?', formData, (err, results) => {
-    console.log(err, results);
     if (err) res.status(500).send("Erreur lors de la création de commande");
     else res.status(200).send("Commande enregistrée");
   })

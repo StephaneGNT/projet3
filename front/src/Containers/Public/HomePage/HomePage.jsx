@@ -9,8 +9,6 @@ import '../../../Assets/Styles/CommonStyle.css';
 
 const HomePage = (props) => {
   const { description } = props;
-  console.log("description", props)
-
   const colStyle = {
     display: 'flex',
     flexDirection: 'column',

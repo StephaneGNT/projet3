@@ -15,10 +15,10 @@ class CustomMessageInput extends Component {
 
   componentWillMount() {
     const { randomFont } = this.state;
-    const { sendDefaultFont } = this.props;
-    sendDefaultFont(randomFont);
+    const { sendDefaultFont, message } = this.props;
+    if (!message.msgFont) sendDefaultFont(randomFont);
   }
-    
+
   updateMessage = (e) => {
     const { modify } = this.props;
     const type = 'UPDATE_CUSTOM_MESSAGE';
@@ -27,8 +27,6 @@ class CustomMessageInput extends Component {
 
   render() {
     const { customAdmin, message } = this.props;
-    const { randomFont } = this.state;
-
     return (
       <div>
         <link
@@ -38,18 +36,18 @@ class CustomMessageInput extends Component {
         <Input
           type="textarea"
           style={{
-            fontFamily: message.msgFont ? message.msgFont : randomFont,
-            fontSize: '1.2em',
+            fontFamily: message.msgFont,
+            fontSize: '1.5em',
             backgroundColor: message.msgBgColor,
             color: message.msgColor,
-
+            height: '17vh',
+            width: '100%',
           }}
           name="text"
           id="wantsCustomMessage"
           maxLength="40"
           placeholder={customAdmin.placeHolder}
           onChange={this.updateMessage}
-          // onClick={updateMessage}
           value={message.msgContent}
           resize="none"
         />
@@ -62,6 +60,7 @@ CustomMessageInput.propTypes = {
   customAdmin: PropTypes.shape({}).isRequired,
   modify: PropTypes.func.isRequired,
   message: PropTypes.shape({}).isRequired,
+  sendDefaultFont: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({

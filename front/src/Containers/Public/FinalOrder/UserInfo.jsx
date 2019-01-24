@@ -70,7 +70,6 @@ class UserInfo extends Component {
   }
 
   sendConfirmationEmails = () => {
-    console.log("confirmation mails")
     const { user } = this.state;
     const mailClient = {
       from: 'pimpmycake@pimpmycake.com',
@@ -104,7 +103,6 @@ class UserInfo extends Component {
   sendOrder = async (order, customer, cake, customWishes) => {
     const { comment, giftcard } = this.state;
     const { history } = this.props;
-    console.log("sendOrder", cake)
 
     // Création du nouveau user et récupération de son id
     const customerID = await saveCustomer(customer);
@@ -140,7 +138,6 @@ class UserInfo extends Component {
   handleClick = () => {
     const { order, cake, customWishes } = this.props;
     const { user } = this.state;
-    console.log("cake in handleclick", cake)
     if (!user.firstName || !user.lastName || !user.email || !user.phone || user.phone.length < 8) {
       this.setState({ inputAttempt: true });
     } else {
@@ -165,7 +162,7 @@ class UserInfo extends Component {
     } = this.state;
     const warning = { border: '3px solid', borderColor: '#dc3545' };
     return (
-      <Container>
+      <Container style={{ backgroundColor: 'white' }}>
         <Row className="text-center">
           <Progressbar />
         </Row>
@@ -232,7 +229,7 @@ class UserInfo extends Component {
                 onKeyPress={this.enterForm}
               />
               <FormFeedback>date de naissance non valide (format requis: JJ/MM/AAAA)</FormFeedback>
-              {!this.birthdateRegex.test(user.birthday) && user.birthday.length <= 9 ? (
+              {!this.birthdateRegex.test(user.birthday) && user.birthday && user.birthday.length <= 9 ? (
                 <div className="invalidDOB">
                   <p>Format: JJ/MM/AAAA</p>
                 </div>
@@ -299,6 +296,7 @@ class UserInfo extends Component {
             Envoyer la commande
           </button>
         </Row>
+        {/* <img src={ require(`../../../../../back/tmp/${this.props.photo1}`) } alt="customer decoration" /> */}
       </Container>
     );
   }
@@ -310,6 +308,7 @@ UserInfo.propTypes = {
   comment: PropTypes.string.isRequired,
   giftcard: PropTypes.string.isRequired,
   customWishes: PropTypes.shape({}).isRequired,
+  cake: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({

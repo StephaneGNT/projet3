@@ -1,2 +1,3 @@
-const secret = 'pelicanduturf';
+const secret = 'gilunaPimpMyCake';
+
 module.exports = secret;

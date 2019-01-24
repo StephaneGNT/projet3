@@ -9,10 +9,8 @@ const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
 const secret = require('../helper/jwt_secret');
 
-
 ingred.post('/ingredients/new', (req, res) => {
   connection.query('INSERT INTO ingredients SET ?', req.body, (err, results) => {
-    console.log(err, results);
     if (err) {
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");
     } else {
@@ -58,7 +56,6 @@ ingred.put(`/ingredients/:id`, (req, res) => {
 // });
 
 ingred.get('/ingredients/name', (req, res) => {
-  console.log(req.body)
   connection.query('SELECT * from ingredients', (err, results) => {
     if (err) {
         res.status(500).send('Erreur lors de la recup des noms');
@@ -69,7 +66,6 @@ ingred.get('/ingredients/name', (req, res) => {
 });
 
 ingred.get('/allergenes/name', (req, res) => {
-  console.log(req.body)
   connection.query('SELECT * from allergenes', (err, results) => {
     if (err) {
         res.status(500).send('Erreur lors de la recup des allergenes');
