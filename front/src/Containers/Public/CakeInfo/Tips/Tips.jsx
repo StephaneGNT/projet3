@@ -6,6 +6,7 @@ import TipsCheesecake from './TipsCheesecake';
 import TipsCookie from './TipsCookie';
 import TipsMacaron from './TipsMacaron';
 import TipsBrownie from './TipsBrownie';
+import '../../../../Assets/Styles/Public.css';
 
 const Tips = (props) => {
   const renderTips = (cakeType) => {
@@ -30,8 +31,8 @@ const Tips = (props) => {
   const { cake } = props;
 
   return (
-    <div className="bg-light p-2" style={{ width: '100%', borderRadius: '9px' }}>
-      <h5 className="mt-3 text-center">Tips</h5>
+    <div className="body-tips">
+      <div className="title-tips">astuce(s)</div>
       {renderTips(cake.type)}
     </div>
   );

@@ -71,22 +71,6 @@ input {
   margin-left: 3vh;
 }
 
-/* .messageYes {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  background-color: rgb(138, 138, 238);
-  border-radius: 25px;
-  height: 3.7vh;
-  color: white;
-}
-
-.messageYes:hover {
-  background-color: rgb(218, 6, 6);
-  cursor: pointer;
-} */
-
 .greyScale
 {
   display: inline-block;
@@ -104,9 +88,6 @@ input {
 }
 
 .FontList {
-  /* display: flex;
-  flex-direction: row;
-  justify-content: space-around; */
   font-size: 1.2em;
   margin-right: 1.5vh;
   max-height: 55vh;

@@ -352,7 +352,7 @@ class CustomCenterInfo extends Component {
     return (
       <Container>
         <Row className="decorationRow">
-          <h1 style={{ cursor: 'pointer' }} onClick={() => this.open('', 'on')}>Choisissez votre décoration</h1>
+          <h1 onClick={() => this.open('', 'on')}>Choisissez votre décoration</h1>
         </Row>
         <Row className="decorationRow" style={{ justifyContent: 'space-around' }}>
           <Button

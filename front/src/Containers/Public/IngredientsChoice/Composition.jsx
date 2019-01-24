@@ -42,7 +42,7 @@ const Composition = (props) => {
           {renderComposition(cake.type)}
           {renderComplementBase()}
         </Col>
-        <Col sm="4" style={{ height: '62vh', overflow: 'auto' }}>
+        <Col sm="4">
           <CakeInProgress />
         </Col>
       </Row>

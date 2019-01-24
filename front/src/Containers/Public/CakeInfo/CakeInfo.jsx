@@ -9,16 +9,16 @@ import { resetCakePieces } from '../../../Actions/cakeActions/changeCakePiecesAn
 import SizeSelection from './SizeSelection/SizeSelection';
 import Tips from './Tips/Tips';
 import CakeOccasion from './CakeOccasion';
-import '../../../Assets/Styles/CakeInfo.css';
+import '../../../Assets/Styles/Public.css';
 
 const CakeInfo = (props) => {
   const { type, localChangeCakeType, resetCakeStories } = props;
 
   return (
-    <Container className="body-cake-select">
+    <Container className="body-row">
       <Row className="justify-content-around">
-        <Col sm="5">
-          <h3 className="mt-3">Choisissez votre type de douceur</h3>
+        <Col sm="12">
+          <div className="labels-perso-btn-douceurs">Choisissez votre type de douceur :</div>
         </Col>
       </Row>
       <Row className="mt-3 justify-content-around">
@@ -80,7 +80,7 @@ const CakeInfo = (props) => {
       </Row>
       <Row className="mt-5 justify-content-around">
         <Col sm="6">
-          <Label for="choix_occasion" className="labels-perso mt-3">Pour quelle occasion voulez-vous votre gâteau ?</Label>
+          <Label for="choix_occasion" className="labels-perso">Pour quelle occasion voulez-vous votre gâteau ?</Label>
           <CakeOccasion />
           <SizeSelection />
         </Col>
