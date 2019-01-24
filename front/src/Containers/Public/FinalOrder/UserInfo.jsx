@@ -231,11 +231,12 @@ class UserInfo extends Component {
                 onKeyPress={this.enterForm}
               />
               <FormFeedback>date de naissance non valide (format requis: JJ/MM/AAAA)</FormFeedback>
-              {!this.birthdateRegex.test(user.birthday) && user.birthday && user.birthday.length <= 9 ? (
-                <div className="invalidDOB">
-                  <p>Format: JJ/MM/AAAA</p>
-                </div>
-              ) : <div />
+              {!this.birthdateRegex.test(user.birthday)
+               && user.birthday && user.birthday.length <= 9 ? (
+                 <div className="invalidDOB">
+                   <p>Format: JJ/MM/AAAA</p>
+                 </div>
+                ) : <div />
               }
             </FormGroup>
           </Col>
@@ -296,11 +297,11 @@ class UserInfo extends Component {
 
         </Row>
         <Row>
-          
           <Col sm="11" md="8">
             <FormGroup>
               <Label>
-                Votre message, soigneusement imprimé sur une carte de qualité, sera livré avec votre gâteau.
+                Votre message, soigneusement imprimé sur une carte de qualité,
+                sera livré avec votre gâteau.
               </Label>
             </FormGroup>
           </Col>
