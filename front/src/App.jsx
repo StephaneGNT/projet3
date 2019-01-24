@@ -24,7 +24,7 @@ class App extends Component {
     axiosDatabase();
     // axios.get('/orders/all').then(res => saveOrdersList(res.data));
     // axios.get('/customers/all').then(res => saveCustomersList(res.data));
-    // axios.get('/cakes/all').then(res => saveCakesList(res.data));
+    // axios.get('/api/cakes/all').then(res => saveCakesList(res.data));
     axios.get('/admin/descriptions').then(res => saveDescriptions(res.data));
   }
 

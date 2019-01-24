@@ -46,7 +46,7 @@ class CalendarAdmin extends Component {
 
   addDate = (date, color) => {
     const { getDatesInDB } = this.props;
-    axios.post('/calendar/adddate', { date, color })
+    axios.post('/api/calendar/adddate', { date, color })
       .then(function (response) {
         response.data === 'OK' && getDatesInDB();
       })
@@ -59,7 +59,7 @@ class CalendarAdmin extends Component {
 
   removeDate = (id) => {
     const { getDatesInDB } = this.props;
-    axios.delete(`/calendar/deletedate/${id}`)
+    axios.delete(`/api/calendar/deletedate/${id}`)
       .then(function (response) {
         console.log(response);
         response.data === 'OK' && getDatesInDB();
