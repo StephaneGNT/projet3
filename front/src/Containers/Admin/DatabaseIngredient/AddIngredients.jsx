@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {
-  Label, Input, Button, Form, FormGroup, Table, Col, Row, Alert,
+  Label, Input, Button, Form, FormGroup, Table, Col, Row,
 } from 'reactstrap';
 // import AlertAddIngredient from './AlertAddIngredient';
 import PropTypes from 'prop-types';
-import { toggleFormNew } from '../../../Actions/databaseActions/toggleFormNew';
 import UploadPicsAddIngred from '../../UploadPicsAddIngred';
 import '../../../Assets/Styles/Add_Ingredients.css';
 
@@ -15,63 +14,74 @@ class AddIngredients extends Component {
     super(props);
     this.state = {
       name: '',
-      size_diameter: 0,
-      nb_persons: 0,
-      price: 0,
-      availability: true,
-      info: '',
-      image_id: 0,
+      type: '',
+      size: '',
+      price: null,
+      dispo: true,
+      description: '',
+      image: '',
+      isCompatible: false,
+      flavor: '',
+      color: '',
+      ingredList: [],
+      allergList: [],
     };
-    this.onSubmit = this.onSubmit.bind(this);
-    // this.updateState = this.onChange.bind(this);
-    this.urlParams = this.state;
+    this.compatibleIngList = [];
+    this.allergeneIngList = [];
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  updateState = (e) => {
-    switch (e.target.value) {
-      case 'Base':
-        this.setState({ type: 'cake_bases' });
-        this.urlParams = 'cake_bases';
-        break;
-      case 'Filling':
-        this.setState({ type: 'fillings' });
-        this.urlParams = 'fillings';
-        break;
-      case 'Icing':
-        this.setState({ type: 'icings' });
-        this.urlParams = 'icings';
-        break;
-      case 'Topping':
-        this.setState({ type: 'toppings' });
-        this.urlParams = 'toppings';
-        break;
-      default:
-        this.setState({ [e.target.name]: e.target.value });
-    }
+  componentDidMount() {
+    axios.get('/ingredients/name')
+      // .then(results => results.json())
+      .then((data) => {
+        this.setState({ ingredList: (data.data[0]) });
+      })
+      .catch(err => console.log(err));
+
+    axios.get('/allergenes/name')
+      .then((data) => {
+        this.setState({ allergList: (data.data[0]) });
+      })
+      .catch(err => console.log(err));
   }
 
-  onSubmit = async (e) => {
-    e.preventDefault();
+  uploadPic = (e) => {
+    const { decoration } = this.state;
+    this.setState({ decoration: { ...decoration, image: e.target.files[0] } });
+  }
+
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  handleSubmit = async () => {
+    // e.preventDefault();
     const {
-      name, size_diameter, nb_persons, price, availability, info, image_id,
+      name, type, size, price, dispo, description, image, isCompatible, flavor, color,
     } = this.state;
 
     const newIngredient = {
       name,
-      size_diameter,
-      nb_persons,
+      type,
+      size,
       price,
-      availability,
-      info,
-      image_id,
+      dispo,
+      description,
+      image,
+      isCompatible,
+      flavor,
+      color,
     };
 
     // Enregistrement du nouvel ingrédient
     const newIngredientID = await axios.post('/ingredients/new', newIngredient)
-      .then(res => { return res.data.insertId })
+      .then(res => {return res.data.insertId})
       .catch(err => console.log(err.response.data));
 
     // Enregistrement des ingrédients compatibles
+    console.log(this.compatibleIngList);
     this.compatibleIngList.map((ingID) => {
       const formData = {
         id_ingred1: newIngredientID,
@@ -96,12 +106,7 @@ class AddIngredients extends Component {
     else this.allergeneIngList.push(allergeneID);
   }
 
-  handleEvent = () => {
-    alert('Votre ingrédient a bien été ajouté.');
-  };
-
   render() {
-    const { toggleForm } = this.props;
     return (
       <div className="bodyIng">
         <title-admin>Décrivez votre nouvel ingrédient</title-admin>
@@ -182,14 +187,14 @@ class AddIngredients extends Component {
                 <tbody>
                   <tr>
                     {this.state.ingredList.map(ingredient => (
-                      <td>
-                        <Input
-                          name="isCompatible"
-                          type="checkbox"
-                          onClick={() => this.toggleIngredient(ingredient.id)}
-                        />
-                        <Label check>{ingredient.name}</Label>
-                      </td>))}
+                        <td>
+                          <Input
+                            name="isCompatible"
+                            type="checkbox"
+                            onClick={() => this.toggleIngredient(ingredient.id)}
+                          />
+                          <Label check>{ingredient.name}</Label>
+                        </td>))}
                   </tr>
                 </tbody>
               </Table>
@@ -218,10 +223,7 @@ class AddIngredients extends Component {
             </Col>
           </Row>
           <br />
-          <Row>
-            <Button color="secondary" size="lg" onClick={() => toggleForm(false)}>Annuler</Button>
-            <Button color="primary" size="lg" onClick={() => this.handleSubmit()}>Ajouter</Button>
-          </Row>
+          <Button color="secondary" size="lg" onClick={() => this.handleSubmit()}>Ajouter</Button>
         </Form>
       </div>
     );
@@ -230,7 +232,6 @@ class AddIngredients extends Component {
 
 AddIngredients.propTypes = {
   updateState: PropTypes.shape({}).isRequired,
-  toggleForm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -240,7 +241,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateState: ingredientType => dispatch(this.props.updateState(ingredientType)),
-  toggleForm: display => dispatch(toggleFormNew(display)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddIngredients);
