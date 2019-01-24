@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import {
-  Row, Col, Table,
-} from 'reactstrap';
+import { Row, Col, Table } from 'reactstrap';
+import axios from 'axios';
 import ModifyIngredient from '../DatabaseIngredient/ModifyIngredient';
 
 class IngredientTable extends Component {
@@ -20,56 +19,47 @@ class IngredientTable extends Component {
     this.setState({ filterTable: ingType });
   }
 
-  createTableHeader = (ingredientsTable) => {
-    console.log('BBBBBBBBBB', typeof ingredientsTable);
-    const ingredientKeys = Object.keys(ingredientsTable[0]);
-    return ingredientKeys.map(key => (
-      <th>{key}</th>
-    ));
-  };
-
-  createTableDataFields = (element) => {
-    const objValues = Object.values(element);
-    return objValues.map(value => (
-      <td>{value}</td>
-    ));
-  };
-
-  createTableDataRows = (ingredientsArray, filterTest) => {
-    if (filterTest === 'All') {
-      return ingredientsArray.map(ingredient => (
-        <tr>
-          {this.createTableDataFields(ingredient)}
-          <td>
-            <button type="button" className="btn btn-success" onClick={this.setState({ showForm: true, ingToModify: ingredient })}>modifier</button>
-            <button type="button" className="btn btn-danger">supprimer</button>
-          </td>
-        </tr>
-      ));
+  deleteIngredient = (id, token) => {
+    if (window.confirm('Voulez-vous supprimer cet ingrédient ?')) {
+      const url = `/ingredients/${id}`;
+      const headers = { Authorization: `Bearer ${token}` };
+      axios.delete(url, { headers })
+        .then(res => window.alert(res.data.message));
     }
-    return ingredientsArray.filter(
-      ingredient => ingredient.type === filterTest,
-    ).map(ingredient => (
-      <tr>
-        {this.createTableDataFields(ingredient)}
-        <td>
-          <button type="button" onClick={this.setState({ showForm: true })}>modifier</button>
-          <button type="button">supprimer</button>
-        </td>
-      </tr>
-    ));
+  };
+
+
+  createTableDataRows = (element, token) => (
+    <tr>
+      <td>{element.name}</td>
+      <td>{element.type}</td>
+      <td>{element.size}</td>
+      <td>{element.price}</td>
+      <td>{element.description}</td>
+      <td><img src={element.image} alt={element.name} /></td>
+      <td>
+        <button type="button" className="btn btn-success" onClick={this.setState({ showForm: true, ingToModify: element })}>modifier</button>
+        <button type="button" className="btn btn-danger" onClick={this.deleteIngredient(element.id, token)}>supprimer</button>
+      </td>
+    </tr>
+  );
+
+  createTableData = (ingredientsArray, filterTest, token) => {
+    if (filterTest === 'All') {
+      return ingredientsArray.map(ingredient => this.createTableDataRows(ingredient, token));
+    }
+    return ingredientsArray.filter(ingredient => ingredient.type === filterTest).map(ingredient => this.createTableDataRows(ingredient, token));
   };
 
   toggleModify = (show, ing) => (show ? <ModifyIngredient ingredient={ing} /> : null)
 
   render() {
-    const { ingredients } = this.props;
+    const { ingredients, token } = this.props;
     const { filterTable, showForm, ingToModify } = this.state;
-    console.log(ingredients);
     return (
       <div>
         <Row>
-          {this.toggleModify(showForm, ingToModify)}
+          {/* {this.toggleModify(showForm, ingToModify)} */}
         </Row>
         <Row>
           <Col>
@@ -90,12 +80,17 @@ class IngredientTable extends Component {
             <Table>
               <thead>
                 <tr>
-                  {this.createTableHeader(ingredients)}
+                  <th>Nom</th>
+                  <th>Type</th>
+                  <th>Taille</th>
+                  <th>Prix</th>
+                  <th>Description</th>
+                  <th>Image</th>
                   <th>Options</th>
                 </tr>
               </thead>
               <tbody>
-                {this.createTableDataRows(ingredients, filterTable)}
+                {this.createTableData(ingredients, filterTable, token)}
               </tbody>
             </Table>
           </Col>
@@ -107,11 +102,13 @@ class IngredientTable extends Component {
 
 IngredientTable.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  token: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => (
   {
     ingredients: state.ingredients,
+    token: state.adminToken,
   }
 );
 
