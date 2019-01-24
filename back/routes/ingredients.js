@@ -43,17 +43,17 @@ ingred.put(`/ingredients/:id`, (req, res) => {
 })
 
 // créer un nouvel allegène
-// ingred.post('/allergenes/new', (req, res) => {
-//   console.log(req.body)
-//   connection.query('INSERT INTO allergenes SET ?', req.body, (err, results) => {
-//     console.log(err, results);
-//     if (err) {
-//       res.status(500).send("Erreur lors de l'ajout d'un allèrgène");
-//     } else {
-//       res.status(200).json((results));
-//     }
-//   });
-// });
+ingred.post('/allergenes/new', (req, res) => {
+  console.log(req.body)
+  connection.query('INSERT INTO allergenes SET ?', req.body, (err, results) => {
+    console.log(err, results);
+    if (err) {
+      res.status(500).send("Erreur lors de l'ajout d'un allèrgène");
+    } else {
+      res.status(200).json((results));
+    }
+  });
+});
 
 ingred.get('/ingredients/name', (req, res) => {
   connection.query('SELECT * from ingredients', (err, results) => {

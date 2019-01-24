@@ -104,7 +104,7 @@ class Decoration extends Component {
         {(() => {
           if ((!urlNum && !photography) || urlNum) return imagePreview;
           // return <img src={`/api/image/${photography}`} alt="Exemple" />;
-          return <img src={require(`../../../../../back/tmp/${photography}`)} alt="Exemple" />;
+          return <img src={require(`../../../../../back/${photography}`)} alt="Exemple" />;
         }
         )()}
         <br />
