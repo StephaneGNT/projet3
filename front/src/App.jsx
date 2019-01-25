@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Public from './Containers/Public/Public';
-import customization from './Containers/Public/Customization/CustomCenterInfo'
+import customization from './Containers/Public/Customization/CustomCenterInfo';
+import customAdmin from './Containers/Admin/CustomizationAdmin';
 import Admin from './Containers/Admin/Admin';
 
 import { getAllOrders, getAllCustomers, getAllCakes } from './Actions/adminsActions/getAllOrdersCakesCustomers';
@@ -25,7 +26,7 @@ class App extends Component {
     axiosDatabase();
     // axios.get('/orders/all').then(res => saveOrdersList(res.data));
     // axios.get('/customers/all').then(res => saveCustomersList(res.data));
-    // axios.get('/cakes/all').then(res => saveCakesList(res.data));
+    // axios.get('/api/cakes/all').then(res => saveCakesList(res.data));
     axios.get('/admin/descriptions').then(res => saveDescriptions(res.data));
   }
 

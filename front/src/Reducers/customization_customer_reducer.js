@@ -7,6 +7,7 @@ export default (state = {
   msgColor: '',
   msgBgColor: '',
   msgFont: '',
+  description3D: '',
 }, action) => {
   if (action.type === 'UPDATE_CUSTOM_SUMMARY') return action.data;
   return state;

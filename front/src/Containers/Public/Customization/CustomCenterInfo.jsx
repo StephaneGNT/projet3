@@ -16,7 +16,7 @@ import CakeMessagePhotoExample4 from '../../../Assets/Images/selectionGallerie/I
 import CakeMessagePhotoExample5 from '../../../Assets/Images/selectionGallerie/IMG_5546.JPG';
 import CakeMessagePhotoExample6 from '../../../Assets/Images/selectionGallerie/IMG-9746.JPG';
 import {
-  allowMessage,
+  // allowMessage,
   fetchAdminFonts,
   updateSummaryInfo,
   calculateCustomizationPrice,
@@ -37,6 +37,7 @@ class CustomCenterInfo extends Component {
         msgColor: custom.msgColor,
         msgBgColor: custom.msgBgColor,
         msgFont: custom.msgFont,
+        description3D: custom.description3D,
       },
       message: false,
       messageResilient: false,
@@ -60,7 +61,7 @@ class CustomCenterInfo extends Component {
 
   componentWillUnmount() {
     const { updateReducerSummary } = this.props; const { customSummary } = this.state;
-    updateReducerSummary(customSummary);
+    return updateReducerSummary(customSummary);
   }
 
   getConfigState = (config) => {
@@ -125,7 +126,8 @@ class CustomCenterInfo extends Component {
     switch (type) {
       case 'ADD_DECORATION':
         if (content === 'message' && !customSummary.msgContent) return alert('Pour confirmer, veuillez entrer un message')
-        if ((content === '2D' && !fileEvent1) || (content === '3D' && !fileEvent2)) return alert('Pour confirmer, veuillez chargez une image');
+        if (content === '2D' && (!fileEvent1)) return alert('Pour confirmer, veuillez chargez une image');
+        if (content === '3D' && (!fileEvent2 && !customSummary.description3D)) return alert('Pour confirmer, veuillez chargez une image ou fournir une description');
         if (content === '2D') calculatePrice(customAdmin.price_2D);
         if (content === 'message') calculatePrice(customAdmin.price_customMessage);
         if (content === '2D') this.decoration.current.submitFile(fileEvent1);
@@ -135,6 +137,7 @@ class CustomCenterInfo extends Component {
       case 'GET_PHOTO_URL': if (typeResilient === 'image') modifySummary('photo1');
       else modifySummary('photo2'); break;
       case 'UPDATE_CUSTOM_MESSAGE': return modifySummary('msgContent');
+      case 'UPDATE_3D_DESCRIPTION': return modifySummary('description3D');
       case 'CHOOSE_FONT_FAMILY': return modifySummary('msgFont');
       case 'CHANGE_FONT_COLOR': return modifySummary('msgColor');
       case 'CHANGE_BACKGROUND_COLOR': return modifySummary('msgBgColor');
@@ -190,6 +193,22 @@ class CustomCenterInfo extends Component {
     return null;
   }
 
+  showAdded = (type) => {
+    const { customSummary } = this.state;
+    if ([customSummary.deco1, customSummary.deco2].includes(type)) {
+      return (
+        <div>
+          <span style={{ color: 'green', fontSize: '0.7em' }}>Décoration ajoutée</span>
+          <span
+            onClick={() => this.removeDeco(type)}
+            style={{ color: 'red', fontSize: '0.7em', paddingBottom: '-0.7vh' }}
+            className="removeCross"><b>  X</b></span>
+        </div>
+      );
+    }
+    return <div />;
+  }
+
   getFileEvent = (e, t) => {
     if (t === '2D') this.setState({ fileEvent1: e });
     if (t === '3D') this.setState({ fileEvent2: e });
@@ -237,7 +256,7 @@ class CustomCenterInfo extends Component {
                   : () => this.updateSummary('ADD_DECORATION', 'message')
                 }
               >
-                {![customSummary.deco1, customSummary.deco2].includes('message') ? `Confirmer l’ajout du message personnalisé (${customAdmin.price_customMessage}€)`
+                {![customSummary.deco1, customSummary.deco2].includes('message') ? `Confirmer l’ajout du message personnalisé (${customAdmin.price_customMessage.toFixed(2).replace(/[.,]00$/, '')}€)`
                   : 'Supprimer l’ajout du message personnalisé'}
               </Button>
             </Row>
@@ -283,7 +302,7 @@ class CustomCenterInfo extends Component {
                     : () => this.updateSummary('ADD_DECORATION', '2D')}
                 >
                   {![customSummary.deco1, customSummary.deco2].includes('2D')
-                    ? `Confirmer l’ajout de l’image en pate sucrée (${customAdmin.price_2D}€)`
+                    ? `Confirmer l’ajout de l’image en pate sucrée (${customAdmin.price_2D.toFixed(2).replace(/[.,]00$/, '')}€)`
                     : 'Supprimer l’image en pate sucrée'}
                 </Button>
               )
@@ -354,40 +373,49 @@ class CustomCenterInfo extends Component {
         <Row className="decorationRow">
           <h1 style={{ cursor: 'pointer' }} onClick={() => this.open('', 'on')}>Choisissez votre décoration</h1>
         </Row>
-        <Row className="decorationRow" style={{ justifyContent: 'space-around' }}>
-          <Button
-            type="button"
-            id="message"
-            style={messageResilient ? buttonStyle : {}}
-            // onMouseEnter={() => this.toggle('message', 'on')}
-            // onMouseLeave={() => this.toggle('message', 'off')}
-            onClick={() => this.open('message', 'on')}
-            className={this.setButtonOutline('message')}
-          >
-            Message
+        <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+          <Col xs="4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
+            <Button
+              type="button"
+              id="message"
+              style={messageResilient ? buttonStyle : {}}
+              // onMouseEnter={() => this.toggle('message', 'on')}
+              // onMouseLeave={() => this.toggle('message', 'off')}
+              onClick={() => this.open('message', 'on')}
+              className={this.setButtonOutline('message')}
+            >
+              Message
           </Button>
-          <Button
-            type="button"
-            id="image"
-            style={imageResilient ? buttonStyle : {}}
-            // onMouseEnter={() => this.toggle('image', 'on')}
-            // onMouseLeave={() => this.toggle('image', 'off')}
-            onClick={() => this.open('image', 'on')}
-            className={this.setButtonOutline('2D')}
-          >
-            Photo
+            {this.showAdded('message')}
+          </Col>
+          <Col xs="4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
+            <Button
+              type="button"
+              id="image"
+              style={imageResilient ? buttonStyle : {}}
+              // onMouseEnter={() => this.toggle('image', 'on')}
+              // onMouseLeave={() => this.toggle('image', 'off')}
+              onClick={() => this.open('image', 'on')}
+              className={this.setButtonOutline('2D')}
+            >
+              Photo
           </Button>
-          <Button
-            type="button"
-            id="sculpture"
-            style={sculptureResilient ? buttonStyle : {}}
-            // onMouseEnter={() => this.toggle('sculpture', 'on')}
-            // onMouseLeave={() => this.toggle('sculpture', 'off')}
-            onClick={() => this.open('sculpture', 'on')}
-            className={this.setButtonOutline('3D')}
-          >
-            Sculpture
+            {this.showAdded('2D')}
+          </Col>
+          <Col xs="4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
+            <Button
+              type="button"
+              id="sculpture"
+              style={sculptureResilient ? buttonStyle : {}}
+              // onMouseEnter={() => this.toggle('sculpture', 'on')}
+              // onMouseLeave={() => this.toggle('sculpture', 'off')}
+              onClick={() => this.open('sculpture', 'on')}
+              className={this.setButtonOutline('3D')}
+            >
+              Sculpture
           </Button>
+            {this.showAdded('3D')}
+          </Col>
         </Row>
         <div className="decorationRow"
           style={!imageResilient && !messageResilient && !sculptureResilient
@@ -440,7 +468,7 @@ const mapStatetoProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addMessage: choice => dispatch(allowMessage(choice)),
+  // addMessage: choice => dispatch(allowMessage(choice)),
   // updatePrice: price => dispatch(changePrice(price)),
   fetchAdminFontList: () => dispatch(fetchAdminFonts()),
   updateReducerSummary: data => dispatch(updateSummaryInfo(data)),
