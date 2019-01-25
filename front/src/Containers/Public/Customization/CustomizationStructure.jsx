@@ -5,10 +5,7 @@ import PropTypes from 'prop-types';
 import NavArrowsLayout from '../Navigation/NavArrowsLayout';
 import { getCustomPrices } from '../../../Actions/customization_actions';
 import Price from '../Price';
-// import LeftPics from './LeftPics';
 import CustomCenterInfo from './CustomCenterInfo';
-// import RightPics from './RightPics';
-
 import '../../../Assets/Styles/CustomFirstPage.css';
 import Progressbar from '../Progressbar';
 

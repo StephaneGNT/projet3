@@ -371,7 +371,7 @@ class CustomCenterInfo extends Component {
     return (
       <Container>
         <Row className="decorationRow">
-          <h1 style={{ cursor: 'pointer' }} onClick={() => this.open('', 'on')}>Choisissez votre décoration</h1>
+          <h1 onClick={() => this.open('', 'on')}>Choisissez votre décoration</h1>
         </Row>
         <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
           <Col xs="4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
