@@ -18,14 +18,14 @@ const CakeImage = (props) => {
       return (
         <Row className="cakeProgressLayout">
           <p>
-            <img src={item.img} alt="ingredient" className={cakeLayoutType()} />
+            <img src={item.image} alt="ingredient" className={cakeLayoutType()} />
           </p>
         </Row>
       );
     }
     return (
       <Row className="cakeProgressLayout">
-        <p><img src={item.img} alt="ingredient" /></p>
+        <p><img src={item.image} alt="ingredient" /></p>
       </Row>
     );
   };

@@ -98,7 +98,7 @@
 .cakeLayout {
     margin:auto; 
     min-height: 40vh;
-    background-color: rgb(181, 227, 216);
+    /* background-color: rgb(181, 227, 216); */
     border-style: solid 20px;
     overflow: auto;
     display: flex;
@@ -113,7 +113,7 @@
 .namesLayout {
     margin:auto; 
     min-height: 20vh;
-    background-color: rgb(246, 217, 222);
+    /* background-color: rgb(246, 217, 222); */
     border-style: solid 20px;
     overflow: auto;
     flex-direction: column-reverse;

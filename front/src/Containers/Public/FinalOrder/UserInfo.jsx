@@ -74,17 +74,17 @@ class UserInfo extends Component {
   sendConfirmationEmails = () => {
     const { user } = this.state;
     const mailClient = {
-      from: 'pimpmycake@pimpmycake.com',
+      from: 'sguinot86@gmail.com',
       to: user.email,
-      subject: 'Confirmation de commande Giluna',
+      title: 'Confirmation de commande Giluna',
       text: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
               Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
-      html: <p>Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
+      html: <p>Bonjour ${user.firstName} ${user.lastName}, votre commande a bien été prise en compte.
       Nous reviendrons vers vous rapidement pour vous confirmer sa validation.</p>,
     };
     axios.post('/api/send/mail', mailClient);
     const gilunaMail = {
-      from: 'pimpmycake@pimpmycake.com',
+      from: 'sguinot86@gmail.com',
       to: 'sguinot86@gmail.com',
       title: 'Nouvelle commande',
       text: 'Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.',

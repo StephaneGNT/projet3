@@ -1,25 +1,25 @@
 USE pimp_my_cake_admin;
 
 INSERT INTO ingredients (name, type, size, price, dispo, description, image, isCompatible, flavor, color)
-VALUES ('Base banane', 'Base', 'S', 10, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548410929-base-banane2.png
+VALUES ('Base banane', 'Base', 'S', 10, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548410929-base-banane2.png
 ', true, null, null),
-('Base chocolat', 'Base', 'S', 15, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548410929-base-chocolat2.png', true, null, null),
-('Base vanille', 'Base', 'S', 20, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548410929-base-vanille2.png', true, null, null),
+('Base chocolat', 'Base', 'S', 15, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548410929-base-chocolat2.png', true, null, null),
+('Base vanille', 'Base', 'S', 20, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548410929-base-vanille2.png', true, null, null),
 ('Amandes caramélisées', 'Base brownie', 'S', 4, true, 'some ingredient information', 'image_url', true, null, null),
 ('Cacahuètes', 'Base brownie', 'S', 4, true, 'some ingredient information', 'image_url', true, null, null),
 ('Chocolat amandes', 'Base cookie', 'S', 4, true, 'some ingredient information', 'image_url', true, null, null),
 ('Cacahuètes', 'Base cookie', 'S', 4, true, 'some ingredient information', 'image_url', true, null, null),
-('Cream cheese', 'Garniture', 'S', 4, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548411090-filling-creamcheese.png', true, null, null),
-('Crème chocolat', 'Garniture', 'S', 4, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548411052-filling-chocolat.png', true, null, null),
-('Ganache caramel', 'Garniture', 'S', 4, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548411013-filling-caramel.png', true, null, null),
-('Cream cheese', 'Glaçage', 'S', 4, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548411134-glacage-creamcheese.png', true, null, null),
-('Ganache chocolat', 'Glaçage', 'S', 4, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548411134-glacage-chocolat.png', true, null, null),
-('Ganache caramel', 'Glaçage', 'S', 4, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548411134-glacage-caramel.png', true, null, null),
-('Sucre glace', 'Glaçage', 'S', 4, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548411134-glacage-cream.png', true, null, null),
-('Noisettes caramélisées', 'Toppings', '250g', 4, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548411226-topping-noisettes.png', true, null, null),
-('Dentelles chocolat', 'Toppings', '250g', 4, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548411226-topping-billechocolat.png', true, null, null),
-('Noix caramélisées', 'Toppings', '250g', 4, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548411226-topping-noix.png', true, null, null),
-('Crumble', 'Toppings', '250g', 4, true, 'some ingredient information', 'https://www.noelshack.com/2019-04-5-1548411226-topping-crumble.png', true, null, null);
+('Cream cheese', 'Garniture', 'S', 4, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548411090-filling-creamcheese.png', true, null, null),
+('Crème chocolat', 'Garniture', 'S', 4, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548411052-filling-chocolat.png', true, null, null),
+('Ganache caramel', 'Garniture', 'S', 4, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548411013-filling-caramel.png', true, null, null),
+('Cream cheese', 'Glaçage', 'S', 4, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548411134-glacage-creamcheese.png', true, null, null),
+('Ganache chocolat', 'Glaçage', 'S', 4, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548411134-glacage-chocolat.png', true, null, null),
+('Ganache caramel', 'Glaçage', 'S', 4, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548411134-glacage-caramel.png', true, null, null),
+('Sucre glace', 'Glaçage', 'S', 4, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548411134-glacage-cream.png', true, null, null),
+('Noisettes caramélisées', 'Toppings', '250g', 4, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548411226-topping-noisettes.png', true, null, null),
+('Dentelles chocolat', 'Toppings', '250g', 4, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548411226-topping-billechocolat.png', true, null, null),
+('Noix caramélisées', 'Toppings', '250g', 4, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548411226-topping-noix.png', true, null, null),
+('Crumble', 'Toppings', '250g', 4, true, 'some ingredient information', 'https://image.noelshack.com/fichiers/2019/04/5/1548411226-topping-crumble.png', true, null, null);
 
 
 INSERT INTO allergenes (name) 
