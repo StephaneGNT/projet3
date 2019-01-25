@@ -50,6 +50,9 @@ VALUES ((SELECT id FROM final_cakes WHERE final_cakes.id = 1),
   'some customer message'
 );
 
+INSERT INTO custom_prices (decoration, price) 
+VALUES ('price_customMessage', 4), ('price_2D', 6);
+
 INSERT INTO admin (name, adminPassword)
 VALUES ('Giluna', '$2b$10$zuvDfB67g.0QUzQJE20Vaea/TCbXYvjSGsLuxesG2UDILdp92dcse');
 

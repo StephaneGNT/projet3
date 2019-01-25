@@ -57,6 +57,13 @@ CREATE TABLE custom_wishes
     msgFont VARCHAR(50)
 );
 
+CREATE TABLE custom_prices
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    decoration VARCHAR (90),
+    price DECIMAL (10,2)
+);
+
 CREATE TABLE customers
 ( 
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 

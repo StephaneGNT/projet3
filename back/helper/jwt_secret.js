@@ -1,2 +1,2 @@
-const secret = 'Herzogenhorn#1';
+const secret = '';
 module.exports = secret;
