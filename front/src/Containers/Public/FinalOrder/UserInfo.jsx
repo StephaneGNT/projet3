@@ -218,7 +218,7 @@ class UserInfo extends Component {
           <Col sm="12" md="4">
             <FormGroup>
               <Label for="birthdate">
-                Date de naissance
+                Date d’anniversaire
               </Label>
               <Input
                 invalid={(user.birthday && this.invalidBirthdate(user.birthday)) || dobNotValid}

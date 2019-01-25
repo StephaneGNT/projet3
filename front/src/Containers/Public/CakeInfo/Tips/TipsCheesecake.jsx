@@ -4,7 +4,7 @@ const TipsCheesecake = () => (
   <div className="mt-3">
     <p>
     Les cheesecakes font
-      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 35 </strong>
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 25 </strong>
     cm de diamètre, et
       <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 7 </strong>
     à
@@ -13,7 +13,9 @@ const TipsCheesecake = () => (
     </p>
     <p>
     Le gâteaux est prévu pour
-      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 16 </strong>
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 15 </strong>
+      à
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 20 </strong>
     personnes.
     </p>
   </div>
