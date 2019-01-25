@@ -11,7 +11,6 @@ import Login from './AdminHandling/Login';
 import OrdersAdmin from './OrdersList/OrdersAdmin';
 import CakeDetail from './OrdersList/CakeDetail';
 import ClientDetail from './OrdersList/ClientDetail';
-import DataBase from './DatabaseIngredient/DataBase';
 import { getAllOrders, getAllCustomers, getAllCakes } from '../../Actions/adminsActions/getAllOrdersCakesCustomers';
 import { fetchFonts, getFonts } from '../../Actions/customization_actions';
 import Clients from './Clients';
@@ -19,6 +18,7 @@ import CalendarAdmin from './CalendarAdmin';
 import HomePageAdmin from './HomePageAdmin';
 import CustomizationAdmin from './CustomizationAdmin';
 import AdminList from './AdminHandling/AdminList';
+import IngredientTable from './Ingredients-Table/Ingredient-Table';
 
 class Admin extends Component {
   constructor(props) {
@@ -28,7 +28,9 @@ class Admin extends Component {
   }
 
   componentWillMount = () => {
-    const { saveOrdersList, saveCustomersList, saveCakesList, getGoogleFonts, getCachedFonts } = this.props;
+    const {
+      saveOrdersList, saveCustomersList, saveCakesList, getGoogleFonts, getCachedFonts,
+    } = this.props;
     axios.get('/orders/all').then(res => saveOrdersList(res.data));
     axios.get('/customers/all').then(res => saveCustomersList(res.data));
     axios.get('/api/cakes/all').then(res => saveCakesList(res.data));
@@ -53,9 +55,7 @@ class Admin extends Component {
     return (
       <Container fluid>
         <Row className="mt-5">
-          <Col sm="2">
-            <VerticalNavBar />
-          </Col>
+          <VerticalNavBar />
           <Col sm="10">
             <Switch>
               <Route
@@ -69,7 +69,7 @@ class Admin extends Component {
               />
               <PrivateRoute
                 path={`${process.env.PUBLIC_URL}/admin/ingredients`}
-                component={DataBase}
+                component={IngredientTable}
               />
               <PrivateRoute
                 path={`${process.env.PUBLIC_URL}/admin/clients`}
