@@ -29,7 +29,7 @@ const CustomMessage = (props) => {
         <Label for="wantsCutomMessage"><b>Message personnalisé sur le gâteau?</b></Label>
         <b>
           {' '}
-          {customMessage.price}
+          {customMessage.price.toFixed(2).replace(/[.,]00$/, '')}
           €
         </b>
         <br />

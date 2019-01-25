@@ -32,11 +32,11 @@ app.get("/",(req,res)=>res.send("hello"))
 app.use(ingred);
 app.use(auth);
 app.use(admin);
-app.use('/customization', customization);
-app.use('/calendar', calendar);
+app.use('/api/customization', customization);
+app.use('/api/calendar', calendar);
 app.use('/api/send',mail);
 app.use(uploadFile);
-app.use(cake);
+app.use('/api', cake);
 app.use(order);
 app.use(customer);
 app.use(junctionTable);

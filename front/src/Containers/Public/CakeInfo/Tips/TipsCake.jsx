@@ -8,11 +8,33 @@ const TipsCake = () => (
       étages en cliquant sur les blocs voulus.
     </p>
     <p>
-      Par exemple, pour 20 personnes, vous pouvez choisir un gâteau
-       de 1 étage de 20 personnes, ou 2 étages pour 10 personnes,
-        ou de 1 étage pour 10 et de 2 étages pour 5.
+      Par exemple, pour
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 20 </strong>
+      personnes, vous pouvez choisir un gâteau de
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 1 </strong>
+       étage de
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 20 </strong>
+       personnes, ou
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 2 </strong>
+       étages pour
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 10 </strong>
+       personnes, ou de
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 1 </strong>
+      étage pour
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 10 </strong>
+      et de
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 2 </strong>
+      étages pour
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 5 </strong>
+      .
     </p>
-    <p>Les gâteaux font 7 à 8 cm de hauteur.</p>
+    <p>
+    Les gâteaux font
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 7 </strong>
+     à
+      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 8 </strong>
+      cm de hauteur.
+    </p>
   </div>
 );
 

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { Container, Row, Col, Table, Button } from 'reactstrap';
+import { bindActionCreators } from 'redux';
 import axios from 'axios';
+import axiosIngredientsDB from '../../../Actions/fetchDB/fetch_database_actions';
 import ModifyIngredient from '../DatabaseIngredient/ModifyIngredient';
 import AddIngredients from '../DatabaseIngredient/AddIngredients';
 
@@ -21,11 +23,13 @@ class IngredientTable extends Component {
   }
 
   deleteIngredient = (id, token) => {
+    const { updateIngredients } = this.props;
     if (window.confirm('Voulez-vous supprimer cet ingrédient ?')) {
       const url = `/ingredients/${id}`;
       const headers = { Authorization: `Bearer ${token}` };
       axios.delete(url, { headers })
-        .then(res => window.alert(res.data.message));
+        .then(res => window.alert(res.data.message))
+        .then(updateIngredients());
     }
   };
 
@@ -114,13 +118,21 @@ class IngredientTable extends Component {
 IngredientTable.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   token: PropTypes.string.isRequired,
+  updateIngredients: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
   {
     ingredients: state.ingredients,
     token: state.adminToken,
+    dispatch: state.dispatch,
   }
 );
 
-export default connect(mapStateToProps)(IngredientTable);
+const mapDispatchToProps = dispatch => (
+  {
+    updateIngredients: bindActionCreators(axiosIngredientsDB, dispatch),
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(IngredientTable);

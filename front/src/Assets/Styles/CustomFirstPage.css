@@ -5,6 +5,10 @@
   margin-top: 3vw;
 }
 
+.removeCross:hover {
+  cursor: pointer;
+}
+
 .notChosen {
   border: 4px red solid !important;
 }

@@ -8,6 +8,7 @@ import TipsMacaron from './TipsMacaron';
 import TipsBrownie from './TipsBrownie';
 import '../../../../Assets/Styles/Public.css';
 
+
 const Tips = (props) => {
   const renderTips = (cakeType) => {
     switch (cakeType) {
@@ -17,12 +18,12 @@ const Tips = (props) => {
       case 'macaron': return <TipsMacaron />;
       case 'brownie': return <TipsBrownie />;
       default: return (
-        <div>
+        <div style={{ fontSize: '17px' }}>
           <p className="mt-3">
-          Paiment sur place en CB, espèce ou chèque.
+          Retrouvez ici les informations pour vous aider à faire votre choix.
           </p>
           <br />
-          <p>Choisissez votre type de pâtisserie </p>
+          <p>Commencez par choisir votre type de pâtisserie </p>
         </div>
       );
     }
