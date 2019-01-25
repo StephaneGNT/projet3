@@ -19,6 +19,7 @@ import CalendarAdmin from './CalendarAdmin';
 import HomePageAdmin from './HomePageAdmin';
 import CustomizationAdmin from './CustomizationAdmin';
 import AdminList from './AdminHandling/AdminList';
+import IngredientTable from './Ingredients-Table/Ingredient-Table';
 
 class Admin extends Component {
   constructor(props) {
@@ -45,8 +46,8 @@ class Admin extends Component {
       <Route
         {...rest}
         render={() => (
-          jwtToken !== ''
-          // this.loggedIn
+          // jwtToken !== ''
+          this.loggedIn
             ? <Component />
             : <Redirect to="/admin" />
         )}
@@ -56,9 +57,7 @@ class Admin extends Component {
     return (
       <Container fluid>
         <Row className="mt-5">
-          <Col sm="2">
-            <VerticalNavBar />
-          </Col>
+          <VerticalNavBar />
           <Col sm="10">
             <Switch>
               <Route
@@ -72,7 +71,7 @@ class Admin extends Component {
               />
               <PrivateRoute
                 path={`${process.env.PUBLIC_URL}/admin/ingredients`}
-                component={DataBase}
+                component={IngredientTable}
               />
               <PrivateRoute
                 path={`${process.env.PUBLIC_URL}/admin/clients`}

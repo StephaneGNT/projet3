@@ -3,8 +3,6 @@ import { Button } from 'reactstrap';
 import axios from 'axios';
 import ButtonModify from '../../../DatabaseIngredient/ButtonModify';
 
-// import openSnackBar from '../../../../../Actions/snackBarActions';
-
 const createTableDataFields = (element) => {
   const objValues = Object.values(element);
   return objValues.map(value => (

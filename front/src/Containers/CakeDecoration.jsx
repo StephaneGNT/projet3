@@ -71,7 +71,7 @@ const CakeDecoration = (cake, customWishes, user) => {
     </tr>,
     <tr>
       <td>Montant : </td>
-      <td style={{ fontWeight: 'bold' }}>{cake.price} €</td>
+      <td style={{ fontWeight: 'bold' }}>{cake.price.toFixed(2).replace(/[.,]00$/, '')} €</td>
     </tr>,
   );
   return render;

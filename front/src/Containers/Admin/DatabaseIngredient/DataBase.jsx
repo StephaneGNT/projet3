@@ -6,7 +6,7 @@ import HorizontalNavBar from './HorizontalNavBar';
 // import Toolbar from './Toolbar';
 import AddIngredients from './AddIngredients';
 import ModifyIngredient from './ModifyIngredient';
-import TableDB from '../Incredients-Components/Table_DB/TableDB';
+import TableDB from '../Ingredients-Table/Ingredient-Table';
 
 class DataBase extends Component {
   constructor(props) {

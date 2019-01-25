@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-export const allowMessage = item => ({
-  type: 'ALLOW_MESSAGE',
-  item,
-});
+// export const allowMessage = item => ({
+//   type: 'ALLOW_MESSAGE',
+//   item,
+// });
 
-export const removeCakeMessage = blank => ({
-  type: 'REMOVE_CUSTOM_MESSAGE',
-  blank,
-});
+// export const removeCakeMessage = blank => ({
+//   type: 'REMOVE_CUSTOM_MESSAGE',
+//   blank,
+// });
 
 export const getFonts = fonts => ({
   type: 'UPDATE_FONTS',
@@ -30,6 +30,11 @@ export const calculateCustomizationPrice = data => ({
   data,
 });
 
+export const sendCustomizationPrices = prices => ({
+  type: 'SEND_CUSTOM_PRICES',
+  prices,
+});
+
 export const fetchFonts = () => {
   return (dispatch) => {
     return axios.get('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBvHfWdKdPsFRaVwwh8z5lNIto2Ct9xzaA')
@@ -47,6 +52,16 @@ export const fetchAdminFonts = () => {
       .then((res) => {
         const fonts = res.data;
         dispatch(populateFonts(fonts));
+      });
+  };
+};
+
+export const getCustomPrices = () => {
+  return (dispatch) => {
+    axios.get('/api/customization/getcustomprices')
+      .then((res) => {
+        const prices = res.data;
+        dispatch(sendCustomizationPrices(prices));
       });
   };
 };

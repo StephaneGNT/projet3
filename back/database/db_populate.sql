@@ -28,8 +28,8 @@ VALUES ('Oeuf'), ('Lactose'), ('Arachide');
 INSERT INTO fonts (name, availability)
 VALUES ('Frijole', true), ('Rochester', true), ('Bungee Hairline', true), ('Creepster', true), ('Fontdiner Swanky', true), ('Knewave', true), ('Jim Nightshade', true), ('Mystery Quest', true), ('Permanent Marker', true), ('Rock Salt', true), ('Stalinist One', true), ('UnifrakturMaguntia', true), ('Quando', true), ('Meddon', true), ('Gloria Hallelujah', true), ('Fredoka One', true), ('Fredericka the Great', true), ('Leckerli One', true);
 
-INSERT INTO custom_wishes (deco1, deco2, photo1, photo2, msgContent, msgColor, msgBgColor, msgFont)
-VALUES ('Message', '', '', '', 'Bon anniversaire !', '#00ff00', '#111111', 'Times New Roman');
+INSERT INTO custom_wishes (deco1, deco2, photo1, photo2, msgContent, msgColor, msgBgColor, msgFont, description3D)
+VALUES ('Message', '', '', '', 'Bon anniversaire !', '#00ff00', '#111111', 'Times New Roman', '');
 
 INSERT INTO customers (firstName, lastName, email, phone, birthday)
 VALUES ( 'Mathieu', 'De Armey', 'famousfour@hotmail.com', '0600000000', '1981-06-23'),
@@ -50,6 +50,9 @@ VALUES ((SELECT id FROM final_cakes WHERE final_cakes.id = 1),
   'some customer comment',
   'some customer message'
 );
+
+INSERT INTO custom_prices (decoration, price) 
+VALUES ('price_customMessage', 4), ('price_2D', 6);
 
 INSERT INTO admin (name, adminPassword)
 VALUES ('Giluna', '$2b$10$zuvDfB67g.0QUzQJE20Vaea/TCbXYvjSGsLuxesG2UDILdp92dcse');

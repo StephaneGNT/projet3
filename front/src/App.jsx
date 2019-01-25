@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Public from './Containers/Public/Public';
-import customization from './Containers/Public/Customization/CustomCenterInfo';
 import Admin from './Containers/Admin/Admin';
 
 import { getAllOrders, getAllCustomers, getAllCakes } from './Actions/adminsActions/getAllOrdersCakesCustomers';

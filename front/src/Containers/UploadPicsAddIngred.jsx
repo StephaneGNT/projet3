@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Container, FormGroup, FormText, Button,
+  Container, FormGroup, FormText, Button, Input,
 } from 'reactstrap';
 import axios from 'axios';
 
@@ -34,11 +34,11 @@ class UploadPicsAddIngred extends Component {
         {/* Hello {token}<br /> */}
         <form onSubmit={this.submitFile}>
           <FormGroup>
-            <input type="file" name="file" id="exampleFile" ref={this.fileInput} />
+            <Input type="file" bsSize="sm" name="file" id="exampleFile" ref={this.fileInput} />
             <FormText color="muted">
               Importez l'image de votre ingrédient.
             </FormText>
-            <Button size="sm" type="submit">Envoyer</Button>
+            <Button outline color="warning" size="sm" type="submit">Envoyer</Button>
           </FormGroup>
         </form>
         {/* <SignOut /> */}

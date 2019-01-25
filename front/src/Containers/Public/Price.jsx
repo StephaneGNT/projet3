@@ -8,7 +8,7 @@ const Price = (props) => {
   sendToPrice(price);
   return (
     <div className="bloc-price" style={{ position: 'sticky', top: '60vh' }}>
-      {`PRIX TTC: ${price} €`}
+      {`PRIX TTC: ${price.toFixed(2).replace(/[.,]00$/, '')} €`}
     </div>
   );
 };
