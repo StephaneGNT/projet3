@@ -38,7 +38,6 @@ class ModifyIngredient extends Component {
       displayIndexForm, ingredient, // arrays ingredients.compatible et ingredients.allergenes inherited from phil
     } = this.props;
     this.betaType = ingredient[displayIndexForm - 1];
-    console.log(this.betaType);
   }
 
   componentWillMount() {
@@ -51,7 +50,6 @@ class ModifyIngredient extends Component {
       .then((res) => {
         const fullListArray = res.data[0]; this.setState({ fullList: fullListArray });
       });
-    // .catch(err => console.log(err.response.data));
 
     axios.get('/api/allergenes/name')
       .then((res) => {

@@ -42,19 +42,6 @@ ingred.put(`/ingredients/:id`, (req, res) => {
   })
 })
 
-// créer un nouvel allegène
-// ingred.post('/allergenes/new', (req, res) => {
-//   console.log(req.body)
-//   connection.query('INSERT INTO allergenes SET ?', req.body, (err, results) => {
-//     console.log(err, results);
-//     if (err) {
-//       res.status(500).send("Erreur lors de l'ajout d'un allèrgène");
-//     } else {
-//       res.status(200).json((results));
-//     }
-//   });
-// });
-
 ingred.get('/ingredients/name', (req, res) => {
   connection.query('SELECT * from ingredients', (err, results) => {
     if (err) { 
@@ -103,14 +90,12 @@ passport.use(new JWTStrategy(
 
 ingred.delete(
   '/ingredients/:id',
-  // jwtAuthentification(),
+  jwtAuthentification(),
   passport.authenticate('jwt', {
     session:  false,
     failureRedirect: '/login',
-    // failureFlash: 'You need to be logged in',
   }),
   (req, res) => {
-    console.log(req.headers)
     const formData = [req.params.type, req.params.id];
     connection.query('DELETE FROM ingredients WHERE id = ?', formData, (err, results) => {
       if (err) res.status(500).json({ message:  "Erreur lors de la suppression" });
@@ -148,7 +133,6 @@ ingred.get('/ingredients', (req, res) => {
 
 ingred.get('/ingredients/:ingredType', (req, res) => {
   const typeToLoad = req.params.ingredType.replace(/\_/g, ' ');
-  console.log(typeToLoad);
   connection.query(
     `SELECT ingredients.*, allerg.name AS allergenes, comp.name as compatible
     FROM ingredients 

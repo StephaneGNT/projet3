@@ -47,26 +47,13 @@ class CalendarAdmin extends Component {
   addDate = (date, color) => {
     const { getDatesInDB } = this.props;
     axios.post('/api/calendar/adddate', { date, color })
-      .then(function (response) {
-        response.data === 'OK' && getDatesInDB();
-      })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-    // alert(`Police "${name}" ajoutée`)
-    // } else alert('Vous avez déjà ajouté cette police');
+      .then((response) => { response.data === 'OK' && getDatesInDB(); });
   }
 
   removeDate = (id) => {
     const { getDatesInDB } = this.props;
     axios.delete(`/api/calendar/deletedate/${id}`)
-      .then(function (response) {
-        console.log(response);
-        response.data === 'OK' && getDatesInDB();
-      })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
+      .then((response) => { response.data === 'OK' && getDatesInDB(); });
   }
 
   setDateAvailability = (date, activeColor) => {

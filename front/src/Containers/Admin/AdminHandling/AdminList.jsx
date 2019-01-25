@@ -18,7 +18,6 @@ class AdminList extends Component {
   }
 
   componentDidMount = () => {
-    console.log("this.componentDidMount")
     this.getAdminList();
   }
 

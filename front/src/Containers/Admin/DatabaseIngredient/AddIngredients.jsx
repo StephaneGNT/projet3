@@ -68,7 +68,7 @@ class AddIngredients extends Component {
 
     // Enregistrement du nouvel ingrédient
     const newIngredientID = await axios.post('/api/ingredients/new', newIngredient)
-      .then(res => { return res.data.insertId })
+      .then((res) => { return res.data.insertId; })
       .catch(err => console.log(err.response.data));
 
     // Enregistrement des ingrédients compatibles

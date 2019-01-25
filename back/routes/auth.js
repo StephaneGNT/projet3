@@ -54,14 +54,13 @@ auth.post('/auth/new', (req, res) => {
   const id = req.body.id;
   connection.query('INSERT INTO admin SET ?', { name: id, adminPassword: hash }, (err, results) => {
     if (err) res.status(500).send(err);
-    return res.status(200).send('Admin mis à jour');
+    return res.status(200).send('Nouvel admin créé');
   })
 });
 
 // Mise à jour d'un administrateur
 auth.put('/auth/:id', (req, res) => {
   // hashage password
-  console.log(req.body.newAdmin)
   const hash = bcrypt.hashSync(req.body.newAdmin.password, 10);
   const adminData = { name: req.body.newAdmin.id, adminPassword: hash }
   connection.query('UPDATE admin SET ? WHERE id = ?', [ adminData, req.params.id ], (err, results) => {

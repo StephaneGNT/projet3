@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import moment from 'moment';
-import 'moment/locale/fr';
 import { Table, Container } from 'reactstrap';
 
 import '../../../Assets/Styles/OrderDetail.css';
@@ -11,13 +9,12 @@ import CakeDecoration from '../../CakeDecoration';
 
 
 const Confirmation = (props) => {
-  const { cake } = props;
-  console.log("cake", cake);
+  const { cake, customWishes } = props;
   return (
     <Container>
       <Table>
         <tbody>
-          {CakeDecoration(cake, '')}
+          {CakeDecoration(cake, customWishes, '')}
         </tbody>
       </Table>
       <br />
@@ -30,10 +27,12 @@ const Confirmation = (props) => {
 }
 Confirmation.propTypes = {
   cake: PropTypes.shape({}).isRequired,
+  customWishes: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
   cake: state.cakeCharacteristics,
+  customWishes: state.customizationCustomer,
 });
 
 export default connect(mapStateToProps)(Confirmation);

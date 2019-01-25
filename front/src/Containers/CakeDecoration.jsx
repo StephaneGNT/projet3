@@ -1,40 +1,45 @@
 import React from 'react';
 
-const CakeDecoration = (cake, user) => {
+const CakeDecoration = (cake, customWishes, user) => {
   const render = [];
   let description = '';
   if (cake.type === 'cake') description = `1 ${cake.type} de ${cake.story} étage(s) pour ${cake.size} personnes`;
-  else if (cake.type === 'cheesecake') description = `1 ${cake.type} pour 8 à 10 personnes`;
+  else if (cake.type === 'cheesecake') description = `1 ${cake.type} pour 16 personnes`;
   else description = `${cake.quantity} ${cake.type} en taille ${cake.size}`;
 
   let decoration = '';
-  if (cake.deco1 === '' && cake.deco2 === '') decoration = 'Aucune décoration';
-  if (cake.deco1 === 'Message' || cake.deco2 === 'Message') {
+  let cakeDeco = {};
+  if (customWishes) cakeDeco = customWishes;
+  else cakeDeco = cake;
+  if (cakeDeco.deco1 === '' && cakeDeco.deco2 === '') decoration = 'Aucune décoration';
+  if (cakeDeco.deco1 === 'message' || cakeDeco.deco2 === 'message') {
     decoration = (
       <div>
         Message :
+        {' '}
         <span
-          style={{ color: cake.msgColor, backgroundColor: cake.msgBgColor, fontFamily: cake.font }}
+          style={{ color: cakeDeco.msgColor, backgroundColor: cakeDeco.msgBgColor, fontFamily: cakeDeco.font }}
         >
-          {cake.msgContent}
+          {cakeDeco.msgContent}
         </span>
       </div>
     );
   }
-  if (cake.deco1 === '2D' || cake.deco1 === '3D') {
+  if (cakeDeco.deco1 === '2D' || cakeDeco.deco1 === '3D') {
     decoration += (
       <div>
         Décoration
         {cake.deco1}
       </div>);
   }
-  if (cake.deco2 === '2D' || cake.deco2 === '3D') {
+  if (cakeDeco.deco2 === '2D' || cakeDeco.deco2 === '3D') {
     decoration += (
       <div>
         Décoration
         {cake.deco2}
       </div>);
   }
+  console.log("decoration", decoration)
 
   if (user === 'admin') {
     render.push(
@@ -47,7 +52,7 @@ const CakeDecoration = (cake, user) => {
 
   render.push(
     <tr>
-      <td>Occasion</td>
+      <td>Occasion : </td>
       <td>{cake.occasion ? cake.occasion : 'Non précisée'}</td>
     </tr>,
     
@@ -57,14 +62,15 @@ const CakeDecoration = (cake, user) => {
     </tr>,
     <tr>
       <td>Ingrédients : </td>
-      <td>{cake.ingredients}</td>
+      {/* <td>{ingredients}</td> */}
+      <td>{cake.ingredients.map(ingredient => `${ingredient.name} `)}</td>
     </tr>,
     <tr>
       <td>Décoration : </td>
       <td>{decoration}</td>
     </tr>,
     <tr>
-      <td>Montant</td>
+      <td>Montant : </td>
       <td style={{ fontWeight: 'bold' }}>{cake.price} €</td>
     </tr>,
   );

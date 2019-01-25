@@ -24,8 +24,7 @@ class UploadPicsAddIngred extends Component {
       },
     };
 
-    axios.post('/api/uploadfile', data, config)
-      .then(result => console.log(result));
+    axios.post('/api/uploadfile', data, config);
   }
 
   render() {

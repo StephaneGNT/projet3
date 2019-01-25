@@ -39,7 +39,6 @@ class Login extends Component {
       action, history, saveToken, index,
     } = this.props;
     const { user } = this.state;
-    console.log("action, index, user", action, index, user)
     if (action === 'Créer') {
       createAdmin(user);
       history.push(`${process.env.PUBLIC_URL}/admin/adminList`);
@@ -51,7 +50,6 @@ class Login extends Component {
       history.push(`${process.env.PUBLIC_URL}/admin/orders`);
     }
     if (action === 'Modifier') {
-      console.log("user, index", user, index);
       updateAdmin(user, index);
       history.push(`${process.env.PUBLIC_URL}/admin/adminList`);
     }

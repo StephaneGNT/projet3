@@ -35,7 +35,6 @@ export const updateAdmin = (newAdmin, id) => {
 
 // Connexion
 export const connectAdmin = (admin) => {
-  console.log("newAdmin", admin);
   return axios.post('/api/auth/login', admin)
     .then((response) => {
       if (response.status === 200) {
