@@ -28,14 +28,16 @@ class Login extends Component {
 
   handleKeyPress = (event) => {
     const { user, passwordConfirm } = this.state;
-    const { action, history } = this.props;
+    const { action } = this.props;
     if (((action === 'Se connecter' && user.name === '' && user.adminPassword === '') || (user.name === '' || user.adminPassword === '' || user.adminPassword !== passwordConfirm)) && (event.key === 'Enter')) {
       this.submitUser();
     }
   }
 
   submitUser = async () => {
-    const { action, history, saveToken } = this.props;
+    const {
+      action, history, saveToken, index,
+    } = this.props;
     const { user } = this.state;
     if (action === 'Créer') {
       createAdmin(user);
@@ -48,7 +50,6 @@ class Login extends Component {
       history.push(`${process.env.PUBLIC_URL}/admin/orders`);
     }
     if (action === 'Modifier') {
-      const { index } = this.props;
       updateAdmin(user, index);
       history.push(`${process.env.PUBLIC_URL}/admin/adminList`);
     }
@@ -112,7 +113,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  id: state.adminIndex,
+  index: state.adminIndex,
 });
 
 const mapDispatchToProps = dispatch => ({

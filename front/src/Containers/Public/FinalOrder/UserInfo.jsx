@@ -77,17 +77,20 @@ class UserInfo extends Component {
       from: 'pimpmycake@pimpmycake.com',
       to: user.email,
       subject: 'Confirmation de commande Giluna',
-      content: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
+      text: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
               Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
+      html: <p>Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
+      Nous reviendrons vers vous rapidement pour vous confirmer sa validation.</p>,
     };
-    axios.post('/api/send/mail', mailClient).then(response => console.log(response.data));
+    axios.post('/api/send/mail', mailClient);
     const gilunaMail = {
       from: 'pimpmycake@pimpmycake.com',
-      to: 'philipp-elsaesser@outlook.com',
+      to: 'sguinot86@gmail.com',
       title: 'Nouvelle commande',
-      content: 'Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.',
+      text: 'Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.',
+      html: <p>Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.</p>,
     };
-    axios.post('/api/send/mail', gilunaMail).then(response => console.log(response.data));
+    axios.post('/api/send/mail', gilunaMail);
   };
 
   invalidBirthdate = (DOBstate) => {

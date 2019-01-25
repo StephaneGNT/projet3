@@ -3,11 +3,11 @@ export default (state = {
   deco2: '',
   photo1: '',
   photo2: '',
+  description3D: '',
   msgContent: '',
   msgColor: '',
   msgBgColor: '',
   msgFont: '',
-  description3D: '',
 }, action) => {
   if (action.type === 'UPDATE_CUSTOM_SUMMARY') return action.data;
   return state;

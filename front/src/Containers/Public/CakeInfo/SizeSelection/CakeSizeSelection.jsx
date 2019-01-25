@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  Row,
-  Col,
-  Container,
-  Label,
+  Row, Container, Label,
 } from 'reactstrap';
-import CakeSizeDisplay from './CakeSizeDisplay';
+import changeCakeSize from '../../../../Actions/cakeActions/changeCakeSize';
+import changeCakeStory from '../../../../Actions/cakeActions/changeCakeStory';
 
 import '../../../../Assets/Styles/CakeSizeSelection.css';
 
@@ -23,17 +21,17 @@ class CakeSizeSelection extends Component {
   }
 
   render() {
+    const { selectCakeSize, selectCakeStory } = this.props;
     return (
       <Container style={{ minWidth: '100%' }}>
         <Label className="labels-perso mt-3">Choisissez la taille de votre gâteau</Label>
         <Row>
-          <Col sm="6" className="text-center table-head"> Nombre de personnes </Col>
-          <Col sm="3" className="text-center table-head"> Diamètre </Col>
-          <Col sm="3" />
+          <Label className="labels-perso mt-3">Pour combien de personnes ? </Label>
+          <input placeholder="Nombre de personnes" onChange={event => selectCakeSize(parseInt(event.target.value, 10))} />
         </Row>
-        <CakeSizeDisplay />
-        <Row className="cakeDetail mt-3">
-          {this.renderCakeDetails()}
+        <Row>
+          <Label className="labels-perso mt-3">Combien d'étages ? </Label>
+          <input placeholder="Nombre d'étages" onChange={event => selectCakeStory(parseInt(event.target.value, 10))} />
         </Row>
       </Container>
     );
@@ -43,6 +41,8 @@ class CakeSizeSelection extends Component {
 CakeSizeSelection.propTypes = {
   size: PropTypes.number.isRequired,
   story: PropTypes.number.isRequired,
+  selectCakeSize: PropTypes.func.isRequired,
+  selectCakeStory: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -50,4 +50,9 @@ const mapStateToProps = state => ({
   story: state.cakeCharacteristics.story,
 });
 
-export default connect(mapStateToProps)(CakeSizeSelection);
+const mapDispatchToProps = dispatch => ({
+  selectCakeSize: amount => dispatch(changeCakeSize(amount)),
+  selectCakeStory: amount => dispatch(changeCakeStory(amount)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CakeSizeSelection);

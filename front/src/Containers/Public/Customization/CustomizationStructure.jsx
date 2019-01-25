@@ -9,7 +9,6 @@ import CustomCenterInfo from './CustomCenterInfo';
 import '../../../Assets/Styles/CustomFirstPage.css';
 import Progressbar from '../Progressbar';
 
-
 const CustomizationStructure = (props) => {
   const { sendPrices } = props;
 
@@ -21,15 +20,9 @@ const CustomizationStructure = (props) => {
         <Progressbar />
       </Row>
       <Row style={{ minHeight: '65vh', background: 'rgba(255,255,255, 0.9)' }}>
-        {/* <Col sm={1} xs={0}>
-        <LeftPics />
-      </Col> */}
         <Col sm={12} xs={12}>
           <CustomCenterInfo />
         </Col>
-        {/* <Col sm={1} xs={0}>
-        <RightPics />
-      </Col> */}
       </Row>
       <Row>
         <NavArrowsLayout />

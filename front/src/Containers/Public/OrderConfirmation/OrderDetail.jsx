@@ -17,7 +17,7 @@ class OrderDetail extends Component {
 
   render() {
     return (
-      <Container>
+      <Container style={{ backgroundColor: 'white' }}>
         <Row className="text-center">
           <Progressbar />
         </Row>

@@ -11,7 +11,8 @@ import Login from './AdminHandling/Login';
 import OrdersAdmin from './OrdersList/OrdersAdmin';
 import CakeDetail from './OrdersList/CakeDetail';
 import ClientDetail from './OrdersList/ClientDetail';
-import { getAllOrders, getAllCustomers, getAllCakes } from '../../Actions/adminsActions/getAllOrdersCakesCustomers';
+import DataBase from './DatabaseIngredient/DataBase';
+import { getAllOrders, getAllCustomers, getAllCakes, getAllAdmins } from '../../Actions/adminsActions/getAllOrdersCakesCustomers';
 import { fetchFonts, getFonts } from '../../Actions/customization_actions';
 import Clients from './Clients';
 import CalendarAdmin from './CalendarAdmin';
@@ -29,14 +30,15 @@ class Admin extends Component {
 
   componentWillMount = () => {
     const {
-      saveOrdersList, saveCustomersList, saveCakesList, getGoogleFonts, getCachedFonts,
+      saveOrdersList, saveCustomersList, saveCakesList, getGoogleFonts, getCachedFonts, saveAdminList,
     } = this.props;
-    axios.get('/orders/all').then(res => saveOrdersList(res.data));
-    axios.get('/customers/all').then(res => saveCustomersList(res.data));
+    axios.get('/api/orders/all').then(res => saveOrdersList(res.data));
+    axios.get('/api/customers/all').then(res => saveCustomersList(res.data));
     axios.get('/api/cakes/all').then(res => saveCakesList(res.data));
+    axios.get('/api/admin/all').then(res => saveAdminList(res.data));
     if (localStorage.getItem('googleFonts') === null) getGoogleFonts();
     else getCachedFonts(JSON.parse(localStorage.getItem('googleFonts')));
-  }
+  };
 
   render() {
     const { jwtToken } = this.props;
@@ -111,12 +113,14 @@ Admin.propTypes = {
   saveOrdersList: PropTypes.func.isRequired,
   saveCustomersList: PropTypes.func.isRequired,
   saveCakesList: PropTypes.func.isRequired,
+  saveAdminList: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
   saveOrdersList: orderList => dispatch(getAllOrders(orderList)),
   saveCustomersList: customerList => dispatch(getAllCustomers(customerList)),
   saveCakesList: cakeList => dispatch(getAllCakes(cakeList)),
+  saveAdminList: adminList => dispatch(getAllAdmins(adminList)),
   getGoogleFonts: () => dispatch(fetchFonts()),
   getCachedFonts: list => dispatch(getFonts(list)),
 });
