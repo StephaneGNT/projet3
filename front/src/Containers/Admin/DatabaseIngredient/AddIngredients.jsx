@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import UploadPicsAddIngred from '../../UploadPicsAddIngred';
+import '../../../Assets/Styles/Public.css';
 
 class AddIngredients extends Component {
   constructor(props) {
@@ -107,7 +108,7 @@ class AddIngredients extends Component {
   render() {
     return (
       <div className="bodyIng">
-        <div className="title-admin">Décrivez votre nouvel ingrédient</div>
+        <title-admin>Décrivez votre nouvel ingrédient</title-admin>
         <Form>
           <Row form>
             <Col md={2}>
