@@ -14,9 +14,7 @@ passport.use(new LocalStrategy(
     passwordField: 'password'
   },
   function (id, adminPassword, cb) {
-    console.log("id, adminPassword in auth.js", id, adminPassword)
-    connection.query('SELECT * FROM admin WHERE name = ?', id, (err, result) => {
-
+    connection.query('SELECT * FROM admin WHERE admin_id = ?', id, (err, result) => {
       if (err || result.length === 0) return cb(err);
       else {
         const user = result[0];
