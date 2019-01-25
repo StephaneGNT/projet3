@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import VerticalNavBar from './Navigation/VerticalNavBar';
 import Login from './AdminHandling/Login';
 import OrdersAdmin from './OrdersAdmin';
-import DataBase from './DatabaseIngredient/DataBase';
 import { getAllOrders, getAllCustomers, getAllCakes } from '../../Actions/adminsActions/getAllOrdersCakesCustomers';
 import { fetchFonts, getFonts } from '../../Actions/customization_actions';
 import Clients from './Clients';
@@ -27,7 +26,9 @@ class Admin extends Component {
   }
 
   componentWillMount = () => {
-    const { saveOrdersList, saveCustomersList, saveCakesList, getGoogleFonts, getCachedFonts } = this.props;
+    const {
+      saveOrdersList, saveCustomersList, saveCakesList, getGoogleFonts, getCachedFonts,
+    } = this.props;
     axios.get('/orders/all').then(res => saveOrdersList(res.data));
     axios.get('/customers/all').then(res => saveCustomersList(res.data));
     axios.get('/cakes/all').then(res => saveCakesList(res.data));

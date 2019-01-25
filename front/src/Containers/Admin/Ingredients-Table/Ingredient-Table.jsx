@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { Row, Col, Table } from 'reactstrap';
+import { bindActionCreators } from 'redux';
 import axios from 'axios';
+import axiosIngredientsDB from '../../../Actions/fetchDB/fetch_database_actions';
 import ModifyIngredient from '../DatabaseIngredient/ModifyIngredient';
 
 class IngredientTable extends Component {
@@ -20,11 +22,13 @@ class IngredientTable extends Component {
   }
 
   deleteIngredient = (id, token) => {
+    const { updateIngredients } = this.props;
     if (window.confirm('Voulez-vous supprimer cet ingrédient ?')) {
       const url = `/ingredients/${id}`;
       const headers = { Authorization: `Bearer ${token}` };
       axios.delete(url, { headers })
-        .then(res => window.alert(res.data.message));
+        .then(res => window.alert(res.data.message))
+        .then(updateIngredients());
     }
   };
 
@@ -38,8 +42,8 @@ class IngredientTable extends Component {
       <td>{element.description}</td>
       <td><img src={element.image} alt={element.name} /></td>
       <td>
-        <button type="button" className="btn btn-success" onClick={this.setState({ showForm: true, ingToModify: element })}>modifier</button>
-        <button type="button" className="btn btn-danger" onClick={this.deleteIngredient(element.id, token)}>supprimer</button>
+        <button type="button" className="btn btn-success" onClick={() => this.setState({ showForm: true, ingToModify: element })}>modifier</button>
+        <button type="button" className="btn btn-danger" onClick={() => this.deleteIngredient(element.id, token)}>supprimer</button>
       </td>
     </tr>
   );
@@ -69,7 +73,7 @@ class IngredientTable extends Component {
             <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Base brownie')} type="button">Base brownie</button>
             <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Parfum')} type="button">Parfum</button>
             <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Garniture')} type="button">Garniture</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Topping')} type="button">Topping</button>
+            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Toppings')} type="button">Toppings</button>
             <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Glaçage')} type="button">Glaçage</button>
             <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Coquille')} type="button">Macaron Coquille</button>
             <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Macaron')} type="button">Macaron Parfum</button>
@@ -103,13 +107,21 @@ class IngredientTable extends Component {
 IngredientTable.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   token: PropTypes.string.isRequired,
+  updateIngredients: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
   {
     ingredients: state.ingredients,
     token: state.adminToken,
+    dispatch: state.dispatch,
   }
 );
 
-export default connect(mapStateToProps)(IngredientTable);
+const mapDispatchToProps = dispatch => (
+  {
+    updateIngredients: bindActionCreators(axiosIngredientsDB, dispatch),
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(IngredientTable);

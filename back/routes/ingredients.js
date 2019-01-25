@@ -109,7 +109,7 @@ passport.use(new JWTStrategy(
 ));
 
 ingred.delete(
-  '/ingredients/:type/:id',
+  '/ingredients/:id',
   // jwtAuthentification(),
   passport.authenticate('jwt', {
     session:  false,
@@ -118,8 +118,8 @@ ingred.delete(
   }),
   (req, res) => {
     console.log(req.headers)
-    const formData = [req.params.type, req.params.id];
-    connection.query('DELETE FROM ?? WHERE id = ?', formData, (err, results) => {
+    connection.query('DELETE FROM ingredients WHERE id = ?', req.params.id, (err, results) => {
+      console.log(err,results);
       if (err) res.status(500).json({ message:  "Erreur lors de la suppression" });
       else res.status(200).json({ message:  "Ingrédient supprimé" });
       }
