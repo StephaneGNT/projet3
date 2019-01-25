@@ -14,7 +14,7 @@ const CustomizationStructure = () => (
     <Row className="text-center">
       <Progressbar />
     </Row>
-    <Row style={{ minHeight: '65vh', background: 'rgba(255,255,255, 0.9)' }}>
+    <Row style={{ minHeight: '65vh', background: 'rgba(255,255,255, 1)' }}>
       {/* <Col sm={1} xs={0}>
         <LeftPics />
       </Col> */}

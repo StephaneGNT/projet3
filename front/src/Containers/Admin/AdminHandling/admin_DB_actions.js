@@ -9,31 +9,13 @@ export const getOneAdmin = (admin) => {
     });
 };
 
-// Vérification si admin déjà présent en DB
-const testExisting = async (admin) => {
-  const adminDB = await getOneAdmin(admin);
-  if (adminDB.length > 0) return true;
-  return false;
-};
-
-// Récupération de tous les adminq - OK
-export const getAllAdmins = () => {
-  return axios.get('/api/admin/all')
-    .then((err, response) => {
-      if (err) return err;
-      return response;
-    });
-};
-
 // Création d'un nouvel admin - OK mais 2ème appel qui fait crasher
 export const createAdmin = (newAdmin) => {
-  // if (!testExisting(newAdmin)) {
-    axios.post('/api/auth/new', newAdmin)
-      .then((response) => {
-        if (response.status === 200) window.alert(`Success : ${response.data}`)
-        else window.alert(`Arf : ${response.data}`)
-      });
-  // } else window.alert('Identifiant déjà utilisé');
+  axios.post('/api/auth/new', newAdmin)
+    .then((response) => {
+      if (response.status === 200) window.alert(`Success : ${response.data}`)
+      else window.alert(`Arf : ${response.data}`)
+    });
 };
 
 // Suppression d'un admin - OK
@@ -45,7 +27,7 @@ export const deleteAdminFromDB = (id) => {
     });
 };
 
-// Mise à jour d'un admin - Not OK
+// Mise à jour d'un admin - OK
 export const updateAdmin = (newAdmin, id) => {
   axios.put(`/api/auth/${id}`, { newAdmin, id })
     .then(response => window.alert(response.data));
@@ -53,6 +35,7 @@ export const updateAdmin = (newAdmin, id) => {
 
 // Connexion
 export const connectAdmin = (admin) => {
+  console.log("newAdmin", admin);
   return axios.post('/api/auth/login', admin)
     .then((response) => {
       if (response.status === 200) {

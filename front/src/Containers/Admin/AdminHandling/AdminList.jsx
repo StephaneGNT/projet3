@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Container, Row, Button } from 'reactstrap';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Login from './Login';
-import { getAllAdmins, deleteAdminFromDB } from './admin_DB_actions';
+import { deleteAdminFromDB } from './admin_DB_actions';
 import changeIndex from '../../../Actions/adminsActions/changeAdminIndex';
 
 class AdminList extends Component {
@@ -17,12 +18,13 @@ class AdminList extends Component {
   }
 
   componentDidMount = () => {
+    console.log("this.componentDidMount")
     this.getAdminList();
   }
 
   getAdminList = async () => {
-    const adminList = await getAllAdmins();
-    this.setState({ adminList: adminList.data });
+    const adminList = await axios.get('/api/admin/all').then(res => res.data);
+    this.setState({ adminList });
   }
 
   renderList = () => {
@@ -31,7 +33,7 @@ class AdminList extends Component {
     adminList.map((admin) => {
       render.push(
         <tr>
-          <td>{admin.admin_id}</td>
+          <td>{admin.name}</td>
           <td>
             <Button
               onClick={() => this.modifyAdmin(admin.id)}
@@ -98,10 +100,15 @@ class AdminList extends Component {
 
 AdminList.propTypes = {
   setAdminIndex: PropTypes.func.isRequired,
+  // admins: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
+
+const mapStateToProps = state => ({
+  admins: state.adminList,
+});
 
 const mapDispatchToProps = dispatch => ({
   setAdminIndex: index => dispatch(changeIndex(index)),
 });
 
-export default connect(null, mapDispatchToProps)(AdminList);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminList);
