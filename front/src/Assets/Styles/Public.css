@@ -184,3 +184,68 @@ h3 {
 h1 {
   font-size:1.3em !important;
 }
+
+/* COMPONENT : Ingredient-Table.jsx */
+.body-ingred-tb {
+  background:rgb(233, 233, 233);
+  margin:auto;
+  padding:2%;
+  width:100%;
+}
+
+.col-btn-tb {
+  margin: 4px;
+  font-size:0.8em !important;
+}
+
+.body-tb {
+  font-size:0.8em;
+}
+
+.btn-ad-sup {
+  font-size:0.7em !important;
+  margin:2px;
+}
+
+
+/* COMPONENT : AddIngredients.jsx */
+.bodyIng {
+  font-size:0.8em;
+  padding:1%;
+  width:100%;
+  margin:1%;
+  background-color: rgb(241, 188, 188);
+  border:1px solid purple;
+}
+
+.title-admin {
+  font-size:1.em;
+}
+
+.label-type {
+  font-size:0.7em;
+  color:black;
+  font-weight:700;
+}
+
+.input-admin-type {
+  font-size:1.2em !important;
+}
+
+.les-row {
+  width:100%;
+  padding:1em;
+}
+label {
+  width:100%;
+}
+
+.ligne-titre {
+  padding:1%;
+  width:100% !important;
+  margin:auto;
+}
+
+.btn-ajout {
+  margin:5px;
+}

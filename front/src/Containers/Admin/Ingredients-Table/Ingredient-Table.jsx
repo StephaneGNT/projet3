@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { Row, Col, Table } from 'reactstrap';
+import { Container, Row, Col, Table, Button } from 'reactstrap';
 import axios from 'axios';
-import ModifyIngredient from '../DatabaseIngredient/ModifyIngredient';
+// import ModifyIngredient from '../DatabaseIngredient/ModifyIngredient';
+import AddIngredients from '../DatabaseIngredient/AddIngredients';
+import '../../../Assets/Styles/Add_Ingredients.css';
 
 class IngredientTable extends Component {
   constructor(props) {
@@ -38,8 +40,8 @@ class IngredientTable extends Component {
       <td>{element.description}</td>
       <td><img src={element.image} alt={element.name} /></td>
       <td>
-        <button type="button" className="btn btn-success" onClick={() => this.setState({ showForm: true, ingToModify: element })}>modifier</button>
-        <button type="button" className="btn btn-danger" onClick={() => this.deleteIngredient(element.id, token)}>supprimer</button>
+        <Button type="button" size="sm" color="warning" className="btn-ad-sup" onClick={() => this.setState({ showForm: true, ingToModify: element })}>modifier</Button>
+        <Button type="button" size="sm" color="danger" className="btn-ad-sup" onClick={() => this.deleteIngredient(element.id, token)}>supprimer</Button>
       </td>
     </tr>
   );
@@ -51,50 +53,53 @@ class IngredientTable extends Component {
     return ingredientsArray.filter(ingredient => ingredient.type === filterTest).map(ingredient => this.createTableDataRows(ingredient, token));
   };
 
-  toggleModify = (show, ing) => (show ? <ModifyIngredient ingredient={ing} /> : null)
+  toggleAddIng = (show, ing) => (show ? <AddIngredients ingredient={ing} /> : null)
 
   render() {
     const { ingredients, token } = this.props;
-    const { filterTable, showForm, ingToModify } = this.state;
+    const { filterTable, showForm, ingToAddIng } = this.state;
     return (
       <div>
-        <Row>
-          {/* {this.toggleModify(showForm, ingToModify)} */}
-        </Row>
-        <Row>
-          <Col>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('All')} type="button">All</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Base')} type="button">Base</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Base cookie')} type="button">Base cookie</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Base brownie')} type="button">Base brownie</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Parfum')} type="button">Parfum</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Garniture')} type="button">Garniture</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Topping')} type="button">Topping</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Glaçage')} type="button">Glaçage</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Coquille')} type="button">Macaron Coquille</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Macaron')} type="button">Macaron Parfum</button>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Table>
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Type</th>
-                  <th>Taille</th>
-                  <th>Prix</th>
-                  <th>Description</th>
-                  <th>Image</th>
-                  <th>Options</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.createTableData(ingredients, filterTable, token)}
-              </tbody>
-            </Table>
-          </Col>
-        </Row>
+        <Container className="body-ingred-tb">
+          <Row>
+            {this.toggleAddIng(showForm, ingToAddIng)}
+            <AddIngredients />
+          </Row>
+          <Row>
+            <Col sm="12">
+              <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('All')} type="button">All</Button>
+              <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Base')} type="button">Base</Button>
+              <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Base cookie')} type="button">Base cookie</Button>
+              <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Base brownie')} type="button">Base brownie</Button>
+              <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Parfum')} type="button">Parfum</Button>
+              <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Garniture')} type="button">Garniture</Button>
+              <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Topping')} type="button">Topping</Button>
+              <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Glaçage')} type="button">Glaçage</Button>
+              <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Coquille')} type="button">Macaron Coquille</Button>
+              <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Macaron')} type="button">Macaron Parfum</Button>
+            </Col>
+          </Row>
+          <Row className="body-tb">
+            <Col>
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Type</th>
+                    <th>Taille</th>
+                    <th>Prix</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Options</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.createTableData(ingredients, filterTable, token)}
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
