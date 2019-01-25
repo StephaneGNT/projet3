@@ -1,6 +1,7 @@
 :root {
   --mainColor: rgba(141, 29, 44, 0.8);
   --secondColor: rgba(212, 186, 34, 0.8);
+  --lightPurple: rgb(250, 242, 255);
   --mainPolice: 'Lobster Two', cursive;
   --secondPolice: 'Arial';
 }

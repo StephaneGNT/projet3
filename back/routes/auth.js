@@ -14,7 +14,7 @@ passport.use(new LocalStrategy(
     passwordField: 'password'
   },
   function (id, adminPassword, cb) {
-    connection.query('SELECT * FROM admin WHERE admin_id = ?', id, (err, result) => {
+    connection.query('SELECT * FROM admin WHERE name = ?', id, (err, result) => {
       if (err || result.length === 0) return cb(err);
       else {
         const user = result[0];
@@ -29,6 +29,7 @@ passport.use(new LocalStrategy(
 
 // Authentification login / mot de passe
 auth.post('/auth/login', function (req, res, next) {
+  console.log(req)
   passport.authenticate('local', { session: false }, (err, user, info) => {
     if (err || !user) {
       return res.status(400).json({
@@ -38,7 +39,7 @@ auth.post('/auth/login', function (req, res, next) {
     }
     req.login(user, { session: false }, (err) => {
       if (err) {
-        res.send(err);
+        res.status(500).send(err);
       }
       // generates a signed son web token with the admin_id and returns it in the response
       const token = jwt.sign(user.id, secret);

@@ -9,13 +9,8 @@ const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
 const secret = require('../helper/jwt_secret');
 
-
-
-
-
-ingred.post(`/ingredients/:type/new`, (req, res) => {
-  const formData = req.body;
-  connection.query('INSERT INTO ? SET ?', formData, (err, results) => {
+ingred.post('/ingredients/new', (req, res) => {
+  connection.query('INSERT INTO ingredients SET ?', req.body, (err, results) => {
     if (err) {
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");
     } else {
@@ -61,7 +56,6 @@ ingred.put(`/ingredients/:id`, (req, res) => {
 // });
 
 ingred.get('/ingredients/name', (req, res) => {
-  console.log(req.body)
   connection.query('SELECT * from ingredients', (err, results) => {
     if (err) { 
         res.status(500).send('Erreur lors de la recup des noms');
@@ -72,7 +66,6 @@ ingred.get('/ingredients/name', (req, res) => {
 });
 
 ingred.get('/allergenes/name', (req, res) => {
-  console.log(req.body)
   connection.query('SELECT * from allergenes', (err, results) => {
     if (err) { 
         res.status(500).send('Erreur lors de la recup des allergenes');
@@ -109,7 +102,7 @@ passport.use(new JWTStrategy(
 ));
 
 ingred.delete(
-  '/ingredients/:type/:id',
+  '/ingredients/:id',
   // jwtAuthentification(),
   passport.authenticate('jwt', {
     session:  false,
@@ -118,8 +111,8 @@ ingred.delete(
   }),
   (req, res) => {
     console.log(req.headers)
-    const formData = [req.params.type, req.params.id];
-    connection.query('DELETE FROM ?? WHERE id = ?', formData, (err, results) => {
+    connection.query('DELETE FROM ingredients WHERE id = ?', req.params.id, (err, results) => {
+      console.log(err,results);
       if (err) res.status(500).json({ message:  "Erreur lors de la suppression" });
       else res.status(200).json({ message:  "Ingrédient supprimé" });
       }

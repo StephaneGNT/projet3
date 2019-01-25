@@ -96,10 +96,6 @@ class AddIngredients extends Component {
     else this.allergeneIngList.push(allergeneID);
   }
 
-  handleEvent = () => {
-    alert('Votre ingrédient a bien été ajouté.');
-  };
-
   render() {
     const { toggleForm } = this.props;
     return (
