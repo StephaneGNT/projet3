@@ -5,7 +5,6 @@ import { Container, Row, Col, Table, Button } from 'reactstrap';
 import axios from 'axios';
 // import ModifyIngredient from '../DatabaseIngredient/ModifyIngredient';
 import AddIngredients from '../DatabaseIngredient/AddIngredients';
-import '../../../Assets/Styles/Add_Ingredients.css';
 
 class IngredientTable extends Component {
   constructor(props) {
