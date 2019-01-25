@@ -1,11 +1,10 @@
 import React from 'react';
 
 const CakeDecoration = (cake, user) => {
-  console.log("cakeDecoration", cake)
   const render = [];
   let description = '';
   if (cake.type === 'cake') description = `1 ${cake.type} de ${cake.story} étage(s) pour ${cake.size} personnes`;
-  else if (cake.type === 'cheesecake') description = `1 ${cake.type} pour ${cake.size} personnes`;
+  else if (cake.type === 'cheesecake') description = `1 ${cake.type} pour 8 à 10 personnes`;
   else description = `${cake.quantity} ${cake.type} en taille ${cake.size}`;
 
   let decoration = '';
@@ -69,7 +68,6 @@ const CakeDecoration = (cake, user) => {
       <td style={{ fontWeight: 'bold' }}>{cake.price} €</td>
     </tr>,
   );
-  console.log(render)
   return render;
 };
 

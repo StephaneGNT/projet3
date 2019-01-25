@@ -8,7 +8,9 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import VerticalNavBar from './Navigation/VerticalNavBar';
 import Login from './AdminHandling/Login';
-import OrdersAdmin from './OrdersAdmin';
+import OrdersAdmin from './OrdersList/OrdersAdmin';
+import CakeDetail from './OrdersList/CakeDetail';
+import ClientDetail from './OrdersList/ClientDetail';
 import { getAllOrders, getAllCustomers, getAllCakes } from '../../Actions/adminsActions/getAllOrdersCakesCustomers';
 import { fetchFonts, getFonts } from '../../Actions/customization_actions';
 import Clients from './Clients';
@@ -42,8 +44,8 @@ class Admin extends Component {
       <Route
         {...rest}
         render={() => (
-          // jwtToken !== ''
-          this.loggedIn
+          jwtToken !== ''
+          // this.loggedIn
             ? <Component />
             : <Redirect to="/admin" />
         )}
@@ -88,6 +90,14 @@ class Admin extends Component {
               <PrivateRoute
                 path={`${process.env.PUBLIC_URL}/admin/adminList`}
                 component={AdminList}
+              />
+              <PrivateRoute
+                path={`${process.env.PUBLIC_URL}/admin/orderDetail/cake`}
+                component={CakeDetail}
+              />
+              <PrivateRoute
+                path={`${process.env.PUBLIC_URL}/admin/orderDetail/client`}
+                component={ClientDetail}
               />
             </Switch>
           </Col>

@@ -29,6 +29,7 @@ passport.use(new LocalStrategy(
 
 // Authentification login / mot de passe
 auth.post('/auth/login', function (req, res, next) {
+  console.log(req)
   passport.authenticate('local', { session: false }, (err, user, info) => {
     if (err || !user) {
       return res.status(400).json({
