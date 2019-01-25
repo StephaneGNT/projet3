@@ -56,7 +56,6 @@ class AddIngredients extends Component {
   }
 
   handleSubmit = async () => {
-    // e.preventDefault();
     const {
       name, type, size, price, dispo, description, image, isCompatible, flavor, color,
     } = this.state;
@@ -80,7 +79,6 @@ class AddIngredients extends Component {
       .catch(err => console.log(err.response.data));
 
     // Enregistrement des ingrédients compatibles
-    console.log(this.compatibleIngList);
     this.compatibleIngList.map((ingID) => {
       const formData = {
         id_ingred1: newIngredientID,
@@ -107,7 +105,7 @@ class AddIngredients extends Component {
 
   render() {
     return (
-      <div className="bodyIng">
+      <div className="bodyIng" id="showhide">
         <title-admin>Décrivez votre nouvel ingrédient</title-admin>
         <Form>
           <Row form>

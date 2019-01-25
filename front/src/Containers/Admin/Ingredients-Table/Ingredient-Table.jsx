@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { Container, Row, Col, Table, Button } from 'reactstrap';
 import axios from 'axios';
-// import ModifyIngredient from '../DatabaseIngredient/ModifyIngredient';
+import ModifyIngredient from '../DatabaseIngredient/ModifyIngredient';
 import AddIngredients from '../DatabaseIngredient/AddIngredients';
 
 class IngredientTable extends Component {
@@ -52,17 +52,20 @@ class IngredientTable extends Component {
     return ingredientsArray.filter(ingredient => ingredient.type === filterTest).map(ingredient => this.createTableDataRows(ingredient, token));
   };
 
-  toggleAddIng = (show, ing) => (show ? <AddIngredients ingredient={ing} /> : null)
+  // toggleModify = (show, ing) => (show ? <ModifyIngredient ingredient={ing} /> : null)
+
+  toggleAddIng() {
+    this.setState(prevState => ({ showForm: !prevState.showForm }));
+  }
 
   render() {
     const { ingredients, token } = this.props;
-    const { filterTable, showForm, ingToAddIng } = this.state;
+    const { filterTable, showForm, ingToModify } = this.state;
     return (
       <div>
         <Container className="body-ingred-tb">
           <Row>
-            {this.toggleAddIng(showForm, ingToAddIng)}
-            <AddIngredients />
+            {/* {this.toggleModify(showForm, ingToModify)} */}
           </Row>
           <Row>
             <Col sm="12">
@@ -77,6 +80,10 @@ class IngredientTable extends Component {
               <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Coquille')} type="button">Macaron Coquille</Button>
               <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Macaron')} type="button">Macaron Parfum</Button>
             </Col>
+          </Row>
+          <Row>
+            <Button outline size="sm" color="info" onClick={() => this.toggleAddIng()}> + Ajouter un ingrédient ?</Button>
+            {this.state.showForm ? <AddIngredients /> : null }
           </Row>
           <Row className="body-tb">
             <Col>
