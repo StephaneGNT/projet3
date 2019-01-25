@@ -1,3 +1,4 @@
-const secret = 'Mmarin2012';
+
+const secret = 'gilunaPimpMyCake';
 
 module.exports = secret;
