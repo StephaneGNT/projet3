@@ -38,8 +38,8 @@ class IngredientTable extends Component {
       <td>{element.description}</td>
       <td><img src={element.image} alt={element.name} /></td>
       <td>
-        <button type="button" className="btn btn-success" onClick={this.setState({ showForm: true, ingToModify: element })}>modifier</button>
-        <button type="button" className="btn btn-danger" onClick={this.deleteIngredient(element.id, token)}>supprimer</button>
+        <button type="button" className="btn btn-success" onClick={() => this.setState({ showForm: true, ingToModify: element })}>modifier</button>
+        <button type="button" className="btn btn-danger" onClick={() => this.deleteIngredient(element.id, token)}>supprimer</button>
       </td>
     </tr>
   );

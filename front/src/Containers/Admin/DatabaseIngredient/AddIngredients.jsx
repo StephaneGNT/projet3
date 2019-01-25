@@ -4,7 +4,6 @@ import axios from 'axios';
 import {
   Label, Input, Button, Form, FormGroup, Table, Col, Row,
 } from 'reactstrap';
-// import AlertAddIngredient from './AlertAddIngredient';
 import PropTypes from 'prop-types';
 import UploadPicsAddIngred from '../../UploadPicsAddIngred';
 import '../../../Assets/Styles/Add_Ingredients.css';

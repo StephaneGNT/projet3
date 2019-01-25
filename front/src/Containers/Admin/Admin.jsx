@@ -11,7 +11,6 @@ import Login from './AdminHandling/Login';
 import OrdersAdmin from './OrdersList/OrdersAdmin';
 import CakeDetail from './OrdersList/CakeDetail';
 import ClientDetail from './OrdersList/ClientDetail';
-import DataBase from './DatabaseIngredient/DataBase';
 import { getAllOrders, getAllCustomers, getAllCakes } from '../../Actions/adminsActions/getAllOrdersCakesCustomers';
 import { fetchFonts, getFonts } from '../../Actions/customization_actions';
 import Clients from './Clients';
@@ -43,8 +42,8 @@ class Admin extends Component {
       <Route
         {...rest}
         render={() => (
-          jwtToken !== ''
-          // this.loggedIn
+          // jwtToken !== ''
+          this.loggedIn
             ? <Component />
             : <Redirect to="/admin" />
         )}
