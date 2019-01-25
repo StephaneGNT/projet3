@@ -7,7 +7,6 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { toggleFormModify } from '../../../Actions/databaseActions/toggleFormNew';
 import UploadPicsAddIngred from '../../UploadPicsAddIngred';
-// import AlertAddIngredient from './AlertAddIngredient';
 import '../../../Assets/Styles/Add_Ingredients.css';
 
 class ModifyIngredient extends Component {
@@ -35,9 +34,9 @@ class ModifyIngredient extends Component {
     this.handleClickCompatible = this.handleClickCompatible.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     const {
-      ingredients, // arrays ingredients.compatible et ingredients.allergenes inherited from phil
+      reducerIngredients, ingredient, // arrays ingredients.compatible et ingredients.allergenes inherited from phil
     } = this.props;
-    this.inheritedIngredient = ingredients;
+    this.inheritedIngredient = ingredient;
   }
 
   componentWillMount() {
@@ -58,14 +57,24 @@ class ModifyIngredient extends Component {
       });
   }
 
-
+  // prevoir this.setState ingredients.compatible
   handleClickCompatible = (compatibleID) => {
-    if (this.inheritedIngredient.compatible.indexOf(compatibleID >= 0)) {
-      this.inheritedIngredient.compatible.splice(0, 1, compatibleID);
+    if (this.inheritedIngredient.compatible.includes(compatibleID)) {
+      this.inheritedIngredient.compatible.splice(0, compatibleID);
     } else {
       this.inheritedIngredient.compatible.push(compatibleID);
     }
     return this.inheritedIngredient.compatible;
+  }
+
+  // prevoir this.setState ingredients.allerg
+  handleClickAllergene = (allergeneID) => {
+    if (this.inheritedIngredient.allergenes.includes(allergeneID)) {
+      this.inheritedIngredient.allergenes.splice(0, allergeneID);
+    } else {
+      this.inheritedIngredient.allergenes.push(allergeneID);
+    }
+    return this.inheritedIngredient.allergenes;
   }
 
 
@@ -87,19 +96,19 @@ class ModifyIngredient extends Component {
     axios.put(`http://localhost:5000/ingredients/${modifiedIngredient.id}/`, modifiedIngredient)
       .then(res => (res.data))
       .catch(err => (err.response.data));
+
+      
   };
 
 
   createModifyForm = (ingredients, fullList, fullAllerg) => {
     const { toggleForm } = this.props;
-    console.log('inheritedIng :', this.inheritedIngredient);
-    console.log('ingredients :', ingredients);
     return (
       <div className="bodyIng">
         <title-admin>
           Modifier l’ingrédient
           {' '}
-          {/* {this.inheritedIngredient.name} */}
+          {this.inheritedIngredient.name}
         </title-admin>
         <Form>
           <Row form>
@@ -139,7 +148,7 @@ class ModifyIngredient extends Component {
             <Col md={4}>
               <FormGroup>
                 <Label>Description</Label>
-                <Input type="text" name="info" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.info} value={ingredients.info} />
+                <Input type="text" name="info" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.description} value={ingredients.info} />
               </FormGroup>
             </Col>
           </Row>
@@ -181,8 +190,8 @@ class ModifyIngredient extends Component {
                         <Input
                           name="isCompatible"
                           type="checkbox"
-                          // defaultChecked={this.inheritedIngredient.compatible.indexOf(compatible.name >= 0)} // inherited from phil
-                          // onChange={(this.handleClickCompatible(compatible.id))}
+                          defaultChecked={this.inheritedIngredient.compatible.includes(compatible.name)}
+                          onChange={(this.handleClickCompatible(compatible.id))}
                         />
                         <Label check>{compatible.name}</Label>
                       </td>))}
@@ -204,9 +213,10 @@ class ModifyIngredient extends Component {
                         <Input
                           name="isCompatible"
                           type="checkbox"
-                          // defaultChecked={this.inheritedIngredient.allerg.indexOf(allergene.name >= 0)}
+                          defaultChecked={this.inheritedIngredient.allergenes.includes(allergene.name)}
+                          onChange={() => this.handleClickAllergene(allergene.id)}
                         />
-                        <Label check>{allergene.name}</Label>
+                        <Label>{allergene.name}</Label>
                       </td>))}
                   </tr>
                 </tbody>
@@ -237,17 +247,17 @@ class ModifyIngredient extends Component {
 
 
 ModifyIngredient.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  ingredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  reducerIngredients: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   ingredientCompatible: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   ingredientAllerg: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   fullListIngredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  ingredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   toggleForm: PropTypes.func.isRequired,
   displayIndexForm: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
-  ingredients: state.ingredientsReducer,
+  reducerIngredients: state.ingredientsReducer,
   selectedIngredient: state.ingredientCharacteristics,
   displaybeta: state.databaseDisplay.beta,
   displayIndexForm: state.databaseModifyFormIndex,

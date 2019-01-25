@@ -1,37 +1,67 @@
+.table-add-ingred td {
+  display: flex;
+}
 
+.title-label-list {
+  background-color:rgb(205, 208, 211);
+  border:none !important;
+}
+
+
+title-admin {
+  color:white;
+  font-weight:700;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+  font-size:1.2em;
+  background-color:rgb(219, 151, 87);
+  padding:2%;
+  margin-bottom:1%;
+  display:block;
+  text-align:center;
+  /* border-radius:5px; */
+}
 
 .bodyIng {
-    /* background-color: rgb(190, 190, 190); */
-    padding:1%;
-    width:100%;
-    margin:1%;
-    background-color: rgb(233, 233, 233);
+  background-color: rgb(190, 190, 190);
+  padding:1%;
+  width:110%;
+  margin:1%;
+  background-color: rgb(233, 233, 233);
 }
 
-.label-type {
-    font-size:0.7em;
-    color:black;
-    font-weight:700;
-}
-
-.input-admin-type {
-    font-size:1.2em !important;
-}
-
-.les-row {
-    width:100%;
-    padding:1em;
-}
-label {
-    width:100%;
+.col-size-checkbox {
+  height:15vh;
+  overflow: auto;
+  /* border:1px solid rgb(218, 218, 218); */
+  margin:1%;
+  padding:auto;
 }
 
 .ligne-titre {
-    padding:1%;
-    width:100% !important;
-    margin:auto;
+  padding:1%;
+  margin:auto;
+}
+
+
+.label-type {
+  font-size:0.7em;
+  color:black;
+  font-weight:700;
+}
+
+.input-admin-type {
+  font-size:1.2em !important;
+}
+
+.les-row {
+  width:100%;
+  padding:1em;
+}
+label {
+  width:100%;
 }
 
 .btn-ajout {
-    margin:5px;
+  margin:5px;
 }

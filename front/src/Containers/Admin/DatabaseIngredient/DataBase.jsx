@@ -6,7 +6,7 @@ import HorizontalNavBar from './HorizontalNavBar';
 import Toolbar from './Toolbar';
 import AddIngredients from './AddIngredients';
 import ModifyIngredient from './ModifyIngredient';
-import TableDB from '../Incredients-Components/Table_DB/TableDB';
+// import TableDB from '../Incredients-Components/Table_DB/TableDB';
 
 class DataBase extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class DataBase extends Component {
       case ('Cheesecake'): elementToDisplay = chessecakeFlavor; break;
       default: elementToDisplay = cake;
     }
-    return TableDB(elementToDisplay, token);
+    // return TableDB(elementToDisplay, token);
   }
 
   renderFormAddIngredient = () => {

@@ -232,7 +232,7 @@ class UserInfo extends Component {
                 onKeyPress={this.enterForm}
               />
               <FormFeedback>date de naissance non valide (format requis: JJ/MM/AAAA)</FormFeedback>
-              {!this.birthdateRegex.test(user.birthday) && user.birthday.length <= 9 ? (
+              {!this.birthdateRegex.test(user.birthday) && user.birthday && user.birthday.length <= 9 ? (
                 <div className="invalidDOB">
                   <p>Format: JJ/MM/AAAA</p>
                 </div>
@@ -299,6 +299,7 @@ class UserInfo extends Component {
             Envoyer la commande
           </button>
         </Row>
+        {/* <img src={ require(`../../../../../back/tmp/${this.props.photo1}`) } alt="customer decoration" /> */}
       </Container>
     );
   }

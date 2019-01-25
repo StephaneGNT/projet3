@@ -57,5 +57,3 @@ const TableData = (ingredients, token) => ingredients.map(ingredient => (
 
 
 export default (TableData);
-
-

@@ -13,13 +13,13 @@ passport.use(new LocalStrategy(
     usernameField: 'id',
     passwordField: 'password'
   },
-  function (id, password, cb) {
+  function (id, adminPassword, cb) {
     connection.query('SELECT * FROM admin WHERE admin_id = ?', id, (err, result) => {
       if (err || result.length === 0) return cb(err);
       else {
         const user = result[0];
-        const hash = result[0].admin_password;
-        const isSame = bcrypt.compareSync(password, hash);
+        const hash = result[0].adminPassword;
+        const isSame = bcrypt.compareSync(adminPassword, hash);
         if (!isSame) cb(null, false, { message: 'Incorrect email or password.' });
         return cb(null, user, { message: 'Logged In Successfully' });
       }
