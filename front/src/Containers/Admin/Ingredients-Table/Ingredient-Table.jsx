@@ -42,7 +42,7 @@ class IngredientTable extends Component {
       <td>{element.description}</td>
       <td><img src={element.image} alt={element.name} /></td>
       <td>
-        <button type="button" className="btn btn-success" onClick={() => this.setState({ showForm: true, ingToModify: element })}>modifier</button>
+        <button type="button" className="btn btn-secondary mr-1" onClick={() => this.setState({ showForm: true, ingToModify: element })}>modifier</button>
         <button type="button" className="btn btn-danger" onClick={() => this.deleteIngredient(element.id, token)}>supprimer</button>
       </td>
     </tr>
@@ -67,16 +67,16 @@ class IngredientTable extends Component {
         </Row>
         <Row>
           <Col>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('All')} type="button">All</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Base')} type="button">Base</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Base cookie')} type="button">Base cookie</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Base brownie')} type="button">Base brownie</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Parfum')} type="button">Parfum</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Garniture')} type="button">Garniture</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Toppings')} type="button">Toppings</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Glaçage')} type="button">Glaçage</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Coquille')} type="button">Macaron Coquille</button>
-            <button className="btn btn-success" onClick={() => this.onChangeFilterTable('Macaron')} type="button">Macaron Parfum</button>
+            <button className="btn btn-secondary mr-1" onClick={() => this.onChangeFilterTable('All')} type="button">All</button>
+            <button className="btn btn-secondary mr-1" onClick={() => this.onChangeFilterTable('Base')} type="button">Base</button>
+            <button className="btn btn-secondary mr-1" onClick={() => this.onChangeFilterTable('Base cookie')} type="button">Base cookie</button>
+            <button className="btn btn-secondary mr-1" onClick={() => this.onChangeFilterTable('Base brownie')} type="button">Base brownie</button>
+            <button className="btn btn-secondary mr-1" onClick={() => this.onChangeFilterTable('Parfum')} type="button">Parfum</button>
+            <button className="btn btn-secondary mr-1" onClick={() => this.onChangeFilterTable('Garniture')} type="button">Garniture</button>
+            <button className="btn btn-secondary mr-1" onClick={() => this.onChangeFilterTable('Toppings')} type="button">Toppings</button>
+            <button className="btn btn-secondary mr-1" onClick={() => this.onChangeFilterTable('Glaçage')} type="button">Glaçage</button>
+            <button className="btn btn-secondary mr-1" onClick={() => this.onChangeFilterTable('Coquille')} type="button">Macaron Coquille</button>
+            <button className="btn btn-secondary mr-1" onClick={() => this.onChangeFilterTable('Macaron')} type="button">Macaron Parfum</button>
           </Col>
         </Row>
         <Row>
