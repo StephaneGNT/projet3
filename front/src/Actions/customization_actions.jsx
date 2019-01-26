@@ -1,15 +1,5 @@
 import axios from 'axios';
 
-// export const allowMessage = item => ({
-//   type: 'ALLOW_MESSAGE',
-//   item,
-// });
-
-// export const removeCakeMessage = blank => ({
-//   type: 'REMOVE_CUSTOM_MESSAGE',
-//   blank,
-// });
-
 export const getFonts = fonts => ({
   type: 'UPDATE_FONTS',
   fonts,
