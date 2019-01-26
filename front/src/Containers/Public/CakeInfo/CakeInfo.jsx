@@ -23,7 +23,7 @@ const CakeInfo = (props) => {
     <Container className="body-row">
       <Row className="justify-content-around">
         <Col sm="12">
-          <div className="labels-perso-btn-douceurs">Choisissez votre type de douceur :</div>
+          <div className="labels-perso">Choisissez votre type de douceur :</div>
         </Col>
       </Row>
       <Row className="mt-3 justify-content-around">
@@ -105,6 +105,7 @@ const CakeInfo = (props) => {
 CakeInfo.propTypes = {
   localChangeCakeType: PropTypes.func.isRequired,
   resetCakeStories: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

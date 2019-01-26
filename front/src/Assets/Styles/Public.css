@@ -77,7 +77,7 @@ h3 {
   display:block;
   width: 100%;
   padding:3px;
-  font-size: 1em;
+  font-size: 1.2em;
   font-weight:200;
   font-family: var(--mainPolice);
   color:var(--mainColor);
@@ -148,21 +148,18 @@ h3 {
   cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
-.tipsColumn{
-  height: 50vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-size:0.8em;
-  line-height:1em;
-}
-
 .selectionOutline {
   box-shadow: 0 0 3pt 2pt rgb(168, 112, 48) !important
 }
 
 /* block des tips */
-.body-tips {
+.tipsColumn{
+  /* height: 60vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1em;
+  /* line-height:1em; */
   background-color: rgba(180, 180, 180, 0.644);
   border:double 4px rgb(211, 210, 210);
   padding:3%;
@@ -174,7 +171,7 @@ h3 {
   margin:auto;
   text-align:center;
   color:rgb(107, 107, 107) !important;
-  font-size:0.9em;
+  font-size:1.5em;
   background-color: rgb(201, 201, 201);
   padding:2%;
   font-weight:700;
