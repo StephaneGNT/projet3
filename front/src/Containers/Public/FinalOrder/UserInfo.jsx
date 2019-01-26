@@ -183,7 +183,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="firstname">
+              <Label for="firstName">
                 <span className="text-danger">* </span>
                 Prénom
               </Label>
@@ -202,7 +202,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="lastname">
+              <Label for="lastName">
                 <span className="text-danger">* </span>
                 Nom
               </Label>
