@@ -18,15 +18,15 @@ const Tips = (props) => {
       case 'macaron': return <TipsMacaron />;
       case 'brownie': return <TipsBrownie />;
       default: return (
-        <div style={{ fontSize: '17px' }}>
+        <div style={{  }}>
           <p className="mt-3">Construisez facilement et rapidement un gâteau entièrement à votre goût !</p>
           <p>
             1- Sélectionnez le type de gâteaux que vous souhaitez (cookies, macarons, cake,
-          cheesecake, etc)
+          cheesecake, brownie)
             <br />
             2- Choisissez ensuite votre base, votre ganache et votre glaçage.
             <br />
-            3- Ajoutez des gourmandises pour le rendre encore plus unique!
+            3- Ajoutez des gourmandises pour le rendre encore meilleur !
             <br />
             4- À chaque événement son gâteau: embellissez votre création avec une image, ue décoration 3D, ou simplement avec un joli texte personnalisé, pour le rendre parfaitement unique !
           </p>
@@ -39,7 +39,7 @@ const Tips = (props) => {
 
   return (
     <div className="body-tips">
-      <div className="title-tips">astuce(s)</div>
+      <div className="title-tips">astuces</div>
       {renderTips(cake.type)}
     </div>
   );

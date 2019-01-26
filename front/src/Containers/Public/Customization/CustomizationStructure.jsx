@@ -29,7 +29,7 @@ const CustomizationStructure = (props) => {
         <Price />
       </Row>
     </Container>
-  )
+  );
 };
 
 CustomizationStructure.propTypes = {
