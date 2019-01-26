@@ -3,9 +3,18 @@ import React from 'react';
 const CakeDecoration = (cake, customWishes, user) => {
   const render = [];
   let description = '';
+  console.log("cake", cake, Array.isArray(cake));
   if (cake.type === 'cake') description = `1 ${cake.type} de ${cake.story} étage(s) pour ${cake.size} personnes`;
   else if (cake.type === 'cheesecake') description = `1 ${cake.type} pour 16 personnes`;
   else description = `${cake.quantity} ${cake.type} en taille ${cake.size}`;
+
+  let ingredientsList = '';
+  if (Array.isArray(cake.ingredients)) {
+    cake.ingredients.map((ingredient) => {
+      if (ingredient.type === 'Base') ingredientsList += `${ingredient.name} `;
+      else ingredientsList += `${ingredient.type}: ${ingredient.name} `;
+    });
+  } else ingredientsList = cake.ingredients;
 
   let decoration = '';
   let cakeDeco = {};
@@ -39,7 +48,6 @@ const CakeDecoration = (cake, customWishes, user) => {
         {cake.deco2}
       </div>);
   }
-  console.log("decoration", decoration)
 
   if (user === 'admin') {
     render.push(
@@ -62,8 +70,7 @@ const CakeDecoration = (cake, customWishes, user) => {
     </tr>,
     <tr>
       <td>Ingrédients : </td>
-      {/* <td>{ingredients}</td> */}
-      <td>{cake.ingredients.map(ingredient => `${ingredient.name} `)}</td>
+      <td>{ingredientsList}</td>
     </tr>,
     <tr>
       <td>Décoration : </td>

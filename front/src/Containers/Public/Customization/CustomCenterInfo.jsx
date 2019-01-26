@@ -202,7 +202,8 @@ class CustomCenterInfo extends Component {
           <span
             onClick={() => this.removeDeco(type)}
             style={{ color: 'red', fontSize: '0.7em', paddingBottom: '-0.7vh' }}
-            className="removeCross"><b>  X</b></span>
+            className="removeCross"><b>  X</b>
+          </span>
         </div>
       );
     }
@@ -385,7 +386,7 @@ class CustomCenterInfo extends Component {
               className={this.setButtonOutline('message')}
             >
               Message
-          </Button>
+            </Button>
             {this.showAdded('message')}
           </Col>
           <Col xs="4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
@@ -399,7 +400,7 @@ class CustomCenterInfo extends Component {
               className={this.setButtonOutline('2D')}
             >
               Photo
-          </Button>
+            </Button>
             {this.showAdded('2D')}
           </Col>
           <Col xs="4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
@@ -412,8 +413,8 @@ class CustomCenterInfo extends Component {
               onClick={() => this.open('sculpture', 'on')}
               className={this.setButtonOutline('3D')}
             >
-              Sculpture
-          </Button>
+              Décoration 3D
+            </Button>
             {this.showAdded('3D')}
           </Col>
         </Row>
