@@ -18,7 +18,7 @@ const Contact = (props) => {
   };
 
   return (
-    <Container className="body" style={{ height: '100vh' }}>
+    <Container className="body" style={{ height: '100vh', backgroundColor: 'white' }}>
       <Row className="homePageRow">
         <Col xs={6} style={colStyle}>
           <Row>
@@ -31,9 +31,9 @@ const Contact = (props) => {
           <Row>
             <Col>
               <h2> Nous contacter </h2>
-              <p> Téléphone : </p>
-              <p> Email : </p>
-              <p> Adresse : </p>
+              <p> Téléphone : 04.78.38.17.07</p>
+              <p> Email : contact@gilunacoffee.com</p>
+              <p> Adresse : 15 rue Delandine - 69002 Lyon</p>
             </Col>
           </Row>
           <Row>

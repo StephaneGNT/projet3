@@ -51,7 +51,7 @@ const VerticalNavBar = () => (
         </NavItem>
         <NavItem>
           <NavLink to="/admin/adminList">
-            <i className="fas fa-user" />
+            <i className="fas fa-id-card" />
             <span className="linkname ml-3">Admins</span>
           </NavLink>
         </NavItem>

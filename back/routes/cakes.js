@@ -19,15 +19,15 @@ cake.post(`/cakes/new`, (req, res) => {
 // Récupération de tous les gâteaux & leurs ingrédients
 cake.get(`/cakes/all`, (req, res) => {
   connection.query(`
-  SELECT cake.*, group_concat(ingredients.name) as ingredients, cw.*
-  FROM final_cakes AS cake
-  INNER JOIN custom_wishes as cw
-  ON cake.customWishes = cw.id
-  INNER JOIN jt_cake_ingredients as junctionTable
-  ON cake.id = junctionTable.id_final_cake
-  INNER JOIN ingredients as ingredients
-  ON junctionTable.id_ingred = ingredients.id
-  GROUP BY cake.id`, (err, results) => {
+    SELECT cake.*, group_concat(' ', ingredients.type, ' ', ingredients.name) as ingredients, cw.*
+    FROM final_cakes AS cake
+    INNER JOIN custom_wishes as cw
+    ON cake.customWishes = cw.id
+    INNER JOIN jt_cake_ingredients as junctionTable
+    ON cake.id = junctionTable.id_final_cake
+    INNER JOIN ingredients as ingredients
+    ON junctionTable.id_ingred = ingredients.id
+    GROUP BY cake.id`, (err, results) => {
     if (err) res.status(500).send("Erreur lors de l'ajout du gâteau'");
     else res.status(200).json(results);
   });

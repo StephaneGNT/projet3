@@ -25,7 +25,7 @@ class IngredientTable extends Component {
   deleteIngredient = (id, token) => {
     const { updateIngredients } = this.props;
     if (window.confirm('Voulez-vous supprimer cet ingrédient ?')) {
-      const url = `/ingredients/${id}`;
+      const url = `/api/ingredients/${id}`;
       const headers = { Authorization: `Bearer ${token}` };
       axios.delete(url, { headers })
         .then(res => window.alert(res.data.message))
