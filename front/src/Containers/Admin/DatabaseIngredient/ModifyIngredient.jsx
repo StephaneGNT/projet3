@@ -33,9 +33,7 @@ class ModifyIngredient extends Component {
     };
     this.handleClickCompatible = this.handleClickCompatible.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    const {
-      reducerIngredients, ingredient, // arrays ingredients.compatible et ingredients.allergenes inherited from phil
-    } = this.props;
+    const { ingredient } = this.props;
     this.inheritedIngredient = ingredient;
   }
 
@@ -95,9 +93,7 @@ class ModifyIngredient extends Component {
     const modifiedIngredient = ingredients;
     axios.put(`http://localhost:5000/ingredients/${modifiedIngredient.id}/`, modifiedIngredient)
       .then(res => (res.data))
-      .catch(err => (err.response.data));
-
-      
+      .catch(err => (err.response.data)); 
   };
 
 

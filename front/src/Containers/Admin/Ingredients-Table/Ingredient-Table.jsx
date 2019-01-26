@@ -63,7 +63,7 @@ class IngredientTable extends Component {
     return (
       <div>
         <Row>
-          {/* {this.toggleModify(showForm, ingToModify)} */}
+          {this.toggleModify(showForm, ingToModify)}
         </Row>
         <Row>
           <Col>
