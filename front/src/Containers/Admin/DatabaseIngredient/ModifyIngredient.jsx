@@ -43,13 +43,12 @@ class ModifyIngredient extends Component {
         ...this.inheritedIngredient,
       },
     });
-    axios.get('http://localhost:5000/ingredients/name')
+    axios.get('/api/ingredients/name')
       .then((res) => {
         const fullListArray = res.data[0]; this.setState({ fullList: fullListArray });
       });
-    // .catch(err => console.log(err.response.data));
 
-    axios.get('http://localhost:5000/allergenes/name')
+    axios.get('/api/allergenes/name')
       .then((res) => {
         const fullAllergArray = res.data[0]; this.setState({ fullAllerg: fullAllergArray });
       });
@@ -91,7 +90,7 @@ class ModifyIngredient extends Component {
   onSubmit = (e, ingredients) => {
     e.preventDefault();
     const modifiedIngredient = ingredients;
-    axios.put(`http://localhost:5000/ingredients/${modifiedIngredient.id}/`, modifiedIngredient)
+    axios.put(`/api/ingredients/${modifiedIngredient.id}/`, modifiedIngredient)
       .then(res => (res.data))
       .catch(err => (err.response.data)); 
   };

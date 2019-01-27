@@ -9,9 +9,9 @@ const IngredientsBrownieStructure = (props) => {
   return (
     <Row>
       <Col sm="12">
-        <h1 style={{ textAlign: 'center', position: 'sticky', top: '0' }}>{bases[0].type}</h1>
+        <h1>{bases[0].type}</h1>
       </Col>
-      <Col sm="12" style={{ display: 'flex', flexDirection: 'row' }}>
+      <Col sm="12">
         <IngredientsDisplay elementToDisplay={bases} />
       </Col>
     </Row>

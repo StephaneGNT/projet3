@@ -43,9 +43,7 @@ admin.delete(
 admin.put(
   '/admin/descriptions/new',
   (req, res) => {
-    console.log("req.body", req.body)
     connection.query('UPDATE descriptions SET ? WHERE id=1', req.body, (err, results) => {
-      console.log("err, results", err, results)
       if (err) res.status(500);
       else res.status(200);
     })

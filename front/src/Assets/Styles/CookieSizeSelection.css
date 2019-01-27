@@ -2,13 +2,19 @@
   width: 100%;
 }
 
+.cookieSizeSelection {
+  background-color:rgb(209, 209, 209);
+  padding:5px;
+  margin:5px;
+}
+
 .cookieSizeSelection Button{
-  height: 120px;
-  width: 120px;
+  height: 10vh;
+  width: 10vh;
   padding: 0;
   color: black;
   font-family: var(--secondPolice);
-  font-size: 1em;
+  font-size: 0.7em;
   background-color: white;
   background-image: url('../Images/cookie.jpg');
   background-repeat: no-repeat;

@@ -74,20 +74,23 @@ class UserInfo extends Component {
   sendConfirmationEmails = () => {
     const { user } = this.state;
     const mailClient = {
-      from: 'pimpmycake@pimpmycake.com',
+      from: 'sguinot86@gmail.com',
       to: user.email,
-      subject: 'Confirmation de commande Giluna',
-      content: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
+      title: 'Confirmation de commande Giluna',
+      text: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
               Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
+      html: <p>Bonjour ${user.firstName} ${user.lastName}, votre commande a bien été prise en compte.
+      Nous reviendrons vers vous rapidement pour vous confirmer sa validation.</p>,
     };
-    axios.post('/api/send/mail', mailClient).then(response => console.log(response.data));
+    axios.post('/api/send/mail', mailClient);
     const gilunaMail = {
-      from: 'pimpmycake@pimpmycake.com',
-      to: 'philipp-elsaesser@outlook.com',
+      from: 'sguinot86@gmail.com',
+      to: 'sguinot86@gmail.com',
       title: 'Nouvelle commande',
-      content: 'Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.',
+      text: 'Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.',
+      html: <p>Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.</p>,
     };
-    axios.post('/api/send/mail', gilunaMail).then(response => console.log(response.data));
+    axios.post('/api/send/mail', gilunaMail);
   };
 
   invalidBirthdate = (DOBstate) => {
@@ -180,7 +183,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="firstname">
+              <Label for="firstName">
                 <span className="text-danger">* </span>
                 Prénom
               </Label>
@@ -199,7 +202,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="lastname">
+              <Label for="lastName">
                 <span className="text-danger">* </span>
                 Nom
               </Label>

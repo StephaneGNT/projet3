@@ -17,6 +17,7 @@ import ingredientsReducer from './ingredients_reducer';
 import cakeListReducer from './list_cakes';
 import orderListReducer from './list_orders';
 import customersListReducer from './list_clients';
+import adminsListReducer from './list_admins';
 import descriptionsReducer from './home_page_contact_descriptions';
 
 const allReducers = combineReducers({
@@ -38,6 +39,7 @@ const allReducers = combineReducers({
   cakeList: cakeListReducer,
   orderList: orderListReducer,
   customerList: customersListReducer,
+  adminList: adminsListReducer,
   descriptions: descriptionsReducer,
 });
 

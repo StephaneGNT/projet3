@@ -16,7 +16,7 @@ const VerticalNavBar = () => (
         <NavItem>
           <NavLink to="/admin/orders">
             <i className="fas fa-home" />
-            <span className="linkname ml-3">Home</span>
+            <span className="linkname ml-3">Commandes</span>
           </NavLink>
         </NavItem>
         <NavItem>
@@ -28,7 +28,7 @@ const VerticalNavBar = () => (
         <NavItem>
           <NavLink to="/admin/Customization">
             <i className="fas fa-paint-brush" />
-            <span className="linkname ml-2">Customization</span>
+            <span className="linkname ml-2">Polices</span>
           </NavLink>
         </NavItem>
         <NavItem>
@@ -44,9 +44,15 @@ const VerticalNavBar = () => (
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/admin/adminList">
+          <NavLink to="/admin/clients">
             <i className="fas fa-user" />
-            <span className="linkname ml-3">Admin</span>
+            <span className="linkname ml-3">Clients</span>
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/admin/adminList">
+            <i className="fas fa-id-card" />
+            <span className="linkname ml-3">Admins</span>
           </NavLink>
         </NavItem>
       </Nav>

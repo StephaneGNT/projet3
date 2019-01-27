@@ -37,7 +37,7 @@ Giluna recommande une portion de ${ingredient.portion}`;
       </Button>
       <Col>
         <p style={{ color, fontWeight: 'bold', textAlign: 'center', marginTop: '10px' }}>{ingredient.name}</p>
-        <p style={{ color, textAlign: 'left' }}>{ingredient.info}</p>
+        <p style={{ color, textAlign: 'left' }}>{ingredient.description}</p>
       </Col>
     </Col>
   );

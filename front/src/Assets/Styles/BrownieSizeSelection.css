@@ -4,13 +4,21 @@
   width: 100%;
 }
 
+.brownieSizeSelection {
+  background-color:rgb(209, 209, 209);
+  padding:5px;
+  margin:5px;
+}
+
+
 .brownieSizeSelection Button{
-  height: 120px;
-  width: 120px;
+  height: 10vh;
+  width: 10vh;
   padding: 0;
   color: black;
-  font-family: var(--secondPolice);
-  font-size: 1em;
+  font-size: 0.8em;
+  border:none;
+  padding-top:40px;
   background-color: white;
   background-image: url('../Images/brownie.png');
   background-repeat: no-repeat;

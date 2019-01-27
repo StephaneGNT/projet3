@@ -1,36 +1,28 @@
 @import './CommonStyle.css';
 
-
 .body-zone {
-  height: 108vh;
-  /* background-color: rgb(236, 237, 238) !important; */
-  background-color: rgb(245, 214, 221);
-  /* background-color: #F1E7A4; */
-  /* background-color: #C9D4EA; */
-  /* background-color: #B1E6D8; */
-  /* background-image: url(../Images/backgroundapp.png); */
-  /* background-image: url('../Images/Fond1.jpg'); */
-  /* background-image: url('../Images/Fond2.jpg'); */
-  /* background-image: url('../Images/Fond3.jpg'); */
+  width:100%;
+  height: 100%;
+  background-repeat:repeat;
+  background-image: url('https://i.imgur.com/WUALrq8.jpg');
+  background-size: auto;
 }
 
-.homePageRow {
-  height: 85vh;
-  background-color: rgba(255,255,255,0.5);
+.body-row {
+  /* height: 100vh; */
+  background-color: rgb(236, 236, 236);
+  border:double 4px rgb(224, 223, 223);
 }
 
 .header-zone {
-  /* background-color: #884e65; */
-  background-image: url('../Images/Fond1.jpg');
-  /* background-image: url('../Images/Fond2.jpg'); */
-  /* background-image: url('../Images/Fond3.jpg'); */
+  background-color: rgb(173, 173, 173);
   width: 100vw;
   height: 10vh;
   font-family: var(--mainPolice);
-  font-size:3em;
-  /* color:white; */
-  color: black;
+  font-size:2em;
+  color: rgb(117, 52, 72);
   text-align:center;
+  margin-bottom:2%;
 }
 
 .header-zone button{
@@ -47,9 +39,9 @@
 }
 
 .content-zone {
-  min-width: 80vw;
-  min-height: 86vh;
-  /* margin: 12vh auto; */
+  width: 80%;
+  height: 100%;
+  margin: 12vh auto;
   margin-top: 0;
 }
 
@@ -58,16 +50,212 @@
   justify-content: center;
 }
 
+.btn-start-cake {
+  border:1px solid yellow;
+}
+
 h3 {
   margin:auto;
   padding:5px;
-  font-size:1.8em !important;
+  font-size:1.2em !important;
   font-weight:700 !important;
   font-family: var(--mainPolice) !important;
-  color: var(--mainColor) !important;
-  /* text-shadow:1px 1px 0px rgb(255, 255, 255); */
-  /* border-bottom:1px solid rgb(187, 187, 187); */
+  color: rgb(133, 32, 71) !important;
   display:flex;
   justify-content: center;
 }
 
+
+/* COMPONENT : CakeInfo.jsx */
+.body-sous-select {
+  border:none;
+  background-color:rgb(236, 235, 235);
+  display:block;
+}
+
+.labels-perso{
+  display:block;
+  width: 100%;
+  padding:3px;
+  font-size: 1.2em;
+  font-weight:200;
+  font-family: var(--mainPolice);
+  color:var(--mainColor);
+}
+
+/* Label 'choississez votre type de douceur' dans CakeInfo.jsx */
+.labels-perso-btn-douceurs {
+  font-size: 1em;
+  font-family: var(--mainPolice);
+  color: var(--mainColor);
+  margin-top:4%;
+  margin-left:2%;
+  display:block;
+  text-align:left;
+}
+
+/* Label 'nombre de # ' dans CakeInfo.jsx */
+.label-nbr {
+  display:inline-block;
+  margin-top:5px;
+  font-size: 1em;
+  font-family: var(--mainPolice);
+  color: var(--mainColor);
+}
+
+/* gérer le margin du Label&Input 'nbr de ' sur CakeInfo.jsx */
+.row-nbr-choice {
+  margin-top:10px !important;
+}
+
+.typeButton{
+  width: 8vw;
+  height: 12vh;
+  font-size:0.7em;
+  background-size:70%;
+  background-color:rgb(202, 186, 186);
+  background-repeat: no-repeat;
+  background-position-x: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(128, 118, 118) !important;
+  padding-top: 30% !important;
+  border:double 4px rgb(211, 210, 210);
+  margin-bottom:-30px;
+}
+
+#cookieButton{
+  background-image: url(../Images/cookie.png);
+  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+}
+
+#cakeButton{
+  background-image: url(../Images/cake.png);
+  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+}
+
+#cheesecakeButton{
+  background-image: url(../Images/cheesecake.png);
+  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+}
+
+#macaronButton{
+  background-image: url(../Images/macaron_cafe.png);
+  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+}
+
+#brownieButton{
+  background-image: url(../Images/brownie.png);
+  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+}
+
+.selectionOutline {
+  box-shadow: 0 0 3pt 2pt rgb(168, 112, 48) !important
+}
+
+/* block des tips */
+.tipsColumn{
+  /* height: 60vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1em;
+  /* line-height:1em; */
+  background-color: rgba(180, 180, 180, 0.644);
+  border:double 4px rgb(211, 210, 210);
+  padding:3%;
+}
+
+/* Titres TIPS */
+.title-tips {
+  display:block;
+  margin:auto;
+  text-align:center;
+  color:rgb(107, 107, 107) !important;
+  font-size:1.5em;
+  background-color: rgb(201, 201, 201);
+  padding:2%;
+  font-weight:700;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size:1.3em !important;
+}
+
+/* COMPONENT : Ingredient-Table.jsx */
+.body-ingred-tb {
+  background:rgb(233, 233, 233);
+  margin:auto;
+  padding:2%;
+  width:100%;
+}
+
+.col-btn-tb {
+  margin: 4px;
+  font-size:0.8em !important;
+}
+
+.body-tb {
+  font-size:1em;
+}
+
+.btn-ad-sup {
+  font-size:0.7em !important;
+  margin:2px;
+}
+
+
+/* COMPONENT : AddIngredients.jsx */
+.table-add-ingred td {
+  display: flex;
+}
+
+.title-label-list {
+  /* background-color:rgb(226, 226, 226); */
+  border:none !important;
+  font-size:0.7em;
+  text-align:center;
+}
+
+title-admin {
+  color:white;
+  font-weight:700;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+  font-size:0.7em !important;
+  background-color:rgb(219, 151, 87);
+  padding:5px !important;
+  margin-bottom:1%;
+  display:block;
+  text-align:center;
+}
+
+.bodyIng {
+  padding:1%;
+  width:110%;
+  margin:1%;
+  background-color: rgb(248, 248, 248) !important;
+}
+
+.col-size-checkbox {
+  height:25vh !important;
+  overflow: auto;
+  border:1px solid rgb(235, 234, 234);
+  margin:4px;
+  padding:3px;
+}
+
+.ligne-titre {
+  padding:1%;
+  width:100% !important;
+  margin:auto;
+}
+
+.btn-ajout {
+  margin:5px;
+}
+
+.td-ing-list {
+  margin:10px;
+  font-size:0.7em !important;
+}

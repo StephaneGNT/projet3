@@ -22,7 +22,7 @@ class OrdersAdmin extends Component {
       Nous avons le plaisir de vous informer que votre commande est ${newStatus}.
       Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
     };
-    axios.post('/api/send/mail', mailClient).then(response => console.log(response.data));
+    axios.post('/api/send/mail', mailClient);
 
     changeOrderStatus(index, newStatus);
   };
@@ -38,6 +38,8 @@ class OrdersAdmin extends Component {
     const {
       history, orders, customers, cakes,
     } = this.props;
+    console.log("orders", orders);
+    console.log("cakes", cakes);
     const render = [];
 
     orders.map((order, index) => {
@@ -64,10 +66,12 @@ class OrdersAdmin extends Component {
           </td>
           <td>
             <Button
-              onClick={() => history.push({
-                pathname: `${process.env.PUBLIC_URL}/admin/orderDetail/cake`,
-                state: { cake: cakes.find(cake => cake.id === order.cakeId) },
-              })}
+              onClick={() => {
+                history.push({
+                  pathname: `${process.env.PUBLIC_URL}/admin/orderDetail/cake`,
+                  state: { cake: cakes.find(cake => cake.id === order.cakeId) },
+                });
+              }}
             >
               Détail
             </Button>
