@@ -9,12 +9,9 @@ class NavArrowsLayout extends Component {
   changeLayoutviaPageindex = (index, type, cake, dateOfDelivery) => {
     const minMacarons = 6;
     let disabled = true;
-    console.log("cake", cake)
-    console.log("if test", (cake.story >= Math.ceil(cake.size / 25)));
-    console.log("if test cake size/25", Math.ceil(cake.size / 25));
     if (index === 1) {
       if (
-        (cake.type === 'cake' && cake.size > 0 && cake.story >= Math.ceil(cake.size / 25) && cake.story <= Math.floor(cake.size / 5))
+        (cake.type === 'cake' && cake.size > 0 && cake.story >= Math.ceil(cake.size / 25) && cake.story <= Math.ceil(cake.size / 5))
         || (cake.type === 'cheesecake')
         || ((cake.type === 'cookie' || cake.type === 'brownie') && cake.size !== 0 && cake.quantity > 1) || (cake.type === 'macaron' && cake.size !== 0 && cake.quantity >= minMacarons)
       ) disabled = false;
