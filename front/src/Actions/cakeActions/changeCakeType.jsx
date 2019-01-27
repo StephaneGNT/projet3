@@ -2,7 +2,7 @@ const changeCakeType = (cakeType) => {
   const initialState = {
     type: cakeType,
     size: 0,
-    story: 0,
+    story: 1,
     quantity: 1,
     occasion: '',
     ingredients: [],
