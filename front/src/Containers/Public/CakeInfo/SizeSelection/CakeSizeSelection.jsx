@@ -13,12 +13,10 @@ class CakeSizeSelection extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      size: '',
       minStory: 1,
       story: 1,
       maxStory: 2,
-      errorSize: false,
-      errorStory: false,
-      errorStoryMessage: '',
     };
     this.timeout = null;
   }
@@ -29,55 +27,42 @@ class CakeSizeSelection extends Component {
   };
 
   saveCakeSize = (size) => {
-    const { selectCakeSize } = this.props;
-    if (size < 5) this.setState({ errorSize: true });
-    else {
+    const { selectCakeSize, selectCakeStory } = this.props;
+    this.setState({ size });
+    if (size >= 5) {
       this.setState({
-        errorSize: false,
         minStory: Math.ceil(size / 25),
-        maxStory: Math.floor(size / 5),
+        maxStory: Math.ceil(size / 5),
         story: Math.ceil(size / 25),
       });
+      const { story } = this.state;
       selectCakeSize(parseInt(size, 10));
+      selectCakeStory(parseInt(story, 10));
     }
   }
 
   saveCakeStory = (story) => {
     const { selectCakeStory } = this.props;
-    const { minStory, maxStory } = this.state;
     this.setState({ story });
-    if (story < minStory) {
-      this.setState({
-        errorStory: true,
-        errorStoryMessage: `Votre gâteau ne peut pas faire moins de ${minStory} étage(s).`,
-      });
-    } else if (story > maxStory) {
-      this.setState({
-        errorStory: true,
-        errorStoryMessage: `Votre gâteau ne peut pas faire plus de ${maxStory} étage(s).`,
-      });
-    } else {
-      this.setState({ errorStory: false });
-      selectCakeStory(parseInt(story, 10));
-    }
+    selectCakeStory(parseInt(story, 10));
   }
 
   render() {
+    console.log("cake", this.props.cake);
     const {
-      story, minStory, errorSize, errorStory, errorStoryMessage,
+      story, minStory, maxStory, size,
     } = this.state;
     const errorSizeStyle = {
-      visibility: errorSize ? 'visible' : 'hidden',
+      visibility: (size > 0 && size <= 5) ? 'visible' : 'hidden',
       color: 'red',
       fontSize: '0.8em',
     };
+    const storyErrorMessage = story < minStory ? `Votre gâteau ne peut pas faire moins de ${minStory} étage(s).` : `Votre gâteau ne peut pas faire plus de ${maxStory} étage(s).`;
     const errorStoryStyle = {
-      visibility: errorStory ? 'visible' : 'hidden',
+      visibility: (story < minStory || story > maxStory) ? 'visible' : 'hidden',
       color: 'red',
       fontSize: '0.8em',
     };
-
-    console.log(this.state)
 
     return (
       <Container style={{ minWidth: '100%' }}>
@@ -96,11 +81,10 @@ class CakeSizeSelection extends Component {
           <input
             onChange={e => this.saveCakeStory(e.target.value)}
             value={story}
-            // placeholder={`Min. ${minStory}`}
           />
         </Row>
         <Row style={errorStoryStyle}>
-          {errorStoryMessage}
+          {storyErrorMessage}
         </Row>
       </Container>
     );
@@ -108,21 +92,17 @@ class CakeSizeSelection extends Component {
 }
 
 CakeSizeSelection.propTypes = {
-  size: PropTypes.number.isRequired,
-  story: PropTypes.number.isRequired,
   selectCakeSize: PropTypes.func.isRequired,
   selectCakeStory: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  size: state.cakeCharacteristics.size,
-  story: state.cakeCharacteristics.story,
   cake: state.cakeCharacteristics,
 });
 
 const mapDispatchToProps = dispatch => ({
-  selectCakeSize: amount => dispatch(changeCakeSize(amount)),
-  selectCakeStory: amount => dispatch(changeCakeStory(amount)),
+  selectCakeSize: size => dispatch(changeCakeSize(size)),
+  selectCakeStory: story => dispatch(changeCakeStory(story)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CakeSizeSelection);
