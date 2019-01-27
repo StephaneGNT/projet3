@@ -6,31 +6,39 @@ import axios from 'axios';
 class Decoration extends Component {
   constructor(props) {
     super(props);
-    // this.state = { imagePreviewUrl1: '', imagePreviewUrl2: '' };
+    this.state = { uploaded1: '', uploaded2: '' }
+  }
+
+  componentWillMount() {
+    const { customSummary } = this.props;
+    const axiosGetPhotos = (reducerPhoto, photoState) => {
+      if (reducerPhoto) {
+        axios.get(`/api/image/get/${reducerPhoto}`)
+          .then((response) => {
+            const image = `data:image/jpg;base64,${response.data}`;
+            this.setState({ [photoState]: image });
+          });
+      }
+    };
+    axiosGetPhotos(customSummary.photo1, 'uploaded1');
+    axiosGetPhotos(customSummary.photo2, 'uploaded2');
   }
 
   handleImageChange = (e) => {
-    this.props.sendFileEvent(e, this.props.decoType);
+    const { decoType, sendFileEvent } = this.props;
+    sendFileEvent(e, decoType);
   }
 
 
   submitFile = (file) => {
-    console.log("fuck", file)
     const data = new FormData();
     const { modify } = this.props;
     data.append('avatar', file);
-    axios.post('/api/uploadfile', data)
+    axios.post('/api/image/upload', data)
       .then((result) => {
-        // this.setState({ photo: result.data });
         modify('GET_PHOTO_URL', result.data);
       });
   }
-
-  // sendPhotoUrl = (url) => {
-  //   const { modify } = this.props;
-  //   const type = 'GET_PHOTO_URL';
-  //   modify(type, url);
-  // }
 
   updateDescription = (e) => {
     const { modify } = this.props;
@@ -44,7 +52,7 @@ class Decoration extends Component {
   }
 
   render() {
-    // const { imagePreviewUrl1, imagePreviewUrl2 } = this.state;
+    const { uploaded1, uploaded2 } = this.state;
     const { decoType, photography, customSummary, preview, deleteUrl } = this.props;
     // const urlNum = preview;
     const centerContent = { display: 'flex', flexDirection: 'column', alignItems: 'center' };
@@ -82,7 +90,7 @@ class Decoration extends Component {
               onChange={e => this.handleImageChange(e)}
               maxsize={5242880}
               multiple={false}
-              // accept="image/png"
+            // accept="image/png"
             />
           </div>
         </div>
@@ -93,7 +101,7 @@ class Decoration extends Component {
         {(() => {
           if ((!preview && !photography) || preview) return imagePreview;
           // return <img src={`/api/image/${photography}`} alt="Exemple" />;
-          return <img src={require(`../../../../../back/${photography}`)} alt="Exemple" />;
+          return <img src={decoType === '2D' ? uploaded1 : uploaded2} alt="Exemple" />;
         }
         )()}
         <br />

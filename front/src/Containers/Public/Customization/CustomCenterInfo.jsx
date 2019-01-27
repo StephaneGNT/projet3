@@ -80,7 +80,9 @@ class CustomCenterInfo extends Component {
         description3D: '',
       };
       updateReducerSummary(intermediateSummary);
-    } else updateReducerSummary(customSummary);
+    }
+
+    else updateReducerSummary(customSummary);
   }
 
   getConfigState = (config) => {
@@ -132,6 +134,7 @@ class CustomCenterInfo extends Component {
           photo1: '',
           imagePreviewUrl1: '',
         },
+        fileEvent1: '',
       }));
     }
     if (type === '3D') {
@@ -141,7 +144,9 @@ class CustomCenterInfo extends Component {
           ...prevState.customSummary,
           photo2: '',
           imagePreviewUrl2: '',
+          description3D: '',
         },
+        fileEvent2: '',
       }));
     }
     if (deco1.includes(type)) deco1 = '';
@@ -173,7 +178,7 @@ class CustomCenterInfo extends Component {
       case 'ADD_DECORATION':
         if (content === 'message' && !customSummary.msgContent) return alert('Pour confirmer, veuillez entrer un message')
         if (content === '2D' && (!imagePreviewUrl1)) return alert('Pour confirmer, veuillez chargez une image');
-        if (content === '3D' && (!imagePreviewUrl2 && !customSummary.description3D)) return alert('Pour confirmer, veuillez chargez une image ou fournir une description');
+        if (content === '3D' && (!imagePreviewUrl2 && !customSummary.description3D)) return alert('Pour confirmer, veuillez chargez une image et/ou fournir une description');
         if (content === '2D') calculatePrice(customAdmin.price_2D);
         if (content === 'message') calculatePrice(customAdmin.price_customMessage);
         if (content === '2D') this.decoration.current.submitFile(fileEvent1);
@@ -256,9 +261,7 @@ class CustomCenterInfo extends Component {
   }
 
   deleteUrl = (type) => {
-    console.log("inf FUNC")
     const deco = type === '2D' ? 'imagePreviewUrl1' : 'imagePreviewUrl2';
-    console.log(deco)
     this.setState({ [deco]: '' });
   }
 
@@ -414,10 +417,16 @@ class CustomCenterInfo extends Component {
       messageResilient,
       imageResilient,
       sculptureResilient,
+      imagePreviewUrl2,
     } = this.state;
-    console.log(this.state.customSummary.photo2);
     const buttonStyle = { backgroundColor: 'rgb(129, 38, 38)' };
     const center = { display: 'flex', flexDirection: 'column', alignItems: 'center' }
+    if (!customSummary.msgContent && [customSummary.deco1, customSummary.deco2].includes('message')) {
+      if (window.confirm('Voulez-vous supprimer le message personnalisé de votre commande?')) this.removeDeco('message');
+    }
+    if (!customSummary.description3D && (!imagePreviewUrl2 && !customSummary.photo2) && [customSummary.deco1, customSummary.deco2].includes('3D')) {
+      if (window.confirm('Voulez-vous supprimer la décoration 3D de votre commande?')) this.removeDeco('3D');
+    }
     return (
       <Container>
         <Row className="decorationRow">
@@ -467,7 +476,8 @@ class CustomCenterInfo extends Component {
             {this.showAdded('3D')}
           </Col>
         </Row>
-        <div className="decorationRow"
+        <div
+          className="decorationRow"
           style={!imageResilient && !messageResilient && !sculptureResilient
             ? center : {}}
         >
