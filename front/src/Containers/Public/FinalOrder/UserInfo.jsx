@@ -303,7 +303,7 @@ class UserInfo extends Component {
           <Col sm="11" md="8">
             <FormGroup>
               <Label>
-                Votre message, soigneusement imprimé sur une carte de qualité,
+                Votre message, soigneusement écrit sur une carte de qualité,
                 sera livré avec votre gâteau.
               </Label>
             </FormGroup>

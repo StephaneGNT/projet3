@@ -33,9 +33,9 @@ class HomePageAdmin extends Component {
     return (
       <Container>
         <Row>
-          <h1>Modifier les textes des pages d'accueil / page de contact</h1>
+          <h1>Modifier les textes des pages d’accueil / page de contact</h1>
           <Col xs={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <h2 className="text-center">Texte de la page d'accueil</h2>
+            <h2 className="text-center">Texte de la page d’accueil</h2>
             <div>
               <textarea
                 style={{ width: '90%', height: '30vh', margin: '5vh' }}

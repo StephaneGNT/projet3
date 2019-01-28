@@ -72,3 +72,6 @@ VALUES (1, 1);
 
 INSERT INTO descriptions (homePage, contact)
 VALUES ('Nous vous proposons des gâteaux, cheesecake et autres pâtisseries entièrement à votre goût et personnalisées à votre demande. Nous sommes à votre écoute pourtoute demande supplémentaire !', 'Les fondatrices de GiLuna proviennent d’Amérique du Sud, spécifiquement du Venezuela:  Fabiola GIL et Maria Alejandra LUNA.');
+
+INSERT INTO Contact 
+VALUES ('Avec notre savoir-faire toutes les fantaisies sont possibles : vous pouvez personnaliser à votre guise le moindre détail jusqu’à la boîte du gâteau. Laissez-vous donc guider et découvrez la variété des parfums possibles, nous avons sélectionnés des mariages parmi une large variété des saveurs. Avez-vous rêvé de créer un gâteau complètement unique qui correspond à vos goûts et à vos besoins? Avec cette application c’est désormais possible! Pimp my cake vous permet de confectionner le gâteau de vos rêves. ')
