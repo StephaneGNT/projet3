@@ -41,7 +41,8 @@ VALUES ('Cake','50', null, 1, 'Anniversaire', 40,
 );
 
 INSERT INTO final_orders (cakeId, deliveryDate, orderDate, customerId, customerStatus, adminStatus, customerComment, customerMessage)
-VALUES ((SELECT id FROM final_cakes WHERE final_cakes.id = 1),
+VALUES (
+  (SELECT id FROM final_cakes WHERE final_cakes.id = 1),
   '2018-12-06',
   '2018-12-12',
   (SELECT id FROM customers WHERE customers.id = 1),

@@ -11,8 +11,8 @@ class Login extends Component {
     super(props);
     this.state = {
       user: {
-        id: '',
-        password: '',
+        id: 'Giluna',
+        password: 'password',
       },
       passwordConfirm: '',
     };
@@ -87,6 +87,7 @@ class Login extends Component {
           <input
             placeholder="Identifiant"
             type="text"
+            value={user.id}
             onChange={e => this.updateUser('id', e.target.value)}
           />
         </Row>
@@ -94,6 +95,7 @@ class Login extends Component {
           <input
             placeholder="Mot de passe"
             type="password"
+            value={user.password}
             onChange={e => this.updateUser('password', e.target.value)}
           />
         </Row>

@@ -56,9 +56,11 @@ class Admin extends Component {
 
     return (
       <Container fluid>
-        <Row className="mt-5">
+        <Row>
           <VerticalNavBar />
-          <Col sm="10">
+        </Row>
+        <Row className="mt-5">
+          <Col sm="12" className="mt-5">
             <Switch>
               <Route
                 exact
