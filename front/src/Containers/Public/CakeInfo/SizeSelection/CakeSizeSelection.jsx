@@ -48,7 +48,6 @@ class CakeSizeSelection extends Component {
   }
 
   render() {
-    console.log("cake", this.props.cake);
     const {
       story, minStory, maxStory, size,
     } = this.state;
