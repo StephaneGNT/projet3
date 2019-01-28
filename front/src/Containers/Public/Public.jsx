@@ -20,7 +20,7 @@ class Public extends Component {
       <BrowserRouter>
         <div className="body-zone">
           <MainNavigation />
-          <div className="header-zone">
+          <div className="header-zone bg-light">
             Pimp My Cake
             <button
               type="button"

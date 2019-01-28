@@ -7,7 +7,7 @@ import {
 import '../../../Assets/Styles/ConfirmationPage.css';
 
 const ConfirmationPage = (props) => {
-  const { customer } = props;
+  const { customer, history } = props;
   window.scrollTo(0, 0);
 
   return (
@@ -40,12 +40,17 @@ const ConfirmationPage = (props) => {
         <a href={`${process.env.PUBLIC_URL}/`}>
           <Button
             className="buttons"
-            // onClick={() => history.push(`${process.env.PUBLIC_URL}/`)}
+            onClick={() => history.push(`${process.env.PUBLIC_URL}/`)}
           >
             ACCUEIL
           </Button>
         </a>
-        <Button className="buttons">CONTACT</Button>
+        <Button
+          className="buttons"
+          onClick={() => history.push(`${process.env.PUBLIC_URL}/contact`)}
+        >
+          CONTACT
+        </Button>
       </div>
     </div>
   );
