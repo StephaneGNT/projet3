@@ -3,6 +3,7 @@ import { Button, Row, Container, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Carousel } from 'react-responsive-carousel';
+import axios from 'axios';
 import CustomMessageInput from './CustomMessageInput';
 import Beautify from './Beautify';
 import BeautifyButtons from './BeautifyButtons';
@@ -111,7 +112,7 @@ class CustomCenterInfo extends Component {
   }
 
   removeDeco = (type) => {
-    const { customSummary } = this.state;
+    const { customSummary, fileEvent1, fileEvent2 } = this.state;
     const { calculatePrice, customAdmin } = this.props;
     let { deco1, deco2 } = customSummary;
     if (type === 'message') {
@@ -136,6 +137,7 @@ class CustomCenterInfo extends Component {
         },
         fileEvent1: '',
       }));
+      if (customSummary.photo1) axios.delete(`/api/image/delete/${customSummary.photo1}`);
     }
     if (type === '3D') {
       this.deleteUrl('3D');
@@ -148,6 +150,7 @@ class CustomCenterInfo extends Component {
         },
         fileEvent2: '',
       }));
+      if (customSummary.photo2) axios.delete(`/api/image/delete/${customSummary.photo2}`);
     }
     if (deco1.includes(type)) deco1 = '';
     if (deco2.includes(type)) deco2 = '';
@@ -427,6 +430,7 @@ class CustomCenterInfo extends Component {
     if (!customSummary.description3D && (!imagePreviewUrl2 && !customSummary.photo2) && [customSummary.deco1, customSummary.deco2].includes('3D')) {
       if (window.confirm('Voulez-vous supprimer la décoration 3D de votre commande?')) this.removeDeco('3D');
     }
+    console.log(customSummary.photo1, this.state.fileEvent1)
     return (
       <Container>
         <Row className="decorationRow">
