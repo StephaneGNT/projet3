@@ -5,9 +5,13 @@ import {
 
 const CakeDescription = (cake, customWishes, user) => {
   const render = [];
+  let cakeDeco;
+  if (customWishes) cakeDeco = customWishes;
+  else cakeDeco = cake;
+
   const description = getCakeDescription(cake);
   const ingredientsList = getCakeIngredientsList(cake);
-  const decoration = getCakeDecoration(cake, customWishes);
+  const decoration = getCakeDecoration(cakeDeco);
   const price = getCakePrice(cake, customWishes, user);
 
   if (user === 'admin') {

@@ -430,7 +430,6 @@ class CustomCenterInfo extends Component {
     if (!customSummary.description3D && (!imagePreviewUrl2 && !customSummary.photo2) && [customSummary.deco1, customSummary.deco2].includes('3D')) {
       if (window.confirm('Voulez-vous supprimer la décoration 3D de votre commande?')) this.removeDeco('3D');
     }
-    console.log(customSummary.photo1, this.state.fileEvent1)
     return (
       <Container>
         <Row className="decorationRow">
