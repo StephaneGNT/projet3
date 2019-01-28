@@ -27,13 +27,13 @@ ingred.put(`/ingredients/:id`, (req, res) => {
     size: req.body.size,
     price: req.body.price,
     dispo: req.body.dispo,
-    description: req.body.info,
+    description: req.body.description,
     image: req.body.img,
     isCompatible: null,
     flavor: null,
     color: null
   }
-  connection.query('UPDATE ingredients SET ? WHERE id = ?', [formData, ingredientId], (err, results) => {
+   connection.query('UPDATE ingredients SET ? WHERE id = ?', [formData, ingredientId], (err, results) => {
     if (err) {
       res.status(500).send("Erreur lors de la modification d'un ingrédient");
     } else {

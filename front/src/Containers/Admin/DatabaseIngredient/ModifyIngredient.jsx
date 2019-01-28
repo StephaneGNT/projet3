@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import {
   Table, Label, Input, Form, FormGroup, Row, Col, Button,
 } from 'reactstrap';
+import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { toggleFormModify } from '../../../Actions/databaseActions/toggleFormNew';
+import axiosIngredientsDB from '../../../Actions/fetchDB/fetch_database_actions';
 import UploadPicsAddIngred from '../../UploadPicsAddIngred';
 import '../../../Assets/Styles/Add_Ingredients.css';
 
@@ -20,10 +21,10 @@ class ModifyIngredient extends Component {
         size: '',
         price: '',
         dispo: true,
-        info: '',
+        description: '',
         img: '',
-        allerg: '',
-        compatible: true,
+        allerg: [],
+        compatible: [],
         flavor: '',
         color: '',
       },
@@ -33,11 +34,13 @@ class ModifyIngredient extends Component {
     };
     this.handleClickCompatible = this.handleClickCompatible.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    const { ingredient } = this.props;
+    const { ingredient, showFunction } = this.props;
     this.inheritedIngredient = ingredient;
+    this.showForm = showFunction;
   }
 
   componentWillMount() {
+    console.log('willMouont', this.inheritedIngredient)
     this.setState({
       ingredients: {
         ...this.inheritedIngredient,
@@ -54,22 +57,68 @@ class ModifyIngredient extends Component {
       });
   }
 
-  // prevoir this.setState ingredients.compatible
-  handleClickCompatible = (compatibleID) => {
-    if (this.inheritedIngredient.compatible.includes(compatibleID)) {
-      this.inheritedIngredient.compatible.splice(0, compatibleID);
+
+  handleClickCompatible = (compatibleID, compatibleName, ingredients) => {
+    const index = this.inheritedIngredient.compatible.indexOf(compatibleName);
+    const formData = {
+      id_ingred1: this.inheritedIngredient.id,
+      id_ingred2: compatibleID,
+    };
+    if (index >= 0) {
+      this.inheritedIngredient.compatible.splice(index, 1);
+      axios.delete(`/api/jtingredients/del/${formData.id_ingred2}/${formData.id_ingred1}`)
+        .then(res => (res.data))
+        .catch(err => (err.response.data));
+      this.setState({
+        [ingredients]: {
+          ...ingredients,
+          compatible: this.inheritedIngredient.compatible,
+        },
+      });
     } else {
       this.inheritedIngredient.compatible.push(compatibleID);
+      axios.post('/api/jtingredients/add', formData)
+        .then(res => (res.data))
+        .catch(err => (err.response.data));
+      this.setState({
+        [ingredients]: {
+          ...ingredients,
+          compatible: this.inheritedIngredient.compatible,
+        },
+      });
     }
     return this.inheritedIngredient.compatible;
   }
 
-  // prevoir this.setState ingredients.allerg
-  handleClickAllergene = (allergeneID) => {
-    if (this.inheritedIngredient.allergenes.includes(allergeneID)) {
-      this.inheritedIngredient.allergenes.splice(0, allergeneID);
+
+  handleClickAllergene = (allergeneID, allergeneName, ingredients) => {
+    const index = this.inheritedIngredient.allergenes.indexOf(allergeneName);
+    const formData = {
+      id_ingred: this.inheritedIngredient.id,
+      id_allergene: allergeneID,
+    };
+    if (index >= 0) {
+      this.inheritedIngredient.allergenes.splice(index, 1);
+      axios.delete(`/api/jtallergenes/del/${formData.id_allergene}/${formData.id_ingred}`)
+        .then(res => (res.data))
+        .catch(err => (err.response.data));
+      this.setState({
+        [ingredients]: {
+          ...ingredients,
+          allerg: this.inheritedIngredient.allergenes,
+        },
+      });
     } else {
       this.inheritedIngredient.allergenes.push(allergeneID);
+      axios.post('/api/jtallergenes/add', formData)
+        .then(res => (res.data))
+        .catch(err => (err.response.data));
+      this.setState({
+        [ingredients]: {
+          ...ingredients,
+          allerg: this.inheritedIngredient.allergenes,
+        },
+      });
     }
     return this.inheritedIngredient.allergenes;
   }
@@ -86,20 +135,20 @@ class ModifyIngredient extends Component {
   };
 
 
-  // prevoir fetch la DB au submit pour avoir inheritedIngredient correctement MAJ
   onSubmit = (e, ingredients) => {
+    const { axiosDatabase } = this.props;
     e.preventDefault();
     const modifiedIngredient = ingredients;
     axios.put(`/api/ingredients/${modifiedIngredient.id}/`, modifiedIngredient)
       .then(res => (res.data))
-      .catch(err => (err.response.data)); 
+      .catch(err => (err.response.data));
+    axiosDatabase();
   };
 
 
   createModifyForm = (ingredients, fullList, fullAllerg) => {
-    const { toggleForm } = this.props;
     return (
-      <div className="bodyIng">
+      <div>
         <title-admin>
           Modifier l’ingrédient
           {' '}
@@ -143,7 +192,7 @@ class ModifyIngredient extends Component {
             <Col md={4}>
               <FormGroup>
                 <Label>Description</Label>
-                <Input type="text" name="info" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.description} value={ingredients.info} />
+                <Input type="text" name="description" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.description} value={ingredients.description} />
               </FormGroup>
             </Col>
           </Row>
@@ -181,12 +230,12 @@ class ModifyIngredient extends Component {
                 <tbody>
                   <tr>
                     {fullList.map(compatible => (
-                      <td>
+                      <td key={compatible.id}>
                         <Input
                           name="isCompatible"
                           type="checkbox"
                           defaultChecked={this.inheritedIngredient.compatible.includes(compatible.name)}
-                          onChange={(this.handleClickCompatible(compatible.id))}
+                          onChange={() => (this.handleClickCompatible(compatible.id, compatible.name))}
                         />
                         <Label check>{compatible.name}</Label>
                       </td>))}
@@ -204,12 +253,12 @@ class ModifyIngredient extends Component {
                 <tbody>
                   <tr>
                     {fullAllerg.map(allergene => (
-                      <td>
+                      <td key={allergene.id}>
                         <Input
-                          name="isCompatible"
+                          name="isAllergene"
                           type="checkbox"
                           defaultChecked={this.inheritedIngredient.allergenes.includes(allergene.name)}
-                          onChange={() => this.handleClickAllergene(allergene.id)}
+                          onChange={() => this.handleClickAllergene(allergene.id, allergene.name)}
                         />
                         <Label>{allergene.name}</Label>
                       </td>))}
@@ -220,8 +269,8 @@ class ModifyIngredient extends Component {
           </Row>
           <br />
           <Row>
-            <Button color="secondary" size="lg" onClick={() => toggleForm(false)}>Annuler</Button>
-            <Button color="primary" size="lg" onClick={e => toggleForm(false) && this.onSubmit(e, ingredients)}>Modifier</Button>
+            <Button color="secondary" size="lg" onClick={() => this.showForm()}>Annuler</Button>
+            <Button color="primary" size="lg" onClick={(e) => { this.onSubmit(e, ingredients); this.showForm(); }}>Modifier</Button>
           </Row>
         </Form>
       </div>
@@ -230,45 +279,23 @@ class ModifyIngredient extends Component {
 
   render() {
     const { ingredients, fullList, fullAllerg } = this.state;
-    // return !this.state.fullList.length ? <div /> : (
     return (
       <div>
         {this.createModifyForm(ingredients, fullList, fullAllerg)}
       </div>
     );
-    // );
   }
 }
 
 
 ModifyIngredient.propTypes = {
   ingredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  reducerIngredients: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  ingredientCompatible: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  ingredientAllerg: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  fullListIngredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  toggleForm: PropTypes.func.isRequired,
-  displayIndexForm: PropTypes.number.isRequired,
+  showFunction: PropTypes.func.isRequired,
+  axiosDatabase: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  reducerIngredients: state.ingredientsReducer,
-  selectedIngredient: state.ingredientCharacteristics,
-  displaybeta: state.databaseDisplay.beta,
-  displayIndexForm: state.databaseModifyFormIndex,
-  cake: state.ingredients.filter(ing => ing.type === 'Base'),
-  filling: state.ingredients.filter(ing => ing.type === 'Garniture'),
-  icing: state.ingredients.filter(ing => ing.type === 'Glaçage'),
-  chessecakeFlavor: state.ingredients.filter(ing => ing.type === 'Parfum'),
-  macaronFlavor: state.ingredients.filter(ing => ing.type === 'Macaron'),
-  topping: state.ingredients.filter(ing => ing.type === 'Toppings'),
-  macaronShell: state.ingredients.filter(ing => ing.type === 'Coquille'),
-  cookie: state.ingredients.filter(ing => ing.type === 'Base cookie'),
-  brownie: state.ingredients.filter(ing => ing.type === 'Base brownie'),
-});
-
 const mapDispatchToProps = dispatch => ({
-  toggleForm: show => dispatch(toggleFormModify(show)),
+  axiosDatabase: bindActionCreators(axiosIngredientsDB, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModifyIngredient);
+export default connect(null, mapDispatchToProps)(ModifyIngredient);
