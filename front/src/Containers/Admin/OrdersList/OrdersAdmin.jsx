@@ -66,8 +66,6 @@ class OrdersAdmin extends Component {
     const {
       history, orders, customers, cakes,
     } = this.props;
-    console.log("cakes", cakes);
-    console.log("orders", orders);
     const render = [];
 
     orders.map((order, index) => {
@@ -84,6 +82,7 @@ class OrdersAdmin extends Component {
           </td>
           <td>
             <Button
+              color="primary"
               onClick={() => {
                 history.push({
                   pathname: `${process.env.PUBLIC_URL}/admin/orderDetail/cake`,
@@ -91,17 +90,18 @@ class OrdersAdmin extends Component {
                 });
               }}
             >
-              Détail
+              Détail gâteau
             </Button>
           </td>
           <td>
             <Button
+              color="info"
               onClick={() => history.push({
                 pathname: `${process.env.PUBLIC_URL}/admin/orderDetail/client`,
                 state: { customer: customers.find(customer => customer.id === order.customerId) },
               })}
             >
-              Détail
+              Info client
             </Button>
           </td>
         </tr>,
