@@ -6,11 +6,16 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import '../../../Assets/Styles/MainCss.css';
-// import Customers from './Customers';
 import changeOrderAdminStatus from '../../../Actions/orderActions/changeOrderStatus';
+import { getAllOrders, getAllCakes } from '../../../Actions/adminsActions/getAllOrdersCakesCustomers';
 
 class OrdersAdmin extends Component {
+  componentWillMount = () => {
+    const { saveCakes, saveOrders } = this.props;
+    axios.get('/api/orders/all').then(response => saveOrders(response.data));
+    axios.get('/api/cakes/all').then(response => saveCakes(response.data));
+  }
+
   changeStatus = (index, newStatus, customer) => {
     const { changeOrderStatus } = this.props;
 
@@ -34,12 +39,35 @@ class OrdersAdmin extends Component {
     return `${day}/${month}/${year}`;
   }
 
+  getOrderStatus = (order, index, customers) => {
+    const { cakes } = this.props;
+    const selectedCake = cakes.find(cake => cake.id === order.cakeId);
+    let message = null;
+    if (selectedCake.deco1 === '3D' || selectedCake.deco2 === '3D') message = 'Gâteau avec décoration 3D: merci de confirmer le prix avant validation';
+    return (
+      <div>
+        {message}
+        <Input
+          type="select"
+          onChange={e => this.changeStatus(index, e.target.value, customers.find(customer => customer.id === order.customerId))}
+        >
+          <option />
+          <option selected={order.admin_status === 'Acceptée'}>acceptée</option>
+          <option selected={order.admin_status === 'en préparation'}>en préparation</option>
+          <option selected={order.admin_status === 'en décoration'}>en décoration</option>
+          <option selected={order.admin_status === 'prête'}>prête</option>
+          <option selected={order.admin_status === 'payée et récupérée'}>payée et récupérée</option>
+        </Input>
+      </div>
+    );
+  }
+
   renderOrders = () => {
     const {
       history, orders, customers, cakes,
     } = this.props;
-    console.log("orders", orders);
     console.log("cakes", cakes);
+    console.log("orders", orders);
     const render = [];
 
     orders.map((order, index) => {
@@ -52,17 +80,7 @@ class OrdersAdmin extends Component {
           <td>{formattedorderDate}</td>
           <td>{formatteddeliveryDate}</td>
           <td>
-            <Input
-              type="select"
-              onChange={e => this.changeStatus(index, e.target.value, customers.find(customer => customer.id === order.customerId))}
-            >
-              <option />
-              <option selected={order.admin_status === 'Acceptée'}>acceptée</option>
-              <option selected={order.admin_status === 'en préparation'}>en préparation</option>
-              <option selected={order.admin_status === 'en décoration'}>en décoration</option>
-              <option selected={order.admin_status === 'prête'}>prête</option>
-              <option selected={order.admin_status === 'payée et récupérée'}>payée et récupérée</option>
-            </Input>
+            {this.getOrderStatus(order, index, customers)}
           </td>
           <td>
             <Button
@@ -120,6 +138,8 @@ OrdersAdmin.propTypes = {
   customers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   cakes: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   changeOrderStatus: PropTypes.func.isRequired,
+  saveOrders: PropTypes.func.isRequired,
+  saveCakes: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -130,6 +150,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   changeOrderStatus: status => dispatch(changeOrderAdminStatus(status)),
-})
+  saveOrders: orders => dispatch(getAllOrders(orders)),
+  saveCakes: cakes => dispatch(getAllCakes(cakes)),
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withRouter(OrdersAdmin)));

@@ -366,7 +366,6 @@ class CustomCenterInfo extends Component {
       imageResilient,
       sculptureResilient,
     } = this.state;
-    console.log(customSummary)
     const buttonStyle = { backgroundColor: 'rgb(129, 38, 38)' };
     const center = { display: 'flex', flexDirection: 'column', alignItems: 'center' }
     return (
