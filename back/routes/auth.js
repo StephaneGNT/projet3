@@ -14,9 +14,7 @@ passport.use(new LocalStrategy(
     passwordField: 'password'
   },
   function (id, adminPassword, cb) {
-    console.log("id, adminPassword in auth.js", id, adminPassword)
     connection.query('SELECT * FROM admin WHERE name = ?', id, (err, result) => {
-
       if (err || result.length === 0) return cb(err);
       else {
         const user = result[0];
@@ -31,7 +29,6 @@ passport.use(new LocalStrategy(
 
 // Authentification login / mot de passe
 auth.post('/auth/login', function (req, res, next) {
-  console.log(req)
   passport.authenticate('local', { session: false }, (err, user, info) => {
     if (err || !user) {
       return res.status(400).json({
@@ -41,7 +38,7 @@ auth.post('/auth/login', function (req, res, next) {
     }
     req.login(user, { session: false }, (err) => {
       if (err) {
-        res.send(err);
+        res.status(500).send(err);
       }
       // generates a signed son web token with the admin_id and returns it in the response
       const token = jwt.sign(user.id, secret);
@@ -55,20 +52,20 @@ auth.post('/auth/new', (req, res) => {
   // hashage password
   const hash = bcrypt.hashSync(req.body.password, 10);
   const id = req.body.id;
-  connection.query('INSERT INTO admin SET ?', { admin_id: id, admin_password: hash }, (err, results) => {
+  connection.query('INSERT INTO admin SET ?', { name: id, adminPassword: hash }, (err, results) => {
     if (err) res.status(500).send(err);
-    return res.status(200).send('Admin mis à jour');
+    return res.status(200).send('Nouvel admin créé');
   })
 });
 
 // Mise à jour d'un administrateur
 auth.put('/auth/:id', (req, res) => {
   // hashage password
-  const hash = bcrypt.hashSync(req.body.password, 10);
-  const adminData = { admin_id: req.body.id, admin_password: hash }
+  const hash = bcrypt.hashSync(req.body.newAdmin.password, 10);
+  const adminData = { name: req.body.newAdmin.id, adminPassword: hash }
   connection.query('UPDATE admin SET ? WHERE id = ?', [ adminData, req.params.id ], (err, results) => {
-    if (err) res.status(500).send(err);
-    return res.status(200).send('Admin créé');
+    if (err) res.status(500).send('Erreur');
+    return res.status(200).send('Admin mis à jour');
   })
 });
 

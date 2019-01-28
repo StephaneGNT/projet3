@@ -5,7 +5,7 @@ import Progressbar from './Progressbar';
 import Confirmation from './confirmation'
 import Price from './Price';
 import '../../Assets/Styles/OrderDetail.css';
-import Price from '../Price';
+
 
 class OrderDetail extends Component {
   constructor(props) {

@@ -2,3 +2,14 @@
   font-size: 5em;
   cursor: pointer;
 }
+
+.customPricesTable th, .customPricesTable tr, .customPricesTable td {
+  width: 300px;
+  border: solid 1px rgb(173, 173, 173);
+  text-align: center; 
+  border-collapse: collapse;
+}
+
+.customPricesTable th {
+  background-color: rgb(235, 235, 235)
+}

@@ -3,6 +3,7 @@ export default (state = {
   deco2: '',
   photo1: '',
   photo2: '',
+  description3D: '',
   msgContent: '',
   msgColor: '',
   msgBgColor: '',

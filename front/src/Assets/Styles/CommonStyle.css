@@ -11,16 +11,14 @@ a {
 }
 
 #enterButton{
+  width:25vw;
   background-color: var(--mainColor);
   font-family: var(--mainPolice);
-  /* font-weight: bold; */
-  font-size: 2em;
+  font-size: 1.4em;
   color: white;
-  width: 15vw;
-  height: 15vw;
   border: none;
-  border-radius: 50%;
-  box-shadow: 5px 5px 5px darkslategrey, -5px -5px 5px darkslategrey, 5px -5px 5px darkslategrey, -5px 5px 5px darkslategrey;
+  border-radius: 5px;
+  padding:2%;
   cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
@@ -37,6 +35,20 @@ a {
   justify-content: center;
 
 }
+
+/*APPARENCE CAROUSEL*/
+.the-carousel {
+  width:auto;
+  height:auto;
+  margin:2% auto;
+  display: flex;
+  justify-content: center;
+}.body-carousel {
+  width:25vw;
+  height:92%;
+  padding:3%;
+}
+
 
 /* PANNEAU D'ADMINISTRATION */
 .body-admin {

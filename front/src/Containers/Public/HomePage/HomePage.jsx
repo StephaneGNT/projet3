@@ -9,34 +9,28 @@ import '../../../Assets/Styles/CommonStyle.css';
 
 const HomePage = (props) => {
   const { description } = props;
-  const colStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-  };
 
   return (
-    <Container className="body" style={{ height: '100vh' }}>
-      <Row className="homePageRow">
-        <Col xs={6} style={colStyle}>
+    <Container className="body">
+      <Row className="body-row">
+        <Col xs={12}>
           <h1>Bienvenue !</h1>
-          <Row style={{ backgroundColor: 'transparent' }}>
+          <Row>
             {description}
           </Row>
-          <Row style={{ backgroundColor: 'transparent' }}>
+          <Row>
             <Link to={`${process.env.PUBLIC_URL}/mycake`}>
               <button
                 type="button"
                 id="enterButton"
+                className="btn-start-cake"
               >
                 Commencez votre gâteau
               </button>
             </Link>
           </Row>
         </Col>
-        <Col xs={6} style={colStyle}>
+        <Col xs={12} className="the-carousel">
           <Carousel />
         </Col>
       </Row>

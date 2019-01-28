@@ -1,20 +1,11 @@
 .labels-perso{
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-family: var(--mainPolice);
     color: var(--mainColor);
 }
 
 .body-cake-select {
-    background-color:rgb(249, 242, 252);
-}
-
-h3 {
-    margin:auto;
-    padding:10px;
-    font-size:1.8em !important;
-    font-weight:700 !important;
-    font-family: var(--mainPolice) !important;
-    color: var(--mainColor) !important;
+    background-color:rgb(169, 113, 194);
 }
 
 .typeButton{
@@ -54,13 +45,6 @@ h3 {
 #brownieButton{
     background-image: url(../Images/brownie.png);
     cursor: url(../Images/Whisk.ico)1 42, pointer !important;
-}
-
-.tipsColumn{
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 .selectionOutline {

@@ -4,10 +4,9 @@ import axios from 'axios';
 import {
   Label, Input, Button, Form, FormGroup, Table, Col, Row,
 } from 'reactstrap';
-// import AlertAddIngredient from './AlertAddIngredient';
 import PropTypes from 'prop-types';
 import UploadPicsAddIngred from '../../UploadPicsAddIngred';
-import '../../../Assets/Styles/Add_Ingredients.css';
+import '../../../Assets/Styles/Public.css';
 
 class AddIngredients extends Component {
   constructor(props) {
@@ -57,7 +56,6 @@ class AddIngredients extends Component {
   }
 
   handleSubmit = async () => {
-    // e.preventDefault();
     const {
       name, type, size, price, dispo, description, image, isCompatible, flavor, color,
     } = this.state;
@@ -76,8 +74,8 @@ class AddIngredients extends Component {
     };
 
     // Enregistrement du nouvel ingrédient
-    const newIngredientID = await axios.post('/ingredients/new', newIngredient)
-      .then(res => {return res.data.insertId})
+    const newIngredientID = await axios.post('/api/ingredients/new', newIngredient)
+      .then((res) => { return res.data.insertId; })
       .catch(err => console.log(err.response.data));
 
     // Enregistrement des ingrédients compatibles
@@ -87,7 +85,7 @@ class AddIngredients extends Component {
         id_ingred1: newIngredientID,
         id_ingred2: ingID,
       };
-      axios.post('/jtingredients', formData, (req, res) => {
+      axios.post('/api/jtingredients', formData, (req, res) => {
         if (res.status === 200) return ('Ingrédients compatibles enregistrés !');
         else return ('Error');
       });
@@ -108,20 +106,20 @@ class AddIngredients extends Component {
 
   render() {
     return (
-      <div className="bodyIng">
+      <div className="bodyIng" id="showhide">
         <title-admin>Décrivez votre nouvel ingrédient</title-admin>
         <Form>
           <Row form>
             <Col md={2}>
               <FormGroup>
-                <Label>Name</Label>
-                <Input type="text" name="name" onChange={this.handleChange} />
+                <Label size="sm">Name</Label>
+                <Input type="text" name="name" bsSize="sm" onChange={this.handleChange} />
               </FormGroup>
             </Col>
             <Col md={2}>
               <FormGroup>
-                <Label>Type</Label>
-                <Input type="select" name="type" onChange={this.handleChange}>
+                <Label size="sm">Type</Label>
+                <Input type="select" name="type" bsSize="sm" onChange={this.handleChange}>
                   <option />
                   <option>Base</option>
                   <option>Filling</option>
@@ -135,50 +133,49 @@ class AddIngredients extends Component {
             </Col>
             <Col md={2}>
               <FormGroup>
-                <Label>Size</Label>
-                <Input type="text" name="size" onChange={this.handleChange} />
+                <Label size="sm">Size</Label>
+                <Input type="text" name="size" bsSize="sm" onChange={this.handleChange} />
               </FormGroup>
             </Col>
             <Col md={2}>
               <FormGroup>
-                <Label>Price</Label>
-                <Input type="text" name="price" onChange={this.handleChange} />
+                <Label size="sm">Price</Label>
+                <Input type="text" name="price" bsSize="sm" onChange={this.handleChange} />
               </FormGroup>
             </Col>
             <Col md={4}>
               <FormGroup>
-                <Label>Description</Label>
-                <Input type="text" name="description" />
+                <Label size="sm">Description</Label>
+                <Input type="text" name="description" bsSize="sm" onChange={this.handleChange} />
               </FormGroup>
             </Col>
           </Row>
           <Row form>
             <Col md={2}>
               <FormGroup>
-                <Label>Flavor</Label>
-                <Input type="text" name="flavor" />
+                <Label size="sm">Flavor</Label>
+                <Input type="text" name="flavor" bsSize="sm" onChange={this.handleChange} />
               </FormGroup>
             </Col>
             <Col md={2}>
               <FormGroup>
-                <Label>Color</Label>
-                <Input type="text" name="color" />
+                <Label size="sm">Color</Label>
+                <Input type="text" name="color" bsSize="sm" onChange={this.handleChange} />
               </FormGroup>
             </Col>
-
-            <Col md={4}>
+            <Col md={5}>
               <UploadPicsAddIngred />
             </Col>
             <Col md={2}>
               <FormGroup check>
-                <Input name="dispo" defaultChecked type="checkbox" onClick={() => this.setState({ dispo: !this.state.dispo })} id="dispoCheck" />
-                <Label for="dispoCheck">Disponnible ?</Label>
+                <Input name="dispo" defaultChecked type="checkbox" bsSize="sm" onClick={() => this.setState({ dispo: !this.state.dispo })} id="dispoCheck" />
+                <Label size="sm" for="dispoCheck">Disponnible ?</Label>
               </FormGroup>
             </Col>
           </Row>
           <Row>
             <Col md={5} className="col-size-checkbox">
-              <Table className="table-add-ingred">
+              <Table className="table-add-ingred" size="sm">
                 <thead>
                   <tr>
                     <th className="title-label-list">Compatibilités</th>
@@ -187,20 +184,20 @@ class AddIngredients extends Component {
                 <tbody>
                   <tr>
                     {this.state.ingredList.map(ingredient => (
-                        <td>
-                          <Input
-                            name="isCompatible"
-                            type="checkbox"
-                            onClick={() => this.toggleIngredient(ingredient.id)}
-                          />
-                          <Label check>{ingredient.name}</Label>
-                        </td>))}
+                      <td className="td-ing-list">
+                        <Input
+                          name="isCompatible"
+                          type="checkbox"
+                          onClick={() => this.toggleIngredient(ingredient.id)}
+                        />
+                        <Label size="sm" check>{ingredient.name}</Label>
+                      </td>))}
                   </tr>
                 </tbody>
               </Table>
             </Col>
             <Col md={5} className="col-size-checkbox">
-              <Table className="table-add-ingred">
+              <Table className="table-add-ingred" size="sm">
                 <thead>
                   <tr>
                     <th className="title-label-list">Allergènes</th>
@@ -209,13 +206,13 @@ class AddIngredients extends Component {
                 <tbody>
                   <tr>
                     {this.state.allergList.map(allergene => (
-                      <td>
+                      <td className="td-ing-list">
                         <Input
                           name="allergene"
                           type="checkbox"
                           onClick={() => this.toggleAllergene(allergene.id)}
                         />
-                        <Label check>{allergene.name}</Label>
+                        <Label size="sm" check>{allergene.name}</Label>
                       </td>))}
                   </tr>
                 </tbody>
@@ -223,7 +220,7 @@ class AddIngredients extends Component {
             </Col>
           </Row>
           <br />
-          <Button color="secondary" size="lg" onClick={() => this.handleSubmit()}>Ajouter</Button>
+          <Button color="secondary" size="sm" onClick={() => this.handleSubmit()}>Ajouter</Button>
         </Form>
       </div>
     );
@@ -244,3 +241,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddIngredients);
+

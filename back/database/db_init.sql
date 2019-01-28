@@ -54,7 +54,15 @@ CREATE TABLE custom_wishes
     msgContent	VARCHAR(100),
     msgColor VARCHAR(20),
     msgBgColor VARCHAR(20),
-    msgFont VARCHAR(50)
+    msgFont VARCHAR(50),
+    description3D VARCHAR(200)
+);
+
+CREATE TABLE custom_prices
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    decoration VARCHAR (90),
+    price DECIMAL (10,2)
 );
 
 CREATE TABLE customers
@@ -77,7 +85,7 @@ CREATE TABLE final_cakes
     occasion VARCHAR(90),
     price INTEGER,
     customWishes INTEGER,
-    FOREIGN KEY(customWishes) REFERENCES custom_wishes(id) 
+    FOREIGN KEY(customWishes) REFERENCES custom_wishes(id)
 
 );
 

@@ -5,6 +5,7 @@ import CakeDecoration from '../../CakeDecoration';
 
 const CakeDetail = (props) => {
   const { location, history } = props;
+  console.log("location", location)
   return (
     <Container>
       <Table>

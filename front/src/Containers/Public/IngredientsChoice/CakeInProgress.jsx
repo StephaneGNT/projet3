@@ -25,7 +25,7 @@ class CakeInProgress extends Component {
       return (
         <Row key={item.name} className="cakeProgressLayout">
           <p>
-            <img src={item.img} alt="ingredient" className={cakeLayoutType()} />
+            <img src={item.image} alt="ingredient" className={cakeLayoutType()} />
           </p>
           <Button size="sm" close onClick={() => remove(item)} />
         </Row>
@@ -33,7 +33,7 @@ class CakeInProgress extends Component {
     }
     return (
       <Row className="cakeProgressLayout">
-        <p><img src={item.img} alt="ingredient" /></p>
+        <p><img src={item.image} alt="ingredient" /></p>
       </Row>
     );
   }
@@ -54,7 +54,7 @@ class CakeInProgress extends Component {
   render() {
     const { cake } = this.props;
     return (
-      <div style={{ position: 'sticky', top: '0vh' }}>
+      <div>
         <Row className="cakeLayout">
           {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index, arr))}
         </Row>

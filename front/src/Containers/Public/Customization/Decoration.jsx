@@ -37,6 +37,10 @@ class Decoration extends Component {
     modify(type, url);
   }
 
+  updateDescription = (e) => {
+    const { modify } = this.props;
+    modify('UPDATE_3D_DESCRIPTION', e.target.value);
+  }
 
   hideInputField = () => {
     const { decoType, customSummary } = this.props;
@@ -60,7 +64,7 @@ class Decoration extends Component {
 
   render() {
     const { imagePreviewUrl1, imagePreviewUrl2 } = this.state;
-    const { decoType, photography } = this.props;
+    const { decoType, photography, customSummary } = this.props;
     const urlNum = decoType === '2D' ? imagePreviewUrl1 : imagePreviewUrl2;
     const centerContent = { display: 'flex', flexDirection: 'column', alignItems: 'center' };
     let imagePreview = null;
@@ -71,6 +75,7 @@ class Decoration extends Component {
             <Button
               style={{ marginTop: '0.5vh', marginBottom: '0,5vh' }}
               onClick={() => this.resetUrl(decoType)}
+              color="danger"
             >
               Supprimer photo
             </Button>
@@ -81,33 +86,51 @@ class Decoration extends Component {
       );
     } else {
       imagePreview = (
-        <div className="previewText">
-          <p style={{ textAlign: 'center' }}>
-            Votre photo ici
-            <br />
-            (Cliquez pour ajouter)
-          </p>
-          <Input
-            type="file"
-            className="inputField"
-            name={decoType === '2D' ? 'file1' : 'file2'}
-            id={decoType === '2D' ? 'file1' : 'file2'}
-            onChange={e => this.handleImageChange(e)}
-            maxsize={5242880}
-            multiple={false}
-            accept="image/png"
-          />
-        </div>);
+        <div>
+          <div className="previewText">
+            <p style={{ textAlign: 'center' }}>
+              Votre photo ici
+              <br />
+              (Cliquez pour ajouter)
+            </p>
+            <Input
+              type="file"
+              className="inputField"
+              name={decoType === '2D' ? 'file1' : 'file2'}
+              id={decoType === '2D' ? 'file1' : 'file2'}
+              onChange={e => this.handleImageChange(e)}
+              maxsize={5242880}
+              multiple={false}
+              accept="image/png"
+            />
+          </div>
+        </div>
+      );
     }
     return (
       <div style={centerContent}>
         {(() => {
           if ((!urlNum && !photography) || urlNum) return imagePreview;
           // return <img src={`/api/image/${photography}`} alt="Exemple" />;
-          return <img src={require(`../../../../../back/tmp/${photography}`)} alt="Exemple" />;
+          return <img src={require(`../../../../../back/${photography}`)} alt="Exemple" />;
         }
         )()}
         <br />
+        {decoType === '3D' && (
+          <div style={{ marginTop: '2vh' }}>
+            <p><u><b>Description</b></u>:</p>
+            <Input
+              style={{ height: '9vh', width: '100%', textAlign: 'left', marginTop: '-1vh' }}
+              rows="4"
+              name="description3D"
+              type="textarea"
+              onChange={this.updateDescription}
+              value={customSummary.description3D}
+              resize="none"
+              maxLength="300"
+            />
+          </div>
+        )}
       </div>
     );
   }

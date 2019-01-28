@@ -12,13 +12,10 @@ class FontList extends Component {
 
   deleteFonts = (name) => {
     const { fetchAdminFontList } = this.props;
-    axios.delete(`/customization/deletefonts/${name}`)
+    axios.delete(`/api/customization/deletefonts/${name}`)
       .then((response) => {
         if (response.data === 'ok') fetchAdminFontList();
       });
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
   }
 
   render() {

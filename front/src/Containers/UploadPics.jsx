@@ -28,11 +28,7 @@ class UploadPics extends Component {
       // },
     };
     axios.post('/api/uploadfile', data, config)
-      .then((result) => {
-        // this.setState({ photo: result.data });
-        console.log(result.data)
-        sendPhotoUrl(result.data);
-      });
+      .then(result => sendPhotoUrl(result.data));
   }
 
   render() {
