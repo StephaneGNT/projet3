@@ -7,19 +7,14 @@ import {
 import '../../../Assets/Styles/ConfirmationPage.css';
 
 const ConfirmationPage = (props) => {
-  const { customer, history, location } = props;
-
-
+  const { customer } = props;
   window.scrollTo(0, 0);
-
 
   return (
     <div className="main-container">
       <div className="order-text">
         <b>
-          Merci d’avoir passé commande chez Pimp my Cake! Votre numéro de commande est le
-          {' '}
-          {/* <u>{location.state.customer}</u> */}
+          Merci d’avoir passé commande chez Pimp my Cake!
           .
         </b>
         <br />
@@ -57,20 +52,11 @@ const ConfirmationPage = (props) => {
 };
 
 ConfirmationPage.propTypes = {
-  selectDeliveryDate: PropTypes.func.isRequired,
-  getDatesInDB: PropTypes.func.isRequired,
-  cake: PropTypes.shape({}).isRequired,
-  order: PropTypes.shape({}).isRequired,
-  calendar: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  customer: PropTypes.shape({}).isRequired,
 };
 
-const StateToProps = state => ({
+const mapStateToProps = state => ({
   customer: state.customerInfo,
 });
 
-const DispatchToProps = dispatch => ({
-  // getDatesInDB: () => dispatch(fetchDatesInDB()),
-  // selectDeliveryDate: date => dispatch(setDeliveryDate(date)),
-});
-
-export default connect(StateToProps, DispatchToProps)(ConfirmationPage);
+export default connect(mapStateToProps, null)(ConfirmationPage);

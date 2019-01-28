@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { getAllOrders, getAllCakes } from '../Actions/adminsActions/getAllOrdersCakesCustomers';
+// import { getAllOrders, getAllCakes } from '../Actions/adminsActions/getAllOrdersCakesCustomers';
 
 export const getCakeDescription = (cake) => {
   if (cake.type === 'cake') return (`1 ${cake.type} de ${cake.story} étage(s) pour ${cake.size} personnes`);
@@ -26,10 +26,8 @@ export const getCakeIngredientsList = (cake) => {
   return ingredientsList;
 };
 
-export const getCakeDecoration = (cake, customWishes) => {
-  let cakeDeco = {};
-  if (customWishes) cakeDeco = customWishes;
-  else cakeDeco = cake;
+export const getCakeDecoration = (cakeDeco, photo) => {
+  console.log("cakeDeco", cakeDeco)
 
   if (cakeDeco.deco1 === '' && cakeDeco.deco2 === '') return ('Aucune décoration');
   let message = null;
@@ -38,12 +36,18 @@ export const getCakeDecoration = (cake, customWishes) => {
   if (cakeDeco.deco1 === 'message' || cakeDeco.deco2 === 'message') {
     message = (
       <div>
+        <div>
+          <link
+            rel="stylesheet"
+            href={`https://fonts.googleapis.com/css?family=${cakeDeco.msgFont}`}
+          />
+        </div>
         <p>Message imprimé sur feuille de sucre : </p>
         <span
           style={{
             color: cakeDeco.msgColor,
             backgroundColor: cakeDeco.msgBgColor,
-            fontFamily: cakeDeco.font,
+            fontFamily: cakeDeco.msgFont,
           }}
         >
           {cakeDeco.msgContent}
@@ -52,9 +56,6 @@ export const getCakeDecoration = (cake, customWishes) => {
     );
   }
   if (cakeDeco.deco1 === '2D' || cakeDeco.deco2 === '2D') {
-    let photo;
-    if (cakeDeco.photo1) photo = (`../../../back/tmp/${cakeDeco.photo1}`);
-    else photo = (`../../../back/tmp/${cakeDeco.photo2}`);
     deco2D = (
       <div>
         <p>Photo imprimée sur feuille de sucre : </p>
@@ -62,16 +63,14 @@ export const getCakeDecoration = (cake, customWishes) => {
       </div>);
   }
   if (cakeDeco.deco1 === '3D' || cakeDeco.deco2 === '3D') {
-    let photo = null;
-    let decoDescription = null;
-    if (cakeDeco.photo1) photo = (`../../../back/tmp/${cakeDeco.photo1}`);
-    else if (cakeDeco.photo2) photo = (`../../../back/tmp/${cakeDeco.photo2}`);
-    else decoDescription = cakeDeco.description3D;
+    // if (cakeDeco.photo1) photo = (`../../../back/tmp/${cakeDeco.photo1}`);
+    // else if (cakeDeco.photo2) photo = (`../../../back/tmp/${cakeDeco.photo2}`);
+    // else decoDescription = cakeDeco.description3D;
     deco3D = (
       <div>
         <p>Décoration en 3D </p>
-        {photo && <img src={photo} alt="Déco gâteau" />}
-        {decoDescription && <p>{decoDescription}</p>}
+        {/* {photo && <img src={photo} alt="Déco gâteau" />}
+      {decoDescription && <p>{decoDescription}</p>} */}
       </div>
     );
   }
@@ -130,7 +129,7 @@ export const getCakePrice = (cake, customWishes, user) => {
       <div>
         <p>
           {cake.price.toFixed(2).replace(/[.,]00$/, '')}
-           €
+          €
         </p>
         <p>Nous reviendrons vers vous pour vous confirmer le supplément de la décoration 3D</p>
       </div>

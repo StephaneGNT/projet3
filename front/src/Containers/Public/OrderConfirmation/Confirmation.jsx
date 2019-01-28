@@ -18,7 +18,7 @@ const Confirmation = (props) => {
         </tbody>
       </Table>
       <br />
-      <p> Conditions générales de vente : Paiement par carte, chèque ou espace.</p>
+      <p> Paiement par carte, chèque ou espèces, en boutique.</p>
       <p> Récupération de la commande en boutique.</p>
     </Container>
 

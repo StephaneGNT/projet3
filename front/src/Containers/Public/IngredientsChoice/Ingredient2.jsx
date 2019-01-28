@@ -6,7 +6,7 @@ import addIngredient from '../../../Actions/cakeActions/addIngredient';
 import '../../../Assets/Styles/Ingredient.css';
 
 const Ingredient = (props) => {
-  const { ingredient, addNewIngredient, disabled } = props;
+  const { ingredient, addNewIngredient, disabled, cake } = props;
 
   const getFullDescripion = () => {
     let description = '';
@@ -24,6 +24,14 @@ Giluna recommande une portion de ${ingredient.portion}`;
     return description;
   };
 
+  const getBadgeMessage = () => {
+    switch (cake.type) {
+      case 'cake': return ' €/part';
+      case 'cheesecake': return ' €';
+      default: return ' €/unité';
+    }
+  };
+
   const filter = disabled && 'grayscale(80%)';
   const color = disabled ? 'darkgrey' : 'black';
   const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
@@ -39,7 +47,7 @@ Giluna recommande une portion de ${ingredient.portion}`;
       >
         <span className="badge badge-light">
           {ingredient.price}
-           €/part
+          {getBadgeMessage()}
         </span>
         <img src={ingredient.image} title={getFullDescripion()} alt="" />
       </Button>
@@ -60,6 +68,7 @@ Ingredient.propTypes = {
   ingredient: PropTypes.shape({}).isRequired,
   addNewIngredient: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
+  cake: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
