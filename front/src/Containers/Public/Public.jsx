@@ -19,8 +19,8 @@ class Public extends Component {
     return (
       <BrowserRouter>
         <div className="body-zone">
-          {/* <MainNavigation /> */}
-          <div className="header-zone">
+          <MainNavigation />
+          <div className="header-zone bg-light">
             Pimp My Cake
             <button
               type="button"

@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Container } from 'reactstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Public from './Containers/Public/Public';
 import Admin from './Containers/Admin/Admin';
+import CellPhonePage from './Containers/CellPhonePage';
 import { getAllOrders, getAllCustomers, getAllCakes } from './Actions/adminsActions/getAllOrdersCakesCustomers';
 import changeDescriptions from './Actions/adminsActions/changeDescriptions';
 import axiosIngredientsDB from './Actions/fetchDB/fetch_database_actions';
+import Responsive from 'react-responsive';
 
 class App extends Component {
   constructor(props) {
@@ -28,14 +31,21 @@ class App extends Component {
   }
 
   render() {
+    const Desktop = props => <Responsive {...props} minWidth={768} />;
+    const Mobile = props => <Responsive {...props} maxWidth={767} />;
     return (
       <div className="App">
-        <BrowserRouter>
-          <Switch>
-            <Route path={`${process.env.PUBLIC_URL}/admin`} component={Admin} />
-            <Route path={`${process.env.PUBLIC_URL}/`} component={Public} />
-          </Switch>
-        </BrowserRouter>
+        <Desktop>
+          <BrowserRouter className="d-none d-md-block">
+            <Switch>
+              <Route path={`${process.env.PUBLIC_URL}/admin`} component={Admin} />
+              <Route path={`${process.env.PUBLIC_URL}/`} component={Public} />
+            </Switch>
+          </BrowserRouter>
+        </Desktop>
+        <Mobile>
+          <CellPhonePage />
+        </Mobile>
       </div>
     );
   }

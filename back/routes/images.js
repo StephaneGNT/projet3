@@ -27,10 +27,14 @@ router.post('/api/image/upload', upload.single('avatar'), async (req, res) => {
   }
 })
 
-router.get('/api/image/get/:imagename', (req, res) => {
-  res.send(fs.readFileSync(
+router.get('/api/image/get/:imagename', async (req, res) => {
+  try{ 
+    res.send(fs.readFileSync(
     (path.resolve(`uploaded-images/${req.params.imagename}`)),
     { encoding: 'base64' }))
+  } catch (err) {
+    res.status(500);
+  }
 })
 
 router.delete('/api/image/delete/:imagename', (req, res) => {
