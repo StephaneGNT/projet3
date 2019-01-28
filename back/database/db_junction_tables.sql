@@ -15,7 +15,7 @@ CREATE TABLE jt_allergenes
     id_ingred INTEGER,
     id_allergene INTEGER,
     FOREIGN KEY(id_ingred) REFERENCES ingredients(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(id_allergene) REFERENCES allergenes(id)
+    FOREIGN KEY(id_allergene) REFERENCES allergenes(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE jt_cake_ingredients
@@ -24,7 +24,7 @@ CREATE TABLE jt_cake_ingredients
     id_final_cake INTEGER,
     id_ingred INTEGER,
     FOREIGN KEY(id_ingred) REFERENCES ingredients(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(id_final_cake) REFERENCES final_cakes(id)
+    FOREIGN KEY(id_final_cake) REFERENCES final_cakes(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE jt_customers_orders

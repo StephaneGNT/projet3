@@ -6,7 +6,7 @@ const getDescription = (type, typeResilient, customCharacteristics, customAdmin)
       <p>
         Choisissez la police du message, sa couleur et la couleur de fond !
         Coût supplémentaire : {customAdmin.price_customMessage.toFixed(2).replace(/[.,]00$/, '')}€
-        Compatible avec une photo ou une sculpture`;
+        Compatible avec une photo ou une sculpture
       </p>
     )
   }

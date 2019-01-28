@@ -101,7 +101,7 @@ CREATE TABLE final_orders
     customerComment VARCHAR(300),
     customerMessage VARCHAR(300),
     FOREIGN KEY(customerId) REFERENCES customers(id),
-    FOREIGN KEY(cakeId) REFERENCES final_cakes(id)
+    FOREIGN KEY(cakeId) REFERENCES final_cakes(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE descriptions

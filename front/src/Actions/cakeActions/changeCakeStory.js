@@ -1,5 +1,5 @@
 const changeCakeStory = story => ({
-  type: 'CHANGE_CAKE_ETAGE',
+  type: 'CHANGE_CAKE_STORY',
   payload: story,
 });
 

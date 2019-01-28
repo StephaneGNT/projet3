@@ -3,6 +3,7 @@ import { Button, Row, Container, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Carousel } from 'react-responsive-carousel';
+import axios from 'axios';
 import CustomMessageInput from './CustomMessageInput';
 import Beautify from './Beautify';
 import BeautifyButtons from './BeautifyButtons';
@@ -51,6 +52,8 @@ class CustomCenterInfo extends Component {
       confirmButtonContent: '',
       fileEvent1: '',
       fileEvent2: '',
+      imagePreviewUrl1: '',
+      imagePreviewUrl2: '',
     };
   }
 
@@ -61,7 +64,26 @@ class CustomCenterInfo extends Component {
 
   componentWillUnmount() {
     const { updateReducerSummary } = this.props; const { customSummary } = this.state;
-    return updateReducerSummary(customSummary);
+    let intermediateSummary = customSummary;
+    if (![customSummary.deco1, customSummary.deco2].includes('message')) {
+      intermediateSummary = {
+        ...intermediateSummary,
+        msgContent: '',
+        msgColor: '',
+        msgBgColor: '',
+        msgFont: '',
+      };
+      updateReducerSummary(intermediateSummary);
+    }
+    if (![customSummary.deco1, customSummary.deco2].includes('3D')) {
+      intermediateSummary = {
+        ...intermediateSummary,
+        description3D: '',
+      };
+      updateReducerSummary(intermediateSummary);
+    }
+
+    else updateReducerSummary(customSummary);
   }
 
   getConfigState = (config) => {
@@ -74,29 +96,61 @@ class CustomCenterInfo extends Component {
     ));
   }
 
-  removeDeco = (type) => {
+  handleImageChange = (e, decoType) => {
     const { customSummary } = this.state;
+    e.preventDefault();
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    const urlNum = decoType === '2D' ? 'imagePreviewUrl1' : 'imagePreviewUrl2';
+    reader.onloadend = () => {
+      this.setState({ [urlNum]: reader.result });
+    };
+    reader.readAsDataURL(file);
+    if (decoType === '2D') this.setState({ fileEvent1: file });
+    if ([customSummary.deco1, customSummary.deco2].includes('3D')) this.decoration.current.submitFile(file);
+    else this.setState({ fileEvent2: file });
+  }
+
+  removeDeco = (type) => {
+    const { customSummary, fileEvent1, fileEvent2 } = this.state;
     const { calculatePrice, customAdmin } = this.props;
     let { deco1, deco2 } = customSummary;
-    if (type === 'message') calculatePrice(-customAdmin.price_customMessage);
+    if (type === 'message') {
+      calculatePrice(-customAdmin.price_customMessage);
+      this.setState(prevState => ({
+        customSummary: {
+          ...prevState.customSummary,
+          msgContent: '',
+          msgColor: '',
+          msgBgColor: '',
+        },
+      }));
+    }
     if (type === '2D') {
       calculatePrice(-customAdmin.price_2D);
-      this.decoration.current.resetUrl('2D');
+      this.deleteUrl('2D');
       this.setState(prevState => ({
         customSummary: {
           ...prevState.customSummary,
           photo1: '',
+          imagePreviewUrl1: '',
         },
+        fileEvent1: '',
       }));
+      if (customSummary.photo1) axios.delete(`/api/image/delete/${customSummary.photo1}`);
     }
     if (type === '3D') {
-      this.decoration.current.resetUrl('3D');
+      this.deleteUrl('3D');
       this.setState(prevState => ({
         customSummary: {
           ...prevState.customSummary,
           photo2: '',
+          imagePreviewUrl2: '',
+          description3D: '',
         },
+        fileEvent2: '',
       }));
+      if (customSummary.photo2) axios.delete(`/api/image/delete/${customSummary.photo2}`);
     }
     if (deco1.includes(type)) deco1 = '';
     if (deco2.includes(type)) deco2 = '';
@@ -112,7 +166,7 @@ class CustomCenterInfo extends Component {
   };
 
   updateSummary = (type, content) => {
-    const { customSummary, typeResilient, fileEvent1, fileEvent2 } = this.state;
+    const { customSummary, typeResilient, imagePreviewUrl1, imagePreviewUrl2, fileEvent1, fileEvent2 } = this.state;
     const { calculatePrice, customAdmin } = this.props;
     const modifySummary = (item) => {
       this.setState(prevState => ({
@@ -126,8 +180,8 @@ class CustomCenterInfo extends Component {
     switch (type) {
       case 'ADD_DECORATION':
         if (content === 'message' && !customSummary.msgContent) return alert('Pour confirmer, veuillez entrer un message')
-        if (content === '2D' && (!fileEvent1)) return alert('Pour confirmer, veuillez chargez une image');
-        if (content === '3D' && (!fileEvent2 && !customSummary.description3D)) return alert('Pour confirmer, veuillez chargez une image ou fournir une description');
+        if (content === '2D' && (!imagePreviewUrl1)) return alert('Pour confirmer, veuillez chargez une image');
+        if (content === '3D' && (!imagePreviewUrl2 && !customSummary.description3D)) return alert('Pour confirmer, veuillez chargez une image et/ou fournir une description');
         if (content === '2D') calculatePrice(customAdmin.price_2D);
         if (content === 'message') calculatePrice(customAdmin.price_customMessage);
         if (content === '2D') this.decoration.current.submitFile(fileEvent1);
@@ -161,11 +215,11 @@ class CustomCenterInfo extends Component {
     if (customSummary.deco1 && customSummary.deco2
       && ![customSummary.deco1, customSummary.deco2].includes(type)) {
       switch (type) {
-        case 'message': alert('Seulement deux choix sont possibles. Veuillez déselectionner l’option image ou sculpture pour accéder au message');
+        case 'message': alert('Seulement deux choix sont possibles. Veuillez déselectionner l’option image ou 3D pour accéder au message');
           break;
-        case '2D': alert('Seulement deux choix sont possibles. Veuillez déselectionner l’option message ou sculpture pour accéder à l’ajout de photo');
+        case '2D': alert('Seulement deux choix sont possibles. Veuillez déselectionner l’option message ou 3D pour accéder à l’ajout de photo');
           break;
-        case '3D': alert('Seulement deux choix sont possibles. Veuillez déselectionner l’option message ou sculpture pour accéder à la sculpture');
+        case '3D': alert('Seulement deux choix sont possibles. Veuillez déselectionner l’option message ou image 2D pour accéder à la sculpture');
           break;
         default: return null;
       }
@@ -197,29 +251,28 @@ class CustomCenterInfo extends Component {
     const { customSummary } = this.state;
     if ([customSummary.deco1, customSummary.deco2].includes(type)) {
       return (
-        <div>
+        <div style={{ minHeight: '3vh' }}>
           <span style={{ color: 'green', fontSize: '0.7em' }}>Décoration ajoutée</span>
           <span
             onClick={() => this.removeDeco(type)}
-            style={{ color: 'red', fontSize: '0.7em', paddingBottom: '-0.7vh' }}
-            className="removeCross"><b>  X</b>
-          </span>
+            style={{ color: 'red', fontSize: '0.7em' }}
+            className="removeCross"><b>  X</b></span>
         </div>
       );
     }
-    return <div />;
+    return <div style={{ minHeight: '3vh' }} />;
   }
 
-  getFileEvent = (e, t) => {
-    if (t === '2D') this.setState({ fileEvent1: e });
-    if (t === '3D') this.setState({ fileEvent2: e });
+  deleteUrl = (type) => {
+    const deco = type === '2D' ? 'imagePreviewUrl1' : 'imagePreviewUrl2';
+    this.setState({ [deco]: '' });
   }
 
   renderInfo = () => {
     const render = [];
     const {
       message, messageResilient, image, imageResilient,
-      sculpture, sculptureResilient, type, typeResilient, customSummary, config, confirmButtonContent
+      sculpture, sculptureResilient, type, typeResilient, customSummary, config, imagePreviewUrl1, imagePreviewUrl2, confirmButtonContent
     } = this.state;
     const { cake, custom, customAdmin } = this.props;
     const description = getDescription(type, typeResilient, custom, customAdmin);
@@ -286,8 +339,10 @@ class CustomCenterInfo extends Component {
                   modify={this.updateSummary}
                   photography={typeResilient === 'image' ? customSummary.photo1 : customSummary.photo2}
                   customSummary={customSummary}
+                  preview={typeResilient === 'image' ? imagePreviewUrl1 : imagePreviewUrl2}
                   decoType={typeResilient === 'image' ? '2D' : '3D'}
-                  sendFileEvent={this.getFileEvent}
+                  sendFileEvent={this.handleImageChange}
+                  deleteUrl={this.deleteUrl}
                 />
               </Col>
             </Row>
@@ -365,10 +420,16 @@ class CustomCenterInfo extends Component {
       messageResilient,
       imageResilient,
       sculptureResilient,
+      imagePreviewUrl2,
     } = this.state;
-    console.log(customSummary)
     const buttonStyle = { backgroundColor: 'rgb(129, 38, 38)' };
     const center = { display: 'flex', flexDirection: 'column', alignItems: 'center' }
+    if (!customSummary.msgContent && [customSummary.deco1, customSummary.deco2].includes('message')) {
+      if (window.confirm('Voulez-vous supprimer le message personnalisé de votre commande?')) this.removeDeco('message');
+    }
+    if (!customSummary.description3D && (!imagePreviewUrl2 && !customSummary.photo2) && [customSummary.deco1, customSummary.deco2].includes('3D')) {
+      if (window.confirm('Voulez-vous supprimer la décoration 3D de votre commande?')) this.removeDeco('3D');
+    }
     return (
       <Container>
         <Row className="decorationRow">
@@ -418,7 +479,8 @@ class CustomCenterInfo extends Component {
             {this.showAdded('3D')}
           </Col>
         </Row>
-        <div className="decorationRow"
+        <div
+          className="decorationRow"
           style={!imageResilient && !messageResilient && !sculptureResilient
             ? center : {}}
         >

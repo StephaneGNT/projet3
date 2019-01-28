@@ -5,7 +5,7 @@ import { Table, Container } from 'reactstrap';
 
 import '../../../Assets/Styles/OrderDetail.css';
 import '../../../Assets/Styles/Confirmation.css';
-import CakeDecoration from '../../CakeDecoration';
+import CakeDescription from '../../CakeDescription';
 
 
 const Confirmation = (props) => {
@@ -14,11 +14,11 @@ const Confirmation = (props) => {
     <Container>
       <Table>
         <tbody>
-          {CakeDecoration(cake, customWishes, '')}
+          {CakeDescription(cake, customWishes, 'user')}
         </tbody>
       </Table>
       <br />
-      <p> Conditions générales de vente : Paiement par carte, chèque ou espace.</p>
+      <p> Paiement par carte, chèque ou espèces, en boutique.</p>
       <p> Récupération de la commande en boutique.</p>
     </Container>
 
