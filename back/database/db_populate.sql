@@ -72,4 +72,5 @@ INSERT INTO jt_customers_orders (id_customer, id_order)
 VALUES (1, 1);
 
 INSERT INTO descriptions (homePage, contact)
-VALUES ('Nous vous proposons des gâteaux, cheesecake et autres pâtisseries entièrement à votre goût et personnalisées à votre demande. Nous sommes à votre écoute pourtoute demande supplémentaire !', 'Les fondatrices de GiLuna proviennent d’Amérique du Sud, spécifiquement du Venezuela:  Fabiola GIL et Maria Alejandra LUNA.');
+VALUES ('Nous vous proposons des gâteaux, cheesecake et autres pâtisseries entièrement à votre goût et personnalisées à votre demande. Nous sommes à votre écoute pourtoute demande supplémentaire !',
+ 'Les fondatrices de GiLuna proviennent d’Amérique du Sud, spécifiquement du Venezuela:  Fabiola GIL et Maria Alejandra LUNA.');

@@ -6,6 +6,7 @@
   --secondPolice: 'Arial';
 }
 
+
 a {
   text-decoration: transparent;
 }
@@ -17,9 +18,7 @@ a {
   font-size: 1.4em;
   color: white;
   border: none;
-  border-radius: 5px;
-  padding:2%;
-  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+  padding:10px;
 }
 
 .img-gallery {

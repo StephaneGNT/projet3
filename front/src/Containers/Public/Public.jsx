@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import HomePage from './HomePage/HomePage';
 import PimpMyCake from './PimpMyCake';
-import MainNavigation from './Navigation/MainNavigation';
+// import MainNavigation from './Navigation/MainNavigation';
 import Contact from './ContactPage/Contact';
 import '../../Assets/Styles/Public.css';
 
@@ -19,7 +19,7 @@ class Public extends Component {
     return (
       <BrowserRouter>
         <div className="body-zone">
-          <MainNavigation />
+          {/* <MainNavigation /> */}
           <div className="header-zone">
             Pimp My Cake
             <button
