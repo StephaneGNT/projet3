@@ -31,6 +31,14 @@ CREATE TABLE admin
     adminPassword VARCHAR(100)
 );
 
+CREATE TABLE images
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `size` int(11) NOT NULL
+);
+
 CREATE TABLE calendar ( 
     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
     date VARCHAR(50),
