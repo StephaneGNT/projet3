@@ -43,22 +43,13 @@ class CustomMessageInput extends Component {
             </div>))
         }
         <div className="fontTable">
-          {/* <Dropdown
-              isOpen={dropdownOpen}
-              className={!wantsCustomMessage ? 'disableHover' : null}
-              toggle={() => this.setState({ dropdownOpen: !dropdownOpen })}
-            >
-              <DropdownToggle className="fontdropdown" caret>
-                Police
-
-              </DropdownToggle> */}
           {
             selectedFonts.map((font, index) => (
               <div
                 className="fontBubbles"
                 key={font}
                 style={{
-                  backgroundColor: index % 2 === 0 ? '#f5f5f4' : '',
+                  backgroundColor: index % 2 === 0 ? '#f5f5f4' : 'white',
                   fontFamily: font,
                   fontSize: '2.5vmin',
                 }}

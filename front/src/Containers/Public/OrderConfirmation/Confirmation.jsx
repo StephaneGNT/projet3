@@ -5,7 +5,7 @@ import { Table, Container } from 'reactstrap';
 
 import '../../../Assets/Styles/OrderDetail.css';
 import '../../../Assets/Styles/Confirmation.css';
-import CakeDecoration from '../../CakeDecoration';
+import CakeDescription from '../../CakeDescription';
 
 
 const Confirmation = (props) => {
@@ -14,7 +14,7 @@ const Confirmation = (props) => {
     <Container>
       <Table>
         <tbody>
-          {CakeDecoration(cake, customWishes, '')}
+          {CakeDescription(cake, customWishes, 'user')}
         </tbody>
       </Table>
       <br />

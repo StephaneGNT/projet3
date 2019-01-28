@@ -6,7 +6,7 @@ import axios from 'axios';
 class Decoration extends Component {
   constructor(props) {
     super(props);
-    this.state = { uploaded1: '', uploaded2: '' }
+    this.state = { uploaded1: '', uploaded2: '' };
   }
 
   componentWillMount() {
