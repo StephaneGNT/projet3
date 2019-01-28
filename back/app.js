@@ -32,7 +32,7 @@ app.use('/api', ingred);
 app.use('/api', auth);
 app.use('/api', admin);
 app.use('/api/customization', customization);
-app.use('/calendar', calendar);
+app.use('/api/calendar', calendar);
 app.use('/api/send',mail);
 app.use(images);
 app.use('/api', cake);

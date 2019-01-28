@@ -80,6 +80,8 @@ class OrdersAdmin extends Component {
           <td>
             {this.getOrderStatus(order, index, customers)}
           </td>
+          <td>{order.customerComment}</td>
+          <td>{order.customerMessage}</td>
           <td>
             <Button
               color="primary"
@@ -120,6 +122,8 @@ class OrdersAdmin extends Component {
               <th>Date de commande</th>
               <th>Date de livraison</th>
               <th>Statut commande</th>
+              <th>Commentaire client</th>
+              <th>Message carte</th>
               <th>Gâteau</th>
               <th>Client</th>
             </tr>
