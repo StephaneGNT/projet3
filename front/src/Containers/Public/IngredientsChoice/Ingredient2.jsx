@@ -26,17 +26,30 @@ Giluna recommande une portion de ${ingredient.portion}`;
 
   const filter = disabled && 'grayscale(80%)';
   const color = disabled ? 'darkgrey' : 'black';
-  // const display = disabled && 'none';
   const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
 
   return (
     <Col className="ingredient" style={{ display: 'flex', flexDirection: 'row', textAlign: 'center' }}>
-      <Button disabled={disabled} style={{ filter, backgroundColor, display: 'flex', flexDirection: 'column' }} onClick={() => addNewIngredient(ingredient)}>
-        <span className="badge badge-light">{ingredient.price}€</span>
+      <Button
+        disabled={disabled}
+        style={{
+          filter, backgroundColor, display: 'flex', flexDirection: 'column',
+        }}
+        onClick={() => addNewIngredient(ingredient)}
+      >
+        <span className="badge badge-light">
+          {ingredient.price}
+           €/part
+        </span>
         <img src={ingredient.image} title={getFullDescripion()} alt="" />
       </Button>
       <Col>
-        <p style={{ color, fontWeight: 'bold', textAlign: 'center', marginTop: '10px' }}>{ingredient.name}</p>
+        <p style={{
+          color, fontWeight: 'bold', textAlign: 'center', marginTop: '10px',
+        }}
+        >
+          {ingredient.name}
+        </p>
         <p style={{ color, textAlign: 'left' }}>{ingredient.description}</p>
       </Col>
     </Col>
