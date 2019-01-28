@@ -41,5 +41,4 @@ router.delete('/api/image/delete/:imagename', (req, res) => {
   });
 })
 
-
 module.exports = router;
