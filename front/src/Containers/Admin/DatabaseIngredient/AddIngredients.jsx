@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {
-  Label, Input, Button, Form, FormGroup, Table, Col, Row,
+  Label, Input, Button, Form, FormGroup, Table, Col, Row, Alert,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import UploadPicsAddIngred from '../../UploadPicsAddIngred';
+// import UploadPicsAddIngred from '../../UploadPicsAddIngred';
 import '../../../Assets/Styles/Public.css';
 
 class AddIngredients extends Component {
@@ -31,6 +31,7 @@ class AddIngredients extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // Get les Ingredients & Allergènes de la DB pour les afficher
   componentDidMount() {
     axios.get('/ingredients/name')
       // .then(results => results.json())
@@ -44,11 +45,6 @@ class AddIngredients extends Component {
         this.setState({ allergList: (data.data[0]) });
       })
       .catch(err => console.log(err));
-  }
-
-  uploadPic = (e) => {
-    const { decoration } = this.state;
-    this.setState({ decoration: { ...decoration, image: e.target.files[0] } });
   }
 
   handleChange = (e) => {
@@ -75,8 +71,8 @@ class AddIngredients extends Component {
 
     // Enregistrement du nouvel ingrédient
     const newIngredientID = await axios.post('/ingredients/new', newIngredient)
-      .then(res => { return res.data.insertId })
-      .catch(err => console.log(err.response.data));
+      .then(res => alert('Ingrédient ajouté.'))
+      .catch(err => alert(err.response.data));
 
     // Enregistrement des ingrédients compatibles
     this.compatibleIngList.map((ingID) => {
@@ -85,8 +81,9 @@ class AddIngredients extends Component {
         id_ingred2: ingID,
       };
       axios.post('/jtingredients', formData, (req, res) => {
-        if (res.status === 200) return (console.log('Ingrédients compatibles enregistrés !'));
-        else return ('Error');
+        if (res.status === 200) {
+          alert('Ingrédient ajouté.');
+        } else alert('Erreur');
       });
     });
   }
@@ -163,7 +160,7 @@ class AddIngredients extends Component {
               </FormGroup>
             </Col>
             <Col md={5}>
-              <UploadPicsAddIngred />
+              {/* <UploadPicsAddIngred /> */}
             </Col>
             <Col md={2}>
               <FormGroup check>
