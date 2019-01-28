@@ -85,7 +85,7 @@ class AddIngredients extends Component {
         id_ingred2: ingID,
       };
       axios.post('/jtingredients', formData, (req, res) => {
-        if (res.status === 200) return ('Ingrédients compatibles enregistrés !');
+        if (res.status === 200) return (console.log('Ingrédients compatibles enregistrés !'));
         else return ('Error');
       });
     });
