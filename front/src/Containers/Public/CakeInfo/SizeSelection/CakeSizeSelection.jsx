@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  Row, Container, Label,
+  Row, Container, Label, Col,
 } from 'reactstrap';
 import changeCakeSize from '../../../../Actions/cakeActions/changeCakeSize';
 import changeCakeStory from '../../../../Actions/cakeActions/changeCakeStory';
@@ -54,7 +54,7 @@ class CakeSizeSelection extends Component {
     const errorSizeStyle = {
       visibility: (size > 0 && size <= 5) ? 'visible' : 'hidden',
       color: 'red',
-      fontSize: '0.8em',
+      fontSize: '0.7em',
     };
     const storyErrorMessage = story < minStory ? `Votre gâteau ne peut pas faire moins de ${minStory} étage(s).` : `Votre gâteau ne peut pas faire plus de ${maxStory} étage(s).`;
     const errorStoryStyle = {
@@ -64,23 +64,23 @@ class CakeSizeSelection extends Component {
     };
 
     return (
-      <Container style={{ minWidth: '100%' }}>
-        <Label className="labels-perso mt-3">Choisissez la taille de votre gâteau</Label>
+      <Container className="b-cakesize-select">
         <Row>
-          <Label className="labels-perso mt-3">Nombre de personnes : </Label>
-          <input
-            onChange={e => this.saveCakeInfo(e.target.value)}
-          />
-        </Row>
-        <Row style={errorSizeStyle}>
-          Vous ne pouvez pas commander pour moins de 5 personnes.
-        </Row>
-        <Row>
-          <Label className="labels-perso mt-3">Nombre d'étages : </Label>
-          <input
-            onChange={e => this.saveCakeStory(e.target.value)}
-            value={story}
-          />
+          <Label className="labels-perso">Choisissez la taille de votre gâteau</Label>
+          <Col>
+            <Label className="lb-2">Nombre de personnes : </Label>
+            <input
+              onChange={e => this.saveCakeInfo(e.target.value)}
+            />
+            <div style={errorSizeStyle}>Vous ne pouvez pas commander pour moins de 5 personnes.</div>
+          </Col>
+          <Col>
+            <Label className="lb-2">Nombre d'étages : </Label>
+            <input
+              onChange={e => this.saveCakeStory(e.target.value)}
+              value={story}
+            />
+          </Col>
         </Row>
         <Row style={errorStoryStyle}>
           {storyErrorMessage}

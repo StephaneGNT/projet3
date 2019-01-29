@@ -5,7 +5,6 @@ import {
   Label, Input, Button, Form, FormGroup, Table, Col, Row,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import UploadPicsAddIngred from '../../UploadPicsAddIngred';
 import '../../../Assets/Styles/Public.css';
 
 class AddIngredients extends Component {
@@ -32,23 +31,18 @@ class AddIngredients extends Component {
   }
 
   componentDidMount() {
-    axios.get('/ingredients/name')
-      // .then(results => results.json())
+    axios.get('/api/ingredients/name')
+      // .then(results => resultss.json())
       .then((data) => {
         this.setState({ ingredList: (data.data[0]) });
       })
       .catch(err => console.log(err));
 
-    axios.get('/allergenes/name')
+    axios.get('/api/allergenes/name')
       .then((data) => {
         this.setState({ allergList: (data.data[0]) });
       })
       .catch(err => console.log(err));
-  }
-
-  uploadPic = (e) => {
-    const { decoration } = this.state;
-    this.setState({ decoration: { ...decoration, image: e.target.files[0] } });
   }
 
   handleChange = (e) => {
@@ -79,6 +73,7 @@ class AddIngredients extends Component {
       .catch(err => console.log(err.response.data));
 
     // Enregistrement des ingrédients compatibles
+    console.log(this.compatibleIngList);
     this.compatibleIngList.map((ingID) => {
       const formData = {
         id_ingred1: newIngredientID,
@@ -101,6 +96,16 @@ class AddIngredients extends Component {
     const index = this.allergeneIngList.indexOf(allergeneID);
     if (index >= 0) this.allergeneIngList.splice(index, 1);
     else this.allergeneIngList.push(allergeneID);
+  }
+
+  uploadPic = (file) => {
+    const data = new FormData();
+    data.append('avatar', file.target.files[0]);
+    axios.post('/api/image/upload', data)
+      .then((result) => { this.setState({
+        image: result.data,
+      });
+      });
   }
 
   render() {
@@ -163,7 +168,8 @@ class AddIngredients extends Component {
               </FormGroup>
             </Col>
             <Col md={5}>
-              <UploadPicsAddIngred />
+              <Label>File</Label>
+              <Input type="file" name="file" bsSize="sm"  onChange={file => this.uploadPic(file)} />
             </Col>
             <Col md={2}>
               <FormGroup check>
@@ -224,7 +230,7 @@ class AddIngredients extends Component {
       </div>
     );
   }
-}
+};
 
 AddIngredients.propTypes = {
   updateState: PropTypes.shape({}).isRequired,

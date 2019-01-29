@@ -8,6 +8,7 @@ import CustomMessageInput from './CustomMessageInput';
 import Beautify from './Beautify';
 import BeautifyButtons from './BeautifyButtons';
 import Decoration from './Decoration';
+import alert from '../../../Actions/alert';
 import getDescription from './Customization_functions';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import CakeMessagePhotoExample1 from '../../../Assets/Images/selectionGallerie/IMG_0987.JPG';
@@ -166,7 +167,7 @@ class CustomCenterInfo extends Component {
 
   updateSummary = (type, content) => {
     const { customSummary, typeResilient, imagePreviewUrl1, imagePreviewUrl2, fileEvent1, fileEvent2 } = this.state;
-    const { calculatePrice, customAdmin } = this.props;
+    const { calculatePrice, customAdmin, alertAction } = this.props;
     const modifySummary = (item) => {
       this.setState(prevState => ({
         prevState,
@@ -178,9 +179,9 @@ class CustomCenterInfo extends Component {
     };
     switch (type) {
       case 'ADD_DECORATION':
-        if (content === 'message' && !customSummary.msgContent) return alert('Pour confirmer, veuillez entrer un message')
-        if (content === '2D' && (!imagePreviewUrl1)) return alert('Pour confirmer, veuillez chargez une image');
-        if (content === '3D' && (!imagePreviewUrl2 && !customSummary.description3D)) return alert('Pour confirmer, veuillez chargez une image et/ou fournir une description');
+        if (content === 'message' && !customSummary.msgContent) return alertAction('Pour confirmer, veuillez entrer un message');
+        if (content === '2D' && (!imagePreviewUrl1)) return alertAction('Pour confirmer, veuillez chargez une image');
+        if (content === '3D' && (!imagePreviewUrl2 && !customSummary.description3D)) return alertAction('Pour confirmer, veuillez chargez une image et/ou fournir une description');
         if (content === '2D') calculatePrice(customAdmin.price_2D);
         if (content === 'message') calculatePrice(customAdmin.price_customMessage);
         if (content === '2D') this.decoration.current.submitFile(fileEvent1);
@@ -210,15 +211,16 @@ class CustomCenterInfo extends Component {
   open = (deco) => {
     const setToUpdate = `${deco}Resilient`;
     const { customSummary } = this.state;
+    const { alertAction } = this.props;
     const type = deco === 'message' ? 'message' : deco === 'image' ? '2D' : '3D';
     if (customSummary.deco1 && customSummary.deco2
       && ![customSummary.deco1, customSummary.deco2].includes(type)) {
       switch (type) {
-        case 'message': alert('Seulement deux choix sont possibles. Veuillez déselectionner l’option image ou 3D pour accéder au message');
+        case 'message': alertAction('Seulement deux choix sont possibles. Veuillez déselectionner l’option image ou 3D pour accéder au message');
           break;
-        case '2D': alert('Seulement deux choix sont possibles. Veuillez déselectionner l’option message ou 3D pour accéder à l’ajout de photo');
+        case '2D': alertAction('Seulement deux choix sont possibles. Veuillez déselectionner l’option message ou 3D pour accéder à l’ajout de photo');
           break;
-        case '3D': alert('Seulement deux choix sont possibles. Veuillez déselectionner l’option message ou image 2D pour accéder à la sculpture');
+        case '3D': alertAction('Seulement deux choix sont possibles. Veuillez déselectionner l’option message ou image 2D pour accéder à la sculpture');
           break;
         default: return null;
       }
@@ -534,6 +536,10 @@ const mapDispatchToProps = dispatch => ({
   fetchAdminFontList: () => dispatch(fetchAdminFonts()),
   updateReducerSummary: data => dispatch(updateSummaryInfo(data)),
   calculatePrice: data => dispatch(calculateCustomizationPrice(data)),
+<<<<<<< HEAD
+=======
+  alertAction: message => dispatch(alert(message)),
+>>>>>>> dev
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(CustomCenterInfo);
