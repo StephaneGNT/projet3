@@ -64,7 +64,8 @@ class CustomCenterInfo extends Component {
   }
 
   componentWillUnmount() {
-    const { updateReducerSummary } = this.props; const { customSummary } = this.state;
+    const { updateReducerSummary, savePicture } = this.props;
+    const { customSummary } = this.state;
     let intermediateSummary = customSummary;
     if (![customSummary.deco1, customSummary.deco2].includes('message')) {
       intermediateSummary = {
@@ -522,6 +523,7 @@ CustomCenterInfo.propTypes = {
   fetchAdminFontList: PropTypes.func.isRequired,
   updateReducerSummary: PropTypes.func.isRequired,
   calculatePrice: PropTypes.func.isRequired,
+  savePicture: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({
@@ -531,12 +533,13 @@ const mapStatetoProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // addMessage: choice => dispatch(allowMessage(choice)),
-  // updatePrice: price => dispatch(changePrice(price)),
   fetchAdminFontList: () => dispatch(fetchAdminFonts()),
   updateReducerSummary: data => dispatch(updateSummaryInfo(data)),
   calculatePrice: data => dispatch(calculateCustomizationPrice(data)),
+<<<<<<< HEAD
+=======
   alertAction: message => dispatch(alert(message)),
+>>>>>>> dev
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(CustomCenterInfo);
