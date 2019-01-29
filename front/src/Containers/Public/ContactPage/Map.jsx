@@ -3,7 +3,8 @@ import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import { Container } from 'reactstrap';
 import apiKey from '../../../Assets/googleAPIKeys';
 
-export class MapContainer extends Component {
+export class MapContainer extends Component
+{
 
   constructor(props) {
     super(props);
@@ -11,9 +12,9 @@ export class MapContainer extends Component {
     this.api = 'https://api-adresse.data.gouv.fr/search/?q=';
 
     this.state = {
-        lat: '45.746559',
-        lng: '4.827114',
-    }
+      lat: '45.746559',
+      lng: '4.827114',
+    };
   }
 
   componentDidMount() {
@@ -59,7 +60,9 @@ export class MapContainer extends Component {
             lat,
             lng,
           }}
-          style={{ width: '25vw', height: '50vh' }}
+          style={{
+            width: '25vw', height: '50vh', border: '5px solid rgba(141, 29, 44, 0.8)', borderRadius: '40px',
+          }}
         >
 
           <Marker
@@ -80,4 +83,3 @@ const localApiKey = apiKey();
 export default GoogleApiWrapper({
   apiKey: localApiKey,
 })(MapContainer);
-

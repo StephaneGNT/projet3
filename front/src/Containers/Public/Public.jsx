@@ -20,8 +20,7 @@ class Public extends Component {
       <BrowserRouter>
         <div className="body-zone">
           <MainNavigation />
-          <div className="header-zone bg-light">
-            Pimp My Cake
+          <div className="header-zone">
             <button
               type="button"
               onClick={() => history.push(`${process.env.PUBLIC_URL}/admin`)}

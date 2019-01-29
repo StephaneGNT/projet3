@@ -6,20 +6,31 @@
   --secondPolice: 'Arial';
 }
 
+
 a {
-  text-decoration: transparent;
+  text-decoration: none !important;
 }
 
-#enterButton{
+a:hover {
+  text-decoration: none !important;
+}
+
+/* Bouton Start Cake */
+#enterButton {
   width:25vw;
   background-color: var(--mainColor);
   font-family: var(--mainPolice);
   font-size: 1.4em;
+  text-shadow: 1px 1px 2px rgb(138, 44, 44);
   color: white;
   border: none;
-  border-radius: 5px;
-  padding:2%;
-  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+  padding:10px;
+}
+
+#enterButton:hover {
+  background-color: var(--mainColor);
+  text-shadow: 1px 1px 2px rgb(107, 34, 34);
+  transition: all 1s ease-out; 
 }
 
 .img-gallery {

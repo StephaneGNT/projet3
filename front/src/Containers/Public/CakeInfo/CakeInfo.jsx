@@ -4,6 +4,7 @@ import {
   Container,
   Row,
   Col,
+  Badge,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -35,7 +36,7 @@ const CakeInfo = (props) => {
             title="A partir de 2,5€"
             onClick={() => { localChangeCakeType('cookie'); resetCakeStories(); }}
           >
-            Cookie
+            <h6><Badge color="danger">Cookie</Badge></h6>
           </button>
         </Col>
         <Col sm="2" className="text-center">
@@ -46,7 +47,7 @@ const CakeInfo = (props) => {
             title="A partir de 8€"
             onClick={() => { localChangeCakeType('cake'); resetCakeStories(); }}
           >
-            Cake
+            <h6><Badge color="danger">Cake</Badge></h6>
           </button>
         </Col>
         <Col sm="2" className="text-center">
@@ -57,7 +58,7 @@ const CakeInfo = (props) => {
             title="A partir de 8€"
             onClick={() => { localChangeCakeType('cheesecake'); resetCakeStories(); }}
           >
-            Cheesecake
+            <h6><Badge color="danger">Cheesecake</Badge></h6>
           </button>
         </Col>
         <Col sm="2" className="text-center">
@@ -68,7 +69,7 @@ const CakeInfo = (props) => {
             title="A partir de 2,5€"
             onClick={() => { localChangeCakeType('macaron'); resetCakeStories(); }}
           >
-            Macaron
+            <h6><Badge color="danger">Macaron</Badge></h6>
           </button>
         </Col>
         <Col sm="2" className="text-center">
@@ -79,7 +80,7 @@ const CakeInfo = (props) => {
             title="A partir de 2,5€"
             onClick={() => { localChangeCakeType('brownie'); resetCakeStories(); }}
           >
-            Brownie
+            <h6><Badge color="danger">Brownie</Badge></h6>
           </button>
         </Col>
       </Row>
