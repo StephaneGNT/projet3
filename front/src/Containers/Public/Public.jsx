@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import HomePage from './HomePage/HomePage';
 import PimpMyCake from './PimpMyCake';
-// import MainNavigation from './Navigation/MainNavigation';
+import MainNavigation from './Navigation/MainNavigation';
 import Contact from './ContactPage/Contact';
 import '../../Assets/Styles/Public.css';
 
@@ -20,8 +20,7 @@ class Public extends Component {
       <BrowserRouter>
         <div className="body-zone">
           <MainNavigation />
-          <div className="header-zone bg-light">
-            Pimp My Cake
+          <div className="header-zone">
             <button
               type="button"
               onClick={() => history.push(`${process.env.PUBLIC_URL}/admin`)}

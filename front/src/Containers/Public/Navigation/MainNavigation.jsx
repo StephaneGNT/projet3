@@ -28,4 +28,4 @@ const MainNavigation = () => (
   </Navbar>
 );
 
-// export default MainNavigation;
+export default MainNavigation;
