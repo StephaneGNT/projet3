@@ -169,7 +169,7 @@ class AddIngredients extends Component {
             </Col>
             <Col md={5}>
               <Label>File</Label>
-              <Input type="file" name="file" onChange={file => this.uploadPic(file)} />
+              <Input type="file" name="file" bsSize="sm"  onChange={file => this.uploadPic(file)} />
             </Col>
             <Col md={2}>
               <FormGroup check>
