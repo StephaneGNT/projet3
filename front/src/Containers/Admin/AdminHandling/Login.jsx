@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Row, Button } from 'reactstrap';
+import alert from '../../../Actions/alert';
 import { createAdmin, connectAdmin, updateAdmin } from './admin_DB_actions';
 import registerToken from '../../../Actions/adminsActions/registerToken';
 
@@ -36,7 +37,7 @@ class Login extends Component {
 
   submitUser = async () => {
     const {
-      action, history, saveToken, index,
+      action, history, saveToken, index, alertAction,
     } = this.props;
     const { user } = this.state;
     if (action === 'Créer') {
@@ -45,7 +46,7 @@ class Login extends Component {
     }
     if (action === 'Se connecter') {
       const answer = await connectAdmin(user);
-      window.alert(answer.message);
+      alertAction(answer.message);
       saveToken(answer.token);
       history.push(`${process.env.PUBLIC_URL}/admin/orders`);
     }
@@ -119,7 +120,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  saveToken: token => dispatch(registerToken(token))
+  saveToken: token => dispatch(registerToken(token)),
+  alertAction: message => dispatch(alert(message)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
