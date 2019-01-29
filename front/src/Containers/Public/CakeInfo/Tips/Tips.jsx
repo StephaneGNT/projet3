@@ -32,7 +32,9 @@ const Tips = (props) => {
             Ajoutez des gourmandises pour le rendre encore meilleur !
             <br />
             <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}>4- </strong>
-            À chaque événement son gâteau: embellissez votre création avec une image, une décoration 3D, ou simplement avec un joli texte personnalisé, pour le rendre parfaitement unique !
+            À chaque événement son gâteau: embellissez votre création
+             avec une image, une décoration 3D, ou simplement avec un joli
+             texte personnalisé, pour le rendre parfaitement unique !
           </p>
         </div>
       );
