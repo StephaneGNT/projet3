@@ -10,6 +10,12 @@ h3 {
   justify-content: center;
 }
 
+/* Apparence Badges sur les boutons COOKIE, MACARONS, CHEESE, CAKE sur CakeInfo.jsx */
+h6 {
+  margin:auto;
+}
+
+
 /* <------------------------------------------- BODY ----> */
 
 .body-zone {
@@ -17,7 +23,7 @@ h3 {
   height: 100%;
   background-repeat: repeat;
   background-image: url('https://imgur.com/kJy0pfY.png');
-  background-color: rgb(190, 148, 157);
+  background-color: rgb(211, 189, 158);
   background-size: auto;
 }
 
@@ -137,26 +143,24 @@ s-title2 {
 
 /* -------------> GALLERY : HomePage.jsx <-------------- */
 .the-gallery {
-  border:5px solid purple;
   display:flex;
-  justify-content: center;
 }
 
 .meals-showcase {
   list-style: none;
-  width: 77vw;
+  width: 100%;
   margin-bottom:0;
 }
 
 .meals-showcase li {
   display: block;
   float: left;
-  width: 25%;
   padding:5px;
 }
 
 .meal-photo {
-  width: 100%;
+  width: 16vw;
+  height:16vw;
   margin: 0;
   overflow: hidden;
   background-color: #000;
@@ -165,7 +169,7 @@ s-title2 {
 .meal-photo img {
   opacity: 0.7;
   width: 100%;
-  height: 25vh;
+  height: 100%;
   object-fit: cover;
   -webkit-transform: scale(1.15);
   -ms-transform: scale(1.15);
@@ -185,7 +189,7 @@ s-title2 {
 
 .body-sous-select {
   border: none;
-  background-color: rgb(236, 235, 235);
+  background-color: rgb(231, 218, 219);
   display: block;
 }
 
@@ -194,9 +198,11 @@ s-title2 {
   width: 100%;
   padding: 3px;
   font-size: 1.2em;
-  font-weight: 200;
-  font-family: var(--mainPolice);
-  color: var(--mainColor);
+  font-weight: 400;
+  font-family:  'Quicksand', sans-serif;
+  /* background-color: rgb(221, 198, 203); */
+  background-image: linear-gradient(-90deg, rgb(241, 232, 219), rgb(211, 189, 158));
+  color: white;
 }
 
 /* Label 'choississez votre type de douceur' dans CakeInfo.jsx */
@@ -211,18 +217,24 @@ s-title2 {
   text-align: left;
 }
 
-/* Label 'nombre de # ' dans CakeInfo.jsx */
-
-.label-nbr {
+/* Label 'nombre de # ' dans CakeInfo.jsx/CakesSizeSelection.jsx */
+.lb-2 {
   display: inline-block;
   margin-top: 5px;
-  font-size: 1em;
-  font-family: var(--mainPolice);
+  font-size: 0.8em;
+  font-family:  'Quicksand', sans-serif;
+  font-weight:700;
   color: var(--mainColor);
 }
 
-/* gérer le margin du Label&Input 'nbr de ' sur CakeInfo.jsx */
+/* Le bloc NBR étage & personne CakeSizeSelection.jsx */
+.b-cakesize-select {
+  border:1px solid orange;
+  margin:3% auto;
+  
+}
 
+/* gérer le margin du Label&Input 'nbr de ' sur CakeInfo.jsx */
 .row-nbr-choice {
   margin-top: 10px !important;
 }
@@ -232,13 +244,14 @@ s-title2 {
   height: 12vh;
   font-size: 0.7em;
   background-size: 70%;
-  background-color: rgb(202, 186, 186);
+  background-color: rgb(201, 164, 182);
   background-repeat: no-repeat;
   background-position-x: center;
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(128, 118, 118) !important;
   padding-top: 30% !important;
-  border: double 4px rgb(211, 210, 210);
+  border: none;
+  box-shadow: 0px 0px 5px rgb(219, 207, 207);
   margin-bottom: -30px;
 }
 
