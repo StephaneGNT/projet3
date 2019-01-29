@@ -63,7 +63,8 @@ class CustomCenterInfo extends Component {
   }
 
   componentWillUnmount() {
-    const { updateReducerSummary } = this.props; const { customSummary } = this.state;
+    const { updateReducerSummary, savePicture } = this.props;
+    const { customSummary } = this.state;
     let intermediateSummary = customSummary;
     if (![customSummary.deco1, customSummary.deco2].includes('message')) {
       intermediateSummary = {
@@ -81,9 +82,7 @@ class CustomCenterInfo extends Component {
         description3D: '',
       };
       updateReducerSummary(intermediateSummary);
-    }
-
-    else updateReducerSummary(customSummary);
+    } else updateReducerSummary(customSummary);
   }
 
   getConfigState = (config) => {
@@ -509,7 +508,7 @@ class CustomCenterInfo extends Component {
                 Ajouter une autre décoration
               </button>)}
         </Row> */}
-      </Container >
+      </Container>
     );
   }
 }
@@ -522,6 +521,7 @@ CustomCenterInfo.propTypes = {
   fetchAdminFontList: PropTypes.func.isRequired,
   updateReducerSummary: PropTypes.func.isRequired,
   calculatePrice: PropTypes.func.isRequired,
+  savePicture: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({
@@ -531,12 +531,9 @@ const mapStatetoProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // addMessage: choice => dispatch(allowMessage(choice)),
-  // updatePrice: price => dispatch(changePrice(price)),
   fetchAdminFontList: () => dispatch(fetchAdminFonts()),
   updateReducerSummary: data => dispatch(updateSummaryInfo(data)),
   calculatePrice: data => dispatch(calculateCustomizationPrice(data)),
-
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(CustomCenterInfo);

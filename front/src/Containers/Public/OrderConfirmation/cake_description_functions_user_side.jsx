@@ -1,8 +1,4 @@
 import React from 'react';
-import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
-// import { getAllOrders, getAllCakes } from '../Actions/adminsActions/getAllOrdersCakesCustomers';
 
 export const getCakeDescription = (cake) => {
   if (cake.type === 'cake') return (`1 ${cake.type} de ${cake.story} étage(s) pour ${cake.size} personnes`);
@@ -26,13 +22,12 @@ export const getCakeIngredientsList = (cake) => {
   return ingredientsList;
 };
 
-export const getCakeDecoration = (cakeDeco, photo) => {
-  console.log("cakeDeco", cakeDeco)
+export const getCakeDecoration = (cakeDeco, photo2D, photo3D, description3D) => {
+  let message;
+  let deco2D;
+  let deco3D;
 
-  if (cakeDeco.deco1 === '' && cakeDeco.deco2 === '') return ('Aucune décoration');
-  let message = null;
-  let deco2D = null;
-  let deco3D = null;
+  if (cakeDeco.deco1 === '' && cakeDeco.deco2 === '') return (('Aucune décoration'));
   if (cakeDeco.deco1 === 'message' || cakeDeco.deco2 === 'message') {
     message = (
       <div>
@@ -59,18 +54,15 @@ export const getCakeDecoration = (cakeDeco, photo) => {
     deco2D = (
       <div>
         <p>Photo imprimée sur feuille de sucre : </p>
-        <img src={photo} alt="Déco gâteau" />
+        <img src={photo2D} alt="Déco gâteau" />
       </div>);
   }
   if (cakeDeco.deco1 === '3D' || cakeDeco.deco2 === '3D') {
-    // if (cakeDeco.photo1) photo = (`../../../back/tmp/${cakeDeco.photo1}`);
-    // else if (cakeDeco.photo2) photo = (`../../../back/tmp/${cakeDeco.photo2}`);
-    // else decoDescription = cakeDeco.description3D;
     deco3D = (
       <div>
         <p>Décoration en 3D </p>
-        {/* {photo && <img src={photo} alt="Déco gâteau" />}
-      {decoDescription && <p>{decoDescription}</p>} */}
+        {photo3D && <img src={photo3D} alt="Déco gâteau" />}
+        {description3D && <p>{description3D}</p>}
       </div>
     );
   }
@@ -86,45 +78,12 @@ export const getCakeDecoration = (cakeDeco, photo) => {
   );
 };
 
-const changePrice = (newCake, cakeID) => {
-  axios.put(`/api/cakes/${cakeID}`, newCake).then((res) => {
-    if (res.status === 200) {
-      window.alert("Prix mis à jour");
-    }
-  });
-};
-
 export const getCakePrice = (cake, customWishes, user) => {
   let cakeDeco;
   if (customWishes) cakeDeco = customWishes;
   else cakeDeco = cake;
 
-  const newCake = {
-    type: cake.type,
-    size: cake.size,
-    quantity: cake.quantity,
-    story: cake.story,
-    occasion: cake.occasion,
-    price: 0,
-    customWishes: cake.customWishes,
-  };
-
   if (cakeDeco.deco1 === '3D' || cakeDeco.deco2 === '3D') {
-    if (user === 'admin') {
-      return (
-        <div>
-          <TextField
-            placeholder={cake.price.toFixed(2).replace(/[.,]00$/, '')}
-            onChange={(e) => { newCake.price = e.target.value; }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">€</InputAdornment>,
-            }}
-          />
-          <p>Prix à confirmer en fonction de la sculpture 3D</p>
-          <button type="button" onClick={() => changePrice(newCake, cake.id)}>Valider</button>
-        </div>
-      );
-    }
     return (
       <div>
         <p>
@@ -135,6 +94,5 @@ export const getCakePrice = (cake, customWishes, user) => {
       </div>
     );
   }
-  // return `${cake.price.toFixed(2).replace(/[.,]00$/, '')} €`;
   return `${cake.price.toFixed(2).replace(/[.,]00$/, '')} €`;
 };
