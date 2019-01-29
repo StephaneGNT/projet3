@@ -7,7 +7,6 @@ import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import axiosIngredientsDB from '../../../Actions/fetchDB/fetch_database_actions';
-import UploadPicsAddIngred from '../../UploadPicsAddIngred';
 import '../../../Assets/Styles/Add_Ingredients.css';
 
 class ModifyIngredient extends Component {
@@ -22,7 +21,7 @@ class ModifyIngredient extends Component {
         price: '',
         dispo: true,
         description: '',
-        img: '',
+        image: '',
         allerg: [],
         compatible: [],
         flavor: '',
@@ -30,7 +29,7 @@ class ModifyIngredient extends Component {
       },
       fullList: [],
       fullAllerg: [],
-
+      previewImage: '',
     };
     this.handleClickCompatible = this.handleClickCompatible.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -40,7 +39,6 @@ class ModifyIngredient extends Component {
   }
 
   componentWillMount() {
-    console.log('willMouont', this.inheritedIngredient)
     this.setState({
       ingredients: {
         ...this.inheritedIngredient,
@@ -56,6 +54,16 @@ class ModifyIngredient extends Component {
         const fullAllergArray = res.data[0]; this.setState({ fullAllerg: fullAllergArray });
       });
   }
+
+  // componentDidUpdate() {
+  //   if (this.state.ingredients.image.includes("avatar")) {
+  //     axios.get(`/api/image/get/${this.state.ingredients.image}`)
+  //       .then((res) => {
+  //         const photo = `data:image;base64,${res.data}`;
+  //         this.setState({ previewImage: photo })
+  //       })
+  //   }
+  // }
 
 
   handleClickCompatible = (compatibleID, compatibleName, ingredients) => {
@@ -135,10 +143,25 @@ class ModifyIngredient extends Component {
   };
 
 
+  uploadPic = (file, ingredients) => {
+    const data = new FormData();
+    data.append('avatar', file.target.files[0]);
+    axios.post('/api/image/upload', data)
+      .then((result) => {
+        this.setState({
+          ingredients: {
+            ...ingredients,
+            image: result.data,
+          },
+        });
+      });
+  }
+
   onSubmit = (e, ingredients) => {
     const { axiosDatabase } = this.props;
     e.preventDefault();
     const modifiedIngredient = ingredients;
+    console.log(modifiedIngredient)
     axios.put(`/api/ingredients/${modifiedIngredient.id}/`, modifiedIngredient)
       .then(res => (res.data))
       .catch(err => (err.response.data));
@@ -146,136 +169,141 @@ class ModifyIngredient extends Component {
   };
 
 
-  createModifyForm = (ingredients, fullList, fullAllerg) => {
-    return (
-      <div>
-        <title-admin>
-          Modifier l’ingrédient
-          {' '}
-          {this.inheritedIngredient.name}
-        </title-admin>
-        <Form>
-          <Row form>
-            <Col md={2}>
-              <FormGroup>
-                <Label>Name</Label>
-                <Input type="text" name="name" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.name} value={ingredients.name} />
-              </FormGroup>
-            </Col>
-            <Col md={2}>
-              <FormGroup>
-                <Label>Type</Label>
-                <Input type="select" name="type" onChange={e => this.updateState(e, ingredients)}>
-                  <option />
-                  <option>Base</option>
-                  <option>Filling</option>
-                  <option>Icing</option>
-                  <option>Topping</option>
-                  <option>Macaron</option>
-                  <option>Cookie</option>
-                  <option>Brownie</option>
-                </Input>
-              </FormGroup>
-            </Col>
-            <Col md={2}>
-              <FormGroup>
-                <Label>Size</Label>
-                <Input type="text" name="size" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.size} value={ingredients.size} />
-              </FormGroup>
-            </Col>
-            <Col md={2}>
-              <FormGroup>
-                <Label>Price</Label>
-                <Input type="text" name="price" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.price} value={ingredients.price} />
-              </FormGroup>
-            </Col>
-            <Col md={4}>
-              <FormGroup>
-                <Label>Description</Label>
-                <Input type="text" name="description" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.description} value={ingredients.description} />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-            <Col md={2}>
-              <FormGroup>
-                <Label>Flavor</Label>
-                <Input type="text" name="flavor" />
-              </FormGroup>
-            </Col>
-            <Col md={2}>
-              <FormGroup>
-                <Label>Color</Label>
-                <Input type="text" name="color" />
-              </FormGroup>
-            </Col>
-            <Col md={4}>
-              <UploadPicsAddIngred />
-            </Col>
-            <Col md={2}>
-              <FormGroup check>
-                <Input name="dispo" type="checkbox" value={this.inheritedIngredient.dispo} onClick={() => this.setState({ [ingredients]: { dispo: !ingredients.dispo } })} id="dispoCheck" />
-                <Label for="dispoCheck" check>Disponnibilité</Label>
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={5} className="col-size-checkbox">
-              <Table className="table-add-ingred">
-                <thead>
-                  <tr>
-                    <th className="title-label-list">Compatibilités</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    {fullList.map(compatible => (
-                      <td key={compatible.id}>
-                        <Input
-                          name="isCompatible"
-                          type="checkbox"
-                          defaultChecked={this.inheritedIngredient.compatible.includes(compatible.name)}
-                          onChange={() => (this.handleClickCompatible(compatible.id, compatible.name))}
-                        />
-                        <Label check>{compatible.name}</Label>
-                      </td>))}
-                  </tr>
-                </tbody>
-              </Table>
-            </Col>
-            <Col md={5} className="col-size-checkbox">
-              <Table className="table-add-ingred">
-                <thead>
-                  <tr>
-                    <th className="title-label-list">Allergenes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    {fullAllerg.map(allergene => (
-                      <td key={allergene.id}>
-                        <Input
-                          name="isAllergene"
-                          type="checkbox"
-                          defaultChecked={this.inheritedIngredient.allergenes.includes(allergene.name)}
-                          onChange={() => this.handleClickAllergene(allergene.id, allergene.name)}
-                        />
-                        <Label>{allergene.name}</Label>
-                      </td>))}
-                  </tr>
-                </tbody>
-              </Table>
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Button color="secondary" size="lg" onClick={() => this.showForm()}>Annuler</Button>
-            <Button color="primary" size="lg" onClick={(e) => { this.onSubmit(e, ingredients); this.showForm(); }}>Modifier</Button>
-          </Row>
-        </Form>
-      </div>
-    );
-  }
+  createModifyForm = (ingredients, fullList, fullAllerg) => (
+    <div>
+      <title-admin>
+        Modifier l’ingrédient
+        {' '}
+        {this.inheritedIngredient.name}
+      </title-admin>
+      <Form>
+        <Row form>
+          <Col md={2}>
+            <FormGroup>
+              <Label>Name</Label>
+              <Input type="text" name="name" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.name} value={ingredients.name} />
+            </FormGroup>
+          </Col>
+          <Col md={2}>
+            <FormGroup>
+              <Label>Type</Label>
+              <Input type="select" name="type" onChange={e => this.updateState(e, ingredients)}>
+                <option />
+                <option>Base</option>
+                <option>Filling</option>
+                <option>Icing</option>
+                <option>Topping</option>
+                <option>Macaron</option>
+                <option>Cookie</option>
+                <option>Brownie</option>
+              </Input>
+            </FormGroup>
+          </Col>
+          <Col md={2}>
+            <FormGroup>
+              <Label>Size</Label>
+              <Input type="text" name="size" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.size} value={ingredients.size} />
+            </FormGroup>
+          </Col>
+          <Col md={2}>
+            <FormGroup>
+              <Label>Price</Label>
+              <Input type="text" name="price" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.price} value={ingredients.price} />
+            </FormGroup>
+          </Col>
+          <Col md={4}>
+            <FormGroup>
+              <Label>Description</Label>
+              <Input type="text" name="description" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.description} value={ingredients.description} />
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row form>
+          <Col md={2}>
+            <FormGroup>
+              <Label>Flavor</Label>
+              <Input type="text" name="flavor" />
+            </FormGroup>
+          </Col>
+          <Col md={2}>
+            <FormGroup>
+              <Label>Color</Label>
+              <Input type="text" name="color" />
+            </FormGroup>
+          </Col>
+          <Col md={5}>
+            <Label>Image</Label>
+            <div className="imageIngredient">
+              {ingredients.image ? <img src={ingredients.image} alt="ingredient" />
+                : <img src={this.inheritedIngredient.image} alt="ingredient" />
+              }
+            </div>
+            <Input type="file" name="file" onChange={file => this.uploadPic(file, ingredients)} />
+          </Col>
+          <Col md={2}>
+            <FormGroup check>
+              <Input name="dispo" type="checkbox" value={this.inheritedIngredient.dispo} onClick={() => this.setState({ [ingredients]: { dispo: !ingredients.dispo } })} id="dispoCheck" />
+              <Label for="dispoCheck" check>Disponnibilité</Label>
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={5} className="col-size-checkbox">
+            <Table className="table-add-ingred">
+              <thead>
+                <tr>
+                  <th className="title-label-list">Compatibilités</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {fullList.map(compatible => (
+                    <td key={compatible.id}>
+                      <Input
+                        name="isCompatible"
+                        type="checkbox"
+                        defaultChecked={this.inheritedIngredient.compatible.includes(compatible.name)}
+                        onChange={() => (this.handleClickCompatible(compatible.id, compatible.name))}
+                      />
+                      <Label check>{compatible.name}</Label>
+                    </td>))}
+                </tr>
+              </tbody>
+            </Table>
+          </Col>
+          <Col md={5} className="col-size-checkbox">
+            <Table className="table-add-ingred">
+              <thead>
+                <tr>
+                  <th className="title-label-list">Allergenes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {fullAllerg.map(allergene => (
+                    <td key={allergene.id}>
+                      <Input
+                        name="isAllergene"
+                        type="checkbox"
+                        defaultChecked={this.inheritedIngredient.allergenes.includes(allergene.name)}
+                        onChange={() => this.handleClickAllergene(allergene.id, allergene.name)}
+                      />
+                      <Label>{allergene.name}</Label>
+                    </td>))}
+                </tr>
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+        <br />
+        <Row>
+          <Button color="secondary" size="lg" onClick={() => this.showForm()}>Annuler</Button>
+          <Button color="primary" size="lg" onClick={(e) => { this.onSubmit(e, ingredients); this.showForm(); }}>Modifier</Button>
+        </Row>
+      </Form>
+    </div>
+  );
+
 
   render() {
     const { ingredients, fullList, fullAllerg } = this.state;

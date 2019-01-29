@@ -28,7 +28,7 @@ ingred.put(`/ingredients/:id`, (req, res) => {
     price: req.body.price,
     dispo: req.body.dispo,
     description: req.body.description,
-    image: req.body.img,
+    image: req.body.image,
     isCompatible: null,
     flavor: null,
     color: null

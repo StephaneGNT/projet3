@@ -17,7 +17,7 @@ class CakeInProgress extends Component {
       return (
         <Row key={item.name} className="cakeProgressLayout">
           <p>
-            <img src={item.img} alt="ingredient" className="toppingsLayout" />
+            <img src={item.image} alt="ingredient" className="toppingsLayout" />
           </p>
           <Button size="sm" close onClick={() => remove(item)} />
         </Row>
@@ -25,7 +25,7 @@ class CakeInProgress extends Component {
     }
     return (
       <Row className="cakeProgressLayout">
-        <p><img src={item.img} alt="ingredient" className="toppingsLayout" /></p>
+        <p><img src={item.image} alt="ingredient" className="toppingsLayout" /></p>
       </Row>
     );
   }
@@ -44,7 +44,7 @@ class CakeInProgress extends Component {
       return (
         <Row key={item.name} className="cakeProgressLayout">
           <p>
-            <img src={item.img} alt="ingredient" />
+            <img src={item.image} alt="ingredient" />
           </p>
           <Button size="sm" close onClick={() => remove(item)} />
         </Row>
@@ -52,7 +52,7 @@ class CakeInProgress extends Component {
     }
     return (
       <Row className="cakeProgressLayout">
-        <p><img src={item.img} alt="ingredient" /></p>
+        <p><img src={item.image} alt="ingredient" /></p>
       </Row>
     );
   }
