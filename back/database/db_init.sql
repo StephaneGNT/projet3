@@ -85,7 +85,7 @@ CREATE TABLE final_cakes
     occasion VARCHAR(90),
     price INTEGER,
     customWishes INTEGER,
-    FOREIGN KEY(customWishes) REFERENCES custom_wishes(id)
+    FOREIGN KEY(customWishes) REFERENCES custom_wishes(id) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 

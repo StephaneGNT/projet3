@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Container } from 'reactstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Alert from './Alert';
 import Public from './Containers/Public/Public';
 import Admin from './Containers/Admin/Admin';
 import CellPhonePage from './Containers/CellPhonePage';
@@ -36,6 +37,7 @@ class App extends Component {
     return (
       <div className="App">
         <Desktop>
+          <Alert />
           <BrowserRouter className="d-none d-md-block">
             <Switch>
               <Route path={`${process.env.PUBLIC_URL}/admin`} component={Admin} />

@@ -32,6 +32,6 @@ CREATE TABLE jt_customers_orders
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     id_customer INTEGER,
     id_order INTEGER,
-    FOREIGN KEY(id_customer) REFERENCES customers(id),
-    FOREIGN KEY(id_order) REFERENCES final_orders(id)
+    FOREIGN KEY(id_customer) REFERENCES customers(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(id_order) REFERENCES final_orders(id) ON DELETE CASCADE ON UPDATE CASCADE
 );

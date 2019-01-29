@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Button, ButtonGroup } from 'reactstrap';
 import axios from 'axios';
+import alert from '../../Actions/alert';
 import { fetchFonts, fetchAdminFonts, getCustomPrices } from '../../Actions/customization_actions';
 import '../../Assets/Styles/CustomizationAdmin.css';
 import FontList from './FontList';
@@ -9,9 +11,12 @@ import FontList from './FontList';
 class CustomizationAdmin extends Component {
   constructor(props) {
     super(props);
+    this.fontsAtATime = 150;
     this.state = {
       message: '',
       D2: '',
+      range: this.fontsAtATime,
+      clickedPage: 0,
     };
   }
 
@@ -20,20 +25,40 @@ class CustomizationAdmin extends Component {
     sendPrices(); // recup prix customization
   }
 
+  generatePagination = () => {
+    const { customAdmin } = this.props;
+    const array = [];
+    const pages = Math.ceil(customAdmin.googleFonts.length / this.fontsAtATime);
+    let i = 0;
+    while (i < pages) {
+      i += 1;
+      array.push(i);
+    }
+    return array;
+  }
+
+  changePage = (index) => {
+    this.setState({
+      range: index * this.fontsAtATime + this.fontsAtATime,
+      clickedPage: index,
+    });
+  }
 
   addFont = (name) => {
-    const { customAdmin, fetchAdminFontList } = this.props;
+    const { customAdmin, fetchAdminFontList, alertAction } = this.props;
     if (!customAdmin.selectedFonts.includes(name)) {
       axios.post('/api/customization/addfonts', { name, availability: true })
         .then((response) => {
           if (response.data === 'OK') fetchAdminFontList();
-        });
-    } else window.alert('Vous avez déjà ajouté cette police');
+        }); 
+    } else {
+      alertAction('Vous avez déjà ajouté cette police');
+    }
   };
 
   updateCustomPrices = (deco) => {
     const { message, D2 } = this.state;
-    const { sendPrices } = this.props;
+    const { sendPrices, alertAction } = this.props;
     const price = deco === 'message' ? message : D2;
     const id = deco === 'message' ? 1 : 2;
     const numberCheck = /^\s*-?\d+(\.\d{1,2})?\s*$/;
@@ -46,7 +71,7 @@ class CustomizationAdmin extends Component {
           }
         });
     } else {
-      window.alert('Entrée non valide');
+      alertAction('Entrée non valide');
       this.setState({ [deco]: '' });
     }
   }
@@ -56,8 +81,9 @@ class CustomizationAdmin extends Component {
   }
 
   render() {
-    const { message, D2 } = this.state;
+    const { message, D2, range, clickedPage } = this.state;
     const { customAdmin } = this.props;
+    const limitedFontList = customAdmin.googleFonts.slice(range - this.fontsAtATime, range);
     return (
       <div>
         {
@@ -82,9 +108,29 @@ class CustomizationAdmin extends Component {
                 {customAdmin.price_customMessage.toFixed(2)} €
               </td>
               <td>
-                <input name="message" value={message} type="text" onChange={this.upDatePrices} /> €
+                <input
+                  name="message"
+                  value={message}
+                  type="text"
+                  onChange={this.upDatePrices}
+                  onKeyPress={(event) => {
+                    if (event.key === 'Enter') {
+                      this.updateCustomPrices('message');
+                    }
+                  }}
+                /> €
                 <div>
-                  <button onClick={() => this.updateCustomPrices('message')}>Valider changement</button>
+                  <button
+                    type="submit"
+                    onClick={() => this.updateCustomPrices('message')}
+                    onKeyPress={(event) => {
+                      if (event.key === 'Enter') {
+                        this.updateCustomPrices('message');
+                      }
+                    }}
+                  >
+                    Valider changement
+                  </button>
                 </div>
               </td>
             </tr>
@@ -94,9 +140,29 @@ class CustomizationAdmin extends Component {
                 {customAdmin.price_2D.toFixed(2)} €
               </td>
               <td>
-                <input name="D2" value={D2} type="text" onChange={this.upDatePrices} /> €
+                <input
+                  name="D2"
+                  value={D2}
+                  type="text"
+                  onChange={this.upDatePrices}
+                  onKeyPress={(event) => {
+                    if (event.key === 'Enter') {
+                      this.updateCustomPrices('D2');
+                    }
+                  }}
+                /> €
                 <div>
-                  <button onClick={() => this.updateCustomPrices('D2')}>Valider changement</button>
+                  <button
+                    type="submit"
+                    onClick={() => this.updateCustomPrices('D2')}
+                    onKeyPress={(event) => {
+                      if (event.key === 'Enter') {
+                        this.updateCustomPrices('D2');
+                      }
+                    }}
+                  >
+                    Valider changement
+                  </button>
                 </div>
               </td>
             </tr>
@@ -111,7 +177,7 @@ class CustomizationAdmin extends Component {
         <div>
           <div className="FontList">
             {
-              customAdmin.googleFonts.map(font => (
+              limitedFontList.map(font => (
                 <span
                   onClick={() => this.addFont(font.family)}
                   className="FontList"
@@ -128,6 +194,16 @@ class CustomizationAdmin extends Component {
             }
           </div>
         </div>
+        <ButtonGroup>
+          {this.generatePagination().map((pageNumber, i) => (
+            <Button
+              style={i === clickedPage ? { backgroundColor: 'black' } : {}}
+              onClick={() => this.changePage(i)}
+            >
+              {pageNumber}
+            </Button>
+          ))}
+        </ButtonGroup>
       </div>
     );
   }
@@ -137,6 +213,7 @@ CustomizationAdmin.propTypes = {
   fetchAdminFontList: PropTypes.func.isRequired,
   customAdmin: PropTypes.shape({}).isRequired,
   sendPrices: PropTypes.func.isRequired,
+  alertAction: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({
@@ -147,6 +224,7 @@ const mapDispatchToProps = dispatch => ({
   fetchFontList: () => dispatch(fetchFonts()),
   fetchAdminFontList: () => dispatch(fetchAdminFonts()),
   sendPrices: prices => dispatch(getCustomPrices(prices)),
+  alertAction: message => dispatch(alert(message)),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(CustomizationAdmin);

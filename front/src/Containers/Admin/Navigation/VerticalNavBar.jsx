@@ -17,7 +17,7 @@ const VerticalNavBar = () => (
       </NavItem>
       <NavItem className="mx-5">
         <NavLink to="/admin/Customization" className="nav-link lead">
-          Polices
+          Décoration
         </NavLink>
       </NavItem>
       <NavItem className="mx-5">
