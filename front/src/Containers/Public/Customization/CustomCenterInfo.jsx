@@ -98,6 +98,7 @@ class CustomCenterInfo extends Component {
   handleImageChange = (e, decoType) => {
     const { customSummary } = this.state;
     e.preventDefault();
+    console.log("e target", e.target.files[0])
     const reader = new FileReader();
     const file = e.target.files[0];
     const urlNum = decoType === '2D' ? 'imagePreviewUrl1' : 'imagePreviewUrl2';

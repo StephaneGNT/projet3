@@ -1,65 +1,39 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Row } from 'reactstrap';
-import axios from 'axios';
+import Ingredient from './IngrededientCakeInProgress';
 import removeIngredient from '../../../Actions/cakeActions/removeIngredient';
 import '../../../Assets/Styles/CakeInProgress.css';
 
-class CakeInProgress extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { photos: [] };
-  }
-
-  // componentWillMount() {
-  //   console.log("mount?")
-  //   const { cake } = this.props;
-  //   const photoArray = [];
-  //   cake.ingredients.map(i => axios.get(`/api/image/get/${i.image}`)
-  //     .then((response) => {
-  //       console.log(response)
-  //       photoArray.push(`data:image/jpg;base64,${response.data}`);
-  //     }));
-  //   this.setState({ photos: photoArray });
-  // }
-
-  compareIndexToLength = (item, index, arr) => {
-    const { remove } = this.props;
-    const { photos } = this.state;
-    async function photo(i) {
-      const promise = await axios.get(`/api/image/get/${i}`);
-      return `data:image/jpg;base64,${await promise.data}`;
-    }
-    let photography = photo(item.image)
-    console.log("photography", Promise.resolve(photography))
-
+const CakeInProgress = (props) => {
+  const compareIndexToLength = (item, index, arr) => {
+    const { remove } = props;
     if (index + 1 === arr.length) {
-      const cakeLayoutType = () => {
-        switch (item.type) {
+      const cakeLayoutType = (type) => {
+        switch (type) {
           case 'Garniture': return 'fillingLayout';
           case 'Toppings': return 'toppingsLayout';
           case 'Glaçage': return 'icingsLayout';
           default: return null;
         }
       };
+      const design = cakeLayoutType(item.type);
       return (
         <Row key={item.name} className="cakeProgressLayout">
-          <p>
-            <img src={photo(item.image).then(data => data).catch(reason => console.log(reason.message))} alt="ingredient1" className={cakeLayoutType()} />
-          </p>
+          <Ingredient image={item.image} type={item.type} design={design} />
           <Button size="sm" close onClick={() => remove(item)} />
         </Row>
       );
     }
     return (
       <Row className="cakeProgressLayout">
-        <p><img src={photo(item.image)} alt="ingredient2" /></p>
+        <Ingredient image={item.image} cakeLayoutType={x => x} />
       </Row>
     );
-  }
+  };
 
-  displayNamesIngredients = item => (
+  const displayNamesIngredients = item => (
     <Row key={item.name}>
       <p>
         {item.type}
@@ -69,21 +43,19 @@ class CakeInProgress extends Component {
     </Row>
   );
 
-  render() {
-    const { cake } = this.props;
-    console.log("photos", this.state.photos)
-    return (
-      <div>
-        <Row className="cakeLayout">
-          {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index, arr))}
-        </Row>
-        <Row className="namesLayout">
-          {cake.ingredients.map(item => this.displayNamesIngredients(item))}
-        </Row>
-      </div>
-    );
-  }
+  const { cake } = props;
+  return (
+    <div>
+      <Row className="cakeLayout">
+        {cake.ingredients.map((item, index, arr) => compareIndexToLength(item, index, arr))}
+      </Row>
+      <Row className="namesLayout">
+        {cake.ingredients.map(item => displayNamesIngredients(item))}
+      </Row>
+    </div>
+  );
 }
+
 
 CakeInProgress.propTypes = {
   cake: PropTypes.shape({}).isRequired,
