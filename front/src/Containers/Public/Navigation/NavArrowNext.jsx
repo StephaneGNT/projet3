@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import alert from '../../../Actions/alert';
 import { changeIndex } from '../../../Actions/cakeActions/changeIndex';
 
 class NavArrowNext extends Component {
@@ -32,10 +33,10 @@ class NavArrowNext extends Component {
   }
 
   handleClick = (e) => {
-    const { pageIndex, deliveryDate, cake, changePageIndex } = this.props;
+    const { pageIndex, deliveryDate, cake, changePageIndex, actionAlert } = this.props;
     if (!deliveryDate && ((pageIndex === 6) || (pageIndex === 4 && !['cake', 'cheesecake'].includes(cake.type)))) {
       e.preventDefault();
-      window.alert('Veuillez renseigner une date de retrait')
+      actionAlert('Veuillez renseigner une date de retrait');
     }
     else changePageIndex(1);
   }
@@ -67,6 +68,7 @@ NavArrowNext.propTypes = {
   disabled: PropTypes.bool.isRequired,
   changePageIndex: PropTypes.func.isRequired,
   cake: PropTypes.shape({}).isRequired,
+  actionAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -77,7 +79,10 @@ const mapStateToProps = state => ({
   deliveryDate: state.orderCharacteristics.delivery_date,
 });
 
-const matchDispatchToProps = dispatch => ({ changePageIndex: num => dispatch(changeIndex(num)) });
+const matchDispatchToProps = dispatch => ({
+  changePageIndex: num => dispatch(changeIndex(num)),
+  actionAlert: message => dispatch(alert(message)),
+});
 
 
 export default connect(mapStateToProps, matchDispatchToProps)(NavArrowNext);
