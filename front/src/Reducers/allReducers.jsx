@@ -19,6 +19,7 @@ import orderListReducer from './list_orders';
 import customersListReducer from './list_clients';
 import adminsListReducer from './list_admins';
 import descriptionsReducer from './home_page_contact_descriptions';
+import alertReducer from './alert';
 
 const allReducers = combineReducers({
   ingredients: ingredientsReducer,
@@ -41,6 +42,7 @@ const allReducers = combineReducers({
   customerList: customersListReducer,
   adminList: adminsListReducer,
   descriptions: descriptionsReducer,
+  alert: alertReducer,
 });
 
 export default allReducers;

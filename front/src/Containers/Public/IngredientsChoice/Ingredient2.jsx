@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Col, Button } from 'reactstrap';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import addIngredient from '../../../Actions/cakeActions/addIngredient';
 import '../../../Assets/Styles/Ingredient.css';
 
-const Ingredient = (props) => {
-  const { ingredient, addNewIngredient, disabled, cake } = props;
+class Ingredient extends Component {
+  constructor() {
+    super();
+    this.state = { photo: '' };
+  }
 
-  const getFullDescripion = () => {
+  componentWillMount() {
+    const { ingredient } = this.props;
+    axios.get(`/api/image/get/${ingredient.image}`)
+      .then((response) => {
+        this.setState({ photo: `data:image/jpg;base64,${response.data}` });
+      });
+  }
+
+  getFullDescripion = () => {
+    const { ingredient } = this.props;
     let description = '';
     if (ingredient.allergenes.length === 0) {
       if (ingredient.portion) {
@@ -17,52 +30,35 @@ const Ingredient = (props) => {
     } else {
       if (ingredient.portion) {
         description = `Allergènes: ${ingredient.allerg}.
-Giluna recommande une portion de ${ingredient.portion}`;
+        Giluna recommande une portion de ${ingredient.portion}`;
       }
       description = `Allergènes: ${ingredient.allerg}`;
     }
     return description;
   };
 
-  const getBadgeMessage = () => {
-    switch (cake.type) {
-      case 'cake': return ' €/part';
-      case 'cheesecake': return ' €';
-      default: return ' €/unité';
-    }
-  };
 
-  const filter = disabled && 'grayscale(80%)';
-  const color = disabled ? 'darkgrey' : 'black';
-  const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
-
-  return (
-    <Col className="ingredient" style={{ display: 'flex', flexDirection: 'row', textAlign: 'center' }}>
-      <Button
-        disabled={disabled}
-        style={{
-          filter, backgroundColor, display: 'flex', flexDirection: 'column',
-        }}
-        onClick={() => addNewIngredient(ingredient)}
-      >
-        <span className="badge badge-light">
-          {ingredient.price}
-          {getBadgeMessage()}
-        </span>
-        <img src={ingredient.image} title={getFullDescripion()} alt="" />
-      </Button>
-      <Col>
-        <p style={{
-          color, fontWeight: 'bold', textAlign: 'center', marginTop: '10px',
-        }}
-        >
-          {ingredient.name}
-        </p>
-        <p style={{ color, textAlign: 'left' }}>{ingredient.description}</p>
+  render() {
+    const { ingredient, addNewIngredient, disabled } = this.props;
+    const { photo } = this.state;
+    const filter = disabled && 'grayscale(80%)';
+    const color = disabled ? 'darkgrey' : 'black';
+    // const display = disabled && 'none';
+    const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
+    return (
+      <Col className="ingredient" style={{ display: 'flex', flexDirection: 'row', textAlign: 'center' }}>
+        <Button disabled={disabled} style={{ filter, backgroundColor, display: 'flex', flexDirection: 'column' }} onClick={() => addNewIngredient(ingredient)}>
+          <span className="badge badge-light">{ingredient.price}€</span>
+          <img src={photo} title={this.getFullDescripion()} alt="" />
+        </Button>
+        <Col>
+          <p style={{ color, fontWeight: 'bold', textAlign: 'center', marginTop: '10px' }}>{ingredient.name}</p>
+          <p style={{ color, textAlign: 'left' }}>{ingredient.description}</p>
+        </Col>
       </Col>
-    </Col>
-  );
-};
+    );
+  }
+}
 
 Ingredient.propTypes = {
   ingredient: PropTypes.shape({}).isRequired,
