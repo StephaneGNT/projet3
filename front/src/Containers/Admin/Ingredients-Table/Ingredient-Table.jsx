@@ -65,7 +65,7 @@ class IngredientTable extends Component {
     return ingredientsArray.filter(ingredient => ingredient.type === filterTest).map(ingredient => this.createTableDataRows(ingredient, token));
   }
 
-  // toggleModify = (show, ing) => (show ? <ModifyIngredient ingredient={ing} showFunction={this.toggleModifyForm()} /> : null)
+
 
   toggleAddIng() {
     this.setState(prevState => ({ showForm: !prevState.showForm }));
@@ -80,7 +80,6 @@ class IngredientTable extends Component {
       <div>
         <Container className="body-ingred-tb">
           <Row>
-            {/* {this.toggleModify(showFormModify, ingToModify)} */}
             {(showFormModify ? <ModifyIngredient ingredient={ingToModify} showFunction={this.toggleModifyForm} /> : null)}
           </Row>
           <Row>

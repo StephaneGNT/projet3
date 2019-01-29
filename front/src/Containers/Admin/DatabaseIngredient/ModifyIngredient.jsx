@@ -29,7 +29,7 @@ class ModifyIngredient extends Component {
       },
       fullList: [],
       fullAllerg: [],
-      previewImage: '',
+      previewImage: null,
     };
     this.handleClickCompatible = this.handleClickCompatible.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -54,16 +54,6 @@ class ModifyIngredient extends Component {
         const fullAllergArray = res.data[0]; this.setState({ fullAllerg: fullAllergArray });
       });
   }
-
-  // componentDidUpdate() {
-  //   if (this.state.ingredients.image.includes("avatar")) {
-  //     axios.get(`/api/image/get/${this.state.ingredients.image}`)
-  //       .then((res) => {
-  //         const photo = `data:image;base64,${res.data}`;
-  //         this.setState({ previewImage: photo })
-  //       })
-  //   }
-  // }
 
 
   handleClickCompatible = (compatibleID, compatibleName, ingredients) => {
@@ -154,14 +144,18 @@ class ModifyIngredient extends Component {
             image: result.data,
           },
         });
-      });
+      })
+      .then(axios.get(`/api/image/get/${ingredients.image}`)
+        .then((res) => {
+          const photo = `data:image/jpg;base64,${res.data}`;
+          this.setState({ previewImage: photo });
+        }));
   }
 
   onSubmit = (e, ingredients) => {
     const { axiosDatabase } = this.props;
     e.preventDefault();
     const modifiedIngredient = ingredients;
-    console.log(modifiedIngredient)
     axios.put(`/api/ingredients/${modifiedIngredient.id}/`, modifiedIngredient)
       .then(res => (res.data))
       .catch(err => (err.response.data));
@@ -169,7 +163,7 @@ class ModifyIngredient extends Component {
   };
 
 
-  createModifyForm = (ingredients, fullList, fullAllerg) => (
+  createModifyForm = (ingredients, fullList, fullAllerg, previewImage) => (
     <div>
       <title-admin>
         Modifier l’ingrédient
@@ -233,16 +227,13 @@ class ModifyIngredient extends Component {
           </Col>
           <Col md={5}>
             <Label>Image</Label>
-            <div className="imageIngredient">
-              {ingredients.image ? <img src={ingredients.image} alt="ingredient" />
-                : <img src={this.inheritedIngredient.image} alt="ingredient" />
-              }
-            </div>
             <Input type="file" name="file" onChange={file => this.uploadPic(file, ingredients)} />
+            {/* <img src={previewImage || this.inheritedIngredient.image} alt="ingredient" /> */}
+            <img src={previewImage ? previewImage : this.inheritedIngredient.image} alt="ingredient" />
           </Col>
           <Col md={2}>
             <FormGroup check>
-              <Input name="dispo" type="checkbox" value={this.inheritedIngredient.dispo} onClick={() => this.setState({ [ingredients]: { dispo: !ingredients.dispo } })} id="dispoCheck" />
+              <Input name="dispo" type="checkbox" defaultChecked={ingredients.dispo} onChange={() => this.setState({ ingredients: { ...ingredients, dispo: !ingredients.dispo } })} id="dispoCheck" />
               <Label for="dispoCheck" check>Disponnibilité</Label>
             </FormGroup>
           </Col>
@@ -306,10 +297,10 @@ class ModifyIngredient extends Component {
 
 
   render() {
-    const { ingredients, fullList, fullAllerg } = this.state;
+    const { ingredients, fullList, fullAllerg, previewImage } = this.state;
     return (
       <div>
-        {this.createModifyForm(ingredients, fullList, fullAllerg)}
+        {this.createModifyForm(ingredients, fullList, fullAllerg, previewImage)}
       </div>
     );
   }
