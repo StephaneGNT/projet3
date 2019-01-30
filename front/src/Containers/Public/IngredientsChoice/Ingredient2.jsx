@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import addIngredient from '../../../Actions/cakeActions/addIngredient';
+import calculateIngredient from './IngredientPriceCalculation';
 
 class Ingredient extends Component {
   constructor() {
@@ -38,16 +39,20 @@ class Ingredient extends Component {
 
 
   render() {
-    const { ingredient, addNewIngredient, disabled } = this.props;
+    const { ingredient, addNewIngredient, disabled, cake } = this.props;
     const { photo } = this.state;
     const filter = disabled && 'grayscale(80%)';
     const color = disabled ? 'darkgrey' : 'black';
+    const ingredientWithUpdatedPrice = calculateIngredient(ingredient, cake);
     // const display = disabled && 'none';
     const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
     return (
       <Col className="ingredient" style={{ display: 'flex', flexDirection: 'row', textAlign: 'center' }}>
-        <Button disabled={disabled} style={{ filter, backgroundColor, display: 'flex', flexDirection: 'column' }} onClick={() => addNewIngredient(ingredient)}>
-          <span className="badge badge-light">{ingredient.price}€</span>
+        <Button disabled={disabled} style={{ filter, backgroundColor, display: 'flex', flexDirection: 'column' }} onClick={() => addNewIngredient(ingredientWithUpdatedPrice)}>
+          <span className="badge badge-light">
+            {ingredientWithUpdatedPrice.price}
+            €
+          </span>
           <img src={photo} title={this.getFullDescripion()} alt="" />
         </Button>
         <Col>

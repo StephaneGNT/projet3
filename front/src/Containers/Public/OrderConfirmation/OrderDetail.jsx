@@ -19,7 +19,7 @@ class OrderDetail extends Component {
     return (
       <Container style={{ backgroundColor: 'white' }}>
         <Row className="text-center">
-          <Progressbar />
+          <Progressbar page="confirmation" />
         </Row>
         <Row style={{ paddingTop: '5vh' }}>
           <Col sm="4">

@@ -64,7 +64,7 @@ class CustomCenterInfo extends Component {
   }
 
   componentWillUnmount() {
-    const { updateReducerSummary, savePicture } = this.props;
+    const { updateReducerSummary, calculatePrice, customAdmin, alertAction } = this.props;
     const { customSummary } = this.state;
     let intermediateSummary = customSummary;
     if (![customSummary.deco1, customSummary.deco2].includes('message')) {
@@ -85,6 +85,7 @@ class CustomCenterInfo extends Component {
       updateReducerSummary(intermediateSummary);
     } else updateReducerSummary(customSummary);
   }
+
 
   getConfigState = (config) => {
     this.setState({ config });
@@ -107,12 +108,12 @@ class CustomCenterInfo extends Component {
     };
     reader.readAsDataURL(file);
     if (decoType === '2D') this.setState({ fileEvent1: file });
-    if ([customSummary.deco1, customSummary.deco2].includes('3D')) this.decoration.current.submitFile(file);
+    if ([customSummary.deco1, customSummary.deco2].includes('3D') && decoType === '3D') this.decoration.current.submitFile(file);
     else this.setState({ fileEvent2: file });
   }
 
   removeDeco = (type) => {
-    const { customSummary, fileEvent1, fileEvent2 } = this.state;
+    const { customSummary } = this.state;
     const { calculatePrice, customAdmin } = this.props;
     let { deco1, deco2 } = customSummary;
     if (type === 'message') {
@@ -135,7 +136,6 @@ class CustomCenterInfo extends Component {
           photo1: '',
           imagePreviewUrl1: '',
         },
-        fileEvent1: '',
       }));
       if (customSummary.photo1) axios.delete(`/api/image/delete/${customSummary.photo1}`);
     }
@@ -148,7 +148,6 @@ class CustomCenterInfo extends Component {
           imagePreviewUrl2: '',
           description3D: '',
         },
-        fileEvent2: '',
       }));
       if (customSummary.photo2) axios.delete(`/api/image/delete/${customSummary.photo2}`);
     }
@@ -252,7 +251,8 @@ class CustomCenterInfo extends Component {
 
   deleteUrl = (type) => {
     const deco = type === '2D' ? 'imagePreviewUrl1' : 'imagePreviewUrl2';
-    this.setState({ [deco]: '' });
+    const fileEv = type === '2D' ? 'fileEvent1' : 'fileEvent2';
+    this.setState({ [deco]: '', [fileEv]: '' });
   }
 
   renderInfo = () => {
@@ -328,6 +328,7 @@ class CustomCenterInfo extends Component {
                 decoType={typeResilient === 'image' ? '2D' : '3D'}
                 sendFileEvent={this.handleImageChange}
                 deleteUrl={this.deleteUrl}
+                description3D={customSummary.description3D}
               />
             </Col>
           </Row>
@@ -401,6 +402,7 @@ class CustomCenterInfo extends Component {
   }
 
   render() {
+    console.log(this.state)
     const {
       customSummary,
       messageResilient,
@@ -410,12 +412,12 @@ class CustomCenterInfo extends Component {
     } = this.state;
     const buttonStyle = { backgroundColor: 'rgb(228, 193, 148)' };
     const center = { display: 'flex', flexDirection: 'column', alignItems: 'center' }
-    if (!customSummary.msgContent && [customSummary.deco1, customSummary.deco2].includes('message')) {
-      if (window.confirm('Voulez-vous supprimer le message personnalisé de votre commande?')) this.removeDeco('message');
-    }
-    if (!customSummary.description3D && (!imagePreviewUrl2 && !customSummary.photo2) && [customSummary.deco1, customSummary.deco2].includes('3D')) {
-      if (window.confirm('Voulez-vous supprimer la décoration 3D de votre commande?')) this.removeDeco('3D');
-    }
+    // if (!customSummary.msgContent && [customSummary.deco1, customSummary.deco2].includes('message')) {
+    //   if (window.confirm('Voulez-vous supprimer le message personnalisé de votre commande?')) this.removeDeco('message');
+    // }
+    // if (!customSummary.description3D && (!imagePreviewUrl2 && !customSummary.photo2) && [customSummary.deco1, customSummary.deco2].includes('3D')) {
+    //   if (window.confirm('Voulez-vous supprimer la décoration 3D de votre commande?')) this.removeDeco('3D');
+    // }
     return (
       <Container>
         <Row lg="12" className="decorationRow">
@@ -493,7 +495,7 @@ CustomCenterInfo.propTypes = {
   fetchAdminFontList: PropTypes.func.isRequired,
   updateReducerSummary: PropTypes.func.isRequired,
   calculatePrice: PropTypes.func.isRequired,
-  savePicture: PropTypes.func.isRequired,
+  alertAction: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({

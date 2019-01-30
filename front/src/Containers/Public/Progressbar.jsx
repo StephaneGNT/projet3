@@ -9,9 +9,12 @@ import '../../Assets/Styles/ProgressBar.css';
 
 class Progressbar extends Component {
   handleClick = (e, index) => {
-    const { ingredient, indexUpdate, deliveryDate, type, actionAlert, updateCustomerInfo } = this.props;
+    const { ingredient, indexUpdate, deliveryDate, type, actionAlert, page } = this.props;
     if (ingredient.length > 0) {
-      if (type === 'cake' || type === 'cheesecake' ? index === 5 && !deliveryDate : index === 3 && !deliveryDate) {
+      if (page && page === 'confirmation' && (type === 'cake' || type === 'cheesecake' ? index === 5 && !deliveryDate : index === 3 && !deliveryDate)) {
+        actionAlert('Veuillez renseigner une date de retrait');
+        e.preventDefault();
+      } else if (type === 'cake' || type === 'cheesecake' ? index === 5 && !deliveryDate : index === 3 && !deliveryDate) {
         actionAlert('Veuillez terminer votre composition avant d’accéder à cette page');
         e.preventDefault();
       } else indexUpdate(index + 2);
@@ -61,6 +64,7 @@ Progressbar.propTypes = {
   indexUpdate: PropTypes.func.isRequired,
   deliveryDate: PropTypes.string.isRequired,
   actionAlert: PropTypes.func.isRequired,
+  page: PropTypes.string.isRequired,
   // updateCustomerInfo: PropTypes.func.isRequired,
 };
 
