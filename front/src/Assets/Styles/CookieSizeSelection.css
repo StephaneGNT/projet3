@@ -19,9 +19,9 @@
   background-image: url('../Images/cookie.jpg');
   background-repeat: no-repeat;
   background-position-x: center;
-  padding-top: 40px;
-  border:none;
-  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+  border-radius: 20px;
+  padding-top: 70%;
+  cursor: url(../Images/whiskflipped.ico), pointer !important;
 }
 
 .cookieSizeSelection Button:hover, .cookieSizeSelection Button:active, .cookieSizeSelection Button:focus{

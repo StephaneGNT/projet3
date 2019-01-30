@@ -58,7 +58,7 @@
     border: none;
     color: white;
     text-transform: uppercase;
-    cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+    cursor: url(../Images/whiskflipped.ico), pointer !important;
 }
 
 .btn-prev-next:hover {
@@ -84,6 +84,7 @@
     transition: all 0.7s ease-out;
 }
 
+
 .cakeProgressLayout Button {
     position: relative;
     margin: -8px;
@@ -96,6 +97,7 @@
 }
 
 .cakeLayout {
+    position: relative;
     margin:auto; 
     min-height: 40vh;
     /* background-color: rgb(181, 227, 216); */
@@ -103,7 +105,14 @@
     overflow: auto;
     display: flex;
     flex-direction: column-reverse;
+}
 
+.toppingsCakeLayout {
+  height: 10vh;
+  background-color: rgb(246, 217, 222);
+  display: flex;
+  flex-direction: row;
+  z-index: 10;
 }
 
 .toppingsLayout {

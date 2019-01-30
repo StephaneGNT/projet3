@@ -23,7 +23,9 @@
   background-image: url('../Images/brownie.png');
   background-repeat: no-repeat;
   background-position-x: center;
-  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+  border-radius: 20px;
+  padding-top: 70%;
+  cursor: url(../Images/whiskflipped.ico), pointer !important;
 }
 
 .brownieSizeSelection Button:hover, .brownieSizeSelection Button:active, .brownieSizeSelection Button:focus{
