@@ -38,12 +38,13 @@ class ModifyIngredient extends Component {
     this.showForm = showFunction;
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({
       ingredients: {
         ...this.inheritedIngredient,
       },
     });
+
     axios.get('/api/ingredients/name')
       .then((res) => {
         const fullListArray = res.data[0]; this.setState({ fullList: fullListArray });
@@ -144,12 +145,7 @@ class ModifyIngredient extends Component {
             image: result.data,
           },
         });
-      })
-      .then(axios.get(`/api/image/get/${ingredients.image}`)
-        .then((res) => {
-          const photo = `data:image/jpg;base64,${res.data}`;
-          this.setState({ previewImage: photo });
-        }));
+      });
   }
 
   onSubmit = (e, ingredients) => {
@@ -228,8 +224,8 @@ class ModifyIngredient extends Component {
           <Col md={5}>
             <Label>Image</Label>
             <Input type="file" name="file" onChange={file => this.uploadPic(file, ingredients)} />
-            {/* <img src={previewImage || this.inheritedIngredient.image} alt="ingredient" /> */}
-            <img src={previewImage ? previewImage : this.inheritedIngredient.image} alt="ingredient" />
+            {/* <img src={previewImage || ingredients.image} alt="ingredient" /> */}
+            <img src={previewImage ? previewImage : ingredients.image} alt="ingredient" />
           </Col>
           <Col md={2}>
             <FormGroup check>
@@ -297,7 +293,9 @@ class ModifyIngredient extends Component {
 
 
   render() {
-    const { ingredients, fullList, fullAllerg, previewImage } = this.state;
+    const {
+      ingredients, fullList, fullAllerg, previewImage,
+    } = this.state;
     return (
       <div>
         {this.createModifyForm(ingredients, fullList, fullAllerg, previewImage)}
