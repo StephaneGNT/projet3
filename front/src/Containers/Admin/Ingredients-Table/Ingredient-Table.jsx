@@ -15,7 +15,8 @@ class IngredientTable extends Component {
     this.state = {
       filterTable: 'All',
       showForm: false,
-      ingToModify: {},
+      showFormModify: false,
+      ingToModify: [],
     };
   }
 
@@ -34,6 +35,12 @@ class IngredientTable extends Component {
     }
   };
 
+  toggleModifyForm = () => {
+    this.setState(prevState => ({
+      showFormModify: !prevState.showFormModify,
+    }));
+  }
+
 
   createTableDataRows = (element, token) => (
     <tr>
@@ -45,7 +52,7 @@ class IngredientTable extends Component {
       <td><Image image={element.image} alternate={element.name} /></td>
       {/* <td><img src={element.image} alt={element.name} /></td> */}
       <td>
-        <Button type="button" size="sm" color="warning" className="btn-ad-sup" onClick={() => this.setState({ showForm: true, ingToModify: element })}>modifier</Button>
+        <Button type="button" size="sm" color="warning" className="btn-ad-sup" onClick={() => this.setState({ showFormModify: true, ingToModify: element })}>modifier</Button>
         <Button type="button" size="sm" color="danger" className="btn-ad-sup" onClick={() => this.deleteIngredient(element.id, token)}>supprimer</Button>
       </td>
     </tr>
@@ -56,9 +63,9 @@ class IngredientTable extends Component {
       return ingredientsArray.map(ingredient => this.createTableDataRows(ingredient, token));
     }
     return ingredientsArray.filter(ingredient => ingredient.type === filterTest).map(ingredient => this.createTableDataRows(ingredient, token));
-  };
+  }
 
-  // toggleModify = (show, ing) => (show ? <ModifyIngredient ingredient={ing} /> : null)
+
 
   toggleAddIng() {
     this.setState(prevState => ({ showForm: !prevState.showForm }));
@@ -66,12 +73,14 @@ class IngredientTable extends Component {
 
   render() {
     const { ingredients, token } = this.props;
-    const { filterTable, showForm, ingToModify } = this.state;
+    const {
+      filterTable, showForm, showFormModify, ingToModify,
+    } = this.state;
     return (
       <div>
         <Container className="body-ingred-tb">
           <Row>
-            {/* {this.toggleModify(showForm, ingToModify)} */}
+            {(showFormModify ? <ModifyIngredient ingredient={ingToModify} showFunction={this.toggleModifyForm} /> : null)}
           </Row>
           <Row>
             <Col sm="12">
@@ -89,7 +98,7 @@ class IngredientTable extends Component {
           </Row>
           <Row>
             <Button outline size="sm" color="info" onClick={() => this.toggleAddIng()}> + Ajouter un ingrédient ?</Button>
-            {this.state.showForm ? <AddIngredients /> : null }
+            {showForm ? <AddIngredients /> : null }
           </Row>
           <Row className="body-tb">
             <Col>

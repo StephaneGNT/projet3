@@ -1,3 +1,11 @@
+.table-add-ingred td {
+  display: flex;
+}
+
+.title-label-list {
+  background-color:rgb(205, 208, 211);
+  border:none !important;
+}
 
 
 .table-add-ingred td {
@@ -47,23 +55,23 @@ title-admin {
 
 
 .label-type {
-    font-size:0.7em;
-    color:black;
-    font-weight:700;
+  font-size:0.7em;
+  color:black;
+  font-weight:700;
 }
 
 .input-admin-type {
-    font-size:1.2em !important;
+  font-size:1.2em !important;
 }
 
 .les-row {
-    width:100%;
-    padding:1em;
+  width:100%;
+  padding:1em;
 }
 label {
     width:100%;
 }
 
 .btn-ajout {
-    margin:5px;
+  margin:5px;
 }

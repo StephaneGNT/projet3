@@ -21,9 +21,9 @@
   background-image: url('../Images/macaron_cafe.png');
   background-repeat: no-repeat;
   background-position-x: center;
-  border:none;  
-  padding-top: 40px;
-  cursor: url(../Images/Whisk.ico)1 42, pointer !important;
+  border-radius: 20px;
+  padding-top: 95px;
+  cursor: url(../Images/whiskflipped.ico), pointer !important;
 }
 
 .macaronSizeSelection Button:hover, .macaronSizeSelection Button:active, .macaronSizeSelection Button:focus{
