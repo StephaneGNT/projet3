@@ -43,7 +43,7 @@ class OrdersAdmin extends Component {
     const { cakes } = this.props;
     const selectedCake = cakes.find(cake => cake.id === order.cakeId);
     let message = null;
-    if (selectedCake.deco1 === '3D' || selectedCake.deco2 === '3D') message = 'Gâteau avec décoration 3D: merci de confirmer le prix avant validation';
+    if (selectedCake && (selectedCake.deco1 === '3D' || selectedCake.deco2 === '3D')) message = 'Gâteau avec décoration 3D: merci de confirmer le prix avant validation';
     return (
       <div>
         {message}

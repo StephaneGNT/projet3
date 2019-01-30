@@ -13,14 +13,14 @@ router.post('/adddate', (req, res) => {
   const formData = req.body;
   connection.query('INSERT INTO calendar SET ?', formData, (err, results) => {
     if (err) res.status(500);
-    else res.status(200);
+    else res.sendStatus(200);
   });
 });
 
 router.delete('/deletedate/:id', (req, res) => {
   const formData = req.params.id;
   connection.query('DELETE FROM calendar WHERE id = ?', [formData], err => {
-    if (err) res.status(500);
+    if (err) res.sendStatus(500);
     else res.sendStatus(200);
   });
 });

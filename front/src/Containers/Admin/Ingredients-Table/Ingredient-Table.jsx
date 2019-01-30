@@ -5,6 +5,7 @@ import { Container, Row, Col, Table, Button } from 'reactstrap';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import axiosIngredientsDB from '../../../Actions/fetchDB/fetch_database_actions';
+import Image from './Ingredient-Image';
 import ModifyIngredient from '../DatabaseIngredient/ModifyIngredient';
 import AddIngredients from '../DatabaseIngredient/AddIngredients';
 
@@ -41,7 +42,8 @@ class IngredientTable extends Component {
       <td>{element.size}</td>
       <td>{element.price}</td>
       <td>{element.description}</td>
-      <td><img src={element.image} alt={element.name} /></td>
+      <td><Image image={element.image} alternate={element.name} /></td>
+      {/* <td><img src={element.image} alt={element.name} /></td> */}
       <td>
         <Button type="button" size="sm" color="warning" className="btn-ad-sup" onClick={() => this.setState({ showForm: true, ingToModify: element })}>modifier</Button>
         <Button type="button" size="sm" color="danger" className="btn-ad-sup" onClick={() => this.deleteIngredient(element.id, token)}>supprimer</Button>
