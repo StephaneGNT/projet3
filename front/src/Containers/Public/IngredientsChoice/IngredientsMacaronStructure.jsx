@@ -8,7 +8,7 @@ const IngredientsMacaronStructure = (props) => {
   const { flavor, shell } = props;
 
   return (
-    <Row>
+    <Row className="displayIngredient">
       <Col sm="6" style={{ height: 'auto' }}>
         <Row style={{ position: 'sticky', top: '0' }}>
           <h1>{flavor[0].type}</h1>

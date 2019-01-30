@@ -39,7 +39,7 @@ class App extends Component {
           <Alert />
           <BrowserRouter className="d-none d-md-block">
             <Switch>
-              <Route path={`${process.env.PUBLIC_URL}/admin`} component={Admin} />
+              <Route path={`${process.env.PUBLIC_URL}/giluna/adminZone`} component={Admin} />
               <Route path={`${process.env.PUBLIC_URL}/`} component={Public} />
             </Switch>
           </BrowserRouter>

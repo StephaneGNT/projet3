@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Row } from 'reactstrap';
+import Ingredient from '../IngredientsChoice/IngrededientCakeInProgress';
 import '../../../Assets/Styles/CakeInProgress.css';
 
 const CakeImage = (props) => {
@@ -15,17 +16,16 @@ const CakeImage = (props) => {
           default: return null;
         }
       };
+      const design = cakeLayoutType(item.type);
       return (
-        <Row className="cakeProgressLayout">
-          <p>
-            <img src={item.image} alt="ingredient" className={cakeLayoutType()} />
-          </p>
+        <Row key={item.name} className="cakeProgressLayout">
+          <Ingredient image={item.image} type={item.type} design={design} />
         </Row>
       );
     }
     return (
       <Row className="cakeProgressLayout">
-        <p><img src={item.image} alt="ingredient" /></p>
+        <Ingredient image={item.image} cakeLayoutType={x => x} />
       </Row>
     );
   };
@@ -45,5 +45,6 @@ CakeImage.propTypes = {
 const mapStateToProps = state => ({
   cake: state.cakeCharacteristics,
 });
+
 
 export default connect(mapStateToProps, null)(CakeImage);
