@@ -22,7 +22,6 @@ class IngredientsCakeStructure extends Component {
         <Container>
           <Row className="compo-zone">
             <Col lg="12">
-              <br />
               <title-compo>Choisissez votre {elementToDisplay[0].type}</title-compo>
             </Col>
             <Col lg="12">

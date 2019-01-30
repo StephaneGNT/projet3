@@ -46,8 +46,13 @@ class Ingredient extends Component {
     const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
 
     return (
-      <Col className="ingredient" style={{ textAlign: 'center' }}>
-        <Button disabled={disabled} style={{ filter, backgroundColor }} onClick={() => addNewIngredient(ingredient)}>
+      <Col className="ingredient">
+        <Button 
+          disabled={disabled} 
+          style={{ filter, backgroundColor }} 
+          size="sm" 
+          onClick={() => addNewIngredient(ingredient)}
+        >
           <span className="badge badge-light">{ingredient.price}€</span>
           <img src={photo} title={this.getFullDescripion()} alt="banane" />
         </Button>
