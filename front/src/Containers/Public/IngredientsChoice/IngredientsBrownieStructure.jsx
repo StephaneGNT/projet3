@@ -7,7 +7,7 @@ import IngredientsDisplay from './IngredientsDisplay';
 const IngredientsBrownieStructure = (props) => {
   const { bases } = props;
   return (
-    <Row>
+    <Row className="displayIngredient">
       <Col sm="12">
         <h1>{bases[0].type}</h1>
       </Col>
