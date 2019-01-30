@@ -160,7 +160,7 @@ class ModifyIngredient extends Component {
 
 
   createModifyForm = (ingredients, fullList, fullAllerg, previewImage) => (
-    <div>
+    <div className="bodyIng">
       <title-admin>
         Modifier l’ingrédient
         {' '}
@@ -170,14 +170,14 @@ class ModifyIngredient extends Component {
         <Row form>
           <Col md={2}>
             <FormGroup>
-              <Label>Name</Label>
-              <Input type="text" name="name" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.name} value={ingredients.name} />
+              <Label size="sm">Name</Label>
+              <Input type="text" name="name" bsSize="sm" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.name} value={ingredients.name} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label>Type</Label>
-              <Input type="select" name="type" onChange={e => this.updateState(e, ingredients)}>
+              <Label size="sm">Type</Label>
+              <Input type="select" name="type" bsSize="sm" onChange={e => this.updateState(e, ingredients)}>
                 <option />
                 <option>Base</option>
                 <option>Filling</option>
@@ -191,46 +191,46 @@ class ModifyIngredient extends Component {
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label>Size</Label>
-              <Input type="text" name="size" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.size} value={ingredients.size} />
+              <Label size="sm">Size</Label>
+              <Input type="text" name="size" bsSize="sm" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.size} value={ingredients.size} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label>Price</Label>
-              <Input type="text" name="price" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.price} value={ingredients.price} />
+              <Label size="sm">Price</Label>
+              <Input type="text" name="price" bsSize="sm" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.price} value={ingredients.price} />
             </FormGroup>
           </Col>
           <Col md={4}>
             <FormGroup>
-              <Label>Description</Label>
-              <Input type="text" name="description" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.description} value={ingredients.description} />
+              <Label size="sm">Description</Label>
+              <Input type="text" name="description" bsSize="sm" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.description} value={ingredients.description} />
             </FormGroup>
           </Col>
         </Row>
         <Row form>
           <Col md={2}>
             <FormGroup>
-              <Label>Flavor</Label>
-              <Input type="text" name="flavor" />
+              <Label size="sm">Flavor</Label>
+              <Input type="text" bsSize="sm" name="flavor" />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label>Color</Label>
-              <Input type="text" name="color" />
+              <Label size="sm">Color</Label>
+              <Input type="text" bsSize="sm" name="color" />
             </FormGroup>
           </Col>
           <Col md={5}>
-            <Label>Image</Label>
-            <Input type="file" name="file" onChange={file => this.uploadPic(file, ingredients)} />
+            <Label size="sm">Image</Label>
+            <Input type="file" name="file" bsSize="sm" onChange={file => this.uploadPic(file, ingredients)} />
             {/* <img src={previewImage || ingredients.image} alt="ingredient" /> */}
             <img src={previewImage ? previewImage : ingredients.image} alt="ingredient" />
           </Col>
           <Col md={2}>
             <FormGroup check>
-              <Input name="dispo" type="checkbox" defaultChecked={ingredients.dispo} onChange={() => this.setState({ ingredients: { ...ingredients, dispo: !ingredients.dispo } })} id="dispoCheck" />
-              <Label for="dispoCheck" check>Disponnibilité</Label>
+              <Input name="dispo" type="checkbox" bsSize="sm" defaultChecked={ingredients.dispo} onChange={() => this.setState({ ingredients: { ...ingredients, dispo: !ingredients.dispo } })} id="dispoCheck" />
+              <Label size="sm" for="dispoCheck" check>Disponnibilité</Label>
             </FormGroup>
           </Col>
         </Row>
@@ -249,10 +249,11 @@ class ModifyIngredient extends Component {
                       <Input
                         name="isCompatible"
                         type="checkbox"
+                        bsSize="sm"
                         defaultChecked={this.inheritedIngredient.compatible.includes(compatible.name)}
                         onChange={() => (this.handleClickCompatible(compatible.id, compatible.name))}
                       />
-                      <Label check>{compatible.name}</Label>
+                      <Label size="sm" check>{compatible.name}</Label>
                     </td>))}
                 </tr>
               </tbody>
@@ -272,10 +273,11 @@ class ModifyIngredient extends Component {
                       <Input
                         name="isAllergene"
                         type="checkbox"
+                        bsSize="sm"
                         defaultChecked={this.inheritedIngredient.allergenes.includes(allergene.name)}
                         onChange={() => this.handleClickAllergene(allergene.id, allergene.name)}
                       />
-                      <Label>{allergene.name}</Label>
+                      <Label size="sm">{allergene.name}</Label>
                     </td>))}
                 </tr>
               </tbody>
@@ -283,9 +285,9 @@ class ModifyIngredient extends Component {
           </Col>
         </Row>
         <br />
-        <Row>
-          <Button color="secondary" size="lg" onClick={() => this.showForm()}>Annuler</Button>
-          <Button color="primary" size="lg" onClick={(e) => { this.onSubmit(e, ingredients); this.showForm(); }}>Modifier</Button>
+        <Row className="row-modif-ing-btn">
+          <Button size="sm" color="secondary" onClick={() => this.showForm()}>Annuler</Button>
+          <Button size="sm" color="warning" onClick={(e) => { this.onSubmit(e, ingredients); this.showForm(); }}>Modifier</Button>
         </Row>
       </Form>
     </div>
