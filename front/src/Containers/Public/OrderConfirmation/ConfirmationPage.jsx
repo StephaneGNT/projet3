@@ -15,7 +15,6 @@ const ConfirmationPage = (props) => {
       <div className="order-text">
         <b>
           Merci d’avoir passé commande chez Pimp my Cake!
-          .
         </b>
         <br />
         <br />

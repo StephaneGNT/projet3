@@ -14,7 +14,7 @@ import {
 import updateUserInfo from '../../../Actions/orderActions/updateUserInfo';
 import '../../../Assets/Styles/UserInfo.css';
 
-import logo from '../../../Assets/Images/LOGO_GILUNA.png';
+import carte from '../../../Assets/Images/selectionGallerie/IMG_carte.jpg';
 
 class UserInfo extends Component {
   constructor(props) {
@@ -74,18 +74,25 @@ class UserInfo extends Component {
   sendConfirmationEmails = () => {
     const { user } = this.state;
     const mailClient = {
-      from: 'sguinot86@gmail.com',
+      from: 'contact@gilunacoffee.com',
       to: user.email,
       title: 'Confirmation de commande Giluna',
-      text: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
+      text: `Bonjour ${user.firstName} ${user.lastName}, votre commande a bien été prise en compte.
               Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
-      html: <p>Bonjour ${user.firstName} ${user.lastName}, votre commande a bien été prise en compte.
-      Nous reviendrons vers vous rapidement pour vous confirmer sa validation.</p>,
+      html: <p>
+      Bonjour
+      $
+        {user.firstName}
+      $
+        {user.lastName}
+      ,votre commande a bien été prise en compte.
+      Nous reviendrons vers vous rapidement pour vous confirmer sa validation.
+      </p>,
     };
     axios.post('/api/send/mail', mailClient);
     const gilunaMail = {
-      from: 'sguinot86@gmail.com',
-      to: 'sguinot86@gmail.com',
+      from: 'contact@gilunacoffee.com',
+      to: 'contact@gilunacoffee.com',
       title: 'Nouvelle commande',
       text: 'Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.',
       html: <p>Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.</p>,
@@ -133,10 +140,6 @@ class UserInfo extends Component {
     if (orderID > 0) {
       this.sendConfirmationEmails();
       history.push(`${process.env.PUBLIC_URL}/mycake/orderConfirmation`);
-      history.push({
-        pathname: `${process.env.PUBLIC_URL}/mycake/orderConfirmation`,
-        state: { orderID },
-      });
     }
   }
 
@@ -286,10 +289,10 @@ class UserInfo extends Component {
           </Col>
         </Row>
         <Row>
-          <Col sm="2" md="2">
-            <img src={logo} className="logo" alt="giluna-logo" />
+          <Col sm="3" md="3">
+            <img src={carte} className="logo" alt="giluna-logo" />
           </Col>
-          <Col sm="12" md="6">
+          <Col sm="6" md="6">
             <FormGroup>
               <Label>
                 Ajoutez une carte message à votre Commande

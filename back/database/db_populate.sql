@@ -8,6 +8,8 @@ VALUES ('Base banane', 'Base', 'S', 10, true, 'De la banane fraîche pour accomp
 ('Amandes caramélisées', 'Base brownie', 'S', 4, true, 'some ingredient information', 'image_url', true, null, null),
 ('Cacahuètes', 'Base brownie', 'S', 4, true, 'ok', 'image_url', true, null, null),
 ('Chocolat amandes', 'Base cookie', 'S', 4, true, 'some ingredient information', 'image_url', true, null, null),
+('Chocolat amandes', 'Base cookie', 'M', 4, true, 'some ingredient information', 'image_url', true, null, null),
+('Chocolat amandes', 'Base cookie', 'L', 4, true, 'some ingredient information', 'image_url', true, null, null),
 ('Cacahuètes', 'Base cookie', 'S', 4, true, 'some ingredient information', 'image_url', true, null, null),
 ('Cream cheese', 'Garniture', 'S', 4, true, 'Une garniture cream cheese !!', 'https://image.noelshack.com/fichiers/2019/04/5/1548411090-filling-creamcheese.png', true, null, null),
 ('Crème chocolat', 'Garniture', 'S', 4, true, "Parce que le chocolat, c'est la vie !", 'https://image.noelshack.com/fichiers/2019/04/5/1548411052-filling-chocolat.png', true, null, null),
@@ -15,7 +17,7 @@ VALUES ('Base banane', 'Base', 'S', 10, true, 'De la banane fraîche pour accomp
 ('Cream cheese', 'Glaçage', 'S', 4, true, 'Encore un peu de cream cheese ?', 'https://image.noelshack.com/fichiers/2019/04/5/1548411134-glacage-creamcheese.png', true, null, null),
 ('Ganache chocolat', 'Glaçage', 'S', 4, true, "Parce qu'il n'y a jamais trop de chocolat", 'https://image.noelshack.com/fichiers/2019/04/5/1548411134-glacage-chocolat.png', true, null, null),
 ('Ganache caramel', 'Glaçage', 'S', 4, true, "Encooooooooore du caramel !!", 'https://image.noelshack.com/fichiers/2019/04/5/1548411134-glacage-caramel.png', true, null, null),
-('Sucre glace', 'Glaçage', 'S', 4, true, 'Une petit nappage en sucre glace ??', 'https://image.noelshack.com/fichiers/2019/04/5/1548411134-glacage-cream.png', true, null, null),
+('Sucre glace', 'Glaçage', 'S', 4, true, 'Un petit nappage en sucre glace ??', 'https://image.noelshack.com/fichiers/2019/04/5/1548411134-glacage-cream.png', true, null, null),
 ('Noisettes caramélisées', 'Toppings', '250g', 4, true, "Parce que les noisettes, c'est pas que pour les écureuils...", 'https://image.noelshack.com/fichiers/2019/04/5/1548411226-topping-noisettes.png', true, null, null),
 ('Dentelles chocolat', 'Toppings', '250g', 4, true, 'Chocolaaaaat....', 'https://image.noelshack.com/fichiers/2019/04/5/1548411226-topping-billechocolat.png', true, null, null),
 ('Noix caramélisées', 'Toppings', '250g', 4, true, 'De délicieuses noix caramélisées maison', 'https://image.noelshack.com/fichiers/2019/04/5/1548411226-topping-noix.png', true, null, null),
@@ -72,7 +74,5 @@ INSERT INTO jt_customers_orders (id_customer, id_order)
 VALUES (1, 1);
 
 INSERT INTO descriptions (homePage, contact)
-VALUES ('Nous vous proposons des gâteaux, cheesecake et autres pâtisseries entièrement à votre goût et personnalisées à votre demande. Nous sommes à votre écoute pourtoute demande supplémentaire !', 'Les fondatrices de GiLuna proviennent d’Amérique du Sud, spécifiquement du Venezuela:  Fabiola GIL et Maria Alejandra LUNA.');
 
-INSERT INTO Contact 
-VALUES ('Avec notre savoir-faire toutes les fantaisies sont possibles : vous pouvez personnaliser à votre guise le moindre détail jusqu’à la boîte du gâteau. Laissez-vous donc guider et découvrez la variété des parfums possibles, nous avons sélectionnés des mariages parmi une large variété des saveurs. Avez-vous rêvé de créer un gâteau complètement unique qui correspond à vos goûts et à vos besoins? Avec cette application c’est désormais possible! Pimp my cake vous permet de confectionner le gâteau de vos rêves. ')
+VALUES ('Nous vous proposons des gâteaux, cheesecake et autres pâtisseries entièrement à votre goût et personnalisées à votre demande. Nous sommes à votre écoute pourtoute demande supplémentaire !', 'Avec notre savoir-faire toutes les fantaisies sont possibles : vous pouvez personnaliser à votre guise le moindre détail jusqu’à la boîte du gâteau. Laissez-vous donc guider et découvrez la variété des parfums possibles, nous avons sélectionnés des mariages parmi une large variété des saveurs. Avez-vous rêvé de créer un gâteau complètement unique qui correspond à vos goûts et à vos besoins? Avec cette application c’est désormais possible! Pimp my cake vous permet de confectionner le gâteau de vos rêves.');

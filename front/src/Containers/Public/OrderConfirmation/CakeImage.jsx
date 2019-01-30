@@ -14,6 +14,7 @@ const CakeImage = (props) => {
           default: return null;
         }
       };
+      const design = cakeLayoutType(item.type);
       return (
         <Container>
           <Row className="cakeProgressLayout">
@@ -48,5 +49,6 @@ CakeImage.propTypes = {
 const mapStateToProps = state => ({
   cake: state.cakeCharacteristics,
 });
+
 
 export default connect(mapStateToProps, null)(CakeImage);
