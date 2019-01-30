@@ -23,7 +23,7 @@ class Public extends Component {
           <div className="header-zone">
             <button
               type="button"
-              onClick={() => history.push(`${process.env.PUBLIC_URL}/admin`)}
+              onClick={() => history.push(`${process.env.PUBLIC_URL}/giluna/adminZone`)}
             >
               Admin
             </button>

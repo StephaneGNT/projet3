@@ -77,7 +77,7 @@ class UserInfo extends Component {
       from: 'sguinot86@gmail.com',
       to: user.email,
       title: 'Confirmation de commande Giluna',
-      text: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
+      text: `Bonjour ${user.firstName} ${user.lastName}, votre commande a bien été prise en compte.
               Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
       html: <p>Bonjour ${user.firstName} ${user.lastName}, votre commande a bien été prise en compte.
       Nous reviendrons vers vous rapidement pour vous confirmer sa validation.</p>,
@@ -133,10 +133,6 @@ class UserInfo extends Component {
     if (orderID > 0) {
       this.sendConfirmationEmails();
       history.push(`${process.env.PUBLIC_URL}/mycake/orderConfirmation`);
-      history.push({
-        pathname: `${process.env.PUBLIC_URL}/mycake/orderConfirmation`,
-        state: { orderID },
-      });
     }
   }
 

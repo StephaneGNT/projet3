@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Ingredient from './Ingredient2';
+import Ingredient from './Ingredient';
 
 const IngredientsDisplay = (props) => {
   const getNumberOf = (cake, elementSearched) => {
@@ -59,6 +59,7 @@ const IngredientsDisplay = (props) => {
           || (ingredient.type === 'Garniture' && fillingNumber === 2)
           || (ingredient.type === 'Glaçage' && icingNumber === 1)
           || (ingredient.type === 'Toppings' && toppingNumber === 3)
+          || ((ingredient.type === 'Base cookie' || ingredient.type === 'Base brownie' || ingredient.type === 'Macaron' || ingredient.type === 'Coquille') && ingredient.size !== cake.size)
         );
         render.push(
           <Ingredient

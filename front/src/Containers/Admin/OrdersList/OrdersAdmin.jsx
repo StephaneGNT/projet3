@@ -22,8 +22,8 @@ class OrdersAdmin extends Component {
     const mailClient = {
       from: 'Giluna Pimp My Cake <giluna@pimpmycake.com>',
       to: customer.email,
-      subject: 'Commande mise à jour',
-      content: `Bonjour ${customer.firstname} ${customer.lastname},
+      title: 'Commande mise à jour',
+      text: `Bonjour ${customer.firstName} ${customer.lastName},
       Nous avons le plaisir de vous informer que votre commande est ${newStatus}.
       Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
     };
@@ -52,7 +52,7 @@ class OrdersAdmin extends Component {
           onChange={e => this.changeStatus(index, e.target.value, customers.find(customer => customer.id === order.customerId))}
         >
           <option />
-          <option selected={order.admin_status === 'Acceptée'}>acceptée</option>
+          <option selected={order.admin_status === 'acceptée'}>acceptée</option>
           <option selected={order.admin_status === 'en préparation'}>en préparation</option>
           <option selected={order.admin_status === 'en décoration'}>en décoration</option>
           <option selected={order.admin_status === 'prête'}>prête</option>
@@ -87,7 +87,7 @@ class OrdersAdmin extends Component {
               color="primary"
               onClick={() => {
                 history.push({
-                  pathname: `${process.env.PUBLIC_URL}/admin/orderDetail/cake`,
+                  pathname: `${process.env.PUBLIC_URL}/giluna/adminZone/orderDetail/cake`,
                   state: { cake: cakes.find(cake => cake.id === order.cakeId) },
                 });
               }}
@@ -99,7 +99,7 @@ class OrdersAdmin extends Component {
             <Button
               color="info"
               onClick={() => history.push({
-                pathname: `${process.env.PUBLIC_URL}/admin/orderDetail/client`,
+                pathname: `${process.env.PUBLIC_URL}/giluna/adminZone/orderDetail/client`,
                 state: { customer: customers.find(customer => customer.id === order.customerId) },
               })}
             >

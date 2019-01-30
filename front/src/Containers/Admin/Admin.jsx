@@ -46,10 +46,10 @@ class Admin extends Component {
       <Route
         {...rest}
         render={() => (
-          // jwtToken !== ''
-          this.loggedIn
+          jwtToken !== ''
+          // this.loggedIn
             ? <Component />
-            : <Redirect to="/admin" />
+            : <Redirect to="/giluna/adminZone" />
         )}
       />
     );
@@ -64,43 +64,43 @@ class Admin extends Component {
             <Switch>
               <Route
                 exact
-                path={`${process.env.PUBLIC_URL}/admin`}
+                path={`${process.env.PUBLIC_URL}/giluna/adminZone`}
                 render={props => <Login {...props} action="Se connecter" />}
               />
               <PrivateRoute
-                path={`${process.env.PUBLIC_URL}/admin/orders`}
+                path={`${process.env.PUBLIC_URL}/giluna/adminZone/orders`}
                 component={OrdersAdmin}
               />
               <PrivateRoute
-                path={`${process.env.PUBLIC_URL}/admin/ingredients`}
+                path={`${process.env.PUBLIC_URL}/giluna/adminZone/ingredients`}
                 component={IngredientTable}
               />
               <PrivateRoute
-                path={`${process.env.PUBLIC_URL}/admin/clients`}
+                path={`${process.env.PUBLIC_URL}/giluna/adminZone/clients`}
                 component={Clients}
               />
               <PrivateRoute
-                path={`${process.env.PUBLIC_URL}/admin/calendar`}
+                path={`${process.env.PUBLIC_URL}/giluna/adminZone/calendar`}
                 component={CalendarAdmin}
               />
               <PrivateRoute
-                path={`${process.env.PUBLIC_URL}/admin/edit`}
+                path={`${process.env.PUBLIC_URL}/giluna/adminZone/edit`}
                 component={HomePageAdmin}
               />
               <PrivateRoute
-                path={`${process.env.PUBLIC_URL}/admin/customization`}
+                path={`${process.env.PUBLIC_URL}/giluna/adminZone/customization`}
                 component={CustomizationAdmin}
               />
               <PrivateRoute
-                path={`${process.env.PUBLIC_URL}/admin/adminList`}
+                path={`${process.env.PUBLIC_URL}/giluna/adminZone/adminList`}
                 component={AdminList}
               />
               <PrivateRoute
-                path={`${process.env.PUBLIC_URL}/admin/orderDetail/cake`}
+                path={`${process.env.PUBLIC_URL}/giluna/adminZone/orderDetail/cake`}
                 component={CakeDetail}
               />
               <PrivateRoute
-                path={`${process.env.PUBLIC_URL}/admin/orderDetail/client`}
+                path={`${process.env.PUBLIC_URL}/giluna/adminZone/orderDetail/client`}
                 component={ClientDetail}
               />
             </Switch>

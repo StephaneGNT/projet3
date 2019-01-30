@@ -39,13 +39,13 @@ class AddIngredients extends Component {
       .then((data) => {
         this.setState({ ingredList: (data.data[0]) });
       })
-      .catch(err => console.log(err));
+      .catch();
 
     axios.get('/api/allergenes/name')
       .then((data) => {
         this.setState({ allergList: (data.data[0]) });
       })
-      .catch(err => console.log(err));
+      .catch();
   }
 
   handleChange = (e) => {
