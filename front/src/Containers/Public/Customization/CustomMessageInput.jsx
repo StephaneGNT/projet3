@@ -35,13 +35,12 @@ class CustomMessageInput extends Component {
         />
         <Input
           type="textarea"
+          bgSize="sm"
           style={{
             fontFamily: message.msgFont,
-            fontSize: '1.5em',
+            fontSize: '1.3em',
             backgroundColor: message.msgBgColor,
             color: message.msgColor,
-            height: '17vh',
-            width: '100%',
           }}
           name="text"
           id="wantsCustomMessage"

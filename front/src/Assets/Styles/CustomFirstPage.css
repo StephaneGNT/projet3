@@ -2,20 +2,21 @@
 
 .decorationRow{
   justify-content: center;
-  margin-top: 3vw;
+  margin-top: 2% ;
+  margin-bottom:2% !important;
 }
 
 .removeCross:hover {
   cursor: pointer;
 }
 
-.notChosen {
+/* .notChosen {
   border: 4px red solid !important;
-}
+} */
 
-.chosen {
+/* .chosen {
   border: 4px rgb(114, 167, 114) solid !important;
-}
+} */
 
 .previewText {
   position: relative;
@@ -53,5 +54,11 @@
 }
 
 .decoRow {
-  padding-bottom: 2vh !important;
+  padding-bottom: 1% !important;
+  margin-top:-2% !important;
+}
+
+/* apparence textarea Décoration 3D */
+.b-textarea-custom {
+  min-width:30vw !important;
 }

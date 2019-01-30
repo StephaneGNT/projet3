@@ -13,7 +13,7 @@ const CakeSizeSelection = (props) => {
   const { size, selectCakeSize, selectQuantity } = props;
   return (
     <Container className="cookieSizeSelection">
-      <Label className="labels-perso">Choisissez la taille de vos cookies</Label>
+      <Label className="lb-1">Choisissez la taille de vos cookies</Label>
       <Row className="sizeSelection">
         <Col className="sm-4"><Button id="smallCookie" onClick={() => selectCakeSize('S')} className={size === 'S' && 'selectionOutline'}>Petit</Button></Col>
         <Col className="sm-4"><Button id="averageCookie" onClick={() => selectCakeSize('M')} className={size === 'M' && 'selectionOutline'}>Moyen</Button></Col>

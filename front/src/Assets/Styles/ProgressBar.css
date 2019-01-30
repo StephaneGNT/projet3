@@ -1,8 +1,10 @@
+@import './Public.css';
+
 .progressBar {
+  margin-left:-5% !important;
   list-style-type: none;
-  width: 100vw;
-  /* z-index: 10; */
-  margin:auto;
+  width: 105% !important;
+  margin:1% auto;
 }
 
 .progressBar a {
@@ -11,6 +13,7 @@
   text-decoration: none;
   text-transform: uppercase;
   font-size:0.7em;
+  font-family: var(--secondPolice);
 }
 
 .progressBar a:hover {
@@ -20,9 +23,9 @@
 
 .progressBar li {
   display: inline-block;
-  padding: 7px;
+  padding: 1%;
   text-align: center;
-  width:16%;
+  width:12vw;
   margin:1px;
 }
 
@@ -37,11 +40,11 @@
 }
 
 .activeProgress {
-  background-color: rgba(105, 48, 65, 0.911);
+  background-color: rgba(67, 106, 143, 0.911);
 }
 
 .inactiveProgress {
-  background-color: rgba(175, 171, 172, 0.911);
+  background-color: rgba(226, 216, 202, 0.911);
 }
 
 .inactiveProgress a{

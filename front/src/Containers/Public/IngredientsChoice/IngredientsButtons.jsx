@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import NavArrowsLayout from '../Navigation/NavArrowsLayout';
@@ -19,9 +18,9 @@ class IngredientsButtons extends Component {
 
   render() {
     return (
-      <Row className="back-btn">
+      <div className="back-btn">
         <NavArrowsLayout />
-      </Row>
+      </div>
     );
   }
 }

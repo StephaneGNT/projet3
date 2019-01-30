@@ -7,12 +7,12 @@ const TipsCake = () => (
     </p>
     <p>
       La commande minimale est pour
-      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 5 </strong>
+      <strong> 5 </strong>
       personnes.
       Un étage représente
-      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 5 </strong>
+      <strong> 5 </strong>
       à
-      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 25 </strong>
+      <strong> 25 </strong>
       parts.
     </p>
 

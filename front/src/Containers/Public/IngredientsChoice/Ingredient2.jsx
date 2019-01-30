@@ -5,7 +5,6 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import addIngredient from '../../../Actions/cakeActions/addIngredient';
 import calculateIngredient from './IngredientPriceCalculation';
-import '../../../Assets/Styles/Ingredient.css';
 
 class Ingredient extends Component {
   constructor() {

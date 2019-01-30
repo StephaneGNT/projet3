@@ -106,17 +106,16 @@ class Decoration extends Component {
         )()}
         <br />
         {decoType === '3D' && (
-          <div style={{ marginTop: '2vh' }}>
-            <p><u><b>Description</b></u>:</p>
+          <div className="b-textarea-custom">
+            <div className="lb-2">Description : </div>
             <Input
-              style={{ height: '9vh', width: '100%', textAlign: 'left', marginTop: '-1vh' }}
-              rows="4"
               name="description3D"
               type="textarea"
               onChange={this.updateDescription}
               value={customSummary.description3D}
               resize="none"
               maxLength="300"
+              bgSize="sm"
             />
           </div>
         )}
@@ -136,4 +135,3 @@ Decoration.propTypes = {
 };
 
 export default Decoration;
-//|| (!preview && description3D)

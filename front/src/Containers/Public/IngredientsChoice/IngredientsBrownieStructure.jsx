@@ -7,11 +7,12 @@ import IngredientsDisplay from './IngredientsDisplay';
 const IngredientsBrownieStructure = (props) => {
   const { bases } = props;
   return (
-    <Row className="displayIngredient">
-      <Col sm="12">
-        <h1>{bases[0].type}</h1>
+    <Row className="compo-zone">
+      <Col lg="12">
+      <br />
+        <title-compo>Choisissez votre {bases[0].type}</title-compo>
       </Col>
-      <Col sm="12">
+      <Col lg="12">
         <IngredientsDisplay elementToDisplay={bases} />
       </Col>
     </Row>
