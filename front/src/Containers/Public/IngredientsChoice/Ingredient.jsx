@@ -23,7 +23,7 @@ class Ingredient extends Component {
   getFullDescripion = () => {
     const { ingredient } = this.props;
     let description = '';
-    if (ingredient.allergenes.length === 0) {
+    if (ingredient.allergenes) {
       if (ingredient.portion) {
         description = `Giluna recommande une portion de ${ingredient.portion}`;
       }
@@ -37,9 +37,17 @@ class Ingredient extends Component {
     return description;
   };
 
+  getIngredientPrice = (type, price) => {
+    switch (type) {
+      case ('cake'): return `${price} €/part`;
+      case ('cheesecake'): return `${price} €`;
+      default: return `${price} €/unité`;
+    }
+  }
+
 
   render() {
-    const { ingredient, addNewIngredient, disabled } = this.props;
+    const { ingredient, addNewIngredient, disabled, cake } = this.props;
     const { photo } = this.state;
     const filter = disabled && 'grayscale(80%)';
     const color = disabled ? 'grey' : 'black';
@@ -55,8 +63,7 @@ class Ingredient extends Component {
           onClick={() => addNewIngredient(ingredient)}
         >
           <span className="badge badge-light">
-            {ingredient.price}
-            €
+            {this.getIngredientPrice(cake.type, ingredient.price)}
           </span>
           <img src={photo} title={this.getFullDescripion()} alt="" />
         </Button>

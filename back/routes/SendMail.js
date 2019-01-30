@@ -15,7 +15,6 @@ router.post('/mail', (req, res) => {
     };
 
     mailgun.messages().send(mailData, function (error, body) {
-        console.log("error, body", error, body);
         if (error) res.status(500).send("Erreur lors de l'envoi")
         else res.status(200).send("Mail bien envoyé")
     });

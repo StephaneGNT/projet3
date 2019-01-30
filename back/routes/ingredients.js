@@ -11,7 +11,6 @@ const secret = require('../helper/jwt_secret');
 
 ingred.post('/ingredients/new', (req, res) => {
   connection.query('INSERT INTO ingredients SET ?', req.body, (err, results) => {
-    console.log(err, results);
     if (err) {
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");
     } else {
@@ -31,7 +30,7 @@ ingred.put(`/ingredients/:id`, (req, res) => {
     description: req.body.info,
     image: req.body.img,
     isCompatible: true,
-    flavor: releaseEvents.body.flavor,
+    flavor: req.body.flavor,
     color: req.body.color
   }
   connection.query('UPDATE ingredients SET ? WHERE id = ?', [formData, ingredientId], (err, results) => {
