@@ -13,7 +13,7 @@ const MacaronSizeSelection = (props) => {
   const { size, selectCakeSize, selectQuantity } = props;
   return (
     <Container className="macaronSizeSelection">
-      <Label className="labels-perso mt-3">Choisissez la taille & le nombre de Macarons souhaités :</Label>
+      <Label className="lb-1">Choisissez la taille & le nombre de Macarons souhaités :</Label>
       <Row>
         <Button id="smallMacaron" onClick={() => selectCakeSize('S')} className={size === 'S' && 'selectionOutline'}>Petit</Button>
         <Button id="bigMacaron" onClick={() => selectCakeSize('L')} className={size === 'L' && 'selectionOutline'}>Gros</Button>

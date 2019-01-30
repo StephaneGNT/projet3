@@ -70,7 +70,7 @@ class CakeSizeSelection extends Component {
     return (
       <Container className="b-cakesize-select">
         <Row>
-          <Label className="labels-perso">Choisissez la taille de votre gâteau</Label>
+          <Label className="lb-1">Choisissez la taille de votre gâteau</Label>
           <Col>
             <Label className="lb-2">Nombre de personnes : </Label>
             <input
