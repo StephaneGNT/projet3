@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Row } from 'reactstrap';
-import '../../../Assets/Styles/CakeInProgress.css';
+import { Container, Row } from 'reactstrap';
 
 const CakeImage = (props) => {
   const { cake } = props;
@@ -16,25 +15,29 @@ const CakeImage = (props) => {
         }
       };
       return (
-        <Row className="cakeProgressLayout">
-          <p>
-            <img src={item.image} alt="ingredient" className={cakeLayoutType()} />
-          </p>
-        </Row>
+        <Container>
+          <Row className="cakeProgressLayout">
+            <p>
+              <img src={item.image} alt="ingredient" className={cakeLayoutType()} />
+            </p>
+          </Row>
+        </Container>
       );
     }
     return (
-      <Row className="cakeProgressLayout">
-        <p><img src={item.image} alt="ingredient" /></p>
-      </Row>
+      <Container>
+        <Row className="cakeProgressLayout">
+          <p><img src={item.image} alt="ingredient" /></p>
+        </Row>
+      </Container>
     );
   };
   return (
-    <div>
+    <Container>
       <Row className="cakeLayout justify-content-center">
         {cake.ingredients.map((item, index, arr) => compareIndexToLength(item, index, arr))}
       </Row>
-    </div>
+    </Container>
   );
 };
 

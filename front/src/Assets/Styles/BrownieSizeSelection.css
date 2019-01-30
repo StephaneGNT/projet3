@@ -5,27 +5,25 @@
 }
 
 .brownieSizeSelection {
-  background-color:rgb(209, 209, 209);
+  background-color:rgba(211, 189, 158, 0.363);
   padding:5px;
   margin:5px;
 }
 
 
 .brownieSizeSelection Button{
-  height: 10vh;
-  width: 10vh;
+  width: 8vw;
   padding: 0;
   color: black;
-  font-size: 0.8em;
-  border:none;
-  padding-top:40px;
+  font-family: var(--secondPolice);
+  font-size: 0.7em;
   background-color: white;
-  background-image: url('../Images/brownie.png');
+  background-image: url('../Images/brownie2.png');
   background-repeat: no-repeat;
   background-position-x: center;
-  border-radius: 20px;
   padding-top: 70%;
-  cursor: url(../Images/whiskflipped.ico), pointer !important;
+  border:none;
+  margin-bottom:15%;
 }
 
 .brownieSizeSelection Button:hover, .brownieSizeSelection Button:active, .brownieSizeSelection Button:focus{
@@ -34,7 +32,6 @@
   color: black !important;
   background-color: white !important;
   box-shadow: 0 !important;
-  /* outline: blue solid 2px !important; */
 }
 
 #smallBrownie{

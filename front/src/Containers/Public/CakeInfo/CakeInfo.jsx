@@ -24,11 +24,11 @@ const CakeInfo = (props) => {
     <Container className="body-row">
       <Row className="justify-content-around">
         <Col sm="12">
-          <div className="labels-perso">Choisissez votre type de douceur :</div>
+          <div className="labels-perso-btn-douceurs">Choisissez votre type de douceur :</div>
         </Col>
       </Row>
-      <Row className="mt-3 justify-content-around">
-        <Col sm="2" className="text-center">
+      <Row className="b-ligne-button">
+        <Col sm="2">
           <button
             type="button"
             className={`typeButton ${type === 'cookie' && 'selectionOutline'}`}
@@ -36,10 +36,10 @@ const CakeInfo = (props) => {
             title="A partir de 2,5€"
             onClick={() => { localChangeCakeType('cookie'); resetCakeStories(); }}
           >
-            <h6><Badge color="danger">Cookie</Badge></h6>
+            <txt-btn-sweet>Cookie</txt-btn-sweet>
           </button>
         </Col>
-        <Col sm="2" className="text-center">
+        <Col sm="2">
           <button
             type="button"
             className={`typeButton ${type === 'cake' && 'selectionOutline'}`}
@@ -47,10 +47,10 @@ const CakeInfo = (props) => {
             title="A partir de 8€"
             onClick={() => { localChangeCakeType('cake'); resetCakeStories(); }}
           >
-            <h6><Badge color="danger">Cake</Badge></h6>
+            <txt-btn-sweet>Cake</txt-btn-sweet>
           </button>
         </Col>
-        <Col sm="2" className="text-center">
+        <Col sm="2">
           <button
             type="button"
             className={`typeButton ${type === 'cheesecake' && 'selectionOutline'}`}
@@ -58,10 +58,10 @@ const CakeInfo = (props) => {
             title="A partir de 8€"
             onClick={() => { localChangeCakeType('cheesecake'); resetCakeStories(); }}
           >
-            <h6><Badge color="danger">Cheesecake</Badge></h6>
+            <txt-btn-sweet>Cheesecake</txt-btn-sweet>
           </button>
         </Col>
-        <Col sm="2" className="text-center">
+        <Col sm="2">
           <button
             type="button"
             className={`typeButton ${type === 'macaron' && 'selectionOutline'}`}
@@ -69,10 +69,10 @@ const CakeInfo = (props) => {
             title="A partir de 2,5€"
             onClick={() => { localChangeCakeType('macaron'); resetCakeStories(); }}
           >
-            <h6><Badge color="danger">Macaron</Badge></h6>
+            <txt-btn-sweet>Macarons</txt-btn-sweet>
           </button>
         </Col>
-        <Col sm="2" className="text-center">
+        <Col sm="2">
           <button
             type="button"
             className={`typeButton ${type === 'brownie' && 'selectionOutline'}`}
@@ -80,13 +80,13 @@ const CakeInfo = (props) => {
             title="A partir de 2,5€"
             onClick={() => { localChangeCakeType('brownie'); resetCakeStories(); }}
           >
-            <h6><Badge color="danger">Brownie</Badge></h6>
+            <txt-btn-sweet>Brownies</txt-btn-sweet>
           </button>
         </Col>
       </Row>
       <Row className="mt-5 justify-content-around">
         <Col sm="6">
-          <Label for="choix_occasion" className="labels-perso">Pour quelle occasion voulez-vous votre gâteau ?</Label>
+          <Label for="choix_occasion" className="lb-0">Pour quelle occasion voulez-vous votre délice ?</Label>
           <CakeOccasion />
           <SizeSelection />
         </Col>

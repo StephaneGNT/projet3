@@ -3,7 +3,6 @@ import { Col, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import addIngredient from '../../../Actions/cakeActions/addIngredient';
-import '../../../Assets/Styles/Ingredient.css';
 
 class Ingredient extends Component {
   constructor() {

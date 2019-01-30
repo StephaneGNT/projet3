@@ -1,4 +1,31 @@
 @import './CommonStyle.css';
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700|Quicksand:300,400,500,700');
+:root {
+  --mainColor: rgba(141, 29, 44, 0.8);
+  --secondColor: rgba(212, 186, 34, 0.8);
+  --lightPurple: rgb(250, 242, 255);
+  --mainPolice: 'Lobster Two', cursive;
+  --secondPolice: 'Quicksand', sans-serif;
+  ;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+h1 {
+  margin: auto;
+  padding: 3%;
+  font-size: 2em !important;
+  font-weight: 700 !important;
+  font-family: var(--mainPolice) !important;
+  color: var(--mainColor) !important;
+}
+
 h3 {
   margin: auto;
   padding: 5px;
@@ -11,10 +38,10 @@ h3 {
 }
 
 /* Apparence Badges sur les boutons COOKIE, MACARONS, CHEESE, CAKE sur CakeInfo.jsx */
-h6 {
-  margin:auto;
-}
 
+h6 {
+  margin: auto;
+}
 
 /* <------------------------------------------- BODY ----> */
 
@@ -142,25 +169,26 @@ s-title2 {
 }
 
 /* -------------> GALLERY : HomePage.jsx <-------------- */
+
 .the-gallery {
-  display:flex;
+  display: flex;
 }
 
 .meals-showcase {
   list-style: none;
   width: 100%;
-  margin-bottom:0;
+  margin-bottom: 0;
 }
 
 .meals-showcase li {
   display: block;
   float: left;
-  padding:5px;
+  padding: 5px;
 }
 
 .meal-photo {
   width: 16vw;
-  height:16vw;
+  height: 16vw;
   margin: 0;
   overflow: hidden;
   background-color: #000;
@@ -187,72 +215,134 @@ s-title2 {
 
 /* <------------------------------------------- CakeInfo.jsx ----> */
 
-.body-sous-select {
+/* Bouton Start Cake */
+
+#enterButton {
+  width: 25vw;
+  background-color: var(--mainColor);
+  font-family: var(--mainPolice);
+  font-size: 1.4em;
+  text-shadow: 1px 1px 2px rgb(138, 44, 44);
+  color: white;
   border: none;
-  background-color: rgb(231, 218, 219);
-  display: block;
+  padding: 10px;
 }
 
-.labels-perso {
+#enterButton:hover {
+  background-color: var(--mainColor);
+  text-shadow: 1px 1px 2px rgb(107, 34, 34);
+  transition: all 1s ease-out;
+}
+
+.img-gallery {
+  width: 20vh;
+  height: 20vh;
+  object-fit: cover;
+  border: 20px solid white;
+  margin: 8% auto;
+}
+
+.bloc-gallery {
+  display: flex;
+  justify-content: center;
+}
+
+/* Les Labels */
+
+.lb-0 {
   display: block;
   width: 100%;
-  padding: 3px;
+  padding: 5px;
   font-size: 1.2em;
-  font-weight: 400;
-  font-family:  'Quicksand', sans-serif;
-  /* background-color: rgb(221, 198, 203); */
-  background-image: linear-gradient(-90deg, rgb(241, 232, 219), rgb(211, 189, 158));
-  color: white;
+  text-align: center;
+  font-family: var(--secondPolice);
+  color: rgb(141, 126, 106);
+  background-color: rgba(226, 203, 172, 0.356);
+}
+
+.lb-1 {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  font-size: 0.8em;
+  font-weight: 700;
+  font-family: var(--secondPolice);
+  color: rgb(133, 118, 99);
+}
+
+/* Label 'nombre de # ' dans CakeInfo.jsx/CakesSizeSelection.jsx */
+
+.lb-2 {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 0.8em;
+  font-family: var(--secondPolice);
+  font-weight: 700;
+  color: var(--mainColor);
+}
+
+/* Le bloc NBR étage & personne CakeSizeSelection.jsx */
+
+.b-cakesize-select {
+  background-color: rgba(211, 189, 158, 0.363);
+  margin: 3% auto;
+}
+
+/* gérer le margin du Label&Input 'nbr de ' sur CakeInfo.jsx */
+
+.row-nbr-choice {
+  margin-top: 10px !important;
 }
 
 /* Label 'choississez votre type de douceur' dans CakeInfo.jsx */
 
 .labels-perso-btn-douceurs {
-  font-size: 1em;
+  background: rgb(219, 150, 150);
+  text-shadow: 2px 2px 1px rgb(187, 128, 128);
+  font-size: 1.5em;
   font-family: var(--mainPolice);
-  color: var(--mainColor);
-  margin-top: 4%;
-  margin-left: 2%;
+  color: white;
+  padding: 10px;
+  margin-top: 2%;
   display: block;
-  text-align: left;
+  text-align: center;
 }
 
-/* Label 'nombre de # ' dans CakeInfo.jsx/CakesSizeSelection.jsx */
-.lb-2 {
-  display: inline-block;
-  margin-top: 5px;
-  font-size: 0.8em;
-  font-family:  'Quicksand', sans-serif;
-  font-weight:700;
-  color: var(--mainColor);
+/* Bloc des 5 boutons */
+
+.b-ligne-button {
+  text-align: center;
+  padding: 10px;
+  background: white;
+  display: block;
+  margin-left: 1.5% !important;
+  margin-right: 1.5% !important;
 }
 
-/* Le bloc NBR étage & personne CakeSizeSelection.jsx */
-.b-cakesize-select {
-  border:1px solid orange;
-  margin:3% auto;
-  
-}
+/* Texte sous les boutons */
 
-/* gérer le margin du Label&Input 'nbr de ' sur CakeInfo.jsx */
-.row-nbr-choice {
-  margin-top: 10px !important;
+txt-btn-sweet {
+  font-weight: 700;
+  font-size: 1.6em;
+  font-family: var(--mainPolice);
+  /* background:rgb(231, 216, 216); */
+  color: rgb(161, 132, 132);
+  padding: 5px;
+  display: block;
+  text-align: center;
+  margin: 5% auto;
 }
 
 .typeButton {
   width: 8vw;
-  height: 12vh;
+  height: 8vw;
   font-size: 0.7em;
-  background-size: 70%;
-  background-color: rgb(201, 164, 182);
+  background-size: 100%;
+  background-color: rgb(255, 255, 255);
   background-repeat: no-repeat;
   background-position-x: center;
-  font-family: Arial, Helvetica, sans-serif;
-  color: rgb(128, 118, 118) !important;
-  padding-top: 30% !important;
+  padding-top: 65% !important;
   border: none;
-  box-shadow: 0px 0px 5px rgb(219, 207, 207);
-  margin-bottom: -30px;
 }
 
 #cookieButton {
@@ -271,7 +361,7 @@ s-title2 {
 }
 
 #macaronButton {
-  background-image: url(../Images/macaron_cafe.png);
+  background-image: url(../Images/macarons.png);
   cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
@@ -280,40 +370,243 @@ s-title2 {
   cursor: url(../Images/Whisk.ico)1 42, pointer !important;
 }
 
-.selectionOutline {
-  box-shadow: 0 0 3pt 2pt rgb(168, 112, 48) !important
-}
-
 /* block des tips */
 
 .tipsColumn {
-  /* height: 60vh; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-size: 1em;
-  /* line-height:1em; */
-  background-color: rgba(180, 180, 180, 0.644);
-  border: double 4px rgb(211, 210, 210);
+  font-size: 0.9em;
+  font-family: var(--secondPolice);
   padding: 3%;
+  color: rgb(37, 13, 13);
+  background-color: rgb(233, 217, 184);
+  border: 2px dotted rgb(231, 206, 154);
+  overflow: auto;
+  max-height: 32vh;
 }
 
 /* Titres TIPS */
 
 .title-tips {
+  font-family: var(--secondPolice);
+  text-transform: lowercase;
+  letter-spacing: 8px;
   display: block;
-  margin: auto;
   text-align: center;
-  color: rgb(107, 107, 107) !important;
-  font-size: 1.5em;
-  background-color: rgb(201, 201, 201);
-  padding: 2%;
+  border-bottom: 4px solid rgb(223, 207, 177);
+  color: rgb(116, 107, 90) !important;
+  font-size: 1.2em;
+  margin-top: -5%;
+  padding: 5px;
+}
+
+/* <-------------------------------------------Composition.jsx------> */
+
+/* Titre de la Compo */
+
+title-compo {
+  display: block;
+  text-align: center;
+  margin: auto;
+  padding: 1%;
+  background-color: rgb(235, 218, 188);
+  font-size: 1.3em !important;
+  font-weight: 700 !important;
+  font-family: var(--secondPolice) !important;
+  color: var(--mainColor) !important;
+  text-transform: lowercase;
+  letter-spacing: 2px;
+  border-bottom: 4px solid rgb(223, 207, 177);
+}
+
+/* Body de la Compo */
+
+.body-compo {
+  margin: 2% !important;
+  /* background-color: rgba(233, 217, 184, 0.26); */
+}
+
+/* Bloc des ingrédients */
+
+.compo-zone {
+  height: 70vh;
+  overflow: auto;
+  margin: 5px !important;
+  background-color: rgba(233, 217, 184, 0.521);
+}
+
+.ingredient {
+  margin: 1%;
+}
+
+.ingredient img {
+  width: 7vw !important;
+  object-fit: cover;
+}
+
+.ingredient span {
+  display: block;
+  font-size: 1vw;
+  color: white;
+  background-color: rgb(119, 163, 189);
+}
+
+/* <-------------------------------------------CakeInProgress.jsx.jsx------> */
+
+.bloc-price {
+  width: 20vh;
+  color: rgb(34, 34, 34);
+  font-size: 0.9em;
+  text-align: center;
+  background-color: rgb(226, 225, 225);
+  padding: 13px;
+  margin: 3% auto;
   font-weight: 700;
+  z-index: 1;
+}
+
+/* Le background de tous les boutons lors de la création */
+
+.back-btn {
+  background-color: rgb(185, 185, 185);
+  bottom: 2vh;
+  width: 150%;
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+}
+
+/* Bouton de commande */
+
+.order-btn {
+  background-color: rgb(184, 137, 52);
+  width: 20vh;
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 700;
+  border: none;
+  padding: 14px;
+  position: relative;
+  /* left:6%; */
+  /* top:75%; */
+  margin: 1%;
+  color: rgb(34, 34, 34);
   text-transform: uppercase;
 }
 
-/* <------------------------------------------- Ingredient-Table.jsx ----> */
+/* Groupe des deux boutons */
 
+.btn-group {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+}
+
+/* Boutons Previous & Next */
+
+.btn-prev-next {
+  background-color: rgb(117, 71, 89);
+  width: 20vh;
+  display: inline-block;
+  margin-right: 5px;
+  font-weight: 700;
+  font-size: 0.8em;
+  padding: 15px;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+}
+
+.btn-prev-next:hover {
+  background-color: rgb(85, 52, 65);
+  transition: all 0.7s ease-out;
+}
+
+/* bouton conirmation de commande */
+
+.btn-confirmation {
+  background-color: rgb(112, 91, 96);
+  display: inline;
+  margin-right: 5px;
+  font-weight: 700;
+  font-size: 0.8em;
+  padding: 15px;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+}
+
+.body-show-cake {
+  border: 1px solid orange;
+}
+
+.btn-confirmation:hover {
+  background-color: rgb(189, 64, 64);
+  transition: all 0.7s ease-out;
+}
+
+.cakeProgressLayout Button {
+  position: relative;
+  margin: -8px;
+  left: 10px;
+}
+
+.cakeProgressLayout img {
+  margin-top: -30%;
+  margin-bottom: -30%;
+}
+
+.cakeLayout {
+  width:100%;
+  position: relative;
+  margin: 1% !important;
+  min-height: 55.6vh;
+  background-color: rgba(219, 150, 150, 0.432);
+  border-style: solid 20px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.toppingsCakeLayout {
+  height: 10vh;
+  background-color: rgb(246, 217, 222);
+  display: flex;
+  flex-direction: row;
+  z-index: 10;
+}
+
+.toppingsLayout {
+  width: 50px;
+}
+
+.namesLayout {
+  margin: auto;
+  min-height: 15vh;
+  background-color: rgb(246, 217, 222);
+  border-style: solid 20px;
+  overflow: auto;
+  flex-direction: column-reverse;
+  font-size: 0.8em;
+}
+
+.namesLayout p {
+  font-family: var(--secondPolice);
+  font-size: 1.1em;
+  text-align:left;
+}
+
+/* background boutons onglet UserInfo */
+.back-btn-userinfo {
+  background: rgb(185, 184, 184);
+  position: absolute;
+  display: block;
+  width: 80%;
+  left: 10%;
+  padding: 10px;
+}
+
+/* <---------------------------------------------- PANNEAU D'ADMINISTRATION ----> */
+/* <------------------------------------------- Ingredient-Table.jsx ----> */
 .body-ingred-tb {
   background: rgb(233, 233, 233);
   margin: auto;
@@ -335,10 +628,10 @@ s-title2 {
   margin: 2px;
 }
 
-/* COMPONENT : AddIngredients.jsx */
+/* <--------------------------------------- AddIngredients.jsx --------------> */
 /* Bloc des boutons ANNULER et MODIFIER */
 .row-modif-ing-btn {
-  display:flex;
+  display: flex;
   justify-content: space-around;
 }
 
@@ -394,4 +687,40 @@ title-admin {
 .td-ing-list {
   margin: 10px;
   font-size: 0.7em !important;
+}
+
+.body-admin {
+  padding: 2%;
+  height: 100%;
+  width: 100%;
+  margin: 0%;
+  background-color: rgb(235, 235, 235);
+}
+
+.para-admin {
+  text-align: justify;
+  font-size: 1.2em;
+  line-height: 1.3em;
+  padding: 2%;
+}
+
+.admin-home-logo {
+  width: 30%;
+  display: block;
+  margin: auto;
+}
+
+/*APPARENCE CAROUSEL*/
+.the-carousel {
+  width: auto;
+  height: auto;
+  margin: 2% auto;
+  display: flex;
+  justify-content: center;
+}
+
+.body-carousel {
+  width: 25vw;
+  height: 92%;
+  padding: 3%;
 }

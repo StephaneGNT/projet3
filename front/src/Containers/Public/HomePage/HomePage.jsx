@@ -93,7 +93,6 @@ const HomePage = (props) => {
               </li>
             </ul>
           </section>
-
         </Col>
       </Row>
     </Container>

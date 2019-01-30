@@ -1,29 +1,25 @@
-.macaronSize Row{
-  width: 100%;
-}
 
 .macaronSizeSelection {
-  background-color:rgb(209, 209, 209);
+  background-color:rgba(211, 189, 158, 0.363);
   padding:5px;
   margin:5px;
 }
 
-
 .macaronSizeSelection Button{
-  height: 10vh;
-  width: 10vh;
+  height: 7vh;
+  width: 7vw;
   padding: 0;
-  margin: 0 20px;
   color: black;
   font-family: var(--secondPolice);
-  font-size: 1em;
+  font-size: 0.7em;
   background-color: white;
-  background-image: url('../Images/macaron_cafe.png');
+  background-image: url('../Images/macarons2.png');
   background-repeat: no-repeat;
   background-position-x: center;
-  border-radius: 20px;
-  padding-top: 95px;
-  cursor: url(../Images/whiskflipped.ico), pointer !important;
+  padding-top: 21%;
+  border:none;
+  margin-bottom:5%;
+  margin-right:3%;
 }
 
 .macaronSizeSelection Button:hover, .macaronSizeSelection Button:active, .macaronSizeSelection Button:focus{
@@ -35,10 +31,10 @@
 }
 
 #smallMacaron{
-  background-size: 40% 40%;
+  background-size: 70% 70%;
   background-position-y: 35%;
 }
 
 #bigMacaron{
-  background-size: 80% 80%;
+  background-size: 90% 90%;
 }

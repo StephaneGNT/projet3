@@ -13,7 +13,7 @@ const CakeSizeSelection = (props) => {
   const { size, selectCakeSize, selectQuantity } = props;
   return (
     <Container className="brownieSizeSelection">
-      <Label className="labels-perso">Choisissez la taille & le nombre de Brownies souhaités :</Label>
+      <Label className="lb-1">Choisissez la taille & le nombre de Brownies souhaités :</Label>
       <Row>
         <Col className="sm-4"><Button id="smallBrownie" className={size === 'S' && 'selectionOutline'} onClick={() => selectCakeSize('S')}>Petit</Button></Col>
         <Col className="sm-4"><Button id="averageBrownie" className={size === 'M' && 'selectionOutline'} onClick={() => selectCakeSize('M')}>Moyen</Button></Col>
