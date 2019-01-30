@@ -336,6 +336,11 @@ s-title2 {
 }
 
 /* COMPONENT : AddIngredients.jsx */
+/* Bloc des boutons ANNULER et MODIFIER */
+.row-modif-ing-btn {
+  display:flex;
+  justify-content: space-around;
+}
 
 .table-add-ingred td {
   display: flex;
