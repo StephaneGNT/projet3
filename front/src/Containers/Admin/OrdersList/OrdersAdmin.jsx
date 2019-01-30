@@ -66,8 +66,6 @@ class OrdersAdmin extends Component {
     const {
       history, orders, customers, cakes,
     } = this.props;
-    console.log("orders", orders)
-    console.log("cakes", cakes)
     const render = [];
 
     orders.map((order, index) => {

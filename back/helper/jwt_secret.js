@@ -1,2 +1,2 @@
-const secret = '';
+const secret = 'pimpmycakeadmin';
 module.exports = secret;
