@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Container } from 'reactstrap';
 import PropTypes from 'prop-types';
+import Responsive from 'react-responsive';
 import axios from 'axios';
+import Alert from './Alert';
 import Public from './Containers/Public/Public';
 import Admin from './Containers/Admin/Admin';
 import CellPhonePage from './Containers/CellPhonePage';
 import { getAllOrders, getAllCustomers, getAllCakes } from './Actions/adminsActions/getAllOrdersCakesCustomers';
 import changeDescriptions from './Actions/adminsActions/changeDescriptions';
 import axiosIngredientsDB from './Actions/fetchDB/fetch_database_actions';
-import Responsive from 'react-responsive';
 
 class App extends Component {
   constructor(props) {
@@ -36,6 +36,7 @@ class App extends Component {
     return (
       <div className="App">
         <Desktop>
+          <Alert />
           <BrowserRouter className="d-none d-md-block">
             <Switch>
               <Route path={`${process.env.PUBLIC_URL}/admin`} component={Admin} />

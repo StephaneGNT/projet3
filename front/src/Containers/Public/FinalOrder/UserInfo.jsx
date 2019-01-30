@@ -14,7 +14,7 @@ import {
 import updateUserInfo from '../../../Actions/orderActions/updateUserInfo';
 import '../../../Assets/Styles/UserInfo.css';
 
-import logo from '../../../Assets/Images/LOGO_GILUNA.png';
+import carte from '../../../Assets/Images/selectionGallerie/IMG_carte.jpg';
 
 class UserInfo extends Component {
   constructor(props) {
@@ -79,8 +79,15 @@ class UserInfo extends Component {
       title: 'Confirmation de commande Giluna',
       text: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
               Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
-      html: <p>Bonjour ${user.firstName} ${user.lastName}, votre commande a bien été prise en compte.
-      Nous reviendrons vers vous rapidement pour vous confirmer sa validation.</p>,
+      html: <p>
+      Bonjour
+      $
+        {user.firstName}
+      $
+        {user.lastName}
+      ,votre commande a bien été prise en compte.
+      Nous reviendrons vers vous rapidement pour vous confirmer sa validation.
+      </p>,
     };
     axios.post('/api/send/mail', mailClient);
     const gilunaMail = {
@@ -287,7 +294,7 @@ class UserInfo extends Component {
         </Row>
         <Row>
           <Col sm="2" md="2">
-            <img src={logo} className="logo" alt="giluna-logo" />
+            <img src={carte} className="logo" alt="giluna-logo" />
           </Col>
           <Col sm="12" md="6">
             <FormGroup>

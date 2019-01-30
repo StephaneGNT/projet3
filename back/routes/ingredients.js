@@ -11,10 +11,11 @@ const secret = require('../helper/jwt_secret');
 
 ingred.post('/ingredients/new', (req, res) => {
   connection.query('INSERT INTO ingredients SET ?', req.body, (err, results) => {
+    console.log(err, results);
     if (err) {
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");
     } else {
-      res.status(200).send("Nouvel ingrédient ajouté !" + JSON.stringify(results));
+      res.status(200).json(results);
     }
   });
 });
@@ -29,9 +30,9 @@ ingred.put(`/ingredients/:id`, (req, res) => {
     dispo: req.body.dispo,
     description: req.body.info,
     image: req.body.img,
-    isCompatible: null,
-    flavor: null,
-    color: null
+    isCompatible: true,
+    flavor: releaseEvents.body.flavor,
+    color: req.body.color
   }
   connection.query('UPDATE ingredients SET ? WHERE id = ?', [formData, ingredientId], (err, results) => {
     if (err) {
@@ -55,9 +56,9 @@ ingred.post('/allergenes/new', (req, res) => {
 
 ingred.get('/ingredients/name', (req, res) => {
   connection.query('SELECT * from ingredients', (err, results) => {
-    if (err) { 
+    if (err) {
         res.status(500).send('Erreur lors de la recup des noms');
-    } else { 
+    } else {
         res.send([results]);
     }
 });
@@ -65,9 +66,9 @@ ingred.get('/ingredients/name', (req, res) => {
 
 ingred.get('/allergenes/name', (req, res) => {
   connection.query('SELECT * from allergenes', (err, results) => {
-    if (err) { 
+    if (err) {
         res.status(500).send('Erreur lors de la recup des allergenes');
-    } else { 
+    } else {
         res.send([results]);
     }
 });
@@ -121,8 +122,8 @@ ingred.delete(
 ingred.get('/ingredients', (req, res) => {
   connection.query(
     `SELECT ingredients.*, allerg.name AS allergenes, comp.name as compatible
-    FROM ingredients 
-      LEFT JOIN 
+    FROM ingredients
+      LEFT JOIN
         (SELECT jt_allergenes.id_ingred, GROUP_CONCAT(allergenes.name) AS name
          FROM jt_allergenes
          INNER JOIN allergenes
@@ -135,7 +136,7 @@ ingred.get('/ingredients', (req, res) => {
          INNER JOIN ingredients
          ON jt_compatibility.id_ingred2 = ingredients.id
          GROUP BY jt_compatibility.id_ingred1) AS comp
-      ON comp.id_ingred1 = ingredients.id;` 
+      ON comp.id_ingred1 = ingredients.id;`
     , (err, results) => {
     err ? res.status(500).send(err) : res.status(200).send(results);
   })
@@ -145,8 +146,8 @@ ingred.get('/ingredients/:ingredType', (req, res) => {
   const typeToLoad = req.params.ingredType.replace(/\_/g, ' ');
   connection.query(
     `SELECT ingredients.*, allerg.name AS allergenes, comp.name as compatible
-    FROM ingredients 
-      LEFT JOIN 
+    FROM ingredients
+      LEFT JOIN
         (SELECT jt_allergenes.id_ingred, GROUP_CONCAT(allergenes.name) AS name
          FROM jt_allergenes
          INNER JOIN allergenes
@@ -160,7 +161,7 @@ ingred.get('/ingredients/:ingredType', (req, res) => {
          ON jt_compatibility.id_ingred2 = ingredients.id
          GROUP BY jt_compatibility.id_ingred1) AS comp
       ON comp.id_ingred1 = ingredients.id
-      WHERE ingredients.type = ? ;` 
+      WHERE ingredients.type = ? ;`
     , typeToLoad, (err, results) => {
     err ? res.status(500).send(err) : res.status(200).send(results);
   })

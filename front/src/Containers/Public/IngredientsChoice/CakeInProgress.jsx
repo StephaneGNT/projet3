@@ -1,70 +1,61 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Row } from 'reactstrap';
+import Ingredient from './IngrededientCakeInProgress';
 import removeIngredient from '../../../Actions/cakeActions/removeIngredient';
 import '../../../Assets/Styles/CakeInProgress.css';
 
-class CakeInProgress extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  compareIndexToLength = (item, index, arr) => {
-    const { remove } = this.props;
+const CakeInProgress = (props) => {
+  const compareIndexToLength = (item, index, arr) => {
+    const { remove } = props;
     if (index + 1 === arr.length) {
-      const cakeLayoutType = () => {
-        switch (item.type) {
+      const cakeLayoutType = (type) => {
+        switch (type) {
           case 'Garniture': return 'fillingLayout';
           case 'Toppings': return 'toppingsLayout';
           case 'Glaçage': return 'icingsLayout';
           default: return null;
         }
       };
+      const design = cakeLayoutType(item.type);
       return (
         <Row key={item.name} className="cakeProgressLayout">
-          <p>
-            <img src={item.image} alt="ingredient" className={cakeLayoutType()} />
-          </p>
+          <Ingredient image={item.image} type={item.type} design={design} />
           <Button size="sm" close onClick={() => remove(item)} />
         </Row>
       );
     }
     return (
       <Row className="cakeProgressLayout">
-        <p><img src={item.image} alt="ingredient" /></p>
+        <Ingredient image={item.image} cakeLayoutType={x => x} />
       </Row>
     );
-  }
+  };
 
-  displayNamesIngredients = (item) => {
-    return (
-      <Row key={item.name}>
-        <p>
-          {item.type}
+  const displayNamesIngredients = item => (
+    <Row key={item.name}>
+      <p>
+        {item.type}
         :
-        </p>
-        <p>{item.name}</p>
+      </p>
+      <p>{item.name}</p>
+    </Row>
+  );
+
+  const { cake } = props;
+  return (
+    <div>
+      <Row className="cakeLayout">
+        {cake.ingredients.map((item, index, arr) => compareIndexToLength(item, index, arr))}
       </Row>
-    );
-  }
-
-
-  render() {
-    const { cake } = this.props;
-    return (
-      <div>
-        <Row className="cakeLayout">
-          {cake.ingredients.map((item, index, arr) => this.compareIndexToLength(item, index, arr))}
-        </Row>
-        <Row className="namesLayout">
-          {cake.ingredients.map(item => this.displayNamesIngredients(item))}
-        </Row>
-      </div>
-    );
-  }
+      <Row className="namesLayout">
+        {cake.ingredients.map(item => displayNamesIngredients(item))}
+      </Row>
+    </div>
+  );
 }
+
 
 CakeInProgress.propTypes = {
   cake: PropTypes.shape({}).isRequired,
