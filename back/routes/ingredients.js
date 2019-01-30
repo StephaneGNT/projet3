@@ -11,7 +11,6 @@ const secret = require('../helper/jwt_secret');
 
 ingred.post('/ingredients/new', (req, res) => {
   connection.query('INSERT INTO ingredients SET ?', req.body, (err, results) => {
-    console.log(err, results);
     if (err) {
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");
     } else {

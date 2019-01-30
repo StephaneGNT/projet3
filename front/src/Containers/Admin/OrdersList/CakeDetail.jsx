@@ -59,7 +59,7 @@ class CakeDetail extends Component {
             />
           </tbody>
         </Table>
-        <Button onClick={() => history.push(`${process.env.PUBLIC_URL}/admin/orders`)}>Retour</Button>
+        <Button onClick={() => history.push(`${process.env.PUBLIC_URL}/giluna/adminZone/orders`)}>Retour</Button>
       </Container>
     );
   }

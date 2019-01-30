@@ -12,8 +12,8 @@ class Login extends Component {
     super(props);
     this.state = {
       user: {
-        id: 'Giluna',
-        password: 'password',
+        id: '',
+        password: '',
       },
       passwordConfirm: '',
     };
@@ -42,17 +42,17 @@ class Login extends Component {
     const { user } = this.state;
     if (action === 'Créer') {
       createAdmin(user);
-      history.push(`${process.env.PUBLIC_URL}/admin/adminList`);
+      history.push(`${process.env.PUBLIC_URL}/giluna/adminZone/adminList`);
     }
     if (action === 'Se connecter') {
       const answer = await connectAdmin(user);
       alertAction(answer.message);
       saveToken(answer.token);
-      history.push(`${process.env.PUBLIC_URL}/admin/orders`);
+      history.push(`${process.env.PUBLIC_URL}/giluna/adminZone/orders`);
     }
     if (action === 'Modifier') {
       updateAdmin(user, index);
-      history.push(`${process.env.PUBLIC_URL}/admin/adminList`);
+      history.push(`${process.env.PUBLIC_URL}/giluna/adminZone/adminList`);
     }
   }
 

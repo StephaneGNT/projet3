@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Button } from 'reactstrap';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import addIngredient from '../../../Actions/cakeActions/addIngredient';
 import '../../../Assets/Styles/Ingredient.css';
@@ -22,46 +23,69 @@ class Ingredient extends Component {
   getFullDescripion = () => {
     const { ingredient } = this.props;
     let description = '';
-    if (ingredient.allergenes.length === 0) {
-      if (ingredient.size.indexOf('g') !== -1) {
-        description = `${ingredient.info} Giluna recommande une portion de ${ingredient.size}`;
-      } else description = `${ingredient.info}`;
-    } else {
-      if (ingredient.size.indexOf('g') !== -1) {
-        description = `${ingredient.info} Allergènes: ${ingredient.allergenes}.
-                              Giluna recommande une portion de ${ingredient.size}`;
+    if (ingredient.allergenes) {
+      if (ingredient.portion) {
+        description = `Giluna recommande une portion de ${ingredient.portion}`;
       }
-      description = `${ingredient.info} Allergènes: ${ingredient.allerg}`;
+    } else {
+      if (ingredient.portion) {
+        description = `Allergènes: ${ingredient.allerg}.
+        Giluna recommande une portion de ${ingredient.portion}`;
+      }
+      description = `Allergènes: ${ingredient.allerg}`;
     }
     return description;
   };
 
-  render() {
-    const { ingredient, addNewIngredient, disabled } = this.props;
-    const { photo } = this.state;
-    console.log("in ingredient", photo)
+  getIngredientPrice = (type, price) => {
+    switch (type) {
+      case ('cake'): return `${price} €/part`;
+      case ('cheesecake'): return `${price} €`;
+      default: return `${price} €/unité`;
+    }
+  }
 
+
+  render() {
+    const { ingredient, addNewIngredient, disabled, cake } = this.props;
+    const { photo } = this.state;
     const filter = disabled && 'grayscale(80%)';
-    const color = disabled ? 'darkgrey' : 'black';
+    const color = disabled ? 'grey' : 'black';
     // const display = disabled && 'none';
     const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
-
     return (
-      <Col className="ingredient" style={{ textAlign: 'center' }}>
-        <Button disabled={disabled} style={{ filter, backgroundColor }} onClick={() => addNewIngredient(ingredient)}>
-          <span className="badge badge-light">{ingredient.price}€</span>
-          <img src={photo} title={this.getFullDescripion()} alt="banane" />
+      <Col className="ingredient" style={{ display: 'flex', flexDirection: 'row', textAlign: 'center' }}>
+        <Button
+          disabled={disabled}
+          style={{
+            filter, backgroundColor, display: 'flex', flexDirection: 'column'
+          }}
+          onClick={() => addNewIngredient(ingredient)}
+        >
+          <span className="badge badge-light">
+            {this.getIngredientPrice(cake.type, ingredient.price)}
+          </span>
+          <img src={photo} title={this.getFullDescripion()} alt="" />
         </Button>
-        <p style={{ color }}>{ingredient.name}</p>
+        <Col>
+          <p style={{
+            color, fontWeight: 'bold', textAlign: 'center', marginTop: '10px'
+          }}
+          >
+            {ingredient.name}
+          </p>
+          <p style={{ color, textAlign: 'left' }}>{ingredient.description}</p>
+        </Col>
       </Col>
     );
   }
-};
+}
 
 Ingredient.propTypes = {
   ingredient: PropTypes.shape({}).isRequired,
   addNewIngredient: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
+  cake: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
