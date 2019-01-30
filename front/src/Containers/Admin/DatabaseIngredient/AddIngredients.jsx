@@ -5,6 +5,8 @@ import {
   Label, Input, Button, Form, FormGroup, Table, Col, Row,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import axiosIngredientsDB from '../../../Actions/fetchDB/fetch_database_actions';
 import '../../../Assets/Styles/Public.css';
 
 class AddIngredients extends Component {
@@ -14,11 +16,11 @@ class AddIngredients extends Component {
       name: '',
       type: '',
       size: '',
-      price: null,
+      price: 0,
       dispo: true,
       description: '',
       image: '',
-      isCompatible: false,
+      isCompatible: true,
       flavor: '',
       color: '',
       ingredList: [],
@@ -53,6 +55,7 @@ class AddIngredients extends Component {
     const {
       name, type, size, price, dispo, description, image, isCompatible, flavor, color,
     } = this.state;
+    const { axiosDatabase } = this.props;
 
     const newIngredient = {
       name,
@@ -73,7 +76,6 @@ class AddIngredients extends Component {
       .catch(err => console.log(err.response.data));
 
     // Enregistrement des ingrédients compatibles
-    console.log(this.compatibleIngList);
     this.compatibleIngList.map((ingID) => {
       const formData = {
         id_ingred1: newIngredientID,
@@ -84,6 +86,7 @@ class AddIngredients extends Component {
         return ('Error');
       });
     });
+    axiosDatabase();
   }
 
   toggleIngredient = (ingredientID) => {
@@ -230,7 +233,7 @@ class AddIngredients extends Component {
       </div>
     );
   }
-};
+}
 
 AddIngredients.propTypes = {
   updateState: PropTypes.shape({}).isRequired,
@@ -243,6 +246,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateState: ingredientType => dispatch(this.props.updateState(ingredientType)),
+  axiosDatabase: bindActionCreators(axiosIngredientsDB, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddIngredients);

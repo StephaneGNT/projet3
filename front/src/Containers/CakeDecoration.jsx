@@ -4,7 +4,6 @@ import axios from 'axios';
 const CakeDecoration = (cake, customWishes, user) => {
   const render = [];
   let description = '';
-  console.log("cake", cake, Array.isArray(cake));
   if (cake.type === 'cake') description = `1 ${cake.type} de ${cake.story} étage(s) pour ${cake.size} personnes`;
   else if (cake.type === 'cheesecake') description = `1 ${cake.type} pour 16 personnes`;
   else description = `${cake.quantity} ${cake.type} en taille ${cake.size}`;
@@ -27,7 +26,6 @@ const CakeDecoration = (cake, customWishes, user) => {
   let cakeDeco = {};
   if (customWishes) cakeDeco = customWishes;
   else cakeDeco = cake;
-  console.log("cakeDeco", cakeDeco)
   if (cakeDeco.deco1 === '' && cakeDeco.deco2 === '') decoration = 'Aucune décoration';
   if (cakeDeco.deco1 === 'message' || cakeDeco.deco2 === 'message') {
     decoration = (
@@ -47,7 +45,6 @@ const CakeDecoration = (cake, customWishes, user) => {
     const photo = axios.get(`/api/image/get/${cakeDeco.photo1}`)
       .then((response) => {
         const image = `data:image/jpg;base64,${response.data}`;
-        console.log(image)
         return image;
       });
     decoration = (

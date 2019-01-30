@@ -46,12 +46,9 @@ class Confirmation extends Component {
           .then(res => this.setState({ photo3D: `data:image/jpg;base64,${res.data}` }));
       } else this.setState({ description3D: customWishes.description3D })
     }
-    // return true;
-    // return (customWishes.deco1 !== this.props.customWishes.deco1);
   }
 
   render() {
-    console.log("this.state", this.state)
     const { cake, customWishes } = this.props;
     const { photo2D, photo3D, description3D } = this.state;
     return (

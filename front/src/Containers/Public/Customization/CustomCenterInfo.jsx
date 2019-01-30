@@ -536,10 +536,7 @@ const mapDispatchToProps = dispatch => ({
   fetchAdminFontList: () => dispatch(fetchAdminFonts()),
   updateReducerSummary: data => dispatch(updateSummaryInfo(data)),
   calculatePrice: data => dispatch(calculateCustomizationPrice(data)),
-<<<<<<< HEAD
-=======
   alertAction: message => dispatch(alert(message)),
->>>>>>> dev
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(CustomCenterInfo);
