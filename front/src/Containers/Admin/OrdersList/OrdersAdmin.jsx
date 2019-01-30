@@ -68,47 +68,49 @@ class OrdersAdmin extends Component {
     } = this.props;
     const render = [];
 
-    orders.map((order, index) => {
-      const formattedorderDate = this.formatDate(order.orderDate);
-      const formatteddeliveryDate = this.formatDate(order.deliveryDate);
+    if (orders.length > 0) {
+      orders.map((order, index) => {
+        const formattedorderDate = this.formatDate(order.orderDate);
+        const formatteddeliveryDate = this.formatDate(order.deliveryDate);
 
-      render.push(
-        <tr>
-          <td>{order.id}</td>
-          <td>{formattedorderDate}</td>
-          <td>{formatteddeliveryDate}</td>
-          <td>
-            {this.getOrderStatus(order, index, customers)}
-          </td>
-          <td>{order.customerComment}</td>
-          <td>{order.customerMessage}</td>
-          <td>
-            <Button
-              color="primary"
-              onClick={() => {
-                history.push({
-                  pathname: `${process.env.PUBLIC_URL}/giluna/adminZone/orderDetail/cake`,
-                  state: { cake: cakes.find(cake => cake.id === order.cakeId) },
-                });
-              }}
-            >
-              Détail gâteau
-            </Button>
-          </td>
-          <td>
-            <Button
-              color="info"
-              onClick={() => history.push({
-                pathname: `${process.env.PUBLIC_URL}/giluna/adminZone/orderDetail/client`,
-                state: { customer: customers.find(customer => customer.id === order.customerId) },
-              })}
-            >
-              Info client
-            </Button>
-          </td>
-        </tr>,
-      );
-    });
+        render.push(
+          <tr>
+            <td>{order.id}</td>
+            <td>{formattedorderDate}</td>
+            <td>{formatteddeliveryDate}</td>
+            <td>
+              {this.getOrderStatus(order, index, customers)}
+            </td>
+            <td>{order.customerComment}</td>
+            <td>{order.customerMessage}</td>
+            <td>
+              <Button
+                color="primary"
+                onClick={() => {
+                  history.push({
+                    pathname: `${process.env.PUBLIC_URL}/giluna/adminZone/orderDetail/cake`,
+                    state: { cake: cakes.find(cake => cake.id === order.cakeId) },
+                  });
+                }}
+              >
+                Détail gâteau
+              </Button>
+            </td>
+            <td>
+              <Button
+                color="info"
+                onClick={() => history.push({
+                  pathname: `${process.env.PUBLIC_URL}/giluna/adminZone/orderDetail/client`,
+                  state: { customer: customers.find(customer => customer.id === order.customerId) },
+                })}
+              >
+                Info client
+              </Button>
+            </td>
+          </tr>,
+        );
+      });
+    }
     return render;
   }
 

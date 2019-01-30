@@ -6,7 +6,7 @@ const VerticalNavBar = () => (
   <Navbar color="light" light expand="sm" className="justify-content-center fixed-top">
     <Nav navbar>
       <NavItem className="mx-5">
-        <NavLink to="/admin/orders" className="nav-link lead">
+        <NavLink to="/giluna/adminZone/orders" className="nav-link lead">
           Commandes
         </NavLink>
       </NavItem>

@@ -1,0 +1,57 @@
+.labels-perso{
+    font-size: 1.2em;
+    font-family: var(--mainPolice);
+    color: var(--mainColor);
+}
+
+.body-cake-select {
+    background-color:rgb(169, 113, 194);
+}
+
+.typeButton{
+    width: 11vw;
+    height: 18vh;
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    font-family: var(--secondPolice);
+    font-weight: bolder !important;
+    color: black !important;
+    padding-top: 53% !important;
+    background-color: white !important;
+    border:none;
+}
+
+#cookieButton{
+    background-image: url(../Images/cookie.png);
+    cursor: url(../Images/whiskflipped.ico), pointer !important;
+}
+
+#cakeButton{
+    background-image: url(../Images/cake.png);
+    cursor: url(../Images/whiskflipped.ico), pointer !important;
+}
+
+#cheesecakeButton{
+    background-image: url(../Images/cheesecake.png);
+    cursor: url(../Images/whiskflipped.ico), pointer !important;
+}
+
+#macaronButton{
+    background-image: url(../Images/macaron_cafe.png);
+    cursor: url(../Images/whiskflipped.ico), pointer !important;
+}
+
+#brownieButton{
+    background-image: url(../Images/brownie.png);
+    cursor: url(../Images/whiskflipped.ico), pointer !important;
+}
+
+.selectionOutline {
+    box-shadow: 0 0 3pt 2pt rgb(168, 112, 48) !important
+}
+
+/* .typeButton[title]:hover:after {
+    content: attr(title);
+    background-color: red;
+  } */

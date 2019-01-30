@@ -11,7 +11,6 @@ import Login from './AdminHandling/Login';
 import OrdersAdmin from './OrdersList/OrdersAdmin';
 import CakeDetail from './OrdersList/CakeDetail';
 import ClientDetail from './OrdersList/ClientDetail';
-import DataBase from './DatabaseIngredient/DataBase';
 import { getAllOrders, getAllCustomers, getAllCakes, getAllAdmins } from '../../Actions/adminsActions/getAllOrdersCakesCustomers';
 import { fetchFonts, getFonts } from '../../Actions/customization_actions';
 import Clients from './Clients';
