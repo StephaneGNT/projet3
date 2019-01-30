@@ -293,10 +293,10 @@ class UserInfo extends Component {
           </Col>
         </Row>
         <Row>
-          <Col sm="2" md="2">
+          <Col sm="3" md="3">
             <img src={carte} className="logo" alt="giluna-logo" />
           </Col>
-          <Col sm="12" md="6">
+          <Col sm="6" md="6">
             <FormGroup>
               <Label>
                 Ajoutez une carte message à votre Commande
