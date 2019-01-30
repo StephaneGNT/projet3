@@ -9,7 +9,6 @@ const CakeDescriptionUserSide = (props) => {
   const {
     cake, user, customWishes, photo2D, photo3D, description3D,
   } = props;
-  console.log("cake", cake);
   return (
     <tbody>
       {user === 'admin'

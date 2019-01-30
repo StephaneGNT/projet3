@@ -11,10 +11,11 @@ const secret = require('../helper/jwt_secret');
 
 ingred.post('/ingredients/new', (req, res) => {
   connection.query('INSERT INTO ingredients SET ?', req.body, (err, results) => {
+    console.log(err, results);
     if (err) {
       res.status(500).send("Erreur lors de l'ajout d'un ingrédient");
     } else {
-      res.status(200).send("Nouvel ingrédient ajouté !" + JSON.stringify(results));
+      res.status(200).json(results);
     }
   });
 });
@@ -29,9 +30,9 @@ ingred.put(`/ingredients/:id`, (req, res) => {
     dispo: req.body.dispo,
     description: req.body.description,
     image: req.body.image,
-    isCompatible: null,
-    flavor: null,
-    color: null
+    isCompatible: true,
+    flavor: req.body.flavor,
+    color: req.body.color
   }
    connection.query('UPDATE ingredients SET ? WHERE id = ?', [formData, ingredientId], (err, results) => {
     if (err) {
