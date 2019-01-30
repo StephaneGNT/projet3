@@ -91,6 +91,19 @@ class AddIngredients extends Component {
       });
     });
     axiosDatabase();
+
+    // Enregistrement des allergenes
+    this.allergeneIngList.map((ingID) => {
+      const formData = {
+        id_ingred: newIngredientID,
+        id_allergene: ingID,
+      };
+      axios.post('/api/jtallergenes', formData, (req, res) => {
+        if (res.status === 200) return ('Allergènes enregistrés !');
+        return ('Error');
+      });
+    });
+    axiosDatabase();
   }
 
   toggleIngredient = (ingredientID) => {
@@ -157,7 +170,7 @@ class AddIngredients extends Component {
             </Col>
             <Col md={4}>
               <FormGroup>
-                <Label size="sm">Déscription</Label>
+                <Label size="sm">Description</Label>
                 <Input type="text" name="description" bsSize="sm" onChange={this.handleChange} />
               </FormGroup>
             </Col>
