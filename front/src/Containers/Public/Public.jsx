@@ -15,19 +15,10 @@ class Public extends Component {
   }
 
   render() {
-    const { history } = this.props;
     return (
       <BrowserRouter>
         <div className="body-zone">
           <MainNavigation />
-          <div className="header-zone">
-            <button
-              type="button"
-              onClick={() => history.push(`${process.env.PUBLIC_URL}/giluna/adminZone`)}
-            >
-              Admin
-            </button>
-          </div>
           <div className="content-zone">
             <Switch>
               <Route exact path={`${process.env.PUBLIC_URL}/`} component={HomePage} />
