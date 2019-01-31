@@ -88,7 +88,7 @@ class IngredientTable extends Component {
               <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Base brownie')} type="button">Base brownie</Button>
               <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Parfum')} type="button">Parfum</Button>
               <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Garniture')} type="button">Garniture</Button>
-              <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Topping')} type="button">Topping</Button>
+              <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Toppings')} type="button">Toppings</Button>
               <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Glaçage')} type="button">Glaçage</Button>
               <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Coquille')} type="button">Macaron Coquille</Button>
               <Button color="secondary" size="sm" className="col-btn-tb" onClick={() => this.onChangeFilterTable('Macaron')} type="button">Macaron Parfum</Button>

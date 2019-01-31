@@ -14,12 +14,18 @@ const cake = require('./routes/cakes');
 const order = require('./routes/orders');
 const customer = require('./routes/customers');
 const junctionTable = require('./routes/junction_tables');
+const path = require('path');
+const https = require('https');
+const fs = require('fs');
+const forcessl = require('@dylanjs/forcessl');
+
+app.use(forcessl());
 
 // Configuration de l'application
 // app.use(morgan('dev'));
-app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -39,7 +45,17 @@ app.use('/api', cake);
 app.use('/api', order);
 app.use('/api', customer);
 app.use('/api', junctionTable);
+app.use('/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/public', 'index.html'));
+});
 
-let server = app.listen(5000, function () {
+let server = app.listen(80, function () {
   console.log('Listening on port ' + server.address().port);
 });
+
+const option = {
+  key: fs.readFileSync('/etc/letsencrypt/live/pimpmycake.fr/privkey.pem'),
+cert: fs.readFileSync('/etc/letsencrypt/live/pimpmycake.fr/cert.pem')
+} 
+
+https.createServer(option,app).listen(443);
