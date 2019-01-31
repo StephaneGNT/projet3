@@ -19,7 +19,7 @@ class OrderDetail extends Component {
         <Row>
           <Progressbar />
         </Row>
-        <Row>
+        <Row className="b-order">
           <Confirmation />
         </Row>
         <Row className="back-btn">

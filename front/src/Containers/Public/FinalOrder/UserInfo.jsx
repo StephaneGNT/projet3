@@ -14,8 +14,6 @@ import {
 import updateUserInfo from '../../../Actions/orderActions/updateUserInfo';
 import '../../../Assets/Styles/UserInfo.css';
 
-import carte from '../../../Assets/Images/selectionGallerie/IMG_carte.jpg';
-
 class UserInfo extends Component {
   constructor(props) {
     super(props);
@@ -80,13 +78,13 @@ class UserInfo extends Component {
       text: `Bonjour ${user.firstName} ${user.lastName}, votre commande a bien été prise en compte.
               Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
       html: <p>
-      Bonjour
-      $
+        Bonjour
+        $
         {user.firstName}
-      $
+        $
         {user.lastName}
-      ,votre commande a bien été prise en compte.
-      Nous reviendrons vers vous rapidement pour vous confirmer sa validation.
+        ,votre commande a bien été prise en compte.
+        Nous reviendrons vers vous rapidement pour vous confirmer sa validation.
       </p>,
     };
     axios.post('/api/send/mail', mailClient);
@@ -170,11 +168,14 @@ class UserInfo extends Component {
     } = this.state;
     const warning = { border: '3px solid', borderColor: '#dc3545' };
     return (
-      <Container style={{ backgroundColor: 'white' }}>
+      <Container className="body-row">
         <Row className="text-center">
           <Progressbar />
         </Row>
-        <Row className="justify-content-around" style={{ paddingTop: '5vh' }}>
+        <Row>
+          <title-formu>Informations Client</title-formu>
+        </Row>
+        <Row className="row-formulaire">
           <Col xs="12" className="alert">
             {
               inputAttempt ? (
@@ -186,7 +187,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="firstName">
+              <Label className="lb-2" for="firstName">
                 <span className="text-danger">* </span>
                 Prénom
               </Label>
@@ -195,7 +196,7 @@ class UserInfo extends Component {
                 type="text"
                 name="firstName"
                 id="firstName"
-
+                bsSize="sm"
                 value={user.firstName}
                 style={inputAttempt && !user.firstName ? warning : {}}
                 onChange={e => this.setUserState(e)}
@@ -205,7 +206,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="lastName">
+              <Label className="lb-2" for="lastName">
                 <span className="text-danger">* </span>
                 Nom
               </Label>
@@ -213,7 +214,7 @@ class UserInfo extends Component {
                 type="text"
                 name="lastName"
                 id="lastName"
-
+                bsSize="sm"
                 value={user.lastName}
                 style={inputAttempt && !user.lastName ? warning : {}}
                 onChange={e => this.setUserState(e)}
@@ -223,7 +224,7 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="birthdate">
+              <Label className="lb-2" for="birthdate">
                 Date d’anniversaire
               </Label>
               <Input
@@ -231,26 +232,26 @@ class UserInfo extends Component {
                 type="text"
                 name="birthday"
                 id="birthday"
-
+                bsSize="sm"
                 value={user.birthday}
                 onChange={e => this.setUserState(e)}
                 onKeyPress={this.enterForm}
               />
               <FormFeedback>date de naissance non valide (format requis: JJ/MM/AAAA)</FormFeedback>
               {!this.birthdateRegex.test(user.birthday)
-               && user.birthday && user.birthday.length <= 9 ? (
-                 <div className="invalidDOB">
-                   <p>Format: JJ/MM/AAAA</p>
-                 </div>
+                && user.birthday && user.birthday.length <= 9 ? (
+                  <div className="invalidDOB">
+                    <p>Format: JJ/MM/AAAA</p>
+                  </div>
                 ) : <div />
               }
             </FormGroup>
           </Col>
         </Row>
-        <Row className="justify-content-around">
+        <Row c className="row-formulaire">
           <Col sm="12" md="6">
             <FormGroup>
-              <Label for="email">
+              <Label className="lb-2" for="email">
                 <span className="text-danger">* </span>
                 E-mail
               </Label>
@@ -259,7 +260,7 @@ class UserInfo extends Component {
                 type="email"
                 name="email"
                 id="email"
-
+                bsSize="sm"
                 value={user.email}
                 style={inputAttempt && !this.mailRegex.test(user.email) ? warning : {}}
                 onChange={e => this.setUserState(e)}
@@ -270,51 +271,42 @@ class UserInfo extends Component {
           </Col>
           <Col sm="12" md="6">
             <FormGroup>
-              <Label for="telephone">
+              <Label className="lb-2" for="telephone">
                 <span className="text-danger">* </span>
                 Téléphone
               </Label>
-              <Input type="text" name="phone" id="phone" value={user.phone} style={inputAttempt && user.phone.length < 10 ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input bsSize="sm" type="text" name="phone" id="phone" value={user.phone} style={inputAttempt && user.phone.length < 10 ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
         </Row>
-        <Row>
+        <Row className="row-formulaire">
           <Col sm="12" md="12">
             <FormGroup>
-              <Label>
+              <Label className="lb-2">
                 Commentaire à Giluna
               </Label>
-              <Input type="textarea" id="comment" value={comment} onChange={e => this.updateState(e)} onKeyPress={this.enterForm} />
+              <Input bsSize="sm" type="textarea" id="comment" value={comment} onChange={e => this.updateState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
         </Row>
-        <Row>
-          <Col sm="3" md="3">
-            <img src={carte} className="logo" alt="giluna-logo" />
-          </Col>
+        <Row className="row-formulaire">
           <Col sm="6" md="6">
             <FormGroup>
-              <Label>
+              <Label className="lb-2">
                 Ajoutez une carte message à votre Commande
               </Label>
-              <Input type="textarea" id="giftcard" placeholder="Ecrivez votre message personnel ici" value={giftcard} onChange={e => this.updateState(e)} onKeyPress={this.enterForm} />
-            </FormGroup>
-          </Col>
-
-        </Row>
-        <Row>
-          <Col sm="11" md="8">
-            <FormGroup>
-              <Label>
+              <Input bsSize="sm" type="textarea" id="giftcard" placeholder="Ecrivez votre message personnel ici" value={giftcard} onChange={e => this.updateState(e)} onKeyPress={this.enterForm} />
+              <s-txt-userinfo>
                 Votre message, soigneusement écrit sur une carte de qualité,
                 sera livré avec votre gâteau.
-              </Label>
+              </s-txt-userinfo>
             </FormGroup>
           </Col>
-        </Row>
 
+        </Row>
         <Row className="back-btn-userinfo">
           <button
+            size="sm"
             type="button"
             onClick={() => this.handleClick()}
             className="btn-confirmation"
@@ -322,7 +314,6 @@ class UserInfo extends Component {
             Envoyer la commande
           </button>
         </Row>
-        {/* <img src={ require(`../../../../../back/tmp/${this.props.photo1}`) } alt="customer decoration" /> */}
       </Container>
     );
   }

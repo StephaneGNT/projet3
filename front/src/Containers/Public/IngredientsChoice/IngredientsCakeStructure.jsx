@@ -39,7 +39,7 @@ class IngredientsCakeStructure extends Component {
             <Row className="compo-zone">
               <Col sm="6">
                 <Row>
-                  <h1>{fillings[0].type}</h1>
+                  <title-compo>{fillings[0].type}</title-compo>
                 </Row>
                 <Row>
                   <IngredientsDisplay elementToDisplay={fillings} />
@@ -47,7 +47,7 @@ class IngredientsCakeStructure extends Component {
               </Col>
               <Col sm="6">
                 <Row>
-                  <h1>{icings[0].type}</h1>
+                  <title-compo>{icings[0].type}</title-compo>
                 </Row>
                 <Row>
                   <IngredientsDisplay elementToDisplay={icings} />
@@ -62,7 +62,7 @@ class IngredientsCakeStructure extends Component {
           <Container>
             <Row className="compo-zone">
               <Row>
-                <h1>{icings[0].type}</h1>
+                <title-compo>{icings[0].type}</title-compo>
               </Row>
               <Row className="w-100 mx-auto">
                 <IngredientsDisplay elementToDisplay={icings} />
@@ -76,8 +76,8 @@ class IngredientsCakeStructure extends Component {
       render = (
         <Container>
           <Row className="compo-zone">
-            <Row>
-              <h1>{toppings[0].type}</h1>
+            <Row md="12" className="row-topping">
+              <title-compo2>{toppings[0].type}</title-compo2>
             </Row>
             <Row className="w-100 mx-auto">
               <IngredientsDisplay elementToDisplay={toppings} />

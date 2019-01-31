@@ -58,18 +58,6 @@ h6 {
   background-color: rgb(241, 232, 219);
 }
 
-/* BOUTON ADMIN A SUPP */
-
-.header-zone button {
-  font-family: 'Arial', cursive;
-  color: black !important;
-  text-decoration: none;
-  text-align: center;
-  position: absolute;
-  right: 1vw;
-  top: 2vh;
-}
-
 .content-zone {
   max-width: 80%;
   height: auto;
@@ -88,7 +76,7 @@ h6 {
   display: block;
   padding: 0%;
   margin: auto;
-  background-image: url(https://i.imgur.com/u2pwbqg.jpg);
+  background-image: url(../Images/header.jpg);
   background-repeat: no-repeat;
   background-size: 100%;
   height: 30vw;
@@ -102,19 +90,37 @@ h6 {
 
 .bloc-ti-hp {
   background-color: rgb(231, 199, 141);
-  width: 45vw;
-  margin: 10% auto;
+  margin: auto;
   padding: 10px;
   position: relative;
   text-align: center;
+  display:block;
+  width:100%;
 }
 
 /* Le logo */
 
 .logo-hp {
-  width: 9vw;
+  width: 25vw;
   display: block;
-  margin: auto;
+  margin: 7% auto;
+  padding:10px;
+  background:rgba(255, 255, 255, 0.753);
+  /* border-radius:5px; */
+}
+
+.descri-homep {
+  font-size:0.8em;
+  padding:2% 5%;
+  text-align:justify;
+}
+
+.gal-homep {
+  background-color: rgba(231, 199, 141, 0.384);
+  padding:1%;
+  display:block;
+  width:100%;
+  margin-bottom:1%;
 }
 
 /* Titre de la Homepage.jsx */
@@ -129,25 +135,17 @@ title-homepage {
 }
 
 /* Sous-titres */
-
-s-title1 {
-  display: block;
-  font-size: 0.8em;
-  color: rgb(177, 147, 92);
-  border-bottom: 2px solid rgb(236, 210, 160);
-}
-
 s-title2 {
   width: 60%;
-  margin: 10px auto;
+  margin: 3% auto 3%;
+  text-align:center;
   display: block;
   font-size: 1em;
   font-style: italic;
   color: rgb(158, 108, 119);
-  font-family: Arial, Helvetica, sans-serif;
-  text-transform: lowercase;
+  font-family: var(--secondPolice);
   font-weight: 700;
-  border-bottom: 5px solid rgb(223, 186, 117);
+  border-bottom: 4px solid rgb(223, 186, 117);
 }
 
 /* Texte description / introduction Homepage */
@@ -155,9 +153,10 @@ s-title2 {
 #text-homepage {
   font-size: 0.9em;
   padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top:1%;
+  margin-bottom: 1%;
   background-color: rgb(240, 239, 239);
+  font-family: var(--secondPolice);
 }
 
 /* position du bouton start cake */
@@ -165,7 +164,9 @@ s-title2 {
 .btn-start-cake {
   display: block;
   margin: 10px auto;
+  border-radius:5px;
 }
+
 
 /* -------------> GALLERY : HomePage.jsx <-------------- */
 
@@ -176,7 +177,7 @@ s-title2 {
 .meals-showcase {
   list-style: none;
   width: 100%;
-  margin-bottom: 0;
+  margin-left:-3%;
 }
 
 .meals-showcase li {
@@ -186,8 +187,8 @@ s-title2 {
 }
 
 .meal-photo {
-  width: 16vw;
-  height: 16vw;
+  width: 13.2vw;
+  height: 13.2vw;
   margin: 0;
   overflow: hidden;
   background-color: #000;
@@ -228,9 +229,10 @@ s-title2 {
 }
 
 #enterButton:hover {
-  background-color: var(--mainColor);
-  text-shadow: 1px 1px 2px rgb(107, 34, 34);
+  background-color: rgb(212, 184, 123);
+  text-shadow: 1px 1px 2px rgb(163, 142, 95);
   transition: all 1s ease-out;
+  cursor: pointer;
 }
 
 .img-gallery {
@@ -247,12 +249,11 @@ s-title2 {
 }
 
 /* Les Labels */
-
 .lb-0 {
   display: block;
   width: 100%;
   padding: 5px;
-  font-size: 1.2em;
+  font-size: 1em;
   text-align: center;
   font-family: var(--secondPolice);
   color: rgb(141, 126, 106);
@@ -270,7 +271,6 @@ s-title2 {
 }
 
 /* Label 'nombre de # ' dans CakeInfo.jsx/CakesSizeSelection.jsx */
-
 .lb-2 {
   display: inline-block;
   margin-top: 5px;
@@ -281,20 +281,17 @@ s-title2 {
 }
 
 /* Le bloc NBR étage & personne CakeSizeSelection.jsx */
-
 .b-cakesize-select {
   background-color: rgba(211, 189, 158, 0.363);
   margin: 3% auto;
 }
 
 /* gérer le margin du Label&Input 'nbr de ' sur CakeInfo.jsx */
-
 .row-nbr-choice {
   margin-top: 10px !important;
 }
 
 /* Label 'choississez votre type de douceur' dans CakeInfo.jsx */
-
 .labels-perso-btn-douceurs {
   background: rgb(219, 150, 150);
   text-shadow: 2px 2px 1px rgb(187, 128, 128);
@@ -308,7 +305,6 @@ s-title2 {
 }
 
 /* Bloc des 5 boutons */
-
 .b-ligne-button {
   text-align: center;
   padding: 10px;
@@ -316,10 +312,14 @@ s-title2 {
   display: block;
   margin-left: 1.5% !important;
   margin-right: 1.5% !important;
+  margin-bottom: 1% !important;
+}
+
+.selectionOutline {
+  box-shadow: 0px 0px 2px orange;
 }
 
 /* Texte sous les boutons */
-
 txt-btn-sweet {
   font-weight: 700;
   font-size: 1.6em;
@@ -329,7 +329,7 @@ txt-btn-sweet {
   padding: 5px;
   display: block;
   text-align: center;
-  margin: 5% auto;
+  margin: 14% auto;
 }
 
 .typeButton {
@@ -372,7 +372,7 @@ txt-btn-sweet {
 /* block des tips */
 
 .tipsColumn {
-  font-size: 0.9em;
+  font-size: 0.8em;
   font-family: var(--secondPolice);
   padding: 3%;
   color: rgb(37, 13, 13);
@@ -401,6 +401,7 @@ txt-btn-sweet {
 
 /* Titre de la Compo */
 title-compo {
+  width:100%;
   display: block;
   text-align: center;
   margin-top:1% !important;
@@ -415,6 +416,31 @@ title-compo {
   letter-spacing: 2px;
   border-bottom: 4px solid rgb(223, 207, 177);
 }
+/* COMPO : TOPPING  */
+title-compo2 {
+  width:100%;
+  height:6vh;
+  display: block;
+  text-align: center;
+  margin-top:1% !important;
+  padding: 1%;
+  background-color: rgb(235, 218, 188);
+  font-size: 1.3em !important;
+  font-weight: 700 !important;
+  font-family: var(--secondPolice) !important;
+  color: rgb(189, 130, 130);
+  text-shadow:1px 1px 0px rgb(255, 237, 207);
+  text-transform: lowercase;
+  letter-spacing: 2px;
+  border-bottom: 4px solid rgb(223, 207, 177);
+}
+
+.row-topping {
+  display:block;
+  width:100%;
+  height:10vh;
+}
+
 
 /* Body de la Compo */
 
@@ -566,10 +592,10 @@ title-compo {
   background-color:rgb(189, 130, 130);
   width: 20vh;
   display: inline-block;
-  margin-right: 5px;
+  margin:10px;
   font-weight: 700;
   font-size: 0.8em;
-  padding: 15px;
+  padding: 10px;
   border: none;
   color: white;
   text-transform: uppercase;
@@ -584,7 +610,7 @@ title-compo {
 /* bouton conirmation de commande */
 
 .btn-confirmation {
-  background-color: rgb(112, 91, 96);
+  background-color: rgb(168, 115, 115);
   display: inline;
   margin-right: 5px;
   font-weight: 700;
@@ -595,24 +621,22 @@ title-compo {
   text-transform: uppercase;
 }
 
-.body-show-cake {
-  border: 1px solid orange;
-}
-
 .btn-confirmation:hover {
-  background-color: rgb(189, 64, 64);
+  background-color: rgb(209, 175, 143);
   transition: all 0.7s ease-out;
 }
 
-
 /* background boutons onglet UserInfo */
 .back-btn-userinfo {
-  background: rgb(185, 184, 184);
-  position: absolute;
+  background-color: rgb(218, 207, 180);
+  border-top:4px solid rgb(230, 219, 190);
+  bottom: 2vh;
+  width: 100%;
+  padding: 2%;
   display: block;
-  width: 80%;
-  left: 10%;
-  padding: 10px;
+  margin-left:-1.2vw;
+  margin-top:1% !important;
+  margin-bottom:2%;
 }
 
 /* <---------------------------------------------- CustomizationStructure.jsx ----> */
@@ -627,17 +651,20 @@ title-compo {
 
 /* Titre accueil custom */
 title-custom {
-  text-shadow: 1px 1px 1px rgb(224, 217, 217);
-  font-size: 1.1em;
-  font-family: var(--secondPolice);
-  letter-spacing:8px;
-  border-bottom: 5px solid rgb(223, 186, 117);
-  color: rgb(223, 186, 117);
-  padding: 5px;
-  margin-top: 2%;
+  width:100%;
   display: block;
   text-align: center;
-  width:100%;
+  margin-top:1% !important;
+  padding: 1%;
+  background-color: rgb(235, 218, 188);
+  font-size: 1.1em !important;
+  font-weight: 700 !important;
+  font-family: var(--secondPolice) !important;
+  color: rgb(189, 130, 130);
+  text-shadow:1px 1px 0px rgb(255, 237, 207);
+  text-transform: lowercase;
+  border-bottom: 4px solid rgb(223, 207, 177);
+
 }
 
 /* Sous-titre accueil Custom */
@@ -668,6 +695,88 @@ s-title-custom {
   padding:1%;
   margin-bottom:1% !important;
 }
+
+/* <--------------------------------------- OrderDetail.jsx --------------> */
+.bloc-monney-order {
+  background-color: rgb(236, 224, 206);
+  border:2px dotted rgb(233, 217, 192);
+  padding:1%;
+  font-size:0.7em !important;
+}
+
+.body-order {
+  background-color: rgb(236, 224, 206);
+  border:2px dotted rgb(233, 217, 192);
+  padding:1%;
+  font-size:0.8em !important;
+} 
+
+
+/* <--------------------------------------- UserInfo.jsx --------------> */
+
+title-formu {
+  background: rgb(219, 150, 150);
+  text-shadow: 2px 2px 1px rgb(187, 128, 128);
+  font-size: 1.5em;
+  font-family: var(--mainPolice);
+  color: white;
+  padding: 10px;
+  margin-top: 2%;
+  margin-bottom:-3%;
+  display: block;
+  text-align: center;
+  width:100%;
+}
+
+.row-formulaire {
+  background-color: rgb(223, 213, 200);
+}
+
+s-txt-userinfo {
+  font-size:0.6em;
+  line-height:0.8em !important;
+}
+
+
+
+/* <--------------------------------------- PAGE CONTACT --------------> */
+.row-contact {
+  background-color:rgba(223, 212, 186, 0.322);
+  padding:5%;
+  font-family: var(--secondPolice);
+  font-size:0.9em;
+}
+
+.the-map {
+  border:4px solid rgba(194, 184, 163, 0.322);
+  width:36.3vw !important;
+  height:19.3vw !important;
+  margin-top:2%;
+  margin-left:-3%;
+}
+
+.img-staff {
+  width:33vw;
+  height:20vw;
+  object-fit:cover;
+  margin-bottom:5px;
+  margin-top:3%;
+  border:4px solid rgba(194, 184, 163, 0.322);
+}
+
+title-contact {
+  font-size:1.7em;
+  font-family: var(--mainPolice);
+  display:block;
+  width:100%;
+  margin:auto;
+  text-align:center;
+  background-color:rgba(223, 212, 186, 0.527);
+  padding:1%;
+  color: rgba(143, 127, 78, 0.705);
+  margin-bottom:3%;
+}
+
 
 /* <---------------------------------------------- PANNEAU D'ADMINISTRATION ----> */
 /* <------------------------------------------- Ingredient-Table.jsx ----> */

@@ -64,8 +64,8 @@ class Confirmation extends Component {
           />
         </Table>
         <br />
-        <p> Paiement par carte, chèque ou espèces, en boutique.</p>
-        <p> Récupération de la commande en boutique.</p>
+        <p className="bloc-monney-order"> Paiement par carte, chèque ou espèces, en boutique.
+        <br /> Récupération de la commande en boutique.</p>
       </Container>
 
     );
