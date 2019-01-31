@@ -10,7 +10,7 @@ const CakeDescriptionUserSide = (props) => {
     cake, user, customWishes, photo2D, photo3D, description3D,
   } = props;
   return (
-    <tbody>
+    <tbody className="body-order">
       {user === 'admin'
       && (
       <tr>
@@ -18,23 +18,23 @@ const CakeDescriptionUserSide = (props) => {
         <td>{cake.id}</td>
       </tr>)}
       <tr>
-        <td>Occasion : </td>
+        <td><strong>Occasion :</strong> </td>
         <td>{cake.occasion ? cake.occasion : 'Non précisée'}</td>
       </tr>
       <tr>
-        <td>Caractéristiques : </td>
+        <td><strong>Caractéristiques :</strong> </td>
         <td>{getCakeDescription(cake, photo2D, photo3D, description3D)}</td>
       </tr>
       <tr>
-        <td>Ingrédients : </td>
-        <td><pre style={{ fontFamily: 'Arial', fontSize: '16px' }}>{getCakeIngredientsList(cake)}</pre></td>
+        <td><strong>Ingrédients :</strong> </td>
+        <td><pre style={{ fontFamily: 'Arial' }}>{getCakeIngredientsList(cake)}</pre></td>
       </tr>
       <tr>
-        <td>Décoration : </td>
+        <td><strong>Décoration :</strong> </td>
         <td>{getCakeDecoration(customWishes, photo2D, photo3D, description3D)}</td>
       </tr>
       <tr>
-        <td>Montant : </td>
+        <td><strong>Montant :</strong> </td>
         <td>{getCakePrice(cake, customWishes, user)}</td>
       </tr>
     </tbody>

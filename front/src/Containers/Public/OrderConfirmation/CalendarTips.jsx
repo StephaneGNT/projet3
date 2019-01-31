@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CalendarTips = () => (
-  <p style={{ width: '70%' }}>
+  <p className="bloc-monney-order">
   Les dates en orange ne peuvent pas être garanties. Giluna reviendra
   vers vous pour vous confirmer la date de livraison.
   </p>

@@ -108,8 +108,8 @@ class CustomCenterInfo extends Component {
     };
     reader.readAsDataURL(file);
     if (decoType === '2D') this.setState({ fileEvent1: file });
-    if ([customSummary.deco1, customSummary.deco2].includes('3D') && decoType === '3D') this.decoration.current.submitFile(file);
     else this.setState({ fileEvent2: file });
+    if ([customSummary.deco1, customSummary.deco2].includes('3D') && decoType === '3D') this.decoration.current.submitFile(file);
   }
 
   removeDeco = (type) => {

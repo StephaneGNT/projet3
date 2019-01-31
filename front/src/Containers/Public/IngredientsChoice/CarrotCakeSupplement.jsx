@@ -13,7 +13,7 @@ class CarrotCakeSupplement extends Component {
   renderSupplement = (cake) => {
     const render = [];
     if (cake.type === 'cake' && cake.ingredients.length > 0) {
-      if (cake.ingredients[0].name === 'Base carotte') {
+      if (cake.ingredients[0].name === 'Base carrot cake') {
         render.push(
           <p key={cake.ingredients[0].name}>
             Voulez-vous ajouter un ingrédient à la base de votre gâteau ?

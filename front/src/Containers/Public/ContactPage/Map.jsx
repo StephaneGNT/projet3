@@ -17,38 +17,11 @@ export class MapContainer extends Component
     };
   }
 
-  componentDidMount() {
-    // this.renderOneMarker()
-  }
-
-  // renderOneMarker = (giver, giverIndex) => {
-  //   let query = "17+rue+Delandine&postcode=69007";
-
-  //   fetch(this.api + query)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       let fetchLocalLat = data.features[0].geometry.coordinates[1];
-  //       let fetchLocalLong = data.features[0].geometry.coordinates[0];
-  //       this.pos = { lat: fetchLocalLat, lng: fetchLocalLong };
-
-  //       const markers = this.state.markers;
-  //       markers[giverIndex] = this.pos;
-  //       this.setState({ markers })
-  //       this.props.returnCoordinates(this.state.markers)
-  //     });
-  // }
-
-  // displayAdress = (giver) => {
-  //   if (giver) {
-  //     return <div><h2>{giver.firstName + " " + giver.lastName}</h2><p>{giver.adress.streetNumber + " " + giver.adress.streetType + " " + giver.adress.streetName + " " + giver.adress.postalCode + " " + giver.adress.cityName}</p></div>
-  //   }
-  // }
-
   render() {
     const { lat, lng } = this.state;
     const { google } = this.props;
     return (
-      <Container style={{ width: '25vw', height: '50vh' }}>
+      <Container>
         <Map
           google={google}
           zoom={16}
@@ -60,9 +33,7 @@ export class MapContainer extends Component
             lat,
             lng,
           }}
-          style={{
-            width: '25vw', height: '50vh', border: '5px solid rgba(141, 29, 44, 0.8)', borderRadius: '40px',
-          }}
+          className="the-map"
         >
 
           <Marker

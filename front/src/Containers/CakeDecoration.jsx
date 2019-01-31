@@ -82,7 +82,7 @@ const CakeDecoration = (cake, customWishes, user) => {
     </tr>,
     <tr>
       <td>Ingrédients : </td>
-      <td><pre style={{ fontFamily: 'Arial', fontSize: '16px' }}>{ingredientsList}</pre></td>
+      <td><pre style={{ fontFamily: 'Arial' }}>{ingredientsList}</pre></td>
     </tr>,
     <tr>
       <td>Décoration : </td>

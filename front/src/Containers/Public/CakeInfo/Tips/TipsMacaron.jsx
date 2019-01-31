@@ -5,16 +5,12 @@ const TipsCheesecake = () => (
     <p>Choisissez le nombre et la taille de vos macarons.</p>
 
     <p>
-    Un petit macaron fait
-      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 3 </strong>
-    cm de diamètre, un gros fait
-      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 8 </strong>
+    Un petit macaron fait 3 
+    cm de diamètre, un gros fait 8 
     cm de diamètre.
     </p>
     <p>
-    Vous devez commander au minimum
-      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 6 </strong>
-    macarons.
+    Vous devez commander au minimum 6 macarons.
     </p>
   </div>
 );
