@@ -475,7 +475,8 @@ class CustomCenterInfo extends Component {
             ? (
               <div className="intro-custom">
                 <s-title-custom>
-                  Donnez vie à votre gourmandise en y ajoutant un message, une image ou une sculpture!
+                  Donnez vie à votre gourmandise en y ajoutant un message
+                  , une image ou une décoration en 3D !
                 </s-title-custom>
               </div>
             )

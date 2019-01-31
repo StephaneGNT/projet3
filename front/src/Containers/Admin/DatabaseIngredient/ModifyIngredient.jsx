@@ -158,18 +158,19 @@ class ModifyIngredient extends Component {
     axiosDatabase();
   };
 
-  createModifyForm = (ingredients, fullList, fullAllerg, previewImage) => (
+  createModifyForm = (ingredients, fullList, fullAllerg, previewImage, macaronNotSelected, colorNotSelected) => (
     <div className="bodyIng">
       <title-admin>
         Modifier l’ingrédient
         {' '}
         {this.inheritedIngredient.name}
       </title-admin>
+      <p>Le type "Parfum" concerne les bases de cheesecake, le type coquille représente les couleurs de coquille disponible.</p>
       <Form>
         <Row form>
           <Col md={2}>
             <FormGroup>
-              <Label size="sm">Name</Label>
+              <Label size="sm">Nom</Label>
               <Input type="text" name="name" bsSize="sm" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.name} value={ingredients.name} />
             </FormGroup>
           </Col>
@@ -179,24 +180,26 @@ class ModifyIngredient extends Component {
               <Input type="select" name="type" bsSize="sm" onChange={e => this.updateState(e, ingredients)}>
                 <option />
                 <option>Base</option>
-                <option>Filling</option>
-                <option>Icing</option>
-                <option>Topping</option>
+                <option>Garniture</option>
+                <option>Glaçage</option>
+                <option>Toppings</option>
+                <option>Parfum</option>
+                <option>Base cookie</option>
+                <option>Base brownie</option>
                 <option>Macaron</option>
-                <option>Cookie</option>
-                <option>Brownie</option>
+                <option>Coquille</option>
               </Input>
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label size="sm">Size</Label>
+              <Label size="sm">Taille</Label>
               <Input type="text" name="size" bsSize="sm" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.size} value={ingredients.size} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label size="sm">Price</Label>
+              <Label size="sm">Prix</Label>
               <Input type="text" name="price" bsSize="sm" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.price} value={ingredients.price} />
             </FormGroup>
           </Col>
@@ -210,14 +213,14 @@ class ModifyIngredient extends Component {
         <Row form>
           <Col md={2}>
             <FormGroup>
-              <Label size="sm">Flavor</Label>
-              <Input type="text" bsSize="sm" name="flavor" />
+              <Label size="sm">Parfum</Label>
+              <Input type="text" bsSize="sm" disabled={macaronNotSelected} name="flavor" />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label size="sm">Color</Label>
-              <Input type="text" bsSize="sm" name="color" />
+              <Label size="sm">Couleur</Label>
+              <Input type="text" disabled={colorNotSelected} bsSize="sm" name="color" />
             </FormGroup>
           </Col>
           <Col md={5}>
@@ -229,7 +232,7 @@ class ModifyIngredient extends Component {
           <Col md={2}>
             <FormGroup check>
               <Input name="dispo" type="checkbox" bsSize="sm" defaultChecked={ingredients.dispo} onChange={() => this.setState({ ingredients: { ...ingredients, dispo: !ingredients.dispo } })} id="dispoCheck" />
-              <Label size="sm" for="dispoCheck" check>Disponnibilité</Label>
+              <Label size="sm" for="dispoCheck" check>Disponibilité</Label>
             </FormGroup>
           </Col>
         </Row>
@@ -297,9 +300,11 @@ class ModifyIngredient extends Component {
     const {
       ingredients, fullList, fullAllerg, previewImage,
     } = this.state;
+    const macaronNotSelected = ingredients.type !== 'Macaron';
+    const colorNotSelected = ingredients.type !== 'Coquille';
     return (
       <div>
-        {this.createModifyForm(ingredients, fullList, fullAllerg, previewImage)}
+        {this.createModifyForm(ingredients, fullList, fullAllerg, previewImage, macaronNotSelected, colorNotSelected)}
       </div>
     );
   }

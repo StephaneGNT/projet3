@@ -34,10 +34,15 @@ const CakeInProgress = (props) => {
 
   const displayNamesIngredients = item => (
     <Row key={item.name}>
-      <p>
-        {item.type}
-        :
-      </p>
+      {item.type === 'Base'
+        ? <span />
+        : (
+          <p>
+            {item.type}
+            :
+          </p>
+        )
+      }
       <p>{item.name}</p>
     </Row>
   );

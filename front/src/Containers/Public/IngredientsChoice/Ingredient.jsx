@@ -37,17 +37,11 @@ class Ingredient extends Component {
     return description;
   };
 
-  getIngredientPrice = (type, price) => {
-    switch (type) {
-      case ('cake'): return `${price} €/part`;
-      case ('cheesecake'): return `${price} €`;
-      default: return `${price} €/unité`;
-    }
-  }
-
-
   render() {
-    const { ingredient, addNewIngredient, disabled, cake } = this.props;
+    
+    const {
+      ingredient, addNewIngredient, disabled, cake,
+    } = this.props;
     const { photo } = this.state;
     const filter = disabled && 'grayscale(80%)';
     const color = disabled ? 'grey' : 'black';
@@ -56,13 +50,15 @@ class Ingredient extends Component {
     const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
     return (
       <Col className="ingredient">
-        <Button 
+        <Button
           disabled={disabled} 
           style={{ filter, backgroundColor }} 
           size="sm" 
           onClick={() => addNewIngredient(ingredientWithUpdatedPrice)}
         >
-          <span className="badge badge-light">{ingredientWithUpdatedPrice.price}€</span>
+          <span className="badge badge-light">
+            {ingredientWithUpdatedPrice.price} €
+          </span>
           <img src={photo} title={this.getFullDescripion()} alt="banane" />
         </Button>
         <Col>
