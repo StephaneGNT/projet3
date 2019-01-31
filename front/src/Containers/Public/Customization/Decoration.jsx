@@ -12,6 +12,7 @@ class Decoration extends Component {
   componentWillMount() {
     const { customSummary } = this.props;
     const axiosGetPhotos = (reducerPhoto, photoState) => {
+      console.log("reducer photo", reducerPhoto)
       if (reducerPhoto) {
         axios.get(`/api/image/get/${reducerPhoto}`)
           .then((response) => {
@@ -53,7 +54,7 @@ class Decoration extends Component {
 
   render() {
     const { uploaded1, uploaded2 } = this.state;
-    const { decoType, photography, customSummary, preview, deleteUrl } = this.props;
+    const { decoType, photography, customSummary, preview, deleteUrl, description3D } = this.props;
     // const urlNum = preview;
     const centerContent = { display: 'flex', flexDirection: 'column', alignItems: 'center' };
     let imagePreview = null;
@@ -70,7 +71,7 @@ class Decoration extends Component {
             </Button>
           )}
           <br />
-          <img src={preview} alt="exemple" />
+          <img src={preview} alt="Oups, il y a eu un petit problème" />
         </div>
       );
     } else {
@@ -100,23 +101,21 @@ class Decoration extends Component {
       <div style={centerContent}>
         {(() => {
           if ((!preview && !photography) || preview) return imagePreview;
-          // return <img src={`/api/image/${photography}`} alt="Exemple" />;
-          return <img src={decoType === '2D' ? uploaded1 : uploaded2} alt="Exemple" />;
+          return <img src={decoType === '2D' ? uploaded1 : uploaded2} alt="Oups, il y a eu un petit problème" />;
         }
         )()}
         <br />
         {decoType === '3D' && (
-          <div style={{ marginTop: '2vh' }}>
-            <p><u><b>Description</b></u>:</p>
+          <div className="b-textarea-custom">
+            <div className="lb-2">Description : </div>
             <Input
-              style={{ height: '9vh', width: '100%', textAlign: 'left', marginTop: '-1vh' }}
-              rows="4"
               name="description3D"
               type="textarea"
               onChange={this.updateDescription}
               value={customSummary.description3D}
               resize="none"
               maxLength="300"
+              bgSize="sm"
             />
           </div>
         )}

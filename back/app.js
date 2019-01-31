@@ -17,9 +17,9 @@ const junctionTable = require('./routes/junction_tables');
 
 // Configuration de l'application
 // app.use(morgan('dev'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/public'));
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Button, Row } from 'reactstrap';
 import Ingredient from './IngrededientCakeInProgress';
 import removeIngredient from '../../../Actions/cakeActions/removeIngredient';
-import '../../../Assets/Styles/CakeInProgress.css';
 
 const CakeInProgress = (props) => {
   const compareIndexToLength = (item, index, arr) => {

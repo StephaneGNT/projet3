@@ -9,7 +9,7 @@ import {
 import '../../../Assets/Styles/Customization.css';
 
 const BeautifyButtons = (props) => {
-  const buttonStyle = { backgroundColor: 'rgb(129, 38, 38)' };
+  const buttonStyle = { backgroundColor: 'rgb(228, 193, 148)' };
   const { configState } = props;
 
   const changeConfigurator = (configType) => {
@@ -22,6 +22,7 @@ const BeautifyButtons = (props) => {
       <Button
         onClick={() => changeConfigurator('fontStyle')}
         style={configState === 'fontStyle' ? buttonStyle : {}}
+        size="sm"
       >
         Style de l’écriture
       </Button>
@@ -29,12 +30,14 @@ const BeautifyButtons = (props) => {
       <Button
         onClick={() => changeConfigurator('fontColor')}
         style={configState === 'fontColor' ? buttonStyle : {}}
+        size="sm"
       >
         Couleur de l’écriture
       </Button>
       <Button
         onClick={() => changeConfigurator('backgroundColor')}
         style={configState === 'backgroundColor' ? buttonStyle : {}}
+        size="sm"
       >
         Couleur de fond
       </Button>

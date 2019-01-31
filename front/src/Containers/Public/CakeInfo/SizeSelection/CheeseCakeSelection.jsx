@@ -8,7 +8,7 @@ import '../../../../Assets/Styles/CheeseCakeSelection.css';
 
 const CheeseCakeSelection = () => (
   <Container style={{ minWidth: '100%' }} className="text-center">
-    <Label className="labels-perso mt-3" />
+    
     <Row className="cheesecakeSelection">
       <Col className="sm-4"><img src={Cheesecake} alt="cheese" /></Col>
     </Row>

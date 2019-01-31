@@ -12,7 +12,7 @@ const Alert = (props) => {
         alertAction('');
       }
     }}>
-      <Modal style={{ top: '30%' }} isOpen={alertState.alert} toggle={alertAction} className={className}>
+      <Modal backdrop="static" style={{ top: '30%' }} isOpen={alertState.alert} toggle={alertAction} className={className}>
         {/* <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>i */}
         <ModalBody style={{ textAlign: 'center' }}>
           {alertState.message}

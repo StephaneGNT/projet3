@@ -158,7 +158,6 @@ class ModifyIngredient extends Component {
     axiosDatabase();
   };
 
-
   createModifyForm = (ingredients, fullList, fullAllerg, previewImage) => (
     <div className="bodyIng">
       <title-admin>

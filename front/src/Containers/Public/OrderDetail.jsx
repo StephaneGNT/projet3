@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 import NavArrowsLayout from './Navigation/NavArrowsLayout';
 import Progressbar from './Progressbar';
 import Confirmation from './confirmation'
@@ -15,8 +15,8 @@ class OrderDetail extends Component {
 
   render() {
     return (
-      <div className="content-zone">
-        <Row className="text-center">
+      <Container className="body-row">
+        <Row>
           <Progressbar />
         </Row>
         <Row>
@@ -26,7 +26,7 @@ class OrderDetail extends Component {
           <NavArrowsLayout />
           <Price />
         </Row>
-      </div>
+      </Container>
     );
   }
 }

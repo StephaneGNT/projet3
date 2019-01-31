@@ -64,7 +64,7 @@ class CustomCenterInfo extends Component {
   }
 
   componentWillUnmount() {
-    const { updateReducerSummary, savePicture } = this.props;
+    const { updateReducerSummary, calculatePrice, customAdmin, alertAction } = this.props;
     const { customSummary } = this.state;
     let intermediateSummary = customSummary;
     if (![customSummary.deco1, customSummary.deco2].includes('message')) {
@@ -85,6 +85,7 @@ class CustomCenterInfo extends Component {
       updateReducerSummary(intermediateSummary);
     } else updateReducerSummary(customSummary);
   }
+
 
   getConfigState = (config) => {
     this.setState({ config });
@@ -107,12 +108,12 @@ class CustomCenterInfo extends Component {
     };
     reader.readAsDataURL(file);
     if (decoType === '2D') this.setState({ fileEvent1: file });
-    if ([customSummary.deco1, customSummary.deco2].includes('3D')) this.decoration.current.submitFile(file);
+    if ([customSummary.deco1, customSummary.deco2].includes('3D') && decoType === '3D') this.decoration.current.submitFile(file);
     else this.setState({ fileEvent2: file });
   }
 
   removeDeco = (type) => {
-    const { customSummary, fileEvent1, fileEvent2 } = this.state;
+    const { customSummary } = this.state;
     const { calculatePrice, customAdmin } = this.props;
     let { deco1, deco2 } = customSummary;
     if (type === 'message') {
@@ -135,7 +136,6 @@ class CustomCenterInfo extends Component {
           photo1: '',
           imagePreviewUrl1: '',
         },
-        fileEvent1: '',
       }));
       if (customSummary.photo1) axios.delete(`/api/image/delete/${customSummary.photo1}`);
     }
@@ -148,7 +148,6 @@ class CustomCenterInfo extends Component {
           imagePreviewUrl2: '',
           description3D: '',
         },
-        fileEvent2: '',
       }));
       if (customSummary.photo2) axios.delete(`/api/image/delete/${customSummary.photo2}`);
     }
@@ -200,14 +199,6 @@ class CustomCenterInfo extends Component {
     }
   }
 
-  // toggle = (deco, status) => {
-  //   this.setState({
-  //     [deco]: !this.state[deco],
-  //     type: status === 'on' ? deco : '',
-  //     typeResilient: status === 'on' ? '' : this.state.typeResilient,
-  //   });
-  // }
-
   open = (deco) => {
     const setToUpdate = `${deco}Resilient`;
     const { customSummary } = this.state;
@@ -235,12 +226,6 @@ class CustomCenterInfo extends Component {
     }
   }
 
-  // disableButton = (type) => {
-  //   const { customSummary } = this.state;
-  //   return customSummary.deco1 && customSummary.deco2
-  //     && ![customSummary.deco1, customSummary.deco2].includes(type);
-  // }
-
   setButtonOutline = (type) => {
     const { customSummary } = this.state;
     if ([customSummary.deco1, customSummary.deco2].includes(type)) return 'chosen';
@@ -266,7 +251,8 @@ class CustomCenterInfo extends Component {
 
   deleteUrl = (type) => {
     const deco = type === '2D' ? 'imagePreviewUrl1' : 'imagePreviewUrl2';
-    this.setState({ [deco]: '' });
+    const fileEv = type === '2D' ? 'fileEvent1' : 'fileEvent2';
+    this.setState({ [deco]: '', [fileEv]: '' });
   }
 
   renderInfo = () => {
@@ -281,41 +267,40 @@ class CustomCenterInfo extends Component {
     if ((message || messageResilient) && (type === 'message' || typeResilient === 'message')) {
       if (cake.type === 'cake' || cake.type === 'cheesecake' || cake.type === '') {
         render.push(
-          <div>
-            <div style={{ minHeight: '50vh' }}>
-              <Row className="decoRow">
-                {description}
-              </Row>
-              <Row key={type} style={{ marginTop: '10vh' }}>
-                <Col xs="12" md="4" style={center}>
-                  {this.carousel('inDeco')}
-                </Col>
-                <Col xs="12" md="4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                  <BeautifyButtons configState={config} sendConfigState={this.getConfigState} />
-                  <CustomMessageInput modify={this.updateSummary} message={customSummary} sendDefaultFont={this.getDefaultFont} />
-                </Col>
-                <Col xs="1" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', fontSize: '5em' }}>
-                  <p>→</p>
-                  <p>←</p>
-                </Col>
-                <Col xs="12" md="3">
-                  <Beautify modify={this.updateSummary} customSummary={customSummary} configState={config} />
-                </Col>
-              </Row>
-            </div>
-            <Row>
+          <Container>
+            <Row className="decoRow">
+              {description}
+            </Row>
+            <Row key={type} className="body-custom">
+              <Col xs="12" md="4" style={center}>
+                {this.carousel('inDeco')}
+              </Col>
+              <Col xs="12" md="4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
+                <BeautifyButtons configState={config} sendConfigState={this.getConfigState} />
+                <CustomMessageInput modify={this.updateSummary} message={customSummary} sendDefaultFont={this.getDefaultFont} />
+              </Col>
+              <Col xs="1" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', fontSize: '2em', color: 'rgb(185, 178, 157)' }}>
+                <p>→</p>
+                <p>←</p>
+              </Col>
+              <Col xs="12" md="3">
+                <Beautify modify={this.updateSummary} customSummary={customSummary} configState={config} />
+              </Col>
+            </Row>
+            <Row className="body-custom">
               <Button
-                style={{ width: '100%' }}
+                size="sm"
+                color="danger"
                 onClick={[customSummary.deco1, customSummary.deco2].includes('message')
                   ? () => this.removeDeco('message')
                   : () => this.updateSummary('ADD_DECORATION', 'message')
                 }
               >
-                {![customSummary.deco1, customSummary.deco2].includes('message') ? `Confirmer l’ajout du message personnalisé (${customAdmin.price_customMessage.toFixed(2).replace(/[.,]00$/, '')}€)`
+                {![customSummary.deco1, customSummary.deco2].includes('message') ? `Ajouter le message (${customAdmin.price_customMessage.toFixed(2).replace(/[.,]00$/, '')}€)`
                   : 'Supprimer l’ajout du message personnalisé'}
               </Button>
             </Row>
-          </div>,
+          </Container>,
         );
       } else {
         render.push(
@@ -328,51 +313,52 @@ class CustomCenterInfo extends Component {
     } else if (image || imageResilient || sculpture || sculptureResilient) {
       render.push(
         <div>
-          <div style={{ minHeight: '50vh' }}>
-            <Row key={type} style={{ maxHeight: '100%' }}>
-              <Col md="6" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <p>{description}</p>
-                {this.carousel('inDeco')}
-              </Col>
-              <Col md="6" style={center}>
-                <Decoration
-                  ref={this.decoration}
-                  modify={this.updateSummary}
-                  photography={typeResilient === 'image' ? customSummary.photo1 : customSummary.photo2}
-                  customSummary={customSummary}
-                  preview={typeResilient === 'image' ? imagePreviewUrl1 : imagePreviewUrl2}
-                  decoType={typeResilient === 'image' ? '2D' : '3D'}
-                  sendFileEvent={this.handleImageChange}
-                  deleteUrl={this.deleteUrl}
-                />
-              </Col>
-            </Row>
-          </div>
-          <Row>
+          <Row key={type} className="body-custom">
+            <Col md="6" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+              <p>{description}</p>
+              {this.carousel('inDeco')}
+            </Col>
+            <Col md="6" style={center}>
+              <Decoration
+                ref={this.decoration}
+                modify={this.updateSummary}
+                photography={typeResilient === 'image' ? customSummary.photo1 : customSummary.photo2}
+                customSummary={customSummary}
+                preview={typeResilient === 'image' ? imagePreviewUrl1 : imagePreviewUrl2}
+                decoType={typeResilient === 'image' ? '2D' : '3D'}
+                sendFileEvent={this.handleImageChange}
+                deleteUrl={this.deleteUrl}
+                description3D={customSummary.description3D}
+              />
+            </Col>
+          </Row>
+          <Row className="body-custom">
             {
               typeResilient === 'image' ? (
                 <Button
-                  style={{ width: '100%' }}
                   name="2D"
+                  size="sm"
+                  color="danger"
                   onClick={[customSummary.deco1, customSummary.deco2].includes('2D')
                     ? () => this.removeDeco('2D')
                     : () => this.updateSummary('ADD_DECORATION', '2D')}
                 >
                   {![customSummary.deco1, customSummary.deco2].includes('2D')
-                    ? `Confirmer l’ajout de l’image en pate sucrée (${customAdmin.price_2D.toFixed(2).replace(/[.,]00$/, '')}€)`
+                    ? `Ajout de l'image (${customAdmin.price_2D.toFixed(2).replace(/[.,]00$/, '')}€)`
                     : 'Supprimer l’image en pate sucrée'}
                 </Button>
               )
                 : (
                   <Button
-                    style={{ width: '100%' }}
+                    size="sm"
+                    color="danger"
                     name="3D"
                     onClick={[customSummary.deco1, customSummary.deco2].includes('3D')
                       ? () => this.removeDeco('3D')
                       : () => this.updateSummary('ADD_DECORATION', '3D')}
                   >
                     {![customSummary.deco1, customSummary.deco2].includes('3D')
-                      ? 'Confirmer votre demande de sculpture (prix à définir en fonction de la demande)'
+                      ? 'Ajouter la sculpture'
                       : 'Annuler votre demande de sculpture'}
                   </Button>
                 )
@@ -416,6 +402,7 @@ class CustomCenterInfo extends Component {
   }
 
   render() {
+    console.log(this.state)
     const {
       customSummary,
       messageResilient,
@@ -423,27 +410,26 @@ class CustomCenterInfo extends Component {
       sculptureResilient,
       imagePreviewUrl2,
     } = this.state;
-    const buttonStyle = { backgroundColor: 'rgb(129, 38, 38)' };
+    const buttonStyle = { backgroundColor: 'rgb(228, 193, 148)' };
     const center = { display: 'flex', flexDirection: 'column', alignItems: 'center' }
-    if (!customSummary.msgContent && [customSummary.deco1, customSummary.deco2].includes('message')) {
-      if (window.confirm('Voulez-vous supprimer le message personnalisé de votre commande?')) this.removeDeco('message');
-    }
-    if (!customSummary.description3D && (!imagePreviewUrl2 && !customSummary.photo2) && [customSummary.deco1, customSummary.deco2].includes('3D')) {
-      if (window.confirm('Voulez-vous supprimer la décoration 3D de votre commande?')) this.removeDeco('3D');
-    }
+    // if (!customSummary.msgContent && [customSummary.deco1, customSummary.deco2].includes('message')) {
+    //   if (window.confirm('Voulez-vous supprimer le message personnalisé de votre commande?')) this.removeDeco('message');
+    // }
+    // if (!customSummary.description3D && (!imagePreviewUrl2 && !customSummary.photo2) && [customSummary.deco1, customSummary.deco2].includes('3D')) {
+    //   if (window.confirm('Voulez-vous supprimer la décoration 3D de votre commande?')) this.removeDeco('3D');
+    // }
     return (
       <Container>
-        <Row className="decorationRow">
-          <h1 onClick={() => this.open('', 'on')}>Choisissez votre décoration</h1>
+        <Row lg="12" className="decorationRow">
+          <title-custom onClick={() => this.open('', 'on')}>Choisissez votre décoration</title-custom>
         </Row>
         <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
           <Col xs="4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
             <Button
               type="button"
               id="message"
+              color="warning"
               style={messageResilient ? buttonStyle : {}}
-              // onMouseEnter={() => this.toggle('message', 'on')}
-              // onMouseLeave={() => this.toggle('message', 'off')}
               onClick={() => this.open('message', 'on')}
               className={this.setButtonOutline('message')}
             >
@@ -455,9 +441,8 @@ class CustomCenterInfo extends Component {
             <Button
               type="button"
               id="image"
+              color="warning"
               style={imageResilient ? buttonStyle : {}}
-              // onMouseEnter={() => this.toggle('image', 'on')}
-              // onMouseLeave={() => this.toggle('image', 'off')}
               onClick={() => this.open('image', 'on')}
               className={this.setButtonOutline('2D')}
             >
@@ -469,6 +454,7 @@ class CustomCenterInfo extends Component {
             <Button
               type="button"
               id="sculpture"
+              color="warning"
               style={sculptureResilient ? buttonStyle : {}}
               // onMouseEnter={() => this.toggle('sculpture', 'on')}
               // onMouseLeave={() => this.toggle('sculpture', 'off')}
@@ -487,29 +473,15 @@ class CustomCenterInfo extends Component {
         >
           {!imageResilient && !messageResilient && !sculptureResilient
             ? (
-              <div style={{ ...center, marginTop: '-4vh' }}>
-                <h3 style={{ textAlign: 'center' }}>
-                  Donnez vie à votre gourmandise en y ajoutant
-                  <br />
-                  un message, une image ou une sculpture!
-                </h3>
-                {this.carousel('inWelcome')}
+              <div className="intro-custom">
+                <s-title-custom>
+                  Donnez vie à votre gourmandise en y ajoutant un message, une image ou une sculpture!
+                </s-title-custom>
               </div>
             )
             : this.renderInfo()
           }
         </div>
-        {/* <Row className="decorationRow">
-          {typeResilient !== ''
-            && (
-              <button
-                type="button"
-                disabled={customSummary.deco1}
-                onClick={() => this.addDecoration()}
-              >
-                Ajouter une autre décoration
-              </button>)}
-        </Row> */}
       </Container>
     );
   }
@@ -523,7 +495,7 @@ CustomCenterInfo.propTypes = {
   fetchAdminFontList: PropTypes.func.isRequired,
   updateReducerSummary: PropTypes.func.isRequired,
   calculatePrice: PropTypes.func.isRequired,
-  savePicture: PropTypes.func.isRequired,
+  alertAction: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({

@@ -7,11 +7,11 @@ const TipsBrownie = () => (
     </p>
     <p>
     Un petit brownie fait
-      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 50g </strong>
+      <strong> 50g </strong>
     , un moyen
-      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 80g </strong>
+      <strong> 80g </strong>
       et un gros
-      <strong style={{ color: 'rgba(141, 29, 44, 0.8)' }}> 110g </strong>
+      <strong> 110g </strong>
          .
     </p>
   </div>

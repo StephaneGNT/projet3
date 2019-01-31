@@ -23,7 +23,7 @@ class Ingredient extends Component {
   getFullDescripion = () => {
     const { ingredient } = this.props;
     let description = '';
-    if (ingredient.allergenes) {
+    if (ingredient.allergenes.length === 0) {
       if (ingredient.portion) {
         description = `Giluna recommande une portion de ${ingredient.portion}`;
       }
@@ -37,41 +37,26 @@ class Ingredient extends Component {
     return description;
   };
 
-  getIngredientPrice = (type, price) => {
-    switch (type) {
-      case ('cake'): return `${price} €/part`;
-      case ('cheesecake'): return `${price} €`;
-      default: return `${price} €/unité`;
-    }
-  }
-
 
   render() {
     const { ingredient, addNewIngredient, disabled, cake } = this.props;
     const { photo } = this.state;
     const filter = disabled && 'grayscale(80%)';
-    const color = disabled ? 'grey' : 'black';
-    // const display = disabled && 'none';
+    const color = disabled ? 'darkgrey' : 'black';
     const ingredientWithUpdatedPrice = calculateIngredient(ingredient, cake);
+    // const display = disabled && 'none';
     const backgroundColor = ingredient.colorCode ? ingredient.colorCode : 'transparent';
     return (
-      <Col className="ingredient">
-        <Button 
-          disabled={disabled} 
-          style={{ filter, backgroundColor }} 
-          size="sm" 
-          onClick={() => addNewIngredient(ingredientWithUpdatedPrice)}
-        >
-          <span className="badge badge-light">{ingredientWithUpdatedPrice.price}€</span>
-          <img src={photo} title={this.getFullDescripion()} alt="banane" />
+      <Col className="ingredient" style={{ display: 'flex', flexDirection: 'row', textAlign: 'center' }}>
+        <Button disabled={disabled} style={{ filter, backgroundColor, display: 'flex', flexDirection: 'column' }} onClick={() => addNewIngredient(ingredientWithUpdatedPrice)}>
+          <span className="badge badge-light">
+            {ingredientWithUpdatedPrice.price}
+            €
+          </span>
+          <img src={photo} title={this.getFullDescripion()} alt="" />
         </Button>
         <Col>
-          <p style={{
-            color, fontWeight: 'bold', textAlign: 'center', marginTop: '10px'
-          }}
-          >
-            {ingredient.name}
-          </p>
+          <p style={{ color, fontWeight: 'bold', textAlign: 'center', marginTop: '10px' }}>{ingredient.name}</p>
           <p style={{ color, textAlign: 'left' }}>{ingredient.description}</p>
         </Col>
       </Col>

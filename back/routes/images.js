@@ -18,21 +18,23 @@ let storage = multer.diskStorage({
 let upload = multer({ storage: storage });
 
 router.post('/api/image/upload', upload.single('avatar'), async (req, res) => {
+  console.log('post image' , req.file.filename)
   const data = { name: req.file.filename, type: req.file.mimetype, size: req.file.size }
   try {
     res.status(200).send(data.name).end();
   } catch (err) {
-    res.status(400);
+    res.sendStatus(400);
   }
 })
 
 router.get('/api/image/get/:imagename', async (req, res) => {
+  console.log('get image' , req.params.imagename)
   try{ 
     res.send(fs.readFileSync(
     (path.resolve(`uploaded-images/${req.params.imagename}`)),
     { encoding: 'base64' }))
   } catch (err) {
-    res.status(500);
+    res.sendStatus(500);
   }
 })
 

@@ -1,6 +1,6 @@
 const mailGunCredentials = {
-  api_key: "key-60d667407eb6bee29b49998235ae020f",
-  DOMAIN: "sandbox222916c7cad24a4ebe5a627bddf0c52b.mailgun.org",
+  api_key: "pubkey-9466964f09c4013207466acf62fc4d06",
+  DOMAIN: "sandbox734cf4997fa7440fade438b0cb88ab79.mailgun.org",
 }
 
 module.exports = mailGunCredentials;

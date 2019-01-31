@@ -16,15 +16,16 @@ const CustomizationStructure = (props) => {
 
   return (
     <Container>
-      <Row className="text-center">
-        <Progressbar />
-      </Row>
-      <Row style={{ minHeight: '65vh', background: 'rgba(255,255,255, 0.9)' }}>
+      <Row className="body-row">
+        <Col lg="12" className="text-center">
+          <br />
+          <Progressbar />
+        </Col>
         <Col sm={12} xs={12}>
           <CustomCenterInfo />
         </Col>
       </Row>
-      <Row>
+      <Row className="b-custom">
         <NavArrowsLayout />
         <Price />
       </Row>
