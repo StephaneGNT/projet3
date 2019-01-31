@@ -22,7 +22,6 @@ class PimpMyCake extends Component {
           <Switch>
             <Route exact path={`${process.env.PUBLIC_URL}/mycake`} component={CakeInfo} />
             <Route path={`${process.env.PUBLIC_URL}/mycake/composition`} component={Composition} />
-            {/* <Route path={`${process.env.PUBLIC_URL}/mycake/customCake`} component={Customization} /> */}
             <Route path={`${process.env.PUBLIC_URL}/mycake/customCake`} component={CustomizationStructure} />
             <Route path={`${process.env.PUBLIC_URL}/mycake/orderDetail`} component={OrderDetail} />
             <Route path={`${process.env.PUBLIC_URL}/mycake/userInfo`} component={UserInfo} />

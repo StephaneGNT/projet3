@@ -34,6 +34,8 @@ class UserInfo extends Component {
       giftcard,
       inputAttempt: false,
       dobNotValid: false,
+      accept: false,
+      warningAccept: false,
     };
   }
 
@@ -138,14 +140,15 @@ class UserInfo extends Component {
 
   handleClick = () => {
     const { order, cake, customWishes } = this.props;
-    const { user } = this.state;
+    const { user, accept } = this.state;
     if (!user.firstName || !user.lastName || !user.email || !user.phone || user.phone.length < 8) {
       this.setState({ inputAttempt: true });
+    } else if (!accept) {
+      this.setState({ warningAccept: true });
     } else {
       if (user.birthday.length > 0 && !this.birthdateRegex.test(user.birthday)) {
         this.setState({ dobNotValid: true });
-      }
-      else this.sendOrder(order, user, cake, customWishes);
+      } else this.sendOrder(order, user, cake, customWishes);
     }
   };
 
@@ -156,11 +159,17 @@ class UserInfo extends Component {
     return null;
   }
 
+  handleAcceptance = () => {
+    const { accept } = this.state;
+    this.setState({ accept: !accept, warningAccept: !accept });
+  }
+
 
   render() {
     const {
-      user, comment, giftcard, inputAttempt, dobNotValid,
+      user, comment, giftcard, inputAttempt, dobNotValid, accept, warningAccept,
     } = this.state;
+    console.log("accept", accept)
     const warning = { border: '3px solid', borderColor: '#dc3545' };
     return (
       <Container style={{ backgroundColor: 'white' }}>
@@ -304,6 +313,16 @@ class UserInfo extends Component {
               </Label>
             </FormGroup>
           </Col>
+        </Row>
+
+        <Row style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+          <input
+            type="checkbox"
+            onChange={() => this.handleAcceptance()}
+          />
+          <span style={{ color: warningAccept ? 'red' : 'black', marginLeft: '10px' }}>
+            J'accepte que Giluna conserve mes données à usage strictement commercial.
+          </span>
         </Row>
 
         <Row className="back-btn-userinfo">

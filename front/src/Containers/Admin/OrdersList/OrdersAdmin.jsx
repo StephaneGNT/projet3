@@ -10,6 +10,13 @@ import changeOrderAdminStatus from '../../../Actions/orderActions/changeOrderSta
 import { getAllOrders, getAllCakes } from '../../../Actions/adminsActions/getAllOrdersCakesCustomers';
 
 class OrdersAdmin extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      asc: false,
+    }
+  }
+
   componentWillMount = () => {
     const { saveCakes, saveOrders } = this.props;
     axios.get('/api/orders/all').then(response => saveOrders(response.data));

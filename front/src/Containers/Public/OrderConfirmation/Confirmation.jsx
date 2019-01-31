@@ -29,13 +29,13 @@ class Confirmation extends Component {
       if (customWishes.photo2) {
         axios.get(`/api/image/get/${customWishes.photo2}`)
           .then(res => this.setState({ photo3D: `data:image/jpg;base64,${res.data}` }));
-      } else this.setState({ description3D: customWishes.description3D })
+      }
+      if (customWishes.description3D) this.setState({ description3D: customWishes.description3D });
     }
   }
 
   componentWillReceiveProps = (nextProps) => {
     const { customWishes } = nextProps;
-    // const { oldCustomWishes } = this.props;
     if (customWishes.deco1 === '2D' || customWishes.deco2 === '2D') {
       axios.get(`/api/image/get/${customWishes.photo1}`)
         .then(res => this.setState({ photo2D: `data:image/jpg;base64,${res.data}` }));
@@ -67,7 +67,6 @@ class Confirmation extends Component {
         <p> Paiement par carte, chèque ou espèces, en boutique.</p>
         <p> Récupération de la commande en boutique.</p>
       </Container>
-
     );
   }
 }
