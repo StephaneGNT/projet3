@@ -1,22 +1,2 @@
-h1 {
-  margin:auto;
-  padding:3%;
-  font-size:3em !important;
-  font-weight:700 !important;
-  font-family: var(--mainPolice) !important;
-  color:var(--mainColor) !important;
-}
 
-.renderComposition {
-  padding-top: 7vh;
-}
 
-.wrapper {
-  overflow: auto;
-  margin:auto;
-  width:80%;
-  position: relative;
-  top: 3vh;
-  background-color:rgb(209, 209, 209);
-  padding:2%;
-}

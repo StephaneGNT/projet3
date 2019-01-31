@@ -1,64 +1,47 @@
 import React from 'react';
-import {
-  Nav, NavItem, Navbar, NavbarBrand,
-} from 'reactstrap';
+import { Nav, NavItem, Navbar } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import '../../../Assets/Styles/MainNavigation.css';
-import logo from '../../../Assets/Images/LOGO_GILUNA.png';
 
 const VerticalNavBar = () => (
-  <Navbar className="navbar-expand fixed-adapt">
-    <div className="bloc">
-      <NavbarBrand to="/">
-        <img src={logo} className="logo" alt="giluna-logo" />
-      </NavbarBrand>
-      <Nav className="navbar-nav mr-auto">
-        <NavItem>
-          <NavLink to="/admin/orders">
-            <i className="fas fa-home" />
-            <span className="linkname ml-3">Orders</span>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/admin/ingredients">
-            <i className="fas fa-birthday-cake ml-1" />
-            <span className="linkname ml-2">Ingrédients</span>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/admin/clients">
-            <i className="fas fa-users" />
-            <span className="linkname ml-2">Clients</span>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/admin/Customization">
-            <i className="fas fa-users" />
-            <span className="linkname ml-2">Customization</span>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/admin/calendar">
-            <i className="fas fa-calendar-alt" />
-            <span className="linkname ml-3">Calendrier</span>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/admin/edit">
-            <i className="fas fa-paint-brush" />
-            <span className="linkname ml-3">Contenu</span>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/admin/adminList">
-            <i className="fas fa-user" />
-            <span className="linkname ml-3">Admin</span>
-          </NavLink>
-        </NavItem>
-      </Nav>
-    </div>
+  <Navbar color="light" light expand="sm" className="justify-content-center fixed-top">
+    <Nav navbar>
+      <NavItem className="mx-5">
+        <NavLink to="/giluna/adminZone/orders" className="nav-link lead">
+          Commandes
+        </NavLink>
+      </NavItem>
+      <NavItem className="mx-5">
+        <NavLink to="/giluna/adminZone/ingredients" className="nav-link lead">
+          Ingrédients
+        </NavLink>
+      </NavItem>
+      <NavItem className="mx-5">
+        <NavLink to="/giluna/adminZone/Customization" className="nav-link lead">
+          Décoration
+        </NavLink>
+      </NavItem>
+      <NavItem className="mx-5">
+        <NavLink to="/giluna/adminZone/calendar" className="nav-link lead">
+          Calendrier
+        </NavLink>
+      </NavItem>
+      <NavItem className="mx-5">
+        <NavLink to="/giluna/adminZone/edit" className="nav-link lead">
+          Contenu
+        </NavLink>
+      </NavItem>
+      <NavItem className="mx-5">
+        <NavLink to="/giluna/adminZone/clients" className="nav-link lead">
+          Clients
+        </NavLink>
+      </NavItem>
+      <NavItem className="mx-5">
+        <NavLink to="/giluna/adminZone/adminList" className="nav-link lead">
+          Admins
+        </NavLink>
+      </NavItem>
+    </Nav>
   </Navbar>
-
 );
 
 export default VerticalNavBar;

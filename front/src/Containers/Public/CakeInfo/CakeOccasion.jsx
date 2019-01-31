@@ -8,7 +8,7 @@ const CakeOccasion = (props) => {
   const { setOccasion } = props;
 
   return (
-    <Input type="select" name="select" onChange={e => setOccasion(e.target.value)}>
+    <Input bsSize="sm" type="select" name="select" onChange={e => setOccasion(e.target.value)}>
       <option />
       <option>Anniversaire d’adulte</option>
       <option>Anniversaire d’enfant</option>

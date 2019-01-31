@@ -1,225 +1,84 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import 'moment/locale/fr';
-import {
-  Card, CardText, CardBody, CardTitle,
-} from 'reactstrap';
+import { Table, Container } from 'reactstrap';
+import axios from 'axios';
 
 import '../../../Assets/Styles/OrderDetail.css';
 import '../../../Assets/Styles/Confirmation.css';
+import CakeDescriptionUserSide from './CakeDescriptionUserSide';
 
 
 class Confirmation extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      photo2D: '',
+      photo3D: '',
+      description3D: '',
+    };
   }
 
-  renderConfirmation = () => {
-    const {
-      type, size, occasion, quantity, ingredients, /*customMessage, decoration,*/ deliveryDate,
-    } = this.props;
-
-    // if (occasion) description += `Occasion : ${occasion}`;
-
-    // description += `Commande : ${quantity} ${type} `;
-    // if (type === 'cake') description += `de ${story} étage(s) pour ${size} personnes`;
-    // else description += `de taille ${size}`;
-
-    // description += 'Composition : ';
-    // if (type === 'macarons') {
-    //   const flavor = ingredients.map(ingredient => ingredient.type === 'Parfum' && ingredient.name);
-    //   const shell = ingredients.map(ingredient => ingredient.type === 'Coquille' && ingredient.name);
-    //   description += `Parfum ${flavor} et couleur ${shell}`;
-    // } else {
-    //   ingredients.map((ingredient) => { description += ingredient.name; });
-    // }
-
-    // if (decoration && customMessage) description += `Décoration : ${decoration} et ${customMessage}`;
-    // else if (decoration || customMessage) {
-    //   if (decoration) description += `Décoration : ${decoration}`;
-    //   else description += `Décoration : ${customMessage}`;
-    // }
-
-    // if (deliveryDate) description += `Date de retrait : ${deliveryDate}`;
-    // return description;
-
-    if (type === 'brownie' || type === 'cookie') {
-      return (
-        <div>
-          Occasion:
-          {' '}
-          {occasion}
-          <br />
-          Votre commande:
-          {' '}
-          {quantity}
-          {' '}
-          {type}
-          {' '}
-          de taille
-          {' '}
-          {size}
-          <br />
-          <br />
-          {/* Personnalisation:
-          <br />
-          {decoration}
-          {' '}
-          {' '}
-          {customMessage}
-          {' '}
-          <br />
-          <br /> */}
-          Composition:
-          {' '}
-          {(ingredients.map(item => <p>{item.name}</p>))}
-          {' '}
-          <br />
-          Date de retrait :
-          {' '}
-          {' '}
-          {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
-        </div>
-      );
+  componentWillMount = () => {
+    const { customWishes } = this.props;
+    if (customWishes.deco1 === '2D' || customWishes.deco2 === '2D') {
+      axios.get(`/api/image/get/${customWishes.photo1}`)
+        .then(res => this.setState({ photo2D: `data:image/jpg;base64,${res.data}` }));
     }
-    if (type === 'cheesecake' || type === 'cake') {
-      return (
-        <div>
-          Occasion :
-          {' '}
-          {occasion}
-          {' '}
-          <br />
-          Votre commande :
-          {' '}
-          {type}
-          {' '}
-          <br />
-          <br />
-          {/* Personnalisation:
-          <br />
-          {decoration}
-          {' '}
-          {' '}
-          {customMessage}
-          {' '}
-          <br />
-          <br /> */}
-          Composition:
-          {(ingredients.map(item => <p>{item.name}</p>))}
-          <br />
-          <br />
-          Date de retrait :
-          {' '}
-          {' '}
-          {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
-        </div>
-      );
+    if (customWishes.deco1 === '3D' || customWishes.deco2 === '3D') {
+      if (customWishes.photo2) {
+        axios.get(`/api/image/get/${customWishes.photo2}`)
+          .then(res => this.setState({ photo3D: `data:image/jpg;base64,${res.data}` }));
+      }
+      if (customWishes.description3D) this.setState({ description3D: customWishes.description3D });
     }
-    if (type === 'macaron') {
-      return (
-        <div>
-          Occasion:
-          {' '}
-          {occasion}
-          <br />
-          Votre commande:
-          {' '}
-          {quantity}
-          {' '}
-          {type}
-          {' '}
-          de taille
-          {' '}
-          {size}
-          {' '}
-          <br />
-          <br />
-          {/* Personnalisation:
-          <br />
-          {decoration}
-          {' '}
-          {' '}
-          {customMessage}
-          {' '}
-          <br />
-          <br /> */}
-          Parfum de vos macarons:
-          <br />
-          {' '}
-          {(ingredients.map(item => item.name.includes('Parfum') && <p>{item.name}</p>))}
-          <br />
-          Couleur de vos macarons:
-          {(ingredients.map(item => !item.name.includes('Parfum') && <p>{item.name}</p>))}
-          Date de retrait :
-          {' '}
-          {' '}
-          {!deliveryDate ? 'non choisie' : moment(deliveryDate).format('Do MMMM YYYY')}
-          <br />
-        </div>
-      );
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    const { customWishes } = nextProps;
+    if (customWishes.deco1 === '2D' || customWishes.deco2 === '2D') {
+      axios.get(`/api/image/get/${customWishes.photo1}`)
+        .then(res => this.setState({ photo2D: `data:image/jpg;base64,${res.data}` }));
+    }
+    if (customWishes.deco1 === '3D' || customWishes.deco2 === '3D') {
+      if (customWishes.photo2) {
+        axios.get(`/api/image/get/${customWishes.photo2}`)
+          .then(res => this.setState({ photo3D: `data:image/jpg;base64,${res.data}` }));
+      } else this.setState({ description3D: customWishes.description3D })
     }
   }
 
   render() {
-    const { price } = this.props;
-    const priceMessage = `Montant de votre commande : ${price} €`;
+    const { cake, customWishes } = this.props;
+    const { photo2D, photo3D, description3D } = this.state;
     return (
-      <div>
-        <Card id="Card" style={{ width: '100%' }}>
-          <CardBody>
-            <CardTitle>Votre commande</CardTitle>
-            <CardText style={{ whiteSpace: 'pre' }}>
-              {this.renderConfirmation()}
-            </CardText>
-          </CardBody>
-        </Card>
+      <Container>
+        <Table>
+          <CakeDescriptionUserSide
+            customWishes={customWishes}
+            cake={cake}
+            user="user"
+            photo2D={photo2D}
+            photo3D={photo3D}
+            description3D={description3D}
+          />
+        </Table>
         <br />
-
-        <div>
-          {priceMessage}
-        </div>
-
-        <p> Conditions générales de vente</p>
-
-      </div>
-
+        <p> Paiement par carte, chèque ou espèces, en boutique.</p>
+        <p> Récupération de la commande en boutique.</p>
+      </Container>
     );
   }
 }
+
 Confirmation.propTypes = {
-  type: PropTypes.string.isRequired,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  occasion: PropTypes.string.isRequired,
-  ingredients: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  quantity: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
-  // customMessage: PropTypes.string.isRequired,
-  // decoration: PropTypes.string.isRequired,
-  // story: PropTypes.number.isRequired,
-  deliveryDate: PropTypes.string.isRequired,
-
+  cake: PropTypes.shape({}).isRequired,
+  customWishes: PropTypes.shape({}).isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return (
-    {
-      deliveryDate: state.orderCharacteristics.delivery_date,
-      story: state.cakeCharacteristics.story,
-      price: state.cakeCharacteristics.price,
-      // customMessage: state.customizationCustomer.customMessage.choice,
-      // decoration: state.customizationCustomer.decoration.choice,
-      ingredients: state.cakeCharacteristics.ingredients,
-      quantity: state.cakeCharacteristics.quantity,
-      occasion: state.cakeCharacteristics.occasion,
-      size: state.cakeCharacteristics.size,
-      type: state.cakeCharacteristics.type,
-      cake: state.cakeCharacteristics,
-      index: state.pageIndex,
-    }
-  );
-};
+const mapStateToProps = state => ({
+  cake: state.cakeCharacteristics,
+  customWishes: state.customizationCustomer,
+});
+
 export default connect(mapStateToProps)(Confirmation);

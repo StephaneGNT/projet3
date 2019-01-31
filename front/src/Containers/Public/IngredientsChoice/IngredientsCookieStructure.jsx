@@ -7,9 +7,9 @@ import IngredientsDisplay from './IngredientsDisplay';
 const IngredientsCookieStructure = (props) => {
   const { bases } = props;
   return (
-    <Row>
+    <Row className="displayIngredient">
       <Col sm="12">
-        <h1 style={{ textAlign: 'center', position: 'sticky', top: '0' }}>{bases[0].type}</h1>
+        <h1>{bases[0].type}</h1>
       </Col>
       <Col sm="12" style={{ display: 'flex', flexDirection: 'row' }}>
         <IngredientsDisplay elementToDisplay={bases} />
@@ -23,7 +23,7 @@ IngredientsCookieStructure.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  bases: state.cookiesBases,
+  bases: state.ingredients.filter(ing => ing.type === 'Base cookie'),
 });
 
 export default connect(mapStateToProps)(IngredientsCookieStructure);

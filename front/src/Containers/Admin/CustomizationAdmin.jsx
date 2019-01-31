@@ -1,63 +1,93 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Button, ButtonGroup } from 'reactstrap';
 import axios from 'axios';
-import { addFont, fetchFonts, fetchAdminFonts } from '../../Actions/customization_actions';
+import alert from '../../Actions/alert';
+import { fetchFonts, fetchAdminFonts, getCustomPrices } from '../../Actions/customization_actions';
 import '../../Assets/Styles/CustomizationAdmin.css';
 import FontList from './FontList';
 
 class CustomizationAdmin extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.fontsAtATime = 1000;
-  //   this.state = {
-  //     range: this.fontsAtATime,
-  //     clickedPage: 0,
-  //   };
-  // }
-
-  componentWillMount() {
-    const { fetchFontList } = this.props;
-    fetchFontList();
+  constructor(props) {
+    super(props);
+    this.fontsAtATime = 150;
+    this.state = {
+      message: '',
+      D2: '',
+      range: this.fontsAtATime,
+      clickedPage: 0,
+    };
   }
 
-  // generatePagination = () => {
-  //   const { googleFonts } = this.props;
-  //   const array = [];
-  //   const pages = Math.ceil(googleFonts.length / this.fontsAtATime);
-  //   let i = 0;
-  //   while (i < pages) {
-  //     i += 1;
-  //     array.push(i);
-  //   }
-  //   return array;
-  // }
+  componentWillMount() {
+    const { sendPrices } = this.props;
+    sendPrices(); // recup prix customization
+  }
 
-  // changePage = (index) => {
-  //   this.setState({
-  //     range: index * this.fontsAtATime + this.fontsAtATime,
-  //     clickedPage: index,
-  //   });
-  // }
+  generatePagination = () => {
+    const { customAdmin } = this.props;
+    const array = [];
+    const pages = Math.ceil(customAdmin.googleFonts.length / this.fontsAtATime);
+    let i = 0;
+    while (i < pages) {
+      i += 1;
+      array.push(i);
+    }
+    return array;
+  }
+
+  changePage = (index) => {
+    this.setState({
+      range: index * this.fontsAtATime + this.fontsAtATime,
+      clickedPage: index,
+    });
+  }
 
   addFont = (name) => {
-    const { selectedFonts, fetchAdminFontList } = this.props;
-    if (!selectedFonts.includes(name)) {
-      axios.post('/customization/addfonts', { name, availability: true })
-        .then(function (response) {
+    const { customAdmin, fetchAdminFontList, alertAction } = this.props;
+    if (!customAdmin.selectedFonts.includes(name)) {
+      axios.post('/api/customization/addfonts', { name, availability: true })
+        .then((response) => {
           if (response.data === 'OK') fetchAdminFontList();
+        }); 
+    } else {
+      alertAction('Vous avez déjà ajouté cette police');
+    }
+  };
+
+  updateCustomPrices = (deco) => {
+    const { message, D2 } = this.state;
+    const { sendPrices, alertAction } = this.props;
+    const price = deco === 'message' ? message : D2;
+    const id = deco === 'message' ? 1 : 2;
+    const numberCheck = /^\s*-?\d+(\.\d{1,2})?\s*$/;
+    if (numberCheck.test(price)) {
+      axios.put('/api/customization/updatecustomprices', { price: parseFloat(price, 10), id })
+        .then((response) => {
+          if (response.data === 'OK') {
+            sendPrices();
+            this.setState({ [deco]: '' });
+          }
         });
-    } else window.alert('Vous avez déjà ajouté cette police');
+    } else {
+      alertAction('Entrée non valide');
+      this.setState({ [deco]: '' });
+    }
+  }
+
+  upDatePrices = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
-    const { googleFonts } = this.props;
-    // const { range, clickedPage } = this.state;
-    // const limitedFontList = googleFonts.slice(range - this.fontsAtATime, range);
+    const { message, D2, range, clickedPage } = this.state;
+    const { customAdmin } = this.props;
+    const limitedFontList = customAdmin.googleFonts.slice(range - this.fontsAtATime, range);
     return (
       <div>
         {
-          googleFonts.map(font => (
+          customAdmin.googleFonts.map(font => (
             <div key={font.family}>
               <link
                 rel="stylesheet"
@@ -65,15 +95,89 @@ class CustomizationAdmin extends Component {
               />
             </div>))
         }
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: '3vh' }}>
+          <table className="customPricesTable">
+            <tr>
+              <th>Type de décoration</th>
+              <th>Prix actuel</th>
+              <th>Modifier prix</th>
+            </tr>
+            <tr>
+              <td><b>Message personnalisé</b></td>
+              <td>
+                {customAdmin.price_customMessage.toFixed(2)} €
+              </td>
+              <td>
+                <input
+                  name="message"
+                  value={message}
+                  type="text"
+                  onChange={this.upDatePrices}
+                  onKeyPress={(event) => {
+                    if (event.key === 'Enter') {
+                      this.updateCustomPrices('message');
+                    }
+                  }}
+                /> €
+                <div>
+                  <button
+                    type="submit"
+                    onClick={() => this.updateCustomPrices('message')}
+                    onKeyPress={(event) => {
+                      if (event.key === 'Enter') {
+                        this.updateCustomPrices('message');
+                      }
+                    }}
+                  >
+                    Valider changement
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><b>2 dimensions</b></td>
+              <td>
+                {customAdmin.price_2D.toFixed(2)} €
+              </td>
+              <td>
+                <input
+                  name="D2"
+                  value={D2}
+                  type="text"
+                  onChange={this.upDatePrices}
+                  onKeyPress={(event) => {
+                    if (event.key === 'Enter') {
+                      this.updateCustomPrices('D2');
+                    }
+                  }}
+                /> €
+                <div>
+                  <button
+                    type="submit"
+                    onClick={() => this.updateCustomPrices('D2')}
+                    onKeyPress={(event) => {
+                      if (event.key === 'Enter') {
+                        this.updateCustomPrices('D2');
+                      }
+                    }}
+                  >
+                    Valider changement
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <br />
+        </div>
         <FontList />
         <p style={{ textAlign: 'center' }}>
           Sélectionnez ci-dessous le(s) type(s) de police(s) que vous souhaitez mettre
           à disposition pour le message personnalisé 2D
         </p>
-        <div style={{ height: '60vh' }}>
+        <div>
           <div className="FontList">
             {
-              googleFonts.map(font => (
+              limitedFontList.map(font => (
                 <span
                   onClick={() => this.addFont(font.family)}
                   className="FontList"
@@ -89,8 +193,8 @@ class CustomizationAdmin extends Component {
               ))
             }
           </div>
-          {/* </div > */}
-          {/* <ButtonGroup>
+        </div>
+        <ButtonGroup>
           {this.generatePagination().map((pageNumber, i) => (
             <Button
               style={i === clickedPage ? { backgroundColor: 'black' } : {}}
@@ -99,8 +203,7 @@ class CustomizationAdmin extends Component {
               {pageNumber}
             </Button>
           ))}
-        </ButtonGroup> */}
-        </div>
+        </ButtonGroup>
       </div>
     );
   }
@@ -108,17 +211,20 @@ class CustomizationAdmin extends Component {
 
 CustomizationAdmin.propTypes = {
   fetchAdminFontList: PropTypes.func.isRequired,
+  customAdmin: PropTypes.shape({}).isRequired,
+  sendPrices: PropTypes.func.isRequired,
+  alertAction: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = state => ({
-  selectedFonts: state.customizationAdmin.selectedFonts,
-  googleFonts: state.customizationAdmin.googleFonts,
+  customAdmin: state.customizationAdmin,
 });
 
 const mapDispatchToProps = dispatch => ({
-  addFonts: font => dispatch(addFont(font)),
   fetchFontList: () => dispatch(fetchFonts()),
   fetchAdminFontList: () => dispatch(fetchAdminFonts()),
+  sendPrices: prices => dispatch(getCustomPrices(prices)),
+  alertAction: message => dispatch(alert(message)),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(CustomizationAdmin);

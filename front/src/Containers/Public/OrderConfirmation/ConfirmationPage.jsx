@@ -4,24 +4,17 @@ import { connect } from 'react-redux';
 import {
   Button,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import '../../../Assets/Styles/ConfirmationPage.css';
 
 const ConfirmationPage = (props) => {
-  const { customer } = props;
-
-
+  const { customer, history } = props;
   window.scrollTo(0, 0);
-
 
   return (
     <div className="main-container">
       <div className="order-text">
         <b>
-          Merci d’avoir passé commande chez Pimp my Cake! Votre numéro de commande est le
-          {' '}
-          <u>234</u>
-          .
+          Merci d’avoir passé commande chez Pimp my Cake!
         </b>
         <br />
         <br />
@@ -44,29 +37,30 @@ const ConfirmationPage = (props) => {
       </div>
       <div className="button-group">
         <a href={`${process.env.PUBLIC_URL}/`}>
-          <Button className="buttons">ACCUEIL</Button>
+          <Button
+            className="buttons"
+            onClick={() => history.push(`${process.env.PUBLIC_URL}/`)}
+          >
+            ACCUEIL
+          </Button>
         </a>
-        <Button className="buttons">CONTACT</Button>
+        <Button
+          className="buttons"
+          onClick={() => history.push(`${process.env.PUBLIC_URL}/contact`)}
+        >
+          CONTACT
+        </Button>
       </div>
     </div>
   );
 };
 
 ConfirmationPage.propTypes = {
-  selectDeliveryDate: PropTypes.func.isRequired,
-  getDatesInDB: PropTypes.func.isRequired,
-  cake: PropTypes.shape({}).isRequired,
-  order: PropTypes.shape({}).isRequired,
-  calendar: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  customer: PropTypes.shape({}).isRequired,
 };
 
-const StateToProps = state => ({
+const mapStateToProps = state => ({
   customer: state.customerInfo,
 });
 
-const DispatchToProps = dispatch => ({
-  // getDatesInDB: () => dispatch(fetchDatesInDB()),
-  // selectDeliveryDate: date => dispatch(setDeliveryDate(date)),
-});
-
-export default connect(StateToProps, DispatchToProps)(ConfirmationPage);
+export default connect(mapStateToProps, null)(ConfirmationPage);

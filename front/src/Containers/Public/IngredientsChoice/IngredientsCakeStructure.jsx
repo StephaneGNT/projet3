@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Col, Row } from 'reactstrap';
+import { Container, Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import IngredientsDisplay from './IngredientsDisplay';
@@ -19,63 +19,71 @@ class IngredientsCakeStructure extends Component {
       else elementToDisplay = bases;
 
       render = (
-        <Row className="displayIngredient">
-          <Row>
-            <h1>{elementToDisplay[0].type}</h1>
+        <Container>
+          <Row className="compo-zone">
+            <Col lg="12">
+              <title-compo>Choisissez votre {elementToDisplay[0].type}</title-compo>
+            </Col>
+            <Col lg="12">
+              <IngredientsDisplay elementToDisplay={elementToDisplay} />
+              <CarrotCakeSupplement />
+            </Col>
           </Row>
-          <Row className="w-100 mx-auto">
-            <IngredientsDisplay elementToDisplay={elementToDisplay} />
-            <CarrotCakeSupplement />
-          </Row>
-        </Row>
+        </Container>
       );
     } else if (index === 3) {
       // Deuxième écran : Choix du glaçage et filling du cake,
       if (cake.type === 'cake') {
         render = (
-          <Row className="displayIngredient">
-            <Col sm="6">
-              <Row>
-                <h1>{fillings[0].type}</h1>
-              </Row>
-              <Row>
-                <IngredientsDisplay elementToDisplay={fillings} />
-              </Row>
-            </Col>
-            <Col sm="6">
-              <Row>
-                <h1>{icings[0].type}</h1>
-              </Row>
-              <Row>
-                <IngredientsDisplay elementToDisplay={icings} />
-              </Row>
-            </Col>
-          </Row>
+          <Container>
+            <Row className="compo-zone">
+              <Col sm="6">
+                <Row>
+                  <h1>{fillings[0].type}</h1>
+                </Row>
+                <Row>
+                  <IngredientsDisplay elementToDisplay={fillings} />
+                </Row>
+              </Col>
+              <Col sm="6">
+                <Row>
+                  <h1>{icings[0].type}</h1>
+                </Row>
+                <Row>
+                  <IngredientsDisplay elementToDisplay={icings} />
+                </Row>
+              </Col>
+            </Row>
+          </Container>
         );
       } else {
         // ou choix du glaçage du cheesecake
         render = (
-          <Row className="displayIngredient">
-            <Row>
-              <h1>{icings[0].type}</h1>
+          <Container>
+            <Row className="compo-zone">
+              <Row>
+                <h1>{icings[0].type}</h1>
+              </Row>
+              <Row className="w-100 mx-auto">
+                <IngredientsDisplay elementToDisplay={icings} />
+              </Row>
             </Row>
-            <Row className="w-100 mx-auto">
-              <IngredientsDisplay elementToDisplay={icings} />
-            </Row>
-          </Row>
+          </Container>
         );
       }
       // Troisième écran : Choix des toppings
     } else if (index === 4) {
       render = (
-        <Row className="displayIngredient">
-          <Row>
-            <h1>{toppings[0].type}</h1>
+        <Container>
+          <Row className="compo-zone">
+            <Row>
+              <h1>{toppings[0].type}</h1>
+            </Row>
+            <Row className="w-100 mx-auto">
+              <IngredientsDisplay elementToDisplay={toppings} />
+            </Row>
           </Row>
-          <Row className="w-100 mx-auto">
-            <IngredientsDisplay elementToDisplay={toppings} />
-          </Row>
-        </Row>
+        </Container>
       );
     }
     const { setPageIndex } = this.props;
@@ -111,11 +119,11 @@ IngredientsCakeStructure.propTypes = {
 
 const mapStateToProps = state => ({
   cake: state.cakeCharacteristics,
-  bases: state.cakeBases,
-  fillings: state.cakeFillings,
-  icings: state.cakeIcings,
-  flavor: state.cheesecakeFlavors,
-  toppings: state.cakeToppings,
+  bases: state.ingredients.filter(ing => ing.type === 'Base'),
+  fillings: state.ingredients.filter(ing => ing.type === 'Garniture'),
+  icings: state.ingredients.filter(ing => ing.type === 'Glaçage'),
+  flavor: state.ingredients.filter(ing => ing.type === 'Parfum'),
+  toppings: state.ingredients.filter(ing => ing.type === 'Toppings'),
   index: state.pageIndex,
 });
 

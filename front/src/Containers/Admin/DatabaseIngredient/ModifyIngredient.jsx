@@ -1,218 +1,324 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Label, Input, Container, Row, Col, Button } from 'reactstrap';
+import {
+  Table, Label, Input, Form, FormGroup, Row, Col, Button,
+} from 'reactstrap';
+import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { toggleFormModify } from '../../../Actions/databaseActions/toggleFormNew';
-// import AlertAddIngredient from './AlertAddIngredient';
+import axiosIngredientsDB from '../../../Actions/fetchDB/fetch_database_actions';
 import '../../../Assets/Styles/Add_Ingredients.css';
 
 class ModifyIngredient extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      type: '',
-      size: '',
-      price: 0,
-      dispo: false,
-      info: '',
-      img: '',
-      allerg: '',
-      compatible: [],
+      ingredients: {
+        id: '',
+        name: '',
+        type: '',
+        size: '',
+        price: '',
+        dispo: true,
+        description: '',
+        image: '',
+        allerg: [],
+        compatible: [],
+        flavor: '',
+        color: '',
+      },
+      fullList: [],
+      fullAllerg: [],
+      previewImage: null,
     };
+    this.handleClickCompatible = this.handleClickCompatible.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.urlParams = 'cake_bases';
+    const { ingredient, showFunction } = this.props;
+    this.inheritedIngredient = ingredient;
+    this.showForm = showFunction;
   }
 
-  updateState = (e) => {
-    switch (e.target.placeholder) {
-      case 'base':
-        this.setState({ type: 'Base' });
-        this.urlParams = 'cake_bases';
-        break;
-      case 'fourrage':
-        this.setState({ type: 'fourrage' });
-        this.urlParams = 'fillings';
-        break;
-      case 'glaçage':
-        this.setState({ type: 'glaçage' });
-        this.urlParams = 'icings';
-        break;
-      case 'decoration':
-        this.setState({ type: 'decoration' });
-        this.urlParams = 'topping';
-        break;
-      default:
-        this.setState({ [e.target.name]: e.target.placeholder });
-    }
+  componentDidMount() {
+    this.setState({
+      ingredients: {
+        ...this.inheritedIngredient,
+      },
+    });
+
+    axios.get('/api/ingredients/name')
+      .then((res) => {
+        const fullListArray = res.data[0]; this.setState({ fullList: fullListArray });
+      });
+
+    axios.get('/api/allergenes/name')
+      .then((res) => {
+        const fullAllergArray = res.data[0]; this.setState({ fullAllerg: fullAllergArray });
+      });
   }
 
-  onSubmit = (e) => {
-    e.preventDefault();
-    const {
-      // eslint-disable-next-line camelcase
-      type, name, size_diameter, price, availability, info, image_id, allerg, compatible, dispo,
-    } = this.state;
 
-    const newIngredient = {
-      type,
-      name,
-      size_diameter,
-      price,
-      availability,
-      info,
-      image_id,
-      allerg,
-      compatible,
-      dispo,
+  handleClickCompatible = (compatibleID, compatibleName, ingredients) => {
+    const index = this.inheritedIngredient.compatible.indexOf(compatibleName);
+    const formData = {
+      id_ingred1: this.inheritedIngredient.id,
+      id_ingred2: compatibleID,
     };
+    if (index >= 0) {
+      this.inheritedIngredient.compatible.splice(index, 1);
+      axios.delete(`/api/jtingredients/del/${formData.id_ingred2}/${formData.id_ingred1}`)
+        .then(res => (res.data))
+        .catch(err => (err.response.data));
+      this.setState({
+        [ingredients]: {
+          ...ingredients,
+          compatible: this.inheritedIngredient.compatible,
+        },
+      });
+    } else {
+      this.inheritedIngredient.compatible.push(compatibleID);
+      axios.post('/api/jtingredients/add', formData)
+        .then(res => (res.data))
+        .catch(err => (err.response.data));
+      this.setState({
+        [ingredients]: {
+          ...ingredients,
+          compatible: this.inheritedIngredient.compatible,
+        },
+      });
+    }
+    return this.inheritedIngredient.compatible;
+  }
 
-    // const url = `http://localhost:5000/ingredients/${this.urlParams}/new`;
 
-    axios.post(`http://localhost:5000/ingredients/${this.urlParams}/new`, newIngredient)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err.response.data));
+  handleClickAllergene = (allergeneID, allergeneName, ingredients) => {
+    const index = this.inheritedIngredient.allergenes.indexOf(allergeneName);
+    const formData = {
+      id_ingred: this.inheritedIngredient.id,
+      id_allergene: allergeneID,
+    };
+    if (index >= 0) {
+      this.inheritedIngredient.allergenes.splice(index, 1);
+      axios.delete(`/api/jtallergenes/del/${formData.id_allergene}/${formData.id_ingred}`)
+        .then(res => (res.data))
+        .catch(err => (err.response.data));
+      this.setState({
+        [ingredients]: {
+          ...ingredients,
+          allerg: this.inheritedIngredient.allergenes,
+        },
+      });
+    } else {
+      this.inheritedIngredient.allergenes.push(allergeneID);
+      axios.post('/api/jtallergenes/add', formData)
+        .then(res => (res.data))
+        .catch(err => (err.response.data));
+      this.setState({
+        [ingredients]: {
+          ...ingredients,
+          allerg: this.inheritedIngredient.allergenes,
+        },
+      });
+    }
+    return this.inheritedIngredient.allergenes;
+  }
+
+
+  updateState = (e, ingredients) => {
+    this.setState({
+      ingredients: {
+        ...ingredients,
+        id: this.inheritedIngredient.id,
+        [e.target.name]: e.target.value,
+      },
+    });
   };
 
-  createModifyForm = () => {
-    const {
-      toggleForm, displayIndexForm, displaybeta, cake, cookie, topping, filling, icing, macaronFlavor, macaronShell, chessecakeFlavor,
-    } = this.props;
-    let betaType = [];
-    switch (displaybeta) {
-      case ('Base cookie'): betaType = cookie[displayIndexForm - 1]; break;
-      case ('Toppings'): betaType = topping[displayIndexForm - 1]; break;
-      case ('Garniture'): betaType = filling[displayIndexForm - 1]; break;
-      case ('Glaçage'): betaType = icing[displayIndexForm - 1]; break;
-      case ('Macaron'): betaType = macaronFlavor[displayIndexForm - 1]; break;
-      case ('Coquille'): betaType = macaronShell[displayIndexForm - 1]; break;
-      case ('Parfum'): betaType = chessecakeFlavor[displayIndexForm - 1]; break;
-      default: betaType = cake[displayIndexForm - 1];
-    }
-    return (
-      <div className="bodyIng">
-        <form onSubmit={this.onSubmit}>
-          <Container>
-            <div className="ligne-titre">
-              <Row>
-                <Col sm="5">
-                  <h3 className="mt-3">
-                    Modifier l’ingrédient
-                    {' '}
-                    {betaType.name}
-                  </h3>
-                </Col>
-              </Row>
-            </div>
-            <Row className="les-row">
-              <Col sm="2">
-                <Label className="label-type">
-                  Type d’ingrédient
-                  <Input type="select" name="type" className="input-admin-type" onChange={this.updateState}>
-                    <option />
-                    <option onClick={() => this.updateState('base')}>Base</option>
-                    <option onClick={() => this.updateState('fourrage')}>Fourrage</option>
-                    <option onClick={() => this.updateState('glaçage')}>Glaçage</option>
-                    <option onClick={() => this.updateState('decoration')}>Décoration</option>
-                  </Input>
-                </Label>
-              </Col>
-              <Col sm="2">
-                <Label className="label-type">
-                  Nom
-                  <Input type="text" name="name" className="input-admin-type" onChange={this.updateState} placeholder={betaType.name} />
-                </Label>
-              </Col>
-              <Col sm="1">
-                <Label className="label-type">
-                  Taille
-                  <Input type="text" name="size" className="input-admin-type" onChange={this.updateState} placeholder={betaType.size} />
-                </Label>
-              </Col>
-              <Col sm="1">
-                <Label for="choix_occasion" className="label-type">
-                  Prix €
-                  <Input type="text" name="price" className="input-admin-type" onChange={this.updateState} placeholder={betaType.price} />
-                </Label>
-              </Col>
-              <Col sm="3">
-                <Label check className="label-type">
-                  Description
-                  <Input type="text" name="info" className="input-admin-type" onChange={this.updateState} placeholder={betaType.info} />
-                </Label>
-              </Col>
-              <Col sm="2">
-                <Label check className="label-type">
-                  Allergènes
-                  <Input type="text" name="allerg" className="input-admin-type" onChange={this.updateState} placeholder={betaType.allerg} />
-                </Label>
-              </Col>
-              <Col sm="1">
-                <Label check className="label-type" onChange={this.updateState}>
-                  Disponibilité
-                  <Input type="checkbox" name="dispo" value={betaType.dispo} />
-                  {' '}
-                </Label>
-              </Col>
-              <Col sm="4">
-                <Input type="file" name="file" id="exampleFile" onChange={this.updateState} />
-              </Col>
-            </Row>
-            <Row>
-              <Button className="btn-ajout" onClick={() => toggleForm(false)}>Annuler</Button>
-              <Button type="submit" className="btn-ajout">Modifier mon ingrédient</Button>
-            </Row>
-          </Container>
-        </form>
-      </div>
-    )
+
+  uploadPic = (file, ingredients) => {
+    const data = new FormData();
+    data.append('avatar', file.target.files[0]);
+    axios.post('/api/image/upload', data)
+      .then((result) => {
+        this.setState({
+          ingredients: {
+            ...ingredients,
+            image: result.data,
+          },
+        });
+      });
   }
 
-  render() {
-    return (
+  onSubmit = (e, ingredients) => {
+    const { axiosDatabase } = this.props;
+    e.preventDefault();
+    const modifiedIngredient = ingredients;
+    axios.put(`/api/ingredients/${modifiedIngredient.id}/`, modifiedIngredient)
+      .then(res => (res.data))
+      .catch(err => (err.response.data));
+    axiosDatabase();
+  };
 
+  createModifyForm = (ingredients, fullList, fullAllerg, previewImage, macaronNotSelected, colorNotSelected) => (
+    <div className="bodyIng">
+      <title-admin>
+        Modifier l’ingrédient
+        {' '}
+        {this.inheritedIngredient.name}
+      </title-admin>
+      <p>Le type "Parfum" concerne les bases de cheesecake, le type coquille représente les couleurs de coquille disponible.</p>
+      <Form>
+        <Row form>
+          <Col md={2}>
+            <FormGroup>
+              <Label size="sm">Nom</Label>
+              <Input type="text" name="name" bsSize="sm" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.name} value={ingredients.name} />
+            </FormGroup>
+          </Col>
+          <Col md={2}>
+            <FormGroup>
+              <Label size="sm">Type</Label>
+              <Input type="select" name="type" bsSize="sm" onChange={e => this.updateState(e, ingredients)}>
+                <option />
+                <option>Base</option>
+                <option>Garniture</option>
+                <option>Glaçage</option>
+                <option>Toppings</option>
+                <option>Parfum</option>
+                <option>Base cookie</option>
+                <option>Base brownie</option>
+                <option>Macaron</option>
+                <option>Coquille</option>
+              </Input>
+            </FormGroup>
+          </Col>
+          <Col md={2}>
+            <FormGroup>
+              <Label size="sm">Taille</Label>
+              <Input type="text" name="size" bsSize="sm" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.size} value={ingredients.size} />
+            </FormGroup>
+          </Col>
+          <Col md={2}>
+            <FormGroup>
+              <Label size="sm">Prix</Label>
+              <Input type="text" name="price" bsSize="sm" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.price} value={ingredients.price} />
+            </FormGroup>
+          </Col>
+          <Col md={4}>
+            <FormGroup>
+              <Label size="sm">Description</Label>
+              <Input type="text" name="description" bsSize="sm" onChange={e => this.updateState(e, ingredients)} placeholder={this.inheritedIngredient.description} value={ingredients.description} />
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row form>
+          <Col md={2}>
+            <FormGroup>
+              <Label size="sm">Parfum</Label>
+              <Input type="text" bsSize="sm" disabled={macaronNotSelected} name="flavor" />
+            </FormGroup>
+          </Col>
+          <Col md={2}>
+            <FormGroup>
+              <Label size="sm">Couleur</Label>
+              <Input type="text" disabled={colorNotSelected} bsSize="sm" name="color" />
+            </FormGroup>
+          </Col>
+          <Col md={5}>
+            <Label size="sm">Image</Label>
+            <Input type="file" name="file" bsSize="sm" onChange={file => this.uploadPic(file, ingredients)} />
+            {/* <img src={previewImage || ingredients.image} alt="ingredient" /> */}
+            <img src={previewImage ? previewImage : ingredients.image} alt="ingredient" />
+          </Col>
+          <Col md={2}>
+            <FormGroup check>
+              <Input name="dispo" type="checkbox" bsSize="sm" defaultChecked={ingredients.dispo} onChange={() => this.setState({ ingredients: { ...ingredients, dispo: !ingredients.dispo } })} id="dispoCheck" />
+              <Label size="sm" for="dispoCheck" check>Disponibilité</Label>
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={5} className="col-size-checkbox">
+            <Table className="table-add-ingred">
+              <thead>
+                <tr>
+                  <th className="title-label-list">Compatibilités</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {fullList.map(compatible => (
+                    <td key={compatible.id}>
+                      <Input
+                        name="isCompatible"
+                        type="checkbox"
+                        bsSize="sm"
+                        defaultChecked={this.inheritedIngredient.compatible.includes(compatible.name)}
+                        onChange={() => (this.handleClickCompatible(compatible.id, compatible.name))}
+                      />
+                      <Label size="sm" check>{compatible.name}</Label>
+                    </td>))}
+                </tr>
+              </tbody>
+            </Table>
+          </Col>
+          <Col md={5} className="col-size-checkbox">
+            <Table className="table-add-ingred">
+              <thead>
+                <tr>
+                  <th className="title-label-list">Allergenes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {fullAllerg.map(allergene => (
+                    <td key={allergene.id}>
+                      <Input
+                        name="isAllergene"
+                        type="checkbox"
+                        bsSize="sm"
+                        defaultChecked={this.inheritedIngredient.allergenes.includes(allergene.name)}
+                        onChange={() => this.handleClickAllergene(allergene.id, allergene.name)}
+                      />
+                      <Label size="sm">{allergene.name}</Label>
+                    </td>))}
+                </tr>
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+        <br />
+        <Row className="row-modif-ing-btn">
+          <Button size="sm" color="secondary" onClick={() => this.showForm()}>Annuler</Button>
+          <Button size="sm" color="warning" onClick={(e) => { this.onSubmit(e, ingredients); this.showForm(); }}>Modifier</Button>
+        </Row>
+      </Form>
+    </div>
+  );
+
+
+  render() {
+    const {
+      ingredients, fullList, fullAllerg, previewImage,
+    } = this.state;
+    const macaronNotSelected = ingredients.type !== 'Macaron';
+    const colorNotSelected = ingredients.type !== 'Coquille';
+    return (
       <div>
-        {this.createModifyForm()}
+        {this.createModifyForm(ingredients, fullList, fullAllerg, previewImage, macaronNotSelected, colorNotSelected)}
       </div>
     );
   }
 }
 
+
 ModifyIngredient.propTypes = {
-  toggleForm: PropTypes.func.isRequired,
-  displaybeta: PropTypes.string.isRequired,
-  displayIndexForm: PropTypes.number.isRequired,
-  cake: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  cookie: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  topping: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  filling: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  icing: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  macaronFlavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  macaronShell: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  chessecakeFlavor: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  ingredient: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  showFunction: PropTypes.func.isRequired,
+  axiosDatabase: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  selectedIngredient: state.ingredientCharacteristics,
-  displaybeta: state.databaseDisplay.beta,
-  displayIndexForm: state.databaseModifyFormIndex,
-  cake: state.cakeBases,
-  filling: state.cakeFillings,
-  icing: state.cakeIcings,
-  chessecakeFlavor: state.cheesecakeFlavors,
-  macaronFlavor: state.macaronsFlavors,
-  topping: state.cakeToppings,
-  macaronShell: state.macaronsShells,
-  cookie: state.cookiesBases,
-  brownie: state.browniesBases,
-});
-
 const mapDispatchToProps = dispatch => ({
-  toggleForm: show => dispatch(toggleFormModify(show))
+  axiosDatabase: bindActionCreators(axiosIngredientsDB, dispatch),
 });
-// const mapDispatchToProps = dispatch => ({
-//   addNewIngredient: ingredientType => dispatch(this.updateState(ingredientType)),
-// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModifyIngredient);
+export default connect(null, mapDispatchToProps)(ModifyIngredient);

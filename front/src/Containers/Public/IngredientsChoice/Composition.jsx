@@ -11,8 +11,6 @@ import Progressbar from '../Progressbar';
 import Price from '../Price';
 import CakeInProgress from './CakeInProgress';
 
-import '../../../Assets/Styles/Composition.css';
-
 const Composition = (props) => {
   const { index, cake } = props;
 
@@ -27,22 +25,32 @@ const Composition = (props) => {
     return render;
   };
 
+  const renderComplementBase = () => {
+    // let render;
+    // if
+  };
+
   return (
-    <Container className="wrapper">
+    <Container className="body-row">
       <Row className="text-center">
         <Progressbar />
       </Row>
-      <Row className="renderComposition">
+      <Row className="body-compo">
         <Col sm="8">
           {renderComposition(cake.type)}
+          {renderComplementBase()}
         </Col>
         <Col sm="4">
           <CakeInProgress />
-          <Price />
         </Col>
       </Row>
       <Row sm="12">
-        <IngredientsButtons index={index} />
+        <Col sm="8">
+          <IngredientsButtons index={index} />
+        </Col>
+        <Col sm="4">
+          <Price />
+        </Col>
       </Row>
     </Container>
   );

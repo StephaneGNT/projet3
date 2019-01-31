@@ -1,4 +1,36 @@
+.table-add-ingred td {
+  display: flex;
+}
 
+.title-label-list {
+  background-color:rgb(205, 208, 211);
+  border:none !important;
+}
+
+
+.table-add-ingred td {
+    display: flex;
+}
+
+.title-label-list {
+    background-color:rgb(205, 208, 211);
+    border:none !important;
+}
+
+
+title-admin {
+    color:white;
+    font-weight:700;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    font-size:1.2em;
+    background-color:rgb(219, 151, 87);
+    padding:2%;
+    margin-bottom:1%;
+    display:block;
+    text-align:center;
+    /* border-radius:5px; */
+}
 
 .bodyIng {
     background-color: rgb(190, 190, 190);
@@ -21,32 +53,25 @@
     margin:auto;
 }
 
-/* .table-compatible {
-    background-color: #fff !important;
-    overflow-y: auto;
-    width:200px !important;
-    height:200px;
-} */
 
-title-admin {
-    color:white;
-    font-weight:700;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    text-transform: uppercase;
-    font-size:1.2em;
-    background-color:rgb(219, 151, 87);
-    padding:2%;
-    margin-bottom:1%;
-    display:block;
-    text-align:center;
-    /* border-radius:5px; */
+.label-type {
+  font-size:0.7em;
+  color:black;
+  font-weight:700;
 }
 
-.table-add-ingred td {
-    display: flex;
+.input-admin-type {
+  font-size:1.2em !important;
 }
 
-.title-label-list {
-    background-color:rgb(205, 208, 211);
-    border:none !important;
+.les-row {
+  width:100%;
+  padding:1em;
+}
+label {
+    width:100%;
+}
+
+.btn-ajout {
+  margin:5px;
 }

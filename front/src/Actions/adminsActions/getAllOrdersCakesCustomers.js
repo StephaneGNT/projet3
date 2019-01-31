@@ -1,3 +1,4 @@
+
 export const getAllOrders = orderList => ({
   type: 'SAVE_ORDERS',
   orderList,
@@ -8,9 +9,12 @@ export const getAllCustomers = customerList => ({
   customerList,
 });
 
-export const getAllCakes = cakeList => {
-  console.log("cakeList", cakeList)
-  return ({ 
+export const getAllCakes = cakeList => ({
   type: 'SAVE_CAKES',
-  cakeList,})
-};
+  cakeList,
+});
+
+export const getAllAdmins = adminList => ({
+  type: 'SAVE_ADMINS',
+  adminList,
+});

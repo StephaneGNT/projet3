@@ -1,34 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const mailGunCredentials = require('../helper/mailGunHelper')
 
-var api_key = mailGunCredentials.api_key;
-var DOMAIN = mailGunCredentials.DOMAIN;
+var mailGunCredentials = require('../helper/mailGunHelper');
 
-var mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN });
+var mailgun = require('mailgun-js')({ apiKey: mailGunCredentials.api_key, domain: mailGunCredentials.DOMAIN });
 
 router.post('/mail', (req, res) => {
-    console.log("req.body", req.body)
-    const data1 = {
-        from: 'Pimpmycake <Pimpmycake@Giluna.com>',
-        to: req.body.client.email,
-        subject: req.body.client.title,
-        text: req.body.client.content,
-    };
-    const data2 = {
-        from: 'Pimpmycake <Pimpmycake@Giluna.com>',
-        to: req.body.giluna.email,
-        subject: req.body.giluna.title,
-        html: "<b> Bonjour, </b>" + req.body.giluna.content,
+    const mailData = {
+        'from': req.body.from,
+        'to': req.body.to,
+        'subject': req.body.title,
+        'text': req.body.text,
+        'html': req.body.html
     };
 
-    mailgun.messages().send(data1, function (error, body) {
-        mailgun.messages().send(data2, function (error, body) {
-            console.log("mail gun body", body)
-            if (error) res.status(500).send("Erreur")
-            else res.status(200).send("Succès")
-        });
+    mailgun.messages().send(mailData, function (error, body) {
+        if (error) res.status(500).send("Erreur lors de l'envoi")
+        else res.status(200).send("Mail bien envoyé")
     });
-});
+})
 
 module.exports = router;

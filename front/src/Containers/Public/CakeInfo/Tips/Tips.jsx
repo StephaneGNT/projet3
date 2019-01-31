@@ -6,6 +6,8 @@ import TipsCheesecake from './TipsCheesecake';
 import TipsCookie from './TipsCookie';
 import TipsMacaron from './TipsMacaron';
 import TipsBrownie from './TipsBrownie';
+import '../../../../Assets/Styles/Public.css';
+
 
 const Tips = (props) => {
   const renderTips = (cakeType) => {
@@ -17,11 +19,21 @@ const Tips = (props) => {
       case 'brownie': return <TipsBrownie />;
       default: return (
         <div>
-          <p className="mt-3">
-          Paiment sur place en CB, espèce ou chèque.
+          <p>
+            <strong>1. </strong>
+            Sélectionnez le type de gâteaux que vous souhaitez.
+            <br />
+            <strong>2. </strong>
+            Choisissez ensuite votre base, votre ganache et votre glaçage.
+            <br />
+            <strong>3. </strong>
+            Ajoutez des gourmandises pour le rendre encore meilleur !
+            <br />
+            <strong>4. </strong>
+            À chaque événement son gâteau: embellissez votre création
+             avec une image, une décoration 3D, ou avec un
+             texte personnalisé !
           </p>
-          <br />
-          <p>Choisissez votre type de pâtisserie </p>
         </div>
       );
     }
@@ -30,8 +42,8 @@ const Tips = (props) => {
   const { cake } = props;
 
   return (
-    <div className="bg-light p-2" style={{ width: '100%', borderRadius: '9px' }}>
-      <h5 className="mt-3 text-center">Tips</h5>
+    <div className="body-tips">
+      <div className="title-tips">Les petites astuces</div>
       {renderTips(cake.type)}
     </div>
   );

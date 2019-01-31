@@ -1,34 +1,5 @@
 import axios from 'axios';
 
-export const allowMessage = item => ({
-  type: 'ALLOW_MESSAGE',
-  item,
-});
-
-export const removeCakeMessage = blank => ({
-  type: 'REMOVE_CUSTOM_MESSAGE',
-  blank,
-});
-
-export const updateCustomMessage = e => ({
-  type: 'UPDATE_CUSTOM_MESSAGE',
-  message: e.target.value,
-});
-
-export const toggle = () => ({
-  type: 'TOGGLE_FONTS',
-});
-
-export const submitDecorationChoice = choice => ({
-  type: 'SUBMIT_DECORATION_CHOICE',
-  choice,
-});
-
-export const chooseFont = choice => ({
-  type: 'CHOOSE_FONT_FAMILY',
-  fontFamily: choice,
-});
-
 export const getFonts = fonts => ({
   type: 'UPDATE_FONTS',
   fonts,
@@ -39,19 +10,19 @@ export const populateFonts = fonts => ({
   fonts,
 });
 
-export const addFont = font => ({
-  type: 'ADD_FONT',
-  font,
+export const updateSummaryInfo = data => ({
+  type: 'UPDATE_CUSTOM_SUMMARY',
+  data,
 });
 
-export const changeBgColor = color => ({
-  type: 'CHANGE_BACKGROUND_COLOR',
-  backgroundColor: color.hex,
+export const calculateCustomizationPrice = data => ({
+  type: 'UPDATE_CUSTOMIZATION_PRICE',
+  data,
 });
 
-export const changeFontColor = color => ({
-  type: 'CHANGE_FONT_COLOR',
-  fontColor: color.hex,
+export const sendCustomizationPrices = prices => ({
+  type: 'SEND_CUSTOM_PRICES',
+  prices,
 });
 
 export const fetchFonts = () => {
@@ -59,6 +30,7 @@ export const fetchFonts = () => {
     return axios.get('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBvHfWdKdPsFRaVwwh8z5lNIto2Ct9xzaA')
       .then((res) => {
         const fonts = res.data.items;
+        localStorage.setItem('googleFonts', JSON.stringify(fonts));
         dispatch(getFonts(fonts));
       });
   };
@@ -66,10 +38,20 @@ export const fetchFonts = () => {
 
 export const fetchAdminFonts = () => {
   return (dispatch) => {
-    return axios.get('/customization/getfonts')
+    return axios.get('/api/customization/getfonts')
       .then((res) => {
         const fonts = res.data;
         dispatch(populateFonts(fonts));
+      });
+  };
+};
+
+export const getCustomPrices = () => {
+  return (dispatch) => {
+    axios.get('/api/customization/getcustomprices')
+      .then((res) => {
+        const prices = res.data;
+        dispatch(sendCustomizationPrices(prices));
       });
   };
 };

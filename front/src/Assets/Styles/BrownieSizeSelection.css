@@ -4,19 +4,26 @@
   width: 100%;
 }
 
+.brownieSizeSelection {
+  background-color:rgba(211, 189, 158, 0.363);
+  padding:5px;
+  margin:5px;
+}
+
+
 .brownieSizeSelection Button{
-  height: 120px;
-  width: 120px;
+  width: 8vw;
   padding: 0;
   color: black;
   font-family: var(--secondPolice);
-  font-size: 1em;
+  font-size: 0.7em;
   background-color: white;
-  background-image: url('../Images/brownie.png');
+  background-image: url('../Images/brownie2.png');
   background-repeat: no-repeat;
   background-position-x: center;
-  border-radius: 20px;
   padding-top: 70%;
+  border:none;
+  margin-bottom:15%;
 }
 
 .brownieSizeSelection Button:hover, .brownieSizeSelection Button:active, .brownieSizeSelection Button:focus{
@@ -25,7 +32,6 @@
   color: black !important;
   background-color: white !important;
   box-shadow: 0 !important;
-  /* outline: blue solid 2px !important; */
 }
 
 #smallBrownie{

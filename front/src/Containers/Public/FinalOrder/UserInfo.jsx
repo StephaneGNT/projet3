@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 import {
   Container, Row, Col, FormGroup, Label, Input, FormFeedback,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
+import axios from 'axios';
 import Progressbar from '../Progressbar';
 import {
   saveCustomer, getIngredientsID, saveCake, populateCakeIngrJT,
@@ -14,6 +14,7 @@ import {
 import updateUserInfo from '../../../Actions/orderActions/updateUserInfo';
 import '../../../Assets/Styles/UserInfo.css';
 
+import carte from '../../../Assets/Images/selectionGallerie/IMG_carte.jpg';
 
 class UserInfo extends Component {
   constructor(props) {
@@ -23,8 +24,8 @@ class UserInfo extends Component {
     this.birthdateRegex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
     this.state = {
       user: {
-        firstname: customer.firstname,
-        lastname: customer.lastname,
+        firstName: customer.firstName,
+        lastName: customer.lastName,
         birthday: customer.birthdate,
         email: customer.email,
         phone: customer.telephone,
@@ -32,6 +33,9 @@ class UserInfo extends Component {
       comment,
       giftcard,
       inputAttempt: false,
+      dobNotValid: false,
+      accept: false,
+      warningAccept: false,
     };
   }
 
@@ -40,7 +44,8 @@ class UserInfo extends Component {
   }
 
   componentWillUnmount() {
-    const { updateUser } = this.props; updateUser(this.state);
+    const { updateUser } = this.props;
+    updateUser(this.state);
   }
 
   updateState = (evt) => {
@@ -52,6 +57,8 @@ class UserInfo extends Component {
 
   setUserState = (evt) => {
     evt.persist();
+    const { user } = this.state;
+    if (!user.birthdate) this.setState({ dobNotValid: false });
     this.setState(prevState => ({
       prevState,
       user: {
@@ -61,32 +68,41 @@ class UserInfo extends Component {
     }));
   }
 
-
   validEmail = (mailState) => {
     if (mailState === '') return false;
     return !this.mailRegex.test(mailState);
   }
 
   sendConfirmationEmails = () => {
-    console.log("confirmation mails")
     const { user } = this.state;
-    const mail = {
-      client: {
-        email: user.email,
-        title: 'Confirmation de commande Giluna',
-        content: `Bonjour ${user.firstname} ${user.lastname}, votre commande a bien été prise en compte.
-                Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
-      },
-      giluna: {
-        email: 'sguinot86@gmail.com',
-        title: 'Bonjour giluna',
-        content: 'une nouvelle commande vient d’être générée sur le site',
-      },
+    const mailClient = {
+      from: 'contact@gilunacoffee.com',
+      to: user.email,
+      title: 'Confirmation de commande Giluna',
+      text: `Bonjour ${user.firstName} ${user.lastName}, votre commande a bien été prise en compte.
+              Nous reviendrons vers vous rapidement pour vous confirmer sa validation.`,
+      html: <p>
+      Bonjour
+      $
+        {user.firstName}
+      $
+        {user.lastName}
+      ,votre commande a bien été prise en compte.
+      Nous reviendrons vers vous rapidement pour vous confirmer sa validation.
+      </p>,
     };
-    axios.post('/api/send/mail', mail).then(response => console.log(response.data));
-  }
+    axios.post('/api/send/mail', mailClient);
+    const gilunaMail = {
+      from: 'contact@gilunacoffee.com',
+      to: 'contact@gilunacoffee.com',
+      title: 'Nouvelle commande',
+      text: 'Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.',
+      html: <p>Bonjour. Une nouvelle commande vient d’être réalisée sur le site. Allez voir sur votre espace admin pour y trouver la commande.</p>,
+    };
+    axios.post('/api/send/mail', gilunaMail);
+  };
 
-  validBirthdate = (DOBstate) => {
+  invalidBirthdate = (DOBstate) => {
     if (DOBstate === '') return false;
     if (!this.birthdateRegex.test(DOBstate) && DOBstate.length > 9) return true;
   }
@@ -101,6 +117,7 @@ class UserInfo extends Component {
   sendOrder = async (order, customer, cake, customWishes) => {
     const { comment, giftcard } = this.state;
     const { history } = this.props;
+
     // Création du nouveau user et récupération de son id
     const customerID = await saveCustomer(customer);
 
@@ -124,16 +141,23 @@ class UserInfo extends Component {
 
     if (orderID > 0) {
       this.sendConfirmationEmails();
-      history.push(`${process.env.PUBLIC_URL}/mycake/orderConfirmation`)
+      history.push(`${process.env.PUBLIC_URL}/mycake/orderConfirmation`);
     }
   }
 
-  handleClick = (event) => {
+  handleClick = () => {
     const { order, cake, customWishes } = this.props;
-    const { user } = this.state;
-    this.setState({ inputAttempt: true });
-    this.sendOrder(order, user, cake, customWishes);
-  }
+    const { user, accept } = this.state;
+    if (!user.firstName || !user.lastName || !user.email || !user.phone || user.phone.length < 8) {
+      this.setState({ inputAttempt: true });
+    } else if (!accept) {
+      this.setState({ warningAccept: true });
+    } else {
+      if (user.birthday.length > 0 && !this.birthdateRegex.test(user.birthday)) {
+        this.setState({ dobNotValid: true });
+      } else this.sendOrder(order, user, cake, customWishes);
+    }
+  };
 
   setWarning = (event) => {
     const { inputAttempt } = this.state;
@@ -142,15 +166,20 @@ class UserInfo extends Component {
     return null;
   }
 
+  handleAcceptance = () => {
+    const { accept } = this.state;
+    this.setState({ accept: !accept, warningAccept: !accept });
+  }
+
+
   render() {
     const {
-      user, comment, giftcard, inputAttempt,
+      user, comment, giftcard, inputAttempt, dobNotValid, accept, warningAccept,
     } = this.state;
-    const disabled = !user.firstname || !user.lastname || !this.mailRegex.test(user.email)
-      || user.phone.length < 10;
+    console.log("accept", accept)
     const warning = { border: '3px solid', borderColor: '#dc3545' };
     return (
-      <Container>
+      <Container style={{ backgroundColor: 'white' }}>
         <Row className="text-center">
           <Progressbar />
         </Row>
@@ -159,7 +188,7 @@ class UserInfo extends Component {
             {
               inputAttempt ? (
                 <div>
-                  Veuillez renseigner les champs obligatoires * avant d’envoyer la commande
+                  Veuillez renseigner les champs obligatoires* avant d’envoyer la commande
                 </div>
               ) : <div />
             }
@@ -173,11 +202,11 @@ class UserInfo extends Component {
               <Input
                 autoFocus
                 type="text"
-                name="firstname"
-                id="firstname"
-                placeholder="votre prénom"
-                value={user.firstname}
-                style={inputAttempt && !user.firstname ? warning : {}}
+                name="firstName"
+                id="firstName"
+
+                value={user.firstName}
+                style={inputAttempt && !user.firstName ? warning : {}}
                 onChange={e => this.setUserState(e)}
                 onKeyPress={this.enterForm}
               />
@@ -189,21 +218,40 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 Nom
               </Label>
-              <Input type="text" name="lastname" id="lastname" placeholder="votre nom de famille" value={user.lastname} style={inputAttempt && !user.lastname ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input
+                type="text"
+                name="lastName"
+                id="lastName"
+
+                value={user.lastName}
+                style={inputAttempt && !user.lastName ? warning : {}}
+                onChange={e => this.setUserState(e)}
+                onKeyPress={this.enterForm}
+              />
             </FormGroup>
           </Col>
           <Col sm="12" md="4">
             <FormGroup>
-              <Label for="birthday">
-                Date de naissance
+              <Label for="birthdate">
+                Date d’anniversaire
               </Label>
-              <Input invalid={this.validBirthdate(user.birthday)} type="text" name="birthday" id="birthday" placeholder="date de naissance – ex: 30/09/1982" value={user.birthday} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input
+                invalid={(user.birthday && this.invalidBirthdate(user.birthday)) || dobNotValid}
+                type="text"
+                name="birthday"
+                id="birthday"
+
+                value={user.birthday}
+                onChange={e => this.setUserState(e)}
+                onKeyPress={this.enterForm}
+              />
               <FormFeedback>date de naissance non valide (format requis: JJ/MM/AAAA)</FormFeedback>
-              {!this.birthdateRegex.test(user.birthday) && user.birthday.length <= 9 ? (
-                <div className="invalidDOB">
-                  <p>Format: JJ/MM/AAAA</p>
-                </div>
-              ) : <div />
+              {!this.birthdateRegex.test(user.birthday)
+               && user.birthday && user.birthday.length <= 9 ? (
+                 <div className="invalidDOB">
+                   <p>Format: JJ/MM/AAAA</p>
+                 </div>
+                ) : <div />
               }
             </FormGroup>
           </Col>
@@ -215,22 +263,32 @@ class UserInfo extends Component {
                 <span className="text-danger">* </span>
                 E-mail
               </Label>
-              <Input invalid={this.validEmail(user.email)} type="email" name="email" id="email" placeholder="votre adresse mail" value={user.email} style={inputAttempt && !this.mailRegex.test(user.email) ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input
+                invalid={this.validEmail(user.email)}
+                type="email"
+                name="email"
+                id="email"
+
+                value={user.email}
+                style={inputAttempt && !this.mailRegex.test(user.email) ? warning : {}}
+                onChange={e => this.setUserState(e)}
+                onKeyPress={this.enterForm}
+              />
               <FormFeedback>adresse mail non valide</FormFeedback>
             </FormGroup>
           </Col>
           <Col sm="12" md="6">
             <FormGroup>
-              <Label for="phone">
+              <Label for="telephone">
                 <span className="text-danger">* </span>
                 Téléphone
               </Label>
-              <Input type="text" name="phone" id="phone" placeholder="votre numéro de téléphone" value={user.phone} style={inputAttempt && user.phone.length < 10 ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
+              <Input type="text" name="phone" id="phone" value={user.phone} style={inputAttempt && user.phone.length < 10 ? warning : {}} onChange={e => this.setUserState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
         </Row>
         <Row>
-          <Col sm="12" md="6">
+          <Col sm="12" md="12">
             <FormGroup>
               <Label>
                 Commentaire à Giluna
@@ -238,47 +296,72 @@ class UserInfo extends Component {
               <Input type="textarea" id="comment" value={comment} onChange={e => this.updateState(e)} onKeyPress={this.enterForm} />
             </FormGroup>
           </Col>
-          <Col sm="12" md="6">
+        </Row>
+        <Row>
+          <Col sm="3" md="3">
+            <img src={carte} className="logo" alt="giluna-logo" />
+          </Col>
+          <Col sm="6" md="6">
             <FormGroup>
               <Label>
-                Ajoutez une carte à votre Commande
+                Ajoutez une carte message à votre Commande
               </Label>
-              <Input type="textarea" id="giftcard" value={giftcard} onChange={e => this.updateState(e)} onKeyPress={this.enterForm} />
+              <Input type="textarea" id="giftcard" placeholder="Ecrivez votre message personnel ici" value={giftcard} onChange={e => this.updateState(e)} onKeyPress={this.enterForm} />
+            </FormGroup>
+          </Col>
+
+        </Row>
+        <Row>
+          <Col sm="11" md="8">
+            <FormGroup>
+              <Label>
+                Votre message, soigneusement écrit sur une carte de qualité,
+                sera livré avec votre gâteau.
+              </Label>
             </FormGroup>
           </Col>
         </Row>
+
+        <Row style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+          <input
+            type="checkbox"
+            onChange={() => this.handleAcceptance()}
+          />
+          <span style={{ color: warningAccept ? 'red' : 'black', marginLeft: '10px' }}>
+            J'accepte que Giluna conserve mes données à usage strictement commercial.
+          </span>
+        </Row>
+
         <Row className="back-btn-userinfo">
           <button
-            disabled={disabled}
             type="button"
-            onClick={e => this.handleClick(e)}
+            onClick={() => this.handleClick()}
             className="btn-confirmation"
           >
             Envoyer la commande
           </button>
         </Row>
+        {/* <img src={ require(`../../../../../back/tmp/${this.props.photo1}`) } alt="customer decoration" /> */}
       </Container>
     );
   }
 }
-
 UserInfo.propTypes = {
-  cake: PropTypes.shape({}).isRequired,
-  order: PropTypes.shape({}).isRequired,
   updateUser: PropTypes.func.isRequired,
   customer: PropTypes.shape({}).isRequired,
+  order: PropTypes.shape({}).isRequired,
   comment: PropTypes.string.isRequired,
   giftcard: PropTypes.string.isRequired,
   customWishes: PropTypes.shape({}).isRequired,
+  cake: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
+  customer: state.customerInfo,
+  customWishes: state.customizationCustomer,
+  comment: state.cakeCharacteristics.comment,
   cake: state.cakeCharacteristics,
   order: state.orderCharacteristics,
-  customWishes: state.customizationCustomer,
-  customer: state.customerInfo,
-  giftcard: state.customizationCustomer.giftcard,
-  comment: state.cakeCharacteristics.comment,
 });
 
 const mapDispatchToProps = dispatch => ({

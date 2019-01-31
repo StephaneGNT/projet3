@@ -1,2 +1,2 @@
-const secret = 'giluna_pimp-my-cake';
+const secret = 'pimpmycake';
 module.exports = secret;

@@ -38,4 +38,30 @@ router.delete('/deletefonts/:fontName', (req, res) => {
   });
 });
 
+router.get('/getcustomprices', (req, res) => {
+  const formData = req.body;
+  connection.query('SELECT * FROM custom_prices', formData, (err, results) => {
+    if (err) {
+      res.status(500);
+    } else {
+      res.json(results);
+    }
+    return;
+  });
+});
+
+router.put('/updatecustomprices', (req, res) => {
+  const sqlQuery = 'UPDATE custom_prices SET price = ? WHERE id = ?'; 
+  connection.query(sqlQuery, [req.body.price, req.body.id], (err, results) => {
+    if (err) {
+      res.status(500);
+    } else {
+      res.status(200).send('OK');
+    }
+    return;
+  });
+});
+
+
+
 module.exports = router;

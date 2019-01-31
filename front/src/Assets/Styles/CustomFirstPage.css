@@ -1,25 +1,64 @@
-/* .photoDisplay{
-  margin-top: 10vh;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
-#photoDisplayLeft{
-  align-items: flex-end;
-}
-
-#photoDisplayRight{
-  align-items: flex-start;
-}
-
-.photoDisplay img{
-  width: 6vw;
-  height: 10vh;
-} */
 
 .decorationRow{
-  /* padding-top: 5vh; */
   justify-content: center;
+  margin-top: 2% ;
+  margin-bottom:2% !important;
+}
+
+.removeCross:hover {
+  cursor: pointer;
+}
+
+/* .notChosen {
+  border: 4px red solid !important;
+} */
+
+/* .chosen {
+  border: 4px rgb(114, 167, 114) solid !important;
+} */
+
+.previewText {
+  position: relative;
+  height: 30vh;
+  width: 30vh;
+  border: dashed 1px black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputField {
+  opacity: 0.0; position: absolute; top: 0; width: 100%; height:100%; cursor: pointer;
+}
+
+.carousel {
+  width: 37vh;
+}
+
+.carousel-small {
+  width: 30vh;
+}
+
+.carousel-images {
+  height: 50vh;
+  width: 50vh;
+  object-fit: contain;
+}
+
+.smaller-c-images {
+  height: 30vh;
+  width: 10vh;
+  object-fit: cover;
+}
+
+.decoRow {
+  padding-bottom: 1% !important;
+  margin-top:-2% !important;
+}
+
+/* apparence textarea Décoration 3D */
+.b-textarea-custom {
+  min-width:30vw !important;
 }

@@ -1,5 +1,11 @@
 
-import { Label, Container, Row, Col } from 'reactstrap';
+import {
+  Label,
+  Container,
+  Row,
+  Col,
+  Badge,
+} from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -9,20 +15,20 @@ import { resetCakePieces } from '../../../Actions/cakeActions/changeCakePiecesAn
 import SizeSelection from './SizeSelection/SizeSelection';
 import Tips from './Tips/Tips';
 import CakeOccasion from './CakeOccasion';
-import '../../../Assets/Styles/CakeInfo.css';
+import '../../../Assets/Styles/Public.css';
 
 const CakeInfo = (props) => {
   const { type, localChangeCakeType, resetCakeStories } = props;
 
   return (
-    <Container className="body-cake-select">
+    <Container className="body-row">
       <Row className="justify-content-around">
-        <Col sm="5">
-          <h3 className="mt-3">Choisissez votre type de douceur</h3>
+        <Col sm="12">
+          <div className="labels-perso-btn-douceurs">Choisissez votre type de douceur :</div>
         </Col>
       </Row>
-      <Row className="mt-3 justify-content-around">
-        <Col sm="2" className="text-center">
+      <Row className="b-ligne-button">
+        <Col sm="2">
           <button
             type="button"
             className={`typeButton ${type === 'cookie' && 'selectionOutline'}`}
@@ -30,10 +36,10 @@ const CakeInfo = (props) => {
             title="A partir de 2,5€"
             onClick={() => { localChangeCakeType('cookie'); resetCakeStories(); }}
           >
-            Cookie
+            <txt-btn-sweet>Cookie</txt-btn-sweet>
           </button>
         </Col>
-        <Col sm="2" className="text-center">
+        <Col sm="2">
           <button
             type="button"
             className={`typeButton ${type === 'cake' && 'selectionOutline'}`}
@@ -41,10 +47,10 @@ const CakeInfo = (props) => {
             title="A partir de 8€"
             onClick={() => { localChangeCakeType('cake'); resetCakeStories(); }}
           >
-            Cake
+            <txt-btn-sweet>Cake</txt-btn-sweet>
           </button>
         </Col>
-        <Col sm="2" className="text-center">
+        <Col sm="2">
           <button
             type="button"
             className={`typeButton ${type === 'cheesecake' && 'selectionOutline'}`}
@@ -52,10 +58,10 @@ const CakeInfo = (props) => {
             title="A partir de 8€"
             onClick={() => { localChangeCakeType('cheesecake'); resetCakeStories(); }}
           >
-            Cheesecake
+            <txt-btn-sweet>Cheesecake</txt-btn-sweet>
           </button>
         </Col>
-        <Col sm="2" className="text-center">
+        <Col sm="2">
           <button
             type="button"
             className={`typeButton ${type === 'macaron' && 'selectionOutline'}`}
@@ -63,10 +69,10 @@ const CakeInfo = (props) => {
             title="A partir de 2,5€"
             onClick={() => { localChangeCakeType('macaron'); resetCakeStories(); }}
           >
-            Macaron
+            <txt-btn-sweet>Macarons</txt-btn-sweet>
           </button>
         </Col>
-        <Col sm="2" className="text-center">
+        <Col sm="2">
           <button
             type="button"
             className={`typeButton ${type === 'brownie' && 'selectionOutline'}`}
@@ -74,13 +80,13 @@ const CakeInfo = (props) => {
             title="A partir de 2,5€"
             onClick={() => { localChangeCakeType('brownie'); resetCakeStories(); }}
           >
-            Brownie
+            <txt-btn-sweet>Brownies</txt-btn-sweet>
           </button>
         </Col>
       </Row>
       <Row className="mt-5 justify-content-around">
         <Col sm="6">
-          <Label for="choix_occasion" className="labels-perso mt-3">Pour quelle occasion voulez-vous votre gâteau ?</Label>
+          <Label for="choix_occasion" className="lb-0">Pour quelle occasion voulez-vous votre délice ?</Label>
           <CakeOccasion />
           <SizeSelection />
         </Col>
@@ -100,6 +106,7 @@ const CakeInfo = (props) => {
 CakeInfo.propTypes = {
   localChangeCakeType: PropTypes.func.isRequired,
   resetCakeStories: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

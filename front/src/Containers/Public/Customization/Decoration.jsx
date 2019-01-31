@@ -1,95 +1,137 @@
 import React, { Component } from 'react';
+import { Button, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import {
-  FormGroup, FormText, Label,
-} from 'reactstrap';
-import { submitDecorationChoice } from '../../../Actions/customization_actions';
-import UploadPics from '../../UploadPics';
+import axios from 'axios';
 
 class Decoration extends Component {
   constructor(props) {
     super(props);
-    const { choice, image, price } = this.props;
-    this.state = {
-      decoration: { choice, image, price },
+    this.state = { uploaded1: '', uploaded2: '' };
+  }
+
+  componentWillMount() {
+    const { customSummary } = this.props;
+    const axiosGetPhotos = (reducerPhoto, photoState) => {
+      console.log("reducer photo", reducerPhoto)
+      if (reducerPhoto) {
+        axios.get(`/api/image/get/${reducerPhoto}`)
+          .then((response) => {
+            const image = `data:image/jpg;base64,${response.data}`;
+            this.setState({ [photoState]: image });
+          });
+      }
     };
+    axiosGetPhotos(customSummary.photo1, 'uploaded1');
+    axiosGetPhotos(customSummary.photo2, 'uploaded2');
   }
 
-  chooseDecoType = (structure) => {
-    this.setState({ decoration: structure });
+  handleImageChange = (e) => {
+    const { decoType, sendFileEvent } = this.props;
+    sendFileEvent(e, decoType);
   }
 
-  uploadPic = (e) => {
-    const { decoration } = this.state;
-    this.setState({ decoration: { ...decoration, image: e.target.files[0] } });
+
+  submitFile = (file) => {
+    const data = new FormData();
+    const { modify } = this.props;
+    data.append('avatar', file);
+    axios.post('/api/image/upload', data)
+      .then((result) => {
+        modify('GET_PHOTO_URL', result.data);
+      });
+  }
+
+  updateDescription = (e) => {
+    const { modify } = this.props;
+    modify('UPDATE_3D_DESCRIPTION', e.target.value);
+  }
+
+  hideInputField = () => {
+    const { decoType, customSummary, preview } = this.props;
+    if ((decoType === '2D' && (preview || customSummary.photo1))
+      || (decoType === '3D' && (preview || customSummary.photo2))) return true;
   }
 
   render() {
-    const { decoration } = this.state;
-    // const {
-    //   D2,
-    //   D3,
-    // } = this.props;
-
-    return (
-      <FormGroup className="uploadImage justify-content">
-        <Label for={decoration.choice === '2 Dimensions' ? 'file2D' : 'file3D'}>
-          <u>
-            <b>
-              Votre photo
-            </b>
-          </u>
-        </Label>
-        <UploadPics />
-        {/* <Input
-          type="file"
-          name="file"
-          id={decoration.choice === '2 Dimensions' ? 'file2D' : 'file3D'}
-          maxsize={5242880}
-          multiple={false}
-          accept="image/*"
-          onChange={this.uploadPic}
-        />
-        {Object.keys(decoration.image).length === 0
-          && (decoration.image).constructor !== Object && (
+    const { uploaded1, uploaded2 } = this.state;
+    const { decoType, photography, customSummary, preview, deleteUrl, description3D } = this.props;
+    // const urlNum = preview;
+    const centerContent = { display: 'flex', flexDirection: 'column', alignItems: 'center' };
+    let imagePreview = null;
+    if (preview) {
+      imagePreview = (
+        <div style={centerContent}>
+          {!photography && (
             <Button
-              onClick={() => this.chooseDecoType(decoration.choice === '2 Dimensions' ? D2 : D3)}
-              size="xsmall"
+              style={{ marginTop: '0.5vh', marginBottom: '0,5vh' }}
+              onClick={() => deleteUrl(decoType)}
+              color="danger"
             >
               Supprimer photo
-            </Button>)} */}
-        <FormText color="muted">
-          {Object.keys(decoration.image).length === 0
-            && (decoration.image).constructor === Object
-            && decoration.choice === '2 Dimensions' ? 'Veuillez télécharger l’image à imprimer en 2 dimensions'
-            : 'Vous pouvez télécharger une image d’inspiration pour votre décoration 3D'}
-        </FormText>
-      </FormGroup>
+            </Button>
+          )}
+          <br />
+          <img src={preview} alt="Oups, il y a eu un petit problème" />
+        </div>
+      );
+    } else {
+      imagePreview = (
+        <div>
+          <div className="previewText">
+            <p style={{ textAlign: 'center' }}>
+              Votre photo ici
+              <br />
+              (Cliquez pour ajouter)
+            </p>
+            <Input
+              type="file"
+              className="inputField"
+              name={decoType === '2D' ? 'file1' : 'file2'}
+              id={decoType === '2D' ? 'file1' : 'file2'}
+              onChange={e => this.handleImageChange(e)}
+              maxsize={5242880}
+              multiple={false}
+            // accept="image/png"
+            />
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div style={centerContent}>
+        {(() => {
+          if ((!preview && !photography) || preview) return imagePreview;
+          return <img src={decoType === '2D' ? uploaded1 : uploaded2} alt="Oups, il y a eu un petit problème" />;
+        }
+        )()}
+        <br />
+        {decoType === '3D' && (
+          <div className="b-textarea-custom">
+            <div className="lb-2">Description : </div>
+            <Input
+              name="description3D"
+              type="textarea"
+              onChange={this.updateDescription}
+              value={customSummary.description3D}
+              resize="none"
+              maxLength="300"
+              bgSize="sm"
+            />
+          </div>
+        )}
+      </div>
     );
-    //   }
   }
 }
 
 Decoration.propTypes = {
-  D2: PropTypes.shape({}).isRequired,
-  D3: PropTypes.shape({}).isRequired,
-  choice: PropTypes.string.isRequired,
-  image: PropTypes.shape({}).isRequired,
-  price: PropTypes.number.isRequired,
-  submitDecoChoice: PropTypes.func.isRequired,
+  customSummary: PropTypes.shape({}).isRequired,
+  modify: PropTypes.func.isRequired,
+  sendFileEvent: PropTypes.func.isRequired,
+  decoType: PropTypes.string.isRequired,
+  photography: PropTypes.string.isRequired,
+  preview: PropTypes.string.isRequired,
+  deleteUrl: PropTypes.func.isRequired,
 };
 
-const mapStatetoProps = state => ({
-  D2: state.customizationAdmin.print2D,
-  D3: state.customizationAdmin.print3Dimage,
-  choice: state.customizationCustomer.decoration.choice,
-  image: state.customizationCustomer.decoration.image,
-  price: state.customizationCustomer.decoration.price,
-});
-
-const mapDispatchToProps = dispatch => ({
-  submitDecoChoice: content => dispatch(submitDecorationChoice(content)),
-});
-
-export default connect(mapStatetoProps, mapDispatchToProps)(Decoration);
+export default Decoration;

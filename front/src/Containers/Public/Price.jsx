@@ -7,8 +7,8 @@ const Price = (props) => {
   const { price, sendToPrice } = props;
   sendToPrice(price);
   return (
-    <div className="bloc-price" style={{ position: 'sticky', top: '60vh' }}>
-      {`PRIX TTC: ${price} €`}
+    <div className="bloc-price">
+      {`PRIX INDICATIF: ${price.toFixed(2).replace(/[.,]00$/, '')} €`}
     </div>
   );
 };
@@ -21,9 +21,7 @@ Price.propTypes = {
 const mapStatetoProps = state => ({
   price: state.cakeCharacteristics.ingredients
     .map(p => p.price).reduce((a, v) => a + v, 0)
-  // + state.customizationCustomer.customMessage.price
-  // + state.customizationCustomer.decoration.price
-  ,
+    + state.customizationAdmin.total_price,
 });
 
 const mapDispatchToProps = dispatch => ({

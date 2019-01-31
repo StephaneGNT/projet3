@@ -3,8 +3,9 @@
   font-family: Arial;
   color: rgb(71, 71, 71);
   font-weight:700;
-  margin: -10px auto 5px;
+  margin: auto;
   text-transform:uppercase;
+
 }
 
 .buttonDisplay{
@@ -18,11 +19,3 @@
   padding: 0;
 }
 
-.story{
-  background-color: rgba(165, 5, 58, 0.747) !important;
-  border: 1px solid black !important;
-  margin: 2px auto !important;
-  text-align: center !important;
-  color:white !important;
-  padding: 0 !important;
-}

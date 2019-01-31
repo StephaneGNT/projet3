@@ -8,7 +8,7 @@ const IngredientsMacaronStructure = (props) => {
   const { flavor, shell } = props;
 
   return (
-    <Row>
+    <Row className="displayIngredient">
       <Col sm="6" style={{ height: 'auto' }}>
         <Row style={{ position: 'sticky', top: '0' }}>
           <h1>{flavor[0].type}</h1>
@@ -35,8 +35,8 @@ IngredientsMacaronStructure.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  flavor: state.macaronsFlavors,
-  shell: state.macaronsShells,
+  flavor: state.ingredients.filter(ing => ing.type === 'Macaron'),
+  shell: state.ingredients.filter(ing => ing.type === 'Coquille'),
 });
 
 export default connect(mapStateToProps)(IngredientsMacaronStructure);

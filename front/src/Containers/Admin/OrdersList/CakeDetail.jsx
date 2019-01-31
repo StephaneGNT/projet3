@@ -1,68 +1,65 @@
 import React, { Component } from 'react';
 import { Container, Table, Button } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
+import CakeDescriptionAdminSide from './CakeDescriptionAdminSide';
 
 class CakeDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      photo2D: '',
+      photo3D: '',
+      description3D: '',
+    };
+  }
 
-  renderCakeDescription = (cake) => {
-    const render = [];
-    let description = '';
-    if (cake.type === 'cake') description = `1 ${cake.type} de ${cake.story} étage(s) pour ${cake.size} personnes`;
-    else if (cake.type === 'cheesecake') description = `1 ${cake.type} pour ${cake.size} personnes`;
-    else description = `${cake.quantity} ${cake.type} en taille ${cake.size}`;
+  componentWillMount = () => {
+    const { location } = this.props;
+    if (location.state.cake.deco1 === '2D' || location.state.cake.deco2 === '2D') {
+      axios.get(`/api/image/get/${location.state.cake.photo1}`)
+        .then(res => this.setState({ photo2D: `data:image/jpg;base64,${res.data}` }));
+    }
+    if (location.state.cake.deco1 === '3D' || location.state.cake.deco2 === '3D') {
+      if (location.state.cake.photo2) {
+        axios.get(`/api/image/get/${location.state.cake.photo2}`)
+          .then(res => this.setState({ photo3D: `data:image/jpg;base64,${res.data}` }));
+      } else this.setState({ description3D: location.state.cake.description3D })
+    }
+  }
 
-    let decoration = '';
-    if (cake.deco1 === '' && cake.deco2 === '') decoration = 'Aucune décoration';
-    if (cake.deco1 === 'Message' || cake.deco2 === 'Message') {
-      decoration = <div>Message : <span style={{ color: cake.msgColor, backgroundColor: cake.msgBgColor, fontFamily: cake.font }}>{cake.msgContent}</span></div>
+  componentWillReceiveProps = (nextProps) => {
+    const { location } = this.props;
+    if (location.state.cake.deco1 === '2D' || location.state.cake.deco2 === '2D') {
+      axios.get(`/api/image/get/${location.state.cake.photo1}`)
+        .then(res => this.setState({ photo2D: `data:image/jpg;base64,${res.data}` }));
     }
-    if (cake.deco1 === '2D' || cake.deco1 === '3D') {
-      decoration += <div>Décoration {cake.deco1}</div>;
+    if (location.state.cake.deco1 === '3D' || location.state.cake.deco2 === '3D') {
+      if (location.state.cake.photo2) {
+        axios.get(`/api/image/get/${location.state.cake.photo2}`)
+          .then(res => this.setState({ photo3D: `data:image/jpg;base64,${res.data}` }));
+      } else this.setState({ description3D: location.state.cake.description3D })
     }
-    if (cake.deco2 === '2D' || cake.deco2 === '3D') {
-      decoration += <div>Décoration {cake.deco1}</div>;
-    }
-
-    render.push(
-      <tr>
-        <td>N°</td>
-        <td>{cake.id}</td>
-      </tr>,
-      <tr>
-        <td>Montant</td>
-        <td>{cake.price}</td>
-      </tr>,
-      <tr>
-        <td>Occasion</td>
-        <td>{cake.occasion ? cake.occasion : 'Non précisée'}</td>
-      </tr>,
-      <tr>
-        <td>Caractéristiques : </td>
-        <td>{description}</td>
-      </tr>,
-      <tr>
-        <td>Ingrédients : </td>
-        <td>{cake.ingredients}</td>
-      </tr>,
-      <tr>
-        <td>Décoration : </td>
-        <td>{decoration}</td>
-      </tr>,
-    );
-    return render;
   }
 
   render() {
     const { location, history } = this.props;
-    console.log("location.state.cake", location.state.cake);
+    const { photo2D, photo3D, description3D } = this.state;
     return (
       <Container>
         <Table>
           <tbody>
-            {this.renderCakeDescription(location.state.cake)}
+            <CakeDescriptionAdminSide
+              cake={location.state.cake}
+              customWishes=""
+              user="admin"
+              photo2D={photo2D}
+              photo3D={photo3D}
+              description3D={description3D}
+            />
           </tbody>
         </Table>
-        <Button onClick={() => history.push('/admin/orders')}>Retour</Button>
+        <Button onClick={() => history.push(`${process.env.PUBLIC_URL}/giluna/adminZone/orders`)}>Retour</Button>
       </Container>
     );
   }

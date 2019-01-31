@@ -13,10 +13,6 @@
   padding:5px;
 }
 
-h1 {
-  text-align: center;
-}
-
 li {
   list-style-type: none;
 }
@@ -71,22 +67,6 @@ input {
   margin-left: 3vh;
 }
 
-/* .messageYes {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  background-color: rgb(138, 138, 238);
-  border-radius: 25px;
-  height: 3.7vh;
-  color: white;
-}
-
-.messageYes:hover {
-  background-color: rgb(218, 6, 6);
-  cursor: pointer;
-} */
-
 .greyScale
 {
   display: inline-block;
@@ -104,12 +84,9 @@ input {
 }
 
 .FontList {
-  /* display: flex;
-  flex-direction: row;
-  justify-content: space-around; */
   font-size: 1.2em;
   margin-right: 1.5vh;
-  max-height: 55vh;
+  max-height: 40vh;
   overflow-y: auto;
   border: dashed 1px rgba(88, 87, 87, 0.747);;
   padding: 3vh;
@@ -118,10 +95,6 @@ input {
 
 .FontList:hover {
   cursor: pointer;
-}
-
-h4 {
-  text-align: center;
 }
 
 .chosenFontList {
@@ -149,5 +122,23 @@ h4 {
   display: flex !important;
   flex-direction: row !important;
   justify-content: flex-start !important;
-  margin-left: -8vh;
+}
+
+.buttons {
+  width: 33.33%;
+}
+
+.fontTable {
+  width: 100%;
+  cursor: pointer;
+  height: 40vh;
+  margin: 0;
+  overflow: scroll;
+  border: 1px solid grey;
+}
+
+.fontBubbles {
+  width: 25vh;
+  border-bottom: solid 1px black;
+  text-align: center;
 }

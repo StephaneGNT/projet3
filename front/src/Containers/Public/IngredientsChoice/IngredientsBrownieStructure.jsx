@@ -7,11 +7,12 @@ import IngredientsDisplay from './IngredientsDisplay';
 const IngredientsBrownieStructure = (props) => {
   const { bases } = props;
   return (
-    <Row>
-      <Col sm="12">
-        <h1 style={{ textAlign: 'center', position: 'sticky', top: '0' }}>{bases[0].type}</h1>
+    <Row className="compo-zone">
+      <Col lg="12">
+      <br />
+        <title-compo>Choisissez votre {bases[0].type}</title-compo>
       </Col>
-      <Col sm="12" style={{ display: 'flex', flexDirection: 'row' }}>
+      <Col lg="12">
         <IngredientsDisplay elementToDisplay={bases} />
       </Col>
     </Row>
@@ -23,7 +24,7 @@ IngredientsBrownieStructure.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  bases: state.browniesBases,
+  bases: state.ingredients.filter(ing => ing.type === 'Base brownie'),
 });
 
 export default connect(mapStateToProps)(IngredientsBrownieStructure);

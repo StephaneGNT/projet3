@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAdminFonts } from '../../Actions/customization_actions';
 
@@ -11,10 +12,10 @@ class FontList extends Component {
 
   deleteFonts = (name) => {
     const { fetchAdminFontList } = this.props;
-    axios.delete(`/customization/deletefonts/${name}`)
-      .then(response => {
+    axios.delete(`/api/customization/deletefonts/${name}`)
+      .then((response) => {
         if (response.data === 'ok') fetchAdminFontList();
-      })
+      });
   }
 
   render() {
@@ -22,7 +23,7 @@ class FontList extends Component {
     return (
       <div style={{ marginBottom: '3vh' }} className="chosenFontList">
         <h4>Votre séléction de polices:</h4>
-        <p style={{ fontSize: '0.6em', textAlign: 'center', color: 'red' }} >*Cliquez sur une police pour la retirer da la liste</p>
+        <p style={{ fontSize: '0.6em', textAlign: 'center', color: 'red' }}>*Cliquez sur une police pour la retirer da la liste</p>
         {
           selectedFonts.map((font => (
             <span
@@ -38,6 +39,11 @@ class FontList extends Component {
     );
   }
 }
+
+FontList.propTypes = {
+  fetchAdminFontList: PropTypes.func.isRequired,
+  selectedFonts: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 const mapStatetoProps = state => ({
   selectedFonts: JSON.parse(JSON.stringify(state.customizationAdmin.selectedFonts)),
